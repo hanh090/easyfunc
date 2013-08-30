@@ -17,7 +17,7 @@ public class JavaResource implements ApiResource {
 	public JavaResource() {
 		
 	}
-	@Override
+
 	public List<File> getApiFiles() {
 		return getApiFilesFromDir(INPUT);
 	}
@@ -37,11 +37,11 @@ public class JavaResource implements ApiResource {
 		
 		return result;
 	}
-	@Override
+	
 	public String getOutput() {
 		return OUTPUT;
 	}
-	@Override
+	
 	public void setInputPath() {
 		// TODO Auto-generated method stub
 		

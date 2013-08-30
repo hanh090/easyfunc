@@ -39,8 +39,7 @@ public class EasyFuncParser {
 			try {
 				Document document = Jsoup.parse(file, "UTF-8");
 				ApiElement abstractElement = api.getApiElement();
-				abstractElement.setDocument(document);
-				abstractElement.doParse();
+				abstractElement.doParse(document.children());
 				//writeOutput(elements);
 			} catch (IOException e) {
 				e.printStackTrace();

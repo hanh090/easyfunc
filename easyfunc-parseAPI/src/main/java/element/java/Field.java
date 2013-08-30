@@ -1,38 +1,32 @@
 package element.java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jsoup.select.Elements;
 
 import element.ApiElement;
+import element.ChildrenType;
 import element.WrongTemplateException;
 
 public class Field extends ApiElement {
 
-	public Field() {
-		this.selector = JavaSelector.FIELD_SELECTOR;
-		this.addToChilren(new Name(), new Description());
+	@Override
+	public String getSelector() {
+		
+		return JavaSelector.FIELD_SELECTOR;
 	}
 
 	@Override
-	public void parse(Elements content) {
-		Elements childrenContent = content.select(this.selector);
-		try {
-			if(childrenContent.size() > 1)
-				throw new WrongTemplateException("field");
-			else{
-				for (ApiElement child : this.children) {
-					child.parse(childrenContent);
-				}
-			}
-		} catch (WrongTemplateException e) {
-			e.printStackTrace();
-		}
+	public ChildrenType getChildrenType() {
 		
+		return ChildrenType.DICRETE;
 	}
 
 	@Override
-	public void doParse() {
-		
-		
+	public List<Object> getChildren() {
+		return this.buildChilren(new Name(), new Description());
 	}
 
+	
 }

@@ -1,33 +1,30 @@
 package element.java;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import element.ApiElement;
+import element.ChildrenType;
 
 public class Methods extends ApiElement {
+	@Override
+	public String getSelector() {
+		
+		return JavaSelector.METHODS_SELECTOR;
+	}
 
-	public Methods() {
-		this.selector = JavaSelector.METHODS_SELECTOR;
-		this.children.addAll(new ArrayList<Method>());
-	}
 	@Override
-	public void parse(Elements content) {
-		Elements childrenContent = content.select(this.selector);
+	public ChildrenType getChildrenType() {
 		
-		for (ApiElement method : this.children) {
-			if(method instanceof Method){
-				Element child = childrenContent.get(this.children.indexOf(method));
-				method.parse(new Elements(child));
-			}
-		}
+		return ChildrenType.LIST;
 	}
+
 	@Override
-	public void doParse() {
-		// TODO Auto-generated method stub
-		
+	public List<Object> getChildren() {
+		return this.buildChilren(new ArrayList<Method>());
 	}
 	
 	

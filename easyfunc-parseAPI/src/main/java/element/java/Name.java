@@ -1,34 +1,30 @@
 package element.java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jsoup.select.Elements;
 
 import element.ApiElement;
+import element.ChildrenType;
 import element.WrongTemplateException;
 
 public class Name extends ApiElement {
-	String content;
-	
-	public Name() {
-		this.selector = JavaSelector.NAME_SELECTOR;
-	}
-
 	@Override
-	public void parse(Elements content) {
-		Elements chidren = content.select(this.selector);
-		try {
-			if (chidren.size() > 1)
-				throw new WrongTemplateException(this.getClass().toString());
-			this.content = chidren.text();
-		} catch (WrongTemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void doParse() {
-		// TODO Auto-generated method stub
+	public String getSelector() {
 		
+		return JavaSelector.NAME_SELECTOR;
+	}
+
+	@Override
+	public ChildrenType getChildrenType() {
+		
+		return ChildrenType.NO_CHILD;
+	}
+
+	@Override
+	public List<Object> getChildren() {
+		return this.buildChilren(new String());
 	}
 
 }

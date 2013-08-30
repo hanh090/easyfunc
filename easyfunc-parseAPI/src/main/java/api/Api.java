@@ -1,8 +1,7 @@
 package api;
 
-import element.ApiElement;
 import resource.ApiResource;
-import structure.ApiStructure;
+import element.ApiElement;
 
 public abstract class Api {
 	ApiResource apiResource;

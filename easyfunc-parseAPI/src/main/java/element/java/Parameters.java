@@ -1,29 +1,31 @@
 package element.java;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.select.Elements;
 
 import element.ApiElement;
+import element.ChildrenType;
 
 public class Parameters extends ApiElement {
 
-	public Parameters() {
-		this.selector = JavaSelector.PARAMETERS_SELECTOR;
-		this.children.addAll(new ArrayList<Parameter>());
+	@Override
+	public String getSelector() {
 		
+		return JavaSelector.PARAMETERS_SELECTOR;
 	}
 
 	@Override
-	public void parse(Elements content) {
+	public ChildrenType getChildrenType() {
 		
-
+		return ChildrenType.LIST;
 	}
 
 	@Override
-	public void doParse() {
-		// TODO Auto-generated method stub
+	public List<Object> getChildren() {
 		
+		return this.buildChilren(new ArrayList<Parameter>());
 	}
 
 }

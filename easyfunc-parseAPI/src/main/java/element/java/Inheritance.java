@@ -1,27 +1,34 @@
 package element.java;
 
+import java.util.List;
+
 import org.jsoup.select.Elements;
 
 import element.ApiElement;
+import element.ChildrenType;
 /**
  * Inheritance tree 
  */
 public class Inheritance extends ApiElement {
+
+	@Override
+	public String getSelector() {
+		
+		return JavaSelector.INHERITANCE_SELECTOR;
+	}
+
+	@Override
+	public ChildrenType getChildrenType() {
+		
+		return ChildrenType.LIST;
+	}
+
+	@Override
+	public List<Object> getChildren() {
+		
+		return null;
+	}
 	
-	public Inheritance() {
-		this.selector = JavaSelector.INHERITANCE_SELECTOR;
-		this.addToChilren(new Inheritance());
-	}
-	@Override
-	public void doParse() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void parse(Elements content) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

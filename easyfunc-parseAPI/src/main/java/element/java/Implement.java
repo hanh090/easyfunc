@@ -1,22 +1,34 @@
 package element.java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jsoup.select.Elements;
 
 import element.ApiElement;
+import element.ChildrenType;
 
 public class Implement extends ApiElement {
 
-	public Implement() {
-		this.selector = JavaSelector.IMPLEMENT_SELECTOR;
-	}
 	@Override
-	public void doParse() {
+	public String getSelector() {
 		
-
+		return JavaSelector.IMPLEMENT_SELECTOR;
 	}
 
 	@Override
-	public void parse(Elements content) {
+	public ChildrenType getChildrenType() {
+		
+		return ChildrenType.LIST;
 	}
+
+	@Override
+	public List<Object> getChildren() {
+		
+		List<Object> result = new ArrayList<Object>();
+		return result ;
+	}
+
+
 
 }

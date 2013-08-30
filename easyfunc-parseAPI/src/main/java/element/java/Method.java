@@ -1,37 +1,31 @@
 package element.java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jsoup.select.Elements;
 
 import element.ApiElement;
+import element.ChildrenType;
 import element.WrongTemplateException;
 
 public class Method extends ApiElement {
-	
-	
-	public Method(String selector, ApiElement... elements) {
-		this.selector = JavaSelector.METHOD_SELECTOR;
-		this.addToChilren(new Name(), new Description(),new Annotations());
-	}
 	@Override
-	public void parse(Elements content) {
-		Elements childrenContent = content.select(this.selector);
-		try {
-			if(childrenContent.size() > 1)
-				throw new WrongTemplateException("method");
-			else{
-				for (ApiElement child : this.children) {
-					child.parse(childrenContent);
-				}
-			}
-		} catch (WrongTemplateException e) {
-			e.printStackTrace();
-		}
+	public String getSelector() {
 		
+		return JavaSelector.METHOD_SELECTOR;
 	}
+
 	@Override
-	public void doParse() {
-		// TODO Auto-generated method stub
+	public ChildrenType getChildrenType() {
 		
+		return ChildrenType.DICRETE;
 	}
+
+	@Override
+	public List<Object> getChildren() {
+		return this.buildChilren(new Name(), new Description(), new Annotations());
+	}
+	
 
 }
