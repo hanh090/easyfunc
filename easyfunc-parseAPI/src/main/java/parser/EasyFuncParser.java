@@ -3,15 +3,13 @@ package parser;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.text.AbstractDocument.AbstractElement;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import element.ApiElement;
 import api.Api;
 import api.JavaApi;
+import element.ApiElement;
 
 public class EasyFuncParser {
 	private Api api;

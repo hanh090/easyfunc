@@ -1,7 +1,7 @@
 package api;
 
-import resource.JavaResource;
 import element.java.JavaElement;
+import resource.JavaResource;
 
 public class JavaApi extends Api {
 	public JavaApi() {

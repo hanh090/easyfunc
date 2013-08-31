@@ -30,40 +30,28 @@ public final class JavaSelector {
 	/**
 	 * Method list selector
 	 */
-	public static final String METHODS_SELECTOR = ".blockList > .constructor_detail, .blockList > .method_detail";
+	public static final String METHODS_SELECTOR = "li.blockList > a[name]";
 	/**
 	 * Method selector
 	 */
-	public static final String METHOD_SELECTOR = null;
-	/**
-	 * Field list selector
-	 */
-	public static final String FIELDS_SELECTOR = null;
-	/**
-	 * Field selector
-	 */
-	public static final String FIELD_SELECTOR = null;
+	public static final String METHOD_SELECTOR = "ul.blockList > li.blockList";
 	/**
 	 * Annotation list selector
 	 */
-	public static final String ANNOTATIONS_SELECTOR = null;
+	public static final String ANNOTATIONS_SELECTOR = ".blockList > dl";
 	/**
-	 * Parameter list selector
+	 * Annotation selector
 	 */
-	public static final String PARAMETERS_SELECTOR = null;
-	/**
-	 * Parameter selector
-	 */
-	public static final String PARAMETER_SELECTOR = null;
-	
+	public static final String ANNOTATION_SELECTOR = null;
 	/**
 	 * Description selector
 	 */
-	public static final String DESCRIPTION_SELECTOR = ".blockList .block";
+	public static final String DESCRIPTION_SELECTOR = ".blockList .block, dl dd";
 	/**
 	 * Name  selector
 	 */
-	public static final String NAME_SELECTOR = ".blockList pre";
+	public static final String NAME_SELECTOR = ".blockList pre, dl dt";
+	
 	
 
 }

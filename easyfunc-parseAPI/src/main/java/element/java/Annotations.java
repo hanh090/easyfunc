@@ -1,7 +1,5 @@
 package element.java;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.jsoup.select.Elements;
@@ -23,9 +21,12 @@ public class Annotations extends ApiElement {
 
 	@Override
 	public List<Object> getChildren() {
-		return this.buildChilren(new Parameter(),new Implement());
+		return this.buildChilren(new Annotation());
 	}
 
-	
+	@Override
+	protected void parse(Elements content) {
+		super.parse(content);
+	}
 
 }

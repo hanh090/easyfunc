@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaResource implements ApiResource {
-	private static final String OUTPUT = "D:\\easyfunc\\easyfunc-parseAPI\\result";
-	private static final String INPUT = "D:\\Compressed\\jdk-7u6-apidocs\\docs\\api";
+	private static final String OUTPUT = "D:\\easyfunc\\src\\main\\resources\\output\\1.Result-JavaAPI-v7";
+	private static final String INPUT = "D:\\easyfunc\\src\\main\\resources\\input\\1.JavaAPI-v7\\docs\\api";
 	/**
 	 * Just for test. Assign to null when test done
 	 */
@@ -17,7 +17,7 @@ public class JavaResource implements ApiResource {
 	public JavaResource() {
 		
 	}
-
+	
 	public List<File> getApiFiles() {
 		return getApiFilesFromDir(INPUT);
 	}
@@ -43,8 +43,6 @@ public class JavaResource implements ApiResource {
 	}
 	
 	public void setInputPath() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

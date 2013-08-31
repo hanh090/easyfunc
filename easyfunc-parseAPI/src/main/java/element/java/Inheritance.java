@@ -2,8 +2,6 @@ package element.java;
 
 import java.util.List;
 
-import org.jsoup.select.Elements;
-
 import element.ApiElement;
 import element.ChildrenType;
 /**

@@ -3,11 +3,8 @@ package element.java;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.select.Elements;
-
 import element.ApiElement;
 import element.ChildrenType;
-import element.WrongTemplateException;
 
 public class Description extends ApiElement {
 
@@ -23,7 +20,7 @@ public class Description extends ApiElement {
 
 	@Override
 	public List<Object> getChildren() {
-		return this.buildChilren(new String());
+		return new ArrayList<Object>();
 	}
 
 }

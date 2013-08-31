@@ -2,11 +2,8 @@ package element.java;
 
 import java.util.List;
 
-import org.jsoup.select.Elements;
-
 import element.ApiElement;
 import element.ChildrenType;
-import element.WrongTemplateException;
 
 public class Type extends ApiElement {
 
@@ -23,9 +20,9 @@ public class Type extends ApiElement {
 	}
 
 	@Override
+	@SuppressWarnings("Missing annontoatation")
 	public List<Object> getChildren() {
-		
-		return this.buildChilren(new Name(), new Description(),new Annotations(),new Fields(),new Methods());
+		return this.buildChilren(new Name(), new Description(),new Methods());
 	}
 	
 	

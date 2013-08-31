@@ -1,13 +1,9 @@
 package element.java;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.jsoup.select.Elements;
 
 import element.ApiElement;
 import element.ChildrenType;
-import element.WrongTemplateException;
 
 public class Method extends ApiElement {
 	@Override

@@ -1,10 +1,9 @@
 package element;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -22,10 +21,15 @@ public abstract class ApiElement {
 		this.childrenType = getChildrenType();
 	}
 
-	public void doParse(Elements content) {
-		if (content == null || content.size() == 0)
-			return;
+	public boolean doParse(Elements content) {
+		if (content == null || content.size() == 0) {
+			System.out.println("Content null! "
+					+ this.getClass().getSimpleName());
+			return false;
+		}
+
 		parse(content);
+		return true;
 	}
 
 	/**
@@ -34,38 +38,55 @@ public abstract class ApiElement {
 	 * @param content
 	 *            content of parent element
 	 */
-	private void parse(Elements content) {
+	protected void parse(Elements content) {
 		Elements childrenContent = content.select(this.selector);
-		
-		switch (childrenType) {
-		case DICRETE:
-		case NO_CHILD:
-			for (Object child : this.children) {
-				if (child instanceof ApiElement)
-					((ApiElement) child).doParse(childrenContent);
+		Iterator<Object> iterator = this.children.iterator();
+		do {
+			
+			Object child = null;
+			try {
+				child = iterator.next();
+			} catch(Exception e)  {
+				
 			}
-			break;
+			
+			switch (childrenType) {
+			case DICRETE:
 
-		case LIST:
-			for (Object child : this.children) {
+				if (child instanceof ApiElement) {
+					boolean result = ((ApiElement) child)
+							.doParse(childrenContent);
+
+					if (!result)
+						return;
+				}
+				break;
+
+			case LIST:
+
 				Element childContent = childrenContent.get(this.children
 						.indexOf(child));
 				if (child instanceof ApiElement)
 					((ApiElement) child).doParse(new Elements(childContent));
-				;
+				break;
+
+			case NO_CHILD:
+				this.children.add(childrenContent.text());
+				return;
+			default:
+				break;
 			}
-		default:
-			break;
-		}
+
+		} while (iterator.hasNext());
+
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		String name = this.getClass().getName().toLowerCase();
-		String result = "<" + name + ">\n\t";
-		for (Object abstractElement : this.children) {
-			result += abstractElement.toString();
+		String name = this.getClass().getSimpleName().toLowerCase();
+		String result = "<" + name + ">\n";
+		for (Object apiElement : this.children) {
+			result += "\t" + apiElement.toString();
 		}
 
 		result += "</" + name + ">\n";
@@ -93,7 +114,7 @@ public abstract class ApiElement {
 	 * @return list of children
 	 */
 	public abstract List<Object> getChildren();
-	
+
 	public List<Object> buildChilren(Object... child) {
 		return Arrays.asList(child);
 	}
