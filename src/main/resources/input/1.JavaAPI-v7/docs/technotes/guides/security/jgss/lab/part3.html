@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta http-equiv="content-type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+
+.style1 {
+        color: #FF0000;
+        font-style: italic;
+        font-weight: bold;
+}
+.style8 {font-size: 12pt}
+.style10 {color: #594fbf}
+
+p, li,  ul li { margin-left: 40pt;
+                   font-family: Helvetica, Arial, sans-serif;
+                            font-size: medium; 
+                            }
+
+h2  { margin-left: 40pt;
+      margin-top:32pt;
+      font-family: Helvetica, Arial, sans-serif;
+         font-size: larger; }
+         
+h3      { font-family: helvetica,arial,sans-serif;
+       font-size: medium;
+       font-weight: bold; 
+ 
+          margin-left: 40pt;
+          }
+                            
+/*]]>*/
+</style>
+<title>Advanced JGSS Security Programming</title><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<!-- part III -->
+<h2 class="main1"><a name="PART3" id="PART3">Part III : Deploying
+for Single Sign-On in a Kerberos Environment</a></h2>
+<h2 style="text-align: left;"><a name="SSO" href="#SSO" id=
+"SSO"></a>Exercise 6: Deploying for Single Sign-On</h2>
+<h3>Goal of this exercise:</h3>
+<p>The goal of this exercise is to learn how to configure a JAAS
+application that uses Kerberos for authentication to achieve
+<em>single sign-on</em>. Single sign-on means that the user needs
+only authenticate once to a system or a collection of services.
+After the initial authentication, the user can access other
+services in the system using the same identity as he used for the
+initial authentication.</p>
+<p>Single sign-on can be used to describe different types of
+authentication. There are HTTP-based network single sign-on
+protocols. There is Kerberos-based single sign-on for network
+services. In this particular exercise, we show how to achieve
+single sign-on in Kerberos-based systems by showing how to import
+already-acquired Kerberos credentials from the underlying native
+operating system.</p>
+<h3>Background and Resources for this exercise:</h3>
+<ol>
+<li><a href="../../../security/jgss/single-signon.html">Single Sign-On Using Kerberos in Java</a></li>
+</ol>
+<p>In addition, see the information provided in <a href=
+"part1.html#KRB5BG">Exercises 2</a> and <a href=
+"part2.html#JGSSBG">4</a> for background information about Kerberos
+and Java GSS.</p>
+<p><span style=
+"font-family: helvetica,arial,sans-serif;"><span style=
+"font-weight: bold; color: rgb(0, 0, 0); text-decoration: underline;">
+Steps to follow:</span></span></p>
+<ol>
+<li>Edit the JAAS configuration file. This is located in <a href=
+"src/jaas-krb5.conf"><code>src/jaas-krb5.conf<br /></code></a></li>
+</ol>
+<div>
+<p>This file contains two entries, one named "client" and one named
+"server." &nbsp; Add the line <b><tt>"useTicketCache=true"</tt></b>
+to the client entry.</p>
+<p>Code listing for updated <code>jaas-krb5.conf</code>.</p>
+<ol>
+<li><code>client {</code></li>
+<li><code>&nbsp; &nbsp;
+com.sun.security.auth.module.Krb5LoginModule required</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style=
+"color: rgb(255, 0, 0);">useTicketCache=true</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;principal="test";</code></li>
+<li><code>};</code></li>
+<li><code>server {</code></li>
+<li><code>&nbsp;&nbsp; com.sun.security.auth.module.Krb5LoginModule
+required</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;useKeyTab=true</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;storeKey=true</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;keyTab=sample.keytab</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;principal="host/j1hol-001";</code></li>
+<li><code>};</code></li>
+</ol>
+<br /></div>
+<ol style="list-style-type: decimal;" start="2">
+<li>Perform Kerberos login to the native operating system. 
+<!-- This step is usually not necessary in a typical enterprise environment
+because the Kerberos login would be done automatically as part of
+by the operating system's login procedure. However, in this  environment,
+due to multiple labs running on the same machine with different
+requirements,
+the Kerberos login was not part of the operating system login. -->
+<br />
+To login to Kerberos, use <b>kinit</b> command as follows.
+<pre class="codeblock">
+<b>% kinit test</b>
+</pre>
+Then, enter <tt>changeit</tt> when prompted for the password.</li>
+<li>Run the client and server programs in Exercises 1-5 as before
+and you will note that the client applications no longer ask you to
+enter a password.</li>
+</ol>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

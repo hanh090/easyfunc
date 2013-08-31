@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>javap - The Java Class File Disassembler</title>
+<meta name="collection" content="reference" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>javap - The Java Class File Disassembler</h1>
+<p>Disassembles class files.</p>
+
+<h2>SYNOPSIS</h2>
+
+<pre class="codeblock">
+javap [ <a href="javap.html#options">options</a> ] classes
+</pre>
+
+<h2>DESCRIPTION</h2>
+
+<p>The <b>javap</b> command disassembles one or more class files. Its output
+depends on the options used. If no options are used, <b>javap</b>
+prints out the package, protected, and public fields and methods of
+the classes passed to it. <b>javap</b> prints its output to stdout.</p>
+
+<dl>
+<dt><a href="#options"><code>options</code></a></dt>
+<dd>Command-line options.</dd>
+<dt><code>classes</code></dt>
+<dd>List of one or more classes (separated by spaces) to be processed for annotations (such as <code>DocFooter.class</code>). You may specify a class that can be found in the class path, by its file name (for example, <code>C:\myproject\src\DocFooter.class</code>), or with a URL (for example, <code>file:///C:/myproject/src/DocFooter.class</code>).</dd>
+</dl>
+
+<p>For example, compile the following class declaration:</p>
+<pre class="codeblock">
+import java.awt.*;
+import java.applet.*;
+
+public class DocFooter extends Applet {
+        String date;
+        String email;
+
+        public void init() {
+                resize(500,100);
+                date = getParameter("LAST_UPDATED");
+                email = getParameter("EMAIL");
+        }
+
+        public void paint(Graphics g) {
+                g.drawString(date + " by ",100, 15);
+                g.drawString(email,290,15);
+        }
+}
+</pre>
+<p>The output from <b>javap DocFooter.class</b> yields:</p>
+<pre class="codeblock">
+Compiled from "DocFooter.java"
+public class DocFooter extends java.applet.Applet {
+  java.lang.String date;
+  java.lang.String email;
+  public DocFooter();
+  public void init();
+  public void paint(java.awt.Graphics);
+}
+</pre>
+<p>The output from <b>javap -c DocFooter.class</b> yields:</p>
+<pre class="codeblock">
+Compiled from "DocFooter.java"
+public class DocFooter extends java.applet.Applet {
+  java.lang.String date;
+
+  java.lang.String email;
+
+  public DocFooter();
+    Code:
+       0: aload_0       
+       1: invokespecial #1                  // Method java/applet/Applet."&lt;init&gt;":()V
+       4: return        
+
+  public void init();
+    Code:
+       0: aload_0       
+       1: sipush        500
+       4: bipush        100
+       6: invokevirtual #2                  // Method resize:(II)V
+       9: aload_0       
+      10: aload_0       
+      11: ldc           #3                  // String LAST_UPDATED
+      13: invokevirtual #4                  // Method getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      16: putfield      #5                  // Field date:Ljava/lang/String;
+      19: aload_0       
+      20: aload_0       
+      21: ldc           #6                  // String EMAIL
+      23: invokevirtual #4                  // Method getParameter:(Ljava/lang/String;)Ljava/lang/String;
+      26: putfield      #7                  // Field email:Ljava/lang/String;
+      29: return        
+
+  public void paint(java.awt.Graphics);
+    Code:
+       0: aload_1       
+       1: new           #8                  // class java/lang/StringBuilder
+       4: dup           
+       5: invokespecial #9                  // Method java/lang/StringBuilder."&lt;init&gt;":()V
+       8: aload_0       
+       9: getfield      #5                  // Field date:Ljava/lang/String;
+      12: invokevirtual #10                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      15: ldc           #11                 // String  by 
+      17: invokevirtual #10                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      20: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      23: bipush        100
+      25: bipush        15
+      27: invokevirtual #13                 // Method java/awt/Graphics.drawString:(Ljava/lang/String;II)V
+      30: aload_1       
+      31: aload_0       
+      32: getfield      #7                  // Field email:Ljava/lang/String;
+      35: sipush        290
+      38: bipush        15
+      40: invokevirtual #13                 // Method java/awt/Graphics.drawString:(Ljava/lang/String;II)V
+      43: return        
+}
+</pre>
+<h2><a name="options" id="options"></a>OPTIONS</h2>
+<dl>
+<dt><b>-help<br/>--help<br/>-?</b></dt>
+<dd>Prints out help message for <b>javap</b>.</dd>
+<dt><b>-l</b></dt>
+<dd>Prints out line and local variable tables.</dd>
+<dt><b>-public</b></dt>
+<dd>Shows only public classes and members.</dd>
+<dt><b>-protected</b></dt>
+<dd>Shows only protected and public classes and members.</dd>
+<dt><b>-package</b></dt>
+<dd>Shows only package, protected, and public classes and members.
+This is the default.</dd>
+<dt><b>-private<br/>-p</b></dt>
+<dd>Shows all classes and members.</dd>
+<dt><b>-J<i>flag</i></b></dt>
+<dd>Pass <i>flag</i> directly to the runtime system. Some examples:
+<pre class="codeblock">
+javap -J-version
+javap -J-Djava.security.manager -J-Djava.security.policy=MyPolicy MyClassName
+</pre></dd>
+<dt><b>-s</b></dt>
+<dd>Prints internal type signatures.</dd>
+<dt><b>-sysinfo</b></dt>
+<dd>Shows system information (path, size, date, MD5 hash) of the class being processed.</dd>
+<dt><b>-constants</b></dt>
+<dd>Shows static final constants.</dd>
+<dt><b>-c</b></dt>
+<dd>Prints out disassembled code, i.e., the instructions that
+comprise the Java bytecodes, for each of the methods in the class.
+These are documented in the <a href="http://docs.oracle.com/javase/specs/">Java Virtual Machine
+Specification</a>.</dd>
+<dt><b>-verbose</b></dt>
+<dd>Prints stack size, number of <code>locals</code> and
+<code>args</code> for methods.</dd>
+<dt><b>-classpath <i>path</i></b></dt>
+<dd>Specifies the path <b>javap</b> uses to look up classes.
+Overrides the default or the CLASSPATH environment variable if it
+is set.</dd>
+<dt><b>-bootclasspath <i>path</i></b></dt>
+<dd>Specifies path from which to load bootstrap classes. By
+default, the bootstrap classes are the classes implementing the
+core Java platform located in <tt>jre\lib\rt.jar</tt> and several
+other jar files.</dd>
+<dt><b>-extdirs <i>dirs</i></b></dt>
+<dd>Overrides location at which installed extensions are searched
+for. The default location for extensions is the value of
+<tt>java.ext.dirs</tt>.</dd>
+</dl>
+<h2>SEE ALSO</h2>
+<p><a href="javac.html">javac</a>, <a href="java.html">java</a>,
+<a href="jdb.html">jdb</a>, <a href="javah.html">javah</a></p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

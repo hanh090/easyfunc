@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+<head>
+<title>Cookie Support</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h1>Cookie Support</h1>
+<p>Cookie Support includes the following topics:</p>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#cookie_support">Cookie Support in Java Plug-in and Java Web Start</a></li>
+<li><a href="#programmatic_access">Programmatic Access to Cookies</a></li>
+<li><a href="#more">More Information</a></li>
+</ul>
+<h2><a name="introduction" id="introduction"></a>Introduction</h2>
+<p>Cookies are a way of storing data on the client side. They have been used extensively for personalization of portal sites, user preference tracking, and logging into web sites. For enterprise customers using cookies in their web sites, cookie support in Java Plug-in and Java Web Start facilitates deployment of client-side Java.</p>
+<p>Cookie support allows a Java application to pass a cookie back to a web server if that cookie originated from the web server. This provides the server with information about the state of the client.</p>
+<h2><a name="cookie_support" id="cookie_support"></a>Cookie Support in Java Plug-in and Java Web Start</h2>
+<p>There are two main types of cookies: <a href="#session">Session Cookies</a> and <a href="#permanent">Permanent Cookies</a>.</p>
+<h3><a name="session" id="session"></a>Session Cookies</h3>
+<p>Session cookies are stored in memory during the applet or application session. Session cookies expire when the applet or application exits and are automatically deleted. These cookies usually store a session ID that is not personally identifiable to users, allowing the user to move from page to page without having to log-in repeatedly. They are widely used by commercial web sites (for example, to keep track of items that a consumer has added to a shopping cart.)</p>
+<h3><a name="permanent" id="permanent"></a>Permanent Cookies</h3>
+<p>Permanent cookies are stored in persistent storage and are not deleted when the application exits. They are deleted when they expire. They can retain user preferences for a particular web site, allowing those preferences to be used in future sessions. Permanent cookies can be used to identify individual users, so they may be used by web sites to analyze users' surfing behavior within the web site. These cookies can also be used to provide information about the numbers of visitors, the average time spent on a particular page, and the general performance of the web site. They are usually configured to keep track of users for a prolonged period of time, in some cases many years into the future.</p>
+<h3>Support</h3>
+<p>Java Plug-in and Java Web Start support handling of both types of cookie on all platforms.</p>
+<p>Java Plug-in provides permanent cookie support using the underlying browser cookie store. When it runs in Internet Explorer, the cookie store in IE is used; when it runs in Mozilla, the cookie store in Mozilla is used. Because each browser has a different cookie policy, the cookie-handling behavior depends on the cookie control in the browser. For example, if the browser is configured to reject third-party cookies, the policy will apply to Java Plug-in when it runs in this browser.</p>
+<p>Java Web Start provides permanent cookie support on Windows using the cookie store in Internet Explorer, and the cookie-handling behavior is determined by the cookie control in IE. On Linux/Solaris, Java Web Start provides permanent cookie support using its own cookie store implementation.</p>
+<h2><a name="programmatic_access" id="programmatic_access"></a>Programmatic Access to Cookies</h2>
+<p>There are several ways for an application to override the default cookie handling. Four are outlined below.</p>
+<h3><code>void URLConnection.setRequestProperty(String key, String value)</code></h3>
+<p>This approach allows the application to set a custom cookie header in <code>URLConnection</code> before making a connection.</p>
+<p><code>URL url = new URL( "http://java.sun.com/" );<br />
+URLConnection conn = url.openConnection();<br />
+conn.setRequestProperty("Cookie", "foo=bar");<br />
+InputStream is = conn.getInputStream();<br />
+.....</code></p>
+<p>When the connection is made, the custom cookie would be sent to the server in the HTTP/HTTPS request headers.</p>
+<h3><code>Map&lt;String, List&lt;String&gt;&gt; URLConnection.getHeaderFields()</code></h3>
+<p>After a connection is made, the server may return a cookie in the HTTP/HTTPS response headers. The approach outlined below allows the application to retrieve the cookie value through <code>URLConnection</code>.</p>
+<p><code>URL url = new URL( "http://java.sun.com/" );<br />
+URLConnection conn = url.openConnection();<br />
+conn.connect();<br />
+.....<br />
+Map&lt;String, List&lt;String&gt;&gt; headers = conn.getHeaderFields();<br />
+List&lt;String&gt; values = headers.get("Set-Cookie");<br />
+<br />
+String cookieValue = null;<br />
+for (Iterator iter = values.iterator(); iter.hasNext(); ) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp; String v = values.next();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (cookieValue == null)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cookieValue = v;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cookieValue = cookieValue + ";" + v;<br />
+}</code></p>
+<p>After the connection is made, the server may return the cookie in the HTTP/HTTPS response headers.</p>
+<h3><code>Map&lt;String,List&lt;String&gt;&gt; CookieHandler.get(URI uri, Map&lt;String,List&lt;String&gt;&gt; requestHeaders)</code></h3>
+<p>This approach allows the application to retrieve session/permanent cookies for a given URL:</p>
+<p><code>String retrieveCookie(URL url)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp; String cookieValue = null;<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CookieHandler handler = CookieHandler.getDefault();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (handler != null)&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Map&lt;String, List&lt;String&gt;&gt; headers = handler.get(url.toURI(), new HashMap&lt;String, List&lt;String&gt;&gt;());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;String&gt; values = headers.get("Cookie");<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (Iterator&lt;String&gt; iter=values.iterator(); iter.hasNext();) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String v = iter.next();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (cookieValue == null)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cookieValue = v;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cookieValue = cookieValue + ";" + v;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return cookieValue;<br />
+}</code></p>
+<p><code>CookieHandler</code> is an abstraction of the browser/system cookie storage, so additional security permission is required for execution; the above code will be executed successfully only if the application is trusted.</p>
+<h3><code>void CookieHandler.put(URI uri, Map&lt;String,List&lt;String&gt;&gt; responseHeaders)</code></h3>
+<p>This approach allows the application to set a session/permanent cookie for a given URL:</p>
+<p><code>void setCookie(URL url, String value)<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CookieHandler handler = CookieHandler.getDefault();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (handler != null)&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Map&lt;String, List&lt;String&gt;&gt; headers= new HashMap&lt;String, List&lt;String&gt;&gt;();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;String&gt; values = new List&lt;String&gt;();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values.add(value);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;headers.put("Cookie", values);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler.put(url.toURI(), headers);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code></p>
+<p><code>CookieHandler</code> is an abstraction of the browser/system cookie storage, so additional security permission is required for execution; the above code will be executed successfully only if the application is trusted.</p>
+<h2><a name="more" id="more"></a>More information</h2>
+<ul>
+<li>Persistent Client State - HTTP Cookies: <a href="http://netscape.aol.com">http://wp.netscape.com/newsref/std/cookie_spec.html</a></li>
+<li>Unofficial Cookie FAQ: <a href="http://www.cookiecentral.com/faq/">http://www.cookiecentral.com/faq/</a><br />
+<br /></li>
+</ul>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

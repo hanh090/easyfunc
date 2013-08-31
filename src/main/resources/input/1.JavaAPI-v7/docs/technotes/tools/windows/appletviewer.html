@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>appletviewer - The Java Applet Viewer</title>
+<meta name="collection" content="reference" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>appletviewer - The Java Applet Viewer</h1>
+The <b>appletviewer</b> command allows you to run applets outside
+of a web browser.
+<h2>SYNOPSIS</h2>
+<code><b>appletviewer</b></code> [ <a href=
+"appletviewer.html#options">options</a> ] <i>urls</i> ...
+<h2>DESCRIPTION</h2>
+<p>The <b>appletviewer</b> command connects to the documents or
+resources designated by <i>urls</i> and displays each applet
+referenced by the documents in its own window. Note: if the
+documents referred to by <i>urls</i> do not reference any applets
+with the <i>OBJECT</i>, <i>EMBED</i>, or <i>APPLET</i> tag, then
+<b>appletviewer</b> does nothing. For details on the HTML tags that
+<b>appletviewer</b> supports, see <a href=
+"../appletviewertags.html">AppletViewer Tags</a>.
+</p>
+<p><b>Note:</b> The <b>appletviewer</b> is intended for development
+purposes only. See <a href="../../samples/aboutCodeSamples.html">
+About Sample / Test Applications and Code</a> for more information.
+</p>
+<p>The Java 2 JDK contains two implementations of the Java virtual
+machine:</p>
+<p><b>Note:</b> The <b>appletviewer</b> requires encoded URLs
+according to the escaping mechanism defined in RFC2396. Only
+encoded URLs are supported. However, file names must be unencoded,
+as specified in RFC2396.</p>
+<ul>
+<li><b>The Java HotSpot&trade; Client VM</b><br />
+The Java HotSpot Client VM is the default virtual machine. Its use
+of Java HotSpot technology gives it superior performance as
+compared with the Classic VM. Unless special command-line options
+are used to invoke the Classic VM instead (see below),
+<b>appletviewer</b> will always launch an applet to run on the
+Client VM.</li>
+<li><b>The Java 2 Classic VM</b><br />
+The Java 2 Classic VM is essentially the same virtual machine
+implementation as in version 1.2 of the Java 2 SDK. It may be
+invoked by using the <tt>-classic</tt> command-line option, as in
+this example:
+<pre class="codeblock">
+appletviewer -classic MyApplet.html
+</pre></li>
+</ul>
+<h2><a name="options" id="options">OPTIONS</a></h2>
+<dl>
+<dt><b>-debug</b></dt>
+<dd>Starts the applet viewer in the Java debugger, <a href=
+"jdb.html"><b>jdb</b></a>, thus allowing you to debug the applets
+in the document.</dd>
+<dt><b>-encoding</b><i>&nbsp; &nbsp;encoding name</i></dt>
+<dd>Specifies the input HTML file encoding name.</dd>
+<dt><b>-J</b><i>javaoption</i></dt>
+<dd>Passes through the string <i>javaoption</i> as a single
+argument to the Java interpreter which runs the appletviewer. The
+argument should not contain spaces. Multiple argument words must
+all begin with the prefix <b>-J</b>, which is stripped. This is
+useful for adjusting the compiler's execution environment or memory
+usage.</dd>
+</dl>
+<!-- PENDING: put in a SEE ALSO link to hotjava after the ADR -->
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

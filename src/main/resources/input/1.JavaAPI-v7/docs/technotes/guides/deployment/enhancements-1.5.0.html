@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>General Deployment Enhancements in J2SE 5.0</title><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h1>General Deployment Enhancements in J2SE 5.0</h1>
+<ul>
+<li>Much of the common functionality between Java Plug-in and Java
+Web Start has been combined. There is now a single Java Control
+Panel for both. It replaces both the Java Plug-in Control Panel and
+the Preference panel of the Java Web Start Application Manager. The
+settings are used in both products. (<a href=
+"http://bugs.sun.com/view_bug.do?bug_id=4667682">4667682</a>)</li>
+<li>Security: (1) This release features improved security access
+and control, including both user- and system-level security options
+and an expanded list of deployment properties. (4667645) (2)
+Several new configuration properties have been added so that an
+enterprise can customize user security settings. These allow
+control of what applications a user is allowed to grant trust to,
+and what permissions are given to code for which trust is granted.
+Also, a user or enterprise can configure what information is to be
+displayed on security warnings; and an enterprise can configure if
+a user is allowed to run applications in the enhanced sandbox of
+the JNLP API. An enterprise can also pre-accept its own
+certificates so that users will not see any security warnings in
+its own applications.</li>
+<li>Enterprise Configuration: Both deployment products can now be
+configured with an enterprise configuration file. This file,
+accessed as a URL, can set any set of configuration properties,
+either as defaults, or as locked properties which cannot be
+overridden by the user.</li>
+<li>Support is available for pack/crunch compression for
+downloading Java applications and applets. Pack200, a new
+hyper-compression format for JAR files defined by JSR-200, can
+reduce the download size of JNLP applications and Java Plug-in
+applets. File size can be reduced to about 1/8th of the original
+size. (4666040)</li>
+<li>Support of browser keystores in Internet Explorer and Mozilla
+in Java Plug-in and Web Start: Certificates and keys in browser
+keystores will be used for signing verification, HTTPS server
+authentication, and HTTPS client authentication. Certificates and
+keys on the smart card exposed in the browser keystore will also be
+recognized. See <a href="deployment-guide/keystores.html">Browser
+Keystores</a> for more information. (4480333, 4957907)</li>
+<li>Support of time-stamped, signed JAR files: With time-stamping
+now built into the signing tool, Java Plug-in and Java Web Start
+now recognize the time-of-signing information when they verify a
+signed JAR file. This solves the problem of a signed applet signed
+with a valid certificate at time-of-signing but the certificate
+expired later after the applet deployment. (<a href=
+"http://bugs.sun.com/view_bug.do?bug_id=4649690">4649690</a>)</li>
+<li>Support of Client Authentication in HTTPS: This release
+provides interactive user interface in Java Plug-in and Java Web
+Start during HTTPS client authentication for users to select the
+personal certificate from the personal keystore. (4802844)</li>
+</ul>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

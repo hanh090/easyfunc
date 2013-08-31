@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>jstack - Stack Trace</title>
+<meta name="collection" content="reference" />
+<meta name="copyright" content="2004, 2011" />
+<link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>jstack - Stack Trace<br /></h1>
+<ul>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#parameters">Parameters</a><br /></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#seealso">See Also</a></li>
+<li><a href="#KNOWN_BUGS">Known Bugs</a><br /></li>
+</ul>
+<h2><a name="synopsis" id="synopsis">SYNOPSIS</a></h2>
+<pre>
+<b>jstack</b> [ option ] pid
+<b>jstack</b> [ option ] executable core
+<b>jstack</b> [ option ] [server-id@]remote-hostname-or-IP
+</pre>
+<h2><a name="parameters" id="parameters">PARAMETERS</a></h2>
+<p>Options are mutually exclusive. Option, if used, should follow
+immediately after the command name. See <a href=
+"#options">OPTIONS</a>.</p>
+<dl>
+<dt><strong>pid</strong></dt>
+<dd>process id for which the stack trace is to be printed. The
+process must be a Java process. To get a list of Java processes
+running on a machine, <a href="jps.html">jps</a> may be
+used.</dd>
+</dl>
+<dl>
+<dt><strong>executable</strong></dt>
+<dd>Java executable from which the core dump was produced.</dd>
+<dd><br /></dd>
+<dt><strong>core</strong></dt>
+<dd>core file for which the stack trace is to be printed.</dd>
+<dd><br /></dd>
+<dt><strong>remote-hostname-or-IP</strong></dt>
+<dd>remote debug server's (see <a href=
+"jsadebugd.html">jsadebugd</a>) hostname or IP address.</dd>
+<dd><br /></dd>
+<dt><strong>server-id</strong></dt>
+<dd>optional unique id, if multiple debug servers are running on
+the same remote host.</dd>
+</dl>
+<h2><a name="description" id="description">DESCRIPTION</a></h2>
+<p><b>jstack</b> prints Java stack traces of Java threads for a
+given Java process or core file or a remote debug server. For
+each Java frame, the full class name, method name, 'bci' (byte
+code index) and line number, if available, are printed. With the
+-m option, jstack prints both Java and native frames of all
+threads along with the 'pc' (program counter). For each native
+frame, the closest native symbol to 'pc', if available, is
+printed. C++ mangled names are not demangled. To demangle C++
+names, the output of this command may be piped to <b>c++filt</b>.
+If the given process is running on a 64-bit VM, you may need to
+specify the <i>-J-d64</i> option, e.g.:<br /></p>
+<pre>
+jstack -J-d64 -m pid
+</pre>
+<p><b>NOTE</b> - This utility is unsupported and may or may not
+be available in future versions of the JDK. In Windows Systems
+where dbgeng.dll is not present, 'Debugging Tools For Windows'
+needs to be installed to have these tools working. Also,
+<code>PATH</code> environment variable should contain the
+location of <code>jvm.dll</code> used by the target process or
+the location from which the Crash Dump file was produced.</p>
+<p>For example, <code>set
+PATH=&lt;jdk&gt;\jre\bin\client;%PATH%</code></p>
+<h2><a name="options" id="options">OPTIONS</a></h2>
+<dl>
+<dt><strong>-F</strong></dt>
+<dd>Force a stack dump when 'jstack [-l] pid' does not
+respond.</dd>
+<dt><strong>-l</strong></dt>
+<dd>Long listing. Prints additional information about locks such
+as list of owned java.util.concurrent <a href=
+"../../../api/java/util/concurrent/locks/AbstractOwnableSynchronizer.html">
+ownable synchronizers</a>.</dd>
+<dt><strong>-m</strong></dt>
+<dd>prints mixed mode (both Java and native C/C++ frames) stack
+trace.</dd>
+<dt><strong>-h</strong></dt>
+<dd>prints a help message.<br />
+<br /></dd>
+<dt><strong>-help</strong></dt>
+<dd>prints a help message<br /></dd>
+</dl>
+<h2><a name="seealso" id="seealso">SEE ALSO</a></h2>
+<ul>
+<li>pstack(1)</li>
+<li>c++filt(1)</li>
+<li><a href="jps.html">jps</a></li>
+<li><a href="jsadebugd.html">jsadebugd</a></li>
+</ul>
+<h2><a name="knownbugs" id="knownbugs">KNOWN BUGS</a><a name=
+"KNOWN_BUGS" id="KNOWN_BUGS"></a></h2>
+<p>Mixed mode stack trace, the -m option, does not work with the
+remote debug server.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

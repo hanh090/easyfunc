@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>jmap - Memory Map</title>
+<meta name="collection" content="reference" />
+<meta name="copyright" content="2004, 2011" />
+<style type="text/css">
+/*<![CDATA[*/
+ p.c3 {font-weight: bold}
+ span.c2 {font-weight: bold;}
+ dt.c1 {font-weight: bold}
+/*]]>*/
+</style><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>jmap - Memory Map</h1>
+<ul>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#seealso">See Also</a></li>
+</ul>
+<h2><a name="synopsis" id="synopsis"></a>SYNOPSIS</h2>
+<pre>
+<b>jmap</b> [ option ] pid
+<b>jmap</b> [ option ] executable core
+<b>jmap</b> [ option ] [server-id@]remote-hostname-or-IP
+</pre>
+<h2><a name="parameters" id="parameters"></a>PARAMETERS</h2>
+<dl>
+<dt><a href="#options">option</a></dt>
+<dd>Options are mutually exclusive. Option, if used, should
+follow immediately after the command name.</dd>
+<dt><strong>pid</strong></dt>
+<dd>process id for which the memory map is to be printed. The
+process must be a Java process. To get a list of Java processes
+running on a machine, <a href="jps.html">jps</a> may be
+used.</dd>
+<dd><br /></dd>
+<dt><strong>executable</strong></dt>
+<dd>Java executable from which the core dump was produced.</dd>
+<dd><br /></dd>
+<dt><strong>core</strong></dt>
+<dd>core file for which the memory map is to be printed.</dd>
+<dd><br /></dd>
+<dt><strong>remote-hostname-or-IP</strong></dt>
+<dd>remote debug server's (see <a href=
+"jsadebugd.html">jsadebugd</a>) hostname or IP address.</dd>
+<dd><br /></dd>
+<dt><strong>server-id</strong></dt>
+<dd>optional unique id, if multiple debug servers are running on
+the same remote host.<br /></dd>
+</dl>
+<h2><a name="description" id="description"></a>DESCRIPTION</h2>
+<p><b>jmap</b> prints shared object memory maps or heap memory
+details of a given process or core file or a remote debug server.
+If the given process is running on a 64-bit VM, you may need to
+specify the <i>-J-d64</i> option, e.g.:</p>
+<pre>
+jmap -J-d64 -heap pid
+</pre>
+<p><strong>NOTE: This utility is unsupported and may or may not be
+available in future versions of the JDK. In Windows Systems where
+dbgeng.dll is not present, 'Debugging Tools For Windows' needs to
+be installed to have these tools working. Also, <code>PATH</code>
+environment variable should contain the location of
+<code>jvm.dll</code> used by the target process or the location
+from which the Crash Dump file was produced.</strong></p>
+
+<p><strong>For example, <code>set PATH=&lt;jdk&gt;\jre\bin\client;%PATH%</code></strong></p>
+
+<br />
+<h2><a name="options" id="options">OPTIONS</a></h2>
+<dl>
+<dt>&lt;<span class="c2">no option</span>&gt;<br /></dt>
+<dd>When no option is used <span class="c2">jmap</span> prints
+shared object mappings. For each shared object loaded in the
+target VM, start address, the size of the mapping, and the full
+path of the shared object file are printed. This is similar to
+the Solaris <b>pmap</b> utility.</dd>
+<dd><br /></dd>
+<dt><strong>-dump:[live,]format=b,file=&lt;filename&gt;</strong></dt>
+<dd>Dumps the Java heap in hprof binary format to filename. The
+<i>live</i> suboption is optional. If specified, only the live
+objects in the heap are dumped. To browse the heap dump, you can
+use <a href="jhat.html">jhat</a> (Java Heap Analysis Tool) to
+read the generated file.</dd>
+<dd><br /></dd>
+<dt><strong>-finalizerinfo</strong></dt>
+<dd>Prints information on objects awaiting finalization.</dd>
+<dd><br /></dd>
+<dt><strong>-heap</strong></dt>
+<dd>Prints a heap summary. GC algorithm used, heap configuration
+and generation wise heap usage are printed.</dd>
+<dd><br /></dd>
+<dt><strong>-histo[:live]</strong></dt>
+<dd>Prints a histogram of the heap. For each Java class, number
+of objects, memory size in bytes, and fully qualified class names
+are printed. VM internal class names are printed with '*' prefix.
+If the <i>live</i> suboption is specified, only live objects are
+counted.</dd>
+<dd><br /></dd>
+<dt><strong>-permstat</strong></dt>
+<dd>Prints class loader wise statistics of permanent generation
+of Java heap. For each class loader, its name, liveness, address,
+parent class loader, and the number and size of classes it has
+loaded are printed. In addition, the number and size of interned
+Strings are printed.</dd>
+<dd><br /></dd>
+<dt><strong>-F</strong></dt>
+<dd>Force. Use with jmap -dump or jmap -histo option if the pid
+does not respond. The <i>live</i> suboption is not supported in
+this mode.</dd>
+<dd><br /></dd>
+<dt><strong>-h</strong></dt>
+<dd>Prints a help message.<br /></dd>
+<dd><br /></dd>
+<dt><strong>-help</strong></dt>
+<dd>Prints a help message.<br /></dd>
+<dd><br /></dd>
+<dt><strong>-J&lt;flag&gt;</strong></dt>
+<dd>Passes &lt;flag&gt; to the Java virtual machine on which jmap
+is run.</dd>
+<dd><br /></dd>
+</dl>
+<h2><a name="seealso" id="seealso">SEE ALSO</a></h2>
+<ul>
+<li>pmap(1)</li>
+<li><a href="jhat.html">jhat</a></li>
+<li><a href="jps.html">jps</a></li>
+<li><a href="jsadebugd.html">jsadebugd</a></li>
+</ul>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

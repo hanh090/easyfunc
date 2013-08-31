@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en-US"  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+  <title>apt man page</title>
+    <meta name="collection" content="reference" />
+      <meta name="copyright" content="2004, 2011" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+  <h2>NAME</h2>
+  <p><tt>apt</tt> - annotation processing tool</p>
+  
+ 
+  <h2>SYNOPSIS</h2>
+  <p><tt>apt [-classpath <i>classpath</i>]
+  [-sourcepath <i>sourcepath</i>] [-d <i>directory</i>] [-s
+  <i>directory</i>] [-factorypath <i>path</i>] [-factory
+  <i>class</i>] [-print] [-nocompile] [-A<i>key</i>[<i>=val</i>]
+  ...] [<i>javac option</i>] sourcefiles [@files]</tt></p>
+
+  <h2>PARAMETERS</h2>
+  <p>Options may be in any order. For a discussion
+  of parameters which apply to a specific option, see OPTIONS
+  below.</p>
+
+  <dl>
+    <dt>sourcefiles</dt>
+
+    <dd>Zero or more source files to be processed.</dd>
+
+    <dt>@files</dt>
+
+    <dd>One or more files that list source files or other
+    options</dd>
+  </dl>
+
+  <h2>DESCRIPTION</h2>
+  
+  <p><b>Note</b>: The <tt>apt</tt> tool and its associated API contained in the package <tt>com.sun.mirror</tt> have been deprecated since JDK 7 and are planned to be removed in the next major JDK release. Use the options available in the <tt><a href="../index.html#javac">javac</a></tt> tool and the APIs contained in the packages <code>javax.annotation.processing</code> and <code>javax.lang.model</code> to process annotations.</p>
+  
+  <p>The tool <tt>apt</tt>, annotation processing
+  tool, includes reflective APIs and supporting
+  infrastructure to process program annotations. The <tt>apt</tt>
+  reflective APIs provide a build-time, source-based, read-only
+  view of program structure. These reflective APIs are designed to
+  cleanly model the Java&trade; programming
+  language's type system after the addition of generics. First,
+  <tt>apt</tt> runs annotation processors that can produce new
+  source code and other files. Next, <tt>apt</tt> can cause
+  compilation of both original and generated source files, easing
+  development. The reflective APIs and other APIs used to interact
+  with the tool are subpackages of <tt>com.sun.mirror</tt>.
+  </p>
+
+  <p>A fuller discussion of how the tool operates as well as
+  instructions for developing with <tt>apt</tt> are in <a href=
+  "../../guides/apt/GettingStarted.html"><b>Getting Started with
+  <tt>apt</tt></b>.</a></p>
+
+
+  <h2><a name="options">OPTIONS</a></h2>
+
+  <h3><tt>apt</tt> specific options</h3>
+
+  <dl>
+    <dt><tt>-s</tt> <i>dir</i></dt>
+
+    <dd>Specify the directory root under which processor-generated
+    source files will be placed; files are placed in subdirectories
+    based on package namespace.</dd>
+
+    <dt><tt>-nocompile</tt></dt>
+
+    <dd>Do not compile source files to class files.</dd>
+
+    <dt><tt>-print</tt></dt>
+
+    <dd>Print out textual representation of specified types;
+    perform no annotation processing or compilation.</dd>
+
+    <dt><tt>-A</tt>[<i>key</i>[<tt>=</tt><i>val</i>]]</dt>
+
+    <dd>Options to pass to annotation processors -- these are not
+    interpreted by <tt>apt</tt> directly, but are made available
+    for use by individual processors</dd>
+
+    <dt><tt>-factorypath</tt> <i>path</i></dt>
+
+    <dd>Specify where to find annotation processor factories; if
+    this option is used, the classpath is <i>not</i> searched for
+    factories.</dd>
+
+    <dt><tt>-factory</tt> <i>classname</i></dt>
+
+    <dd>Name of annotation processor factory to use; bypasses
+    default discovery process</dd>
+    
+    <dt><tt>-version</tt></dt>
+    <dd>Print version information.</dd>    
+    
+    <dt><tt>-X</tt></dt>
+    <dd>Display information about non-standard options.</dd>
+  </dl>
+  
+  <h3>Options shared with <tt>javac</tt></h3>
+
+  <dl>
+    <dt><tt>-d</tt> <i>dir</i></dt>
+
+    <dd>Specify where to place processor and javac generated class
+    files</dd>
+
+    <dt><tt>-cp</tt> <i>path</i> or <tt>-classpath</tt>
+    <i>path</i></dt>
+
+    <dd>Specify where to find user class files and annotation
+    processor factories. If <tt>-factorypath</tt> is given, the
+    classpath is not searched for factories.</dd>
+  </dl>
+  <p>Consult the javac(1) man page for information on
+  <tt>javac</tt> options.
+  </p>
+  
+  <h3>Non-Standard Options</h3>
+  
+  <dl>
+
+  <dt><tt>-XListAnnotationTypes</tt></dt><dd>List found annotation types.</dd>
+  <dt><tt>-XListDeclarations</tt></dt><dd>List specified and included declarations.</dd>
+  <dt><tt>-XPrintAptRounds</tt></dt><dd>Print information about initial and recursive <tt>apt</tt> rounds.</dd>
+  <dt><tt>-XPrintFactoryInfo</tt></dt><dd>Print information about which annotations a factory is asked to process.</dd>
+  <dt><tt>-XclassesAsDecls</tt></dt><dd>Treat both class and source files as declarations to process.</dd>
+  
+  </dl>
+  
+  <p><strong>Note</strong>: Because these options are non-standard, they are subject to change without notice.</p>
+  
+
+  <h2>NOTES</h2>
+  <p>The <tt>apt</tt> tool and its associated API contained in the package <tt>com.sun.mirror</tt> have been deprecated since JDK 7 and are planned to be removed in the next major JDK release. Use the options available in the <tt><a href="../index.html#javac">javac</a></tt> tool and the APIs contained in the packages <code>javax.annotation.processing</code> and <code>javax.lang.model</code> to process annotations.</p>
+
+  <h2>SEE ALSO</h2>
+
+  <ul>
+    <li><a href="../index.html#javac">javac</a>, <a href="../index.html#java">java</a></li>
+  </ul>
+
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta http-equiv="content-type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+
+.style1 {
+        color: #FF0000;
+        font-style: italic;
+        font-weight: bold;
+}
+.style8 {font-size: 12pt}
+.style10 {color: #594fbf}
+
+p, li,  ul li { margin-left: 40pt;
+                   font-family: Helvetica, Arial, sans-serif;
+                            font-size: medium; 
+                            }
+
+h2  { margin-left: 40pt;
+      margin-top:32pt;
+      font-family: Helvetica, Arial, sans-serif;
+         font-size: larger; }
+         
+h3      { font-family: helvetica,arial,sans-serif;
+       font-size: medium;
+       font-weight: bold; 
+ 
+          margin-left: 40pt;
+          }
+                            
+/*]]>*/
+</style>
+<title>Advanced JGSS Security Programming</title><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h2 class="main1"><a name="PART5" id="PART5">Part V : Secure
+Authentication using SPNEGO Java GSS mechanism (Java SE
+6.0)</a></h2>
+<h2><a name="SPNEGO" id="SPNEGO"></a>Exercise 8: Using the Java
+Generic Security Services (GSS) API with SPNEGO</h2>
+<h3>Goal of this exercise:</h3>
+<p>Currently the only security mechansim available with Java GSS is
+"Kerberos". The goal of this exercise is to learn how to use other
+Java GSS mechanisms, such as SPNEGO, to secure the association.
+This feature is available from Java SE 6 onwards.</p>
+<p><b><i>What is SPNEGO?</i></b></p>
+<p>Java GSS is a framework that can support multiple security
+mechanisms; a way to negotiate a security mechanism underneath
+GSS-API is needed. This is available via SPNEGO.</p>
+<p>SPNEGO is the Simple and Protected GSS-API Negotiation
+Mechanism, standardized at IETF in <a href=
+"http://www.ietf.org/rfc/rfc4178.txt">RFC 4178.</a> It's a
+pseudo-security mechanism used to negotiate an underlying security
+mechanism. It provides the flexibility for client and server to
+securely negotiate a common GSS security mechanism.<br />
+<br />
+Microsoft makes heavy use of SPNEGO. SPNEGO can be used to
+inter-operate with Microsoft Server over HTTP, to support
+HTTP-based Cross-Platform authentication via the Negotiate
+Protocol.</p>
+<p><b><i>What do I need do to use SPNEGO in Java GSS?</i></b></p>
+<p>Currently when using Java GSS with Kerberos, we specify the
+Kerberos OID to use Kerberos.<br />
+<br />
+<code>Oid krb5Oid = new Oid("1.2.840.113554.1.2.2");</code></p>
+<p>In order to use SPNEGO, you only need to specify the
+<code>SPNEGO OID</code> as follows:-<br />
+<br />
+<code>Oid spnegoOid = new Oid("1.3.6.1.5.5.2");</code></p>
+<p>And henceforth use the <code>SPNEGO OID</code> when creating a
+GSSCredential, GSSContext, etc.</p>
+<h3>Steps to follow:</h3>
+<ol>
+<li>Read the following code. This is located in <a href=
+"src/GssSpNegoClient.java"><code>src/GssSpNegoClient.java</code></a></li>
+</ol>
+<p>Code listing for <code>GssSpNegoClient.java</code>.</p>
+<br />
+<ol>
+<li><code>static class GssSpnegoClientAction implements
+PrivilegedExceptionAction {</code></li>
+<li><code>...</code></li>
+<li><code>&nbsp;&nbsp;public Object run() throws Exception
+{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Create socket to
+server</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;Socket socket = new
+Socket(hostName, port);</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;DataInputStream inStream = new
+DataInputStream(socket.getInputStream());</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;DataOutputStream outStream = new
+DataOutputStream(socket.getOutputStream());</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Get service's principal
+name</code></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;GSSManager manager =
+GSSManager.getInstance();</code></strong></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style=
+"font-weight: bold;">Oid spnegoOid = new
+Oid("1.3.6.1.5.5.2");</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<b>GSSName serverName =
+manager.createName(serverPrinc, GSSName.NT_HOSTBASED_SERVICE,
+spnegoOid);</b></code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Get the context for
+authentication</code></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;GSSContext context =
+manager.createContext(serverName, spnegoOid,
+null,</code></strong></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GSSContext.DEFAULT_LIFETIME);</code></strong></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;context.requestMutualAuth(true);
+// Request mutual authentication</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;context.requestConf(true); //
+Request confidentiality</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Do the context establishment
+loop</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;byte[] token = new
+byte[0];</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;while
+(!<strong>context.isEstablished()</strong>) {</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>token =
+context.initSecContext(token, 0, token.length);</b></code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.writeInt(token.length);</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.write(token);</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.flush();</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Check if we're
+done</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if
+(!<b>context.isEstablished()</b>) {</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token =
+new byte[inStream.readInt()];</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inStream.readFully(token);</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Context
+established!</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Create MessageProp for use
+with unwrap (true means request confidentiality)</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;MessageProp prop = new
+MessageProp(0, true);</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Create encrypted message and
+send to server</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;byte[] reply = ...;</code></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;token =
+context.wrap(reply, 0, reply.length, prop);</code></strong></li>
+<li><br /></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;outStream.writeInt(token.length);</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;outStream.write(token);</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;outStream.flush();</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Read token from
+server</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;token = new
+byte[inStream.readInt()];</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;inStream.readFully(token);</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Unwrap (decrypt) token sent by
+server</code></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;byte[] input =
+context.unwrap(token, 0, token.length, prop);</code></strong></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;...</code></li>
+<li>
+<strong><code>&nbsp;&nbsp;&nbsp;&nbsp;context.dispose();</code></strong></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;socket.close();</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;return null;</code></li>
+<li><code>&nbsp;&nbsp;}</code></li>
+<li><code>}</code></li>
+</ol>
+<p class="pBody"></p>
+<br />
+<ol start="2">
+<li>Compile the sample code.<br />
+<pre class="codeblock">
+<b>% javac GssSpNegoClient.java<br /></b>
+</pre></li>
+<li>Read the following code. This is located in <a href=
+"src/GssSpNegoServer.java"><code>src/GssSpNegoServer.java</code></a></li>
+</ol>
+<p>Code listing for <code>GssSpNegoServer.java</code>.<br /></p>
+<ol>
+<li><code>static class GssSpNegoServerAction implements
+PrivilegedExceptionAction {</code></li>
+<li><code>...</code></li>
+<li><code>&nbsp;&nbsp;public Object run() throws Exception
+{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Create server socket for
+accepting connections</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;ServerSocket ss = new
+ServerSocket(localPort);</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;// Get own Kerberos credentials
+for accepting connection</code></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;GSSManager manager =
+GSSManager.getInstance();</code></strong></li>
+<li><code><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; Oid
+spnegoOid = new Oid("1.3.6.1.5.5.2");</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<b>GSSCredential serverCreds =
+manager.createCredential(null,</b></code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>GSSCredential.DEFAULT_LIFETIME,
+spnegoOid, GSSCredential.ACCEPT_ONLY);</b></code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;while (true) {</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Socket socket =
+ss.accept();</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DataInputStream
+inStream = new
+DataInputStream(socket.getInputStream());</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DataOutputStream
+outStream = new
+DataOutputStream(socket.getOutputStream());</code></li>
+<li><br /></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GSSContext
+context =
+manager.createContext((GSSCredential)serverCreds);</code></strong></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Do the context
+establishment loop</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte[] token =
+null;</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while
+(!<strong>context.isEstablished()</strong>) {</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Read
+token</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token =
+new byte[inStream.readInt()];</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inStream.readFully(token);</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+Process token</code></li>
+<li>
+<strong><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token
+= context.acceptSecContext(token, 0,
+token.length);</code></strong></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Send a
+token to the peer if one was generated by
+acceptSecContext</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.writeInt(token.length);</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.write(token);</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.flush();</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Context
+established!</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create MessageProp
+for use with unwrap (will be set upon return from
+unwrap)</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MessageProp prop =
+new MessageProp(0, false);</code></li>
+<li><br /></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Read token from
+client</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token = new
+byte[inStream.readInt()];</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inStream.readFully(token);</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Unwrap (decrypt)
+token sent by client</code></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte[] input
+= context.unwrap(token, 0, token.length,
+prop);</code></strong></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create new token
+and send to client</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte[] reply =
+...;</code></li>
+<li><strong><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token =
+context.wrap(reply, 0, reply.length, prop);</code></strong></li>
+<li><br /></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.writeInt(token.length);</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.write(token);</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outStream.flush();</code></li>
+<li>
+<strong><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.dispose();</code></strong></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;socket.close();</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;}</code></li>
+<li><code>}</code></li>
+</ol>
+<br />
+<ol start="4">
+<li>Compile the sample code.
+<pre class="codeblock">
+<b>% javac GssSpNegoServer.java</b>
+</pre></li>
+<li>Launch a new window and start the server.
+<pre class="codeblock">
+<b>
+% xterm &amp;
+% java -Djava.security.auth.login.config=jaas-krb5.conf GssSpNegoServer</b>
+</pre></li>
+<li>Run the client application. <tt>GssClient</tt> takes two
+parameters: the service name and the name of the server that the
+service is running on. For example, if the service is
+<b><code>host</code></b> running on the machine
+<b><code>j1hol-001</code></b>, you would enter the following. When
+prompted for the password, enter <b><tt>changeit</tt></b>.
+<pre class="codeblock">
+<b>
+% java -Djava.security.auth.login.config=jaas-krb5.conf \
+GssSpNegoClient host j1hol-001</b>
+</pre></li>
+</ol>
+<br />
+<p>Output for running the <code>GssSpNegoServer</code> example.</p>
+<ol>
+<li><code>Authenticated principal:
+[host/j1hol-001@J1LABS.EXAMPLE.COM]</code></li>
+<li><code>Waiting for incoming connections...</code></li>
+<li><code>Got connection from client /129.145.128.102</code></li>
+<li><span style="font-weight: bold;">SPNEGO Negotiated Mechanism =
+1.2.840.113554.1.2.2 Kerberos V5</span><br /></li>
+<li><code>Context Established!</code></li>
+<li><code>Client principal is test@J1LABS.EXAMPLE.COM</code></li>
+<li><code>Server principal is
+host/j1hol-001@J1LABS.EXAMPLE.COM</code></li>
+<li><code>Mutual authentication took place!</code></li>
+<li><code>Received data "Hello There!" of length 12</code></li>
+<li><code>Confidentiality applied: true</code></li>
+<li><code>Sending: Hello There! Thu May 06 12:11:15 PDT
+2005</code></li>
+</ol>
+<br />
+<br />
+<p>Output for running the <code>GssSpNegoClient</code> example.</p>
+<ol>
+<li><code>Kerberos password for test: changeit</code></li>
+<li><code>Authenticated principal:
+[test@J1LABS.EXAMPLE.COM]</code></li>
+<li><code>Connected to address
+j1hol-001/129.145.128.102</code></li>
+<li style="font-weight: bold;">SPNEGO Negotiated Mechanism =
+1.2.840.113554.1.2.2 Kerberos V5</li>
+<li><code>Context Established!</code></li>
+<li><code>Client principal is test@J1LABS.EXAMPLE.COM</code></li>
+<li><code>Server principal is host@j1hol-001</code></li>
+<li><code>Mutual authentication took place!</code></li>
+<li><code>Sending message: Hello There!</code></li>
+<li><code>Will read token of size 93</code></li>
+<li><code>Received message: Hello There! Thu May 06 12:11:15 PDT
+2005</code></li>
+</ol>
+<br />
+<p><span style=
+"font-family: helvetica,arial,sans-serif;"><span style=
+"font-weight: bold; color: rgb(0, 0, 0); text-decoration: underline;">
+<br />
+Summary:</span></span></p>
+<p class="pBody"></p>
+<p><span style="color: rgb(0, 0, 0);">In this exercise, you learned
+how to write a client-server application that uses the Java GSS API
+with SPNEGO to negotiate an underlying security mechanism, such as
+Kerberos, and communicate securely using Kerberos as the underlying
+authentication system.</span></p>
+<p><b>Note:</b> Microsoft has implemented certain variations of the
+SPNEGO protocol, hence to inter-operate with Microsoft, we have
+added an MS mode via a new system property
+"sun.security.spnego.msinterop". This property is enabled to "true"
+by default. To disable it, you need to explicitly set this property
+to "false". To enable SPNEGO debugging, you can set the system
+property "sun.security.spnego.debug=true".</p>
+<br />
+<br />
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

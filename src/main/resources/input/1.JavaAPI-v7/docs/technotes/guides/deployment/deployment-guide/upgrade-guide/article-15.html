@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+<head>
+<title>Signed applet upgraded from .cab to .jar files ...</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" /><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2>Signed Applet Upgraded From <code>.cab</code> to <code>.jar</code> File Throws a Security Exception When Run in Microsoft Virtual Machine (VM)</h2>
+<h3><br />
+Symptoms</h3>
+<p>After you upgrade a signed applet from <code>.cab</code> to <code>.jar</code> files, the applet no longer works in the Microsoft VM. The applet runs without any error in the Sun Java Runtime Environment (JRE) implementation.</p>
+<h3>Cause</h3>
+<p>Microsoft VM does not support signed <code>.jar</code> files. Microsoft VM supports unsigned <code>.jar</code> files through the <code>archive</code> attribute of the <code>&lt;APPLET&gt;</code> tag. However Microsoft VM treats classes and resources within the signed <code>.jar</code> files as untrusted.</p>
+<p>As a result, the applet is treated as untrusted by the Microsoft VM. Any action which the applet performs ,that requires access outside the applet sandbox, results in a security exception.</p>
+<h3>Resolution</h3>
+<p>The only applet signing scheme recognized by the Microsoft VM is Authenticode technology which is used with the <code>.cab</code> files.</p>
+<p>Specify the upgraded <code>.jar</code> files through the <code>archive</code> attribute for the Sun JRE, and continue to specify the <code>.cab</code> files through <code>cabbase</code> for the Microsoft VM. For example, assume that you have the following code:</p>
+<p><code>&lt;APPLET code="MyApplet" width=100 height=100&gt;<br />
+&lt;PARAM name="cabbase" value="package1.cab, package2.cab"&gt;<br />
+&lt;/APPLET&gt;</code></p>
+<p>Change the above code as shown in the following code:</p>
+<p><code>&lt;APPLET code="MyApplet" archive="package1.jar, package2.jar"<br />
+width=100 height=100&gt;<br />
+&lt;PARAM name="cabbase" value="package1.cab, package2.cab"&gt;<br />
+&lt;/APPLET&gt;</code></p>
+<h3>Related Information</h3>
+<p>None.<br />
+<br /></p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

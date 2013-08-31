@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>System- and User-Level Properties</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h1>Deployment Configuration File and Properties</h1>
+<p>This page covers the following topics:</p>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#location">Deployment Configuration File</a></li>
+<li><a href="#properties">Deployment Configuration
+Properties</a></li>
+</ul>
+<h2><a name="overview" id="overview"></a>Overview</h2>
+<p>The <code>deployment.properties</code> file is used for storing
+and retrieving deployment configuration properties in the Java
+Control Panel. They are also used for customizing runtime behavior
+for both Java Plug-in and Java Web Start.</p>
+<p>There is always a User-Level <code>deployment.properties</code>
+file. Its location, which is non-configurable, is described below.
+There may also be an (optional) System-Level
+<code>deployment.properties</code> file. If it exists, its location
+is determined by a System Administrator through the
+<code>deployment.config</code> file as described below.</p>
+<h2><a name="location" id="location"></a>Deployment Configuration
+File <code>(deployment.properties)</code></h2>
+<h3><a name="dp_user_level" id="dp_user_level"></a>User Level</h3>
+<p>The User-Level <code>deployment.properties</code> file is
+located as follows:</p>
+<table width="95%" border="1" align="center" cellpadding="3"
+cellspacing="0" summary=
+"User-Level deployment.properties file location">
+<tr bgcolor="#CCCCCC">
+<td>
+<div><strong>Operating System</strong></div>
+</td>
+<td>
+<div><strong>Location</strong></div>
+</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>&lt;User Application Data
+Folder&gt;\Sun\Java\Deployment\deployment.properties</code></td>
+</tr>
+<tr>
+<td>Unix</td>
+<td>
+<code>${user.home}/.java/deployment/deployment.properties</code></td>
+</tr>
+</table>
+<p>(<code>${user.home}</code> is typically
+<code>home/&lt;username&gt;</code>.)</p>
+<h4>Examples:</h4>
+<p>For user <code>jsmith</code> running on Windows 2000/XP, the
+<code>deployment.properties</code> file would be located as
+follows:</p>
+<p><code>C:\Documents and Settings\jsmith\Application
+Data\Sun\Java\Deployment\deployment.properties</code></p>
+<p>For user <code>bjones</code> running on Unix, the
+<code>deployment.properties</code> file would be located as
+follows:</p>
+<p>
+<code>/home/bjones/.java/deployment/deployment.properties</code></p>
+<h3><a name="dp_system_level" id="dp_system_level"></a>System
+Level</h3>
+<p>The <code>deployment.config</code> file is used for specifying
+the System-Level <code>deployment.properties</code> in the
+infrastructure. By default no <code>deployment.config</code> file
+exists; thus, no system-wide <code>deployment.properties</code>
+file exists. If <code>deployment.config</code> exists, it is
+located either here</p>
+<table width="95%" border="1" align="center" cellpadding="3"
+cellspacing="0" summary="Location of deployment.config file">
+<tr bgcolor="#CCCCCC">
+<td>
+<div><strong>Operating System</strong></div>
+</td>
+<td>
+<div><strong>Location</strong></div>
+</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>&lt;Windows
+Directory&gt;\Sun\Java\Deployment\deployment.config</code></td>
+</tr>
+<tr>
+<td>Unix</td>
+<td><code>/etc/.java/deployment/deployment.config</code></td>
+</tr>
+</table>
+<p>or here</p>
+<table width="95%" border="1" align="center" cellpadding="3"
+cellspacing="0" summary=
+"Alternate location of deployment.config file">
+<tr bgcolor="#CCCCCC">
+<td>
+<div><strong>Operating System</strong></div>
+</td>
+<td>
+<div><strong>Location</strong></div>
+</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>${deployment.java.home}\lib\deployment.config</code></td>
+</tr>
+<tr>
+<td>Unix</td>
+<td><code>${deployment.java.home}/lib/deployment.config</code></td>
+</tr>
+</table>
+<p>(<code>${deployment.java.home}</code> is the location of the jre
+from which the deployment products are run. Deployment products
+include Java Web Start, Java Plug-in, Java Control Panel ...)</p>
+<p><code>deployment.config</code> (if it exists) contains two
+properties: <code>deployment.system.config</code> and
+<code>deployment.system.config.mandatory</code>.</p>
+<p><code>deployment.system.config</code> is the URL to the system
+(enterprise-wide) <code>deployment.properties</code> file. It can
+be used by system administrators to centrally administrate or
+"lock-down" user-specific configuration settings.</p>
+<p><code>deployment.system.config.mandatory</code> is a boolean.
+The default is <code>false</code>. If <code>false</code>, there
+will be an attempt to load the <code>deployment.properties</code>
+file pointed to by the <code>deployment.system.config</code> URL.
+If the URL can be found and loaded, it will be used. If
+<code>true</code>, there will likewise be an attempt to load the
+system <code>deployment.properties</code> file pointed to by the
+<code>deployment.system.config</code> URL. If the URL can be found
+and loaded, it will be used; but if it cannot be found or loaded,
+then nothing will be allowed to run.</p>
+<!-- ********************************************************* -->
+<h2><code><a name="properties" id=
+"properties"></a></code>Deployment Configuration Properties</h2>
+<p>The following table describes the properties that can be set in
+the <code>deployment.properties</code> file.<br /></p>
+<p><strong>Note</strong>: Any system deployment property, say
+<code>SomeKey=SomeValue</code>, may be locked by including another
+key, <code>SomeKey.locked</code>. The key
+<code>SomeKey.locked</code> may or may not be set to a value; in
+either case, <code>SomeKey=SomeValue</code> will be locked so that
+the user cannot change it. If a system deployment property is not
+locked, then a user will be allowed to change it.</p>
+<h3>Infrastructure</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Infrastructure">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.user.cachedir<br /></td>
+<td>String</td>
+<td>"$USER_HOME" +<br />
+File.separator + "cache"</td>
+<td>User-level cache directory.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.system.cachedir<br /></td>
+<td>String</td>
+<td>null</td>
+<td>System-level cache directory.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.user.logdir</td>
+<td>String</td>
+<td>"$USER_HOME" + File.separator + "log"</td>
+<td>User-level log directory.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.user.tmp<br /></td>
+<td>String</td>
+<td>"$USER_HOME" +<br />
+File.separator + "tmp";</td>
+<td>Temporary user directory.</td>
+</tr>
+</table>
+<h3>Certificate stores and policy files</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Certificate stores and policy files">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.user.security.policy<br /></td>
+<td>String</td>
+<td>"file://$USER_HOME/security/java.policy"</td>
+<td>
+<p>User-level security policy file. The protocol of URL is either
+file, HTTP, or HTTPS.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.user.security.trusted.cacerts<br /></p>
+</td>
+<td>String</td>
+<td>"$USER_HOME" + File.separator + "security" + File.separator +
+"trusted.cacerts";</td>
+<td>
+<p>User-level Root CA certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.user.security.trusted.jssecacerts<br /></p>
+</td>
+<td>String</td>
+<td>"$USER_HOME" + File.separator + "security" + File.separator +
+"trusted.jssecacerts"</td>
+<td>
+<p>User-level JSSE CA certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.user.security.trusted.certs<br /></p>
+</td>
+<td>String</td>
+<td>"$USER_HOME" + File.separator + "security" + File.separator +
+"trusted.certs"</td>
+<td>
+<p>User-level Trusted signer certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.user.security.trusted.jssecerts<br /></p>
+</td>
+<td>String</td>
+<td>"$USER_HOME" + File.separator + "security" + File.separator +
+"trusted.jssecerts";</td>
+<td>
+<p>User-level Trusted JSSE certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.user.security.trusted.clientauthcerts<br /></p>
+</td>
+<td>String</td>
+<td>"$USER_HOME" + File.separator + "security" + File.separator +
+"trusted.clientcerts"</td>
+<td>
+<p>User-level Client Authentication certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.system.security.policy<br /></p>
+</td>
+<td>String</td>
+<td>null</td>
+<td>
+<p>System-level security policy file. The protocol of URL is either
+file, HTTP, or HTTPS.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.system.security.cacerts<br /></p>
+</td>
+<td>String</td>
+<td>"$JAVA_HOME" + File.separator + "lib" + File.separator +
+"security" + File.separator + "cacerts"</td>
+<td>
+<p>System-level Root CA certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.system.security.jssecacerts<br /></p>
+</td>
+<td>String</td>
+<td>"$JAVA_HOME" + File.separator + "lib" + File.separator +
+"security" + File.separator + "jssecacerts";</td>
+<td>
+<p>System-level JSSE CA certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.system.security.trusted.certs<br /></p>
+</td>
+<td>String</td>
+<td>"$SYSTEM_HOME" + File.separator + "security" + File.separator +
+"trusted.certs"</td>
+<td>
+<p>System-level Signer certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.system.security.trusted.jssecerts<br /></p>
+</td>
+<td>String</td>
+<td>"$SYSTEM_HOME" + File.separator + "security" + File.separator +
+"trusted.jssecerts"</td>
+<td>
+<p>System-level JSSE certificate store.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.system.security.trusted.clientauthcerts<br /></p>
+</td>
+<td>String</td>
+<td>"$SYSTEM_HOME" + File.separator + "security" + File.separator +
+"trusted.clientcerts"</td>
+<td>
+<p>System-level Client Authentication certificate store.</p>
+</td>
+</tr>
+</table>
+<h3>Security Access And Control settings</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Security Access And Control settings">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+
+<tr align="left" valign="top">
+<td>
+<p>deployment.insecure.jres</p>
+</td>
+<td>String</td>
+<td>"PROMPT"</td>
+<td>
+
+<ul><li>"NEVER": Untrusted content will always run with the default JRE</li>
+<li>"PROMPT": Prompt user before using insecure JRE versions; users will see the new warning dialogs</li>
+<li>"ALWAYS": Untrusted content will run with the requested JRE without any prompting</li>
+</ul>
+
+You can specify this value with the <a href="jcp.html">Java Control Panel</a> Advanced tab setting, <strong>Insecure JRE versions</strong>.
+
+</td>
+
+
+</tr>
+
+
+
+
+
+<tr align="left" valign="top">
+<td>
+<p>deployment.security.askgrantdialog.show<br /></p>
+</td>
+<td>String</td>
+<td>true</td>
+<td>Must be "true" if the user is allowed to grant permissions at
+all.</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.security.askgrantdialog.notinca<br /></p>
+</td>
+<td>String</td>
+<td>true</td>
+<td>Must be "true" if the user is allowed to grant permissions to
+certificates that are not issued by a CA in the Root/JSSE CA
+certificate store.</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.security.jsse.hostmismatch.warning</p>
+</td>
+<td>String</td>
+<td>true</td>
+<td>Must be "true" for JSSE HTTPS certificate verification to show
+host-mismatch warning.</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.security.trusted.policy<br /></p>
+</td>
+<td>String</td>
+<td>""</td>
+<td>
+<p>Policy file contains the ceiling policy of permissions granted
+to trusted applications and applets. By default this is all
+permissions, but by using this configuration setting, a user or
+enterprise can configure a lesser set of permissions.<br /></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.security.mixcode<br /></p>
+</td>
+<td>String</td>
+<td>ENABLE</td>
+<td>"ENABLE" enables the software to test for mixing trusted and
+untrusted code and, when potentially unsafe components are
+detected, raises a warning dialog. "HIDE_RUN" suppresses the
+warning dialog and, if potentially unsafe components are detected,
+behaves as if the user had clicked <strong>No</strong> in the
+warning dialog - the applet or application continues running with
+some added protections. "HIDE_CANCEL" suppresses the warning dialog
+and behaves as if the user had clicked <strong>Yes</strong> in the
+warning dialog - potentially unsafe components are blocked from
+running and the program may terminate. "DISABLE" (not recommended)
+disables the software from checking for mixing trusted and
+untrusted code, leaving the user to run potentially unsafe code
+with no warning and without the additional protections.</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.security.sandbox.awtwarningwindow<br /></p>
+</td>
+<td>String</td>
+<td>true</td>
+<td>"true" if the sandbox has awtShowWindowWithoutWarning.</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.security.sandbox.jnlp.enhanced<br /></p>
+</td>
+<td>String</td>
+<td>true</td>
+<td>Must be "true" for the user to see and accept JNLP API security
+dialogs.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.security.validation.ocsp</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether Online Certificate Status Protocol is
+enabled.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.security.validation.ocsp.url</td>
+<td>String</td>
+<td>null</td>
+<td>Specifies a url string pointing to an OCSP response
+server.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.security.validation.ocsp.signer</td>
+<td>String</td>
+<td>null</td>
+<td>Points to a OCSP response singer certificate subject name.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.security.validation.crl</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Specifies whether to use certificate revocation list.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.security.validation.crl.url</td>
+<td>String</td>
+<td>null</td>
+<td>Specifies a URL in the Certificate Revocation List to perform a
+certificate validation.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.security.authenticator<br /></td>
+<td>String</td>
+<td>true</td>
+<td>Normally Plug-in and Web Start install an Authenticator to handle
+communication with Authenticating web pages or Authenticating
+proxies. This is the default behavior (true). This option can be
+used to turn the normal behavior off if, for example, an
+application communicates itself with an authenticating web page and
+needs to install it's own Authenticator. <strong><br />
+</strong></td>
+</tr>
+</table>
+<h3>Networking</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Networking">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.proxy.type</p>
+</td>
+<td>int</td>
+<td>3 for PROX_TYPE_BROWSER</td>
+<td>
+<p>This is for the type of proxy that should be use. The choices
+are:</p>
+<p>PROX_TYPE_UNKNOWN = -1;<br />
+PROX_TYPE_NONE = 0;<br />
+PROX_TYPE_MANUAL = 1;<br />
+PROX_TYPE_AUTO = 2; and<br />
+PROX_TYPE_BROWSER = 3;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.proxy.same</p>
+</td>
+<td>boolean</td>
+<td>false</td>
+<td>This parameter (true) says to use the same web server and port
+for https and ftp as is configured for http. (This is only valid if
+deployment.proxy.type = PROX_TYPE_MANUAL.)<br /></td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.auto.config.url</td>
+<td>String</td>
+<td>(no default)</td>
+<td>URL for auto-Auto proxy configuration JavaScript.proxy
+configuration JavaScript.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.bypass.list</td>
+<td>String</td>
+<td>(no default)</td>
+<td>List of host names that should bypass the proxy. Each host name
+is delimited by a comma in the property; e.g.,
+"192.168.1.100,localhost,example.com"</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.bypass.local</td>
+<td>String</td>
+<td>(no default)</td>
+<td>
+<p>All local hosts should be bypassed.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.http.host</td>
+<td>String</td>
+<td>(no default)</td>
+<td>HTTP proxy hostname.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.http.port</td>
+<td>String</td>
+<td>(no default)</td>
+<td>HTTP proxy port.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.https.host</td>
+<td>String</td>
+<td>(no default)</td>
+<td>HTTPS proxy hostname.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.https.port</td>
+<td>String</td>
+<td>(no default)</td>
+<td>HTTPS proxy port.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.ftp.host</td>
+<td>String</td>
+<td>(no default)</td>
+<td>FTP proxy hostname.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.ftp.port</td>
+<td>String</td>
+<td>(no default)</td>
+<td>FTP proxy port.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.socks.host</td>
+<td>String</td>
+<td>(no default)</td>
+<td>SOCKS v4 proxy hostname.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.socks.port</td>
+<td>String</td>
+<td>(no default)</td>
+<td>SOCKS v4 proxy port.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.proxy.override.hosts<br /></td>
+<td>String</td>
+<td>""</td>
+<td>Proxy overridden list.</td>
+</tr>
+</table>
+<h3>Cache and Optional Package Repository</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Cache and Optional Package Repository">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.cache.max.size<br /></td>
+<td>String</td>
+<td>"-1"</td>
+<td>
+<p>Maximum size of deployment cache in MB. This is the cache size
+for each cache: Java Web Start and Java Plug-in.</p>
+<p>"0"-Disables caching in Java Plug-in; cache size in Java Web
+Start will be unlimited.</p>
+<p>"-1"-For unlimited cache size.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.cache.jarcompression<br /></td>
+<td>String</td>
+<td>0</td>
+<td>
+<p>0-9 compression ratio to be used in applet jar compression.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.cache.enabled<br /></td>
+<td>String</td>
+<td>false</td>
+<td>Specifies if cache should be disabled. false means it should
+not be disabled.</td>
+</tr>
+</table>
+<h3>Java Console</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Java Console">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.console.startup.mode</p>
+</td>
+<td>String</td>
+<td>
+<p>"HIDE"</p>
+</td>
+<td>
+<p>The choices are:</p>
+<ul>
+<li>"HIDE" to hide the Java Console;</li>
+<li>"SHOW" to show the Java Console;</li>
+<li>"DISABLE" to disable the Java Console;</li>
+</ul>
+</td>
+</tr>
+</table>
+<h3>Tracing and Logging</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Tracing and Logging">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.trace</td>
+<td>String</td>
+<td>false</td>
+<td>Enable tracing.</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.log<br /></td>
+<td>String</td>
+<td>false</td>
+<td>Enable logging.</td>
+</tr>
+</table>
+<h3>Java Web Start: JNLP Association</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Java Web Start: JNLP Association">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.javaws.associations</td>
+<td>int</td>
+<td>2</td>
+<td>
+<p>The JNLP associations. The choices are:</p>
+<p>ASSOCIATION_NEVER = 0;<br />
+ASSOCIATION_NEW_ONLY = 1;<br />
+ASSOCIATION_ASK_USER = 2;<br />
+ASSOCIATION_REPLACE_ASK = 3;</p>
+</td>
+</tr>
+</table>
+<h3>Java Web Start: Desktop Integration</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Java Web Start: Desktop Integration">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p><br />
+deployment.javaws.shortcut<br /></p>
+</td>
+<td>String</td>
+<td>"ASK_IF_HINTED"</td>
+<td>
+<p>This relates to creating a desktop shortcut for Java Web Start.
+The choices are:</p>
+<ul>
+<li>"NEVER"</li>
+<li>"ALWAYS"</li>
+<li>"ASK_USER"</li>
+<li>"ASK_IF_HINTED"</li>
+<li>"ALWAYS_IF_HINTED"</li>
+</ul>
+</td>
+</tr>
+</table>
+<h3>Java Web Start JRE Selections</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Java Web Start JRE Selections">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.javaws.installURL<br /></p>
+</td>
+<td>String</td>
+<td>"http://java.sun.com/products/autodl/j2se"</td>
+<td>
+<p>The autodownload URL.</p>
+</td>
+</tr>
+</table>
+<h3>Java Web Start JRE management</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Java Web Start JRE management">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.javaws.autodownload<br /></p>
+</td>
+<td>String</td>
+<td>"ALWAYS"</td>
+<td>
+<p>This sets the choices for autodownloading. The choices are:</p>
+<ul>
+<li>"ALWAYS"</li>
+<li>"PROMPT"</li>
+<li>"NEVER"</li>
+</ul>
+</td>
+</tr>
+</table>
+<h3>Browser selection and path</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Browser selection and path">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>
+<p>deployment.browser.path<br />
+<br /></p>
+</td>
+<td>String</td>
+<td>"&lt;No Browser Selected&gt;"</td>
+<td>
+<p>This is the path to the browser for showing web pages from the
+application viewer, the About Box, and Web Start applications.</p>
+<p>Note that this property is used for Solaris and Linux only. On
+Widows, this property is ignored, and the default browser is
+determined the same way it is by any other application that
+launches a browser on Windows.</p>
+</td>
+</tr>
+</table>
+<h3>Check for update Timeout</h3>
+<table width="95%" border="1" align="center" cellpadding="1"
+cellspacing="0" summary="Check for update Timeout">
+<tr>
+<td bgcolor="#999999">
+<div><strong>Property Key</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Type</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Default Value</strong></div>
+</td>
+<td bgcolor="#999999">
+<div><strong>Description</strong></div>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td>deployment.javaws.update.timeout</td>
+<td>int</td>
+<td>500</td>
+<td>Units are milliseconds.</td>
+</tr>
+</table>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

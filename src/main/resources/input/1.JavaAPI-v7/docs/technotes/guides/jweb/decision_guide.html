@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<!-- InstanceBegin template="/Templates/jweb_guide_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Java(TM) Rich Internet Applications Decision Guide</title>
+<!-- InstanceEndEditable --><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>Rich Internet Applications Decision Guide</h1>
+<p><a name="PageTop" id="PageTop"></a></p>
+<!-- InstanceBeginEditable name="Content" -->
+<p class="crumbs"><a class="crumblink" href="index.html">Rich
+Internet Applications Development and Deployment</a> &gt; Rich
+Internet Applications Decision Guide</p>
+<h2><a name="overview" id="overview"></a>Applet or Java Web Start
+Application?</h2>
+<p>Both applets and Java Web Start applications are <i>rich
+internet applications (RIAs)</i>. RIAs are easier to distribute
+than standard applications, because they're launched over the web.
+They're also more secure--they can only access the user's system in
+highly controlled ways, unless and until the developer signs the
+code and the user accepts the security certificate. (On the other
+hand, extended access to the user's system may require that
+certificate--something a standard application doesn't need).</p>
+<p>Here's a table that summarizes the differences:</p>
+<table border="1" summary=
+"Comparison of application, applet, and java web start security.">
+<tr>
+<th>Feature</th>
+<th>Applet</th>
+<th>Java Web Start</th>
+</tr>
+<tr>
+<td>Java version</td>
+<td>
+<p><strong>New Plug-in</strong>:</p>
+<p>Individual applets may specify the exact version, or version
+range, of the Java platform it will use. The new Java Plug-in
+(released in Java SE 6 update 10) supports both static version
+requests (such as "5.0 update 9") and family version requests (such
+as "5.0 family"), and supports several backward compatibility
+mechanisms such as static and family ClassIDs in Internet Explorer.
+See <a href="applet/applet_deployment.html#JRE_VERSION">Applet
+Deployment</a> parameters for details.</p>
+<p><strong>Old Plug-in</strong>:</p>
+<p>Java Plug-in can run only the version of Java with which it was
+distributed. This means that to take advantage of the latest
+features in Java Plug-in, you must also use the latest version of
+Java. Further, recent changes in the <a href="http://www.oracle.com/technetwork/java/javase/deployment-policy-135751.html"
+target="_top">Deployment Security Policy</a> require that only the
+latest version deployed on the client machine be used. This is
+usually not a problem, since versions of Java are generally forward
+compatible.<br />
+For cases where compatibility between major releases is an issue,
+we have also provided a feature called the <a href="http://www.oracle.com/technetwork/java/javase/family-clsid-140615.html" target=
+"_top">Family ClassID</a> (for Microsoft Internet Explorer
+only).</p>
+</td>
+<td>
+<p>Java Web Start will also be used only from the latest Java
+version installed on a system, but the version of Java Web Start
+run is independent of the version of the Java platform used. A Java
+Web Start application can specify the exact version, or version
+range, of the Java platform that it will use.</p>
+</td>
+</tr>
+<tr>
+<td>Cookies</td>
+<td>
+<p>Java Plug-in applets run in the same session as the browser, and
+so have access to both "persistent" cookies and "session" cookies
+already stored in the browser session.</p>
+</td>
+<td>
+<p>Java Web Start runs outside the browser process. It can access
+"persistent" cookies stored by the browser (it does this by using
+the WinINet API on Windows), but has no access to "session" cookies
+unless set in that application using the java.net.CookieManager and
+java.net.CookieHandler API's.</p>
+</td>
+</tr>
+<tr>
+<td>Browser Interactions</td>
+<td>
+<p>Java Plug-in includes the ability for applets to interact with
+the current browser session using the <a href=
+"../../../jre/api/plugin/dom/index.html" target="_top">Common DOM
+API</a>, <a href="../plugin/developer_guide/java_js.html" target=
+"_top">Java to JavaScript</a>, and <a href=
+"../plugin/developer_guide/js_java.html" target="_top">JavaScript
+to Java communications</a></p>
+</td>
+<td>
+<p>Java Web Start is limited to invoking the default browser to
+display specific URL's (see <a href=
+"../../../jre/api/javaws/jnlp/index.html" target="_top">JNLP
+API</a>).</p>
+</td>
+</tr>
+<tr>
+<td>Java Runtime</td>
+<td>
+<p><strong>New Plug-in</strong>:</p>
+<p>An applet may specify <a href=
+"applet/applet_deployment.html#JAVA_ARGUMENTS">Java Runtime
+parameters</a> used to launch that particular applet instance,
+without affecting the parameters used to launch other applets.
+Specifying Java Runtime parameters via the Java Control Panel is
+also supported for backward compatibility purposes. See <a href=
+"deployment_advice.html#finalDeplInfo">Determining final deployment
+information</a> for details on how Java Runtime parameters are
+reconciled.</p>
+<p><strong>Old Plug-in</strong>:</p>
+<p>Java Plug-in shares one Java Runtime Environment among multiple
+Java applets. As such, no applet can have control over the startup
+parameters of the JRE (Java Runtime parameters). Java Runtime
+parameters must be set by the user (for all applets) in the Java
+Control Panel.</p>
+</td>
+<td>
+<p>Java Web Start applications have (limited) control over the Java
+Runtime parameters that is used to launch that application.</p>
+</td>
+</tr>
+<tr>
+<td>JNLP API</td>
+<td>
+<p>Applets launched using Java Network Launching Protocol (JNLP)
+have access to <a href="../../../jre/api/javaws/jnlp/index.html"
+target="_top">JNLP API</a> which allows unsigned applications
+access to persistent storage, download control, file I/O, and
+more.</p>
+</td>
+<td>
+<p>Java Web Start includes access to the <a href=
+"../../../jre/api/javaws/jnlp/index.html" target="_top">JNLP
+API</a>,</p>
+</td>
+</tr>
+<tr>
+<td>Shortcuts</td>
+<td>
+<p>Applets cannot create shortcuts.</p>
+</td>
+<td>
+<p>Java Web Start applications can install shortcuts that allow the
+application to be rerun, either online or offline, independent of
+the browser.</p>
+</td>
+</tr>
+</table>
+<h3>Other differences</h3>
+<p>There are several other minor differences caused by need to
+maintain compatibility with earlier versions. For further
+information on the specific differences between Java Web Start and
+Java Plug-in can be found in the <a href="http://www.oracle.com/technetwork/java/javase/applet-migration-139512.html"
+target="_top">Migration Guide</a>.</p>
+<!-- InstanceEndEditable -->
+<p><br />
+<br /></p>
+<!-- InstanceEnd -->
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

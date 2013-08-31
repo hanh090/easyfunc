@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>JDK File Structure for Linux</title>
+<meta name="collection" content="reference" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>JDK and JRE File Structure</h1>
+<p>This page provides an introductory overview of the JDK
+directories and the files they contain. Note that the file
+structure of the JRE is identical to that of the JDK's
+<code>jre</code> directory.</p>
+<h2>Development Files and Directories</h2>
+<p>This section describes the most important files and directories
+required to develop applications for the Java platform.</p>
+(Note that some of the directories that are not required include
+Java source code and C header files. These are mentioned in the
+<a href="#additional">Additional Files and Directories</a>
+section.)
+<p>Assuming the JDK software is installed at
+&nbsp;<code>/jdk1.7.0</code>, here are some of the most important
+directories:</p>
+<dl>
+<dt><a name="jdk1.7.0" id=
+"jdk1.7.0"></a><code>/jdk1.7.0</code></dt>
+<dd>Root directory of the JDK software installation. Contains
+copyright, license, and README files. Also contains
+<code>src.zip</code>, the archive of source code for the Java
+platform.</dd>
+<dt><a name="jdk1.7.0_bin" id=
+"jdk1.7.0_bin"></a><code>/jdk1.7.0/bin</code></dt>
+<dd>Executables for all the development tools contained in the JDK.
+The <b>PATH</b> environment variable should contain an entry for
+this directory. For more information on the tools, see the <a href=
+"../index.html">JDK Tools</a>.</dd>
+<dt><a name="jdk1.7.0_lib" id=
+"jdk1.7.0_lib"></a><code>/jdk1.7.0/lib</code></dt>
+<dd>Files used by the development tools. Includes
+&nbsp;<code>tools.jar</code>, which contains non-core classes for
+support of the tools and utilities in the JDK. Also includes
+&nbsp;<code>dt.jar</code>, the DesignTime archive of BeanInfo files
+that tell interactive development environments (IDE's) how to
+display the Java components and how to let the developer customize
+them for an application.</dd>
+<dt><a name="jdk1.7.0_jre" id=
+"jdk1.7.0_jre"></a><code>/jdk1.7.0/jre</code></dt>
+<dd>Root directory of the Java runtime environment used by the JDK
+development tools. The runtime environment is an implementation of
+the Java platform. This is the directory referred to by the
+<code>java.home</code> system property.</dd>
+<dt><a name="jdk1.7.0_jre_bin" id=
+"jdk1.7.0_jre_bin"></a><code>/jdk1.7.0/jre/bin</code></dt>
+<dd>Executable files for tools and libraries used by the Java
+platform. The executable files are identical to files in
+<code>/jdk1.7.0/bin</code>. The <b>java</b> launcher tool serves as
+an application launcher (and replaced the old &nbsp;<b>jre</b> tool
+that shipped with 1.1 versions of the JDK). This directory does not
+need to be in the <b>PATH</b> environment variable.</dd>
+<dt><a name="jdk1.7.0_jre_lib" id=
+"jdk1.7.0_jre_lib"></a><code>/jdk1.7.0/jre/lib</code></dt>
+<dd>Code libraries, property settings, and resource files used by
+the Java runtime environment. For example:</dd>
+</dl>
+<ul>
+<li><code>rt.jar</code> -- the <i>bootstrap</i> classes (the
+RunTime classes that comprise the Java platform's core API).</li>
+<li><code>charsets.jar</code> -- character-conversion classes.</li>
+</ul>
+<dl>
+<dd>Aside from the <code>ext</code> subdirectory (described below)
+there are several additional resource subdirectories not described
+here.</dd>
+<dt><a name="jdk1.7.0_jre_lib_ext" id=
+"jdk1.7.0_jre_lib_ext"></a><code>/jdk1.7.0/jre/lib/ext</code></dt>
+<dd>Default installation directory for <a href=
+"../../guides/extensions/index.html">Extensions</a> to the Java
+platform. This is where the JavaHelp jar file goes when it is
+installed, for example.</dd>
+</dl>
+<ul>
+<li><code>localedata.jar</code> -- locale data for
+<code>java.text</code> and <code>java.util</code>.</li>
+</ul>
+<dl>
+<dt><a name="jdk1.7.0_jre_lib_security" id=
+"jdk1.7.0_jre_lib_security"></a><code>/jdk1.7.0/jre/lib/security</code></dt>
+<dd>Contains files used for security management. These include the
+security policy (<code>java.policy</code>) and security properties
+(<code>java.security</code>) files.</dd>
+<dt><a name="jdk1.7.0_jre_lib__386_client" id=
+"jdk1.7.0_jre_lib__386_client"></a><code>/jdk1.7.0/jre/lib/i386/client</code></dt>
+<dd>Contains the <code>.so</code> file used by the Java
+HotSpot&trade; Client Virtual Machine, which is implemented with
+Java HotSpot&trade; technology. This is the default VM.</dd>
+<dt><a name="jdk1.7.0_jre_lib__386_server" id=
+"jdk1.7.0_jre_lib__386_server"></a><code>/jdk1.7.0/jre/lib/i386/server</code></dt>
+<dd>Contains the <code>.so</code> file used by the Java
+HotSpot&trade; Server Virtual Machine.</dd>
+<dt><a name="applet" id=
+"applet"></a><code>/jdk1.7.0/jre/lib/applet</code></dt>
+<dd>Jar files containing support classes for applets can be placed
+in the <code>lib/applet/</code> directory. This reduces startup
+time for large applets by allowing applet classes to be pre-loaded
+from the local file system by the applet class loader, providing
+the same protections as if they had been downloaded over the
+net.</dd>
+<dt><a name="fonts" id=
+"fonts"></a><code>/jdk1.7.0/jre/lib/fonts</code></dt>
+<dd>Font files for use by platform.</dd>
+</dl>
+<p><a name="additional" id="additional"></a></p>
+<h2>Additional Files and Directories</h2>
+<p>This section describes additional files and directories.</p>
+<dl>
+<dt><a name="jdk1.7.0_src_jar" id=
+"jdk1.7.0_src_jar"></a><code>/jdk1.7.0/src.zip</code></dt>
+<dd>Archive containing source code for the Java platform.</dd>
+<dt><a name="jdk1.7.0_db" id=
+"jdk1.7.0_db"></a><code>/jdk1.7.0/db</code></dt>
+<dd>Contains <a href="http://docs.oracle.com/javadb/">Java
+DB</a>.</dd>
+<dt><a name="jdk1.7.0_include" id=
+"jdk1.7.0_include"></a><code>/jdk1.7.0/include</code></dt>
+<dd>C-language header files that support native-code programming
+using the <a href="../../guides/jni/index.html">Java Native
+Interface</a> and the <a href="../../guides/jpda/index.html">Java
+Virtual Machine Debugger Interface</a>.</dd>
+<dt><a name="jdk1.7.0_man" id=
+"jdk1.7.0_man"></a><code>/jdk1.7.0/man</code></dt>
+<dd>Contains man pages for the JDK tools.</dd>
+</dl>
+<p><strong>Note</strong>: Demos and samples that show you how to
+program for the Java platform are available as a separate download
+at <a href=
+"http://www.oracle.com/technetwork/java/javase/downloads/index.html">
+Java SE Downloads</a>. These are available as separate .rpm installers or .tar.gz compressed binaries. Like other 64-bit bundles on Linux, the 64-bit demos and samples bundles on Linux expect the 32-bit demos and samples bundles to also be installed.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta http-equiv="content-type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+
+.style1 {
+        color: #FF0000;
+        font-style: italic;
+        font-weight: bold;
+}
+.style8 {font-size: 12pt}
+.style10 {color: #594fbf}
+
+p, li,  ul li { margin-left: 40pt;
+                   font-family: Helvetica, Arial, sans-serif;
+                            font-size: medium; 
+                            }
+
+h2  { margin-left: 40pt;
+      margin-top:32pt;
+      font-family: Helvetica, Arial, sans-serif;
+         font-size: larger; }
+         
+h3      { font-family: helvetica,arial,sans-serif;
+       font-size: medium;
+       font-weight: bold; 
+ 
+          margin-left: 40pt;
+          }
+                            
+/*]]>*/
+</style>
+<title>Advanced JGSS Security Programming</title><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<!-- part IV -->
+<h2><a name="PART4" id="PART4">Part IV : Secure Communications
+using stronger encryption algorithms (Java SE 6.0)</a></h2>
+<h2><a name="Crypto" id="Crypto">Exercise 7: Configuring to use
+stronger encryption algorithms in a Kerberos environment, to secure
+the communication</a></h2>
+<h3>Goal of this exercise:</h3>
+<p>The goal of this exercise is to learn how to use various
+Kerberos encryption algorithms to secure the communication. In J2SE
+1.4, Java GSS/Kerberos provided support for only DES encryption
+type. The Java GSS/Kerberos provider has been enhanced in J2SE 5.0
+and later releases to support stronger Kerberos encryption
+algorithms, and is in compliance with latest Kerberos specification
+RFC4120. Support for various Kerberos encryption types, such as
+AES256, AES128, 3DES, RC4-HMAC, and DES are now all available. J2SE
+5.0 supports 3DES and DES Kerberos encryption types. Support for
+AES and RC4-HMAC in Kerberos is available for Java SE 6
+onwards.<br /></p>
+<p>Here is a list of all the encryption types supported by the Java
+GSS/Kerberos provider in Java SE 6.0:</p>
+<ol>
+<li><span style=
+"font-family: helvetica,arial,sans-serif;">AES256-CTS</span></li>
+<li>AES128-CTS</li>
+<li>RC4-HMAC<br /></li>
+<li>DES3-CBC-SHA1</li>
+<li>DES-CBC-MD5</li>
+<li><span style=
+"font-family: helvetica,arial,sans-serif;">DES-CBC-CRC<br /></span></li>
+</ol>
+<h3>Steps to follow:</h3>
+<ol>
+<li>Configure the Key Distribution Center (KDC) and update the
+Kerberos database<br />
+<br />
+At first you need to update to use the Key Distribution Center
+(KDC) that supports the required Kerberos encryption types, such as
+Solaris 10 or the latest MIT Kerberos 1.4 from MIT distribution. If
+you are using the Active Directory on a Windows platform, it only
+supports DES and RC4-HMAC encryption types.<br />
+<br />
+You will need to update the Kerberos database, to generate the new
+keys with stronger encryption algorithms. By default, Solaris 10
+KDC will generate the keys for all the above encryption types
+listed. You can now create a keytab that will include all the keys
+for all the above encryption types.<br />
+<br />
+<b>NOTE:&nbsp;</b> If you want to use Windows 2000 KDC, you can
+configure to use the DES and RC4-HMAC encryption types that are
+available on the Windows machine.<br />
+<br /></li>
+<li>Edit the Kerberos configuration file. This is located in
+<a href="src/krb5.conf"><code>src/krb5.conf</code></a><br />
+<br />
+You will need to edit the Kerberos configuration file in order to
+select the desired encryption types used. The required parameters
+are listed below, that you will need to insert under the
+libdefaults section of the Kerberos configuration file. For the
+purpose of this exercise, all the required entries have been added
+to a sample Kerberos configuration file included with the exercise,
+and the entries have been commented out. To enable the desired
+encryption type, you only need to uncomment the required
+entries.<br />
+<br />
+<ul style="margin-left:-48pt;">
+<li>To enable <code>AES256-CTS</code> encryption type<br />
+<br />
+<pre>
+[libdefaults]<br />default_tkt_enctypes = aes256-cts
+default_tgs_enctypes = aes256-cts
+permitted_enctypes = aes256-cts<br />
+</pre>
+<b>NOTE:</b> Solaris 10 does not support <code>AES256</code> by
+default. You will need to install the following packages:-<br />
+<br />
+<pre>
+SUNWcry, SUNWcryr, SUNWcryptoint 
+</pre>
+In addition, JCE in Java SE also does not support
+<code>AES256</code> by default.<br />
+<br />
+You will need to install the JCE crypto policy with the unlimited
+version to allow AES with 256-bit key.<br /></li>
+<li style="list-style: none"><br />
+<br /></li>
+<li>To enable the <code>AES128-CTS</code> encryption type<br />
+<br />
+<code>[libdefaults]<br />
+default_tkt_enctypes = aes128-cts<br />
+default_tgs_enctypes = aes128-cts<br />
+permitted_enctypes = aes128-cts<br />
+<br /></code></li>
+<li>To enable <code>RC4-HMAC</code> encryption type<br />
+<br />
+<code>[libdefaults]<br />
+default_tkt_enctypes = rc4-hmac<br />
+default_tgs_enctypes = rc4-hmac<br />
+permitted_enctypes = rc4-hmac<br />
+<br /></code></li>
+<li>To enable <code>DES3-CBC-SHA1</code> encryption type<br />
+<br />
+<code>[libdefaults]<br />
+default_tkt_enctypes = des3-cbc-sha1<br />
+default_tgs_enctypes = des3-cbc-sha1<br />
+permitted_enctypes = des3-cbc-sha1</code></li>
+<li style="list-style: none"><br />
+<br /></li>
+<li>To enable <code>DES-CBC-MD5</code> encryption type<br />
+<br />
+<code>[libdefaults]<br />
+default_tkt_enctypes = des-cbc-md5<br />
+default_tgs_enctypes = des-cbc-md5<br />
+permitted_enctypes = des-cbc-md5</code></li>
+<li style="list-style: none"><br />
+<br /></li>
+<li>To enable <code>DES-CBC-CRC</code> encryption type<br />
+<br />
+<code>[libdefaults]<br />
+default_tkt_enctypes = des-cbc-crc<br />
+default_tgs_enctypes = des-cbc-crc<br />
+permitted_enctypes = des-cbc-crc</code><br />
+<br />
+<b>NOTE:&nbsp;</b> If the above parameters are not added to the
+Kerberos configuration file, Solaris 10 will default to use AES128
+enctype. If the exportable crypto packages have been installed, it
+will default to use AES256 enctype.<br />
+<br />
+<br />
+<b>NOTE:</b> Destroy any pre-existing Kerberos TGT in the ticket
+cache from the previous exercise.
+<pre>
+<b>
+% kdestroy </b>
+</pre></li>
+<li style="list-style: none"><br /></li>
+<li>Launch a new window and start the server using the updated
+krb5.conf<br />
+<pre>
+ <b>
+      % xterm &amp;<br />      % java
+        -Djava.security.auth.login.config=jaas-krb5.conf \
+        -Djava.security.krb5.conf=krb5.conf \
+         GSSServer
+</b>
+</pre></li>
+<li>Run the client application using the updated krb5.conf.
+<tt>GssClient</tt> takes two parameters: the service name and the
+name of the server that the service is running on. For example, if
+the service is <b><code>host</code></b> running on the machine
+<b><code>j1hol-001</code></b>, you would enter the following. When
+prompted for the password, enter <b><tt>changeit</tt></b>.<br />
+<pre>
+<b>
+% java
+-Djava.security.auth.login.config=jaas-krb5.conf <br />&nbsp; &nbsp;-Djava.security.krb5.conf=krb5.conf \<br />GSSClient host j1hol-001<br /></b>
+</pre></li>
+</ul>
+</li>
+</ol>
+<h3>Summary:</h3>
+<p><span style="color: rgb(0, 0, 0);">In this exercise, you learned
+how to write a client-server application that uses Java GSS API to
+authenticate and communicate securely with each other, using
+stronger Kerberos encryption algorithms. You can enable Kerberos
+debugging (<code>-Dsun.security.krb5.debug=true</code>), to obtain
+information about the Kerberos encryption type used.</span></p>
+<span style="color: rgb(0, 0, 0);"><a name="PART3" id=
+"PART3"></a></span>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

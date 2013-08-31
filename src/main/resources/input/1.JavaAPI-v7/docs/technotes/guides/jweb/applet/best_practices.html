@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<!-- InstanceBegin template="/Templates/jweb_guide_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Best Practices For Applet Development</title>
+<!-- InstanceEndEditable --><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>Best Practices For Applet Development</h1>
+<p><a name="PageTop" id="PageTop"></a></p>
+<!-- InstanceBeginEditable name="Content" -->
+<p class="crumbs"><a class="crumblink" href=
+"applet_dev_guide.html">Applet Developer's Guide</a> &gt; <a class=
+"crumblink" href="applet_execution.html">Java Plug-in and Applet
+Architecture</a> &gt; Best Practices For Applet Development</p>
+<p><b>Contents</b></p>
+<ul>
+<li class="TOC"><a href="#intro">Introduction</a></li>
+<li class="TOC"><a href="#state">Avoid Static State</a></li>
+<li class="TOC"><a href="#start">Return from Start Method
+Quickly</a></li>
+<li class="TOC"><a href="#ID">Provide an ID for Applet</a></li>
+<li class="TOC"><a href="#disable_cache">Disable Classloader
+Cache</a></li>
+<li class="TOC"><a href="#proxy">Set up a Proxy to Manipulate the
+Applet GUI from JavaScript</a></li>
+<li class="TOC"><a href="#short_calls">Keep Inter-process Calls
+Short</a></li>
+<li class="TOC"><a href="#roundtrip_calls">Avoid Roundtrip
+Inter-process Calls</a></li>
+<li class="TOC"><a href="#java_MT">Take Advantage of Java's
+Multi-Threading</a></li>
+</ul>
+<hr />
+<h2><a name="intro" id="intro"></a>Introduction</h2>
+<p>Applets have a complex runtime environment and several issues
+need to be considered to ensure that applets run predictably on
+various browsers and versions of Java Plug-ins. This document
+describes the best practices for applet development and deployment
+.</p>
+<h2><a name="state" id="state"></a>Avoid Static State</h2>
+<p>Values stored in the applet <i>could</i> persist between
+invocations, if the memory acquired by the class loader cache isn't
+needed for other purposes. But you can't depend on that behavior.
+In general, applets should be stateless. If persistent storage is
+needed, use browser cookies.<br /></p>
+<h2><a name="start" id="start"></a>Return from the
+<code>start</code> method as quickly as possible</h2>
+<p>If <code>start</code> doesn't terminate, <code>stop</code> can't
+be called. That's important, because garbage collection occurs
+after the <code>destroy</code> method terminates. If the applet
+lingers in the <code>start</code> method, then the applet may not
+be torn down properly. (It will be torn down, and garbage
+collection will occur, but resources acquired during applet
+initialization may not be properly released.)</p>
+<p>For a computationally-intensive app like the <a href=
+"http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets/Clock/example1.html"
+target="_self">Clock demo</a>, the trick is to implement the
+<code>Runnable</code> interface, do the heavy lifting in the
+<code>run</code> method it requires, and launch a separate thread
+to do the actual work, as shown in this abstract from the <a href=
+"http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets/Clock/Clock.java">
+source code</a>:</p>
+<pre class="codeblock">
+public class Clock extends Applet <b>implements Runnable</b> { 
+  private volatile <b>Thread timer</b>;    // The thread that displays the clock
+  ... 
+  public void <b>start()</b> {
+    <b>timer = new Thread(this);</b>       // Create the thread and start it
+    <b>timer.start();</b>
+  }
+   
+  public void stop() {
+    <b>timer = null</b>;                   // Release the thread resource
+  }
+
+  public void run() {
+    <b>Thread me = Thread.currentThread();
+    while (timer == me) {</b>
+      try {
+        Thread.currentThread().sleep(100);
+      } 
+      catch (InterruptedException e) { 
+      }
+      repaint();
+    }
+  } 
+  ...
+</pre>
+<p>Here, the action is to pause the Clock instance that's running
+in the new thread (hence the need to store a pointer to it.)
+Applets that don't need to do all that can simply put their
+processing code into the <code>run</code> method.</p>
+<p>For an interactive app like the <a href=
+"http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets/SpreadSheet/example1.html">
+spreadsheet demo</a>, that goal is easily achieved, since the
+majority of time is spent in the event-processing thread, as shown
+in this abstract from the <a href=
+"http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets/SpreadSheet/SpreadSheet.java"
+target="_self">source code</a>:</p>
+<pre class="codeblock">
+public class SpreadSheet extends Applet
+  <b>implements MouseListener, KeyListener</b>  // Event processing
+{
+  public void init() {
+    ...
+    <b>addMouseListener(this);</b>
+    <b>addKeyListener(this);</b>
+  } 
+  ...
+  public void start() {
+        <b>isStopped = false;</b>
+  }
+
+  public void stop() {
+         isStopped = true;
+  }
+
+  public void <b>keyTyped(KeyEvent e)</b> {    // Invoked when an event occurs
+    ...
+  }
+  public void <b>mousePressed(MouseEvent e)</b> {
+    ...
+  }
+  
+  ...
+<b>class CellUpdater extends Thread {</b>
+  ... 
+  public void <b>run()</b> {
+    ...
+      if (<b>!target.app.isStopped</b> &amp;&amp; <b>!target.paused</b>) {
+                        target.app.repaint();
+      }
+</pre>
+<p>In this particular implementation, each cell has it's own update
+thread. Updating is paused when a cell is selected, and only stops
+completely when the applet terminates. The important point is that
+the applet's <code>start</code> and <tt>stop</tt> methods only keep
+track of applet state. Most of the time is spent in the underlying
+event-processing thread, waiting for the user's keystroke or
+mouseclick. The applet's real work then occurs in response to one
+of those events.</p>
+<h2><a name="ID" id="ID"></a>Provide an ID for the Applet</h2>
+<p>An ID defines the namespace, and ensures proper naming at all
+levels of the data hierarchy:</p>
+<pre class="codeblock">
+&lt;applet 
+  <b>id=&quot;myApplet&quot;</b> 
+  name=&quot;myApplet&quot;
+  ...
+</pre>
+<h2><a name="disable_cache" id="disable_cache"></a>Disable the
+Classloader Cache</h2>
+<p>Truly <i>stateless</i> applets don't depend on values previously
+stored in static variables. Since you can't depend on those values
+to be retained, it's a good idea to create stateless applets. But
+the <i>user</i> can still store state. It's just that store the
+data where it belongs--with the user, rather than in the applet
+code.</p>
+<p>To implement a stateless app, access browser cookies or launch
+with JNLP to use Java Web Start muffins, so the applet gets it's
+initial settings from persistent storage, rather than using values
+stored in the program.</p>
+<p>To ensure that your applet is stateless, use the
+classloader_cache attribute to disable the cache. For example:</p>
+<pre class="codeblock">
+&lt;applet
+  ... 
+  <b>classloader_cache</b>=&quot;false&quot; 
+</pre>
+<p>That setting ensures that the applet is stateless, and that it
+is truly decoupled from the remainder of the system and from other
+instances of the applet. It also ensures that the applet runs the
+exact same way every time, since it won't be affected by state that
+has been inadvertently retained.</p>
+<p><b>Note:</b><br />
+In the rare case that you expect your users to re-run the same
+applet repeatedly, you might consider leaving the cache enabled for
+production for the sake of performance, but disable it during
+development to ensure quality.</p>
+<h2><a name="proxy" id="proxy"></a>Set up a Proxy to Manipulate the
+Applet GUI from JavaScript</h2>
+<p>To prevent thread contention, don't update the Swing or AWT GUI
+from javascript directly. Instead, set up a proxy that forwards the
+request to the appropriate dispatch thread:</p>
+<ul>
+<li><b>Swing:</b> <code>javax.swing.SwingUtilities.<a href=
+"../../../../api/javax/swing/SwingUtilities.html#invokeLater(java.lang.Runnable)">invokeLater</a>(<i>Runnable</i>)</code></li>
+<li><b>AWT:</b> <code>java.awt.EventQueue.<a href=
+"../../../../api/java/awt/EventQueue.html#invokeLater(java.lang.Runnable)">invokeLater</a>(<i>Runnable</i>)</code></li>
+</ul>
+<h2><a name="short_calls" id="short_calls"></a>Keep Inter-process
+Calls Short</h2>
+<p>Minimize the time taken to call from Java into javascript, and
+from javascript into Java. Don't do long-running work in such
+calls, or you risk a deadlock. To keep the calls short:</p>
+<ol type="a">
+<li>In Java method that is invoked from javascript, launch a
+separate thread to do the work.</li>
+<li>If a javascript function has a lot to do, move the code to the
+Java process and do the work in a separate thread to offload work
+from the browser.</li>
+</ol>
+<h2><a name="roundtrip_calls" id="roundtrip_calls"></a>Avoid
+Roundtrip Inter-process Calls</h2>
+<p>When calling into Java, don't make calls back into javascript if
+you can possibly help it, and vice versa. In that original plugin,
+doing so used to lock up the browser. That shouldn't happen
+anymore, but round-trip calls do introduce significant delays in
+processing time.</p>
+<p>When a javascript function needs the applet to do something, the
+best practice is to return a value that tells the applet to do it,
+and then call back with the results, or else use
+<code>invokeLater</code> to minimize traffic tie ups.</p>
+<h2><a name="java_MT" id="java_MT"></a>Take Advantage of Java's
+Multi-Threading</h2>
+<p>The Java platform has powerful multi-threading capabilities that
+you can take advantage of with classes like Thread, Swing
+<code><a href=
+"../../../../api/javax/swing/SwingUtilities.html#invokeLater(java.lang.Runnable)">
+invokeLater</a></code>, and AWT <code><a href=
+"../../../../api/java/awt/EventQueue.html#invokeLater(java.lang.Runnable)">
+invokeLater</a></code>, as well as the new ThreadPoolExecutor class
+that maintains a background thread pool.</p>
+<!-- InstanceEndEditable -->
+<p><br />
+<br /></p>
+<!-- InstanceEnd -->
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

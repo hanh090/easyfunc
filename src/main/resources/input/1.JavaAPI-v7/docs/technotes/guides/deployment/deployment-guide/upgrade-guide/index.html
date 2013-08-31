@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>Upgrading Applets From the Microsoft VM for Java to the Sun
+JRE</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+
+     <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+
+  <HEAD>
+    <title>Internet/Intranet Deployment of the Sun JRE<\/title>
+  <\/HEAD>
+
+ul li {margin-left: -16pt}
+
+ol li {margin-left: -16pt}
+
+h1 {font-family: arial; font-size: 150%; font-weight: bold; }
+h2 {font-family: arial; font-size: 120%; font-weight: bold; }
+h3 {font-family: arial; font-size: 100%; font-weight: bold; }
+
+table {margin-left: 24pt; border: 1px solid black; font-family: arial; font-size: 10pt; border-collapse: collapse; }
+
+td {padding: 3pt }
+
+.note { border-top: thin solid #606060;
+           border-bottom: thin solid #606060;
+           margin-right: 3%;
+           padding-top: 9pt;
+           padding-bottom: 9pt;
+           background:#eeeeee;
+}
+p.note:before { font-family: sans-serif; 
+                   font-weight:bold;
+                         font-size: 100%;
+                content: "Note:   " }
+
+                         .ttop {font-size: 200%;}
+
+/*]]>*/
+</style><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h1>Java&trade; Upgrade Guide: Upgrading<br />
+Applets From the Microsoft VM for Java to the Sun JRE&trade;</h1>
+<p><br />
+This guide explains why and how to upgrade applets from the
+Microsoft Virtual Machine (VM) for Java&trade; technology to the
+Sun Java Runtime Environment (JRE&trade;). In 98% of cases, applets
+run unchanged under the Sun JRE. For the remaining 2% of cases,
+this document shows <a href="#upgrade">how to upgrade.</a> The
+results of this upgrade are beneficial, as the Microsoft VM is
+based upon version 1.1, an early, 1997 version of Java technology.
+The latest, standards-compliant version from Sun Microsystems is
+JRE 6, released in December 2006, includes many enhancements over
+the early version.</p>
+<h1>Why Upgrade?</h1>
+<p>An important reason to upgrade applets is because Microsoft VM
+does not support or provide a Java technology implementation with
+any of its products. Microsoft has already discontinued shipping
+Java technology in the Internet Explorer web browser with the
+latest versions of its operating systems, which has two important
+implications:</p>
+<ul>
+<li>If you run applets in the Internet Explorer web browser you
+need to download and install an alternate VM.</li>
+<li>In some cases, you need to modify applets that use proprietary
+features of the Microsoft VM so they would continue to work.</li>
+</ul>
+<p>The Microsoft VM, which is based upon 10 year old Java 1.1
+technology, is clearly outmoded. On the other hand Sun
+Microsystem's VM, which is part of Sun JRE 6, is thoroughly
+standards compliant and up to date which makes another good reason
+for upgrading Java applets and applications to run on the Sun
+JRE.</p>
+<p class="note">Microsoft encourages developers to upgrade Java
+applets and applications to J# or C# languages. But, J# and C# run
+only in Microsoft Windows platform and do not offer cross-platform
+compatibility.</p>
+<h1><a name="upgrade" id="upgrade">How to Upgrade?</a></h1>
+<p>To upgrade to the Sun JRE, follow these steps:</p>
+<ol>
+<li><a href="#install"><span id="span22" class="bg3">Verify and
+Install</span></a> the Sun JRE if it is not already installed in
+your computer.<br /></li>
+<li><a href="#check"><span id="span23" class=
+"bg3">Validate</span></a> whether your browser uses the Sun JRE and
+not the Microsoft VM.<br /></li>
+<li><a href="#test"><span id="span24" class="bg3">Test</span></a>
+your applet with the Sun JRE to determine if the applet runs
+correctly. If the applet does not run correctly, find the problem
+in the list of <a href="#possible"><span id="span25" class=
+"bg3">Potential Upgrade Issues</span></a>. Follow the &gt;&gt;
+hyperlink under Resolution column of each Exception or Symptom to
+see an article that discusses the synopsis, symptom, cause,
+resolution, and related information.</li>
+</ol>
+<p>Although most applets run correctly in the Sun JRE, always
+<a href="#test">test</a> the applets.</p>
+<h2><a name="install" id="install"></a>Verifying and Installing the
+Sun JRE</h2>
+<p>To verify whether you already have the latest Sun JRE installed
+on your test computer, follow the instruction below:</p>
+<ul>
+<li>From the Start menu button, select Settings and then select
+Control Panel.
+<p>The Control Panel opens.</p>
+</li>
+</ul>
+<p>You should see the coffee-cup icon labeled Java in the Control
+Panel. If you do not see the coffee cup icon in the Windows Control
+Panel, you do not have the latest version of the Sun JRE installed
+on your computer.</p>
+<p>You can download and install the Sun JRE in your computer, from
+the url: <a href="http://java.com/en/download/index.jsp">http://java.com/java/download/index.jsp</a>.</p>
+<p>After you install the Sun JRE in your computer, you need to
+validate whether the Sun JRE is enabled for your web browser to run
+the applets.</p>
+<h2><a name="check" id="check"></a>Validating the VM or JRE for
+Your Web Browser</h2>
+<p>To validate whether your web browser uses Microsoft VM or Sun
+JRE go through the following steps:</p>
+<ol>
+<li>From the Start menu button, select Settings and then select
+Control Panel.
+<p>The Control Panel opens. You should see the coffee-cup icon
+labeled Java in the Control Panel.</p>
+</li>
+<li>Double-Click the coffee-cup icon labeled Java to launch the
+Java control panel as shown below:
+<p align="center"><img src="images/browser-2.gif" height="497"
+width="440" alt="A screenshot of Java Control Panel" /></p>
+<br /></li>
+<li>In the Java Control Panel, click the Advanced tab.</li>
+<li>Under Settings, click on + icon against 'Default Java for
+browsers'.</li>
+<li>Ensure to select checkbox for the browser of your choice as
+shown below:<br />
+<p align="center"><img src="images/browser-3.gif" height="497"
+width="440" alt=
+"A screenshot of Java Control Panel with Advanced Tab options" /></p>
+</li>
+<li>Verify whether your browser is running the Sun JRE. If the
+browser is running the Sun JRE, when you run the applet you should
+see:
+<ul>
+<li>Java icon in the system tray as shown below:</li>
+<li style="list-style: none"><br />
+<p align="center"><img src="images/systray-2.gif" height="30"
+width="153" alt=
+"A screenshot of Java icon in the system tray" /></p>
+</li>
+<li>Java logo in the browser window's applet-loading box as shown
+below:</li>
+<li style="list-style: none"><br />
+<p align="center"><img src="images/java_logo.gif" border="0"
+height="233" width="217" alt=
+"A screenshot of Java logo in applet-loading box" /></p>
+</li>
+</ul>
+</li>
+</ol>
+<p align="left" class="note"><span class="bg1">If 'Show console' is
+selected in the <a href="http://docs.oracle.com/javase/6/docs/technotes/guides/deployment/deployment-guide/jcp.html">
+Java Control Panel</a> (Advanced tab &gt; Java console)</span>, the
+Java Console displays a Java version number, as shown in the
+<a href="#test">next</a> section. The version number indicates the
+Sun JRE that is being used by the browser.</p>
+<h2><a name="test" id="test"></a>Testing Your Applet</h2>
+<p>Run the applet in your web browser to test it. If you have a set
+of standard tests for running an applet, perform those tests.</p>
+<p>If there is a compatibility issue, you will see details about it
+in the Java Console which pops up on the screen if 'Show console'
+is selected in the <a href="http://docs.oracle.com/javase/6/docs/technotes/guides/deployment/deployment-guide/jcp.html">
+Java Control Panel</a> (Advanced tab &gt; Java console). The
+following figure shows a sample screenshot of the Java Console:</p>
+<p align="center"><img src="images/java-console-2.gif" height="389"
+width="450" alt="A sample screenshot of Java Console" /></p>
+<p align="left">For details about the Java Console, see <a href=
+"../console.html">Java Console</a>.</p>
+<p>Once you have confirmed that your applet works properly with the
+Sun JRE, you might want to consider the best way of deploying the
+Sun JRE for your customers. See <a href=
+"deployment.html">Internet/Intranet Deployment of the Sun
+JRE</a>.</p>
+<h1><a name="possible" id="possible"></a>Potential Upgrade
+Issues<br /></h1>
+<p><span class="bg3">When running an applet in a browser using the
+Sun JRE</span>, you might come across the following potential
+issues, listed by exceptions and symptoms:</p>
+<table border="1" width="1100" summary=
+"list of potential symptoms you might come across when running an applet in a browser">
+<tbody>
+<tr>
+<th>Exception</th>
+<th>Resolution</th>
+</tr>
+<tr>
+<td>
+<div align="left"><code>java.lang.ClassFormatError</code> thrown by
+<code>ClassLoader.</code></div>
+</td>
+<td>
+<div align="center"><a href="article-01.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.ClassNotFoundException</code> thrown by
+<code>ClassLoader.</code></span></div>
+</td>
+<td>
+<div align="center"><a href="article-02.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.security.AccessControlException</code> thrown in
+the execution of
+<code>java.beans.Introspector.setBeanInfoSearchPath().</code></span></div>
+</td>
+<td>
+<div align="center"><a href="article-04.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.ClassNotFoundException</code> thrown by
+<code>ClassLoader</code> on the <code>com.ms.security</code>
+package.</span></div>
+</td>
+<td>
+<div align="center"><a href="article-05.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.ClassNotFoundException</code> thrown by
+<code>ClassLoader</code> on the <code>com.ms.*</code>
+package.</span></div>
+</td>
+<td>
+<div align="center"><a href="article-06.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.ClassCastException</code> thrown from the AWT
+Dispatch Event Thread when mouse moves over an applet
+frame.</span></div>
+</td>
+<td>
+<div align="center"><a href="article-08.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.NullPointerException</code> thrown from a
+thread when <code>Applet.start()</code> or
+<code>Applet.stop()</code> is called.</span></div>
+</td>
+<td>
+<div align="center"><a href="article-09.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.NullPointerException</code> thrown in
+<code>java.awt.Graphics.drawString()</code>.</span></div>
+</td>
+<td>
+<div align="center"><a href="article-10.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.NullPointerException</code> thrown in
+<code>java.awt.Graphics.drawImage()</code>.</span></div>
+</td>
+<td>
+<div align="center"><a href="article-11.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.IllegalArgumentException</code> thrown in
+<code>java.awt.Color</code> constructor.</span></div>
+</td>
+<td>
+<div align="center"><a href="article-12.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.security.AccessControlException</code> thrown in
+<code>stop()</code>, <code>suspend()</code>, or
+<code>resume()</code> method of
+<code>java.lang.Thread.</code></span></div>
+</td>
+<td>
+<div align="center"><a href="article-13.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>
+<div align="left"><span class=
+"bg3"><code>java.lang.InstantiationException: either code or object
+should be specified, but not both.</code></span></div>
+</td>
+<td>
+<div align="center"><a href="article-14.html">&gt;&gt;</a></div>
+</td>
+</tr>
+</tbody>
+</table>
+<br />
+<br />
+<table border="1" width="1100" summary=
+"list of potential exceptions you might come across when running an applet in a browser">
+<tbody>
+<tr>
+<th>Symptom</th>
+<th>Resolution</th>
+</tr>
+<tr>
+<td><span class="bg3">Applet running in the Sun JRE is no longer
+signed after repackaging the signed <code>.cab</code> files as
+<code>.jar</code> files.</span></td>
+<td>
+<div align="center"><a href="article-03.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td><span class="bg3">Signed applet upgraded from <code>.cab</code>
+to <code>.jar</code> file throws a security exception when run in
+Microsoft VM.</span></td>
+<td>
+<div align="center"><a href="article-15.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td>Unable to use certificates from the browser for client
+authentication.</td>
+<td>
+<div align="center"><a href="article-16.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td><span class="bg3">CJK (Chinese-Japanese-Korean) fonts, when
+displayed in bold, are difficult to read.</span></td>
+<td>
+<div align="center"><a href="article-18.html">&gt;&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td><span class="bg3">Redirection between HTTP and HTTPS URLs is
+not followed.</span></td>
+<td>
+<div align="center"><a href="article-17.html">&gt;&gt;</a></div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If you run into an issue not covered in the preceeding list, see
+<a href="https://forums.sun.com/forum.jsp?forum=481">Java
+Upgrade Forum.</a></p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

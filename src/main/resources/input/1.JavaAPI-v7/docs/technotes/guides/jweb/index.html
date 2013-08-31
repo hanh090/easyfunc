@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>Development and Deployment Of Rich Internet
+Applications</title>
+
+<style type="text/css">
+/*<![CDATA[*/
+.cdiv {
+} 
+.ldiv,.rdiv,.cdiv {
+padding:1%;
+}
+.ldiv {
+width:20%;
+float:left;
+text-align:justify;
+}
+.rdiv {
+margin-left:35%;
+text-align:justify;
+}
+.clear {
+clear:both;
+} 
+/*]]>*/
+</style><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>Java&trade; Rich Internet Applications<br />
+Development and Deployment</h1>
+<p><b>Contents</b></p>
+<ul>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#design">Design</a></li>
+<li><a href="#dev">Development</a></li>
+<li><a href="#depl">Deployment</a></li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+<h2><a id="intro" name="intro"></a>Introduction</h2>
+<p style="margin-bottom: 0in;">Java technology based solutions are
+versatile when developed with good design principles. There are
+three major kinds of solutions depending on their deployment
+mechanism and execution context:</p>
+<ol>
+<li>
+<p style="margin-bottom: 0in;">Applets &ndash; These solutions run
+in the context of a web browser. They utilize the browser
+capabilities like session cookies, DOM access etc. Applets may be
+deployed by using Java Network Launch Protocol (JNLP) or by using
+applet tag attributes.</p>
+</li>
+<li>Java Web Start applications - Java Web Start applications are
+deployed via a browser the first time. Once the application is
+downloaded and the user has accepted its security certificate, it
+behaves almost like a standalone application. When run standalone
+from the user's desktop using Java Web Start, updates to the
+application are automatically downloaded.</li>
+<li>Standalone solutions &ndash; Standalone solutions do not
+require a browser session for execution.</li>
+</ol>
+<p>Applets and Java Web Start applications are now referred to as
+<em>rich internet applications</em> (RIAs) - Java programs that
+take advantage of the Internet.</p>
+<p>Here is an example of Swing <code>JTree</code> functionality
+deployed as a Java applet and Java Web Start application.</p>
+<hr />
+<div class="cdiv">
+<div class="ldiv">
+<p><b>Dynamic Tree demo applet</b></p>
+<script src="http://www.java.com/js/deployJava.js" type=
+"text/javascript">
+</script> <script type="text/javascript">
+//<![CDATA[
+ 
+    var attributes = { codebase: 'http://docs.oracle.com/javase/tutorial/deployment/applet/examples/dist/applet_ComponentArch_DynamicTreeDemo', 
+    code:'appletComponentArch.DynamicTreeApplet.class', archive:'DynamicTreeDemo.jar',  width:300, height:300 } ; 
+    var parameters = {jnlp_href: 'dynamictree-applet.jnlp'} ; 
+    deployJava.runApplet(attributes, parameters, '1.4'); 
+//]]>
+</script></div>
+<div class="rdiv">
+<p><b>Code to deploy applet</b></p>
+<pre class="codebase">
+&lt;script src="http://www.java.com/js/deployJava.js"&gt;&lt;/script&gt;
+&lt;script&gt; 
+ var attributes = { codebase: 'http://www.example.com/applet_ComponentArch_DynamicTreeDemo', 
+    code:'appletComponentArch.DynamicTreeApplet.class', 
+    archive:'DynamicTreeDemo.jar',  
+    width:300, height:300};
+ var parameters = 
+   {jnlp_href: 'dynamictree-applet.jnlp'} ; 
+ deployJava.runApplet(attributes, parameters, '1.4'); 
+&lt;/script&gt;
+</pre></div>
+<div class="clear"></div>
+</div>
+<hr />
+<div class="cdiv">
+<div class="ldiv">
+<p><b>Dynamic Tree demo Java Web Start Application</b></p>
+<p>Click the Launch button to see the same demo deployed as a Java
+Web Start application.</p>
+<script src="http://www.java.com/js/deployJava.js" type=
+"text/javascript">
+</script> <script type="text/javascript">
+//<![CDATA[
+    var url = "http://java.sun.com/docs/books/tutorialJWS/deployment/webstart/ex6/webstart_ComponentArch_DynamicTreeDemo/dynamictree-webstart.jnlp";    
+    deployJava.createWebStartLaunchButton(url, '1.4');
+//]]>
+</script></div>
+<div class="rdiv">
+<p><b>Code to deploy Java Web Start application</b></p>
+<pre class="codebase">
+&lt;script src="http://www.java.com/js/deployJava.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var url = "http://www.example.com/webstart_ComponentArch_DynamicTreeDemo/dynamictree-webstart.jnlp";    
+  deployJava.createWebStartLaunchButton(url, '1.4');
+&lt;/script&gt;
+</pre></div>
+<div class="clear"></div>
+</div>
+<hr />
+<p>The basic steps to build a RIA are shown below.</p>
+<p><img src="images/jweb_dev.jpg" alt=
+"Component based design and deployment" width="791" height=
+"795" /></p>
+<h2><a id="design" name="design"></a>Design</h2>
+<p>In the past, the decision of whether to deploy a RIA inside the
+browser as an applet, or outside the browser as a Java Web Start
+application, could significantly impact the design of the solution.
+With new technology introduced in the Java SE 6 update 10 release,
+these two deployment options have been substantially unified, so
+that properly structured programs can be easily deployed either
+inside or outside the browser.<br />
+<br />
+A key methodology to follow during the design of your app is to use
+a <em>component-based architecture</em>. Traditional applications
+tend to construct their user interfaces, including the top-level
+Frame, in the <code>main</code> method. This programming style
+prevents easy re-deployment of the app in the browser, because it
+assumes that the app creates its own Frame. When running in the
+browser as an applet, the applet is implicitly the container that
+should hold the user interface for the app, and no top-level Frame
+is needed or desired.<br />
+<br />
+Instead, during the development of your app, try to organize its
+functionality into one or more components that can be composed
+together. In this context, the term "component" refers to a GUI
+element that subclasses from the AWT <code>Component</code> class,
+the Swing <code>JComponent</code> class, or another subclass.
+Rather than phrasing the app in terms of various methods which
+build user interfaces and return or show them, instead phrase the
+app in terms of various <code>Component</code> subclasses, each of
+which adds their portion of the user interface to themselves. Then
+the app, which at that point is just a Component (and perhaps, for
+example, a menu bar) can easily be added to any kind of Container.
+The container might be a top-level Frame or an Applet. Using this
+methodology and architecture makes it easy to redeploy the app
+either inside or outside the browser, and allows this deployment
+decision to be changed at essentially any time without
+significantly impacting the development cycle of the app.</p>
+<p>The <a href=
+"http://java.sun.com/products/plugin/1.5.0/demos/jfc/SwingSet2/SwingSet2.html"
+target="_blank">SwingSet2</a> demo is an example that shows how to
+layout components in a single cohesive unit. The constructor of the
+ButtonDemo class instantiates and lays out all required user
+interface components into one master panel. The DemoModule class is
+only responsible for displaying this master panel as an applet.
+This design enables the ButtonDemo to be reused or ported easily to
+another applet or application.</p>
+<p>Should you decide to develop an applet, you'll probably want to
+use the <i>Next Generation Plugin</i>, which has been heavily
+refactored for reliability and cross-browser compatibility. To help
+make that choice, see the <a href="decision_guide.html">Rich
+Internet Applications Decision Guide</a>.</p>
+<h2><a id="dev" name="dev"></a>Development</h2>
+<p>Having decided on the type of client app you plan to build, the
+next step is to build it. For applets, use the <a href=
+"applet/applet_dev_guide.html">Applet Developer's Guide</a> to set
+up the applet, get the browser and the applet talking to each
+other, and to communicate with other applets. For Java Web Start
+applications, use the <a href=
+"../javaws/developersguide/contents.html">Java Web Start
+Developer's Guide</a>.</p>
+<p>Debugging is a natural part of development. In addition to using
+your Java IDE or the Java debugger, you can use the debugging
+facilities in the <a href=
+"../deployment/deployment-guide/console.html">Java Console</a>, as
+well as the JVM's <a href=
+"../deployment/deployment-guide/tracing_logging.html">Tracing and
+Logging</a>&nbsp;capabilities.</p>
+<p>The <a href=
+"http://docs.oracle.com/javase/tutorial/deployment/index.html">Deployment
+trail</a> in the Java Tutorials is a comprehensive resource to
+learn more about the development and deployment of RIAs.</p>
+<h2><a id="depl" name="depl"></a>Deployment</h2>
+<p>Deployment is a multi-step process. Many of the steps are
+optional, but they are all intended to improve the end-user's
+experience--something that has undergone an end-to-end facelift. .
+An overview of deployment related steps is shown next. See the
+<a href="deployment_advice.html">Rich Internet Applications
+Deployment Advice</a> topic for more information.</p>
+<ul>
+<li><b>JNLP File:</b> A JNLP file is created for Java Web Start
+applications and applets that will be deployed using JNLP.<br />
+&nbsp;</li>
+<li><b>Security Certificate</b>: If the application has only
+limited interactions with the user's system, then the applet or
+Java Web Start APIs will have been sufficient. But if you needed to
+use other APIs that affect the user's system, the application will
+need access permissions, and you'll need to add a security
+certificate when you deploy the app. See the <a href=
+"../deployment/deployment-guide/security.html">security</a> page
+for more information.<br />
+&nbsp;</li>
+<li><b>JAR Indexing:</b> To keep the app from downloading JAR files
+before they're needed, you'll want to use <i>JAR Indexing.</i>
+<a href="../jar/jar.html#JARIndex">Jar Indexing</a> works both for
+applets and Java Web Start applications. With Jar Indexing, the
+main jar contains an index file that tells which packages are in
+the other jars. When lazy-loading a resource, the underlying
+classloader uses the index to know what jar file to
+download.<br /></li>
+<li><b>Pack200 Compression:</b> You'll want to use <a href=
+"tools/pack200.html">Pack200 compression</a> to minimize download
+time for the apps JAR files.<br />
+&nbsp;</li>
+<li><b>Deployment Toolkit:</b> Finally, you'll want to use the
+<a href="deployment_advice.html#deplToolkit">Deployment Toolkit</a>
+to set up your web page with cross-browser JavaScript you need to
+launch your app. The deployment toolkit is essentially a set of
+JavaScript functions that ensure deployment of applets consistently
+across various browsers.</li>
+</ul>
+<h2><a id="resources" name="resources"></a>Resources</h2>
+<ul>
+<li><a href="../deployment/deployment-guide/contents.html">Original
+Deployment Guide</a></li>
+</ul>
+<!-- InstanceEndEditable -->
+<p><br />
+<br /></p>
+<!-- InstanceEnd -->
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

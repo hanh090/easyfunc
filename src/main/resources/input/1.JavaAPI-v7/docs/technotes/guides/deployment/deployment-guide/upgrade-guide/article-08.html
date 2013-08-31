@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>java.lang.ClassCastException thrown ...</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+p, li {font-family: arial; font-size: 10pt;}
+/*]]>*/
+</style><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2><code>java.lang.ClassCastException</code> Thrown From the AWT
+Event Dispatching Thread When Mouse Moves Over an Applet Frame</h2>
+<h3>Symptoms</h3>
+<p>While running an applet in a browser by using the Sun
+Java&trade; Runtime Environment (JRE&trade;) implementation, a
+<code>java.lang.ClassCastException</code> is thrown from the
+Abstract Window Toolkit (AWT) event-dispatching thread when the
+mouse moves over the applet's frame, as shown in the following
+code:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<code>java.lang.ClassCastException: sun.plugin....<br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at
+MyApplet.mouseExit(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.Component.handleEvent(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.Component.postEvent(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.Component.dispatchEventImpl(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.Container.dispatchEventImpl(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.Component.dispatchEvent(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.EventQueue.dispatchEvent(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.EventDispatchThread.pumpOneEventForHierarchy(Unknown
+Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown
+Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.EventDispatchThread.pumpEvents(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at
+java.awt.EventDispatchThread.run(Unknown Source)</code></p>
+<p>The applet runs without any error with the Microsoft Virtual
+Machine (VM).</p>
+<h3>Cause</h3>
+<p>This exception has two possible causes:</p>
+<ul>
+<li>To track mouse events on the applet's frame, the applet tries
+to register a <code>MouseListener</code> event on the frame. In the
+Microsoft VM implementation, the applet's direct parent in the AWT
+hierarchical component tree is the frame. So, some applets rely on
+the following code:<br />
+<br />
+<code>public void foo()<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Frame f = (Frame)
+getParent();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+}</code><br />
+&nbsp;<br />
+But, applet's direct parent is specific to the implementation and
+might change. Because the Sun JRE has other containers between the
+applet and the frame, <code>getParent()</code> method does not
+return a <code>Frame</code> object, and the above code results in
+<code>java.lang.ClassCastException</code> error.<br />
+&nbsp;</li>
+<li>In the Microsoft VM implementation,
+<code>java.applet.AppletContext</code> interface is implemented by
+the applet frame. So, some applets rely on the following
+code:<br />
+<br />
+<code>public void foo()<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Frame f = (Frame)
+getParent();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AppletContext ac =
+(AppletContext) f;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+}</code>
+<p>But applet's direct parent is specific to the implementation and
+might change. Because the Sun JRE implements
+<code>AppletContext</code> using a different object, the above code
+results in a <code>java.lang.ClassCastException</code>.</p>
+</li>
+</ul>
+<h3>Resolution</h3>
+<p>In the first cause, navigate the entire AWT hierarchical
+component tree from the applet to locate the frame, instead of
+relying on a frame at a particular level. The following code shows
+how you can navigate the entire component tree:</p>
+<p><code>public void foo()<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Navigate component
+tree<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Container c =
+getParent();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (c != null &amp;&amp; (c
+instanceof Frame) == false)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c
+= c.getParent();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Cast Container to
+Frame<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (c instanceof Frame)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frame f
+= (Frame) c;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+}</code></p>
+<p>In the second cause, access <code>AppletContext</code> using the
+<code>Applet.getAppletContext()</code> method as shown in the
+following code:<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>public void
+foo()<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;....<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AppletContext
+ac = (AppletContext) getAppletContext();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;...<br />
+&nbsp;&nbsp;&nbsp; }</code><br />
+&nbsp;</p>
+<h3>Related Information</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; None.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

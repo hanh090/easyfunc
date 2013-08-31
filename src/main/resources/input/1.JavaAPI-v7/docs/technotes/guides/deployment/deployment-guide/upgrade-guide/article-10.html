@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+<head>
+<title>java.lang.NullPointerException Thrown in java.awt.Graphics.drawString()</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" /><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2><code>java.lang.NullPointerException</code> Thrown in <code>java.awt.Graphics.drawString()</code></h2>
+<h3><br />
+Symptoms</h3>
+<p>When running an applet in a browser using the Sun Java Runtime Environment (JRE), a <code>java.lang.NullPointerException</code> is thrown by the <code>java.awt.Graphics.drawString()</code> method. The same applet runs under the Microsoft Virtual Machine (VM).</p>
+<h3>Cause</h3>
+<p>This exception is caused by passing a null string to the <code>Graphics.drawString()</code> method in the Sun JRE.</p>
+<p>The Java class libraries in the Sun JRE have changed over time. Some APIs have been clarified, some have been deprecated, and some have had their implementation altered.</p>
+<p>The result of passing a null string to the <code>Graphics.drawString()</code> method was not well defined, and the Microsoft VM treats null as an empty string. However, the implementation in the Sun JRE does not accept null as a valid string, thus resulting in a <code>java.lang.NullPointerException</code>.</p>
+<h3>Resolution</h3>
+<p>Code defensively to ensure only a non-null string is passed to the <code>drawString()</code> method. For example, the following code</p>
+<p><code>Graphics g = getGraphics();<br />
+g.drawString(s, 100, 100);</code></p>
+should be changed to:
+<p><code>Graphics g = getGraphics();<br />
+if (s !== null) {</code><br />
+<code>&nbsp;&nbsp;&nbsp;g.drawString(s, 100, 100);<br />
+}</code></p>
+<h3>Related Information</h3>
+<p>None.</p>
+<p>&nbsp;</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

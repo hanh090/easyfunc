@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>rmiregistry - The Java Remote Object Registry</title>
+<meta name="collection" content="reference" />
+<meta name="copyright" content="1997, 2011" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>rmiregistry - The Java Remote Object Registry</h1>
+<dl>
+<dd>The <b>rmiregistry</b> command starts a remote object registry
+on the specified port on the current host.</dd>
+</dl>
+<h2>SYNOPSIS</h2>
+<pre class="codeblock">
+rmiregistry [<i>port</i>]
+</pre>
+<h2>DESCRIPTION</h2>
+<p>The <b>rmiregistry</b> command creates and starts a remote
+object registry on the specified <i>port</i> on the current host.
+If <i>port</i> is omitted, the registry is started on port 1099.
+The <b>rmiregistry</b> command produces no output and is typically
+run in the background. For example:</p>
+<p><code>rmiregistry &amp;</code></p>
+<p>A remote object registry is a bootstrap naming service that is
+used by RMI servers on the same host to bind remote objects to
+names. Clients on local and remote hosts can then look up remote
+objects and make remote method invocations.</p>
+<p>The registry is typically used to locate the first remote object
+on which an application needs to invoke methods. That object in
+turn will provide application-specific support for finding other
+objects.</p>
+<p>The methods of the <code>java.rmi.registry.LocateRegistry</code>
+class are used to get a registry operating on the local host or
+local host and port.</p>
+<p>The URL-based methods of the <code>java.rmi.Naming</code> class
+operate on a registry and can be used to look up a remote object on
+any host, and on the local host: bind a simple (string) name to a
+remote object, rebind a new name to a remote object (overriding the
+old binding), unbind a remote object, and list the URLs bound in
+the registry.</p>
+<h2><a name="Options" id="Options"></a>OPTIONS</h2>
+<dl>
+<dt><b>-J</b></dt>
+<dd>Used in conjunction with any <tt>java</tt> option, it passes
+the option following the <tt>-J</tt> (no spaces between the -J and
+the option) on to the <tt>java</tt> interpreter.</dd>
+</dl>
+<h2>SEE ALSO</h2>
+<a href="java.html">java</a>, <a href=
+"../../../api/java/rmi/registry/LocateRegistry.html"><code>java.rmi.registry.LocateRegistry</code></a>
+and <a href=
+"../../../api/java/rmi/Naming.html"><code>java.rmi.Naming</code></a>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

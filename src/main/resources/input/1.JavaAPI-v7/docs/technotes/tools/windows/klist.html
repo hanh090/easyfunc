@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>klist - Kerberos tool</title>
+<meta name="collection" content="reference" />
+<meta name="copyright" content="1998-2011 klist tool" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>klist - Kerberos display entries in credentials
+cache and keytab</h1>
+<p><code>klist</code> allows the user to view entries in the local
+credentials cache and key table.</p>
+<h2>SYNOPSIS</h2>
+<p><b><code>klist [ <a href="#commands">commands</a>
+]</code></b></p>
+<h2>DESCRIPTION</h2>
+<p><code>klist</code> displays the entries in the local credentials
+cache and key table. After the user has modified the credentials
+cache with <code>kinit</code> or modified the keytab with
+<code>ktab</code>, the only way to verify the changes is to view
+the contents of the credentials cache and/or keytab using
+<code>klist</code>. <code>klist</code> does not change the Kerberos
+database.</p>
+<h2><a name="commands" id="commands"></a>COMMANDS</h2>
+<p><b>Usage: <code>klist [ [-c] [-f] [-e] [-a [-n]] ] [-k [-t] [-K]
+] [&lt;<i><em>name</em></i>&gt;] [-help]</code></b></p>
+<table width="433" border="1" cellspacing="2" cellpadding="2"
+summary="List of klist Command Line Option Names and Descriptions">
+<tr>
+<th>Command Option</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><code>-c</code></td>
+<td>Specifies that the credential cache entries are to be
+listed.</td>
+</tr>
+<tr>
+<td><code>-k</code></td>
+<td>Specifies that the key tab entries are to be listed.</td>
+</tr>
+<tr>
+<td><code>&lt;<i><em>name</em></i>&gt;</code></td>
+<td>Specifies the credential cache name or the keytab name. If the
+name is not specified default values for cache name and the keytab
+are used. The default values for the cache and the keytab are
+specified in the <a href="kinit.html">man page for kinit</a>.</td>
+</tr>
+<tr>
+<td width="70"><code>-help</code></td>
+<td width="354">Displays instructions.</td>
+</tr>
+</table>
+<table width="433" border="1" cellspacing="2" cellpadding="2"
+summary=
+"klist Command Line Options and Descriptions for use with the -c option">
+<caption><b>If the <code>-c</code> option is specified (options for
+credential cache)</b></caption>
+<tr>
+<th>Comman Option</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="47"><code>-f</code></td>
+<td width="377">Shows credentials flags.</td>
+</tr>
+<tr>
+<td width="47"><code>-e</code></td>
+<td width="377">Shows the encryption type.</td>
+</tr>
+<tr>
+<td width="47"><code>-a</code></td>
+<td width="377">Shows addresses.</td>
+</tr>
+<tr>
+<td width="47"><code>-n</code></td>
+<td width="377">If <code>-a</code> is specified, do not reverse
+resolve addresses.</td>
+</tr>
+</table>
+<table width="433" border="1" cellspacing="2" cellpadding="2"
+summary=
+"klist Command Line Options and Descriptions for use with the -k option">
+<caption><b>If the <code>-k</code> option is specified (options
+available for keytabs)</b></caption>
+<tr>
+<th>Command Option</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="45"><code>-t</code></td>
+<td width="379">Shows keytab entry timestamps.</td>
+</tr>
+<tr>
+<td width="45"><code>-K</code></td>
+<td width="379">Shows keytab entry DES keys.</td>
+<td width="45"><code>-K</code></td>
+<td width="379">Shows keytab entry key type.</td>
+
+</tr>
+</table>
+<h2>EXAMPLES</h2>
+<p>List entries in the keytable specified including keytab entry
+timestamps and DES keys:</p>
+<pre class="codeblock">
+      klist -k -t -K FILE:\temp\mykrb5cc
+      
+</pre>
+<p>List entries in the credentials cache specified including
+credentials flag and address list:</p>
+<pre class="codeblock">
+      klist -c -f FILE:\temp\mykrb5cc
+      
+</pre>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>Java Scripting Programmer's Guide</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>Java Scripting Programmer's
+Guide</h1>
+<!-- Body text begins here -->
+<ul>
+<li><a href="#who">Who is the Java Scripting
+API For?</a></li>
+<li><a href="#package">Scripting
+Package</a></li>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#helloworld">"Hello,
+World"</a></li>
+<li><a href="#evalfile">Evaluating a Script
+File</a></li>
+<li><a href="#scriptvars">Script
+Variables</a></li>
+<li><a href="#invoke">Invoking Script
+Functions and Methods</a></li>
+<li><a href="#interfaces">Implementing Java
+Interfaces by Scripts</a></li>
+<li><a href="#scopes">Multiple Scopes for
+Scripts</a></li>
+</ul>
+</li>
+<li><a href="#jsengine">JavaScript Script
+Engine</a></li>
+<li><a href="#jstojava">JavaScript to Java
+Communication</a>
+<ul>
+<li><a href="#jsimport">Importing Java
+Packages, Classes</a></li>
+<li><a href="#jsarrays">Creating and Using
+Java Arrays</a></li>
+<li><a href="#jsimplement">Implementing Java
+Interfaces</a></li>
+<li><a href="#jsoverload">Overload
+Resolution</a></li>
+</ul>
+</li>
+<li><a href="#engineimpl">Implementing Your
+Own Script Engine</a></li>
+<li><a href=
+"#refs">References</a></li>
+</ul>
+<a name="who"></a>
+<h2>Who is the Java Scripting API
+For?</h2>
+Some useful characteristics of scripting
+languages are:
+<ul>
+<li><b>Convenience</b>: Most scripting
+languages are dynamically typed. You can usually create new
+variables without declaring the variable type, and you can reuse
+variables to store objects of different types. Also, scripting
+languages tend to perform many type conversions automatically, for
+example, converting the number 10 to the text "10" as
+necessary.</li>
+<li><b>Developing rapid prototypes</b>: You
+can avoid the edit-compile-run cycle and just use
+edit-run!</li>
+<li><b>Application
+extension/customization</b>: You can "externalize" parts of your
+application - like configuration scripts, business logic/rules and
+math expressions for financial applications.</li>
+<li><b>"Command line" shells for
+applications</b> -for debugging, runtime/deploy time configuration
+etc. Most applications have a web-based GUI configuaration tool
+these days. But sysadmins/deployers frequently prefer command line
+tools. Instead of inventing ad-hoc scripting language for that
+purpose, a "standard" scripting language can be used.</li>
+</ul>
+<p>The Java&trade; Scripting API is a scripting language
+indepedent framework for using script engines from Java code. With
+the Java Scripting API, it is possible to write
+customizable/extendable applications in the Java language and leave
+the customization scripting language choice to the end user. The
+Java application developer need not choose the extension language
+during development. If you write your application with JSR-223 API,
+then your users can use any JSR-223 compliant scripting
+language.</p>
+<a href="#top">top</a>
+<hr />
+<a name="package"></a>
+<h2>Scripting Package</h2>
+<p>The Java Scripting functionality is in
+the <code><a href=
+"../../../../api/javax/script/package-summary.html">javax.script</a></code>
+package. This is a relatively small, simple API. The starting point
+of the scripting API is the <code>ScriptEngineManager</code> class.
+A ScriptEngineManager object can discover script engines through
+the jar file service discovery mechanism. It can also instantiate
+ScriptEngine objects that interpret scripts written in a specific
+scripting language. The simplest way to use the scripting API is as
+follows:</p>
+<ol>
+<li>Create a <code>ScriptEngineManager</code>
+object.</li>
+<li>Get a <code>ScriptEngine</code> object
+from the manager.</li>
+<li>Evaluate script using the
+<code>ScriptEngine</code>'s <code>eval</code> methods.</li>
+</ol>
+<p>Now, it is time to look at some sample
+code. While it is not mandatory, it may be useful to know a bit of
+JavaScript to read these examples.</p>
+<a href="#top">top</a>
+<hr />
+<a name="examples"></a>
+<h2>Examples</h2>
+<a name="helloworld"></a>
+<h3>"Hello, World"</h3>
+<p>From the <code>ScriptEngineManager</code>
+instance, we request a JavaScript engine instance using
+<code>getEngineByName</code> method. On the script engine, the
+<code>eval</code> method is called to execute a given String as
+JavaScript code! For brevity, in this as well as in subsequent
+examples, we have not shown exception handling. There are checked
+and runtime exceptions thrown from <code>javax.script</code> API.
+Needless to say, you have to handle the exceptions
+appropriately.</p>
+<pre>
+<code>import javax.script.*;
+public class EvalScript {
+    public static void main(String[] args) throws Exception {
+        // create a script engine manager
+        ScriptEngineManager factory = new ScriptEngineManager();
+        // create a JavaScript engine
+        ScriptEngine engine = factory.getEngineByName("JavaScript");
+        // evaluate JavaScript code from String
+        engine.eval("print('Hello, World')");
+    }
+}
+</code>
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="evalfile"></a>
+<h3>Evaluating a Script File</h3>
+<p>In this example, we call the <code>eval</code> method that
+accepts <code>java.io.Reader</code> for the input source. The
+script read by the given reader is executed. This way it is
+possible to execute scripts from files, URLs and resources by
+wrapping the relevant input stream objects as readers.</p>
+<pre>
+<code>import javax.script.*;
+public class EvalFile {
+    public static void main(String[] args) throws Exception {
+        // create a script engine manager
+        ScriptEngineManager factory = new ScriptEngineManager();
+        // create JavaScript engine
+        ScriptEngine engine = factory.getEngineByName("JavaScript");
+        // evaluate JavaScript code from given file - specified by first argument
+        engine.eval(new java.io.FileReader(args[0]));
+    }
+}
+</code>
+</pre>
+Let us assume that we have the file named "test.js" with the
+following text:
+<pre>
+<code>
+println("This is hello from test.js");
+</code>
+</pre>
+We can run the above Java as
+<pre>
+<code>
+java EvalFile test.js
+</code>
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="scriptvars"></a>
+<h3>Script Variables</h3>
+<p>When you embed script engines and scripts with your Java
+application, you may want to expose your application objects as
+global variables to scripts. This example demonstrates how you can
+expose your application objects as global variables to a script. We
+create a <code>java.io.File</code> in the application and expose
+the same as a global variable with the name "file". The script can
+access the variable - for example, it can call public methods on
+it. Note that the syntax to access Java objects, methods and fields
+is dependent on the scripting language. JavaScript supports the
+most "natural" Java-like syntax.</p>
+<pre>
+<code>public class ScriptVars {
+    public static void main(String[] args) throws Exception {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+
+        File f = new File("test.txt");
+        // expose File object as variable to script
+        engine.put("file", f);
+
+        // evaluate a script string. The script accesses "file"
+        // variable and calls method on it
+        engine.eval("print(file.getAbsolutePath())");
+    }
+}
+
+</code>
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="invoke"></a>
+<h3>Invoking Script Functions and Methods</h3>
+<p>Sometimes you may want to call a specific scripting function
+repeatedly - for example, your application menu functionality might
+be implemented by a script. In your menu's action event handler you
+may want to call a specific script function. The following example
+demonstrates invoking a specific script function from Java
+code.</p>
+<pre>
+import javax.script.*;
+
+public class InvokeScriptFunction {
+    public static void main(String[] args) throws Exception {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+
+        // JavaScript code in a String
+        String script = "function hello(name) { print('Hello, ' + name); }";
+        // evaluate script
+        engine.eval(script);
+
+        // javax.script.Invocable is an optional interface.
+        // Check whether your script engine implements or not!
+        // Note that the JavaScript engine implements Invocable interface.
+        Invocable inv = (Invocable) engine;
+
+        // invoke the global function named "hello"
+        inv.invokeFunction("hello", "Scripting!!" );
+    }
+}
+</pre>
+<p>If your scripting language is object based (like JavaScript) or
+object-oriented, then you can invoke a script method on a script
+object.</p>
+<pre>
+import javax.script.*;
+
+public class InvokeScriptMethod {
+    public static void main(String[] args) throws Exception {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+
+        // JavaScript code in a String. This code defines a script object 'obj'
+        // with one method called 'hello'.
+        String script = "var obj = new Object(); obj.hello = function(name) { print('Hello, ' + name); }";
+        // evaluate script
+        engine.eval(script);
+
+        // javax.script.Invocable is an optional interface.
+        // Check whether your script engine implements or not!
+        // Note that the JavaScript engine implements Invocable interface.
+        Invocable inv = (Invocable) engine;
+
+        // get script object on which we want to call the method
+        Object obj = engine.get("obj");
+
+        // invoke the method named "hello" on the script object "obj"
+        inv.invokeMethod(obj, "hello", "Script Method !!" );
+    }
+}
+
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="interfaces"></a>
+<h3>Implementing Java Interfaces by Scripts</h3>
+<p>Instead of calling specific script functions from Java,
+sometimes it is convenient to implement a Java interface by script
+functions or methods. Also, by using interfaces we can avoid having
+to use the <code>javax.script</code> API in many places. We can get
+an interface implementor object and pass it to various Java APIs.
+The following example demonstrates implementing the
+<code>java.lang.Runnable</code> interface with a script.</p>
+<pre>
+<code>
+import javax.script.*;
+
+public class RunnableImpl {
+    public static void main(String[] args) throws Exception {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+
+        // JavaScript code in a String
+        String script = "function run() { println('run called'); }";
+
+        // evaluate script
+        engine.eval(script);
+
+        Invocable inv = (Invocable) engine;
+
+        // get Runnable interface object from engine. This interface methods
+        // are implemented by script functions with the matching name.
+        Runnable r = inv.getInterface(Runnable.class);
+
+        // start a new thread that runs the script implemented
+        // runnable interface
+        Thread th = new Thread(r);
+        th.start();
+    }
+}
+</code>
+</pre>
+<p>If your scripting language is object-based or object-oriented,
+it is possible to implement a Java interface by script methods on
+script objects. This avoids having to call script global functions
+for interface methods. The script object can store the "state"
+associated with the interface implementor.</p>
+<pre>
+<code>
+
+import javax.script.*;
+
+public class RunnableImplObject {
+    public static void main(String[] args) throws Exception {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+
+        // JavaScript code in a String
+        String script = "var obj = new Object(); obj.run = function() { println('run method called'); }";
+
+        // evaluate script
+        engine.eval(script);
+
+        // get script object on which we want to implement the interface with
+        Object obj = engine.get("obj");
+
+        Invocable inv = (Invocable) engine;
+
+        // get Runnable interface object from engine. This interface methods
+        // are implemented by script methods of object 'obj'
+        Runnable r = inv.getInterface(obj, Runnable.class);
+
+        // start a new thread that runs the script implemented
+        // runnable interface
+        Thread th = new Thread(r);
+        th.start();
+    }
+}
+</code>
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="scopes"></a>
+<h3>Multiple Scopes for Scripts</h3>
+<p>In the <a href="#scriptvars">script variables</a> example, we
+saw how to expose application objects as script global variables.
+It is possible to expose multiple global "scopes" for scripts. A
+single scope is an instance of <code>javax.script.Bindings</code>.
+This interface is derived from <code>java.util.Map&lt;String,
+Object&gt;</code>. A scope a set of name-value pairs where name is
+any non-empty, non-null String. Multiple scopes are supported by
+<code>javax.script.ScriptContext</code> interface. A script context
+supports one or more scopes with associated Bindings for each
+scope. By default, every script engine has a default script
+context. The default script context has atleast one scope called
+"ENGINE_SCOPE". Various scopes supported by a script context are
+available through <code>getScopes</code> method.</p>
+<pre>
+<code>
+
+import javax.script.*;
+
+public class MultiScopes {
+    public static void main(String[] args) throws Exception {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+
+        engine.put("x", "hello");
+        // print global variable "x"
+        engine.eval("println(x);");
+        // the above line prints "hello"
+
+        // Now, pass a different script context
+        ScriptContext newContext = new SimpleScriptContext();
+        Bindings engineScope = newContext.getBindings(ScriptContext.ENGINE_SCOPE);
+
+        // add new variable "x" to the new engineScope
+        engineScope.put("x", "world");
+
+        // execute the same script - but this time pass a different script context
+        engine.eval("println(x);", newContext);
+        // the above line prints "world"
+    }
+}
+
+</code>
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="jsengine"></a>
+<h2>JavaScript Script Engine</h2>
+<p>Oracle's implementation of JDK 7 is co-bundled with the <a href="http://www.mozilla.org/rhino/">Mozilla Rhino</a> based JavaScript
+engine which can be used in conjunction with javax.script (JSR-223)
+API.</p>
+<p>This directory and subdirectories contain the Rhino sources with
+Oracle changes. Mozilla Rhino sources are licensed under Mozilla
+Public License Version 1.1. You may obtain a copy of this License
+at <code>http://www.mozilla.org/MPL</code>. Please note that the
+sources in <code>com.sun.script</code> package and sub-packages are
+not covered under MPL.</p>
+<h3>Feature changes in JavaScript implementation</h3>
+Most of the Rhino implementation is included but there are a few of
+components of Rhino are not included / changed mainly due to
+footprint and security reasons. These features are:
+<ol>
+<li>JavaScript-to-bytecode compilation (also called "optimizer"): The optimizer is disabled when security manager is present. When
+security manager is not used, System property "rhino.opt.level" can
+be defined in the range [-1, 9]. By default, the value is set to -1
+which means optimizer is disabled.</li>
+<li>Rhino's JavaAdapter has been overridden. JavaAdapter is the
+feature by which Java class can be extended by JavaScript and Java
+interfaces may be implemented by JavaScript. We have replaced
+Rhino's JavaAdapter with our own implementation of JavaAdapter. In
+our implementation, only single Java interface may be implemented
+by a JavaScript object. For example, the following works as
+expected.
+<pre>
+       var v = new java.lang.Runnable() {
+                    run: function() { print('hello'); }
+               }
+       v.run();
+</pre>
+In most cases, JavaAdapter is used to implement single interface
+with Java anonymizer class-like syntax. The uses of JavaAdapter to
+extend a Java class or to implement multiple interfaces are very
+rare.</li>
+<li>The Rhino command line tools (Rhino shell, debugger etc) are
+not included.</li>
+</ol>
+<a href="#top">top</a>
+<hr />
+<a name="jstojava"></a>
+<h2>JavaScript to Java Communication</h2>
+<p>For the most part, accessing Java classes, objects and methods
+is straightforward. In particular field and method access from
+JavaScript is the same as it is from Java. We highlight important
+aspects of JavaScript Java access here. For more details, please
+refer to <a href="http://www.mozilla.org/rhino/scriptjava.html">http://www.mozilla.org/rhino/scriptjava.html</a>.
+The following examples are JavaScript snippets accessing Java. This
+section requires knowledge of JavaScript. This section can be
+skipped if you are planning to use some other JSR-223 scripting
+language rather than JavaScript.</p>
+<a href="#top">top</a>
+<hr />
+<a name="jsimport"></a>
+<h3>Importing Java Packages, Classes</h3>
+<p>The built-in functions <code>importPackage</code> and
+<code>importClass</code> can be used to import Java packages and
+classes.</p>
+<pre>
+<code>
+// Import Java packages and classes
+// like import package.*; in Java
+importPackage(java.awt);
+// like import java.awt.Frame in Java
+importClass(java.awt.Frame);
+// Create Java Objects by "new ClassName"
+var frame = new java.awt.Frame("hello");
+// Call Java public methods from script
+frame.setVisible(true);
+// Access "JavaBean" properties like "fields"
+print(frame.title);
+</code>
+</pre>
+<p>The Packages global variable can
+be used to access Java packages. Examples:
+<code>Packages.java.util.Vector</code>,
+<code>Packages.javax.swing.JFrame</code>. Please note that "java"
+is a shortcut for "Packages.java". There are equivalent shortcuts
+for javax, org, edu, com, net prefixes, so pratically all JDK
+platform classes can be accessed without the "Packages" prefix.</p>
+<p>Note that java.lang is not imported by default (unlike Java)
+because that would result in conflicts with JavaScript's built-in
+Object, Boolean, Math and so on.</p>
+<p><code>importPackage</code> and <code>importClass</code>
+functions "pollute" the global variable scope of JavaScript. To
+avoid that, you may use JavaImporter.</p>
+<pre>
+<code>
+// create JavaImporter with specific packages and classes to import
+
+var SwingGui = new JavaImporter(javax.swing,
+                            javax.swing.event,
+                            javax.swing.border,
+                            java.awt.event);
+with (SwingGui) {
+    // within this 'with' statement, we can access Swing and AWT
+    // classes by unqualified (simple) names.
+
+    var mybutton = new JButton("test");
+    var myframe = new JFrame("test");
+}
+
+</code>
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="jsarrays"></a>
+<h3>Creating and Using Java Arrays</h3>
+<p>While creating a Java object is the same as in Java, to create
+Java arrays in JavaScript we need to use Java reflection
+explicitly. But once created the element access or length access is
+the same as in Java. Also, a script array can be used when a Java
+method expects a Java array (auto conversion). So in most cases we
+don't have to create Java arrays explicitly.</p>
+<pre>
+<code>
+// create Java String array of 5 elements
+var a = java.lang.reflect.Array.newInstance(java.lang.String, 5);
+
+// Accessing elements and length access is by usual Java syntax
+a[0] = "scripting is great!";
+print(a.length);
+</code>
+
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="jsimplement"></a>
+<h3>Implementing Java Interfaces</h3>
+<p>A Java interface can be implemented in JavaScript by using a
+Java anonymous class-like syntax:</p>
+<pre>
+<code>
+var r  = new java.lang.Runnable() {
+    run: function() {
+        print("running...\n");
+    }
+};
+
+// "r" can be passed to Java methods that expect java.lang.Runnable
+var th = new java.lang.Thread(r);
+th.start();
+</code>
+</pre>
+<p>When an interface with a single method is expected, you can pass
+a script function directly.(auto conversion)</p>
+<pre>
+<code>
+function func() {
+     print("I am func!");
+}
+
+// pass script function for java.lang.Runnable argument
+var th = new java.lang.Thread(func);
+th.start();
+</code>
+</pre>
+<a href="#top">top</a>
+<hr />
+<a name="jsoverload"></a>
+<h3>Overload Resolution</h3>
+<p>Java methods can be overloaded by argument types. In Java,
+overload resolution occurs at compile time (performed by javac).
+When calling Java methods from a script, the script
+interpreter/compiler needs to select the appropriate method. With
+the JavaScript engine, you do not need to do anything special - the
+correct Java method overload variant is selected based on the
+argument types. But, sometimes you may want (or have) to explicitly
+select a particular overload variant.</p>
+<pre>
+<code>
+var out = java.lang.System.out;
+
+// select a particular println function
+out["println(java.lang.Object)"]("hello");
+</code>
+</pre>
+<p>More details on JavaScript's Java method overload resolution is
+at <a href="http://www-archive.mozilla.org/js/liveconnect/lc3_method_overloading.html">Java Method Overloading and LiveConnect 3</a></p>
+<a href="#top">top</a>
+<hr />
+<a name="engineimpl"></a>
+<h2>Implementing Your Own Script Engine</h2>
+<p>We will not cover implementation of JSR-223 compliant script
+engines in detail. Minimally, you need to implement the
+<code>javax.script.ScriptEngine</code> and
+<code>javax.script.ScriptEngineFactory</code> interfaces. The
+abstract class <code>javax.script.AbstractScriptEngine</code>
+provides useful defaults for a few methods of the
+<code>ScriptEngine</code> interface.</p>
+<a href="#top">top</a>
+<hr />
+<a name="refs"></a>
+<h2>References</h2>
+<ul>
+<li><a href="http://jcp.org/en/jsr/detail?id=223">JSR-223 Scripting
+for the Java Platform</a></li>
+<li><a href=
+"http://www-archive.mozilla.org/js/liveconnect/lc3_method_overloading.html">
+Java Method Overloading and LiveConnect 3</a></li>
+<li><a href="http://www.mozilla.org/rhino/">Rhino:JavaScript for
+Java</a></li>
+<li><a href="http://www.mozilla.org/rhino/scriptjava.html">Scripting Java (from
+JavaScript)</a></li>
+</ul>
+<a href="#top">top</a>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

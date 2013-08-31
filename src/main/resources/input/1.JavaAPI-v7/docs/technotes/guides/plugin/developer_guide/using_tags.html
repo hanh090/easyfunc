@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Using applet, object and embed Tags</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java plug-in guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<p><small><a href="contents.html">&lt; Contents</a></small></p>
+<h1>Using <code>applet</code>, <code>object</code> and
+<code>embed</code> Tags</h1>
+<p>&nbsp;</p>
+<p>This chapter includes the following topics:</p>
+<ul>
+<li><a href="#intro" style=
+"margin-bottom: 0in">Introduction</a></li>
+<li><a href="#general">General Considerations</a></li>
+<li><a href="#applet">Using the <code>applet</code> tag</a></li>
+<li><a href="#object" style="margin-bottom: 0in">Using the
+<code>object</code> tag</a></li>
+<li><a href="#embed" style="margin-bottom: 0in">Using the
+<code>embed</code> tag</a></li>
+<li><a href="#mixed" style="margin-bottom: 0in">Deploying Applets
+in a Mixed-Browser Environment</a></li>
+</ul>
+<h2><a name="intro" id="intro"></a>Introduction</h2>
+<p>This chapter explains to HTML authors how and when to use the
+<code>applet</code>, <code>object</code>, and <code>embed</code>
+tags to add Java applets to Web pages. In addition, this chapter
+provides guidelines for deploying applets on the Internet and
+Intranets, and for use with different browsers.</p>
+<h2><a name="general" id="general"></a>General Considerations</h2>
+<p>How you deploy an applet depends on whether users access the Web
+page through the Internet or an Intranet, and the type of browser
+they use. Note this information about your users, then follow the
+general guidelines below.</p>
+<h3>Deploying Applets on the Internet Versus an Intranet</h3>
+<p>When deploying applets:</p>
+<ul>
+<li>
+<p style="margin-bottom: 0in">Use the <code><a href=
+"#applet">applet</a></code> tag if the Web page is accessed through
+the Internet.</p>
+</li>
+<li>Use the <code><a href="#object">object</a></code> or
+<code><a href="#embed">embed</a></code> tag if the Web page is
+accessed through an Intranet.</li>
+</ul>
+<h3>Deploying Applets for Specific Browsers</h3>
+<p>When deploying applets:</p>
+<ul>
+<li>
+<p style="margin-bottom: 0in">For Internet Explorer only, use the
+<code><a href="#object">object</a></code> tag.</p>
+</li>
+<li>
+<p style="margin-bottom: 0in">For the Mozilla family of browsers
+only, use the <code><a href="#embed">embed</a></code> tag.</p>
+</li>
+</ul>
+<p style="margin-bottom: 0in"><a name="mixed1" id="mixed1"></a>If
+you must deploy an applet in a mixed-browser environment, follow
+the guidelines in the section <a href="#mixed">Deploying Applets in
+a Mixed-Browser Environment</a>.</p>
+<h2><a name="applet" id="applet"></a>Using the <code>applet</code>
+tag</h2>
+<p>You use the applet tag to deploy applets to a multi-browser
+environment.</p>
+<p>For complete details on the <code>applet</code> tag, read the
+<a href="http://www.w3.org/TR/1999/REC-html401-19991224/">W3 HTML
+specification</a>.</p>
+<p>Note: The HTML specification states that the <code>applet</code>
+tag is deprecated, and that you should use the <code>object</code>
+tag instead. However, the specification is vague about how browsers
+should implement the <code>object</code> tag to support Java
+applets, and browser support is currently inconsistent. Sun
+therefore recommends that you continue to use the
+<code>applet</code> tag as a consistent way to deploy Java applets
+across browsers on all platforms.</p>
+<p>Following is an example of the <code>applet</code> tag:</p>
+<pre>
+    &lt;applet code=Applet1.class width=&quot;200&quot; height=&quot;200&quot;&gt;
+    Your browser does not support the &lt;code&gt;applet&lt;/code&gt; tag.
+    &lt;/applet&gt; 
+</pre>
+<p>For both Internet Explorer and the Mozilla family of browsers,
+if Java Plug-in is installed (version 1.3.1_01a or later) then the
+highest installed version of Java Plug-in is invoked to run the
+applet.</p>
+<table summary="" width="100%" border="1" cellpadding="5"
+align="center" bgcolor="#FFFFCC" cellspacing="0">
+<tr>
+<td>
+<h2><u>Note</u></h2>
+<p>You cannot use the <code>applet</code> tag to automatically
+download a JRE if one is not installed locally.</p>
+</td>
+</tr>
+</table>
+<h2><a name="object" id="object"></a>Using the <code>object</code>
+tag</h2>
+<p>You use the <code>object</code> tag to deploy applets that are
+to be used only with Internet Explorer. For complete details on the
+<code>object</code> tag, read the <a href=
+"http://www.w3.org/TR/1999/REC-html401-19991224/">W3 HTML
+specification</a>. Following is an example of the
+<code>object</code> tag:</p>
+<pre style="margin-left: 0.39in; margin-right: 0.39in">
+&lt;OBJECT 
+  classid=&quot;clsid:8AD9C840-044E-11D1-B3E9-00805F499D93&quot;
+  width=&quot;200&quot; height=&quot;200&quot;&gt;
+  &lt;PARAM name=&quot;code&quot; value=&quot;Applet1.class&quot;&gt;
+&lt;/OBJECT&gt;
+</pre>
+<h3><a name="classidattrib" id="classidattrib"></a>The classid
+Attribute</h3>
+<p>The <code>classid</code> attribute identifies which minimum
+version of Java Plug-in to use.</p>
+<p>The example shown below is the most commonly used form of the
+<code>classid</code> attribute. This example instructs Internet
+Explorer to use the highest installed version of Java Plug-in.</p>
+<pre style="codeblock">
+classid=&quot;clsid:8AD9C840-044E-11D1-B3E9-00805F499D93&quot;
+</pre>
+<p>Following is an alternative form of the <code>classid</code>
+attribute:</p>
+<pre style="blockquote">
+classid=&quot;clsid:CAFEEFAC-xxxx-yyyy-zzzz-ABCDEFFEDCBA&quot;
+</pre>
+<p>In this form, &quot;xxxx&quot;, &quot;yyyy&quot;, and
+&quot;zzzz&quot; are four-digit numbers that identify the minimum
+version of Java Plug-in to be used. For example, to use Java
+Plug-in version <code>1.6</code>, you specify:</p>
+<pre style="codeblock">
+classid=&quot;clsid:CAFEEFAC-0016-0000-0000-ABCDEFFEDCBA&quot;
+</pre>
+<h3>The codebase Attribute</h3>
+<p>You use the optional <code>codebase</code> attribute to specify
+if and how to download the JRE.</p>
+<p>The <code>codebase</code> attribute has two forms:</p>
+<ul>
+<li><code>codebase=&lt;URL&gt;</code><br />
+<br />
+With this form, if the JRE specified by the <code>classid</code>
+attribute is not installed locally, then the user is prompted to
+download the JRE from the URL specified.</li>
+</ul>
+<ul>
+<li>
+<code>codebase=&lt;URL&gt;#Version=major,minor,micro,update</code><br />
+
+<br />
+With this form, if the version of the JRE specified in the codebase
+attribute is greater than the version of the JRE specified by the
+<code>classid</code> attribute, then the user is prompted to
+download the JRE from the URL specified.</li>
+</ul>
+<p>Following is an example of how to use the <code>codebase</code>
+attribute to set up automatic downloads from the Sun Java Web
+site:</p>
+<pre style="margin-left: 0.39in; margin-right: 0.39in">
+&lt;object 
+  classid=&quot;clsid:8AD9C840-044E-11D1-B3E9-00805F499D93&quot;
+  width=&quot;200&quot; height=&quot;200&quot;
+  codebase=&quot;http://java.sun.com/products/plugin/autodl/<br />jinstall-1_5_0-windows-i586.cab#Version=1,5,0,0&quot;&gt;
+  &lt;param name=&quot;code&quot; value=&quot;Applet1.class&quot;&gt;
+&lt;/object&gt;
+</pre>
+<p>Note: In this example the <code>codebase=http://java.sun.com
+...</code> line is broken for readability. In the actual HTML file
+it would be one long line.</p>
+<p>Sun has packaged each version of the JRE installer in Microsoft
+cabinet (<code>.cab</code>) file format. You can <a href="http://docs.oracle.com/javase/7/docs/">
+view a list of these releases and the corresponding
+<code>.cab</code> file names</a>.</p>
+<h2><a name="embed" id="embed"></a>Using the <code>embed</code> tag</h2>
+<p>You use the <code>embed</code> tag to deploy applets that are to
+be used only with the Mozilla family of browsers.</p>
+<p>Following is an example of the <code>embed</code> tag:</p>
+<pre style="margin-left: 0.39in; margin-right: 0.39in">
+&lt;embed code=&quot;Applet1.class&quot;
+  width=&quot;200&quot; height=&quot;200&quot;
+  type=&quot;application/x-java-applet;version=1.6&quot;
+  pluginspage=&quot;http://java.sun.com/javase/downloads/ea.jsp&quot;/&gt;
+</pre>
+<p>The type attribute can have one of two forms:</p>
+<ul>
+<li>
+<code>type=&quot;application/x-java-applet;version=1.6&quot;</code><br />
+
+<br />
+With this form, the highest installed JRE that supports the MIME
+type i.e. <code>application/x-java-applet;version=1.6</code> is
+invoked to run the applet. If a JRE with a version number equal to
+or greater than the version number specified is installed locally,
+then that JRE is invoked. Otherwise the user is directed to the URL
+specified as the value of the <code>pluginspage</code>
+attribute.</li>
+</ul>
+<ul>
+<li>
+<code>type=&quot;application/x-java-applet;jpi-version=1.5.0_07</code><br />
+
+<br />
+With this form, a JRE with at least the specified update version
+given by the value of <code>jpi-version</code> (in this example,
+1.5.0_07) is invoked to run the applet. Otherwise the user is
+directed to the URL specified as the value of the
+<code>pluginspage</code> attribute.</li>
+</ul>
+<h2><a name="mixed" id="mixed"></a>Deploying Applets in a
+Mixed-Browser Environment</h2>
+<p>You can deploy applets for users of both Internet Explorer and
+the Mozilla family of browsers in one of two ways:</p>
+<ul>
+<li>
+<p style="margin-bottom: 0in"><a href="#html">Using pure
+HTML</a></p>
+</li>
+<li><a href="#javascript">Using JavaScript</a></li>
+</ul>
+<h3><a name="html" id="html"></a>Deploying Applets Using Pure
+HTML</h3>
+<p>When using a pure HTML approach to deploy applets in a
+mixed-browser environment, note the following:</p>
+<ul>
+<li>
+<p style="margin-bottom: 0in">Internet Explorer</p>
+<ul>
+<li>Recognizes the <code><a href="#object">object</a></code>
+tag</li>
+<li>Ignores the contents of the <code>comment</code> tag</li>
+</ul>
+</li>
+<li>Mozilla browsers
+<ul>
+<li>Ignore an <code>object</code> tag with the <code>classid</code>
+attribute</li>
+<li>Interpret the contents of the <code>comment</code> tag</li>
+</ul>
+</li>
+</ul>
+<p>Consider the following example code from an HTML page:</p>
+<pre style="margin-left: 0.39in; margin-right: 0.39in">
+&lt;object 
+  classid=&quot;clsid:8AD9C840-044E-11D1-B3E9-00805F499D93&quot;
+  &lt;param name=&quot;code&quot; value=&quot;Applet1.class&quot;&gt;
+    &lt;comment&gt;
+      &lt;embed code=&quot;Applet1.class&quot;
+        type=&quot;application/x-java-applet;version=1.6&quot;&gt;
+        &lt;noembed&gt;
+          No Java Support.
+        &lt;/noembed&gt;
+      &lt;/embed&gt;
+    &lt;/comment&gt;
+  &lt;/object&gt;
+</pre>
+<h3><a name="javascript" id="javascript"></a>Deploying Applets
+Using JavaScript</h3>
+<p>Instead of using the pure HTML approach described above, you can
+use JavaScript to deploy applets in a mixed-browser
+environment.</p>
+<p>Through JavaScript, you:</p>
+<ol>
+<li>
+<p>Detect the user's browser through the
+<code><code>appName</code></code> variable.</p>
+</li>
+<li>
+<p>Use the <code>document.write()</code> method to write a tag
+based on the value of the <code>appName</code> variable:</p>
+</li>
+</ol>
+<div style="margin-left: 2em">
+<ol type="a">
+<li>
+<p>If the browser name equals &quot;Mozilla&quot;, write the
+<code>embed</code> tag.</p>
+</li>
+<li>
+<p>If the browser name equals &quot;Microsoft Internet
+Explorer&quot;, write the <code>object</code> tag.</p>
+</li>
+</ol>
+</div>
+<p>In the following example, the <code>document.write()</code>
+method outputs either an <code>embed</code> or <code>object</code>
+tag for each user &ldquo;on the fly&rdquo;:</p>
+<pre style="margin-left: 0.39in; margin-right: 0.39in">
+&lt;html&gt;
+&lt;script language=&quot;Javascript&quot;&gt;
+
+  var _app = navigator.appName;
+
+  if (_app == 'Mozilla') {
+    document.write('&lt;embed code=&quot;Applet1.class&quot;',
+                   'width=&quot;200&quot;',
+                   'height=&quot;200&quot;',
+                   'type=&quot;application/x-java-applet;version=1.5.0&quot;&gt;');
+    }
+  else if (_app == 'Microsoft Internet Explorer') {
+    document.write('&lt;OBJECT ',
+                   'classid=&quot;clsid:8AD9C840-044E-11D1-B3E9-00805F499D93&quot;',
+                   'width=&quot;200&quot;',
+                   'height=&quot;200&quot;&gt;',
+                   '&lt;PARAM name=&quot;code&quot; value=&quot;Applet1.class&quot;&gt;',
+                   '&lt;/OBJECT&gt;');
+    }
+  else {
+    document.write('&lt;p&gt;Sorry, unsupported browser.&lt;/p&gt;');
+    }
+
+&lt;/script&gt;
+&lt;/html&gt;
+</pre>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

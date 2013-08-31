@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>JNDI/DNS Service Provider</title><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>DNS Service Provider for the<br />
+Java Naming Directory Interface&trade; (JNDI)</h1>
+<p><i>Table of Contents</i></p>
+<ul>
+<li><a href="#INTRO">Introduction</a></li>
+<li><a href="#CONF">Conformance</a></li>
+<li><a href="#PROP">Environment Properties</a></li>
+<li><a href="#TYPE">Mapping DNS Content to JNDI</a></li>
+<li><a href="#URL">DNS Pseudo-URLs</a></li>
+<li><a href="#API">API Mapping</a></li>
+<li><a href="#USAGE">Usage Examples</a></li>
+<li><a href="#SEC">Security Considerations</a></li>
+<li><a href="#FED">Federation</a></li>
+</ul>
+<hr />
+<p><a name="INTRO" id="INTRO"></a></p>
+<h2>Introduction</h2>
+<p>The DNS service provider allows JNDI applications to access
+information stored in the internet Domain Name System. The provider
+presents the DNS namespace as a tree of JNDI directory contexts,
+and DNS resource records as JNDI attributes.</p>
+<p>This document describes the features of the DNS service
+provider, and contains details of how DNS is mapped onto JNDI.</p>
+<hr />
+<p><a name="CONF" id="CONF"></a></p>
+<h2>Conformance</h2>
+<p>The DNS service provider supports the Domain Name System as
+described in <a href="http://www.ietf.org/rfc/rfc1034.txt">RFC
+1034</a> and <a href="http://www.ietf.org/rfc/rfc1035.txt">RFC
+1035</a>, and as updated and clarified by <a href=
+"http://www.ietf.org/rfc/rfc1123.txt">RFC 1123</a> and <a href=
+"http://www.ietf.org/rfc/rfc2181.txt">RFC 2181</a>. It currently
+supports the following resource record types and classes:<br /></p>
+<table summary="">
+<tr valign="top">
+<td>
+<table summary="types and location specified" border="1">
+<tr>
+<th><em>Type</em></th>
+<th><em>Where Specified</em></th>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>A</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>NS</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>SOA</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>PTR</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>MX</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>TXT</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>HINFO</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td align="center">RFC 1886</td>
+</tr>
+<tr>
+<td>NAPTR</td>
+<td align="center">RFC 2915</td>
+</tr>
+<tr>
+<td>SRV</td>
+<td align="center">RFC 2782</td>
+</tr>
+</table>
+Each lookup is initially performed using UDP. If the response is
+too long to be returned in a UDP packet without being truncated,
+the lookup is repeated using TCP.
+<hr />
+<p><a name="PROP" id="PROP"></a></p>
+<h2>Environment Properties</h2>
+<p>The following JNDI environment properties are relevant to the
+DNS service provider. See the <a href=
+"../../../api/javax/naming/InitialContext.html#ENVIRONMENT">JNDI
+documentation</a> for a description of how properties are
+initialized using the initial context constructor, system
+properties, applet parameters, and resource files.</p>
+<pre>
+<b>java.naming.authoritative</b>
+</pre>
+<p><b>This property is used to specify whether all responses must
+be authoritative. If its value is <tt>"true"</tt>, only
+authoritative responses are accepted from DNS servers; otherwise,
+all responses are accepted. If this property has not been set, the
+default is <tt>"false"</tt>. Here is an example that specifies that
+all responses must be authoritative.</b></p>
+<pre class="codeblock">
+<b>env.put(Context.AUTHORITATIVE, "true");
+</b>
+</pre>
+<p><b>Note that some information might be made unavailable when you
+request that only authoritative responses be returned because the
+DNS protocol does not provide a way to request authoritative
+information. For example, the DNS service provider might have
+retrieved nonauthoritative data as the result of a query and is
+subsequently forced to discard it because only authoritative data
+may be returned.</b></p>
+<pre>
+<b>java.naming.factory.initial</b>
+</pre>
+<p><b>This property is used to select the DNS service provider as
+the initial context. It is not used by the provider itself. It
+specifies the class name of the initial context factory for the
+provider, and may be set as in the following example:</b></p>
+<pre class="codeblock">
+<b>env.put(Context.INITIAL_CONTEXT_FACTORY, "com.example.jndi.dns.DnsContextFactory");
+</b>
+</pre>
+<pre>
+<b>java.naming.factory.object</b>
+</pre>
+<p><b>This property contains a colon-separated list of the
+fully-qualified class names of object factories for transforming
+objects read from DNS. This mechanism is used to transform objects
+into forms more useful to the application. See <a href=
+"../../../api/javax/naming/spi/DirectoryManager.html#getObjectInstance(java.lang.Object,%20javax.naming.Name,%20javax.naming.Context,%20java.util.Hashtable,%20javax.naming.directory.Attributes)">
+<tt>DirectoryManager.getObjectInstance()</tt></a> for
+details.</b></p>
+<pre>
+<b>java.naming.provider.url</b>
+</pre>
+<p><b>This property specifies the host name and port of the DNS
+server used by the initial DNS context, as well the initial
+context's domain name. For details on the URL format see <a href=
+"#URL">DNS Pseudo-URLs</a> below.</b> <b>For example:</b></p>
+<pre class="codeblock">
+<b>env.put(Context.PROVIDER_URL, "dns://server1.example.com/example.com");
+</b>
+</pre>
+<p><b>will cause the provider to use the DNS server at
+server1.example.com, and set the initial context's domain name to
+example.com. If this property is not set, it defaults to "dns:"
+(all defaults as described in the <strong>DNS Pseudo-URLs</strong>
+section are used).</b></p>
+<p><b>Multiple DNS servers may be specified by setting this
+property to a space-separated list of URLs. Each of the servers is
+contacted in turn until one of them responds. Since the initial
+context has only a single domain name, if multiple URLs are listed
+then each must contain the same domain part. For example:</b></p>
+<pre class="codeblock">
+<b>env.put(Context.PROVIDER_URL,
+    "dns://server1.example.com/example.com dns://server2.example.com/example.com");
+</b>
+</pre>
+<pre class="codeblock">
+<b>com.example.jndi.dns.lookup.attr</b>
+</pre>
+<p><b>Before JNDI invokes an object factory on a DNS context, it by
+default reads and passes to the factory any internet TXT attributes
+of the context. This property, if set, names an alternate attribute
+identifier to use. See <a href="#TYPE">Mapping DNS Content to
+JNDI</a> below for information on the format of attribute
+identifiers.</b></p>
+<pre class="codeblock">
+<b>com.example.jndi.dns.recursion</b>
+</pre>
+<p><b>This property is used to specify that recursion is disallowed
+on DNS queries. If this property has not been set or if it has been
+set to <tt>"true"</tt>, recursion is allowed; otherwise, recursion
+is disallowed. Here is an example that specifies that recursion on
+DNS queries is to be disallowed.</b></p>
+<pre class="codeblock">
+<b>env.put("com.example.jndi.dns.recursion", "false");
+</b>
+</pre>
+<a name="TIMEOUT" id="TIMEOUT"></a>
+<pre>
+<b>com.example.jndi.dns.timeout.initial
+com.example.jndi.dns.timeout.retries</b>
+</pre>
+<p><b>These properties are used to alter the timeout-related
+defaults that the DNS provider uses when submitting UDP queries.
+The DNS provider submits UDP queries using the following
+exponential backoff algorithm. The provider submits a query to a
+DNS server and waits for a response to arrive within a timeout
+period (1 second by default). If it receives no response within the
+timeout period, it queries the next server, and so on. If the
+provider receives no response from any server, it doubles the
+timeout period and repeats the process of submitting the query to
+each server, up to a maximum number of retries (4 by
+default).</b></p>
+<p><b>The <tt>"com.example.jndi.dns.timeout.initial"</tt> property, if
+set, specifies the number of milliseconds to use as the initial
+timeout period (i.e., before any doubling). If this property has
+not been set, the default initial timeout is 1000
+milliseconds.</b></p>
+<p><b>The <tt>"com.example.jndi.dns.timeout.retries"</tt> property, if
+set, specifies the number of times to retry each server using the
+exponential backoff algorithm described previously. If this
+property has not been set, the default number of retries is
+4.</b></p>
+<p><b>Here is an example that doubles the initial timeout period
+while keeping total length of all timeouts roughly
+unchanged.</b></p>
+<pre class="codeblock">
+<b>env.put("com.example.jndi.dns.timeout.initial", "2000");
+env.put("com.example.jndi.dns.timeout.retries", "3");
+</b>
+</pre>
+<p><b>NOTE: On systems earlier than the Java 2 SDK, v 1.4.1, these
+two properties are ignored and the defaults always apply.</b></p>
+<hr />
+<p><a name="TYPE" id="TYPE"></a></p>
+<h2>Mapping DNS Content to JNDI</h2>
+<p>The DNS service provider maps DNS names, nodes, and resource
+records onto JNDI data types as follows.</p>
+<h3>Names</h3>
+<p>DNS domain names are represented by JNDI compound
+<tt>Name</tt>objects with right-to-left, dot-separated syntax, and
+with backslash&nbsp;(<tt>\</tt>) as the escape character. Escape
+sequences of the form <tt>\DDD</tt>may also be used, where
+<tt>DDD</tt>is a three-digit decimal value. Names are
+case-insensitive. A fully-qualified name ending with an explicit
+root domain label ("<tt>.</tt>") is represented by a compound
+<tt>Name</tt>object with an empty component in the most-significant
+position.</p>
+<p><em>Host names</em> are a subset of domain names. Their labels
+contain only US-ASCII letters, digits, and hyphens, and none may
+begin or end with a hyphen. While names not conforming to these
+rules may be valid domain names, they will not be usable by a
+number of DNS applications, and should in most cases be
+avoided.</p>
+<p>DNS does not specify an encoding (such as UTF-8) to use for
+characters other than those of US-ASCII. As a consequence, no
+character in a DNS name will ever have a non-zero high-order byte.
+When work on internationalizing domain names is finalized, the DNS
+service provider may be updated to conform to that work.</p>
+<h4>Nodes and Resource Records</h4>
+<p>A DNS node is represented by a <tt>DirContext</tt>object. The
+resource records of the node are represented by attributes of the
+context. For example, if the DNS node example.com contains an A record
+with the address 192.0.2.33 and an MX record with the data "10
+example.com", the corresponding JNDI context will have an attribute
+with identifier "<tt>A</tt>" and string value "192.0.2.33" and an
+attribute with identifier "<tt>MX</tt>" and string value "10
+example.com".</p>
+<p>Multiple records of the same type are represented as
+multi-valued attributes. Records of unsupported types are
+represented by attributes with numeric identifiers and with byte
+arrays as values.</p>
+<h4>Attribute Identifiers</h4>
+<p>DNS resource record class and type names are mapped onto JNDI
+attribute identifiers. If a record is in the internet class, the
+corresponding attribute ID is simply the record's type name. If the
+type is an unsupported one, its integer value is used instead. If
+the record is not in the internet class, the class name (or integer
+class value) is prepended to the attribute ID, separated by a
+space. For example, the attribute identifier "<tt>AAAA</tt>"
+represents an IPv6 address record, and the attribute identifier
+"<tt>HS 97</tt>" represents a resource record of type 97 in the
+Hesiod class.</p>
+<p><em>Superclass</em> attribute identifiers are also defined.
+These may be useful when querying records using the
+<tt>DirContext.getAttributes()</tt> method. If an attribute name
+has "<tt>*</tt>" in place of a type name (or class name), it
+represents records of any type (or class). For example, the
+attribute identifier "<tt>IN&nbsp;*</tt>" may be passed to the
+<tt>getAttributes()</tt> method to find all internet class records.
+The attribute identifier "<tt>*&nbsp;*</tt>" represents records of
+any class or type.</p>
+<p>Attribute identifiers are case-insensitive.</p>
+<hr />
+<p><a name="URL" id="URL"></a></p>
+<h2>DNS Pseudo-URLs</h2>
+A URL-like notation is used to represent a DNS server, port, and
+domain in the <tt>java.naming.provider.url</tt> property and in URL
+names passed to the initial context. The format of this pseudo-URL
+is:
+<pre>
+   dns:[//host[:port]][/domain]
+</pre>
+The host and port indicate the DNS server to use. If only a host is
+given, the port defaults to 53; if only a port is given, the host
+defaults to "localhost". If neither is given, the provider will
+attempt to determine and use the server(s) configured for the
+underlying platform, and if successful, will set the
+<tt>java.naming.provider.url</tt>property to a space-separated list
+of URLs constructed using the server(s). (For example, on Solaris
+or Linux, the provider will read the
+<tt>/etc/resolv.conf</tt>file.) If DNS has not been configured on
+the underlying platform, the host and port default to "localhost"
+and 53.
+<p><b>NOTE</b>: On systems earlier than the Java 2 SDK, v 1.4.1,
+the provider does not attempt to use the underlying platform's DNS
+configuration. If neither host nor port is specified, they default
+to "localhost" and 53, respectively.</p>
+<p>The domain is the DNS domain name of the context, and is not
+necessarily related to the domain of the server. It defaults to "."
+(the root domain).</p>
+<hr />
+<p><a name="API" id="API"></a></p>
+<h2>API Mapping</h2>
+The DNS service provider implements the
+<tt>DirContext</tt>interface. Methods are mapped onto DNS
+operations as described below. Methods not listed are not
+supported.
+<pre>
+<b>addToEnvironment()</b>
+</pre>
+<p><b>Adds a new property to the environment, or changes an
+existing property.</b></p>
+<pre>
+<b>close()</b>
+</pre>
+<p><b>Releases internal data structures.</b></p>
+<pre>
+<b>composeName()</b>
+</pre>
+<p><b>Composes two names.</b></p>
+<pre>
+<b>getAttributes()</b>
+</pre>
+<p><b>Returns attributes representing DNS resource records.</b></p>
+<pre>
+<b>getEnvironment()</b>
+</pre>
+<p><b>Returns the environment properties associated with this
+context.</b></p>
+<pre>
+<b>getNameInNamespace()</b>
+</pre>
+<p><b>Returns the fully-qualified domain name of this node.</b></p>
+<pre>
+<b>getNameParser()</b>
+</pre>
+<p><b>Returns a name parser for DNS domain names.</b></p>
+<pre>
+<b>lookup()
+lookupLink()</b>
+</pre>
+<p><b>Returns a <tt>DirContext</tt> that represents the named node.
+The <tt>DirectoryManager.getObjectInstance()</tt> method is invoked
+on the object before it is returned, in case the application or
+user has supplied object factories.</b></p>
+<pre>
+<b>list()
+listBindings()</b>
+</pre>
+<p><b>The listing of the DNS namespace is implemented using zone
+transfers, so these operations are potentially compute- and
+network-intensive, and they may not be supported by all DNS
+installations. The <tt>DirectoryManager.getObjectInstance()</tt>
+method is invoked on an object before it is returned, in case the
+application or user has supplied object factories; no attributes
+are passed in.</b></p>
+<pre>
+<b>removeFromEnvironment()</b>
+</pre>
+<p><b>Removes a property from the environment.</b></p>
+<hr />
+<p><b><a name="USAGE" id="USAGE"></a></b></p>
+<h2><b>Usage Examples</b></h2>
+<h3><b>Example 1</b></h3>
+In this example we create an initial context representing the
+example.com domain, then read the IP addresses (the A records) of two
+hosts in that domain.
+<pre class="codeblock">
+<b>Hashtable env = new Hashtable();
+env.put("java.naming.factory.initial", "com.example.jndi.dns.DnsContextFactory");
+env.put("java.naming.provider.url",    "dns://server1.example.com/example.com");
+
+DirContext ictx = new InitialDirContext(env);
+Attributes attrs1 = ictx.getAttributes("host1", new String[] {"A"});
+Attributes attrs2 = ictx.getAttributes("host2", new String[] {"A"});
+</b>
+</pre>
+<h3><b>Example 2</b></h3>
+<p>Instead of using the properties as above, we may pass a DNS
+pseudo-URL to the methods of the default initial context. In this
+example we read the MX record of a host in the example.com domain.</p>
+<pre class="codeblock">
+<b>DirContext ictx = new InitialDirContext();
+Attributes attrs3 = ictx.getAttributes("dns://server1.example.com/host3.example.com",
+                                       new String[] {"MX"});
+</b>
+</pre>
+<hr />
+<p><b><a name="SEC" id="SEC"></a></b></p>
+<h2><b>Security Considerations</b></h2>
+<p>When a security manager has been installed, the DNS service
+provider and the application using it must both be granted the
+following permissions:</p>
+<pre>
+<b>permission java.net.SocketPermission "host[:port]", "connect,accept";
+</b>
+</pre>
+<p>for each host/port identified in the
+<tt>java.naming.provider.url</tt>property, in URL string names
+supplied to context methods, and in object references.</p>
+<hr />
+<p><b><a name="FED" id="FED"></a></b></p>
+<h2><b>Federation</b></h2>
+<p>The DNS service provider treats composite names as <em>strongly
+separated</em>. That is, it processes the first component of the
+composite name as a DNS domain name and the rest of the components
+as names in the <a href="spec/spi/jndispi.fm.html#1003689">next
+naming system(s)</a>(<i>nns</i>). The implicit next naming system
+is determined dynamically.</p>
+<p><b>For example, here is an example that lists the root of the
+next naming system federated beyond a DNS context, and one that
+looks up a name using a multi-component composite name:</b></p>
+<pre class="codeblock">
+<b>// List the root of the nns.
+// Note the use of a trailing slash to indicate traversal into the nns.
+NamingEnumeration enum = ctx.list("java.example.com/");
+
+// A composite name lookup.
+Object obj = ctx.lookup("example.com/some/x/y/z");
+</b>
+</pre>
+<table summary="classes and location specified" border="1">
+<tr>
+<th><em>Class</em></th>
+<th><em>Where Specified</em></th>
+</tr>
+<tr>
+<td>IN</td>
+<td align="center">RFC 1035</td>
+</tr>
+<tr>
+<td>HS</td>
+<td align="center">RFC 1035</td>
+</tr>
+</table>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

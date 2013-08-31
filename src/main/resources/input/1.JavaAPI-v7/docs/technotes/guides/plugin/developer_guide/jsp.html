@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>JavaServer Pages</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java plug-in guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<p><small><a href="contents.html">&lt; Contents</a></small></p>
+<h1>JavaServer Pages</h1>
+<p>This chapter includes the following topics:</p>
+<ul>
+<li><a href="#jsp">JSP Java Plug-in Action Element:
+&lt;jsp:plugin&gt;</a></li>
+<li><a href="#deploying">Deploying Java Plug-in through
+JSP</a></li>
+</ul>
+<p>JavaServer Pages (JSP) is a technology for generating dynamic
+web-page content from a web/application server. JSP provides
+support for Java Plug-in HTML elements. This document tells how to
+use the JSP Plug-in action element for deploying applets with Java
+Plug-in.</p>
+<h2><a name="jsp" id="jsp"></a>JSP Java Plug-in Action Element:
+<code>&lt;jsp:plugin&gt;</code></h2>
+<p>The <code>&lt;jsp:plugin&gt;</code> action element enables a JSP
+page author to generate HTML for downloading the Java Plug-in, if
+it is not installed, and executing an applet. Specifically the
+action generates the OBJECT element for Internet Explorer or the
+EMBED element for Netscape Navigator.</p>
+<p>When the JSP is executed, the <code>&lt;jsp:plugin&gt;</code>
+action element is replaced by either an <code>&lt;OBJECT&gt;</code>
+or <code>&lt;EMBED&gt;</code> HTML tag, depending on the
+browser.&nbsp;</p>
+<p>For example, an applet may be specified as follows in JSP:</p>
+<pre style="codeblock">
+&lt;jsp:plugin type=applet code="Molecule" codebase="/html" &gt;
+&lt;jsp:params&gt;
+    &lt;jsp:param name="molecule" value="molecules/benzene.mol"/&gt; 
+&lt;/jsp:params&gt;
+&lt;jsp:fallback&gt;
+       &lt;p&gt; Unable to start Plug-in. &lt;/p&gt;
+&lt;/jsp:fallback&gt;
+&lt;/jsp:plugin&gt;
+</pre>
+<p>In the above example, the attributes of the
+<code>&lt;jsp:plugin&gt;</code> element provide configuration data
+for the applet itself. The <code>&lt;jsp:param&gt;</code> elements
+specify the parameters to the applet. The
+<code>&lt;jsp:fallback&gt;</code> element specifies content for the
+browser if Java Plug-in fails to start.</p>
+<p>Depending on the User Agent requesting the JSP page, the web
+server will generate either an <code>EMBED</code> or
+<code>OBJECT</code> tag.</p>
+<p>For example, if Netscape Navigator is the User Agent requesting
+the JSP page, the following <code>EMBED</code> tag will be produced
+by the server:</p>
+<pre style="codeblock">
+&lt;EMBED type=&quot;application/x-java-applet&quot; 
+        code=&quot;Molecule&quot; codebase=&quot;/html&quot; molecule=&quot;molecules/benzene.mol&quot;&gt;
+&lt;NOEMBED&gt;
+&lt;p&gt; Unable to start plug-in &lt;/p&gt;
+&lt;/NOEMBED&gt;
+</pre>
+<table summary="" width="90%" border="1" cellpadding="5"
+align="center" bgcolor="#FFFFCC" cellspacing="0">
+<tr>
+<td>
+<h3><u>Note</u></h3>
+<p>The above works for Netscape 4, as it supports the
+<code>EMBED</code> tag, but it does not work for Netscape 6.x, as
+it currently does not support the <code>EMBED</code> tag.</p>
+</td>
+</tr>
+</table>
+<p>For more information about the <code>&lt;jsp:plugin&gt;</code>
+element, see <a href="http://www.oracle.com/technetwork/java/javaee/jsp/index.html">Java
+Server Pages Specification</a>.</p>
+<p><a name="deploying" id="deploying"></a></p>
+<h2>Deploying Java Plug-in through JSP</h2>
+<p>JSP provides an alternative way to deploy applets through Java
+Plug-in. Because of the dynamic nature of JSP, developers will be
+able to generate HTML pages on-the-fly that take advantage of Java
+Plug-in much more easily than before.</p>
+<p>Although <code>&lt;jsp:plugin&gt;</code> tag support is part of
+the JSP specification, various web or application server vendors
+may provide different implementations and different levels of
+controls over this feature. For more information, contact your
+server vendor.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

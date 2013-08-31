@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>jsadebugd - Serviceability Agent Debug Daemon</title>
+<meta name="collection" content="reference" />
+<meta name="copyright" content="2004, 2011" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>jsadebugd - Serviceability Agent Debug Daemon</h1>
+<ul>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#seealso">See Also</a></li>
+</ul>
+<h2><a name="synopsis" id="synopsis"></a>SYNOPSIS</h2>
+<pre class="codeblock">
+<b>jsadebugd</b> pid [ server-id ]
+<b>jsadebugd</b> executable core [ server-id ]
+</pre>
+<h2><a name="parameters" id="parameters"></a>PARAMETERS</h2>
+<dl>
+<dt><tt>pid</tt></dt>
+<dd>process id of the process to which the debug server should
+attach. The process must be a Java process. To get a list of Java
+processes running on a machine, <a href="jps.html">jps</a> may be
+used. At most one instance of the debug server may be attached to a
+single process.</dd>
+<dt><tt>executable</tt></dt>
+<dd>Java executable from which the core dump was produced</dd>
+<dt><tt>core</tt></dt>
+<dd>Core file to which the debug server should attach.</dd>
+<dt><tt>server-id</tt></dt>
+<dd>Optional unique id, needed if multiple debug servers are
+started on the same machine. This ID must be used by remote clients
+to identify the particular debug server to attach. Within a single
+machine, this ID must be unique.</dd>
+</dl>
+<h2><a name="description" id="description">DESCRIPTION</a></h2>
+<p><b>jsadebugd</b> attaches to a Java process or core file and
+acts as a debug server. Remote clients such as <a href=
+"jstack.html">jstack</a>, <a href="jmap.html">jmap</a>, and
+<a href="jinfo.html">jinfo</a> can attach to the server using Java
+Remote Method Invocation (RMI). Before starting
+<code>jsadebugd</code>, <a href="../index.html#rmi">rmiregistry</a>
+must be started with:</p>
+<pre class="codeblock">
+<code>rmiregistry -J-Xbootclasspath/p:$JAVA_HOME/lib/sajdi.jar</code>
+</pre>
+<p>where <code>$JAVA_HOME</code> is the JDK installation directory.
+If rmiregistry was not started, jsadebugd will start an rmiregistry
+in a standard (1099) port internally. Debug server may be stopped
+by sending SIGINT (pressing Ctrl-C) to it.</p>
+<p><b>NOTE</b> - This utility is unsupported and may or may not be
+available in future versions of the JDK. In Windows Systems where
+dbgeng.dll is not present, 'Debugging Tools For Windows' needs to
+be installed to have these tools working. Also, <code>PATH</code>
+environment variable should contain the location of
+<code>jvm.dll</code> used by the target process or the location
+from which the Crash Dump file was produced.</p>
+<p>For example, <code>set
+PATH=&lt;jdk&gt;\jre\bin\client;%PATH%</code></p>
+<h2><a name="seealso" id="seealso">SEE ALSO</a></h2>
+<ul>
+<li><a href="jinfo.html">jinfo</a></li>
+<li><a href="jmap.html">jmap</a></li>
+<li><a href="jps.html">jps</a></li>
+<li><a href="jstack.html">jstack</a></li>
+<li><a href="../index.html#rmi">rmiregistry</a></li>
+</ul>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

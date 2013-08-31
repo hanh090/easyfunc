@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>jconsole - Java Monitoring and Management Console</title>
+<meta name="collection" content="reference" />
+<meta name="copyright" content="2004, 2011" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>jconsole - Java Monitoring and Management Console</h1>
+<ul>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#seealso">See Also</a></li>
+</ul>
+<h2><a name="synopsis" id="synopsis">SYNOPSIS</a></h2>
+<pre>
+<b>jconsole</b> [ <i>options</i> ] [ connection ... ]
+
+</pre>
+<h2><a name="parameters" id="parameters"></a>PARAMETERS</h2>
+<dl>
+<dt><a href="#options">options</a></dt>
+<dd>Options, if used, should follow immediately after the command
+name.</dd>
+<dt><b>connection</b> = <i>pid</i> | <i>host</i>:<i>port</i> |
+<i>jmxUrl</i></dt>
+<dd>
+<ul>
+<li><i>pid</i>    Process ID of a local Java VM. The Java VM must
+be running with the same user ID as the user ID running jconsole.
+See <a href="../../guides/management/agent.html">JMX Monitoring
+and Management</a> for details.</li>
+<li><i>host</i>:<i>port</i>   Name of the host system on which
+the Java VM is running and the port number specified by the
+system property <code>com.sun.management.jmxremote.port</code>
+when the Java VM was started. See <a href=
+"../../guides/management/agent.html">JMX Monitoring and
+Management</a> for details.</li>
+<li><i>jmxUrl</i>   Address of the JMX agent to be connected to
+as described in <a href=
+"../../../api/javax/management/remote/JMXServiceURL.html">JMXServiceURL</a>.</li>
+</ul>
+</dd>
+</dl>
+<h2><a name="description" id="description"></a>DESCRIPTION</h2>
+<p>The <b>jconsole</b> command launches a graphical console tool
+that enables you to monitor and manage Java applications and
+virtual machines on a local or remote machine.</p>
+<p>On Windows, <b>jconsole</b> does not associate with a console
+window. It will, however, display a dialog box with error
+information if the <b>jconsole</b> command fails for some
+reason.</p>
+<h2><a name="options" id="options"></a>OPTIONS</h2>
+<dl>
+<dt><b>-interval</b><i>=n</i></dt>
+<dd>Set the update interval to <i>n</i> seconds (default is 4
+seconds).</dd>
+<dt><b>-notile</b> </dt>
+<dd>Do not tile windows initially (for two or more
+connections).</dd>
+<dt><b>-pluginpath</b>  <i>plugins</i></dt>
+<dd>Specify a list of directories or JAR files which are searched
+for JConsole plugins. The <i>plugins</i> path should contain a
+provider-configuration file named:<br />
+<pre>
+   META-INF/services/com.sun.tools.jconsole.JConsolePlugin
+</pre>
+containing one line for each plugin specifying the fully
+qualified class name of the class implementing the <a href=
+"../../../jdk/api/jconsole/spec/com/sun/tools/jconsole/JConsolePlugin.html">
+com.sun.tools.jconsole.JConsolePlugin</a> class.
+</dd>
+<dt><b>-version</b> </dt>
+<dd>Output version information and exit.</dd>
+<dt><b>-help</b> </dt>
+<dd>Output help message and exit.</dd>
+<dt><b>-J&lt;flag&gt;</b> </dt>
+<dd>Pass &lt;flag&gt; to the Java virtual machine on which
+jconsole is run.</dd>
+</dl>
+<h2><a name="seealso" id="seealso">SEE ALSO</a></h2>
+<ul>
+<li><a href="../../guides/management/jconsole.html">Using
+JConsole</a></li>
+<li><a href="../../guides/management/index.html">Monitoring and
+Management for Java Platform</a></li>
+</ul>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

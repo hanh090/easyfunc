@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Deployment Enhancements in Java SE 6</title><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h1>Deployment Enhancements in Java SE 6</h1>
+<ul>
+<li><a href="#webstartpluginenehance">Java Web Start and Java
+Plug-in Common Enhancements</a>
+<ul>
+<li><a href="#cachesystemformat">Cache and System Format</a>
+<a href="#webstartpluginenehance"><br /></a></li>
+</ul>
+</li>
+<li style="list-style: none; display: inline">
+<ul>
+<li><a href="#enginecacheconsolidation">Download Engine and Cache
+Consolidation</a></li>
+<li><a href="#secureversioning">Secure Versioning</a></li>
+<li><a href="#otherenhance">Other Enhancements</a><br /></li>
+</ul>
+</li>
+</ul>
+<h2><a name="webstartpluginenehance" id=
+"webstartpluginenehance"></a>Java Web Start and Java Plug-in Common
+Enhancements</h2>
+<h3><a name="cachesystemformat" id="cachesystemformat"></a>Cache
+and System Format</h3>
+<p>The format of the cache is completely changed and should never
+be assumed. Any existing code using the previous cache format for
+Java Web Start or Java Plug-in will no longer work. Existing
+applications in the Java Web Start cache will be upgraded and
+converted to the new cache format the first time you run a Java Web
+Start application, or if you launch the cache viewer using
+<code>javaws -viewer.&nbsp;</code></p>
+<p>The system cache will be upgraded and converted to the new
+format the first time you launch Java Web Start in system mode, or
+if you just launch <code>javaws -system.</code></p>
+<h3><a name="enginecacheconsolidation" id=
+"enginecacheconsolidation"></a>Download Engine and Cache
+Consolidation</h3>
+<p>The caching mechanism and download engine are redesigned and
+consolidated between Java Web Start and Java Plug-in. This brings
+several new features to Java Web Start, previously available only
+in Java Plug-in and vice versa. They are :</p>
+<ul>
+<li>Caching can be disabled using the Java Control Panel.</li>
+<li>Java Web Start honors the maximum cache size set using Java
+Control Panel.</li>
+<li>Java Web Start can start a cleanup thread to remove Least
+Recently Used(LRU) items from the cache when approaching the
+maximum cache size.</li>
+<li>The <code>&lt;no-cache&gt;</code> directive is now supported.
+When the no-cache directive is used , an update check is made to
+make sure the cached contents are same as at the URL. The resource
+is then downloaded into the cache and the expiration field is
+ignored.</li>
+<li>The expiration-date is supported. If a downloaded resource
+contains an expiration date, it will not be used after that
+date.</li>
+</ul>
+<h3><a name="secureversioning" id="secureversioning"></a>Secure
+Versioning</h3>
+<p>In Java SE 6 unsigned Java Web Start applications that specify a
+version other than the latest one will trigger a security warning,
+requiring explicit user permission before the application will run.
+Signed Java Web Start applications are not affected.</p>
+<h3><a name="otherenhance" id="otherenhance"></a>Other
+Enhancements</h3>
+<p>Java Web Start and Java Plug-in now support CRL (Certificate
+Revocation Lists) and OCSP (Online Certificate Status Protocol) for
+verifying the certificates.</p>
+<p>Java Control Panel provides an option to select the default SSL
+handshaking protocol. The default is set to SSLv3 and SSLv2. You
+can also change it to TSL.</p>
+<p>The Java Console is excluded from modality. By using the new
+modality features of AWT in Java 6, you can interact with Java
+Console even when your application is displaying a modal
+dialog.</p>
+<p>All dialogs and screens of Java Web Start and Java Plug-in are
+redesigned to be more user friendly, intuitive, and accessible.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

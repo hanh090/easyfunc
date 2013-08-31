@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>jhat - Java Heap Analysis Tool</title>
+<meta name="collection" content="reference" />
+<meta name="copyright" content="2006, 2011" />
+<style type="text/css">
+/*<![CDATA[*/
+ dt.c1 {font-weight: bold}
+/*]]>*/
+</style><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>jhat - Java Heap Analysis Tool</h1>
+<ul>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#seealso">See Also</a></li>
+</ul>
+<h2><a name="synopsis" id="synopsis">SYNOPSIS</a></h2>
+<pre>
+<b>jhat</b> [ <i>options</i> ] &lt;heap-dump-file&gt;
+
+</pre>
+<h2><a name="parameters" id="parameters"></a>PARAMETERS</h2>
+<dl>
+<dt><a href="#options">options</a></dt>
+<dd>Options, if used, should follow immediately after the command
+name.</dd>
+<dt><strong>heap-dump-file</strong></dt>
+<dd>Java binary heap dump file to be browsed. For a dump file
+that contains multiple heap dumps, you may specify which dump in
+the file by appending "#&lt;number&gt; to the file name, i.e.
+"foo.hprof#3".</dd>
+</dl>
+<h2><a name="description" id="description">DESCRIPTION</a></h2>
+<p>The <b>jhat</b> command parses a java heap dump file and
+launches a webserver. jhat enables you to browse heap dumps using
+your favorite webbrowser. jhat supports pre-designed queries
+(such as 'show all instances of a known class "Foo"') as well as
+<b>OQL</b> (<b>O</b>bject <b>Q</b>uery <b>L</b>anguage) - a
+SQL-like query language to query heap dumps. Help on OQL is
+available from the OQL help page shown by jhat. With the default
+port, OQL help is available at http://localhost:7000/oqlhelp/</p>
+<p>There are several ways to generate a java heap dump:</p>
+<ul>
+<li>Use <a href="jmap.html">jmap</a> -dump option to obtain a
+heap dump at runtime;</li>
+<li>Use <a href="jconsole.html">jconsole</a> option to obtain a
+heap dump via <a href=
+"../../../jre/api/management/extension/com/sun/management/HotSpotDiagnosticMXBean.html">
+HotSpotDiagnosticMXBean</a> at runtime;</li>
+<li>Heap dump will be generated when OutOfMemoryError is thrown
+by specifying -XX:+HeapDumpOnOutOfMemoryError VM option;</li>
+<li>Use <a href=
+"../../samples/hprof.html">
+hprof</a>.</li>
+</ul>
+<p><b>NOTE:</b> This tool is <b>experimental</b> and may
+<b>not</b> be available in future versions of the JDK.</p>
+<h2><a name="options" id="options"></a>OPTIONS</h2>
+<dl>
+<dt><b>-stack</b> <i>false/true</i></dt>
+<dd>Turn off tracking object allocation call stack. Note that if
+allocation site information is not available in the heap dump,
+you have to set this flag to false. Default is true.</dd>
+<dt><b>-refs</b> <i>false/true</i></dt>
+<dd>Turn off tracking of references to objects. Default is true.
+By default, back pointers (objects pointing to a given object
+a.k.a referrers or in-coming references) are calculated for all
+objects in the heap.</dd>
+<dt><b>-port</b> <i>port-number</i></dt>
+<dd>Set the port for the jhat's HTTP server. Default is
+7000.</dd>
+<dt><b>-exclude</b> <i>exclude-file</i></dt>
+<dd>Specify a file that lists data members that should be
+excluded from the "reachable objects" query. For example, if the
+file lists <i>java.lang.String.value</i>, then, whenever list of
+objects reachable from a specific object "o" are calculated,
+reference paths involving <i>java.lang.String.value</i> field
+will not considered.</dd>
+<dt><b>-baseline</b> <i>baseline-dump-file</i></dt>
+<dd>Specify a baseline heap dump. Objects in both heap dumps with
+the same object ID will be marked as not being "new". Other
+objects will be marked as "new". This is useful while comparing
+two different heap dumps.</dd>
+<dt><b>-debug</b> <i>int</i></dt>
+<dd>Set debug level for this tool. 0 means no debug output. Set
+higher values for more verbose modes.</dd>
+<dt><b>-version</b> </dt>
+<dd>Report version number and exit.</dd>
+<dt><b>-h</b> </dt>
+<dd>Output help message and exit.</dd>
+<dt><b>-help</b> </dt>
+<dd>Output help message and exit.</dd>
+<dt><b>-J&lt;flag&gt;</b> </dt>
+<dd>Pass &lt;flag&gt; to the Java virtual machine on which jhat
+is run. For example, -J-Xmx512m to use a maximum heap size of
+512MB.</dd>
+</dl>
+<h2><a name="seealso" id="seealso">SEE ALSO</a></h2>
+<ul>
+<li><a href="jmap.html">jmap - Java Memory Map</a></li>
+<li><a href="jconsole.html">jconsole - Java Monitoring and
+Management Console</a></li>
+<li><a href=
+"../../samples/hprof.html">
+hprof - Heap and CPU profiling tool</a></li>
+</ul>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

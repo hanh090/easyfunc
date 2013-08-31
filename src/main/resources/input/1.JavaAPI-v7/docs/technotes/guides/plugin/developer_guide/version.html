@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Multi-Version Support</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java plug-in guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<p><small><a href="contents.html">&lt; Contents</a></small></p>
+<h1>Multi-Version Support</h1>
+<p>This chapter includes the following topics:</p>
+<ul>
+<li><a href="#clsid">Unique <code>CLSID</code></a></li>
+<li><a href="#mime">Unique MIME Type and dll</a></li>
+<li><a href="#registry">Unique Java Plug-in Registry Key</a></li>
+<li><a href="#property">Unique Java Plug-in Property File</a></li>
+<li><a href="#trace">Unique Java Plug-in Trace and Log
+Files</a></li>
+<li><a href="#control">Unique Java Control Panel</a></li>
+<li><a href="#jre-jdk">Unique Registry Keys for
+JRE/JDK</a><br /></li>
+<li><a href="#collision">Multi-version Support in Browser
+Sessions</a><br /></li>
+</ul>
+<p>Every new or patch release of Java Plug-in uniquely identifies
+registry keys, <code>CLSID</code>, MIME type and other
+resources.This allows multiple JRE versions to be deployed in the
+same environment.</p>
+<h2><a name="clsid" id="clsid"></a>Unique <code>CLSID</code></h2>
+<p>There is a unique CLSID for every new or patch version of Java
+Plug-in. (<code>CLSID</code> is used in the <code>OBJECT</code> tag
+with Internet Explorer running on Windows.) If you want a minimum
+version of Java Plug-in to be used, then specify this unique
+<code>CLSID</code> in the <code>OBJECT</code> tag. The
+<code>CLSID</code> is stored in the registry in:&nbsp;</p>
+<pre class="codeblock">
+HKEY_CLASSES_ROOT\CLSID\
+</pre>
+<p>In general the CLSID looks as follows:</p>
+<p><code>CAFEEFAC-&lt;<i>major version</i>&gt;-&lt;<i>minor
+version</i>&gt;-&lt;<i>patch
+version</i>&gt;-ABCDEFFEDCBA</code></p>
+<p>where <code><i>major version</i></code>, <code><i>minor
+version</i></code> and <code><i>patch version</i></code> are all
+4-digit hexadecimal numbers.</p>
+<h3>Examples:</h3>
+<p>For example, the CLSID for Java Plug-in 6 is as follows:</p>
+<pre class="codeblock">
+clsid:CAFEEFAC-0016-0000-0000-ABCDEFFEDCBA
+</pre>
+<p>and you would find this in the registry:</p>
+<pre class="codelbock">
+HKEY_CLASSES_ROOT\CLSID\CAFEEFAC-0016-0000-0000-ABCDEFFEDCBA
+</pre>
+<p>Note that CLSID is also stored in:&nbsp;</p>
+<pre class="codeblock">
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Code Store Database\Distribution Units\
+</pre>
+<h2><a name="mime" id="mime"></a>Unique MIME Type and dll</h2>
+<p>There is a unique MIME type and <code>NP*.dll</code> for every
+new or patch version of Java Plug-in. MIME type identifies the type
+or version of the Java executable to be loaded and initialized by
+Java Plug-in. It is specified with the element type in the
+<code>EMBED</code> tag with supported Mozilla browsers and with
+<code>&lt;PARAM name=&quot;type&quot;&gt; in the</code>
+<code>OBJECT</code> tag for Internet Explorer. If you want to use a
+minimum version of Java Plug-in with supported Mozilla browsers,
+specify the unique MIME type in the <code>EMBED</code> tag.</p>
+<table summary="" width="100%" border="1" cellpadding="5"
+align="center" bgcolor="#FFFFCC" cellspacing="0">
+<tr>
+<td>
+<h3><u>Note</u></h3>
+<p>MIME type will be supported by an <code>NP*.dll</code> with a
+unique name for every new or patch version. Thus, installing
+different version of Java Plug-in does not overwrite other
+<code>.dll</code> files in supported Mozilla browsers
+<code>Plugins</code> directory.</p>
+</td>
+</tr>
+</table>
+<p>In general MIME types look like this:</p>
+<pre class="codeblock">
+application/x-java-applet;jpi-version=&lt;version&gt;&lt;<i>version</i>&gt;
+</pre>
+<p>where <code><i>version</i></code> includes the major, minor and
+patch version numbers.</p>
+<p>MIME types are supported in the file<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<code>NPJPI<i>&lt;modified version number&gt;</i>.dll</code></p>
+<h3>Example:</h3>
+<p>For Java Plug-in 1.6.0, the unique MIME type would be:</p>
+<pre class="codeblock">
+application/x-java-applet;jpi-version=1.6.0
+</pre>
+<p>and it would be supported in the file:</p>
+<pre class="codeblock">
+NPJPI160.dll
+</pre>
+<p>in supported Mozillas <code>Plugins</code> directory.</p>
+<h2><a name="registry" id="registry"></a>Unique Java Plug-in
+Registry Key</h2>
+<p>There is a unique Java Plug-in registry key for every new or
+patch version of Java Plug-in. The main Java Plug-in registry key
+is as follows:</p>
+<pre class="codeblock">
+HKEY_LOCAL_MACHINE\Software\JavaSoft\Java Plug-in\<i>&lt;version number&gt;</i>
+</pre>
+<p>where the <i>&lt;version number&gt;</i> includes the major,
+minor and the patch version numbers.</p>
+<h3><code>Example:</code></h3>
+<p>For Java Plug-in 1.6.0 you will find the following in your
+registry:</p>
+<pre class="codeblock">
+HKEY_LOCAL_MACHINE\Software\JavaSoft\Java Plug-in\1.6.0
+</pre>
+<h2><a name="property" id="property"></a>Unique Java Plug-in
+Property File</h2>
+<p>The property file is now named
+<code>deployment.properties</code>. It is located in the following
+directory:</p>
+<pre class="codeblock">
+&lt;User Application Data Folder&gt;\Sun\Java\Deployment
+</pre>
+<p>where <code>&lt;User Application Data Folder&gt;</code> is an
+application data folder specific to the user.</p>
+<p>As an example, for a user <code>testuser</code> on a Windows XP
+system, the value of <code>&lt;User Application Data
+Folder&gt;</code> would be <code>C:\Documents and
+Settings\testuser\Application Data</code></p>
+<p>The deployment.properties file is used by version 1.6.0. The
+value of <code>&lt;User Application Data Folder&gt;</code> is
+obtained from the Win32 API function call
+<code>SHGetFolderPath()</code> with <code>CSIDL_APPDATA</code>.</p>
+<h2><a name="trace" id="trace"></a>Unique Java Plug-in Trace and
+Log Files</h2>
+<p>The default location for trace and log files is <code>&lt;User
+Application Data Folder&gt;\Sun\Java\Deployment\log</code></p>
+<p>where <code>&lt;User Application Data Folder&gt;</code> is as
+defined <a href="#property">above</a>.</p>
+<p>The property <code>javaplugin.outputfiles.path</code> can be
+used to override the default location for the trace and log files.
+For more information refer to the tracing and logging section in
+the <a href=
+"../../deployment/deployment-guide/tracing_logging.html">Deployment
+Guide</a> .</p>
+<h2><a name="control" id="control"></a>Unique Java Control
+Panel</h2>
+<p>There is a unique Java Control Panel for every new or patch
+release. In 1.6.0, the filename for the Control Panel is
+<code>javacpl.exe</code>.</p>
+<p>Only the latest installed version of the Java Control Panel is
+available from the Windows Control Panel.</p>
+<h2><a name="jre-jdk" id="jre-jdk"></a>Unique Registry Keys for
+JRE/JDK</h2>
+<p>There are unique registry keys for every new or patch release of
+the JRE/JDK. These registry keys are located as follows:</p>
+<pre class="codeblock">
+HKEY_LOCAL_MACHINE\Software\JavaSoft\Java Runtime Environment\<i>&lt;version number&gt;</i>
+HKEY_LOCAL_MACHINE\Software\JavaSoft\Java Development Kit\<i>&lt;version number&gt;</i>
+</pre>
+<p>where the <i><code>&lt;version number&gt;</code></i> includes
+the major, minor and the patch version numbers; e.g.,
+<code>1.6.0</code></p>
+<p>These keys allow Java Plug-in to locate the proper version of
+the JRE.</p>
+<h2><a name="collision" id="collision"></a>Multi Version Support in
+Browser Sessions</h2>
+<p>Mutliple JRE versions can be installed on Windows platform. With
+multiple JRE's applets using MIME type <code>jpi-version</code>
+will work with Mozilla browsers only if you enable the following
+options:</p>
+<ul>
+<li>To enable the <strong>Mozilla Family</strong> option for JRE 6,
+open <span style="font-weight: bold;">Java Control Panel</span> and
+click <span style="font-weight: bold;">Advanced &gt; Default Java
+for browsers &gt; Mozilla</span> family</li>
+<li>To enable the <strong>Mozilla and Netscape</strong> option for
+JRE 1.5.0 or earlier, open <span style="font-weight: bold;">Java
+Control Panel</span> and click <span style=
+"font-weight: bold;">Advanced &gt; &lt;Applet&gt; tag support &gt;
+Mozilla and Netscape</span></li>
+</ul>
+<p>To invoke Java Control Panel for a specific version of the JRE
+browse to the <code>&lt;JRE_HOME&gt;/bin</code> directory of that
+version and run javacpl.exe.</p>
+<table summary="" width="100%" border="1" cellpadding="5"
+align="center" bgcolor="#FFFFCC" cellspacing="0">
+<tr>
+<td>
+<h3><u>Note</u></h3>
+<p>Multiple versions of the JRE can be run in different browser
+sessions. However, multiple versions cannot be run in the same
+browser session. Should this be attempted, the user is warned and
+the attempt will fail.</p>
+</td>
+</tr>
+</table>
+<br />
+<div align="center"></div>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

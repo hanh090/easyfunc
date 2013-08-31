@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Deadlock in AWT if methods of the applet are
+over-synchronized</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+p, li {font-family: arial; font-size: 10pt;}
+/*]]>*/
+</style><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2>Deadlock in AWT if methods of the applet are
+over-synchronized</h2>
+<h3>Symptoms</h3>
+<p>When running an applet in a browser using the Sun
+Java&trade; Runtime Environment (JRE&trade;), deadlock may occur
+if&nbsp; methods of the applet are over-synchronized, especially
+those inherited from <code>java.awt.Component</code>. The same
+applet runs under the Microsoft Virtual Machine (VM).</p>
+<h3>Cause</h3>
+<p>The AWT class libraries are sometimes used by developers as
+thread-safe class libraries. Applets performed actions through the
+AWT using multiple threads, with the assumption that the class
+libraries would take care of synchronization issues.<br />
+<br />
+However , the AWT class libraries guarantee thread safety only when
+calls are made from the AWT event dispatch thread.&nbsp;Because the
+implementation of the Microsoft VM and Sun differs, thread-unsafe
+code that runs without incident under one VM might fail under
+another.</p>
+<p>One bad practice used by some applets is to synchronize every
+method of an applet to avoid possible race conditions or deadlocks
+in the Microsoft VM. However, this practice may result in
+deadlocks.</p>
+<h3><Resolution</h3>
+<p>To work around this problem, use synchronization in the applet
+only where it is really needed, and remove unnecessary
+synchronization. For example:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>public
+synchronized void paint(Graphics g) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; public synchronized void dispose()
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.dispose();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .....<br />
+&nbsp;&nbsp;&nbsp; }</code></p>
+<p><code>&nbsp;&nbsp;&nbsp; public synchronized void stop() {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; public synchronized void destroy() {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+&nbsp;&nbsp;&nbsp; }</code></p>
+<p>In this case, the <code>synchronized</code> keyword in the
+<code>paint</code>, <code>dispose</code>, <code>stop</code>, and
+<code>destroy</code> methods should be removed because they are
+always called from a dedicated thread: <code>paint</code> and
+<code>dispose</code> by the AWT event dispatching thread;
+<code>stop</code> and <code>destroy</code> by the applet thread.
+The code should be changed as follows:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>public void
+paint(Graphics g) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; public void dispose()
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.dispose();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .....<br />
+&nbsp;&nbsp;&nbsp; }</code></p>
+<p><code>&nbsp;&nbsp;&nbsp; public void stop() {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; public void destroy() {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....<br />
+&nbsp;&nbsp;&nbsp; }</code></p>
+<h3>Related Information</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>The Java
+Tutorial</em> discusses thread issues and techniques that apply
+both to AWT and Swing programs: <a href=
+"http://docs.oracle.com/javase/tutorial/uiswing/concurrency/index.html">
+Concurrency in Swing</a>.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>Java Core Reflection</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+bgcolor="#FFFFFF">
+<table summary="" width="600">
+<tr>
+<td><a href="java-reflectionTOC.doc.html">Contents</a> | <a href=
+"java-reflectionTOC.doc.html">Prev</a> | <a href=
+"java-reflection.ref.doc.html">Next</a></td>
+<td align="right"><i>Java Core Reflection</i></td>
+</tr>
+</table>
+<hr />
+<br />
+<a name="8589"></a>
+<h1>Overview</h1>
+<a name="18285"></a> The Java(TM) Core Reflection API provides a
+small, type-safe, and secure API that supports introspection about
+the classes and objects in the current Java Virtual
+Machine<b>*</b>. If permitted by security policy, the API can be
+used to:
+<ul>
+<li style="list-style: none"><a name="1202"></a></li>
+<li>construct new class instances and new arrays<br />
+<br />
+<a name="1203"></a></li>
+<li>access and modify fields of objects and classes<br />
+<br />
+<a name="1204"></a></li>
+<li>invoke methods on objects and classes<br />
+<br />
+<a name="1205"></a></li>
+<li>access and modify elements of arrays<br />
+<br /></li>
+</ul>
+<a name="1206"></a> The Core Reflection API defines classes and
+methods, as follows:
+<ul>
+<li style="list-style: none"><a name="4595"></a></li>
+<li>Three classes-<code>Field</code>, <code>Method</code>, and
+<code>Constructor</code>-that reflect class and interface members
+and constructors. These classes provide:<br />
+<br />
+<ul>
+<li style="list-style: none"><a name="4596"></a></li>
+<li>reflective information about the underlying member or
+constructor<br />
+<br />
+<a name="4597"></a></li>
+<li>a type-safe means to use the member or constructor to operate
+on Java objects<br />
+<br /></li>
+</ul>
+<a name="17373"></a></li>
+<li>Methods of class <code>Class</code> that provide for the
+construction of new instances of the <code>Field</code>,
+<code>Method</code>, and <code>Constructor</code> classes.<br />
+<br />
+<a name="16453"></a></li>
+<li>The class <code>Array</code> provides methods to dynamically
+construct and access Java arrays.<br />
+<br />
+<a name="6048"></a></li>
+<li>The utility class <code>Modifier</code> helps decode Java
+language modifier information about classes and their
+members.<br />
+<br />
+<a name="6049"></a></li>
+<li>The class <code>InvocationTargetException</code> is used to
+wrap exceptions thrown by reflected methods or constructors.<br />
+<br />
+<a name="5999"></a></li>
+<li>Two classes-<code>AccessibleObject</code> and
+<code>ReflectPermission</code>-that provide a mechanism to suppress
+standard Java language access control.<br />
+<br /></li>
+</ul>
+<a name="19744"></a> There are also some parts of the
+<code>java.lang</code> package that support reflection. These are:
+<ul>
+<li style="list-style: none"><a name="19746"></a></li>
+<li>Static fields that hold instances of the class
+<code>Class</code>. These represent the primitive Java types
+<code>boolean</code>, <code>byte</code>, <code>char</code>,
+<code>short</code>, <code>int</code>, <code>long</code>,
+<code>float</code>, and <code>double</code>, and the keyword
+<code>void</code>, at run-time.<br />
+<br />
+<a name="19747"></a></li>
+<li>An uninstantiable placeholder class-<code>Void</code>-to hold a
+reference to the <code>Class</code> object representing the keyword
+<code>void</code>.<br />
+<br /></li>
+</ul>
+<a name="8591"></a>
+<h2>Applications</h2>
+<a name="1245"></a> The Core Reflection API accommodates two
+categories of applications.
+<p><a name="8863"></a> One category is comprised of applications
+that need to discover and use all of the <code>public</code>
+members of a target object based on its run-time class. These
+applications require run-time access to all the <code>public</code>
+fields, methods, and constructors of an object. Examples in this
+category are services such as <em>Java</em>(TM) Beans<a href=
+"java-reflection.doc.html">[1]</a>, and lightweight tools, such as
+object inspectors. These applications use the instances of the
+classes <code>Field</code>, <code>Method</code>, and
+<code>Constructor</code> obtained through the methods
+<code>getField</code>, <code>getMethod</code>,
+<code>getConstructor</code>, <code>getFields</code>,
+<code>getMethods</code>, and <code>getConstructors</code> of class
+<code>Class</code>.</p>
+<p><a name="18289"></a> The second category consists of
+sophisticated applications that need to discover and use the
+members declared by a given class. These applications need run-time
+access to the implementation of a class at the level provided by a
+<code>class</code> file. Examples in this category are development
+tools, such as interpreters, inspectors, and class browsers, and
+run-time services, such as <em>Java</em>(TM) Object
+Serialization<a href="java-reflection.doc.html">[2]</a>. These
+applications use instances of the classes <code>Field</code>,
+<code>Method</code>, and <code>Constructor</code> obtained through
+the methods <code>getDeclaredField</code>,
+<code>getDeclaredMethod</code>,
+<code>getDeclaredConstructor</code>,
+<code>getDeclaredFields</code>, <code>getDeclaredMethods</code>,
+and <code>getDeclaredConstructors</code> of class
+<code>Class</code>.</p>
+<hr />
+<a name="18290"></a>
+<h2>Reflection Model</h2>
+<a name="17713"></a> The three classes <code>Field</code>,
+<code>Method</code>, and <code>Constructor</code> are
+<code>final</code>. Only the Java Virtual Machine may create
+instances of these classes; these objects are used to manipulate
+the underlying objects; that is, to:
+<ul>
+<li style="list-style: none"><a name="1326"></a></li>
+<li>get reflective information about the underlying member or
+constructor<br />
+<br />
+<a name="4485"></a></li>
+<li>get and set field values<br />
+<br />
+<a name="1334"></a></li>
+<li>invoke methods on objects or classes<br />
+<br />
+<a name="1341"></a></li>
+<li>create new instances of classes<br />
+<br /></li>
+</ul>
+<a name="1589"></a> The <code>final</code> uninstantiable class
+<code>Array</code> provides <code>static</code> methods that permit
+creating new arrays, and getting and setting the elements of
+arrays.
+<p><a name="4607"></a></p>
+<h3>Member Interface</h3>
+<a name="17086"></a> The classes <code>Field</code>,
+<code>Method</code> and <code>Constructor</code> implement the
+<code>Member</code> interface. The methods of <code>Member</code>
+are used to query a reflected member for basic identifying
+information. Identifying information consists of the class or
+interface that declared the member, the name of the member itself,
+and the Java language modifiers (such as <code>public</code>,
+<code>protected</code>, <code>abstract</code>,
+<code>synchronized</code>, and so on) for the member.
+<p><a name="1359"></a></p>
+<h3>Field Objects</h3>
+<a name="8595"></a> A <code>Field</code> object represents a
+reflected field. The underlying field may be a class variable (a
+<code>static</code> field) or an instance variable (a
+non-<code>static</code> field). Methods of class <code>Field</code>
+are used to obtain the type of the underlying field, and to get and
+set the underlying field's value on objects.
+<p><a name="8596"></a></p>
+<h3>Method Objects</h3>
+<a name="1363"></a> A <code>Method</code> object represents a
+reflected method. The underlying method may be an abstract method,
+an instance method, or a class (<code>static</code>) method.
+<p><a name="4637"></a> Methods of class <code>Method</code> are
+used to obtain the formal parameter types, the return type, and the
+checked exception types of the underlying method. In addition, the
+<code>invoke</code> method of class <code>Method</code> is used to
+invoke the underlying method on target objects. Instance and
+abstract method invocation uses dynamic method resolution based on
+the target object's run-time class and the reflected method's
+declaring class, name, and formal parameter types. (Thus, it is
+permissible to invoke a reflected interface method on an object
+that is an instance of a class that implements the interface.)
+Static method invocation uses the underlying static method of the
+method's declaring class.</p>
+<p><a name="8597"></a></p>
+<h3>Constructor Objects</h3>
+<a name="1370"></a> A <code>Constructor</code> object represents a
+reflected constructor. Methods of class <code>Constructor</code>
+are used to obtain the formal parameter types and the checked
+exception types of the underlying constructor. In addition, the
+<code>newInstance</code> method of class <code>Constructor</code>
+is used to create and initialize a new instance of the class that
+declares the constructor, provided the class is instantiable.
+<p><a name="1379"></a></p>
+<h3>Array and Modifier Classes</h3>
+<a name="8900"></a> The <code>Array</code> class is an
+uninstantiable class that exports class methods to create Java
+arrays with primitive or class component types. Methods of class
+<code>Array</code> are also used to get and set array component
+values.
+<p><a name="16634"></a> The <code>Modifier</code> class is an
+uninstantiable class that exports class methods to decode Java
+language modifiers for classes and members. The language modifiers
+are encoded in an integer, and use the encoding constants defined
+by <em>The Java Virtual Machine Specification</em>.</p>
+<p><a name="16479"></a></p>
+<h3>Representation of Primitive Java Types</h3>
+<a name="1393"></a> Finally, there are nine <code>Class</code>
+objects that are used to represent the eight primitive Java types
+and <code>void</code> at run-time. (Note that these are
+<code>Class</code> <em>objects</em>, not classes.) The Core
+Reflection API uses these objects to identify the following:
+<ul>
+<li style="list-style: none"><a name="1411"></a></li>
+<li>primitive field types<br />
+<br />
+<a name="1412"></a></li>
+<li>primitive method and constructor parameter types<br />
+<br />
+<a name="1413"></a></li>
+<li>primitive method return types<br />
+<br /></li>
+</ul>
+<a name="5842"></a> The Java Virtual Machine creates these nine
+<code>Class</code> objects. They have the same names as the types
+that they represent. The <code>Class</code> objects may only be
+referenced via the following <code>public</code> <code>final</code>
+<code>static</code> variables:
+<pre class="codeblock">
+    <a name="5847"></a>
+
+    <a name="5848"></a>    java.lang.Boolean.TYPE
+
+    <a name="5849"></a>    java.lang.Character.TYPE
+
+    <a name="5850"></a>    java.lang.Byte.TYPE
+
+    <a name="5851"></a>    java.lang.Short.TYPE
+
+    <a name="5852"></a>    java.lang.Integer.TYPE
+
+    <a name="5853"></a>    java.lang.Long.TYPE
+
+    <a name="5854"></a>    java.lang.Float.TYPE
+
+    <a name="5855"></a>    java.lang.Double.TYPE
+
+    <a name="5856"></a>    java.lang.Void.TYPE
+
+</pre>
+<a name="5844"></a> In particular, these <code>Class</code> objects
+are not accessible via the <code>forName</code> method of class
+<code>Class</code>.
+<hr />
+<a name="5891"></a>
+<h2>Security Model</h2>
+<a name="17346"></a> The Java security manager controls access to
+the Core Reflection API on a class-by-class basis. There are two
+levels of checks to enforce security and safety, as follows:
+<ul>
+<li style="list-style: none"><a name="17169"></a></li>
+<li>The methods of class <code>Class</code> that give reflective
+access to a member or a set of members of a class are the only
+source for instances of <code>Field</code>, <code>Method</code>,
+and <code>Constructor</code>. These methods first delegate security
+checking to the system security manager (if installed), which
+throws a <code>SecurityException</code> should the request for
+reflective access be denied.<br />
+<br />
+<a name="17170"></a></li>
+<li>Once the system security manager grants initial reflective
+access to a member, any code may query the reflected member for its
+identifying information. However, standard Java language access
+control checks-for <code>protected</code>, default (package)
+access, and <code>private</code> classes and members-will normally
+occur when the individual reflected members are used to operate on
+the underlying members of objects,that is, to get or set field
+values, to invoke methods, or to create and initialize new objects.
+Unrestricted access, which overrides standard language access
+control rules, may be granted to privileged code using the
+<code>setAccessible</code> method. This method is inherited from
+<code>AccessibleObject</code> by the classes <code>Field</code>,
+<code>Method</code>, and <code>Constructor</code>.<br />
+<br /></li>
+</ul>
+<a name="6198"></a> The initial policy decision is centralized in
+two methods of class <code>SecurityManager</code>: <a name=
+"6217"></a> <code>void checkMemberAccess(Class,int) throws
+SecurityException</code>
+<p><a name="6220"></a> The <code>Class</code> parameter of
+<code>checkMemberAccess</code> identifies the class or interface
+whose members need to be accessed. The <code>int</code> parameter
+identifies the set of members to be accessed-either
+<code>Member.PUBLIC</code> or <code>Member.DECLARED</code>.</p>
+<p><a name="6203"></a> <code>void checkPackageAccess(String pkg)
+throws SecurityException</code></p>
+<a name="6215"></a> The policy is determined based on what
+permissions are granted to the caller. There are two actions of
+class <code>java.lang.RuntimePermission</code> that affect these
+policies. These are:
+<ul>
+<li style="list-style: none"><a name="6181"></a></li>
+<li><code>accessDeclaredMembers.</code> This grants the ability to
+reflect on non-public members of classes.<br />
+<br />
+<a name="6182"></a></li>
+<li><code>accessClassInPackage{package name}.</code> This grants
+access to classes in the specified package. These permissions are
+determined by the security manager.<br />
+<br /></li>
+</ul>
+<a name="6096"></a> If the requested access to the specified set of
+members of the specified class is denied, the method should throw a
+<code>SecurityException</code>. If the requested access to the set
+is granted, the method should return.
+<p><a name="4698"></a> As stated earler, standard Java language
+access control will usually be enforced when a reflected member
+from this set is used to operate on an underlying object, that is,
+when:</p>
+<ul>
+<li style="list-style: none"><a name="1550"></a></li>
+<li>a <code>Field</code> is used to get or set a field value<br />
+<br />
+<a name="1551"></a></li>
+<li>a <code>Method</code> is used to invoke a method<br />
+<br />
+<a name="1553"></a></li>
+<li>a <code>Constructor</code> is used to create and initialize a
+new instance of a class<br />
+<br /></li>
+</ul>
+<a name="1547"></a> If access is denied at that point, the
+reflected member will throw an <code>IllegalAccessException</code>.
+Java language access control may be suppressed for a particular
+reflected member by setting a flag using the
+<code>setAccessible</code> method, as explained below.
+<p><a name="1626"></a></p>
+<h3>Java Language Policy</h3>
+<a name="1627"></a> The Java language security policy for
+applications is that any code may gain reflective access to all the
+members and constructors (including non-<code>public</code> members
+and constructors) of any class it may link against. By default,
+application code that gains reflective access to a member or
+constructor may only <em>use</em> the reflected member or
+constructor with standard Java language access control.
+<p><a name="6054"></a> The standard policy may be overridden by
+calling the reflected member's <code>setAccessible</code> method.
+The ability to call the <code>setAccessible</code> method is in
+turn controlled by the <code>suppressAccessChecks</code> target of
+the permission <code>ReflectPermission</code>.</p>
+<hr />
+<a name="5988"></a>
+<h2>Data Conversions</h2>
+<a name="1703"></a> Certain methods in the reflection package
+perform automatic data conversions between values of primitive
+types and objects of class types. These are the generic methods for
+getting and setting field and array component values, and the
+methods for method and constructor invocation.
+<p><a name="2536"></a> There are two types of automatic data
+conversions. <em>Wrapping conversions</em> convert from values of
+primitive types to objects of class types. <em>Unwrapping
+conversions</em> convert objects of class types to values of
+primitive types. The rules for these conversions are defined in
+<a href="java-reflection.doc.html#1705">"Wrapping and Unwrapping
+Conversions</a>."</p>
+<p><a name="1704"></a> Additionally, field access and method
+invocation permit <em>widening conversions</em> on primitive and
+reference types. These conversions are documented in <em>The Java
+Language Specification</em>, section 5, and are detailed in
+<a href="java-reflection.doc.html#1746">"Widening
+Conversions</a>."</p>
+<p><a name="1705"></a></p>
+<h3>Wrapping and Unwrapping Conversions</h3>
+<a name="1706"></a> A primitive value is automatically wrapped in
+an object when it is retrieved via <code>Field.get</code> or
+<code>Array.get</code>, or when it is returned by a method invoked
+via <code>Method.invoke</code>.
+<p><a name="1707"></a> Similarly, an object value is automatically
+unwrapped when supplied as a parameter in a context that requires a
+value of a primitive type. These contexts are:</p>
+<ul>
+<li style="list-style: none"><a name="1708"></a></li>
+<li><code>Field.set</code>, where the underlying field has a
+primitive type<br />
+<br />
+<a name="1709"></a></li>
+<li><code>Array.set</code>, where the underlying array has a
+primitive element type<br />
+<br />
+<a name="1710"></a></li>
+<li><code>Method.invoke</code> or
+<code>Constructor.newInstance</code>, where the corresponding
+formal parameter of the underlying method or constructor has a
+primitive type<br />
+<br /></li>
+</ul>
+<a name="4714"></a> The following table shows the correspondences
+between primitive types and class (wrapper) types:
+<table summary="primitive types and class types" border="3">
+<thead>
+<tr>
+<th>Primitive Type</th>
+<th>Class Type</th>
+</tr>
+<tr>
+<td><a name="4717"></a> <code>boolean</code></td>
+<td><a name="4719"></a> <code>java.lang.Boolean</code></td>
+</tr>
+<tr>
+<td><a name="4721"></a> <code>char</code></td>
+<td><a name="4723"></a> <code>java.lang.Character</code></td>
+</tr>
+<tr>
+<td><a name="4725"></a> <code>byte</code></td>
+<td><a name="4727"></a> <code>java.lang.Byte</code></td>
+</tr>
+<tr>
+<td><a name="4729"></a> <code>short</code></td>
+<td><a name="4731"></a> <code>java.lang.Short</code></td>
+</tr>
+<tr>
+<td><a name="4733"></a> <code>int</code></td>
+<td><a name="4735"></a> <code>java.lang.Integer</code></td>
+</tr>
+<tr>
+<td><a name="4737"></a> <code>long</code></td>
+<td><a name="4739"></a> <code>java.lang.Long</code></td>
+</tr>
+<tr>
+<td><a name="4741"></a> <code>float</code></td>
+<td><a name="4743"></a> <code>java.lang.Float</code></td>
+</tr>
+<tr>
+<td><a name="4745"></a> <code>double</code></td>
+<td><a name="4747"></a> <code>java.lang.Double</code></td>
+</tr>
+</thead>
+</table>
+<p><a name="2667"></a> A method that is declared <code>void</code>
+returns the special reference <code>null</code> when it is invoked
+via <code>Method.invoke</code>.</p>
+<p><a name="1746"></a></p>
+<h3>Widening Conversions</h3>
+<a name="1747"></a> The reflection package permits the same
+widening conversions at run-time as permitted in method invocation
+contexts at compile time. These conversions are defined in <em>The
+Java Language Specification</em>, section 5.3.
+<p><a name="1748"></a> Widening conversions are performed at
+run-time:</p>
+<ul>
+<li style="list-style: none"><a name="1749"></a></li>
+<li>when a value is retrieved from a field or an array via the
+methods of <code>Field</code> and <code>Array</code><br />
+<br />
+<a name="1750"></a></li>
+<li>when a value is stored into a field or an array via the methods
+of <code>Field</code> and <code>Array</code><br />
+<br />
+<a name="1751"></a></li>
+<li>when an unwrapped actual parameter value is converted to the
+type of its corresponding formal parameter during method or
+constructor invocation via <code>Method.invoke</code> or
+<code>Constructor.newInstance</code><br />
+<br /></li>
+</ul>
+<a name="4759"></a> The permitted <em>widening primitive
+conversions</em> are:
+<ul>
+<li style="list-style: none"><a name="4760"></a></li>
+<li>From <code>byte</code> to <code>short</code>, <code>int</code>,
+<code>long</code>, <code>float</code>, or <code>double</code><br />
+<br />
+<a name="4761"></a></li>
+<li>From <code>short</code> to <code>int</code>, <code>long</code>,
+<code>float</code>, or <code>double</code><br />
+<br />
+<a name="4762"></a></li>
+<li>From <code>char</code> to <code>int</code>, <code>long</code>,
+<code>float</code>, or <code>double</code><br />
+<br />
+<a name="4763"></a></li>
+<li>From <code>int</code> to <code>long</code>, <code>float</code>,
+or <code>double</code><br />
+<br />
+<a name="4764"></a></li>
+<li>From <code>long</code> to <code>float</code> or
+<code>double</code><br />
+<br />
+<a name="4765"></a></li>
+<li>From <code>float</code> to <code>double</code>.<br />
+<br /></li>
+</ul>
+<a name="4769"></a> The permitted <em>widening reference
+conversions</em> are:
+<ul>
+<li style="list-style: none"><a name="4770"></a></li>
+<li>From a class type <i>S</i> to a class type <i>T</i>, provided
+that <i>S</i> is a subclass of <i>T</i><br />
+<br />
+<a name="4771"></a></li>
+<li>From a class type <i>S</i> to an interface type <i>K</i>,
+provided that <i>S</i> implements <i>K</i><br />
+<br />
+<a name="4772"></a></li>
+<li>From an interface type <i>J</i> to an interface type <i>K</i>,
+provided that <i>J</i> is a subinterface of <i>K</i><br />
+<br /></li>
+</ul>
+<hr />
+<a name="1774"></a>
+<h2>Packaging</h2>
+<a name="1775"></a> The Core Reflection API is in a subpackage of
+<code>java.lang</code> named <code>java.lang.reflect</code>. This
+avoids compatibility problems caused by Java's default package
+importation rules.
+<p><b>*As used on this web site, the terms "Java Virtual Machine"
+or "JVM" mean a virtual machine for the Java platform.</b></p>
+<hr />
+<a href="java-reflectionTOC.doc.html">Contents</a> | <a href=
+"java-reflectionTOC.doc.html">Prev</a> | <a href=
+"java-reflection.ref.doc.html">Next</a>
+<hr />
+Copyright 1996, 1997, 1998 Oracle Corp. All rights reserved.
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

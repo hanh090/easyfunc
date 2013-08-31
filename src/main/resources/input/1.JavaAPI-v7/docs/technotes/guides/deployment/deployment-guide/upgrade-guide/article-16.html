@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+<head>
+<title>Unable To Use Certificates From the Browser For Client Authentication</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" /><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2>Unable To Use Certificates From the Browser For Client Authentication.</h2>
+<h3><br />
+Symptoms</h3>
+<p>When running an applet in a browser using the Sun Java Runtime Environment (JRE) implementation, the applet is unable to use certificates from the browser for https client authentication.</p>
+<h3>Cause</h3>
+<p>The Java plug-in uses certificates for client authentication from a certificate store specific to the Sun Java Runtime Environment (JRE). The plug-in does not use the certificates from the browser certificate store.</p>
+<h3>Resolution</h3>
+<p>Client authentication in Java plug-in requires the client certificate store on the user disk, keystore type, and the password to access the client. The following three parameters should be provided with system properties:</p>
+<p><code>-Djavax.net.ssl.keyStore=<em>&lt;client_keystore_file_path&gt;</em></code><br />
+<code>-Djavax.net.ssl.keyStorePassword=<em>&lt;password to access the client keystore file&gt;</em><br />
+-Djavax.net.ssl.keyStoreType=<em>&lt;keystore_type&gt;</em></code></p>
+<p>These properties should be specified in the Advanced tab of the Java Control Panel.</p>
+<p>To export a digital certificate from the browser certificate store into a file, perform the following steps:</p>
+<ol>
+<li>Open a browser window and click on Tools. Click the Internet Options submenu item.</li>
+<li>Click the Content tab.</li>
+<li>In the certificates section in the middle, click the Certificates button. The available certificates are shown in the dialog box.</li>
+<li>Select Client Authentication in the Intended Purpose drop down menu.</li>
+<li>Select the certificate you want to export.</li>
+<li>Click the Export button. The Certificate Manager Export Wizard starts.</li>
+<li>On the Welcome window, click Next.</li>
+<li>Keep the default to "Yes, export the private key" and click Next.</li>
+<li>Keep the default to "Personal Information Exchange - PKCS #12(.PFX)" and click Next.</li>
+<li>Type the required information in the Password window.</li>
+<li>Type the path and filename of the file to export. The system automatically gives the file a <code>.pfx</code> extension. Click Next.</li>
+<li>Review the information that you provided in above steps and click Finish.</li>
+</ol>
+<h4>Example:</h4>
+<p>If the user exports the certificate to a file called <code>c:\certs\client.pfx</code>, the required system properties will take the following values:</p>
+<p><code>-Djavax.net.ssl.keyStore=c:\certs\client.pfx<br />
+-Djavax.net.ssl.keyStorePassword=<em>&lt;password to access the client keystore file c:\certs\client.pfx&gt;</em><br />
+-Djavax.net.ssl.keyStoreType=pkcs12</code></p>
+<h3>Related Information</h3>
+<p>None.<br /></p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

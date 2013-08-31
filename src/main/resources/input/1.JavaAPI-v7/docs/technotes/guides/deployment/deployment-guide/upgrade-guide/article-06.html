@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>java.lang.ClassNotFoundException thrown ...</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+p, li {font-family: arial; font-size: 10pt;}
+/*]]>*/
+</style>
+
+<style type="text/css">
+/*<![CDATA[*/
+table {margin-left: 24pt; border: 1px solid black; font-family: arial; font-size: 10pt; border-collapse: collapse; }
+/*]]>*/
+</style><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2><span class="bg2"><code>java.lang.ClassNotFoundException</code>
+thrown on <code>com.ms.*</code> package when applet
+runs</span></h2>
+<h3>Symptoms</h3>
+<p>When running an applet in a browser by using the Sun Java&trade;
+Runtime Environment (JRE&trade;), a
+<code>java.lang.ClassNotFoundException</code> is thrown by
+<code>ClassLoader</code> on the <code>com.ms.*</code> package. The
+same applet runs without any error under the Microsoft Virtual
+Machine (VM).</p>
+<h3>Cause</h3>
+<p>The Microsoft VM provides many proprietary class libraries,
+including J/Direct, Application Foundation Classes (AFC), and
+Windows Foundation Classes (WFC). These packages are not available
+in the Sun JRE, so a <code>java.lang.ClassNotFoundException</code>
+is thrown when an applet runs in the browser.</p>
+<h3>Resolution</h3>
+<p>Migrate the applet source code from using the Microsoft
+proprietary class libraries to similar classes in the Java
+platform. The following table shows a list of Microsoft VM and Java
+Platform class libraries:</p>
+<table width="90%" border="1" align="center" cellpadding="3"
+cellspacing="0" id="AutoNumber2" summary=
+"Microsoft and Java Platform class libraries">
+<tr>
+<th>Microsoft VM</th>
+<th>Java Platform</th>
+</tr>
+<tr>
+<td>J/Direct</td>
+<td>Java Native Interface</td>
+</tr>
+<tr>
+<td>Application Foundation Classes</td>
+<td>Swing, Java 2D APIs</td>
+</tr>
+<tr>
+<td>Windows Foundation Classes</td>
+<td>Swing, Java 2D APIs</td>
+</tr>
+</table>
+<h3>Related Information</h3>
+<p><a href=
+"http://www.javaworld.com/javaworld/jw-10-1997/jw-10-sdk.html">How
+to avoid potential pitfalls of Microsoft's non-standard SDK for
+Java<br /></a> <a href=
+"http://docs.oracle.com/javase/tutorial/uiswing/index.html">Trail:
+Creating a GUI with JFC/Swing<br /></a> <a href=
+"http://docs.oracle.com/javase/tutorial/uiswing/learn/index.html">
+Lesson: Learning Swing with the NetBeans IDE</a></p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

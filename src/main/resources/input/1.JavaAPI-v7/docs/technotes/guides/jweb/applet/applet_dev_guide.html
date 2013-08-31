@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<!-- InstanceBegin template="/Templates/jweb_guide_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Applet Developer's Guide</title>
+<!-- InstanceEndEditable --><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>Applet Developer's Guide</h1>
+<p><a name="PageTop" id="PageTop"></a></p>
+<!-- InstanceBeginEditable name="Content" -->
+<p class="crumbs"><a class="crumblink" href="../index.html">Rich
+Internet Applications Development and Deployment</a> &gt; Applet
+Developer's Guide</p>
+<p>Java&trade; Plug-in technology (hereafter the "Java Plug-in"),
+which is included in the Java Runtime Environment, enables Java
+applets to run in popular web browsers on the desktop. The
+next-generation Java Plug-in, new in Java SE 6 update 10 release,
+provides powerful new capabilities to applets in the web browser,
+while improving the overall reliability and functionality of
+applets in a backward-compatible manner.</p>
+<p>The next-generation Java Plug-in offers a completely redesigned
+architecture. Instead of executing applets in the same operating
+system process as the web browser, the new plug-in runs one or more
+Java virtual machine instances ("JVMs") which connect back to the
+browser for full interoperability with the surrounding web page.
+This architectural change offers many advantages and enables
+several new features.</p>
+<ul>
+<li><b>Improved reliability.</b> The JVM running the applet is
+isolated from the web browser at the operating system level. If
+something should go wrong while running the applet, or if an
+uncooperative applet refuses to shut down, the new Java Plug-in
+detects and handles the error condition gracefully; the web browser
+is unaffected.</li>
+<li><b>Built-in JNLP support.</b> The new Java Plug-in offers the
+capability to launch applets directly from JNLP files, unifying
+deployment of Java content both in the browser and out of the
+browser (via Java Web Start). Developers can now reuse JNLP
+extensions for advanced functionality including the 
+<a href="http://java.net/projects/jogl/">3D graphics via OpenGL</a> and
+<a href="http://worldwind.arc.nasa.gov/java/">planetary-scale
+terrain visualization</a> within applets. Applets can now access
+JNLP APIs for persistent data storage, local file system access,
+and other useful functionality from sandboxed code.</li>
+<li><b>Improved user experience.</b> The new Java Plug-in starts
+applets in the background, so the web browser always remains
+responsive. Applets appear on the web page as they become ready to
+run.</li>
+<li><b>Improved Java/JavaScript communication.</b> The bridge
+between the JavaScript engine in the web browser and the Java
+programming language has been completely reimplemented. The new
+implementation is backward-compatible and features improved
+reliability, performance and cross-browser portability, for both
+Java calling JavaScript as well as JavaScript calling Java.
+Formerly Mozilla-specific "LiveConnect" functionality, such as the
+ability to call static Java methods, instantiate new Java objects
+and reference third-party packages from JavaScript, is now
+available in all browsers.</li>
+<li><b>Improved applet lifecycle management.</b> Calls to the
+applet lifecycle methods <code>init</code>, <code>start</code>,
+<code>stop</code>, and <code>destroy</code> are more deterministic
+and cross-browser behavior has been improved. The applet class
+loader cache and the legacy applet lifecycle, required for backward
+compatibility, are fully supported and the behavior of both has
+been improved.</li>
+<li><b>Better large heap support.</b> Historically, the maximum
+heap size that could be specified for applets via the Java Control
+Panel has been limited. This limitation is fixed in the new Java
+Plug-in; applets can now utilize as much heap space as command-line
+applications.</li>
+<li><b>Better Windows Vista support.</b> Signed applets running in
+Protected Mode Internet Explorer on Microsoft's Windows Vista now
+have the same privileges as normal user applications, eliminating a
+portability barrier to this platform.</li>
+<li><b>Per-applet command-line arguments.</b> JVM command-line
+arguments may be specified in the HTML of the web page on a
+per-applet basis, providing fine-grained control over options such
+as the heap size and Java 2D hardware acceleration features.</li>
+<li><b>Multiple JRE version support.</b> Each individual applet
+instance may request a different JRE version on which to run. This
+feature is designed for enterprise customers which prefer to
+qualify their applets against either a particular JRE version or a
+particular JRE family. Both selection of a specific JRE version, or
+any in a particular family, are supported in the new Java
+Plug-in.</li>
+</ul>
+<p>The following topics provide more information about developing
+and deploying applets that leverage the next-generation Java
+Plug-in.</p>
+<ul>
+<li><a href=
+"http://docs.oracle.com/javase/tutorial/deployment/applet/index.html"
+target="_blank">Applet Development Tutorial</a> - A comprehensive
+Java Tutorial that explains various aspects of applet development
+and deployment.</li>
+<li><a href="applet_execution.html" target="_self">Java Plug-in and
+Applet Execution Architecture</a></li>
+<li><a href="applet_deployment.html" target="_self">Applet
+Deployment</a></li>
+</ul>
+<p>The following topics provide information about the next
+generation Java Plug-in.</p>
+<ul>
+<li><a href="plugin_config.html" target="_self">Plug-in
+Configuration</a></li>
+<li><a href="http://www.oracle.com/technetwork/java/javase/config-417990.html#browsers">Browsers
+Supported</a></li>
+<li><a href="http://www.oracle.com/technetwork/java/javase/plugin2-142482.html"
+target="_blank">Release Notes for the Next-Generation Java Plug-in
+Technology</a></li>
+</ul>
+<p>The following topics provide information about the old Java
+Plug-in available before the Java SE 6 update 10 release.</p>
+<ul>
+<li><a href="../../plugin/index.html" target="_self">Old Java
+Plug-in Guide</a></li>
+<li><a href="../../deployment/deployment-guide/contents.html"
+target="_self">Java Deployment Guide</a></li>
+</ul>
+<p><br />
+<br /></p>
+<!-- InstanceEnd -->
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

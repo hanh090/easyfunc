@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>Java Deployment Overview</title><link rel="stylesheet" href="../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h1>Java&trade; Deployment Overview</h1>
+<p align="left"><b>Note:</b> This Java deployment guide describes
+features release d prior to Java SE 6u10.</p>
+<ul>
+<li>See <a href="../../jweb/deployment_advice.html">Java Rich
+Internet Applications Deployment Advice</a> document for deployment
+changes introduced in Java SE 6u10.</li>
+<li>See <a href="http://www.oracle.com/technetwork/java/javase/jre-install-137694.html">
+Java Runtime Environment Installation</a> document for information
+on the new Java Kernel installer, Java Runtime Environment
+installation and update.&lt;/ li&gt;</li>
+</ul>
+<h2><a name="overview" id="overview"></a>Overview</h2>
+<p>There are two types of deployment technologies available in
+Java&trade; Standard Edition (Java SE) for deploying client-side
+Java applications on the desktop:</p>
+<ol>
+<li>Java Plug-in<br />
+<br />
+Java Plug-in is a tool used for deploying Java applets that run
+inside a web browser.&nbsp;Supported web browsers include Internet
+Explorer, Mozilla, and Netscape Navigator. For more information,
+see <a href="../../plugin/developer_guide/contents.html">Java
+Plug-in Developer Guide</a>.<br />
+&nbsp;</li>
+<li>Java Web Start<br />
+<br />
+Java Web Start is a tool used for deploying standalone Java
+applications on the desktop, using JNLP (Java Network Launching
+Protocol). For more information, see <a href=
+"../../javaws/developersguide/contents.html">Java Web Start
+Developer Guide</a>.</li>
+</ol>
+<p>Many similar deployment features between Java Plug-in and Java
+Web Start have been consolidated. The focus of this guide is to
+outline common deployment features and general deployment practices
+for both products.<br />
+&nbsp;</p>
+<h2><a name="installation" id="installation"></a>Installation of
+the Java Platform</h2>
+<p>To deploy a Java applet or application, one must first decide
+how to deploy the JRE (Java Runtime Environment) . The JRE is
+available in many install formats for download and manual install.
+An <a href="autodownload.html">automatic download</a> and install
+is available for deploying JRE and applications through the
+browsers on Windows. Enterprise developers or ISVs who would like
+the JRE to install silently, can use the <a href="http://docs.oracle.com/javase/7/docs/">silent
+installation</a> option in the installer. For developers and ISVs
+deploying the Java Platform in Windows-only environments, they
+should also check out the <a href="install-msi.html">Active
+Directory deployment</a> option in the installer.<br />
+&nbsp;</p>
+<h2><a name="writing" id="writing"></a>Writing Java applets and
+applications</h2>
+<p>Applets and applications written in the Java Programming
+language are the main target for deployment. Java Platform,
+Standard Edition, v 6 API Specification provides the means, along
+with various compilers and debuggers, to develop applets and
+applications in the Java Programming language. See <a href="http://docs.oracle.com/javase/6/docs/api/">Java(TM) Platform,
+Standard Edition, v 6 API Specification</a>.</p>
+<p>If you are migrating applets from Microsoft VM to Sun's Java
+Virtual Machine, please check out <a href=
+"applet-compatibility.html">Applet Compatibility</a>, <a href=
+"upgrade-guide/index.html">Java Upgrade Guide</a> and <a href=
+"repository.html">System-Wide Repository</a> for tips on the
+migration.</p>
+<h2><br />
+<a name="authoring" id="authoring"></a>Deploying Java applets and
+applications</h2>
+<p>To deploy applets and applications over the Internet, it is
+necessary to specify the applets and applications on the web page
+for download and launch.</p>
+<p>For an applet in a web page displayed in a browser using Sun's
+JVM, the applet must be embedded in the page with the required
+tagging structure for Java Plug-in. For topics related to Java
+Plug-in, see the <a href=
+"../../plugin/developer_guide/contents.html">Java Plug-in Developer
+Guide</a>.</p>
+<p>To seamlessly download, cache, and launch an applications from a
+web page, such a page will need to contain a link to a special Java
+Network Launch Protocol (JNLP) file on a web server. Java Web
+Start, which comes with the JRE, will then be able to download,
+cache, and launch the application. For topics related to JNLP and
+Java Web Start, see the <a href=
+"../../javaws/developersguide/contents.html">Java Web Start
+Developer Guide</a>.</p>
+<h2><br />
+<a name="networking" id="networking"></a>Networking in Java
+Deployment</h2>
+<p>Both Java Plug-in and Java Web Start support the deployment of
+applets and applications over many types of network protocols (e.g.
+HTTP, HTTPS, FTP, SOCKS) and many types of security authentication
+(HTTP Basic, Digest, NTLM).&nbsp;</p>
+<p>For deployment of the applets and applications behind a proxy
+server, Java Plug-in and Java Web Start also provide complete proxy
+support for various configurations from the browser as well as from
+the Java Control Panel. See <a href="proxie_config.html">Proxy
+Configuration</a>.</p>
+<p>For applets and applications deployed from servers or connecting
+to servers, Java Plug-in and Java Web Start also provide complete
+cookie support as a way for servers to store data on the client
+side. See <a href="cookie_support.html">Cookie</a>.</p>
+<p>Although Java Archive (JAR) is the de facto way to package
+applets and applications, it is not always the most efficient for
+network download. Two new compression formats are available for
+deploying Java applets and applications in Java Plug-in and Java
+Web Start: gzip and Pack200. See <a href="pack200.html">Pack200 and
+Compression</a>.<br />
+&nbsp;</p>
+<h2><a name="setting" id="setting"></a>Security in Java
+Deployment</h2>
+<p>By default, Java applets and applications deployed using Java
+Plug-in and Java Web Start are run in a secure sandbox which
+defines the set of permissions granted to an untrusted application.
+See <a href="security.html">Security</a>.</p>
+<p>With JAR signing, Java applets and applications deployed using
+Java Plug-in and Java Web Start are allowed to run outside the
+sandbox with additional permissions, if the users grant the
+permissions to the trusted application. See <a href=
+"../../../tools/windows/jarsigner.html">jarsigner</a> on how to
+properly sign an application for deployment.</p>
+<p>To ensure the signed applets and applications will continue to
+work after deployment even if the certificate has expired,
+deployers should consider signature timestamp signing. This is
+fully supported by Java Plug-in and Java Web Start. See <a href=
+"../../security/time-of-signing.html">Signature Timestamp</a>.</p>
+<p>During signature verification and HTTPS server/client
+authentication, certificates and keys in the default Java keystore
+are used by Java Plug-in and Java Web Start. In addition, Java
+Plug-in and Java Web Start also support certificates and keys in
+the browser and on the smart card for various purposes. See
+<a href="keystores.html">Browser Keystores</a>.</p>
+<h2><br />
+<a name="configuration" id="configuration"></a>Configuration in
+Java Deployment</h2>
+<p>Under the cover of Java Plug-in and Java Web Start, many aspects
+of the deployment environment, including security access controls,
+networking configuration, certificate stores, etc., are
+configurable through deployment configuration properties.</p>
+<p>For developers who would like to customize the deployment
+environment, the deployment configuration file can be used for
+customization.</p>
+<p>For enterprise developers or ISVs who would like to centrally
+deploy a configuration to tens of thousands of systems, they can
+also leverage the enterprise configuration support that is
+built-into the deployment configuration infrastructure in Java
+Plug-in and Java Web Start. See <a href=
+"properties.html">Deployment Configuration File and Properties</a>
+for more details.</p>
+<p>For developers or end users who would like to customize a user
+specific deployment environment in a user-friendly manner, Java
+Control Panel is a tool that can be used to serve this purpose. See
+<a href="jcp.html">Java Control Panel</a>.<br />
+&nbsp;</p>
+<h2><a name="debugging" id="debugging"></a>Debugging in Java
+Deployment</h2>
+<p>Debugging Java applets and applications is often done through
+Java IDEs or Java debuggers. In addition, Java Plug-in and Java Web
+Start have several built-in facilities that make debugging easier,
+including <a href="console.html">Java Console</a>, and <a href=
+"tracing_logging.html">Tracing and Logging</a>.<br />
+&nbsp;</p>
+<h2><a name="updating" id="updating"></a>Updating the Java
+Platform</h2>
+<p>Java Update is a solution for keeping the Java platform
+up-to-date automatically with latest updates on end users'
+supported Windows platform. Java Update is bundled with the JRE, so
+every system with a JRE installed is also Java Update enabled by
+default. Java Update keeps most systems up-to-date with latest
+versions of the JRE.&nbsp; Therefore, developers are encouraged to
+take advantage of the latest JRE features for development, without
+worrying too much on deploying the latest JRE on their customers
+systems. For more information, see <a href="java-update.html">Java
+Update</a>.<br />
+&nbsp;</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

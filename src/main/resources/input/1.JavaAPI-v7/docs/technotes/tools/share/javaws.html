@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>javaws Command Line</title>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=utf-8" />
+<meta name="collection" content="reference" />
+<meta name="copyright" content="2003, 2011" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1><code>javaws</code> Command Line</h1>
+<!--
+<form name="form1">
+  <select name="menu1" onChange="Eminem_jumpMenu('parent',this,1)">
+    <SCRIPT SRC="../../guides/javaws/developersguide/menu_script.js" language="JavaScript"></SCRIPT>
+  </select>
+</form>
+-->
+<h2>NAME</h2>
+<p><code>javaws</code> - Java Web Start launcher command</p>
+
+<h2>SYNOPSIS</h2>
+<p><code>javaws [run-options] &lt;jnlp&gt;</code></p>
+<p><code>javaws [control-options]</code></p>
+
+<h2>PARAMETERS</h2>
+<p><code>[run-options]</code></p>
+<p>Command-line run-options. run-options may be in any order. For a
+discussion of the various run-options, see <a href=
+"#runoptions">RUN-OPTIONS</a> below.</p>
+<p><code>&lt;jnlp&gt;</code></p>
+<p>This can be either the path of, or the Uniform Resource Locater
+(URL) of the JNLP (Java Network Launching Protocol) file.</p>
+<p><code>[control-options]</code></p>
+<p>Command-line control-options. control-options may be in any
+order. For a discussion of the various control-options, see
+<a href="#ctrloptions">CONTROL-OPTIONS</a> below.</p>
+
+<h2>DESCRIPTION</h2>
+<p>The <code>javaws</code> command launches Java Web Start, which
+is the reference implementation of the Java Network Launching
+Protocol (JNLP). Java Web Start launches Java applications/applets
+hosted on a network.</p>
+<p>If a JNLP file is specified, <code>javaws</code> will launch the
+Java application/applet specified in the JNLP file.</p>
+<p>The <code>javaws</code> launcher has a set of options that are
+supported in the current release. However, the options may be
+removed in a future release.</p>
+
+<h2><a name="runoptions" id="runoptions"></a>RUN-OPTIONS</h2>
+
+<p><code>-offline</code></p>
+<p>Run Java Web Start in offline mode.</p>
+
+<p><code>-Xnosplash</code></p>
+<p>Do not display the initial splash screen.</p>
+
+<p><code>-open &lt;arguments&gt;</code></p>
+<p>If specified, replaces the arguments in the jnlp file with
+<code>-open &lt;arguments&gt;</code>.</p>
+
+<p><code>-print &lt;arguments&gt;</code></p>
+<p>If specified, replaces the arguments in the jnlp file with
+<code>-print &lt;arguments&gt;</code>.</p>
+
+<p><code>-online</code></p>
+<p>Use online mode (default behavior).</p>
+
+<p><code>-wait</code></p>
+<p>If specified, the <code>javaws</code> process will not exit
+until the application exits. This option does not function as
+described on Windows platforms.</p>
+
+<p><code>-verbose</code></p>
+<p>Display additional output.</p>
+
+<p><code>-J&lt;option&gt;</code></p>
+<p>Supply options to the VM.</p>
+
+<p><code>-system</code></p>
+<p>Run the application from the system cache only.</p>
+
+<h2><a name="ctrloptions" id="ctrloptions"></a>CONTROL-OPTIONS</h2>
+
+<p><code>-viewer</code></p>
+<p>Show the Cache Viewer in the Java Control Panel.</p>
+
+<p><code>-clearcache</code></p>
+<p>Remove all non-installed applications from the cache.</p>
+
+<p><code>-userConfig &lt;property name&gt;</code></p>
+<p>Clear the specified deployment property.</p>
+
+<p><code>-userConfig &lt;property name&gt; &lt;property value&gt;</code></p>
+<p>Set the specified deployment property to the specified
+value.</p>
+
+<p><code>-uninstall</code></p>
+<p>Remove all applications from the cache.</p>
+
+<p><code>-uninstall &lt;jnlp&gt;</code></p>
+<p>Remove the application from the cache.</p>
+
+<p><code>-import [import-options] &lt;jnlp&gt;</code></p>
+<p>Import the application to the cache.</p>
+
+<h2>IMPORT-OPTIONS</h2>
+<p><code>-silent</code></p>
+<p>Import silently (with no user interface).</p>
+
+<p><code>-system</code></p>
+<p>Import application to the system cache.</p>
+
+<p><code>-codebase &lt;url&gt;</code></p>
+<p>Retrieve resources from the given codebase.</p>
+
+<p><code>-shortcut</code></p>
+<p>Install shortcuts as if user allowed prompt. This option has no
+effect unless <code>-silent</code> option is also used.</p>
+
+<p><code>-association</code></p>
+<p>Install associations as if user allowed prompt. This option has
+no effect unless <code>-silent</code> option is also used.</p>
+
+<h2>FILES</h2>
+<p>For information about the user and system cache and
+deployment.properties files, see <a href=
+"../../guides/deployment/deployment-guide/properties.html">System-
+and User-Level Properties</a>.</p>
+
+<h2>MORE INFORMATION</h2>
+<p>For more information about Java Web Start, see <a href=
+"../../guides/javaws/index.html">Java Web Start</a>.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

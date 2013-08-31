@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+<head>
+<title>Redirection Between HTTP URL and HTTPS URL Is Not Followed.</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" /><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2>Redirection Between HTTP URL and HTTPS URL Is Not Followed</h2>
+<h3>Symptoms</h3>
+<p>When running an applet in a browser using the Sun Java Runtime Environment (JRE), if the applet makes HTTP requests to a server that redirects the request to an HTTPS URL, the redirection fails. The redirection also fails in the case of making HTTPS requests to a server that redirects the request to an HTTP URL. The same applet runs without any error in the Microsoft Virtual Machine (VM).</p>
+<h3>Cause</h3>
+<p>The issue is caused by the HTTP or HTTPS redirection policy implemented in Sun JRE. Because of serious security consequences, redirection between HTTP and HTTPS is not automatically followed.</p>
+<p>When an applet is run in a browser using the Microsoft VM, a security warning dialog prompts the user for his consent to redirect. Redirection fails if the user does not consent to it.</p>
+<h3>Resolution</h3>
+<p>The application which runs the applet in a browser needs to check the response code and recognize it as a redirect. The Location header field value can be checked for the redirect information, and then the application must decide whether or not to follow the redirect using the new protocol. For example, if the following code is available in an application:</p>
+<p><code>public void makeConnection(URL url)<br />
+{<br />
+URLConnection conn = url.openConnection();<br />
+InputStream is = conn.getInputStream();<br />
+....<br />
+is.close();<br />
+}</code></p>
+<p>the above code should be changed to the following code:</p>
+<p><code>private InputStream openConnectionCheckRedirects(URLConnection c) throws IOException<br />
+{</code><br />
+<code>&nbsp;&nbsp;&nbsp;boolean redir;<br />
+&nbsp;&nbsp;&nbsp;int redirects = 0;<br />
+&nbsp;&nbsp;&nbsp;InputStream in = null;<br /></code> <code>&nbsp;&nbsp;&nbsp;do<br />
+&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (c instanceof HttpURLConnection)</code> <code><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((HttpURLConnection) c).setInstanceFollowRedirects(false);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /></code> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// We want to open the input stream before getting headers<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// because getHeaderField() et al swallow IOExceptions.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in = c.getInputStream();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redir = false;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (c instanceof HttpURLConnection)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HttpURLConnection http = (HttpURLConnection) c;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int stat = http.getResponseCode();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (stat &gt;= 300 &amp;&amp; stat &lt;= 307 &amp;&amp; stat != 306 &amp;&amp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stat != HttpURLConnection.HTTP_NOT_MODIFIED)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URL base = http.getURL();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String loc = http.getHeaderField("Location");<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;URL target = null;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (loc != null)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target = new URL(base, loc);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http.disconnect();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code> <code>&nbsp;&nbsp;&nbsp;// Redirection should be allowed only for HTTP and HTTPS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// and should be limited to 5 redirections at most.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (target == null || !(target.getProtocol().equals("http")<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| target.getProtocol().equals("https"))<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| redirects &gt;= 5)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</code><br />
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw new SecurityException("illegal URL redirect");<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br />
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redir = true;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c = target.openConnection();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirects++;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;while (redir);<br />
+&nbsp;&nbsp;&nbsp;return in;<br />
+}</code></p>
+<p><code>public void makeConnection(URL url){<br />
+try{<br />
+&nbsp;&nbsp;&nbsp;URLConnection conn = url.openConnection();<br />
+&nbsp;&nbsp;&nbsp;InputStream is = openConnectionCheckRedirects(conn);<br />
+&nbsp;&nbsp;&nbsp;....<br />
+&nbsp;&nbsp;&nbsp;is.close();<br />
+}catch (IOException e){ } }</code></p>
+<h3>Related Information</h3>
+<p>None.</p>
+<p>&nbsp;</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

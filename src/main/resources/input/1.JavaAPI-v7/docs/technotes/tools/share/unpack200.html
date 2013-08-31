@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en-US"  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>unpack200 - JAR Unpacking tool</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=us-ascii" />
+    <meta name="collection" content="reference" />
+    <meta name="copyright" content="2004, 2011" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+  <h1>unpack200 - JAR Unpacking tool</h1>
+
+  <ul>
+    <li><a href="#synopsis">Synopsis</a></li>
+
+    <li><a href="#description">Description</a></li>
+
+    <li><a href="#options">Options</a></li>
+
+    <li><a href="#exitstatus">Exit Status</a></li>
+
+    <li><a href="#seealso">See Also</a></li>
+
+    <li><a href="#notes">Notes</a></li>
+  </ul><!-- ============================================== -->
+
+
+  <h2><a name="synopsis"/>SYNOPSIS</h2>
+
+
+    <p><code><strong>unpack200</strong> [ <em>options</em> ]
+    <em>input-file</em> <em>JAR-file</em></code></p>
+
+    <p>Options may be in any order. The last option on the command
+    line supersedes all previously specified options.</p>
+
+
+      <dl>
+        <dt><code><em>input-file</em></code></dt>
+
+        <dd>Name of the input file, which can be a pack200 gzip
+        file or a pack200 file. The input could also be JAR file
+        produced by pack200(1) with an effort of 0. In this case
+        the contents of the input file will be copied to the output
+        JAR file with the Pack200 marker.</dd>
+
+        <dt><code><em>JAR-file</em></code></dt>
+
+        <dd>Name of the output JAR file.</dd>
+      </dl>
+
+
+  <!-- ============================================== -->
+
+
+  <h2><a name="description"/>DESCRIPTION</h2>
+
+
+    <p><code>unpack200</code> is a native implementation that
+    transforms a packed file produced by <code>pack200</code>(1)
+    into a JAR file. Typical usage:</p>
+
+
+      <p><code>% unpack200 myarchive.pack.gz
+      myarchive.jar</code></p>
+
+
+    <p>In this example, the <code>myarchive.jar</code> is produced
+    from <code>myarchive.pack.gz</code> using the default
+    <code>unpack200</code> settings.</p>
+
+  <!-- ============================================== -->
+
+
+  <h2><a name="options"/>OPTIONS</h2>
+
+    <p><code><strong>-Hvalue --deflate-hint=</strong><em>value</em></code></p>
+
+
+      <p>Sets the deflation to be <code>true</code>,
+      <code>false</code>, or <code>keep</code> on all entries
+      within a JAR file. The default mode is <code>keep</code>. If
+      <code>true</code> or <code>false</code>, overrides the
+      default behavior and sets the deflation mode on all entries
+      within the output JAR file.</p>
+      
+
+    <p><strong><code>-r --remove-pack-file</code></strong></p>
+      <p>Removes the input packed file.</p>
+
+
+    <p><strong><code>-v --verbose</code></strong></p>
+      <p>Outputs minimal messages. Multiple specification of this
+      option will output more verbose messages.</p>
+
+
+    <p><strong><code>-q --quiet</code></strong></p>
+      <p>Specifies quiet operation with no messages.</p>
+
+
+    <p><code><strong>-lfilename --log-file=</strong><em>filename</em></code></p>
+
+
+      <p>Specifies a log file to output messages.</p>
+      
+     <p><strong><code>-? -h --help</code></strong></p>
+     <p>Prints help information about this command.</p>
+     
+     <p><strong><code>-V --version</code></strong></p>
+     <p>Prints version information about this command.</p>
+      
+    <p><code><strong>-J</strong>option</code></p>
+
+      <p>Passes <code><em>option</em></code> to the Java launcher called by
+      <code>unpack200</code>.</p>
+
+
+  <!-- ============================================== -->
+
+
+  <h2><a name="exitstatus"/>EXIT STATUS</h2>
+
+
+    <p>The following exit values are returned:</p>
+
+
+      <p><code>&nbsp;0</code> if successful completion;</p>
+
+      <p><code>&gt;0</code> if an error occurred.</p>
+
+
+  <!-- ============================================== -->
+
+
+  <h2><a name="seealso">SEE ALSO</a></h2>
+
+  <ul>
+    <li><a href="pack200.html">pack200 - JAR Packing Tool</a></li>
+
+    <li><a href="../../../index.html">Java SE Documentation</a></li>
+    <li><a href=
+    "../../guides/deployment/deployment-guide/pack200.html">Java Deployment Guide
+        - Pack200</a></li>
+    <li><a href="../index.html#jar"><code>jar</code></a> - Java Archive Tool</li>
+    <li><a href="../index.html#jarsigner"><code>jarsigner</code></a> - JAR Signer
+      tool</li>
+    <li><code>attributes(5)</code> man page</li>
+    </ul>
+  <!-- ============================================== -->
+
+
+  <h2><a name="notes"/>NOTES</h2>
+
+
+    <p>This command should not be confused with
+    <code>unpack(1)</code>. They are distinctly separate
+    products.</p>
+
+    <p>The Java SE API Specification provided with the JDK is the
+    superseding authority, in case of discrepancies.</p>
+
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US"  xmlns="http://www.w3.org/1999/xhtml"><head>
+  <title>jcmd - Diagnostic Command</title>
+  <meta name="collection" content="reference"/>
+  <meta name="copyright" content="1994, 2012"/><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>jcmd - Diagnostic Command</h1>
+<p><b>jcmd</b> is a utility to send diagnostic command requests to a running Java 
+Virtual Machine.</p>
+<h2>SYNOPSIS</h2>
+  <pre>
+    <b>jcmd</b> [ option ] 
+    <b>jcmd</b> &lt;<I>pid</I> | <I>main class</I>&gt; PerfCounter.print
+    <b>jcmd</b> &lt;<I>pid</I> | <I>main class</I>&gt; <I>command</I> [<I>arguments</I>]
+    <b>jcmd</b> &lt;<I>pid</I> | <I>main class</I>&gt; -f <I>file</I>
+</pre>
+<h2>DESCRIPTION</h2>
+<P>
+<B>jcmd</B> is a utility to send diagnostic command requests to a Java
+Virtual Machine supporting this feature. </P><P>Used without arguments or with the -l option, jcmd prints the list of running Java processes with their process id, their main class and their command line arguments. </P>
+<P>When a process id is specified on the command line, jcmd sends the diagnostic command request to the process with this id. </P>
+<P>When a main class is specified on the command line, jcmd sends the diagnostic command request to all Java processes for which the command line argument is a substring of the Java process' main class. </P>
+<P>With the PerfCounter.print argument, jcmd prints the performance counters available on the targeted Java process(es). </P>
+<P>With the -f option, jcmd sends to the targeted Java process(es) the diagnostic commands stored in the file <I>file</I>.
+</P>
+<h2><a name="options" id="options">OPTIONS</a></h2>
+<P>Options are mutually exclusive. Options, if used, should follow immediately after the command name.
+</P>
+
+<dl>
+
+<dt><b>-l</b> </dt>
+<dd>Prints the list of running Java processes with their process id, their
+main class and their command line arguments.</dd>
+<dt><b>-h</b></dt>
+<dd>Prints a help message.</dd>
+<dt><b>-help</b></dt>
+<dd>Prints a help message.</dd>
+</dl>
+<h2>PARAMETERS</h2>
+<dl>
+
+<dt><I>pid</I></dt>
+<dd>Identifies the process that receives the diagnostic command requests. The process must be a Java process. To get a list of Java processes running on a machine, use jps(1) or jcmd(1).
+</dd>
+<dt><I>main class</I></dt>
+<dd>Main class of the process that receives the diagnostic command requests. 
+When matching processes, any process whose main class name contains the specified string as a substring will be matched.
+If several running Java processes share this main class, the diagnostic command request is sent to all these processes. 
+To get a list of Java processes running on a machine,  use jps(1) or jcmd(1).
+</dd>
+<dt><I>command</I> [<I>arguments</I>]</dt>
+<dd>Invoke the diagnostic command called <I>command</I> on the targeted Java
+process(es). The list of available diagnostic commands for a given
+process can be obtained by invoking the <b>help</b> command on this process.
+Each diagnostic command has its own set of <I>arguments</I>, which can be
+obtained by invoking the the command name followed by <b>help</b>.
+</dd>
+<dt><I>PerfCounter.print</I></dt>
+<dd>Print the performance counters available on the targeted Java
+process(es). The list of performance counters may vary with the Java
+process.
+</dd>
+<dt><I>-f file</I></dt>
+<dd>Read commands from <I>file</I> and invoke them on the targeted Java
+process(es). In  <I>file</I>, each command must be written on a single line.
+Lines starting with # are ignored. Processing of <I>file</I> ends when
+all lines have been invoked or when a line containing the <b>stop</b> keyword
+is read.
+</dd>
+
+</dl>
+<h2>SEE ALSO</h2>
+<ul>
+<li><a href="../share/jps.html">jps - Java Virtual Machine Process Status Tool</a></li>
+</ul>
+<p>jps(1)</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

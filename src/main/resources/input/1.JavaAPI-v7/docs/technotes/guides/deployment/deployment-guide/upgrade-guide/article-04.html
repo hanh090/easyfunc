@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>java.security.AccessControlException thrown ...</title>
+<meta name="collection" content="reference" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+p, li {font-family: arial; font-size: 10pt;}
+/*]]>*/
+</style><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+<p><b>Note:</b> This Java deployment guide describes features released prior to the Java SE 6 update 10 release. See <a href= "../../../jweb/index.html">Java Rich Internet Applications Development and Deployment</a> for the latest information.</p>
+<h2><code>java.security.AccessControlException</code> Thrown In the
+Execution of
+<code>java.beans.Introspector.setBeanInfoSearchPath()</code>
+Method</h2>
+<h3>Symptoms</h3>
+<p>When running an applet in a browser by using the Sun Java&trade;
+Runtime Environment (JRE&trade;) implementation, a
+<code>java.security.AccessControlException</code> is thrown in the
+execution of the
+<code>java.beans.Introspector.setBeanInfoSearchPath() method</code>
+as shown below:</p>
+<p><code>java.security.AccessControlException: access denied
+(java.util.PropertyPermission * read,write)<br />
+&nbsp;&nbsp;&nbsp; at
+java.security.AccessControlContext.checkPermission(Unknown
+Source)<br />
+&nbsp;&nbsp;&nbsp; at
+java.security.AccessController.checkPermission(Unknown
+Source)<br />
+&nbsp;&nbsp;&nbsp; at
+java.lang.SecurityManager.checkPermission(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp; at
+java.lang.SecurityManager.checkPropertiesAccess(Unknown
+Source)<br />
+&nbsp;&nbsp;&nbsp; at
+java.beans.Introspector.setBeanInfoSearchPath(Unknown Source)<br />
+&nbsp;&nbsp;&nbsp; at ....</code></p>
+<p>The same applet runs without any error with the Microsoft
+Virtual Machine (VM).</p>
+<h3>Cause</h3>
+<p>The <code>Introspector.setBeanInfoSearchPath()</code> method
+call can change the list of package names used for finding
+<code>BeanInfo</code> classes. If more than one applet is running
+in the VM, an untrusted applet could call this method to redirect
+other applets to look up <code>BeanInfo</code> in unexpected
+packages. This is a flaw in security.</p>
+<p>A security check for <code>java.util.PropertyPermission</code>
+is added to Introspector.setBeanInfoSearchPath() method in the JRE
+to address the security concern. If the applet is unsigned and it
+calls this method, a
+<code>java.security.AccessControlException</code> is thrown.</p>
+<h3>Resolution</h3>
+<p>To fix the above causes:</p>
+<ul>
+<li>Sign the applet by using the Java Development Kit (JDK)
+<code>jarsigner</code> tool, so that the applet runs as a trusted
+applet and has permissions to call the
+<code>Introspector.setBeanInfoSearchPath()</code> method.</li>
+<li>Rearchitect the applet code to avoid the call to
+<code>Introspector.setBeanInfoSearchPath()</code>. For example,
+instead of relying on the <code>BeanInfo</code> class search path,
+use a fully qualified package name for searching the
+<code>BeanInfo</code>.</li>
+</ul>
+<h3>Related Information</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; See <a href="http://docs.oracle.com/javase/6/docs/technotes/tools/windows/jarsigner.html">
+jarsigner, which is the JAR Signing and Verification Tool</a>.</p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

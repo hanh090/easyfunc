@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>serialver - The Serial Version Command</title>
+<meta name="collection" content="reference" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>serialver - The Serial Version Command</h1>
+The <b>serialver</b> command returns the
+<code>serialVersionUID</code>.
+<h2>SYNOPSIS</h2>
+<pre class="codeblock">
+<b>serialver</b> [ options ] [ classnames ]
+</pre>
+<dl>
+<dt><code>options</code></dt>
+<dd>Command-line options, as specified in this document.</dd>
+<dt><code>classnames</code></dt>
+<dd>One or more class names</dd>
+</dl>
+<h2>DESCRIPTION</h2>
+<p><b>serialver</b> returns the <code>serialVersionUID</code> for
+one or more classes in a form suitable for copying into an evolving
+class. When invoked with no arguments it prints a usage line.</p>
+<h2><a name="Options" id="Options">OPTIONS</a></h2>
+<dl>
+<dt><b>-classpath</b> &lt;directories and zip/jar files separated
+by :&gt;</dt>
+<dd>Set search path for application classes and resources.</dd>
+</dl>
+<dl>
+<dt><b>-show</b></dt>
+<dd>Displays a simple user interface. Enter the full class name and
+press either the Enter key or the Show button to display the
+serialVersionUID.</dd>
+<dt><b>-J</b><i>option</i></dt>
+<dd>Pass <i>option</i> to the Java virtual machine, where
+<i>option</i> is one of the options described on the reference page
+for the <a href="java.html">java application launcher</a>. For
+example, <b>-J-Xms48m</b> sets the startup memory to 48
+megabytes.</dd>
+</dl>
+<h2>NOTES</h2>
+<p>The <b>serialver</b> command loads and initializes the specified
+classes in its virtual machine, and by default, it does not set a
+security manager. If <b>serialver</b> is to be run with untrusted
+classes, a security manager can be set with the following
+option:</p>
+<p><code>-J-Djava.security.manager</code></p>
+<p>and, if necessary, a security policy can be specified with the
+following option:</p>
+<p><code>-J-Djava.security.policy=&lt;policy file&gt;</code></p>
+<h2>SEE ALSO</h2>
+<a href=
+"../../../api/java/io/ObjectStreamClass.html"><code>java.io.ObjectStreamClass</code></a>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

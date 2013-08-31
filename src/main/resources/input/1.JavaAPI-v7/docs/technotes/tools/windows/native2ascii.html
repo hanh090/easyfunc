@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 12 April 2005), see www.w3.org" />
+<title>Native-to-ASCII Converter</title>
+<!-- Created by: Doug Kramer, 19-Aug-1996 -->
+<meta name="collection" content="reference" /><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>native2ascii - Native-to-ASCII Converter</h1>
+Converts a file with characters in any supported character encoding
+to one with ASCII and/or Unicode escapes, or visa versa.
+<h2>SYNOPSIS</h2>
+<pre class="codeblock">
+<code><strong>native2ascii</strong> [options] [inputfile [outputfile]]</code>
+</pre>
+<h2>DESCRIPTION</h2>
+<code>native2ascii</code> converts files that are encoded to any
+character encoding that is supported by the Java runtime
+environment to files encoded in ASCII, using Unicode escapes
+("\uxxxx" notation) for all characters that are not part of the
+ASCII character set. This process is required for properties files
+containing characters not in ISO-8859-1 character sets. The tool
+can also perform the reverse conversion.
+<p>If <code>outputfile</code> is omitted, standard output is used
+for output. If, in addition, <code>inputfile</code> is omitted,
+standard input is used for input.</p>
+<a name="Options" id="Options"></a>
+<h2>OPTIONS</h2>
+<dl>
+<dt><code><b>-reverse</b></code></dt>
+<dd>Perform the reverse operation: Convert a file encoded in
+ISO-8859-1 with Unicode escapes to a file in any character encoding
+supported by the Java runtime environment.<br />
+<br /></dd>
+<dt><code><b>-encoding</b> encoding_name</code></dt>
+<dd>Specifies the name of the character encoding to be used by the
+conversion procedure. If this option is not present, the default
+character encoding (as determined by the
+<code>java.nio.charset.Charset.defaultCharset</code> method) is
+used. The <code>encoding_name</code> string must be the name of a
+character encoding that is supported by the Java runtime
+environment - see the <a href=
+"../../guides/intl/encoding.doc.html"><b>Supported
+Encodings</b></a> document.<br />
+<br /></dd>
+<dt><b>-J</b><i>option</i></dt>
+<dd>Pass <i>option</i> to the Java virtual machine, where
+<i>option</i> is one of the options described on the reference page
+for the <a href="java.html">java application launcher</a>. For
+example, <b>-J-Xms48m</b> sets the startup memory to 48
+megabytes.</dd>
+</dl>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>Frequently Asked Questions: Object Serialization</title><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+
+
+<h1>Frequently Asked Questions: Object Serialization</h1>
+
+<a name="TOP"></a>
+<h2>Questions About Serialization in the Latest JDK:</h2>
+
+<ol>
+<li><a href="#javadoc_warn_missing">Why does the javadoc standard doclet generate many warnings about missing <code>@serial</code> and/or 
+<code>@serialData</code> tags?</a></li>
+<li><a href="#javadoc_private">Why do I see javadoc warnings stating that I am missing <code>@serial</code> tags for private fields if I am not running javadoc with the &quot;<code>-private</code>&quot; switch?</a></li>
+</ol>
+
+<h2>Questions About the Serialization Subsystem:</h2>
+
+<ol>
+<li><a href="#whyserial">Why must classes be marked serializable in order to be written to an <code>ObjectOutputStream</code>?</a></li>
+<li><a href="#handle">When a Serializable object is written with <code>writeObject</code>, then modified and written a second time, why is 
+the modification missing when the stream is deserialized?</a></li>
+<li><a href="#OutOfMemoryError">Why is <code>OutOfMemoryError</code> thrown after writing a large number of objects into an <code>ObjectOutputStream</code>?</a></li>
+<li><a href="#serialver_array">How do I get the serialVersionUID of an array class?</a></li>
+<li><a href="#writeUTF_64klimit">Why is <code>UTFDataFormatException</code> thrown by <code>DataOutputStream.writeUTF()</code> when serializing a String?</a></li>
+<li><a href="#tree">How do I serialize a tree of objects?</a></li>
+<li><a href="#serialsuper">If class A does not implement <code>Serializable</code> but subclass B implements <code>Serializable</code>, will the fields of class A be serialized when B is serialized?</a></li>
+<li><a href="#encryption">Does object serialization support encryption?</a></li>
+<li><a href="#random">The object serialization classes are stream-oriented.  How do I write objects to a random access file?</a></li>
+<li><a href="#nofile">How can I create an <code>ObjectInputStream</code> from an  <code>ObjectOutputStream</code> without a file in between?</a></li>
+<li><a href="#diff">Can I compute diff(serial(x),serial(y))?</a></li>
+<li><a href="#zip">Can I compress the serial representation of my objects using my own zip/unzip methods?</a></li>
+<li><a href="#compress">Can I execute methods on compressed versions of my objects, for example isempty(zip(serial(x)))?</a></li>
+<li><a href="#appendSerialStream">Why can't a file that contains multiple appended <code>ObjectOutputStream</code>s be deserialized by 
+one <code>ObjectInputStream</code>?</a></li>
+</ol>
+
+
+<h2>Questions About Using Serialization within the JDK:</h2>
+
+<ol>
+<li><a href="#local">When a local object is serialized and passed as a parameter in an RMI call, are the byte codes for the local object's methods also passed? What about object coherency, if the remote VM application &quot;keeps&quot; the object handle?</a></li>
+<li><a href="#whichserial">Which JDK 1.1 system classes will be marked serializable?</a></li>
+<li><a href="#serialthread">Are there any plans to support the serialization of threaded objects?</a></li>
+<li><a href="#awt">I am having problems deserializing AWT components. How can I make this work?</a></li>
+<li><a href="#font">If I try to serialize a font or image object and reconstitute it in a different VM, my application dies. Why?</a></li>
+</ol>
+
+
+<h2>Answers</h2>
+
+<h2>Questions About Serialization in the Latest JDK:</h2>
+
+<ol>
+<li><p><a name="javadoc_warn_missing"></a><b>Why does the javadoc standard doclet generate many warnings about missing <code>@serial</code> and/or <code>@serialData</code> tags?</b></p>
+
+<p>In order to provide a developer with a final opportunity to acknowledge that a default serializable field should be serialized, javadoc emits a warning when the field is missing an <code>@serial</code> tag within a javadoc comment. The <code>@serial</code> tag acts as a confirmation that the default serializable field is appropriate to be serialized and that it is worth supporting this field for all future compatible versions of the class. To silence the warning, simply add an <code>@serial</code> tag within the javadoc comment above the field.</p>
+
+<p>An <code>Externalizable.writeExternal</code> method must have an <code>@serialData</code> tag to document its data layout or a warning is emitted that the tag is missing.</p>
+
+<p>See the <a href="/products/jdk/1.2/docs/tooldocs/win32/javadoc.html">javadoc reference page</a> for a complete description of the three new serialization javadoc tags, <code>@serial</code>, <code>@serialField</code>, and <code>@serialData</code>.&nbsp; Also, see Section 1.6 &quot;<a href="/products/jdk/1.2/docs/guide/serialization/spec/serial-arch.doc6.html">Documenting Serializable Fields and Data for a Class</a>,&quot; of the <em>Java Object Serialization Specification</em> for additional information.</p>
+
+</li>
+
+
+<li><p><a name="javadoc_private"></a><b>Why do I see javadoc warnings stating that I am missing <code>@serial</code> tags for private fields if I am not running javadoc with the &quot;<code>-private</code>&quot; switch?</b></p>
+
+<p>Default serializable fields are computed independent of accessibility. Therefore, private serializable fields still need an <code>@serial</code> tag and are documented in the serialized form. All serializable fields, regardless of accessibility, must be documented as part of the serialized form since these members are exposed outside of the JVM* and are part of the serialized form for the class.</p>
+</li>
+</ol>
+
+<h2>Questions About the Serialization Subsystem:</h2>
+
+<ol>
+<li><p><a name="whyserial"></a><b>Why must classes be marked serializable in order to be written to an <code>ObjectOutputStream</code>?</b></p>
+
+<p>The decision to require that classes implement the <code>java.io.Serializable</code> interface was not made lightly. The design 
+called for a balance between the needs of developers and the needs of the system to be able to provide a predictable and safe mechanism. The most difficult design constraint to satisify was the safety and security of Java classes.</p>
+
+<p>If classes were to be marked as being serializable, the design team worried that a developer, either out of forgetfulness, laziness, or ignorance might not declare a class as being <code>Serializable</code> and then make that class useless for RMI or for purposes of persistence. We worried that the requirement would place on a developer the burden of knowing how a class was to be used by others in the future, an essentially unknown condition. Indeed, our preliminary design, as reflected in the alpha API, concluded that the
+default case for a class ought to be that the objects in the class be serializable. We later changed our design only after security and correctness considerations convinced us that the default had to be that an object not be serialized.</p>
+
+<p><b>Security Restrictions:</b><br />
+The first consideration that caused us to change the default behavior of objects had to do with security, in particular the privacy of fields declared to be private, package protected, or protected. The Java runtime restricts access to such fields for either read or write to a subsetof the objects within the runtime.</p>
+
+<p>No such restriction can be made on an object once it has been serialized; the stream of bytes that are the result of object serialization can be read and altered by any object that has access to that stream. This allows any object access to the state of a serialized object, which can violate the privacy guarantees that users of the language expect. Furthermore, the bytes in the stream can be altered in arbitrary ways, allowing reconstruction of an object that was never created within the protections of a Java environment. There are cases in which the recreation of such an object could compromise not only the privacy guarantees expected by users of the Java 
+environment, but also the integrity of the environment itself.</p>
+
+<p>These violations cannot be guarded against, since the whole idea of serialization is to allow an object to be converted into a form that can be moved outside of the Java environment (and therefore outside of the privacy and integrity guarantees of that environment) and then be brought back into the environment. Requiring objects to be declared <code>Serializable</code> does mean that the class designer 
+must make an active decision to allow the possibility of such a breach in privacy or integrity. A developer who does not know about serialization should not be open to compromise because of this lack of knowledge. In addition, the developer who declares a class to be <code>Serializable</code> must only do so after giving some thought to the possible consequences of that declaration.</p>
+
+<p>Note that this sort of security problem is not one that can be dealt with by the mechanism of a security manager. Since serialization is intended to allow the transport of an object from one virtual machine to some other (either over space, as it is used in RMI, or over time, as when the stream is saved to a file), the mechanisms used for security need to be independent of the runtime environment of any particular virtual machine. We wanted to avoid as much as possible the problem of being able to serialize an object in one virtual machine and not being able to deserialize that object in some other virtual machine. Since the security manager is part of the runtime environment, using the security manager for serialization would have violated this requirement.</p>
+
+<p><b>Forcing a Conscious Decision:</b><br />
+While security concerns were the first reason for considering the design change, a reason that we feel is at least as convincing is that serialization should only be added to a class after some design consideration. It is far too easy to design a class that falls apart under serialization and reconstruction. By requiring a class designer to declare support for the <code>Serialization</code> interface, we hoped that the designer would also give some thought to the process of serializing that class. </p>
+
+<p>Examples are easy to cite. Many classes deal with information that only makes sense in the context of the runtime in which the particular object exists; examples of such information include file handles, open socket connections, security information, etc. Such data can easily be dealt with by simply declaring the fields as transient, but such a declaration is only necessary if the object is going to be serialized. A novice (or forgetful, or hurried) programmer may neglect to mark fields as transient in much the same way he or she may neglect to mark the class as implementing the <code>Serializable</code> interface. Such a case should not lead to incorrect behavior; the way to avoid this is to not serialize objects that are not marked as implementing <code>Serializable</code>. </p>
+
+<p>Another example of this sort is the &quot;simple&quot; object that is the root of a graph which spans a large number of objects. Serializing such an object could result in serializing several others, since serialization works over an entire graph. Doing something like this should be a conscious decision, not one that happens by default. </p>
+
+<p>The need for this sort of thought was brought home to us when we were going through the base Java class libraries marking the system classes as <code>Serializable</code> (where appropriate). Originally, we thought that this would be a fairly simple process, and that most of the system classes could just be marked as implementing <code>Serializable</code> and then use the default implementation with no other changes. What we found was that this was far less often the case than we had suspected. In a large number of the classes, careful thought had to be given to whether or not a field should be marked as transient or whether it made sense to serialize the class at all.
+</p>
+
+<p>Of course, there is no way to guarantee that a programmer or class designer is actually going to think about these issues when marking a class as <code>Serializable</code>. However, by requiring the class to declare itself as implementing the <code>Serializable</code> interface, we do require that some thought be given by the programmer. Having serialization be the default state of an object would mean that lack of thought could cause bad effects in a program, something that the overall design of the Java programming environment has attempted to avoid.</p></li>
+
+
+<li><p><a name="handle"></a><b>When a Serializable object is written with <code>writeObject</code>, then modified and written a second time, why is the modification missing when the stream is deserialized?</b></p>
+
+<p>The <code>ObjectOutputStream</code> class keeps track of each object it serializes and sends only the handle if the object is written into the stream a subsequent time. This is the way it deals with graphs of objects. The corresponding <code>ObjectInputStream</code> keeps track of all of the objects it has created and their handles so when the handle is seen again it can return the same object. Both output and input streams keep this state until they are freed. </p>
+
+<p>Alternatively, the <code>ObjectOutputStream</code> class implements a reset method that discards the memory of having sent an objecct, so sending an object again will make a copy.</p>
+
+</li>
+
+<li><p><a name="OutOfMemoryError"></a><b>Why is <code>OutOfMemoryError</code> thrown after writing a large number of objects into an <code>ObjectOutputStream</code>?</b></p>
+
+<p>The <code>ObjectOutputStream</code> maintains a table mapping objects written into the stream to a handle. The first time an object is written to a stream, its contents are written into the stream; subsequent writes of the object result in a handle to the object being written into the stream. This table maintains references to objects that might otherwise be unreachable by an application, thus, resulting in an unexpected situation of running out of memory. A call to the <code>ObjectOutputStream.reset()</code> method resets the object/handle table to its initial state, allowing all previously written objects to be elgible for garbage collection. See <a href="#handle">handle</a>.</p>
+
+</li>
+
+<li><p><a name="serialver_array"></a><b>How do I get the serialVersionUID of an array class?</b></p>
+
+<p>Run the serialver tool, supplying the name of the class, as shown in the example that follows:</p>
+
+<pre>&nbsp;&nbsp; serialver &quot;[Ljava.lang.String;&quot;</pre>
+
+</li>
+
+<li><p><a name="writeUTF_64klimit"></a><b>Why is <code>UTFDataFormatException</code> thrown by <code>DataOutputStream.writeUTF()</code> when serializing a String?</b></p>
+
+<p><code>DataOutputStream.writeUTF()</code> does not support writing out strings larger than 64K. The first two bytes of a UTF string in the stream are the length of the string. If a <code>java.lang.String</code> can be larger than 64K, it needs to be stored in the stream by an alternative method rather than depending on the default method of storing a String in the stream, <code>writeUTF</code>.</p>
+
+</li>
+
+<li><p><a name="tree"></a><b>How do I serialize a tree of objects?</b></p>
+
+<p>Here's a brief example that shows how to serialize a tree of objects.</p>
+
+<pre>
+import java.io.*;
+
+class tree implements java.io.Serializable {
+  public tree left;
+  public tree right;
+  public int id;
+  public int level;
+  private static int count = 0;
+  public tree(int l) {
+    id = count++;
+    level = l;
+    if (l &gt; 0) {
+       left = new tree(l-1);
+       right = new tree(l-1);
+    }
+  }
+  public void print(int levels) {
+  for (int i = 0; i &lt; level; i++)
+    System.out.print(&quot;&nbsp; &quot;);
+    System.out.println(&quot;node &quot; + id);
+
+    if (level &lt;= levels &amp;&amp; left != null)
+       left.print(levels);
+
+    if (level &lt;= levels &amp;&amp; right != null)
+       right.print(levels);
+  }
+
+  public static void main (String argv[]) {
+
+    try {
+       /* Create a file to write the serialized tree to. */
+       FileOutputStream ostream = new FileOutputStream(&quot;tree.tmp&quot;);
+       /* Create the output stream */
+       ObjectOutputStream p = new ObjectOutputStream(ostream);
+
+       /* Create a tree with three levels. */
+
+       p.writeObject(base); // Write the tree to the stream.
+       p.flush();
+       ostream.close();&nbsp;&nbsp;&nbsp; // close the file.
+
+       /* Open the file and set to read objects from it. */
+       FileInputStream istream = new FileInputStream(&quot;tree.tmp&quot;);
+       ObjectInputStream q = new ObjectInputStream(istream);
+
+       /* Read a tree object, and all the subtrees */
+       tree new_tree = (tree)q.readObject();
+
+       new_tree.print(3);&nbsp; // Print out the top 3 levels of the tree
+    } catch (Exception ex) {
+       ex.printStackTrace();
+    }
+  }
+}
+	</pre>
+</li>
+
+<li><p><a name="serialsuper"></a><b>If class A does not implement <code>Serializable</code> but a subclass B implements <code>Serializable</code>, will the fields of class A be serialized when B is serialized?</b></p>
+
+<p>Only the fields of Serializable objects are written out and restored. The object may be restored only if it has a no-arg constructor that will initialize the fields of non-serializable supertypes. If the subclass has access to the state of the superclass it can implement <code>writeObject</code> and <code>readObject</code> to save and restore that state.</p>
+</li>
+
+<li><p><a name="encryption"></a><b>Does object serialization support encryption?</b></p>
+
+<p>Object serialization does not contain any encryption/decryption in itself. It writes to and reads from Java Streams, 
+so it can be coupled with any available encryption technology. Object serialization can be used in many different ways from simple persistence, writing and read to/from files, or for RMI to communicate across hosts.</p>
+
+<p>RMI's use of serialization leaves encryption and decryption to the lower network transport. We expect that when a secure channel is needed, the network connections will be made using SSL or the like.</p>
+
+</li>
+
+<li><p><a name="random"></a><b>The object serialization classes are stream oriented. How do I write objects to a random access file?</b></p>
+
+<p>Currently there is no direct way to write objects to a random access file. </p>
+
+<p>You can use the ByteArray I/O streams as an intermediate place to write and read bytes to/from the random access file and create Object I/O streams from the byte streams to write/read the objects. You just have to make sure that you have the entire object in the byte stream or reading/writing the object will fail. </p>
+
+<p>For example, <code>java.io.ByteArrayOutputStream</code> can be used to receive the bytes of <code>ObjectOutputStream</code>. From it you can get a <code>byte[]</code> of the result which, in turn,  can be used with <code>ByteArrayInputStream</code> as input to <code>ObjectInput</code>.</p>
+
+</li>
+
+<li><p><a name="nofile"></a><b>How can I create an <code>ObjectInputStream</code> from an <code>ObjectOutputStream</code> without a file in between?</b></p>
+
+<p><code>ObjectOutputStream</code> and <code>ObjectInputStream</code> work to/from any stream object. You could use a <code>ByteArrayOutputStream</code> and then get the array and insert it into a <code>ByteArrayInputStream</code>. You could also use the piped stream classes as well. Any <code>java.io</code> class that extends the <code>OutputStream</code> and <code>InputStream</code> 
+classes can be used.</p>
+
+<p>Alternatively, the <code>ObjectOutputStream</code>&gt; class implements a <code>reset</code> method that discards the memory of having sent an object, so sending an object again will make a copy.</p>
+
+</li>
+
+<li><p><a name="diff"></a><b>Can I compute diff(serial(x),serial(y))?</b></p>
+
+<p>The diff will produce the same stream each time the same object is serialized. You will need to create a new <code>ObjectOutputStream</code> to serialize each object.</p>
+
+</li>
+
+<li><p><a name="zip"></a><b>Can I compress the serial representation of my objects using my own zip/unzip methods?</b></p>
+
+
+<p><code>ObjectOutputStream</code> produces an <code>OutputStream</code>. If your zip object extends the <code>OutputStream</code> class, there is no problem compressing it.</p>
+
+</li>
+
+<li><p><a name="compress"></a><b>Can I execute methods on compressed versions of my objects, for example isempty(zip(serial(x)))?</b></p>
+
+<p>This is not really viable for arbitrary objects because of the encoding of objects. For a particular object (such as String) you can compare the resulting bit streams. The encoding is stable, in that every time the same object is encoded it is encoded to the same set of bits.</p>
+
+</li>
+
+<li><p><a name="appendSerialStream"></a><b>Why can't a file that contains multiple appended <code>ObjectOutputStream</code>s be deserialized by one <code>ObjectInputStream</code>?</b></p>
+
+
+<p>Using the default implementation of serialization, there must be a one-to-one mapping between <code>ObjectOutputStream</code> construction and <code>ObjectInputStream</code> construction. <code>ObjectOutputStream</code> constructor writes a stream header and<code>ObjectInputStream</code> reads this stream header. A workaround is to subclass <code>ObjectOutputStream</code> and override <code>writeStreamHeader()</code>. The overriding <code>writeStreamHeader()</code> should call the super <code>writeStreamHeader</code> method if it is the first write to the file and it should call <code>ObjectOutputStream.reset()</code> if it is appending to a pre-existing <code>ObjectOutputStream</code> within the file.</p>
+
+</li>
+</ol>
+
+<h2>Questions About Using Serialization within the JDK:</h2>
+
+<ol>
+<li><p><a name="local"></a><b>When a local object is serialized and passed as a parameter in an RMI call, are the byte codes for the local
+object's methods also passed? What about object coherency, if the remote VM application &quot;keeps&quot; the object handle?</b></p>
+
+<p>The bytecodes for a local object's methods are not passed directly in the <code>ObjectOutputStream</code>, but the object's class may need to be loaded by the receiver if the class is not already available locally. (The class files themselves are not serialized, just the names of the classes.) All classes must be able to be loaded during deserialization using the normal class loading mechanisms. For applets this means they are loaded by the <code>AppletClassLoader</code>.</p>
+
+<p>There are no conherency guarantees for local objects passed to a remote VM, since such objects are passed by copying their contents (a true pass-by-value).</p>
+
+</li>
+
+<li><p><a name="whichserial"></a><b>Which JDK 1.1 system classes will be marked <code>Serializable</code>?</b></p>
+
+<p>The following list shows the classes that are marked Serializable. Note that classes that extend these classes are also serializable.
+</p>
+
+<ul>
+<li><tt>java.lang.Character</tt></li>
+<li><tt>java.lang.Boolean</tt></li>
+<li><tt>java.lang.String</tt></li>
+<li><tt>java.lang.StringBuffer</tt></li>
+<li><tt>java.lang.Throwable</tt> - Including all subtypes of <tt>Exception</tt></li>
+<li><tt>java.lang.Number</tt> - including <tt>Integer</tt>, <tt>Long</tt>,etc.</li>
+<li><tt>java.util.Hashtable</tt></li>
+<li><tt>java.util.Random</tt></li>
+<li><tt>java.util.Vector</tt> - includes <tt>Stack</tt></li>
+<li><tt>java.util.Date</tt></li>
+<li><tt>java.util.BitSet</tt></li>
+<li><tt>java.io.File</tt></li>
+<li><tt>java.net.InetAddress</tt></li>
+<li><tt>java.rmi.server.RemoteObject</tt></li>
+<li>The AWT classes</li>
+<li>Arrays of primitives</li>
+<li>Arrays of objects are Serializable though the objects may not be.</li>
+</ul>
+
+<p>There are many classes for which Serialization makes no sense, such as those representing the state of something in the current VM (e.g. <tt>java.io.FileInputStream</tt>) or are exceedingly hard to do correctly (e.g. <tt>java.lang.Thread</tt>).</p>
+
+</li>
+
+<li><p><a name="serialthread"></a><b>Are there any plans to support the serialization of threaded objects?</b></p>
+
+<p>In JDK 1.1, Threads will <i>not</i> be serializable. In the present implementation, if you attempt to serialize and then deserialize a thread, there is <i>no</i> explicit allocation of a new native thread or stack; all that happens is that the Java object is allocated with none of the native implementation. In short, it just won't work and will fail in unpredictable ways.</p>
+
+<p>The difficulty with threads is that they have so much state which is intricately tied into the virtual machine that it is difficult or impossible to re-establish the context somewhere else. For example, saving the Java call stack is insufficient because if there were native methods that had called C procedures that in turn called Java, there would be an incredible mix of Java constructs and C pointers 
+to deal with. Also, serializing the stack would imply serializing any object reachable from any stack variable. </p>
+
+<p>If a thread were resumed in the same VM, it would be sharing a lot of state with the original thread, and would therefore fail in unpredictable ways if both threads were running at once, just like two C threads trying to share a stack. When deserialized in a separate VM, its hard to tell what might happen.</p>
+
+</li>
+
+<li><p><a name="awt"></a><b>I am having problems deserializing AWT components. How can I make this work?</b></p>
+
+<p>AWT has not yet been modified to work well with Serialization. When you serialize AWT widgets, also serialized are the Peer objects that map the AWT functions to the local window system. When you deserialize (reconsitute) the AWT widgets, the old Peers are recreated, but they are out of date. Peers are native to the local window system and contain pointers to data structures in the local address space, and therefore cannnot be moved. </p>
+
+
+<p><b>Workaround:</b><br />
+Remove the top level widget from its container (so the widgets are no longer live). The peers are discarded at this point and you will save only the AWT widget state. Later, when you deserialize and read the widgets back in, add the top level widget to the frame to make the AWT widgets appear. You may need to add a <tt>show</tt> call.</p>
+
+<p>Note that JDK 1.1 AWT widgets will be serializable, but they will <i>not</i> interoperate with JDK 1.0.2 widgets.</p>
+</li>
+
+<li><p><a name="font"></a><b>If I try to serialize a font or image object and reconstitute it in a different VM, my application dies. Why?</b></p>
+
+<p>AWT does not yet work well with serialization and you will therefore have trouble trying to pass fonts and images. This is because each contains memory pointers that are valid only in the originating VM, which will cause a segmentation violation when passed to a new VM.
+</p>
+
+<p>These problems should be corrected by the time  JDK 1.1 releases. As a work around for fonts, you will need to pass the information necessary to recreate a new font object that duplicates the characteristics of the font object in the originating VM. There is no current work around to allow images to be passed correctly.</p>
+</li>
+</ol>
+
+
+
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

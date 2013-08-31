@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<title>Java(tm) Platform Debugger Architecture - Service provider
+interfaces</title><link rel="stylesheet" href="../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<h1>Java<sup>&trade; Platform Debugger Architecture
+-<br />
+Service Provider Interfaces</sup></h1>
+<p><sup>J2SE 5.0 adds new service provider interfaces to the Java
+Debug Interface (JDI) so that Connector and TransportService
+implementations can be developed and deployed. TransportService is
+a new class in 5.0. It represents the underlying transport service
+used by a Connector and is used to establish connections and
+transport Java Debug Wire Protocol (JDWP) packets between a
+debugger and a target VM.</sup></p>
+<p><sup>In addition to new service provider interfaces in JDI, J2SE
+5.0 also includes a new transport library interface called the
+<a href="jdwpTransport.html">Java&trade; Debug Wire Protocol
+Transport Interface (jdwpTransport)</a>. This is a native (C/C++)
+interface to allow the development and deployment of transport
+libraries. A transport library is loaded by the debuggee-side JDWP
+agent and is used to establish a connection to the debugger and to
+transport JDWP packets between the debugger and the VM.</sup></p>
+<p><sup>This page describes a number of scenarios where the new
+interfaces may be used. It also provides an overview of the tasks
+involved in developing and deploying new Connectors and transport
+implementations.</sup></p>
+<ul>
+<li><sup><a href="#Examples">Example Scenarios</a></sup></li>
+<li><sup><a href="#ConnectorDev">Developing a
+Connector</a></sup></li>
+<li><sup><a href="#ConnectorDeploy">Deploying a
+Connector</a></sup></li>
+<li><sup><a href="#TransportDev">Developing a
+TransportService</a></sup></li>
+<li><sup><a href="#TransportDeploy">Deploying a
+TransportService</a></sup></li>
+</ul>
+<sup><a name="Examples" id="Examples"></a></sup>
+<hr noshade="noshade" size="3" />
+<h2><sup>Example Scenarios</sup></h2>
+<p><sup>The service provider interfaces and the native transport
+interface are expected to be used by the following classes of
+users:</sup></p>
+<ul>
+<li><sup>Debugger and tool vendors that need to develop new
+LaunchingConnector implementations or wish to provide additional
+transport options for remote debugging over-and-beyond the TCP/IP
+and shared memory transports provided by Sun.</sup></li>
+<li><sup>Embedded device, operating system, or virtual machine
+vendors that require remote debugging using transports that than
+TCP/IP.</sup></li>
+</ul>
+<p><sup>Given the above class of user the following describes a
+number of scenarios where the new interfaces might be
+used.</sup></p>
+<ul>
+<li><sup>In many environments, particularly embedded devices, the
+debugger may be required to connect to a target VM using a
+transport other than TCP/IP. In this type of environment the new
+service provider interfaces can be used to develop and support
+debugging over an alternative transport.</sup>
+<p><sup>On the debuggee-side a transport library for the new
+transport can be developed by implementing the jdwpTransport
+interface. For the debugger, a TransportService implementation can
+be developed. When the TransportService implementation is deployed,
+the JDI VirtualMachineManager implementation will automatically
+create an AttachingConnector and a ListeningConnector to allow
+remote debugging to the target VM.</sup></p>
+</li>
+<li><sup>In some environments the debugger may be required to
+connect to a target VM using a mechanism other than a transport.
+For example, the debugger may be used to attach, in a read-only
+manner, to a crash dump or to a hung process.</sup>
+<p><sup>For these examples, an AttachingConnector implementation
+can be developed. The AttachingConnector implementation extends
+com.sun.jdi.connect.AttachingConnectors and when deployed it will
+appear on the list of attaching connectors returned by the
+VirtualMachineManager's attachingConnectors() method.</sup></p>
+</li>
+<li><sup>In many environments the target VM will be launched in a
+very proprietary way. In such environments the Connector arguments
+or launch mechanism used by the Sun-provided
+com.sun.jdi.CommandLineLaunch LaunchingConnector may not be
+sufficient. In such cases the operating system or virtual machine
+vendor may decide to develop their own LaunchingConnector that is
+capable of launching the target VM. This new LaunchingConnector
+would have appropriate Connector arguments which would be used to
+configure the target VM for debugging. Once deployed it will appear
+on the list of Connectors returned by the VirtualMachineManager's
+launchingConnectors() method.</sup></li>
+<li><sup>Another example arises in enterprise environments where an
+Integrated Development Environment (IDE) implementer wishes to
+support debugging over a non-Sun provided transport. For example an
+IDE may wish to provide the option of debugging over a secure
+connection using TLS/SSL.</sup>
+<p><sup>In this example the IDE implementer develops a transport
+library using the jdwpTransport interface. This allows the debuggee
+to use the new transport. On the debugger-side the IDE implementer
+has a choice. One option is to develop and deploy a
+TransportService implementation. This option would allow the new
+transport to be used for remote debugging.</sup></p>
+<p><sup>Alternatively, the IDE implementer may decide to create a
+Connector implementation that encapsulates the transport. This
+option is appropriate when the IDE implementer wishes to add new
+Connector arguments. For example, with a secure transport the IDE
+implementer may wish to have a Connector that has Connector
+arguments to specify keystore, pass phrase, or other options needed
+to configure the secure connection. If a new Connector is
+appropriate then the IDE implementer develops a transport library
+for the debuggee-side and a Connector for the debugger-side. The
+type of Connector is the choice of the implementer - one example is
+a LaunchingConnector that launches the debuggee and establishes a
+secure connection between the debugger and debuggee.</sup></p>
+</li>
+</ul>
+<sup><a name="ConnectorDev" id="ConnectorDev"></a></sup>
+<hr noshade="noshade" size="3" />
+<h2><sup>Developing a Connector</sup></h2>
+<sup>Developing a Connector involves creating a concrete
+implementation of a LaunchingConnector, AttachingConnector, or
+ListeningConnector.</sup>
+<p><sup>Every Connector implementation must have a public no-arg
+constructor in addition to implementing all the Connector methods.
+The constructor will be called by the VirtualMachineManager during
+initialization. The constructor may be a no-op or it may perform
+initialization tasks such as loading a transport service. The
+constructor does not throw any checked exceptions so any problems
+during initialization should be thrown as Errors or other unchecked
+exceptions.</sup></p>
+<p><sup>Connectors are not required to use a TransportService. Some
+Connectors may connect to the target VM using a mechanism other
+than a transport (in the <a href="#Examples">Example Scenarios</a>
+section we list the examples of AttachingConnectors that attach to
+crash dumps or hung processes). For Connectors that use a
+TransportService implementation the Connector can either reference
+the TransportService implementation directly or it can load the
+implementation at runtime. Connectors that wish to make use of Sun
+provided transports should load the transport service using code
+such as following:</sup></p>
+<pre class="codeblock">
+<sup>try {
+    Class c = Class.forName("com.sun.tools.jdi.SocketTransportService");
+    ts = (TransportService)c.newInstance();
+} catch (Exception x) {
+    throw new Error(x);
+}
+</sup>
+</pre>
+<p><sup>Java SE implementations are not required to include Sun's
+socket or shared memory transport service implementations so in the
+above example an Error will be thrown if the transport service does
+not exist.</sup></p>
+<p><sup>Assuming that the type of Connector is known then the
+following items should be noted when developing the
+implementation:</sup></p>
+<ul>
+<li><sup>The list of Connector.Arguments should be carefully
+considered. For some Connector implementations the default argument
+construction and parsing may be the bulk of the code in the
+implementation.</sup></li>
+<li><sup>A Connector is required to name the transport that it
+uses. If an implementation uses an existing TransportService then
+the recommended transport name is the name of the underlying
+TransportService. That is, the Connector's transport()
+implementation returns a Transport for which the name() method
+returns a java.lang.String representing the name of the
+transport.</sup></li>
+<li><sup>Most Connector implementations will establish a Connection
+to a target VM. Once established the Connector's launch, attach, or
+accept method will return a VirtualMachine instance to the
+debugger. To facilitate the creation of a VirtualMachine mirror the
+VirtualMachineManager has a new method in 5.0 to create a
+VirtualMachine. The following code fragment shows an example usage
+of this method:</sup>
+<pre class="codeblock">
+<sup>VirtualMachine vm = Bootstrap.virtualMachineManager().createVirtualMachine(conn);
+</sup>
+</pre>
+<p><sup>VirtualMachineManager also involves another form of the
+createVirtualMachine for use by LaunchingConnectors. The other form
+allows the LaunchingConnector to specify the java.lang.Process that
+represents the debuggee. See the specification for
+com.sun.jdi.VirtualMachineManager for further details.</sup></p>
+</li>
+</ul>
+<p><sup>The source code for an example LaunchingConnector can be
+found <a href="SimpleLaunchingConnector.java">here</a>. The
+Connector has a single Connector.Argument called <em>class</em>
+which specifies the class name of class to run in the target VM.
+The example demonstrates all of the above points including
+Connector.Argument, transport naming, and the use of the
+createVirtualMachine method. <a name="ConnectorDeploy" id=
+"ConnectorDeploy"></a></sup></p>
+<hr noshade="noshade" size="3" />
+<h2><sup>Deploying a Connector</sup></h2>
+<p><sup>To deploy a Connector requires packaging the classes for
+the Connector implementation into a jar file along with a service
+configuration file that lists the fully-qualified class name of the
+Connector. The jar file is then deployed in a location that is
+visible to the system class loader.</sup></p>
+<p><sup>The service configuration file that must be included in the
+jar file is named META-INF/services/com.sun.jdi.connect.Connector.
+The file simply lists the full-qualified class names of the
+Connector included in the jar file. Multiple Connector
+implementations may be included in the same jar file and in that
+case the class name for each Connector is listed on a separate
+line.</sup></p>
+<p><sup>Suppose we wish to deploy a launching connector named
+SimpleLaunchingConnector. In order to deploy this we create a file
+META-INF/services/com.sun.jdi.connect.Connector similar to the
+following:</sup></p>
+<pre class="codeblock">
+<sup># Our very simple launching connector
+SimpleLaunchingConnector
+</sup>
+</pre>
+<p><sup>This service configuration file is then packaged into a jar
+file along with the classes that comprise the implementation of the
+Connector:</sup></p>
+<pre class="codeblock">
+<sup>jar cf SimpleLaunchingConnector.jar \
+    META-INF/services/com.sun.jdi.connect.Connector \
+    SimpleLaunchingConnector.class
+</sup>
+</pre>
+<p><sup>The jar file is then copied into a location that is visible
+to the system class loader.</sup></p>
+<p><sup>Once deployed the Connector will be located by the debugger
+when the debugger is restarted. That is, SimpleLaunchingConnector
+will be included in the list of Connectors returned by
+VirtualMachineManager's allConnectors() method. In addition, as
+this is a launching connector, it will also appear on the list of
+launching connectors returned by the launchingConnectors() method.
+<a name="TransportDev" id="TransportDev"></a></sup></p>
+<hr noshade="noshade" size="3" />
+<h2><sup>Developing a TransportService</sup></h2>
+<p><sup>Developing a transport service requires developing two
+components :-</sup></p>
+<ul>
+<li><sup>A concrete implementation of
+com.sun.jdi.connect.spi.TransportService.</sup></li>
+<li><sup>A debuggee-side shared library that implements the
+jdwpTransport interface.</sup></li>
+</ul>
+<p><sup>The development of a transport service requires a high
+degree of familiarity with the transport and the underlying
+communication protocol. A transport service essentially binds JDWP
+to an underlying communication protocol. The service that it
+provides is reliable and JDWP packets are exchanged between the
+debugger and debuggee without duplication or data loss. Given that
+packets must be exchanged in a reliable manner might mean that
+additional protocol support be included in the transport service
+over and beyond that provided by the underlying communication
+protocol. For example, if debugging over a raw and unreliable
+serial connection is required, then the transport service
+implementer may be required to build in error detection and
+recovery in the implementation to ensure that JDWP packets can be
+reliably transported between the debugger and the
+debuggee.</sup></p>
+<p><sup>Assuming the details of the transport and underlying
+communication protocol are understood then the next step is to
+consider the following:</sup></p>
+<ul>
+<li><sup>The TransportService's capabilities() method returns a
+TransportService.Capabilities to indicate the transport service's
+capabilities. The transport service implementer thus needs to
+consider:</sup>
+<ul>
+<li><sup>Can the transport can support multiple concurrent
+connections to a single listener address?</sup></li>
+<li><sup>Can timeouts be feasibly implemented when connecting,
+handshaking, or waiting for a connection to be
+established?</sup></li>
+</ul>
+</li>
+<li><sup>The native transport library may be used by only one, or
+multiple JDWP (or other) agents at the same time. If a transport
+supports multiple environments then each call to the
+jdwpTransport_OnLoad function will return a new environment
+pointer. If a transport only supports a single environment then
+second and subsequent calls to jdwpTransport_OnLoad will return an
+error. The transport library implementer must therefore decide if
+the library implementation will support one or multiple
+environments.</sup></li>
+<li><sup>Addresses, or connection-endpoints, are represented by
+Strings. The implementer must therefore design an address scheme so
+that all the components of an address can be encoded into a String.
+For example the address and configuration of a serial port might be
+encoded as something like:</sup>
+<pre class="codeblock">
+<sup>/dev/ttya;9600,1
+</sup>
+</pre></li>
+<li><sup>Design an appropriate ListenKey implementation. As a
+TransportService may be used to listen on multiple, yet different,
+addresses at the same time the listen key is used to uniquely
+identify each "listener".</sup></li>
+<li><sup>Decide on an appropriate name and description for the
+TransportService. At start-up the VirtualMachineManager will create
+an Attaching and Listening Connector to encapsulate the transport
+service. The name and description of these Connectors will be based
+on the name and description of the transport service - for example,
+if the TransportService's name() method returns "Serial" then the
+Connectors created by the VirtualMachineManager will be named
+"SerialAttach" and "SerialListen".</sup></li>
+</ul>
+<p><sup>Once the above have been resolved then creating a
+TransportService involves extending
+com.sun.jdi.connect.spi.TransportService and providing an
+implementation. The attach and accept methods return an instance of
+com.sun.jdi.connect.spi.Connection so an implementation of
+Connection is required so that the debugger can exchange JDWP
+packets with the debuggee.</sup></p>
+<p><sup>As an example of a TransportService implementation the
+source code for Sun's socket transport can be found <a href=
+"SocketTransportService.java">here</a>. This is provided for
+reference purposes only.</sup></p>
+<p><sup>To develop a native transport library requires implementing
+each of the functions listed in the <a href=
+"jdwpTransport.html">jdwpTransport</a> specification. The function
+prototypes and definitions are defined in
+<tt>${java_home}/include/jdwpTransport.h</tt>.</sup></p>
+<p><sup>The transport library implementer compiles and links the
+function implementations into a dynamic library (or equivalent).
+The library exports a function jdwpTransport_OnLoad function which
+the JDWP agent will call when the transport library is loaded. Some
+embedded environments don't support dynamic linking and in such
+environments the transport library may need to be statically
+linked. In that case there isn't any library loading but the
+jdwpTransport_OnLoad function will still be called to initialize
+the transport library and obtain the environment pointer.</sup></p>
+<p><sup>As an example of a jdwpTransport implementation the source
+code for Sun's socket transport library (dt_socket) can be found
+<a href="socketTransport-example.c">here</a>. This is provided for
+references purposes only. <a name="TransportDeploy" id=
+"TransportDeploy"></a></sup></p>
+<hr noshade="noshade" size="3" />
+<h2><sup>Deploying a TransportService</sup></h2>
+<p><sup>A TransportService is deployed in a similar manner to a
+Connector. To deploy a TransportService requires packaging the
+classes for the TransportService implementation into a jar file
+along with a service configuration file that lists the
+fully-qualified class name of the TransportService. The jar file is
+then deployed in a location that is visible to the system class
+loader.</sup></p>
+<p><sup>The service configuration file that must be included in the
+jar file is named
+META-INF/services/com.sun.jdi.connect.spi.TransportService. As per
+Connector deployment the configuration file may list the classes
+names of multiple transport service implementations in the event
+that the jar file includes multiple implementations.</sup></p>
+<p><sup>In the case of a transport service
+com.sun.SerialTransportService then the service configuration file
+will be similar to the following :-</sup></p>
+<pre class="codeblock">
+<sup># Serial line transport
+com.foo.SerialTransportService
+</sup>
+</pre>
+<p><sup>This service configuration file is then packaged into a jar
+file along with the classes that comprise the implementation. For
+this example we will assume that the implementation involves a
+number of classes :-</sup></p>
+<pre class="codeblock">
+<sup>jar cf SerialTransportService.jar \
+    META-INF/services/com.sun.jdi.connect.spi.TransportService \
+    com/foo/SerialTransportService.class \
+    com/foo/SerialConnection.class \
+    com/foo/SerialCapabilities.clas \
+    com/foo/SerialIO.class \
+    com/foo/SerialProtocol.class 
+</sup>
+</pre>
+<p><sup>As per the deployment of Connectors, the jar file is then
+copied into a location that is visible to the system class
+loader.</sup></p>
+<p><sup>A TransportService may have native methods or rely on other
+APIs that require a native library. In that case the native library
+must be location that allows it be loaded using
+System.loadLibrary.</sup></p>
+<p><sup>A native transport library is loaded by the JDWP agent. In
+must be located on the normal runtime library search path for the
+operating systems. For example, on Solaris or Linux systems it must
+be on search path specified by the LD_LIBRARY_PATH environment
+variable.</sup></p>
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>

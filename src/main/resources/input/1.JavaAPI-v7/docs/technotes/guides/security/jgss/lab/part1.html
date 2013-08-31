@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xml:lang=
+"en-US">
+<head>
+<meta http-equiv="content-type" content=
+"text/html; charset=utf-8" />
+<title>Advanced JGSS Security Programming</title><link rel="stylesheet" href="../../../../../technotes/css/guide.css" />
+</head>
+<body>
+<!-- STATIC HEADER -->
+
+<!-- header start -->
+<div id="javaseheader">
+<div id="javaseheaderlogo">
+<img src="../../../../../images/javalogo.gif"
+alt="Java logo" />
+</div>
+<div id="javaseheaderindex">
+
+<a href=
+"../../../../../index.html">Documentation Contents</a>
+</div>
+<div class="clear"></div>
+</div>
+
+<!-- header end -->
+
+
+<!-- part I -->
+<h1><a name="PART1" id="PART1">Part I : Secure Authentication using
+the Java Authentication and Authorization Service (JAAS)</a></h1>
+<h2><a name="JAAS" href="#JAAS" id="JAAS"></a>Exercise 1 : Using
+the JAAS &nbsp;API</h2>
+<h3>Goal of this exercise:</h3>
+<p>The goal of this exercise is to learn how to use the Java
+Authentication and Authorization (JAAS) API to perform
+authentication.<br /></p>
+<h3>Background for this exercise:</h3>
+<p>JAAS provides a standard pluggable authentication framework
+(PAM) for the Java platform. &nbsp;An application uses the JAAS API
+to perform <i>authentication</i> - the process of verifying the
+identity of the user who is using the application and gathering his
+identity information into a container called a <i>subject</i>. The
+application can then use the identity information in the subject
+along with the JAAS API to make <i>authorization</i> decisions, to
+decide whether the authenticated user is allowed to access
+protected resources or perform restricted actions. This exercise
+demonstrates JAAS Authentication. It does not demonstrate JAAS
+Authorization.</p>
+<h3>Resources for this exercise:</h3>
+<ol>
+<li><a href="../../../security/jaas/JAASRefGuide.html">JAAS Reference Guide</a></li>
+<li><a href="../../../security/jaas/tutorials/index.html">JAAS Tutorials</a></li>
+<li>JAAS javadocs: <a href=
+"../../../../../api/javax/security/auth/package-summary.html">javax.security.auth</a>, <a href=
+"../../../../../api/javax/security/auth/callback/package-summary.html">javax.security.auth.callback</a>, <a href=
+"../../../../../api/javax/security/auth/kerberos/package-summary.html">javax.security.auth.kerberos</a>, <a href=
+"../../../../../api/javax/security/auth/login/package-summary.html">javax.security.auth.login</a>, <a href=
+"../../../../../api/javax/security/auth/spi/package-summary.html">javax.security.auth.spi</a>, <a href=
+"../../../../../api/javax/security/auth/x500/package-summary.html">javax.security.auth.x500</a></li>
+<li><a href="http://docs.oracle.com/cd/B12428_15/tour/security_jaas.htm">Java Authentication and Authorization Service</a><br /></li>
+</ol>
+<h3>Steps to follow:</h3>
+<ol>
+<li>Read the following sample code. This is located in <a href=
+"src/Jaas.java">src/Jaas.java.</a> The code performs the following
+tasks:</li>
+</ol>
+<div>
+<ol type="a">
+<li>Define a callback handler or use a predefined one. [line
+2]</li>
+<li>Create a LoginContext with a name that identifies which JAAS
+configuration entry to use.&nbsp; [line 5]</li>
+<li>Perform the authentication.&nbsp; [line 8]</li>
+<li>Define the task that the authenticated user is to perform
+&nbsp;[line 11]</li>
+<li>Perform the action as the authenticated user&nbsp; [lines
+14-15]</li>
+<li>Logout.<br /></li>
+</ol>
+<p><tt>Subject.doAs</tt> will run the code defined in
+<tt>MyAction</tt> as the authenticated user [lines 14-15]. This
+serves two purposes. First, code in <tt>MyAction</tt> that requires
+identity information for authentication to a service could get it
+from the subject. This exercise demonstrates this use. Second, if
+<tt>MyAction</tt> accesses any protected resources/operations, the
+identity information in the current subject would be used to make
+the corresponding access control decision. This second aspect is
+not covered in this exercise.</p>
+<a name="JAAScode" id="JAAScode"></a>
+<div>
+<p>Code listing for <code>Jaas.java</code>.</p>
+<br />
+<table summary="" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><br />
+<ol>
+<li><code>// Create a callback handler</code></li>
+<li><code>CallbackHandler callbackHandler = new
+TextCallbackHandler();</code></li>
+<li>&nbsp;</li>
+<li><code>// Create LoginContext with a callback
+handler</code></li>
+<li><code>LoginContext context = new LoginContext(name,
+callbackHandler);</code></li>
+<li>&nbsp;</li>
+<li><code>// Perform authentication</code></li>
+<li><code>context.login();</code></li>
+<li>&nbsp;</li>
+<li><code>// Create action to perform</code></li>
+<li><code>PrivilegedAction action = new MyAction();</code></li>
+<li>&nbsp;</li>
+<li><code>// Perform action as authenticated user</code></li>
+<li><code>Subject subject = context.getSubject();</code></li>
+<li><code>Subject.doAs(subject, action);</code></li>
+<li>&nbsp;</li>
+<li><code>// Logout</code></li>
+<li><code>context.logout();</code></li>
+</ol>
+<br /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ol start="2">
+<li>Make sure that the <code>%JAVA_HOME%/bin</code> is in the path,
+and JDK pointed to by the <code>%JAVA_HOME%</code> variable points
+to Java SE 6.<br /></li>
+<li>Compile the modified sample code.<br />
+<pre class="codeblock">
+<b>
+% cd auth/src
+% javac Jaas.java
+</b>
+</pre>
+You will run this code in subsequent exercises after doing some set
+up. That ends this exercise.</li>
+</ol>
+<h3>Summary:</h3>
+<p>This exercise introduced the main classes of the JAAS APIs:
+<code>LoginContext</code> and <code>Subject</code>. You learned how
+to use <code>LoginContext</code> to authenticate a user and collect
+its identity information in a <code>Subject</code>. You then
+learned how to use the <code>Subject</code> to perform an action as
+the authenticated user.</p>
+<h3>Next Steps</h3>
+<ol>
+<li>Proceed to <a href="#JAASKRB5">Exercise 2</a> to learn how to
+configure the sample application to use Kerberos for
+authentication.</li>
+</ol>
+<br />
+<hr />
+<h2><a name="JAASKRB5" href="#JAASKRB5" id="JAASKRB5"></a>Exercise
+2: Configuring JAAS for Kerberos Authentication</h2>
+<h3>Goal of this exercise:</h3>
+<p>The goal of this exercise is to learn how to configure a JAAS
+application to use Kerberos for authentication. <a name="KRB5BG"
+id="KRB5BG"></a></p>
+<h3>Kerberos Background for this exercise:</h3>
+<p>Kerberos is an Internet standard protocol for trusted-third
+party authentication defined in <a href=
+"http://www.ietf.org/rfc/rfc4120.txt">RFC 4120</a>. It is available
+on most modern computing platforms today, including Solaris,
+Windows XP, and Linux.</p>
+<p>The Kerberos architecture is centered around a trusted
+authentication service called the key distribution center, or KDC.
+Users and services in a Kerberos environment are referred to as
+principals; each principal shares a secret (such as a password)
+with the KDC. A principal &nbsp;authenticates to Kerberos by
+proving to the KDC that it knows the shared secret. If the
+authentication is successful, the KDC issues a
+ticket-granting-ticket (TGT) to the principal. When the principal
+subsequently wants to authenticate to a service on the network,
+such as a directory service or a file service, (thereby, acting as
+a "client" of the service), it gives the TGT to the KDC to obtain a
+service ticket to communicate with the service. Not only does the
+service ticket indicate the identities of the client and service
+principals, it also contains a session key that can be used by the
+client and service to subsequently establish secure communication.
+To authenticate to the service, the client sends the service ticket
+to the service. When the service receives the ticket, it decodes it
+using the secret it shares with the KDC.<br />
+<br />
+In this architecture, a principal only authenticates directly
+(once) to the KDC. It authenticates indirectly to all other
+services via the use of service tickets. Service tickets are how
+the KDC vouches for the identity of a principal. The ability of a
+principal to access multiple secure services by performing explicit
+authentication only once is called single sign-on.<br /></p>
+<p><br />
+JAAS Background for this exercise:<br />
+<br />
+In JAAS, for a client principal, "logging into Kerberos" means
+acquiring the TGT and placing it in the <code>Subject</code>, so
+that it can be used for authentication with services that the
+client will access. For a service principal, "logging into
+Kerberos" means obtaining the secret keys that the service needs to
+decode incoming client authentication requests.</p>
+<p>Resources for this exercise:<br /></p>
+<ol>
+<li><a href="../../../security/jaas/JAASLMDevGuide.html">JAAS LoginModule Developer's Guide</a></li>
+<li><a href="http://www.ietf.org/rfc/rfc4120.txt">The Kerberos
+Network Authentication Service (v5)</a></li>
+<li><a href="../../../security/jaas/JAASRefGuide.html#AppendixB">Example Login Configurations</a></li>
+<li>Login module package javadocs: <a href="http://docs.oracle.com/javase/1.4.2/docs/guide/security/jaas/spec/com/sun/security/auth/module/package-summary.html">com.sun.security.auth.module</a></li>
+<li><a href="../../../security/jgss/tutorials/index.html">The JAAS and Java GSS-API Tutorials</a></li>
+</ol>
+<p>Steps to follow:</p>
+<ol>
+<li>Examine the JAAS configuration file. This is located in
+<a href="src/jaas-krb5.conf"><code>src/jaas-krb5.conf<br /></code></a></li>
+</ol>
+<div>
+<p>This file contains two entries, one named "client" and one named
+"server." &nbsp;The "client" entry indicates that the
+<code>LoginContext</code> must use the
+<strong><code>com.sun.security.auth.module.Krb5LoginModule</code></strong>.
+The "server" entry indicates that the LoginContext must use the
+same login module, and use keys from the
+<code><strong>sample.keytab</strong></code> file for the principal
+<code><strong>host/machineName</strong></code>.</p>
+</div>
+<br />
+<p>Code listing for <code>jaas-krb5.conf</code>.</p>
+<table summary="" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><br />
+<ol>
+<li><code>client {</code></li>
+<li><code>&nbsp; &nbsp;
+com.sun.security.auth.module.Krb5LoginModule required</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;principal="test";</code></li>
+<li><code>};</code></li>
+<li><code>server {</code></li>
+<li><code>&nbsp;&nbsp; com.sun.security.auth.module.Krb5LoginModule
+required</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;useKeyTab=true</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;storeKey=true</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;keyTab=sample.keytab</code></li>
+<li>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;principal="host/machineName";</code></li>
+<li><code>};</code></li>
+</ol>
+<br /></td>
+</tr>
+</tbody>
+</table>
+<br />
+<br />
+<ol start="2">
+<li>Determine the hostname of your machine by executing the
+hostname command.</li>
+</ol>
+<div>% hostname</div>
+<ol start="3">
+<li>Edit this file and change the entry for server principal to use
+the name of your machine. For example, if your machine name is
+j1hol-001, this line in the configuration file should look like
+this.</li>
+</ol>
+<div>principal="host/j1hol-001"<br /></div>
+<ol start="4">
+<li>Perform client authentication by typing&nbsp;</li>
+</ol>
+<div>% java -Djava.security.auth.login.config=jaas-krb5.conf\<br />
+&nbsp; &nbsp; &nbsp;Jaas client<br /></div>
+<div><br />
+You will be prompted for a password. Enter "changeit". You should
+see the following output.<br /></div>
+<br />
+<p>Output for running the JAAS example using the <i>client</i>
+entry from <code>jaas-krb5.conf</code>:</p>
+<table summary="" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><br />
+<ol>
+<li><code>Kerberos password for test: changeit</code></li>
+<li><code>Authenticated principal:
+[test@J1LABS.EXAMPLE.COM]</code></li>
+<li><code>Performing secure action...</code></li>
+</ol>
+<br /></td>
+</tr>
+</tbody>
+</table>
+<br />
+<ol start="5">
+<li>Perform server authentication by typing&nbsp;</li>
+</ol>
+<div>% java -Djava.security.auth.login.config=jaas-krb5.conf\<br />
+&nbsp; &nbsp; &nbsp;Jaas server<br /></div>
+<div><br />
+You should see the following output.<br /></div>
+<br />
+<p>Output for running JAAS example using "server" entry from
+<code>jaas-krb5.conf</code>.</p>
+<table summary="" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><br />
+<ol>
+<li><code>Authenticated principal:
+[host/j1hol-001@J1LABS.EXAMPLE.COM]</code></li>
+<li><code>Performing secure action...</code></li>
+</ol>
+<br /></td>
+</tr>
+</tbody>
+</table>
+<big><br /></big><br />
+<p>Summary:</p>
+<p>In this exercise, you learned how to configure a JAAS
+application to use a Kerberos login module, both as a client
+principal who enters his/her username/password interactively, and
+as a service principal who gets its keys from a keytab file.</p>
+<br />
+<br />
+<h3>Next Steps</h3>
+<ol>
+<li>Proceed to <a href="part2.html">Part II</a> to learn how to
+establish secure communication channels using Java security
+APIs.<br /></li>
+</ol>
+<hr />
+
+<!--  footer start -->
+<div id="javasefooter">
+<div class="hr">
+<hr /></div>
+<div id="javasecopyright">
+<img id="oraclelogofooter" src=
+"../../../../../images/oraclelogo.gif" alt="Oracle and/or its affiliates"
+border="0" width="100" height="29" name=
+"oraclelogofooter" />
+
+<a href="../../../../../legal/cpyr.html">Copyright
+&#169;</a> 1993, 2012, Oracle and/or its affiliates. All rights
+reserved.</div>
+<div id="javasecontactus">
+<a href=
+"http://docs.oracle.com/javase/feedback.html">Contact
+Us</a>
+</div>
+</div>
+<!-- footer end -->
+
+<!-- STATIC FOOTER -->
+
+</body>
+</html>
