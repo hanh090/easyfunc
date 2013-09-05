@@ -15,7 +15,7 @@ public class Indexing {
 	}
 	
 	public Indexing() {
-		this.indexWriter = new IndexWriter(d, conf)
+//		this.indexWriter = new IndexWriter(d, conf)
 	}
 	public void doIndex(){
 		buildDocument();
