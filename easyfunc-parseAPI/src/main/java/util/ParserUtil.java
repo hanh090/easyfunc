@@ -1,33 +1,62 @@
 package util;
 
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import resource.JavaResource;
+
 
 public class ParserUtil {
-	public static String prettyFormat(String input, int indent) {
-	    try {
-	        Source xmlInput = new StreamSource(new StringReader(input));
-	        StringWriter stringWriter = new StringWriter();
-	        StreamResult xmlOutput = new StreamResult(stringWriter);
-	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	        transformerFactory.setAttribute("indent-number", indent);
-	        Transformer transformer = transformerFactory.newTransformer(); 
-	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-	        transformer.transform(xmlInput, xmlOutput);
-	        return xmlOutput.getWriter().toString();
-	    } catch (Exception e) {
-	        throw new RuntimeException(e); // simple exception handling, please review it
-	    }
+	
+	/**
+	 * Get text from file with specify selector
+	 * @param filePath path to file which will use for get text
+	 * @param selector selector for get text.Selector has syntax of {@link org.jsoup.select.Selector}
+	 * @return plain text from selector
+	 */
+	public static String getText(String filePath,String selector) {
+		Document document = Jsoup.parse(filePath);
+		String text = document.select(selector).text();
+		return text;
 	}
-
-	public static String prettyFormat(String input) {
-	    return prettyFormat(input, 2);
+	
+	/**
+	 * Get text from all file in a directory with specify selector
+	 * @param directoryPath name of file which will use for get text
+	 * @param selector selector for get text.Selector has syntax of {@link org.jsoup.select.Selector}
+	 * @return plain text from selector
+	 */
+	public static List<String> getAllText(String directoryPath,String selector) {
+		List<String> result = new ArrayList<String>();
+		File file = new File(directoryPath);
+		if(!file.isDirectory()){
+			System.out.println("Must be directory");
+			return null;
+		}
+		
+		for (File f : file.listFiles()) {
+			try {
+				Document document = Jsoup.parse(f,"UTF-8");
+				result.add(document.select(selector).text());
+				System.out.println(result);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+	}
+	/**
+	 * Get the location of parsed result
+	 * @return location of parsed result 
+	 */
+	public static String getOuputLocation(){
+		return new JavaResource().getOutput();
 	}
 }

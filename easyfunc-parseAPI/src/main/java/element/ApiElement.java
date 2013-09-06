@@ -1,10 +1,11 @@
 package element;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
@@ -13,83 +14,70 @@ import org.jsoup.select.Elements;
 public abstract class ApiElement {
 	private String selector;
 	private List<Object> children;
-	private ChildrenType childrenType;
+	/**
+	 * Content which didn't parse
+	 */
+	private Elements rawContent;
 
 	public ApiElement() {
-		this.selector = getSelector();
-		this.children = getChildren();
-		this.childrenType = getChildrenType();
+		children = new ArrayList<Object>();
+		this.selector = buildSelector();
 	}
-
-	public boolean doParse(Elements content) {
-		if (content == null || content.size() == 0) {
-			System.out.println("Content null! "
-					+ this.getClass().getSimpleName());
-			return false;
+	
+	public void doParse(Elements parentContent) {
+		if(this.selector != null)
+			this.rawContent = parentContent.select(this.selector);
+		else if(rawContent == null){
+			System.out.println("Null");
+			return;
 		}
-
-		parse(content);
-		return true;
+		
+		buildChildren();
+		parse();
+	
+		
 	}
 
 	/**
 	 * Parse the content of this element
 	 * 
-	 * @param content
+	 * @param parentContent
 	 *            content of parent element
 	 */
-	protected void parse(Elements content) {
-		Elements childrenContent = content.select(this.selector);
+	protected void parse() {
+		
 		Iterator<Object> iterator = this.children.iterator();
-		do {
-			
-			Object child = null;
-			try {
-				child = iterator.next();
-			} catch(Exception e)  {
-				
+		while (iterator.hasNext()) {
+
+			Object child = iterator.next();
+	
+			if (child instanceof ApiElement) {
+				((ApiElement) child).doParse(rawContent);
 			}
+			else if(child instanceof String){
 			
-			switch (childrenType) {
-			case DICRETE:
-
-				if (child instanceof ApiElement) {
-					boolean result = ((ApiElement) child)
-							.doParse(childrenContent);
-
-					if (!result)
-						return;
-				}
-				break;
-
-			case LIST:
-
-				Element childContent = childrenContent.get(this.children
-						.indexOf(child));
-				if (child instanceof ApiElement)
-					((ApiElement) child).doParse(new Elements(childContent));
-				break;
-
-			case NO_CHILD:
-				this.children.add(childrenContent.text());
-				return;
-			default:
-				break;
+				String text = rawContent.text().replaceAll("\\s", " ");
+				if(text == null || text.isEmpty())
+					text = "null";
+				this.children.set(this.children.indexOf(child),text);
+			}
+			else{
+				System.out.println("null\n\n");
 			}
 
-		} while (iterator.hasNext());
+		};
 
 	}
 
 	@Override
 	public String toString() {
 		String name = this.getClass().getSimpleName().toLowerCase();
-		String result = "<" + name + ">\n";
+		String result = "<" + name + ">\n\t";
 		for (Object apiElement : this.children) {
-			result += "\t" + apiElement.toString();
+			result += apiElement.toString().replaceAll("\n", "\n\t");
 		}
 
-		result += "</" + name + ">\n";
+		result += "\n</" + name + ">\n";
 
 		return result;
 	}
@@ -99,24 +87,48 @@ public abstract class ApiElement {
 	 * 
 	 * @return selector of element
 	 */
-	public abstract String getSelector();
+	public String getSelector(){
+		return selector;
+	}
 
 	/**
-	 * Get {@link ChildrenType} of element
+	 * Set selector of element
 	 * 
-	 * @return children type of element
 	 */
-	public abstract ChildrenType getChildrenType();
+	public void setSelector(String selector) {
+		this.selector = selector;
+	}
+
 
 	/**
 	 * Get list children
 	 * 
 	 * @return list of children
 	 */
-	public abstract List<Object> getChildren();
-
-	public List<Object> buildChilren(Object... child) {
-		return Arrays.asList(child);
+	public List<Object> getChildren(){
+		return children;
 	}
 
+	public void setChildren(List<? extends Object> children) {
+		for (Object object : children) {
+			this.children.add(object);
+		}
+	}
+	
+	public void setChildren(Object... children) {
+		this.children = Arrays.asList(children);
+	}
+	
+	public Elements getRawContent() {
+		return rawContent;
+	}
+	
+	public void setRawContent(Elements rawContent) {
+		this.rawContent = rawContent;
+	}
+	
+	public abstract String buildSelector();
+	public abstract void buildChildren();
+
+	
 }

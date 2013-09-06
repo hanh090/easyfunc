@@ -1,30 +1,24 @@
 package element.java;
 
-import java.util.List;
-
 import element.ApiElement;
-import element.ChildrenType;
 
 public class Type extends ApiElement {
-
+	
+	
 	@Override
-	public String getSelector() {
+	public String buildSelector() {
 		
 		return JavaSelector.TYPE_SELECTOR;
 	}
-
 	@Override
-	public ChildrenType getChildrenType() {
+	public void buildChildren() {
+		Name typeName = new Name();
+		typeName.setSelector(".description " + JavaSelector.NAME_SELECTOR);
 		
-		return ChildrenType.DICRETE;
+		Description typeDescription = new Description();
+		typeDescription.setSelector(".description " + JavaSelector.DESCRIPTION_SELECTOR);
+		
+		this.setChildren(typeName, typeDescription ,new Methods());
 	}
 
-	@Override
-	@SuppressWarnings("Missing annontoatation")
-	public List<Object> getChildren() {
-		return this.buildChilren(new Name(), new Description(),new Methods());
-	}
-	
-	
-	
 }

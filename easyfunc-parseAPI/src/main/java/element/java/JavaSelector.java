@@ -3,7 +3,9 @@ package element.java;
 import org.jsoup.select.Selector;
 
 /**
- * Selector for all element of Java API. To more precisely, all element shoud be contain 2 level
+ * Selector for all element of Java API. To more precisely, all element shoud be
+ * contain 2 level
+ * 
  * @see Selector
  */
 public final class JavaSelector {
@@ -26,32 +28,52 @@ public final class JavaSelector {
 	/**
 	 * Type selector
 	 */
-	public static final String TYPE_SELECTOR = ".description > .blockList";
+	public static final String TYPE_SELECTOR = "body > .contentContainer";
 	/**
-	 * Method list selector
+	 * Method and field list selector
 	 */
-	public static final String METHODS_SELECTOR = "li.blockList > a[name]";
+	
+	/**
+	 * Field list selector
+	 */
+	public static final String FIELDS_SELECTOR = null;
+	/**
+	 * Field selector
+	 */
+	public static final String FIELD_SELECTOR = null;
+
+	public static final String METHODS_SELECTOR = "div.details ul.blockList ul.blockList ul.blockList li.blockList, "
+												+ "div.details ul.blockList ul.blockList ul.blockListLast li.blockList";
+	
 	/**
 	 * Method selector
 	 */
-	public static final String METHOD_SELECTOR = "ul.blockList > li.blockList";
+	public static final String METHOD_SELECTOR = null;
 	/**
 	 * Annotation list selector
 	 */
-	public static final String ANNOTATIONS_SELECTOR = ".blockList > dl";
+	public static final String ANNOTATIONS_SELECTOR = null;
 	/**
-	 * Annotation selector
+	 * Parameter list selector
 	 */
-	public static final String ANNOTATION_SELECTOR = null;
+
+	public static final String PARAMETERS_SELECTOR = null;
+	/**
+	 * Parameter selector
+	 */
+	public static final String PARAMETER_SELECTOR = null;
+	
+
+	public static final String ANNOTATION_SELECTOR = "dl, dl ~ dd";
 	/**
 	 * Description selector
 	 */
-	public static final String DESCRIPTION_SELECTOR = ".blockList .block, dl dd";
-	/**
-	 * Name  selector
-	 */
-	public static final String NAME_SELECTOR = ".blockList pre, dl dt";
-	
-	
+	public static final String DESCRIPTION_SELECTOR = ".blockList > .block";
 
+	/**
+	 * Name selector
+	 */
+
+	public static final String NAME_SELECTOR = ".blockList > pre";
+	
 }
