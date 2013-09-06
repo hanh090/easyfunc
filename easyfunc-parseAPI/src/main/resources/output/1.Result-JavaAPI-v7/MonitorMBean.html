@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.management.monitor
+	</package>
+	<type>
+		<name>
+			public interface MonitorMBean
+		</name>
+		<description>
+			Exposes the remote management interface of monitor MBeans.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void start()
+				</name>
+				<description>
+					Starts the monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void stop()
+				</name>
+				<description>
+					Stops the monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addObservedObject(ObjectName object)                         throws IllegalArgumentException
+				</name>
+				<description>
+					Adds the specified object in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeObservedObject(ObjectName object)
+				</name>
+				<description>
+					Removes the specified object from the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean containsObservedObject(ObjectName object)
+				</name>
+				<description>
+					Tests whether the specified object is in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectName[] getObservedObjects()
+				</name>
+				<description>
+					Returns an array containing the objects being observed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  ObjectName getObservedObject()
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by getObservedObjects() Gets the object name of the object being observed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  void setObservedObject(ObjectName object)
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by addObservedObject(javax.management.ObjectName) Sets the object to observe identified by its object name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getObservedAttribute()
+				</name>
+				<description>
+					Gets the attribute being observed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setObservedAttribute(String attribute)
+				</name>
+				<description>
+					Sets the attribute to observe.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getGranularityPeriod()
+				</name>
+				<description>
+					Gets the granularity period (in milliseconds).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setGranularityPeriod(long period)                            throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the granularity period (in milliseconds).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isActive()
+				</name>
+				<description>
+					Tests if the monitor MBean is active. A monitor MBean is marked active when the start method is called. It becomes inactive when the stop method is called.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

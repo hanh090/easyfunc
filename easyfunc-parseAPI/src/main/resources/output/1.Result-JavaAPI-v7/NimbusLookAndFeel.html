@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.nimbus
+	</package>
+	<type>
+		<name>
+			public class NimbusLookAndFeel  extends SynthLookAndFeel
+		</name>
+		<description>
+			The NimbusLookAndFeel class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public NimbusLookAndFeel()
+				</name>
+				<description>
+					Create a new NimbusLookAndFeel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void initialize()
+				</name>
+				<description>
+					Called by UIManager when this look and feel is installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninitialize()
+				</name>
+				<description>
+					Called by UIManager when this look and feel is uninstalled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UIDefaults getDefaults()
+				</name>
+				<description>
+					Description copied from class: SynthLookAndFeel Returns the defaults for this SynthLookAndFeel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static NimbusStyle getStyle(JComponent c,                     Region r)
+				</name>
+				<description>
+					Gets the style associated with the given component and region. This will never return null. If an appropriate component and region cannot be determined, then a default style is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Return a short string that identifies this look and feel. This String will be the unquoted String "Nimbus".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getID()
+				</name>
+				<description>
+					Return a string that identifies this look and feel. This String will be the unquoted String "Nimbus".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDescription()
+				</name>
+				<description>
+					Returns a textual description of this look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean shouldUpdateStyleOnAncestorChanged()
+				</name>
+				<description>
+					Description copied from class: SynthLookAndFeel Returns whether or not the UIs should update their SynthStyles from the SynthStyleFactory when the ancestor of the JComponent changes. A subclass that provided a SynthStyleFactory that based the return value from getStyle off the containment hierarchy would override this method to return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean shouldUpdateStyleOnEvent(PropertyChangeEvent ev)
+				</name>
+				<description>
+					Description copied from class: SynthLookAndFeel Returns whether or not the UIs should update their styles when a particular event occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void register(Region region,              String prefix)
+				</name>
+				<description>
+					Registers a third party component with the NimbusLookAndFeel. Regions represent Components and areas within Components that act as independent painting areas. Once registered with the NimbusLookAndFeel, NimbusStyles for these Regions can be retrieved via the getStyle method. The NimbusLookAndFeel uses a standard naming scheme for entries in the UIDefaults table. The key for each property, state, painter, and other default registered in UIDefaults for a specific Region will begin with the specified prefix For example, suppose I had a component named JFoo. Suppose I then registered this component with the NimbusLookAndFeel in this manner:        laf.register(NimbusFooUI.FOO_REGION, "Foo");   In this case, I could then register properties for this component with UIDefaults in the following manner:        UIManager.put("Foo.background", new ColorUIResource(Color.BLACK));       UIManager.put("Foo.Enabled.backgroundPainter", new FooBackgroundPainter());   It is also possible to register a named component with Nimbus. For example, suppose you wanted to style the background of a JPanel named "MyPanel" differently from other JPanels. You could accomplish this by doing the following:        laf.register(Region.PANEL, "\"MyPanel\"");       UIManager.put("\"MyPanel\".background", new ColorUIResource(Color.RED));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledIcon(JComponent component,                     Icon icon)
+				</name>
+				<description>
+					Description copied from class: LookAndFeel Returns an Icon with a disabled appearance. This method is used to generate a disabled Icon when one has not been specified. For example, if you create a JButton and only specify an Icon via setIcon this method will be called to generate the disabled Icon. If null is passed as icon this method returns null. Some look and feels might not render the disabled Icon, in which case they will ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getDerivedColor(String uiDefaultParentName,                      float hOffset,                      float sOffset,                      float bOffset,                      int aOffset,                      boolean uiResource)
+				</name>
+				<description>
+					Get a derived color, derived colors are shared instances and is color value will change when its parent UIDefault color changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Color getDerivedColor(Color color1,                      Color color2,                      float midPoint,                      boolean uiResource)
+				</name>
+				<description>
+					Decodes and returns a color, which is derived from an offset between two other colors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Color getDerivedColor(Color color1,                      Color color2,                      float midPoint)
+				</name>
+				<description>
+					Decodes and returns a color, which is derived from a offset between two other colors.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,747 @@
+<javaelement>
+	<package>
+		java.lang
+	</package>
+	<type>
+		<name>
+			public final class String  extends Object  implements Serializable, Comparable<String>, CharSequence
+		</name>
+		<description>
+			The String class represents character strings. All string literals in Java programs, such as "abc", are implemented as instances of this class. Strings are constant; their values cannot be changed after they are created. String buffers support mutable strings. Because String objects are immutable they can be shared. For example:        String str = "abc";   is equivalent to:        char data[] = {'a', 'b', 'c'};       String str = new String(data);   Here are some more examples of how strings can be used:        System.out.println("abc");       String cde = "cde";       System.out.println("abc" + cde);       String c = "abc".substring(2,3);       String d = cde.substring(1, 2);   The class String includes methods for examining individual characters of the sequence, for comparing strings, for searching strings, for extracting substrings, and for creating a copy of a string with all characters translated to uppercase or to lowercase. Case mapping is based on the Unicode Standard version specified by the Character class. The Java language provides special support for the string concatenation operator ( + ), and for conversion of other objects to strings. String concatenation is implemented through the StringBuilder(or StringBuffer) class and its append method. String conversions are implemented through the method toString, defined by Object and inherited by all classes in Java. For additional information on string concatenation and conversion, see Gosling, Joy, and Steele, The Java Language Specification. Unless otherwise noted, passing a null argument to a constructor or method in this class will cause a NullPointerException to be thrown. A String represents a string in the UTF-16 format in which supplementary characters are represented by surrogate pairs (see the section Unicode Character Representations in the Character class for more information). Index values refer to char code units, so a supplementary character uses two positions in a String. The String class provides methods for dealing with Unicode code points (i.e., characters), in addition to those for dealing with Unicode code units (i.e., char values).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final Comparator<String> CASE_INSENSITIVE_ORDER
+				</name>
+				<description>
+					A Comparator that orders String objects as by compareToIgnoreCase. This comparator is serializable. Note that this Comparator does not take locale into account, and will result in an unsatisfactory ordering for certain locales. The java.text package provides Collators to allow locale-sensitive ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String()
+				</name>
+				<description>
+					Initializes a newly created String object so that it represents an empty character sequence. Note that use of this constructor is unnecessary since Strings are immutable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(String original)
+				</name>
+				<description>
+					Initializes a newly created String object so that it represents the same sequence of characters as the argument; in other words, the newly created string is a copy of the argument string. Unless an explicit copy of original is needed, use of this constructor is unnecessary since Strings are immutable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(char[] value)
+				</name>
+				<description>
+					Allocates a new String so that it represents the sequence of characters currently contained in the character array argument. The contents of the character array are copied; subsequent modification of the character array does not affect the newly created string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(char[] value,        int offset,        int count)
+				</name>
+				<description>
+					Allocates a new String that contains characters from a subarray of the character array argument. The offset argument is the index of the first character of the subarray and the count argument specifies the length of the subarray. The contents of the subarray are copied; subsequent modification of the character array does not affect the newly created string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(int[] codePoints,        int offset,        int count)
+				</name>
+				<description>
+					Allocates a new String that contains characters from a subarray of the Unicode code point array argument. The offset argument is the index of the first code point of the subarray and the count argument specifies the length of the subarray. The contents of the subarray are converted to chars; subsequent modification of the int array does not affect the newly created string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public String(byte[] ascii,                   int hibyte,                   int offset,                   int count)
+				</name>
+				<description>
+					Deprecated. This method does not properly convert bytes into characters. As of JDK 1.1, the preferred way to do this is via the String constructors that take a Charset, charset name, or that use the platform's default charset. Allocates a new String constructed from a subarray of an array of 8-bit integer values. The offset argument is the index of the first byte of the subarray, and the count argument specifies the length of the subarray. Each byte in the subarray is converted to a char as specified in the method above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public String(byte[] ascii,                   int hibyte)
+				</name>
+				<description>
+					Deprecated. This method does not properly convert bytes into characters. As of JDK 1.1, the preferred way to do this is via the String constructors that take a Charset, charset name, or that use the platform's default charset. Allocates a new String containing characters constructed from an array of 8-bit integer values. Each character cin the resulting string is constructed from the corresponding component b in the byte array such that:        c == (char)(((hibyte & 0xff) << 8)                           | (b & 0xff))
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(byte[] bytes,        int offset,        int length,        String charsetName)         throws UnsupportedEncodingException
+				</name>
+				<description>
+					Constructs a new String by decoding the specified subarray of bytes using the specified charset. The length of the new String is a function of the charset, and hence may not be equal to the length of the subarray. The behavior of this constructor when the given bytes are not valid in the given charset is unspecified. The CharsetDecoder class should be used when more control over the decoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(byte[] bytes,        int offset,        int length,        Charset charset)
+				</name>
+				<description>
+					Constructs a new String by decoding the specified subarray of bytes using the specified charset. The length of the new String is a function of the charset, and hence may not be equal to the length of the subarray. This method always replaces malformed-input and unmappable-character sequences with this charset's default replacement string. The CharsetDecoder class should be used when more control over the decoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(byte[] bytes,        String charsetName)         throws UnsupportedEncodingException
+				</name>
+				<description>
+					Constructs a new String by decoding the specified array of bytes using the specified charset. The length of the new String is a function of the charset, and hence may not be equal to the length of the byte array. The behavior of this constructor when the given bytes are not valid in the given charset is unspecified. The CharsetDecoder class should be used when more control over the decoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(byte[] bytes,        Charset charset)
+				</name>
+				<description>
+					Constructs a new String by decoding the specified array of bytes using the specified charset. The length of the new String is a function of the charset, and hence may not be equal to the length of the byte array. This method always replaces malformed-input and unmappable-character sequences with this charset's default replacement string. The CharsetDecoder class should be used when more control over the decoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(byte[] bytes,        int offset,        int length)
+				</name>
+				<description>
+					Constructs a new String by decoding the specified subarray of bytes using the platform's default charset. The length of the new String is a function of the charset, and hence may not be equal to the length of the subarray. The behavior of this constructor when the given bytes are not valid in the default charset is unspecified. The CharsetDecoder class should be used when more control over the decoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(byte[] bytes)
+				</name>
+				<description>
+					Constructs a new String by decoding the specified array of bytes using the platform's default charset. The length of the new String is a function of the charset, and hence may not be equal to the length of the byte array. The behavior of this constructor when the given bytes are not valid in the default charset is unspecified. The CharsetDecoder class should be used when more control over the decoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(StringBuffer buffer)
+				</name>
+				<description>
+					Allocates a new string that contains the sequence of characters currently contained in the string buffer argument. The contents of the string buffer are copied; subsequent modification of the string buffer does not affect the newly created string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String(StringBuilder builder)
+				</name>
+				<description>
+					Allocates a new string that contains the sequence of characters currently contained in the string builder argument. The contents of the string builder are copied; subsequent modification of the string builder does not affect the newly created string. This constructor is provided to ease migration to StringBuilder. Obtaining a string from a string builder via the toString method is likely to run faster and is generally preferred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int length()
+				</name>
+				<description>
+					Returns the length of this string. The length is equal to the number of Unicode code units in the string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Returns true if, and only if, length() is 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public char charAt(int index)
+				</name>
+				<description>
+					Returns the char value at the specified index. An index ranges from 0 to length() - 1. The first char value of the sequence is at index 0, the next at index 1, and so on, as for array indexing. If the char value specified by the index is a surrogate, the surrogate value is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int codePointAt(int index)
+				</name>
+				<description>
+					Returns the character (Unicode code point) at the specified index. The index refers to char values (Unicode code units) and ranges from 0 to length() - 1. If the char value specified at the given index is in the high-surrogate range, the following index is less than the length of this String, and the char value at the following index is in the low-surrogate range, then the supplementary code point corresponding to this surrogate pair is returned. Otherwise, the char value at the given index is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int codePointBefore(int index)
+				</name>
+				<description>
+					Returns the character (Unicode code point) before the specified index. The index refers to char values (Unicode code units) and ranges from 1 to length. If the char value at (index - 1) is in the low-surrogate range, (index - 2) is not negative, and the char value at (index - 2) is in the high-surrogate range, then the supplementary code point value of the surrogate pair is returned. If the char value at index - 1 is an unpaired low-surrogate or a high-surrogate, the surrogate value is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int codePointCount(int beginIndex,                   int endIndex)
+				</name>
+				<description>
+					Returns the number of Unicode code points in the specified text range of this String. The text range begins at the specified beginIndex and extends to the char at index endIndex - 1. Thus the length (in chars) of the text range is endIndex-beginIndex. Unpaired surrogates within the text range count as one code point each.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int offsetByCodePoints(int index,                       int codePointOffset)
+				</name>
+				<description>
+					Returns the index within this String that is offset from the given index by codePointOffset code points. Unpaired surrogates within the text range given by index and codePointOffset count as one code point each.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void getChars(int srcBegin,              int srcEnd,              char[] dst,              int dstBegin)
+				</name>
+				<description>
+					Copies characters from this string into the destination character array. The first character to be copied is at index srcBegin; the last character to be copied is at index srcEnd-1 (thus the total number of characters to be copied is srcEnd-srcBegin). The characters are copied into the subarray of dst starting at index dstBegin and ending at index:        dstbegin + (srcEnd-srcBegin) - 1
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void getBytes(int srcBegin,                         int srcEnd,                         byte[] dst,                         int dstBegin)
+				</name>
+				<description>
+					Deprecated. This method does not properly convert characters into bytes. As of JDK 1.1, the preferred way to do this is via the getBytes() method, which uses the platform's default charset. Copies characters from this string into the destination byte array. Each byte receives the 8 low-order bits of the corresponding character. The eight high-order bits of each character are not copied and do not participate in the transfer in any way. The first character to be copied is at index srcBegin; the last character to be copied is at index srcEnd-1. The total number of characters to be copied is srcEnd-srcBegin. The characters, converted to bytes, are copied into the subarray of dst starting at index dstBegin and ending at index:        dstbegin + (srcEnd-srcBegin) - 1
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getBytes(String charsetName)                  throws UnsupportedEncodingException
+				</name>
+				<description>
+					Encodes this String into a sequence of bytes using the named charset, storing the result into a new byte array. The behavior of this method when this string cannot be encoded in the given charset is unspecified. The CharsetEncoder class should be used when more control over the encoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getBytes(Charset charset)
+				</name>
+				<description>
+					Encodes this String into a sequence of bytes using the given charset, storing the result into a new byte array. This method always replaces malformed-input and unmappable-character sequences with this charset's default replacement byte array. The CharsetEncoder class should be used when more control over the encoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getBytes()
+				</name>
+				<description>
+					Encodes this String into a sequence of bytes using the platform's default charset, storing the result into a new byte array. The behavior of this method when this string cannot be encoded in the default charset is unspecified. The CharsetEncoder class should be used when more control over the encoding process is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object anObject)
+				</name>
+				<description>
+					Compares this string to the specified object. The result is true if and only if the argument is not null and is a String object that represents the same sequence of characters as this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contentEquals(StringBuffer sb)
+				</name>
+				<description>
+					Compares this string to the specified StringBuffer. The result is true if and only if this String represents the same sequence of characters as the specified StringBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contentEquals(CharSequence cs)
+				</name>
+				<description>
+					Compares this string to the specified CharSequence. The result is true if and only if this String represents the same sequence of char values as the specified sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equalsIgnoreCase(String anotherString)
+				</name>
+				<description>
+					Compares this String to another String, ignoring case considerations. Two strings are considered equal ignoring case if they are of the same length and corresponding characters in the two strings are equal ignoring case. Two characters c1 and c2 are considered the same ignoring case if at least one of the following is true: The two characters are the same (as compared by the == operator) Applying the method Character.toUpperCase(char) to each character produces the same result Applying the method Character.toLowerCase(char) to each character produces the same result
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int compareTo(String anotherString)
+				</name>
+				<description>
+					Compares two strings lexicographically. The comparison is based on the Unicode value of each character in the strings. The character sequence represented by this String object is compared lexicographically to the character sequence represented by the argument string. The result is a negative integer if this String object lexicographically precedes the argument string. The result is a positive integer if this String object lexicographically follows the argument string. The result is zero if the strings are equal; compareTo returns 0 exactly when the equals(Object) method would return true. This is the definition of lexicographic ordering. If two strings are different, then either they have different characters at some index that is a valid index for both strings, or their lengths are different, or both. If they have different characters at one or more index positions, let k be the smallest such index; then the string whose character at position k has the smaller value, as determined by using the < operator, lexicographically precedes the other string. In this case, compareTo returns the difference of the two character values at position k in the two string -- that is, the value:    this.charAt(k)-anotherString.charAt(k)   If there is no index position at which they differ, then the shorter string lexicographically precedes the longer string. In this case, compareTo returns the difference of the lengths of the strings -- that is, the value:    this.length()-anotherString.length()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int compareToIgnoreCase(String str)
+				</name>
+				<description>
+					Compares two strings lexicographically, ignoring case differences. This method returns an integer whose sign is that of calling compareTo with normalized versions of the strings where case differences have been eliminated by calling Character.toLowerCase(Character.toUpperCase(character)) on each character. Note that this method does not take locale into account, and will result in an unsatisfactory ordering for certain locales. The java.text package provides collators to allow locale-sensitive ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean regionMatches(int toffset,                      String other,                      int ooffset,                      int len)
+				</name>
+				<description>
+					Tests if two string regions are equal. A substring of this String object is compared to a substring of the argument other. The result is true if these substrings represent identical character sequences. The substring of this String object to be compared begins at index toffset and has length len. The substring of other to be compared begins at index ooffset and has length len. The result is false if and only if at least one of the following is true: toffset is negative. ooffset is negative. toffset+len is greater than the length of this String object. ooffset+len is greater than the length of the other argument. There is some nonnegative integer k less than len such that: this.charAt(toffset+k) != other.charAt(ooffset+k)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean regionMatches(boolean ignoreCase,                      int toffset,                      String other,                      int ooffset,                      int len)
+				</name>
+				<description>
+					Tests if two string regions are equal. A substring of this String object is compared to a substring of the argument other. The result is true if these substrings represent character sequences that are the same, ignoring case if and only if ignoreCase is true. The substring of this String object to be compared begins at index toffset and has length len. The substring of other to be compared begins at index ooffset and has length len. The result is false if and only if at least one of the following is true: toffset is negative. ooffset is negative. toffset+len is greater than the length of this String object. ooffset+len is greater than the length of the other argument. ignoreCase is false and there is some nonnegative integer k less than len such that:    this.charAt(toffset+k) != other.charAt(ooffset+k)   ignoreCase is true and there is some nonnegative integer k less than len such that:    Character.toLowerCase(this.charAt(toffset+k)) !=       Character.toLowerCase(other.charAt(ooffset+k))   and:    Character.toUpperCase(this.charAt(toffset+k)) !=           Character.toUpperCase(other.charAt(ooffset+k))
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean startsWith(String prefix,                   int toffset)
+				</name>
+				<description>
+					Tests if the substring of this string beginning at the specified index starts with the specified prefix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean startsWith(String prefix)
+				</name>
+				<description>
+					Tests if this string starts with the specified prefix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean endsWith(String suffix)
+				</name>
+				<description>
+					Tests if this string ends with the specified suffix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code for this string. The hash code for a String object is computed as    s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]   using int arithmetic, where s[i] is the ith character of the string, n is the length of the string, and ^ indicates exponentiation. (The hash value of the empty string is zero.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOf(int ch)
+				</name>
+				<description>
+					Returns the index within this string of the first occurrence of the specified character. If a character with value ch occurs in the character sequence represented by this String object, then the index (in Unicode code units) of the first such occurrence is returned. For values of ch in the range from 0 to 0xFFFF (inclusive), this is the smallest value k such that:    this.charAt(k) == ch   is true. For other values of ch, it is the smallest value k such that:    this.codePointAt(k) == ch   is true. In either case, if no such character occurs in this string, then -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOf(int ch,            int fromIndex)
+				</name>
+				<description>
+					Returns the index within this string of the first occurrence of the specified character, starting the search at the specified index. If a character with value ch occurs in the character sequence represented by this String object at an index no smaller than fromIndex, then the index of the first such occurrence is returned. For values of ch in the range from 0 to 0xFFFF (inclusive), this is the smallest value k such that:    (this.charAt(k) == ch) && (k >= fromIndex)   is true. For other values of ch, it is the smallest value k such that:    (this.codePointAt(k) == ch) && (k >= fromIndex)   is true. In either case, if no such character occurs in this string at or after position fromIndex, then -1 is returned. There is no restriction on the value of fromIndex. If it is negative, it has the same effect as if it were zero: this entire string may be searched. If it is greater than the length of this string, it has the same effect as if it were equal to the length of this string: -1 is returned. All indices are specified in char values (Unicode code units).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int lastIndexOf(int ch)
+				</name>
+				<description>
+					Returns the index within this string of the last occurrence of the specified character. For values of ch in the range from 0 to 0xFFFF (inclusive), the index (in Unicode code units) returned is the largest value k such that:    this.charAt(k) == ch   is true. For other values of ch, it is the largest value k such that:    this.codePointAt(k) == ch   is true. In either case, if no such character occurs in this string, then -1 is returned. The String is searched backwards starting at the last character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int lastIndexOf(int ch,                int fromIndex)
+				</name>
+				<description>
+					Returns the index within this string of the last occurrence of the specified character, searching backward starting at the specified index. For values of ch in the range from 0 to 0xFFFF (inclusive), the index returned is the largest value k such that:    (this.charAt(k) == ch) && (k <= fromIndex)   is true. For other values of ch, it is the largest value k such that:    (this.codePointAt(k) == ch) && (k <= fromIndex)   is true. In either case, if no such character occurs in this string at or before position fromIndex, then -1 is returned. All indices are specified in char values (Unicode code units).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOf(String str)
+				</name>
+				<description>
+					Returns the index within this string of the first occurrence of the specified substring. The returned index is the smallest value k for which:    this.startsWith(str, k)   If no such value of k exists, then -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOf(String str,            int fromIndex)
+				</name>
+				<description>
+					Returns the index within this string of the first occurrence of the specified substring, starting at the specified index. The returned index is the smallest value k for which:    k >= fromIndex && this.startsWith(str, k)   If no such value of k exists, then -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int lastIndexOf(String str)
+				</name>
+				<description>
+					Returns the index within this string of the last occurrence of the specified substring. The last occurrence of the empty string "" is considered to occur at the index value this.length(). The returned index is the largest value k for which:    this.startsWith(str, k)   If no such value of k exists, then -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int lastIndexOf(String str,                int fromIndex)
+				</name>
+				<description>
+					Returns the index within this string of the last occurrence of the specified substring, searching backward starting at the specified index. The returned index is the largest value k for which:    k <= fromIndex && this.startsWith(str, k)   If no such value of k exists, then -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String substring(int beginIndex)
+				</name>
+				<description>
+					Returns a new string that is a substring of this string. The substring begins with the character at the specified index and extends to the end of this string. Examples:    "unhappy".substring(2) returns "happy"   "Harbison".substring(3) returns "bison"   "emptiness".substring(9) returns "" (an empty string)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String substring(int beginIndex,                 int endIndex)
+				</name>
+				<description>
+					Returns a new string that is a substring of this string. The substring begins at the specified beginIndex and extends to the character at index endIndex - 1. Thus the length of the substring is endIndex-beginIndex. Examples:    "hamburger".substring(4, 8) returns "urge"   "smiles".substring(1, 5) returns "mile"
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharSequence subSequence(int beginIndex,                         int endIndex)
+				</name>
+				<description>
+					Returns a new character sequence that is a subsequence of this sequence. An invocation of this method of the form    str.subSequence(begin, end) behaves in exactly the same way as the invocation    str.substring(begin, end) This method is defined so that the String class can implement the CharSequence interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String concat(String str)
+				</name>
+				<description>
+					Concatenates the specified string to the end of this string. If the length of the argument string is 0, then this String object is returned. Otherwise, a new String object is created, representing a character sequence that is the concatenation of the character sequence represented by this String object and the character sequence represented by the argument string. Examples:    "cares".concat("s") returns "caress"   "to".concat("get").concat("her") returns "together"
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String replace(char oldChar,               char newChar)
+				</name>
+				<description>
+					Returns a new string resulting from replacing all occurrences of oldChar in this string with newChar. If the character oldChar does not occur in the character sequence represented by this String object, then a reference to this String object is returned. Otherwise, a new String object is created that represents a character sequence identical to the character sequence represented by this String object, except that every occurrence of oldChar is replaced by an occurrence of newChar. Examples:    "mesquite in your cellar".replace('e', 'o')           returns "mosquito in your collar"   "the war of baronets".replace('r', 'y')           returns "the way of bayonets"   "sparring with a purple porpoise".replace('p', 't')           returns "starring with a turtle tortoise"   "JonL".replace('q', 'x') returns "JonL" (no change)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean matches(String regex)
+				</name>
+				<description>
+					Tells whether or not this string matches the given regular expression. An invocation of this method of the form str.matches(regex) yields exactly the same result as the expression Pattern.matches(regex, str)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(CharSequence s)
+				</name>
+				<description>
+					Returns true if and only if this string contains the specified sequence of char values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String replaceFirst(String regex,                    String replacement)
+				</name>
+				<description>
+					Replaces the first substring of this string that matches the given regular expression with the given replacement. An invocation of this method of the form str.replaceFirst(regex, repl) yields exactly the same result as the expression Pattern.compile(regex).matcher(str).replaceFirst(repl) Note that backslashes (\) and dollar signs ($) in the replacement string may cause the results to be different than if it were being treated as a literal replacement string; see Matcher.replaceFirst(java.lang.String). Use Matcher.quoteReplacement(java.lang.String) to suppress the special meaning of these characters, if desired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String replaceAll(String regex,                  String replacement)
+				</name>
+				<description>
+					Replaces each substring of this string that matches the given regular expression with the given replacement. An invocation of this method of the form str.replaceAll(regex, repl) yields exactly the same result as the expression Pattern.compile(regex).matcher(str).replaceAll(repl) Note that backslashes (\) and dollar signs ($) in the replacement string may cause the results to be different than if it were being treated as a literal replacement string; see Matcher.replaceAll. Use Matcher.quoteReplacement(java.lang.String) to suppress the special meaning of these characters, if desired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String replace(CharSequence target,               CharSequence replacement)
+				</name>
+				<description>
+					Replaces each substring of this string that matches the literal target sequence with the specified literal replacement sequence. The replacement proceeds from the beginning of the string to the end, for example, replacing "aa" with "b" in the string "aaa" will result in "ba" rather than "ab".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] split(String regex,               int limit)
+				</name>
+				<description>
+					Splits this string around matches of the given regular expression. The array returned by this method contains each substring of this string that is terminated by another substring that matches the given expression or is terminated by the end of the string. The substrings in the array are in the order in which they occur in this string. If the expression does not match any part of the input then the resulting array has just one element, namely this string. The limit parameter controls the number of times the pattern is applied and therefore affects the length of the resulting array. If the limit n is greater than zero then the pattern will be applied at most n - 1 times, the array's length will be no greater than n, and the array's last entry will contain all input beyond the last matched delimiter. If n is non-positive then the pattern will be applied as many times as possible and the array can have any length. If n is zero then the pattern will be applied as many times as possible, the array can have any length, and trailing empty strings will be discarded. The string "boo:and:foo", for example, yields the following results with these parameters: Regex Limit Result : 2 { "boo", "and:foo" } : 5 { "boo", "and", "foo" } : -2 { "boo", "and", "foo" } o 5 { "b", "", ":and:f", "", "" } o -2 { "b", "", ":and:f", "", "" } o 0 { "b", "", ":and:f" } An invocation of this method of the form str.split(regex, n) yields the same result as the expression Pattern.compile(regex).split(str, n)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] split(String regex)
+				</name>
+				<description>
+					Splits this string around matches of the given regular expression. This method works as if by invoking the two-argument split method with the given expression and a limit argument of zero. Trailing empty strings are therefore not included in the resulting array. The string "boo:and:foo", for example, yields the following results with these expressions: Regex Result : { "boo", "and", "foo" } o { "b", "", ":and:f" }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toLowerCase(Locale locale)
+				</name>
+				<description>
+					Converts all of the characters in this String to lower case using the rules of the given Locale. Case mapping is based on the Unicode Standard version specified by the Character class. Since case mappings are not always 1:1 char mappings, the resulting String may be a different length than the original String. Examples of lowercase mappings are in the following table: Language Code of Locale Upper Case Lower Case Description tr (Turkish) \u0130 \u0069 capital letter I with dot above -> small letter i tr (Turkish) \u0049 \u0131 capital letter I -> small letter dotless i (all) French Fries french fries lowercased all chars in String (all) lowercased all chars in String
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toLowerCase()
+				</name>
+				<description>
+					Converts all of the characters in this String to lower case using the rules of the default locale. This is equivalent to calling toLowerCase(Locale.getDefault()). Note: This method is locale sensitive, and may produce unexpected results if used for strings that are intended to be interpreted locale independently. Examples are programming language identifiers, protocol keys, and HTML tags. For instance, "TITLE".toLowerCase() in a Turkish locale returns "t\u0131tle", where '\u0131' is the LATIN SMALL LETTER DOTLESS I character. To obtain correct results for locale insensitive strings, use toLowerCase(Locale.ENGLISH).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toUpperCase(Locale locale)
+				</name>
+				<description>
+					Converts all of the characters in this String to upper case using the rules of the given Locale. Case mapping is based on the Unicode Standard version specified by the Character class. Since case mappings are not always 1:1 char mappings, the resulting String may be a different length than the original String. Examples of locale-sensitive and 1:M case mappings are in the following table. Language Code of Locale Lower Case Upper Case Description tr (Turkish) \u0069 \u0130 small letter i -> capital letter I with dot above tr (Turkish) \u0131 \u0049 small letter dotless i -> capital letter I (all) \u00df \u0053 \u0053 small letter sharp s -> two letters: SS (all) Fahrvergnügen FAHRVERGNÜGEN
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toUpperCase()
+				</name>
+				<description>
+					Converts all of the characters in this String to upper case using the rules of the default locale. This method is equivalent to toUpperCase(Locale.getDefault()). Note: This method is locale sensitive, and may produce unexpected results if used for strings that are intended to be interpreted locale independently. Examples are programming language identifiers, protocol keys, and HTML tags. For instance, "title".toUpperCase() in a Turkish locale returns "T\u0130TLE", where '\u0130' is the LATIN CAPITAL LETTER I WITH DOT ABOVE character. To obtain correct results for locale insensitive strings, use toUpperCase(Locale.ENGLISH).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String trim()
+				</name>
+				<description>
+					Returns a copy of the string, with leading and trailing whitespace omitted. If this String object represents an empty character sequence, or the first and last characters of character sequence represented by this String object both have codes greater than '\u0020' (the space character), then a reference to this String object is returned. Otherwise, if there is no character with a code greater than '\u0020' in the string, then a new String object representing an empty string is created and returned. Otherwise, let k be the index of the first character in the string whose code is greater than '\u0020', and let m be the index of the last character in the string whose code is greater than '\u0020'. A new String object is created, representing the substring of this string that begins with the character at index k and ends with the character at index m-that is, the result of this.substring(k, m+1). This method may be used to trim whitespace (as defined above) from the beginning and end of a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					This object (which is already a string!) is itself returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public char[] toCharArray()
+				</name>
+				<description>
+					Converts this string to a new character array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String format(String format,              Object... args)
+				</name>
+				<description>
+					Returns a formatted string using the specified format string and arguments. The locale always used is the one returned by Locale.getDefault().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String format(Locale l,              String format,              Object... args)
+				</name>
+				<description>
+					Returns a formatted string using the specified locale, format string, and arguments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(Object obj)
+				</name>
+				<description>
+					Returns the string representation of the Object argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(char[] data)
+				</name>
+				<description>
+					Returns the string representation of the char array argument. The contents of the character array are copied; subsequent modification of the character array does not affect the newly created string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(char[] data,               int offset,               int count)
+				</name>
+				<description>
+					Returns the string representation of a specific subarray of the char array argument. The offset argument is the index of the first character of the subarray. The count argument specifies the length of the subarray. The contents of the subarray are copied; subsequent modification of the character array does not affect the newly created string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String copyValueOf(char[] data,                   int offset,                   int count)
+				</name>
+				<description>
+					Returns a String that represents the character sequence in the array specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String copyValueOf(char[] data)
+				</name>
+				<description>
+					Returns a String that represents the character sequence in the array specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(boolean b)
+				</name>
+				<description>
+					Returns the string representation of the boolean argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(char c)
+				</name>
+				<description>
+					Returns the string representation of the char argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(int i)
+				</name>
+				<description>
+					Returns the string representation of the int argument. The representation is exactly the one returned by the Integer.toString method of one argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(long l)
+				</name>
+				<description>
+					Returns the string representation of the long argument. The representation is exactly the one returned by the Long.toString method of one argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(float f)
+				</name>
+				<description>
+					Returns the string representation of the float argument. The representation is exactly the one returned by the Float.toString method of one argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String valueOf(double d)
+				</name>
+				<description>
+					Returns the string representation of the double argument. The representation is exactly the one returned by the Double.toString method of one argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String intern()
+				</name>
+				<description>
+					Returns a canonical representation for the string object. A pool of strings, initially empty, is maintained privately by the class String. When the intern method is invoked, if the pool already contains a string equal to this String object as determined by the equals(Object) method, then the string from the pool is returned. Otherwise, this String object is added to the pool and a reference to this String object is returned. It follows that for any two strings s and t, s.intern() == t.intern() is true if and only if s.equals(t) is true. All literal strings and string-valued constant expressions are interned. String literals are defined in section 3.10.5 of the The Java™ Language Specification.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

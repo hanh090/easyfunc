@@ -1,0 +1,765 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public abstract class Toolkit  extends Object
+		</name>
+		<description>
+			This class is the abstract superclass of all actual implementations of the Abstract Window Toolkit. Subclasses of the Toolkit class are used to bind the various components to particular native toolkit implementations. Many GUI events may be delivered to user asynchronously, if the opposite is not specified explicitly. As well as many GUI operations may be performed asynchronously. This fact means that if the state of a component is set, and then the state immediately queried, the returned value may not yet reflect the requested change. This behavior includes, but is not limited to: Scrolling to a specified position. For example, calling ScrollPane.setScrollPosition and then getScrollPosition may return an incorrect value if the original request has not yet been processed. Moving the focus from one component to another. For more information, see Timing Focus Transfers, a section in The Swing Tutorial. Making a top-level container visible. Calling setVisible(true) on a Window, Frame or Dialog may occur asynchronously. Setting the size or location of a top-level container. Calls to setSize, setBounds or setLocation on a Window, Frame or Dialog are forwarded to the underlying window management system and may be ignored or modified. See Window for more information. Most applications should not call any of the methods in this class directly. The methods defined by Toolkit are the "glue" that joins the platform-independent classes in the java.awt package with their counterparts in java.awt.peer. Some methods defined by Toolkit query the native operating system directly.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final Map<String,Object> desktopProperties
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final PropertyChangeSupport desktopPropsSupport
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Toolkit()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.DesktopPeer createDesktopPeer(Desktop target)                                                          throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of the Desktop using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.ButtonPeer createButton(Button target)                                                    throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Button using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.TextFieldPeer createTextField(TextField target)                                                          throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of TextField using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.LabelPeer createLabel(Label target)                                                  throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Label using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.ListPeer createList(List target)                                                throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of List using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.CheckboxPeer createCheckbox(Checkbox target)                                                        throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Checkbox using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.ScrollbarPeer createScrollbar(Scrollbar target)                                                          throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Scrollbar using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.ScrollPanePeer createScrollPane(ScrollPane target)                                                            throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of ScrollPane using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.TextAreaPeer createTextArea(TextArea target)                                                        throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of TextArea using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.ChoicePeer createChoice(Choice target)                                                    throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Choice using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.FramePeer createFrame(Frame target)                                                  throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Frame using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.CanvasPeer createCanvas(Canvas target)
+				</name>
+				<description>
+					Creates this toolkit's implementation of Canvas using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.PanelPeer createPanel(Panel target)
+				</name>
+				<description>
+					Creates this toolkit's implementation of Panel using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.WindowPeer createWindow(Window target)                                                    throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Window using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.DialogPeer createDialog(Dialog target)                                                    throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Dialog using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.MenuBarPeer createMenuBar(MenuBar target)                                                      throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of MenuBar using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.MenuPeer createMenu(Menu target)                                                throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of Menu using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.PopupMenuPeer createPopupMenu(PopupMenu target)                                                          throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of PopupMenu using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.MenuItemPeer createMenuItem(MenuItem target)                                                        throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of MenuItem using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.FileDialogPeer createFileDialog(FileDialog target)                                                            throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of FileDialog using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract java.awt.peer.CheckboxMenuItemPeer createCheckboxMenuItem(CheckboxMenuItem target)                                                                        throws HeadlessException
+				</name>
+				<description>
+					Creates this toolkit's implementation of CheckboxMenuItem using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected java.awt.peer.MouseInfoPeer getMouseInfoPeer()
+				</name>
+				<description>
+					Obtains this toolkit's implementation of helper class for MouseInfo operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected java.awt.peer.LightweightPeer createComponent(Component target)
+				</name>
+				<description>
+					Creates a peer for a component or container. This peer is windowless and allows the Component and Container classes to be extended directly to create windowless components that are defined entirely in java.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected abstract java.awt.peer.FontPeer getFontPeer(String name,                                              int style)
+				</name>
+				<description>
+					Deprecated. see java.awt.GraphicsEnvironment#getAllFonts Creates this toolkit's implementation of Font using the specified peer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void loadSystemColors(int[] systemColors)                           throws HeadlessException
+				</name>
+				<description>
+					Fills in the integer array that is supplied as an argument with the current system color values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDynamicLayout(boolean dynamic)                        throws HeadlessException
+				</name>
+				<description>
+					Controls whether the layout of Containers is validated dynamically during resizing, or statically, after resizing is complete. Use isDynamicLayoutActive() to detect if this feature enabled in this program and is supported by this operating system and/or window manager. Note that this feature is supported not on all platforms, and conversely, that this feature cannot be turned off on some platforms. On these platforms where dynamic layout during resizing is not supported (or is always supported), setting this property has no effect. Note that this feature can be set or unset as a property of the operating system or window manager on some platforms. On such platforms, the dynamic resize property must be set at the operating system or window manager level before this method can take effect. This method does not change support or settings of the underlying operating system or window manager. The OS/WM support can be queried using getDesktopProperty("awt.dynamicLayoutSupported") method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isDynamicLayoutSet()                                throws HeadlessException
+				</name>
+				<description>
+					Returns whether the layout of Containers is validated dynamically during resizing, or statically, after resizing is complete. Note: this method returns the value that was set programmatically; it does not reflect support at the level of the operating system or window manager for dynamic layout on resizing, or the current operating system or window manager settings. The OS/WM support can be queried using getDesktopProperty("awt.dynamicLayoutSupported").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDynamicLayoutActive()                                throws HeadlessException
+				</name>
+				<description>
+					Returns whether dynamic layout of Containers on resize is currently active (both set in program ( isDynamicLayoutSet() ) , and supported by the underlying operating system and/or window manager). If dynamic layout is currently inactive then Containers re-layout their components when resizing is completed. As a result the Component.validate() method will be invoked only once per resize. If dynamic layout is currently active then Containers re-layout their components on every native resize event and the validate() method will be invoked each time. The OS/WM support can be queried using the getDesktopProperty("awt.dynamicLayoutSupported") method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Dimension getScreenSize()                                   throws HeadlessException
+				</name>
+				<description>
+					Gets the size of the screen. On systems with multiple displays, the primary display is used. Multi-screen aware display dimensions are available from GraphicsConfiguration and GraphicsDevice.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getScreenResolution()                                   throws HeadlessException
+				</name>
+				<description>
+					Returns the screen resolution in dots-per-inch.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getScreenInsets(GraphicsConfiguration gc)                         throws HeadlessException
+				</name>
+				<description>
+					Gets the insets of the screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ColorModel getColorModel()                                    throws HeadlessException
+				</name>
+				<description>
+					Determines the color model of this toolkit's screen. ColorModel is an abstract class that encapsulates the ability to translate between the pixel values of an image and its red, green, blue, and alpha components. This toolkit method is called by the getColorModel method of the Component class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public abstract String[] getFontList()
+				</name>
+				<description>
+					Deprecated. see GraphicsEnvironment.getAvailableFontFamilyNames() Returns the names of the available fonts in this toolkit. For 1.1, the following font names are deprecated (the replacement name follows): TimesRoman (use Serif) Helvetica (use SansSerif) Courier (use Monospaced) The ZapfDingbats fontname is also deprecated in 1.1 but the characters are defined in Unicode starting at 0x2700, and as of 1.1 Java supports those characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public abstract FontMetrics getFontMetrics(Font font)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.2, replaced by the Font method getLineMetrics. Gets the screen device metrics for rendering of the font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void sync()
+				</name>
+				<description>
+					Synchronizes this toolkit's graphics state. Some window systems may do buffering of graphics events. This method ensures that the display is up-to-date. It is useful for animation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Toolkit getDefaultToolkit()
+				</name>
+				<description>
+					Gets the default toolkit. If a system property named "java.awt.headless" is set to true then the headless implementation of Toolkit is used. If there is no "java.awt.headless" or it is set to false and there is a system property named "awt.toolkit", that property is treated as the name of a class that is a subclass of Toolkit; otherwise the default platform-specific implementation of Toolkit is used. Also loads additional classes into the VM, using the property 'assistive_technologies' specified in the Sun reference implementation by a line in the 'accessibility.properties' file. The form is "assistive_technologies=..." where the "..." is a comma-separated list of assistive technology classes to load. Each class is loaded in the order given and a single instance of each is created using Class.forName(class).newInstance(). This is done just after the AWT toolkit is created. All errors are handled via an AWTError exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Image getImage(String filename)
+				</name>
+				<description>
+					Returns an image which gets pixel data from the specified file, whose format can be either GIF, JPEG or PNG. The underlying toolkit attempts to resolve multiple requests with the same filename to the same returned Image. Since the mechanism required to facilitate this sharing of Image objects may continue to hold onto images that are no longer in use for an indefinite period of time, developers are encouraged to implement their own caching of images by using the createImage variant wherever available. If the image data contained in the specified file changes, the Image object returned from this method may still contain stale information which was loaded from the file after a prior call. Previously loaded image data can be manually discarded by calling the flush method on the returned Image. This method first checks if there is a security manager installed. If so, the method calls the security manager's checkRead method with the file specified to ensure that the access to the image is allowed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Image getImage(URL url)
+				</name>
+				<description>
+					Returns an image which gets pixel data from the specified URL. The pixel data referenced by the specified URL must be in one of the following formats: GIF, JPEG or PNG. The underlying toolkit attempts to resolve multiple requests with the same URL to the same returned Image. Since the mechanism required to facilitate this sharing of Image objects may continue to hold onto images that are no longer in use for an indefinite period of time, developers are encouraged to implement their own caching of images by using the createImage variant wherever available. If the image data stored at the specified URL changes, the Image object returned from this method may still contain stale information which was fetched from the URL after a prior call. Previously loaded image data can be manually discarded by calling the flush method on the returned Image. This method first checks if there is a security manager installed. If so, the method calls the security manager's checkPermission method with the url.openConnection().getPermission() permission to ensure that the access to the image is allowed. For compatibility with pre-1.2 security managers, if the access is denied with FilePermission or SocketPermission, the method throws the SecurityException if the corresponding 1.1-style SecurityManager.checkXXX method also denies permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Image createImage(String filename)
+				</name>
+				<description>
+					Returns an image which gets pixel data from the specified file. The returned Image is a new object which will not be shared with any other caller of this method or its getImage variant. This method first checks if there is a security manager installed. If so, the method calls the security manager's checkRead method with the specified file to ensure that the image creation is allowed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Image createImage(URL url)
+				</name>
+				<description>
+					Returns an image which gets pixel data from the specified URL. The returned Image is a new object which will not be shared with any other caller of this method or its getImage variant. This method first checks if there is a security manager installed. If so, the method calls the security manager's checkPermission method with the url.openConnection().getPermission() permission to ensure that the image creation is allowed. For compatibility with pre-1.2 security managers, if the access is denied with FilePermission or SocketPermission, the method throws SecurityException if the corresponding 1.1-style SecurityManager.checkXXX method also denies permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean prepareImage(Image image,                     int width,                     int height,                     ImageObserver observer)
+				</name>
+				<description>
+					Prepares an image for rendering. If the values of the width and height arguments are both -1, this method prepares the image for rendering on the default screen; otherwise, this method prepares an image for rendering on the default screen at the specified width and height. The image data is downloaded asynchronously in another thread, and an appropriately scaled screen representation of the image is generated. This method is called by components prepareImage methods. Information on the flags returned by this method can be found with the definition of the ImageObserver interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int checkImage(Image image,               int width,               int height,               ImageObserver observer)
+				</name>
+				<description>
+					Indicates the construction status of a specified image that is being prepared for display. If the values of the width and height arguments are both -1, this method returns the construction status of a screen representation of the specified image in this toolkit. Otherwise, this method returns the construction status of a scaled representation of the image at the specified width and height. This method does not cause the image to begin loading. An application must call prepareImage to force the loading of an image. This method is called by the component's checkImage methods. Information on the flags returned by this method can be found with the definition of the ImageObserver interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Image createImage(ImageProducer producer)
+				</name>
+				<description>
+					Creates an image with the specified image producer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Image createImage(byte[] imagedata)
+				</name>
+				<description>
+					Creates an image which decodes the image stored in the specified byte array. The data must be in some image format, such as GIF or JPEG, that is supported by this toolkit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Image createImage(byte[] imagedata,                  int imageoffset,                  int imagelength)
+				</name>
+				<description>
+					Creates an image which decodes the image stored in the specified byte array, and at the specified offset and length. The data must be in some image format, such as GIF or JPEG, that is supported by this toolkit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract PrintJob getPrintJob(Frame frame,                     String jobtitle,                     Properties props)
+				</name>
+				<description>
+					Gets a PrintJob object which is the result of initiating a print operation on the toolkit's platform. Each actual implementation of this method should first check if there is a security manager installed. If there is, the method should call the security manager's checkPrintJobAccess method to ensure initiation of a print operation is allowed. If the default implementation of checkPrintJobAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with a RuntimePermission("queuePrintJob") permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintJob getPrintJob(Frame frame,                     String jobtitle,                     JobAttributes jobAttributes,                     PageAttributes pageAttributes)
+				</name>
+				<description>
+					Gets a PrintJob object which is the result of initiating a print operation on the toolkit's platform. Each actual implementation of this method should first check if there is a security manager installed. If there is, the method should call the security manager's checkPrintJobAccess method to ensure initiation of a print operation is allowed. If the default implementation of checkPrintJobAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with a RuntimePermission("queuePrintJob") permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void beep()
+				</name>
+				<description>
+					Emits an audio beep.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Clipboard getSystemClipboard()                                        throws HeadlessException
+				</name>
+				<description>
+					Gets the singleton instance of the system Clipboard which interfaces with clipboard facilities provided by the native platform. This clipboard enables data transfer between Java programs and native applications which use native clipboard facilities. In addition to any and all formats specified in the flavormap.properties file, or other file specified by the AWT.DnD.flavorMapFileURL Toolkit property, text returned by the system Clipboard's getTransferData() method is available in the following flavors: DataFlavor.stringFlavor DataFlavor.plainTextFlavor (deprecated) As with java.awt.datatransfer.StringSelection, if the requested flavor is DataFlavor.plainTextFlavor, or an equivalent flavor, a Reader is returned. Note: The behavior of the system Clipboard's getTransferData() method for DataFlavor.plainTextFlavor, and equivalent DataFlavors, is inconsistent with the definition of DataFlavor.plainTextFlavor . Because of this, support for DataFlavor.plainTextFlavor, and equivalent flavors, is deprecated. Each actual implementation of this method should first check if there is a security manager installed. If there is, the method should call the security manager's checkSystemClipboardAccess method to ensure it's ok to to access the system clipboard. If the default implementation of checkSystemClipboardAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with an AWTPermission("accessClipboard") permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Clipboard getSystemSelection()                               throws HeadlessException
+				</name>
+				<description>
+					Gets the singleton instance of the system selection as a Clipboard object. This allows an application to read and modify the current, system-wide selection. An application is responsible for updating the system selection whenever the user selects text, using either the mouse or the keyboard. Typically, this is implemented by installing a FocusListener on all Components which support text selection, and, between FOCUS_GAINED and FOCUS_LOST events delivered to that Component, updating the system selection Clipboard when the selection changes inside the Component. Properly updating the system selection ensures that a Java application will interact correctly with native applications and other Java applications running simultaneously on the system. Note that java.awt.TextComponent and javax.swing.text.JTextComponent already adhere to this policy. When using these classes, and their subclasses, developers need not write any additional code. Some platforms do not support a system selection Clipboard. On those platforms, this method will return null. In such a case, an application is absolved from its responsibility to update the system selection Clipboard as described above. Each actual implementation of this method should first check if there is a SecurityManager installed. If there is, the method should call the SecurityManager's checkSystemClipboardAccess method to ensure that client code has access the system selection. If the default implementation of checkSystemClipboardAccess is used (that is, if the method is not overridden), then this results in a call to the SecurityManager's checkPermission method with an AWTPermission("accessClipboard") permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMenuShortcutKeyMask()                             throws HeadlessException
+				</name>
+				<description>
+					Determines which modifier key is the appropriate accelerator key for menu shortcuts. Menu shortcuts, which are embodied in the MenuShortcut class, are handled by the MenuBar class. By default, this method returns Event.CTRL_MASK. Toolkit implementations should override this method if the Control key isn't the correct key for accelerators.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getLockingKeyState(int keyCode)                             throws UnsupportedOperationException
+				</name>
+				<description>
+					Returns whether the given locking key on the keyboard is currently in its "on" state. Valid key codes are VK_CAPS_LOCK, VK_NUM_LOCK, VK_SCROLL_LOCK, and VK_KANA_LOCK.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLockingKeyState(int keyCode,                        boolean on)                          throws UnsupportedOperationException
+				</name>
+				<description>
+					Sets the state of the given locking key on the keyboard. Valid key codes are VK_CAPS_LOCK, VK_NUM_LOCK, VK_SCROLL_LOCK, and VK_KANA_LOCK. Depending on the platform, setting the state of a locking key may involve event processing and therefore may not be immediately observable through getLockingKeyState.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static Container getNativeContainer(Component c)
+				</name>
+				<description>
+					Give native peers the ability to query the native container given a native component (eg the direct parent may be lightweight).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Cursor createCustomCursor(Image cursor,                          Point hotSpot,                          String name)                            throws IndexOutOfBoundsException,                                   HeadlessException
+				</name>
+				<description>
+					Creates a new custom cursor object. If the image to display is invalid, the cursor will be hidden (made completely transparent), and the hotspot will be set to (0, 0). Note that multi-frame images are invalid and may cause this method to hang.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getBestCursorSize(int preferredWidth,                            int preferredHeight)                              throws HeadlessException
+				</name>
+				<description>
+					Returns the supported cursor dimension which is closest to the desired sizes. Systems which only support a single cursor size will return that size regardless of the desired sizes. Systems which don't support custom cursors will return a dimension of 0, 0. Note: if an image is used whose dimensions don't match a supported size (as returned by this method), the Toolkit implementation will attempt to resize the image to a supported size. Since converting low-resolution images is difficult, no guarantees are made as to the quality of a cursor image which isn't a supported size. It is therefore recommended that this method be called and an appropriate image used so no image conversion is made.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaximumCursorColors()                             throws HeadlessException
+				</name>
+				<description>
+					Returns the maximum number of colors the Toolkit supports in a custom cursor palette. Note: if an image is used which has more colors in its palette than the supported maximum, the Toolkit implementation will attempt to flatten the palette to the maximum. Since converting low-resolution images is difficult, no guarantees are made as to the quality of a cursor image which has more colors than the system supports. It is therefore recommended that this method be called and an appropriate image used so no image conversion is made.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFrameStateSupported(int state)                                throws HeadlessException
+				</name>
+				<description>
+					Returns whether Toolkit supports this state for Frames. This method tells whether the UI concept of, say, maximization or iconification is supported. It will always return false for "compound" states like Frame.ICONIFIED|Frame.MAXIMIZED_VERT. In other words, the rule of thumb is that only queries with a single frame state constant as an argument are meaningful. Note that supporting a given concept is a platform- dependent feature. Due to native limitations the Toolkit object may report a particular state as supported, however at the same time the Toolkit object will be unable to apply the state to a given frame. This circumstance has two following consequences: Only the return value of false for the present method actually indicates that the given state is not supported. If the method returns true the given state may still be unsupported and/or unavailable for a particular frame. The developer should consider examining the value of the WindowEvent.getNewState() method of the WindowEvent received through the WindowStateListener, rather than assuming that the state given to the setExtendedState() method will be definitely applied. For more information see the documentation for the Frame.setExtendedState(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String getProperty(String key,                   String defaultValue)
+				</name>
+				<description>
+					Gets a property with the specified key and default. This method returns defaultValue if the property is not found.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final EventQueue getSystemEventQueue()
+				</name>
+				<description>
+					Get the application's or applet's EventQueue instance. Depending on the Toolkit implementation, different EventQueues may be returned for different applets. Applets should therefore not assume that the EventQueue instance returned by this method will be shared by other applets or the system. First, if there is a security manager, its checkAwtEventQueueAccess method is called. If the default implementation of checkAwtEventQueueAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with an AWTPermission("accessEventQueue") permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract EventQueue getSystemEventQueueImpl()
+				</name>
+				<description>
+					Gets the application's or applet's EventQueue instance, without checking access. For security reasons, this can only be called from a Toolkit subclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract java.awt.dnd.peer.DragSourceContextPeer createDragSourceContextPeer(DragGestureEvent dge)                                                                               throws InvalidDnDOperationException
+				</name>
+				<description>
+					Creates the peer for a DragSourceContext. Always throws InvalidDndOperationException if GraphicsEnvironment.isHeadless() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends DragGestureRecognizer> T createDragGestureRecognizer(Class<T> abstractRecognizerClass,                                                                DragSource ds,                                                                Component c,                                                                int srcActions,                                                                DragGestureListener dgl)
+				</name>
+				<description>
+					Creates a concrete, platform dependent, subclass of the abstract DragGestureRecognizer class requested, and associates it with the DragSource, Component and DragGestureListener specified. subclasses should override this to provide their own implementation
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Object getDesktopProperty(String propertyName)
+				</name>
+				<description>
+					Obtains a value for the specified desktop property. A desktop property is a uniquely named value for a resource that is Toolkit global in nature. Usually it also is an abstract representation for an underlying platform dependent desktop setting. For more information on desktop properties supported by the AWT see AWT Desktop Properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void setDesktopProperty(String name,                        Object newValue)
+				</name>
+				<description>
+					Sets the named desktop property to the specified value and fires a property change event to notify any listeners that the value has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object lazilyLoadDesktopProperty(String name)
+				</name>
+				<description>
+					an opportunity to lazily evaluate desktop property values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initializeDesktopProperties()
+				</name>
+				<description>
+					initializeDesktopProperties
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPropertyChangeListener(String name,                               PropertyChangeListener pcl)
+				</name>
+				<description>
+					Adds the specified property change listener for the named desktop property. When a PropertyChangeListenerProxy object is added, its property name is ignored, and the wrapped listener is added. If name is null or pcl is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removePropertyChangeListener(String name,                                  PropertyChangeListener pcl)
+				</name>
+				<description>
+					Removes the specified property change listener for the named desktop property. When a PropertyChangeListenerProxy object is removed, its property name is ignored, and the wrapped listener is removed. If name is null or pcl is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PropertyChangeListener[] getPropertyChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the property change listeners registered on this toolkit. The returned array contains PropertyChangeListenerProxy objects that associate listeners with the names of desktop properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PropertyChangeListener[] getPropertyChangeListeners(String propertyName)
+				</name>
+				<description>
+					Returns an array of all property change listeners associated with the specified name of a desktop property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAlwaysOnTopSupported()
+				</name>
+				<description>
+					Returns whether the always-on-top mode is supported by this toolkit. To detect whether the always-on-top mode is supported for a particular Window, use Window.isAlwaysOnTopSupported().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isModalityTypeSupported(Dialog.ModalityType modalityType)
+				</name>
+				<description>
+					Returns whether the given modality type is supported by this toolkit. If a dialog with unsupported modality type is created, then Dialog.ModalityType.MODELESS is used instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isModalExclusionTypeSupported(Dialog.ModalExclusionType modalExclusionType)
+				</name>
+				<description>
+					Returns whether the given modal exclusion type is supported by this toolkit. If an unsupported modal exclusion type property is set on a window, then Dialog.ModalExclusionType.NO_EXCLUDE is used instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addAWTEventListener(AWTEventListener listener,                         long eventMask)
+				</name>
+				<description>
+					Adds an AWTEventListener to receive all AWTEvents dispatched system-wide that conform to the given eventMask. First, if there is a security manager, its checkPermission method is called with an AWTPermission("listenToAllAWTEvents") permission. This may result in a SecurityException. eventMask is a bitmask of event types to receive. It is constructed by bitwise OR-ing together the event masks defined in AWTEvent. Note: event listener use is not recommended for normal application use, but are intended solely to support special purpose facilities including support for accessibility, event record/playback, and diagnostic tracing. If listener is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAWTEventListener(AWTEventListener listener)
+				</name>
+				<description>
+					Removes an AWTEventListener from receiving dispatched AWTEvents. First, if there is a security manager, its checkPermission method is called with an AWTPermission("listenToAllAWTEvents") permission. This may result in a SecurityException. Note: event listener use is not recommended for normal application use, but are intended solely to support special purpose facilities including support for accessibility, event record/playback, and diagnostic tracing. If listener is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AWTEventListener[] getAWTEventListeners()
+				</name>
+				<description>
+					Returns an array of all the AWTEventListeners registered on this toolkit. If there is a security manager, its checkPermission method is called with an AWTPermission("listenToAllAWTEvents") permission. This may result in a SecurityException. Listeners can be returned within AWTEventListenerProxy objects, which also contain the event mask for the given listener. Note that listener objects added multiple times appear only once in the returned array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AWTEventListener[] getAWTEventListeners(long eventMask)
+				</name>
+				<description>
+					Returns an array of all the AWTEventListeners registered on this toolkit which listen to all of the event types specified in the eventMask argument. If there is a security manager, its checkPermission method is called with an AWTPermission("listenToAllAWTEvents") permission. This may result in a SecurityException. Listeners can be returned within AWTEventListenerProxy objects, which also contain the event mask for the given listener. Note that listener objects added multiple times appear only once in the returned array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Map<TextAttribute,?> mapInputMethodHighlight(InputMethodHighlight highlight)                                                        throws HeadlessException
+				</name>
+				<description>
+					Returns a map of visual attributes for the abstract level description of the given input method highlight, or null if no mapping is found. The style field of the input method highlight is ignored. The map returned is unmodifiable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean areExtraMouseButtonsEnabled()                                      throws HeadlessException
+				</name>
+				<description>
+					Reports whether events from extra mouse buttons are allowed to be processed and posted into EventQueue. To change the returned value it is necessary to set the sun.awt.enableExtraMouseButtons property before the Toolkit class initialization. This setting could be done on the application startup by the following command:    java -Dsun.awt.enableExtraMouseButtons=false Application   Alternatively, the property could be set in the application by using the following code:    System.setProperty("sun.awt.enableExtraMouseButtons", "true");   before the Toolkit class initialization. If not set by the time of the Toolkit class initialization, this property will be initialized with true. Changing this value after the Toolkit class initialization will have no effect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

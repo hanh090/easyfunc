@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		javax.management.loading
+	</package>
+	<type>
+		<name>
+			public class MLet  extends URLClassLoader  implements MLetMBean, MBeanRegistration, Externalizable
+		</name>
+		<description>
+			Allows you to instantiate and register one or several MBeans in the MBean server coming from a remote URL. M-let is a shortcut for management applet. The m-let service does this by loading an m-let text file, which specifies information on the MBeans to be obtained. The information on each MBean is specified in a single instance of a tag, called the MLET tag. The location of the m-let text file is specified by a URL. The MLET tag has the following syntax: <MLET CODE = class | OBJECT = serfile ARCHIVE = "archiveList" [CODEBASE = codebaseURL] [NAME = mbeanname] [VERSION = version] > [arglist] </MLET> where: CODE = class This attribute specifies the full Java class name, including package name, of the MBean to be obtained. The compiled .class file of the MBean must be contained in one of the .jar files specified by the ARCHIVE attribute. Either CODE or OBJECT must be present. OBJECT = serfile This attribute specifies the .ser file that contains a serialized representation of the MBean to be obtained. This file must be contained in one of the .jar files specified by the ARCHIVE attribute. If the .jar file contains a directory hierarchy, specify the path of the file within this hierarchy. Otherwise a match will not be found. Either CODE or OBJECT must be present. ARCHIVE = "archiveList" This mandatory attribute specifies one or more .jar files containing MBeans or other resources used by the MBean to be obtained. One of the .jar files must contain the file specified by the CODE or OBJECT attribute. If archivelist contains more than one file: Each file must be separated from the one that follows it by a comma (,). archivelist must be enclosed in double quote marks. All .jar files in archivelist must be stored in the directory specified by the code base URL. CODEBASE = codebaseURL This optional attribute specifies the code base URL of the MBean to be obtained. It identifies the directory that contains the .jar files specified by the ARCHIVE attribute. Specify this attribute only if the .jar files are not in the same directory as the m-let text file. If this attribute is not specified, the base URL of the m-let text file is used. NAME = mbeanname This optional attribute specifies the object name to be assigned to the MBean instance when the m-let service registers it. If mbeanname starts with the colon character (:), the domain part of the object name is the default domain of the MBean server, as returned by MBeanServer.getDefaultDomain(). VERSION = version This optional attribute specifies the version number of the MBean and associated .jar files to be obtained. This version number can be used to specify that the .jar files are loaded from the server to update those stored locally in the cache the next time the m-let text file is loaded. version must be a series of non-negative decimal integers each separated by a period from the one that precedes it. arglist This optional attribute specifies a list of one or more parameters for the MBean to be instantiated. This list describes the parameters to be passed the MBean's constructor. Use the following syntax to specify each item in arglist: <ARG TYPE=argumentType VALUE=value> where: argumentType is the type of the argument that will be passed as parameter to the MBean's constructor. The arguments' type in the argument list should be a Java primitive type or a Java basic type (java.lang.Boolean, java.lang.Byte, java.lang.Short, java.lang.Long, java.lang.Integer, java.lang.Float, java.lang.Double, java.lang.String). When an m-let text file is loaded, an instance of each MBean specified in the file is created and registered. The m-let service extends the java.net.URLClassLoader and can be used to load remote classes and jar files in the VM of the agent. Note - The MLet class loader uses the MBeanServerFactory.getClassLoaderRepository(javax.management.MBeanServer) to load classes that could not be found in the loaded jar files.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MLet()
+				</name>
+				<description>
+					Constructs a new MLet using the default delegation parent ClassLoader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MLet(URL[] urls)
+				</name>
+				<description>
+					Constructs a new MLet for the specified URLs using the default delegation parent ClassLoader. The URLs will be searched in the order specified for classes and resources after first searching in the parent class loader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MLet(URL[] urls,      ClassLoader parent)
+				</name>
+				<description>
+					Constructs a new MLet for the given URLs. The URLs will be searched in the order specified for classes and resources after first searching in the specified parent class loader. The parent argument will be used as the parent class loader for delegation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MLet(URL[] urls,      ClassLoader parent,      URLStreamHandlerFactory factory)
+				</name>
+				<description>
+					Constructs a new MLet for the specified URLs, parent class loader, and URLStreamHandlerFactory. The parent argument will be used as the parent class loader for delegation. The factory argument will be used as the stream handler factory to obtain protocol handlers when creating new URLs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MLet(URL[] urls,      boolean delegateToCLR)
+				</name>
+				<description>
+					Constructs a new MLet for the specified URLs using the default delegation parent ClassLoader. The URLs will be searched in the order specified for classes and resources after first searching in the parent class loader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MLet(URL[] urls,      ClassLoader parent,      boolean delegateToCLR)
+				</name>
+				<description>
+					Constructs a new MLet for the given URLs. The URLs will be searched in the order specified for classes and resources after first searching in the specified parent class loader. The parent argument will be used as the parent class loader for delegation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MLet(URL[] urls,      ClassLoader parent,      URLStreamHandlerFactory factory,      boolean delegateToCLR)
+				</name>
+				<description>
+					Constructs a new MLet for the specified URLs, parent class loader, and URLStreamHandlerFactory. The parent argument will be used as the parent class loader for delegation. The factory argument will be used as the stream handler factory to obtain protocol handlers when creating new URLs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addURL(URL url)
+				</name>
+				<description>
+					Appends the specified URL to the list of URLs to search for classes and resources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addURL(String url)              throws ServiceNotFoundException
+				</name>
+				<description>
+					Appends the specified URL to the list of URLs to search for classes and resources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URL[] getURLs()
+				</name>
+				<description>
+					Returns the search path of URLs for loading classes and resources. This includes the original list of URLs specified to the constructor, along with any URLs subsequently appended by the addURL() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Object> getMBeansFromURL(URL url)                               throws ServiceNotFoundException
+				</name>
+				<description>
+					Loads a text file containing MLET tags that define the MBeans to be added to the MBean server. The location of the text file is specified by a URL. The MBeans specified in the MLET file will be instantiated and registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Object> getMBeansFromURL(String url)                               throws ServiceNotFoundException
+				</name>
+				<description>
+					Loads a text file containing MLET tags that define the MBeans to be added to the MBean server. The location of the text file is specified by a URL. The MBeans specified in the MLET file will be instantiated and registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLibraryDirectory()
+				</name>
+				<description>
+					Gets the current directory used by the library loader for storing native libraries before they are loaded into memory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLibraryDirectory(String libdir)
+				</name>
+				<description>
+					Sets the directory used by the library loader for storing native libraries before they are loaded into memory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName preRegister(MBeanServer server,                       ObjectName name)                         throws Exception
+				</name>
+				<description>
+					Allows the m-let to perform any operations it needs before being registered in the MBean server. If the ObjectName is null, the m-let provides a default name for its registration <defaultDomain>:type=MLet
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postRegister(Boolean registrationDone)
+				</name>
+				<description>
+					Allows the m-let to perform any operations needed after having been registered in the MBean server or after the registration has failed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preDeregister()                     throws Exception
+				</name>
+				<description>
+					Allows the m-let to perform any operations it needs before being unregistered by the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postDeregister()
+				</name>
+				<description>
+					Allows the m-let to perform any operations needed after having been unregistered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeExternal(ObjectOutput out)                     throws IOException,                            UnsupportedOperationException
+				</name>
+				<description>
+					Save this MLet's contents to the given ObjectOutput. Not all implementations support this method. Those that do not throw UnsupportedOperationException. A subclass may override this method to support it or to change the format of the written data. The format of the written data is not specified, but if an implementation supports writeExternal(java.io.ObjectOutput) it must also support readExternal(java.io.ObjectInput) in such a way that what is written by the former can be read by the latter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void readExternal(ObjectInput in)                    throws IOException,                           ClassNotFoundException,                           UnsupportedOperationException
+				</name>
+				<description>
+					Restore this MLet's contents from the given ObjectInput. Not all implementations support this method. Those that do not throw UnsupportedOperationException. A subclass may override this method to support it or to change the format of the read data. The format of the read data is not specified, but if an implementation supports readExternal(java.io.ObjectInput) it must also support writeExternal(java.io.ObjectOutput) in such a way that what is written by the latter can be read by the former.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> loadClass(String name,                   ClassLoaderRepository clr)                     throws ClassNotFoundException
+				</name>
+				<description>
+					Load a class, using the given ClassLoaderRepository if the class is not found in this MLet's URLs. The given ClassLoaderRepository can be null, in which case a ClassNotFoundException occurs immediately if the class is not found in this MLet's URLs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Class<?> findClass(String name)                        throws ClassNotFoundException
+				</name>
+				<description>
+					This is the main method for class loaders that is being redefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String findLibrary(String libname)
+				</name>
+				<description>
+					Returns the absolute path name of a native library. The VM invokes this method to locate the native libraries that belong to classes loaded with this class loader. Libraries are searched in the JAR files using first just the native library name and if not found the native library name together with the architecture-specific path name (OSName/OSArch/OSVersion/lib/nativelibname), i.e. the library stat on Solaris SPARC 5.7 will be searched in the JAR file as: libstat.so SunOS/sparc/5.7/lib/libstat.so the library stat on Windows NT 4.0 will be searched in the JAR file as: stat.dll WindowsNT/x86/4.0/lib/stat.dll More specifically, let nativelibname be the result of System.mapLibraryName(libname). Then the following names are searched in the JAR files, in order: nativelibname <os.name>/<os.arch>/<os.version>/lib/nativelibname where <X> means System.getProperty(X) with any spaces in the result removed, and / stands for the file separator character (File.separator). If this method returns null, i.e. the libraries were not found in any of the JAR files loaded with this class loader, the VM searches the library along the path specified as the java.library.path property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected URL check(String version,          URL codebase,          String jarfile,          MLetContent mlet)               throws Exception
+				</name>
+				<description>
+					This method is to be overridden when extending this service to support caching and versioning. It is called from getMBeansFromURL when the version, codebase, and jarfile have been extracted from the MLet file, and can be used to verify that it is all right to load the given MBean, or to replace the given URL with a different one. The default implementation of this method returns codebase unchanged.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

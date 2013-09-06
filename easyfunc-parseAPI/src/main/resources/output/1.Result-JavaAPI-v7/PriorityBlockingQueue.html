@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class PriorityBlockingQueue<E>  extends AbstractQueue<E>  implements BlockingQueue<E>, Serializable
+		</name>
+		<description>
+			An unbounded blocking queue that uses the same ordering rules as class PriorityQueue and supplies blocking retrieval operations. While this queue is logically unbounded, attempted additions may fail due to resource exhaustion (causing OutOfMemoryError). This class does not permit null elements. A priority queue relying on natural ordering also does not permit insertion of non-comparable objects (doing so results in ClassCastException). This class and its iterator implement all of the optional methods of the Collection and Iterator interfaces. The Iterator provided in method iterator() is not guaranteed to traverse the elements of the PriorityBlockingQueue in any particular order. If you need ordered traversal, consider using Arrays.sort(pq.toArray()). Also, method drainTo can be used to remove some or all elements in priority order and place them in another collection. Operations on this class make no guarantees about the ordering of elements with equal priority. If you need to enforce an ordering, you can define custom classes or comparators that use a secondary key to break ties in primary priority values. For example, here is a class that applies first-in-first-out tie-breaking to comparable elements. To use it, you would insert a new FIFOEntry(anEntry) instead of a plain entry object.  class FIFOEntry<E extends Comparable<? super E>>       implements Comparable<FIFOEntry<E>> {     static final AtomicLong seq = new AtomicLong(0);     final long seqNum;     final E entry;     public FIFOEntry(E entry) {       seqNum = seq.getAndIncrement();       this.entry = entry;     }     public E getEntry() { return entry; }     public int compareTo(FIFOEntry<E> other) {       int res = entry.compareTo(other.entry);       if (res == 0 && other.entry != this.entry)         res = (seqNum < other.seqNum ? -1 : 1);       return res;     }   } This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PriorityBlockingQueue()
+				</name>
+				<description>
+					Creates a PriorityBlockingQueue with the default initial capacity (11) that orders its elements according to their natural ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityBlockingQueue(int initialCapacity)
+				</name>
+				<description>
+					Creates a PriorityBlockingQueue with the specified initial capacity that orders its elements according to their natural ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityBlockingQueue(int initialCapacity,                       Comparator<? super E> comparator)
+				</name>
+				<description>
+					Creates a PriorityBlockingQueue with the specified initial capacity that orders its elements according to the specified comparator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityBlockingQueue(Collection<? extends E> c)
+				</name>
+				<description>
+					Creates a PriorityBlockingQueue containing the elements in the specified collection. If the specified collection is a SortedSet or a PriorityQueue, this priority queue will be ordered according to the same ordering. Otherwise, this priority queue will be ordered according to the natural ordering of its elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(E e)
+				</name>
+				<description>
+					Inserts the specified element into this priority queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean offer(E e)
+				</name>
+				<description>
+					Inserts the specified element into this priority queue. As the queue is unbounded, this method will never return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void put(E e)
+				</name>
+				<description>
+					Inserts the specified element into this priority queue. As the queue is unbounded, this method will never block.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean offer(E e,              long timeout,              TimeUnit unit)
+				</name>
+				<description>
+					Inserts the specified element into this priority queue. As the queue is unbounded, this method will never block or return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E poll()
+				</name>
+				<description>
+					Description copied from interface: Queue Retrieves and removes the head of this queue, or returns null if this queue is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E take()         throws InterruptedException
+				</name>
+				<description>
+					Description copied from interface: BlockingQueue Retrieves and removes the head of this queue, waiting if necessary until an element becomes available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E poll(long timeout,       TimeUnit unit)         throws InterruptedException
+				</name>
+				<description>
+					Description copied from interface: BlockingQueue Retrieves and removes the head of this queue, waiting up to the specified wait time if necessary for an element to become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E peek()
+				</name>
+				<description>
+					Description copied from interface: Queue Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparator<? super E> comparator()
+				</name>
+				<description>
+					Returns the comparator used to order the elements in this queue, or null if this queue uses the natural ordering of its elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Description copied from interface: Collection Returns the number of elements in this collection. If this collection contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int remainingCapacity()
+				</name>
+				<description>
+					Always returns Integer.MAX_VALUE because a PriorityBlockingQueue is not capacity constrained.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object o)
+				</name>
+				<description>
+					Removes a single instance of the specified element from this queue, if it is present. More formally, removes an element e such that o.equals(e), if this queue contains one or more such elements. Returns true if and only if this queue contained the specified element (or equivalently, if this queue changed as a result of the call).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object o)
+				</name>
+				<description>
+					Returns true if this queue contains the specified element. More formally, returns true if and only if this queue contains at least one element e such that o.equals(e).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] toArray()
+				</name>
+				<description>
+					Returns an array containing all of the elements in this queue. The returned array elements are in no particular order. The returned array will be "safe" in that no references to it are maintained by this queue. (In other words, this method must allocate a new array). The caller is thus free to modify the returned array. This method acts as bridge between array-based and collection-based APIs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: AbstractCollection Returns a string representation of this collection. The string representation consists of a list of the collection's elements in the order they are returned by its iterator, enclosed in square brackets ("[]"). Adjacent elements are separated by the characters ", " (comma and space). Elements are converted to strings as by String.valueOf(Object).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int drainTo(Collection<? super E> c)
+				</name>
+				<description>
+					Description copied from interface: BlockingQueue Removes all available elements from this queue and adds them to the given collection. This operation may be more efficient than repeatedly polling this queue. A failure encountered while attempting to add elements to collection c may result in elements being in neither, either or both collections when the associated exception is thrown. Attempts to drain a queue to itself result in IllegalArgumentException. Further, the behavior of this operation is undefined if the specified collection is modified while the operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int drainTo(Collection<? super E> c,            int maxElements)
+				</name>
+				<description>
+					Description copied from interface: BlockingQueue Removes at most the given number of available elements from this queue and adds them to the given collection. A failure encountered while attempting to add elements to collection c may result in elements being in neither, either or both collections when the associated exception is thrown. Attempts to drain a queue to itself result in IllegalArgumentException. Further, the behavior of this operation is undefined if the specified collection is modified while the operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Atomically removes all of the elements from this queue. The queue will be empty after this call returns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T[] toArray(T[] a)
+				</name>
+				<description>
+					Returns an array containing all of the elements in this queue; the runtime type of the returned array is that of the specified array. The returned array elements are in no particular order. If the queue fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this queue. If this queue fits in the specified array with room to spare (i.e., the array has more elements than this queue), the element in the array immediately following the end of the queue is set to null. Like the toArray() method, this method acts as bridge between array-based and collection-based APIs. Further, this method allows precise control over the runtime type of the output array, and may, under certain circumstances, be used to save allocation costs. Suppose x is a queue known to contain only strings. The following code can be used to dump the queue into a newly allocated array of String:        String[] y = x.toArray(new String[0]); Note that toArray(new Object[0]) is identical in function to toArray().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this queue. The iterator does not return the elements in any particular order. The returned iterator is a "weakly consistent" iterator that will never throw ConcurrentModificationException, and guarantees to traverse elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to construction.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

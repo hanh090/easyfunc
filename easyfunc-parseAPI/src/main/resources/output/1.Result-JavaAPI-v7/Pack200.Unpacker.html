@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.util.jar
+	</package>
+	<type>
+		<name>
+			public static interface Pack200.Unpacker
+		</name>
+		<description>
+			The unpacker engine converts the packed stream to a JAR file. An instance of the engine can be obtained using Pack200.newUnpacker(). Every JAR file produced by this engine will include the string "PACK200" as a zip file comment. This allows a deployer to detect if a JAR archive was packed and unpacked. Note: Unless otherwise noted, passing a null argument to a constructor or method in this class will cause a NullPointerException to be thrown. This version of the unpacker is compatible with all previous versions.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final String KEEP
+				</name>
+				<description>
+					The string "keep", a possible value for certain properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String TRUE
+				</name>
+				<description>
+					The string "true", a possible value for certain properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String FALSE
+				</name>
+				<description>
+					The string "false", a possible value for certain properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String DEFLATE_HINT
+				</name>
+				<description>
+					Property indicating that the unpacker should ignore all transmitted values for DEFLATE_HINT, replacing them by the given value, TRUE or FALSE. The default value is the special string KEEP, which asks the unpacker to preserve all transmitted deflation hints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String PROGRESS
+				</name>
+				<description>
+					The unpacker's progress as a percentage, as periodically updated by the unpacker. Values of 0 - 100 are normal, and -1 indicates a stall. Observe this property with a PropertyChangeListener. At a minimum, the unpacker must set progress to 0 at the beginning of a packing operation, and to 100 at the end.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SortedMap<String,String> properties()
+				</name>
+				<description>
+					Get the set of this engine's properties. This set is a "live view", so that changing its contents immediately affects the Packer engine, and changes from the engine (such as progress indications) are immediately visible in the map. The property map may contain pre-defined implementation specific and default properties. Users are encouraged to read the information and fully understand the implications, before modifying pre-existing properties. Implementation specific properties are prefixed with a package name associated with the implementor, beginning with com. or a similar prefix. All property names beginning with pack. and unpack. are reserved for use by this API. Unknown properties may be ignored or rejected with an unspecified error, and invalid entries may cause an unspecified error to be thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unpack(InputStream in,            JarOutputStream out)              throws IOException
+				</name>
+				<description>
+					Read a Pack200 archive, and write the encoded JAR to a JarOutputStream. The entire contents of the input stream will be read. It may be more efficient to read the Pack200 archive to a file and pass the File object, using the alternate method described below. Closes its input but not its output. (The output can accumulate more elements.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unpack(File in,            JarOutputStream out)              throws IOException
+				</name>
+				<description>
+					Read a Pack200 archive, and write the encoded JAR to a JarOutputStream. Does not close its output. (The output can accumulate more elements.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addPropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Registers a listener for PropertyChange events on the properties map. This is typically used by applications to update a progress bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removePropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Remove a listener for PropertyChange events, added by the addPropertyChangeListener(java.beans.PropertyChangeListener).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.security.sasl
+	</package>
+	<type>
+		<name>
+			public interface SaslServer
+		</name>
+		<description>
+			Performs SASL authentication as a server. A server such an LDAP server gets an instance of this class in order to perform authentication defined by a specific SASL mechanism. Invoking methods on the SaslServer instance generates challenges according to the SASL mechanism implemented by the SaslServer. As the authentication proceeds, the instance encapsulates the state of a SASL server's authentication exchange. Here's an example of how an LDAP server might use a SaslServer. It first gets an instance of a SaslServer for the SASL mechanism requested by the client:    SaslServer ss = Sasl.createSaslServer(mechanism,       "ldap", myFQDN, props, callbackHandler);   It can then proceed to use the server for authentication. For example, suppose the LDAP server received an LDAP BIND request containing the name of the SASL mechanism and an (optional) initial response. It then might use the server as follows:    while (!ss.isComplete()) {       try {           byte[] challenge = ss.evaluateResponse(response);           if (ss.isComplete()) {               status = ldap.sendBindResponse(mechanism, challenge, SUCCESS);           } else {               status = ldap.sendBindResponse(mechanism, challenge,                     SASL_BIND_IN_PROGRESS);               response = ldap.readBindRequest();           }       } catch (SaslException e) {            status = ldap.sendErrorResponse(e);            break;       }   }   if (ss.isComplete() && status == SUCCESS) {      String qop = (String) sc.getNegotiatedProperty(Sasl.QOP);      if (qop != null          && (qop.equalsIgnoreCase("auth-int")              || qop.equalsIgnoreCase("auth-conf"))) {          // Use SaslServer.wrap() and SaslServer.unwrap() for future        // communication with client        ldap.in = new SecureInputStream(ss, ldap.in);        ldap.out = new SecureOutputStream(ss, ldap.out);      }   }
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getMechanismName()
+				</name>
+				<description>
+					Returns the IANA-registered mechanism name of this SASL server. (e.g. "CRAM-MD5", "GSSAPI").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] evaluateResponse(byte[] response)                          throws SaslException
+				</name>
+				<description>
+					Evaluates the response data and generates a challenge. If a response is received from the client during the authentication process, this method is called to prepare an appropriate next challenge to submit to the client. The challenge is null if the authentication has succeeded and no more challenge data is to be sent to the client. It is non-null if the authentication must be continued by sending a challenge to the client, or if the authentication has succeeded but challenge data needs to be processed by the client. isComplete() should be called after each call to evaluateResponse(),to determine if any further response is needed from the client.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isComplete()
+				</name>
+				<description>
+					Determines whether the authentication exchange has completed. This method is typically called after each invocation of evaluateResponse() to determine whether the authentication has completed successfully or should be continued.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getAuthorizationID()
+				</name>
+				<description>
+					Reports the authorization ID in effect for the client of this session. This method can only be called if isComplete() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] unwrap(byte[] incoming,              int offset,              int len)                throws SaslException
+				</name>
+				<description>
+					Unwraps a byte array received from the client. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true) and only if the authentication exchange has negotiated integrity and/or privacy as the quality of protection; otherwise, an IllegalStateException is thrown. incoming is the contents of the SASL buffer as defined in RFC 2222 without the leading four octet field that represents the length. offset and len specify the portion of incoming to use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] wrap(byte[] outgoing,            int offset,            int len)              throws SaslException
+				</name>
+				<description>
+					Wraps a byte array to be sent to the client. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true) and only if the authentication exchange has negotiated integrity and/or privacy as the quality of protection; otherwise, a SaslException is thrown. The result of this method will make up the contents of the SASL buffer as defined in RFC 2222 without the leading four octet field that represents the length. offset and len specify the portion of outgoing to use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getNegotiatedProperty(String propName)
+				</name>
+				<description>
+					Retrieves the negotiated property. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true); otherwise, an IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void dispose()               throws SaslException
+				</name>
+				<description>
+					Disposes of any system resources or security-sensitive information the SaslServer might be using. Invoking this method invalidates the SaslServer instance. This method is idempotent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

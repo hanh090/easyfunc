@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.nio.file
+	</package>
+	<type>
+		<name>
+			public class SimpleFileVisitor<T>  extends Object  implements FileVisitor<T>
+		</name>
+		<description>
+			A simple visitor of files with default behavior to visit all files and to re-throw I/O errors. Methods in this class may be overridden subject to their general contract.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected SimpleFileVisitor()
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileVisitResult preVisitDirectory(T dir,                                  BasicFileAttributes attrs)                                    throws IOException
+				</name>
+				<description>
+					Invoked for a directory before entries in the directory are visited. Unless overridden, this method returns CONTINUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileVisitResult visitFile(T file,                          BasicFileAttributes attrs)                            throws IOException
+				</name>
+				<description>
+					Invoked for a file in a directory. Unless overridden, this method returns CONTINUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileVisitResult visitFileFailed(T file,                                IOException exc)                                  throws IOException
+				</name>
+				<description>
+					Invoked for a file that could not be visited. Unless overridden, this method re-throws the I/O exception that prevented the file from being visited.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileVisitResult postVisitDirectory(T dir,                                   IOException exc)                                     throws IOException
+				</name>
+				<description>
+					Invoked for a directory after entries in the directory, and all of their descendants, have been visited. Unless overridden, this method returns CONTINUE if the directory iteration completes without an I/O exception; otherwise this method re-throws the I/O exception that caused the iteration of the directory to terminate prematurely.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

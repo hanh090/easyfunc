@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.lang.model.type
+	</package>
+	<type>
+		<name>
+			public interface TypeVisitor<R,P>
+		</name>
+		<description>
+			A visitor of types, in the style of the visitor design pattern. Classes implementing this interface are used to operate on a type when the kind of type is unknown at compile time. When a visitor is passed to a type's accept method, the visitXYZ method most applicable to that type is invoked. Classes implementing this interface may or may not throw a NullPointerException if the additional parameter p is null; see documentation of the implementing class for details. WARNING: It is possible that methods will be added to this interface to accommodate new, currently unknown, language structures added to future versions of the Java™ programming language. Therefore, visitor classes directly implementing this interface may be source incompatible with future versions of the platform. To avoid this source incompatibility, visitor implementations are encouraged to instead extend the appropriate abstract visitor class that implements this interface. However, an API should generally use this visitor interface as the type for parameters, return type, etc. rather than one of the abstract classes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					R visit(TypeMirror t,        P p)
+				</name>
+				<description>
+					Visits a type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visit(TypeMirror t)
+				</name>
+				<description>
+					A convenience method equivalent to v.visit(t, null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitPrimitive(PrimitiveType t,                 P p)
+				</name>
+				<description>
+					Visits a primitive type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitNull(NullType t,            P p)
+				</name>
+				<description>
+					Visits the null type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitArray(ArrayType t,             P p)
+				</name>
+				<description>
+					Visits an array type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitDeclared(DeclaredType t,                P p)
+				</name>
+				<description>
+					Visits a declared type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitError(ErrorType t,             P p)
+				</name>
+				<description>
+					Visits an error type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitTypeVariable(TypeVariable t,                    P p)
+				</name>
+				<description>
+					Visits a type variable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitWildcard(WildcardType t,                P p)
+				</name>
+				<description>
+					Visits a wildcard type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitExecutable(ExecutableType t,                  P p)
+				</name>
+				<description>
+					Visits an executable type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitNoType(NoType t,              P p)
+				</name>
+				<description>
+					Visits a NoType instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitUnknown(TypeMirror t,               P p)
+				</name>
+				<description>
+					Visits an unknown kind of type. This can occur if the language evolves and new kinds of types are added to the TypeMirror hierarchy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitUnion(UnionType t,             P p)
+				</name>
+				<description>
+					Visits a union type.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

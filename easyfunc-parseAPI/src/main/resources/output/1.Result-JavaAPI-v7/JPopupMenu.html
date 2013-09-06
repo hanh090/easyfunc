@@ -1,0 +1,540 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JPopupMenu  extends JComponent  implements Accessible, MenuElement
+		</name>
+		<description>
+			An implementation of a popup menu -- a small window that pops up and displays a series of choices. A JPopupMenu is used for the menu that appears when the user selects an item on the menu bar. It is also used for "pull-right" menu that appears when the selects a menu item that activates it. Finally, a JPopupMenu can also be used anywhere else you want a menu to appear. For example, when the user right-clicks in a specified area. For information and examples of using popup menus, see How to Use Menus in The Java Tutorial. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JPopupMenu()
+				</name>
+				<description>
+					Constructs a JPopupMenu without an "invoker".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JPopupMenu(String label)
+				</name>
+				<description>
+					Constructs a JPopupMenu with the specified title.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefaultLightWeightPopupEnabled(boolean aFlag)
+				</name>
+				<description>
+					Sets the default value of the lightWeightPopupEnabled property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean getDefaultLightWeightPopupEnabled()
+				</name>
+				<description>
+					Gets the defaultLightWeightPopupEnabled property, which by default is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PopupMenuUI getUI()
+				</name>
+				<description>
+					Returns the look and feel (L&F) object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(PopupMenuUI ui)
+				</name>
+				<description>
+					Sets the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the UI property to a value from the current look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the L&F class that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processFocusEvent(FocusEvent evt)
+				</name>
+				<description>
+					Description copied from class: Component Processes focus events occurring on this component by dispatching them to any registered FocusListener objects. This method is not called unless focus events are enabled for this component. Focus events are enabled when one of the following occurs: A FocusListener object is registered via addFocusListener. Focus events are enabled via enableEvents. If focus events are enabled for a Component, the current KeyboardFocusManager determines whether or not a focus event should be dispatched to registered FocusListener objects. If the events are to be dispatched, the KeyboardFocusManager calls the Component's dispatchEvent method, which results in a call to the Component's processFocusEvent method. If focus events are enabled for a Component, calling the Component's dispatchEvent method with a FocusEvent as the argument will result in a call to the Component's processFocusEvent method regardless of the current KeyboardFocusManager. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processKeyEvent(KeyEvent evt)
+				</name>
+				<description>
+					Processes key stroke events such as mnemonics and accelerators.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SingleSelectionModel getSelectionModel()
+				</name>
+				<description>
+					Returns the model object that handles single selections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionModel(SingleSelectionModel model)
+				</name>
+				<description>
+					Sets the model object to handle single selections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMenuItem add(JMenuItem menuItem)
+				</name>
+				<description>
+					Appends the specified menu item to the end of this menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMenuItem add(String s)
+				</name>
+				<description>
+					Creates a new menu item with the specified text and appends it to the end of this menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMenuItem add(Action a)
+				</name>
+				<description>
+					Appends a new menu item to the end of the menu which dispatches the specified Action object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JMenuItem createActionComponent(Action a)
+				</name>
+				<description>
+					Factory method which creates the JMenuItem for Actions added to the JPopupMenu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createActionChangeListener(JMenuItem b)
+				</name>
+				<description>
+					Returns a properly configured PropertyChangeListener which updates the control as changes to the Action occur.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(int pos)
+				</name>
+				<description>
+					Removes the component at the specified index from this popup menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLightWeightPopupEnabled(boolean aFlag)
+				</name>
+				<description>
+					Sets the value of the lightWeightPopupEnabled property, which by default is true. By default, when a look and feel displays a popup, it can choose to use a lightweight (all-Java) popup. Lightweight popup windows are more efficient than heavyweight (native peer) windows, but lightweight and heavyweight components do not mix well in a GUI. If your application mixes lightweight and heavyweight components, you should disable lightweight popups. Some look and feels might always use heavyweight popups, no matter what the value of this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLightWeightPopupEnabled()
+				</name>
+				<description>
+					Gets the lightWeightPopupEnabled property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLabel()
+				</name>
+				<description>
+					Returns the popup menu's label
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLabel(String label)
+				</name>
+				<description>
+					Sets the popup menu's label. Different look and feels may choose to display or not display this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSeparator()
+				</name>
+				<description>
+					Appends a new separator at the end of the menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert(Action a,            int index)
+				</name>
+				<description>
+					Inserts a menu item for the specified Action object at a given position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert(Component component,            int index)
+				</name>
+				<description>
+					Inserts the specified component into the menu at a given position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPopupMenuListener(PopupMenuListener l)
+				</name>
+				<description>
+					Adds a PopupMenu listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removePopupMenuListener(PopupMenuListener l)
+				</name>
+				<description>
+					Removes a PopupMenu listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PopupMenuListener[] getPopupMenuListeners()
+				</name>
+				<description>
+					Returns an array of all the PopupMenuListeners added to this JMenuItem with addPopupMenuListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addMenuKeyListener(MenuKeyListener l)
+				</name>
+				<description>
+					Adds a MenuKeyListener to the popup menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeMenuKeyListener(MenuKeyListener l)
+				</name>
+				<description>
+					Removes a MenuKeyListener from the popup menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MenuKeyListener[] getMenuKeyListeners()
+				</name>
+				<description>
+					Returns an array of all the MenuKeyListeners added to this JPopupMenu with addMenuKeyListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void firePopupMenuWillBecomeVisible()
+				</name>
+				<description>
+					Notifies PopupMenuListeners that this popup menu will become visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void firePopupMenuWillBecomeInvisible()
+				</name>
+				<description>
+					Notifies PopupMenuListeners that this popup menu will become invisible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void firePopupMenuCanceled()
+				</name>
+				<description>
+					Notifies PopupMenuListeners that this popup menu is cancelled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void pack()
+				</name>
+				<description>
+					Lays out the container so that it uses the minimum space needed to display its contents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVisible(boolean b)
+				</name>
+				<description>
+					Sets the visibility of the popup menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isVisible()
+				</name>
+				<description>
+					Returns true if the popup menu is visible (currently being displayed).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocation(int x,                 int y)
+				</name>
+				<description>
+					Sets the location of the upper left corner of the popup menu using x, y coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getInvoker()
+				</name>
+				<description>
+					Returns the component which is the 'invoker' of this popup menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInvoker(Component invoker)
+				</name>
+				<description>
+					Sets the invoker of this popup menu -- the component in which the popup menu menu is to be displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void show(Component invoker,          int x,          int y)
+				</name>
+				<description>
+					Displays the popup menu at the position x,y in the coordinate space of the component invoker.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Component getComponentAtIndex(int i)
+				</name>
+				<description>
+					Deprecated. replaced by Container.getComponent(int) Returns the component at the specified index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getComponentIndex(Component c)
+				</name>
+				<description>
+					Returns the index of the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPopupSize(Dimension d)
+				</name>
+				<description>
+					Sets the size of the Popup window using a Dimension object. This is equivalent to setPreferredSize(d).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPopupSize(int width,                  int height)
+				</name>
+				<description>
+					Sets the size of the Popup window to the specified width and height. This is equivalent to setPreferredSize(new Dimension(width, height)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelected(Component sel)
+				</name>
+				<description>
+					Sets the currently selected component, This will result in a change to the selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isBorderPainted()
+				</name>
+				<description>
+					Checks whether the border should be painted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBorderPainted(boolean b)
+				</name>
+				<description>
+					Sets whether the border should be painted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintBorder(Graphics g)
+				</name>
+				<description>
+					Paints the popup menu's border if the borderPainted property is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getMargin()
+				</name>
+				<description>
+					Returns the margin, in pixels, between the popup menu's border and its containees.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JPopupMenu. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JPopupMenu. For JPopupMenus, the AccessibleContext takes the form of an AccessibleJPopupMenu. A new AccessibleJPopupMenu instance is created if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void processMouseEvent(MouseEvent event,                       MenuElement[] path,                       MenuSelectionManager manager)
+				</name>
+				<description>
+					This method is required to conform to the MenuElement interface, but it not implemented.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void processKeyEvent(KeyEvent e,                     MenuElement[] path,                     MenuSelectionManager manager)
+				</name>
+				<description>
+					Processes a key event forwarded from the MenuSelectionManager and changes the menu selection, if necessary, by using MenuSelectionManager's API. Note: you do not have to forward the event to sub-components. This is done automatically by the MenuSelectionManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void menuSelectionChanged(boolean isIncluded)
+				</name>
+				<description>
+					Messaged when the menubar selection changes to activate or deactivate this menu. This implements the javax.swing.MenuElement interface. Overrides MenuElement.menuSelectionChanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MenuElement[] getSubElements()
+				</name>
+				<description>
+					Returns an array of MenuElements containing the submenu for this menu component. It will only return items conforming to the JMenuElement interface. If popup menu is null returns an empty array. This method is required to conform to the MenuElement interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getComponent()
+				</name>
+				<description>
+					Returns this JPopupMenu component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPopupTrigger(MouseEvent e)
+				</name>
+				<description>
+					Returns true if the MouseEvent is considered a popup trigger by the JPopupMenu's currently installed UI.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

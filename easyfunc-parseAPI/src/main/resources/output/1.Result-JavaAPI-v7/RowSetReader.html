@@ -1,0 +1,27 @@
+<javaelement>
+	<package>
+		javax.sql
+	</package>
+	<type>
+		<name>
+			public interface RowSetReader
+		</name>
+		<description>
+			The facility that a disconnected RowSet object calls on to populate itself with rows of data. A reader (an object implementing the RowSetReader interface) may be registered with a RowSet object that supports the reader/writer paradigm. When the RowSet object's execute method is called, it in turn calls the reader's readData method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void readData(RowSetInternal caller)                throws SQLException
+				</name>
+				<description>
+					Reads the new contents of the calling RowSet object. In order to call this method, a RowSet object must have implemented the RowSetInternal interface and registered this RowSetReader object as its reader. The readData method is invoked internally by the RowSet.execute method for rowsets that support the reader/writer paradigm. The readData method adds rows to the caller. It can be implemented in a wide variety of ways and can even populate the caller with rows from a nonrelational data source. In general, a reader may invoke any of the rowset's methods, with one exception. Calling the method execute will cause an SQLException to be thrown because execute may not be called recursively. Also, when a reader invokes RowSet methods, no listeners are notified; that is, no RowSetEvent objects are generated and no RowSetListener methods are invoked. This is true because listeners are already being notified by the method execute.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

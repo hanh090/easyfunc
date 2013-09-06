@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public class ServerSocket  extends Object  implements Closeable
+		</name>
+		<description>
+			This class implements server sockets. A server socket waits for requests to come in over the network. It performs some operation based on that request, and then possibly returns a result to the requester. The actual work of the server socket is performed by an instance of the SocketImpl class. An application can change the socket factory that creates the socket implementation to configure itself to create sockets appropriate to the local firewall.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ServerSocket()               throws IOException
+				</name>
+				<description>
+					Creates an unbound server socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServerSocket(int port)               throws IOException
+				</name>
+				<description>
+					Creates a server socket, bound to the specified port. A port number of 0 means that the port number is automatically allocated, typically from an ephemeral port range. This port number can then be retrieved by calling getLocalPort. The maximum queue length for incoming connection indications (a request to connect) is set to 50. If a connection indication arrives when the queue is full, the connection is refused. If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket is created. If there is a security manager, its checkListen method is called with the port argument as its argument to ensure the operation is allowed. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServerSocket(int port,              int backlog)               throws IOException
+				</name>
+				<description>
+					Creates a server socket and binds it to the specified local port number, with the specified backlog. A port number of 0 means that the port number is automatically allocated, typically from an ephemeral port range. This port number can then be retrieved by calling getLocalPort. The maximum queue length for incoming connection indications (a request to connect) is set to the backlog parameter. If a connection indication arrives when the queue is full, the connection is refused. If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket is created. If there is a security manager, its checkListen method is called with the port argument as its argument to ensure the operation is allowed. This could result in a SecurityException. The backlog argument is the requested maximum number of pending connections on the socket. Its exact semantics are implementation specific. In particular, an implementation may impose a maximum length or may choose to ignore the parameter altogther. The value provided should be greater than 0. If it is less than or equal to 0, then an implementation specific default will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServerSocket(int port,              int backlog,              InetAddress bindAddr)               throws IOException
+				</name>
+				<description>
+					Create a server with the specified port, listen backlog, and local IP address to bind to. The bindAddr argument can be used on a multi-homed host for a ServerSocket that will only accept connect requests to one of its addresses. If bindAddr is null, it will default accepting connections on any/all local addresses. The port must be between 0 and 65535, inclusive. A port number of 0 means that the port number is automatically allocated, typically from an ephemeral port range. This port number can then be retrieved by calling getLocalPort. If there is a security manager, this method calls its checkListen method with the port argument as its argument to ensure the operation is allowed. This could result in a SecurityException. The backlog argument is the requested maximum number of pending connections on the socket. Its exact semantics are implementation specific. In particular, an implementation may impose a maximum length or may choose to ignore the parameter altogther. The value provided should be greater than 0. If it is less than or equal to 0, then an implementation specific default will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void bind(SocketAddress endpoint)            throws IOException
+				</name>
+				<description>
+					Binds the ServerSocket to a specific address (IP address and port number). If the address is null, then the system will pick up an ephemeral port and a valid local address to bind the socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void bind(SocketAddress endpoint,          int backlog)            throws IOException
+				</name>
+				<description>
+					Binds the ServerSocket to a specific address (IP address and port number). If the address is null, then the system will pick up an ephemeral port and a valid local address to bind the socket. The backlog argument is the requested maximum number of pending connections on the socket. Its exact semantics are implementation specific. In particular, an implementation may impose a maximum length or may choose to ignore the parameter altogther. The value provided should be greater than 0. If it is less than or equal to 0, then an implementation specific default will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InetAddress getInetAddress()
+				</name>
+				<description>
+					Returns the local address of this server socket. If the socket was bound prior to being closed, then this method will continue to return the local address after the socket is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLocalPort()
+				</name>
+				<description>
+					Returns the port number on which this socket is listening. If the socket was bound prior to being closed, then this method will continue to return the port number after the socket is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SocketAddress getLocalSocketAddress()
+				</name>
+				<description>
+					Returns the address of the endpoint this socket is bound to, or null if it is not bound yet. If the socket was bound prior to being closed, then this method will continue to return the address of the endpoint after the socket is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Socket accept()                throws IOException
+				</name>
+				<description>
+					Listens for a connection to be made to this socket and accepts it. The method blocks until a connection is made. A new Socket s is created and, if there is a security manager, the security manager's checkAccept method is called with s.getInetAddress().getHostAddress() and s.getPort() as its arguments to ensure the operation is allowed. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void implAccept(Socket s)                           throws IOException
+				</name>
+				<description>
+					Subclasses of ServerSocket use this method to override accept() to return their own subclass of socket. So a FooServerSocket will typically hand this method an empty FooSocket. On return from implAccept the FooSocket will be connected to a client.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this socket. Any thread currently blocked in accept() will throw a SocketException. If this socket has an associated channel then the channel is closed as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServerSocketChannel getChannel()
+				</name>
+				<description>
+					Returns the unique ServerSocketChannel object associated with this socket, if any. A server socket will have a channel if, and only if, the channel itself was created via the ServerSocketChannel.open method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isBound()
+				</name>
+				<description>
+					Returns the binding state of the ServerSocket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isClosed()
+				</name>
+				<description>
+					Returns the closed state of the ServerSocket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSoTimeout(int timeout)                    throws SocketException
+				</name>
+				<description>
+					Enable/disable SO_TIMEOUT with the specified timeout, in milliseconds. With this option set to a non-zero timeout, a call to accept() for this ServerSocket will block for only this amount of time. If the timeout expires, a java.net.SocketTimeoutException is raised, though the ServerSocket is still valid. The option must be enabled prior to entering the blocking operation to have effect. The timeout must be > 0. A timeout of zero is interpreted as an infinite timeout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSoTimeout()                   throws IOException
+				</name>
+				<description>
+					Retrieve setting for SO_TIMEOUT. 0 returns implies that the option is disabled (i.e., timeout of infinity).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReuseAddress(boolean on)                       throws SocketException
+				</name>
+				<description>
+					Enable/disable the SO_REUSEADDR socket option. When a TCP connection is closed the connection may remain in a timeout state for a period of time after the connection is closed (typically known as the TIME_WAIT state or 2MSL wait state). For applications using a well known socket address or port it may not be possible to bind a socket to the required SocketAddress if there is a connection in the timeout state involving the socket address or port. Enabling SO_REUSEADDR prior to binding the socket using bind(SocketAddress) allows the socket to be bound even though a previous connection is in a timeout state. When a ServerSocket is created the initial setting of SO_REUSEADDR is not defined. Applications can use getReuseAddress() to determine the initial setting of SO_REUSEADDR. The behaviour when SO_REUSEADDR is enabled or disabled after a socket is bound (See isBound()) is not defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getReuseAddress()                          throws SocketException
+				</name>
+				<description>
+					Tests if SO_REUSEADDR is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the implementation address and implementation port of this socket as a String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setSocketFactory(SocketImplFactory fac)                               throws IOException
+				</name>
+				<description>
+					Sets the server socket implementation factory for the application. The factory can be specified only once. When an application creates a new server socket, the socket implementation factory's createSocketImpl method is called to create the actual socket implementation. Passing null to the method is a no-op unless the factory was already set. If there is a security manager, this method first calls the security manager's checkSetFactory method to ensure the operation is allowed. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReceiveBufferSize(int size)                            throws SocketException
+				</name>
+				<description>
+					Sets a default proposed value for the SO_RCVBUF option for sockets accepted from this ServerSocket. The value actually set in the accepted socket must be determined by calling Socket.getReceiveBufferSize() after the socket is returned by accept(). The value of SO_RCVBUF is used both to set the size of the internal socket receive buffer, and to set the size of the TCP receive window that is advertized to the remote peer. It is possible to change the value subsequently, by calling Socket.setReceiveBufferSize(int). However, if the application wishes to allow a receive window larger than 64K bytes, as defined by RFC1323 then the proposed value must be set in the ServerSocket before it is bound to a local address. This implies, that the ServerSocket must be created with the no-argument constructor, then setReceiveBufferSize() must be called and lastly the ServerSocket is bound to an address by calling bind(). Failure to do this will not cause an error, and the buffer size may be set to the requested value but the TCP receive window in sockets accepted from this ServerSocket will be no larger than 64K bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getReceiveBufferSize()                           throws SocketException
+				</name>
+				<description>
+					Gets the value of the SO_RCVBUF option for this ServerSocket, that is the proposed buffer size that will be used for Sockets accepted from this ServerSocket. Note, the value actually set in the accepted socket is determined by calling Socket.getReceiveBufferSize().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPerformancePreferences(int connectionTime,                               int latency,                               int bandwidth)
+				</name>
+				<description>
+					Sets performance preferences for this ServerSocket. Sockets use the TCP/IP protocol by default. Some implementations may offer alternative protocols which have different performance characteristics than TCP/IP. This method allows the application to express its own preferences as to how these tradeoffs should be made when the implementation chooses from the available protocols. Performance preferences are described by three integers whose values indicate the relative importance of short connection time, low latency, and high bandwidth. The absolute values of the integers are irrelevant; in order to choose a protocol the values are simply compared, with larger values indicating stronger preferences. If the application prefers short connection time over both low latency and high bandwidth, for example, then it could invoke this method with the values (1, 0, 0). If the application prefers high bandwidth above low latency, and low latency above short connection time, then it could invoke this method with the values (0, 1, 2). Invoking this method after this socket has been bound will have no effect. This implies that in order to use this capability requires the socket to be created with the no-argument constructor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

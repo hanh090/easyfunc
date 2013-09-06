@@ -1,0 +1,423 @@
+<javaelement>
+	<package>
+		java.awt.image.renderable
+	</package>
+	<type>
+		<name>
+			public class ParameterBlock  extends Object  implements Cloneable, Serializable
+		</name>
+		<description>
+			A ParameterBlock encapsulates all the information about sources and parameters (Objects) required by a RenderableImageOp, or other classes that process images. Although it is possible to place arbitrary objects in the source Vector, users of this class may impose semantic constraints such as requiring all sources to be RenderedImages or RenderableImage. ParameterBlock itself is merely a container and performs no checking on source or parameter types. All parameters in a ParameterBlock are objects; convenience add and set methods are available that take arguments of base type and construct the appropriate subclass of Number (such as Integer or Float). Corresponding get methods perform a downward cast and have return values of base type; an exception will be thrown if the stored values do not have the correct type. There is no way to distinguish between the results of "short s; add(s)" and "add(new Short(s))". Note that the get and set methods operate on references. Therefore, one must be careful not to share references between ParameterBlocks when this is inappropriate. For example, to create a new ParameterBlock that is equal to an old one except for an added source, one might be tempted to write:    ParameterBlock addSource(ParameterBlock pb, RenderableImage im) {       ParameterBlock pb1 = new ParameterBlock(pb.getSources());       pb1.addSource(im);       return pb1;   }   This code will have the side effect of altering the original ParameterBlock, since the getSources operation returned a reference to its source Vector. Both pb and pb1 share their source Vector, and a change in either is visible to both. A correct way to write the addSource function is to clone the source Vector:    ParameterBlock addSource (ParameterBlock pb, RenderableImage im) {       ParameterBlock pb1 = new ParameterBlock(pb.getSources().clone());       pb1.addSource(im);       return pb1;   }   The clone method of ParameterBlock has been defined to perform a clone of both the source and parameter Vectors for this reason. A standard, shallow clone is available as shallowClone. The addSource, setSource, add, and set methods are defined to return 'this' after adding their argument. This allows use of syntax like:    ParameterBlock pb = new ParameterBlock();   op = new RenderableImageOp("operation", pb.add(arg1).add(arg2));
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Vector<Object> sources
+				</name>
+				<description>
+					A Vector of sources, stored as arbitrary Objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Vector<Object> parameters
+				</name>
+				<description>
+					A Vector of non-source parameters, stored as arbitrary Objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock()
+				</name>
+				<description>
+					A dummy constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock(Vector<Object> sources)
+				</name>
+				<description>
+					Constructs a ParameterBlock with a given Vector of sources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock(Vector<Object> sources,                Vector<Object> parameters)
+				</name>
+				<description>
+					Constructs a ParameterBlock with a given Vector of sources and Vector of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object shallowClone()
+				</name>
+				<description>
+					Creates a shallow copy of a ParameterBlock. The source and parameter Vectors are copied by reference -- additions or changes will be visible to both versions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates a copy of a ParameterBlock. The source and parameter Vectors are cloned, but the actual sources and parameters are copied by reference. This allows modifications to the order and number of sources and parameters in the clone to be invisible to the original ParameterBlock. Changes to the shared sources or parameters themselves will still be visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock addSource(Object source)
+				</name>
+				<description>
+					Adds an image to end of the list of sources. The image is stored as an object in order to allow new node types in the future.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getSource(int index)
+				</name>
+				<description>
+					Returns a source as a general Object. The caller must cast it into an appropriate type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock setSource(Object source,                         int index)
+				</name>
+				<description>
+					Replaces an entry in the list of source with a new source. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderedImage getRenderedSource(int index)
+				</name>
+				<description>
+					Returns a source as a RenderedImage. This method is a convenience method. An exception will be thrown if the source is not a RenderedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderableImage getRenderableSource(int index)
+				</name>
+				<description>
+					Returns a source as a RenderableImage. This method is a convenience method. An exception will be thrown if the sources is not a RenderableImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumSources()
+				</name>
+				<description>
+					Returns the number of source images.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<Object> getSources()
+				</name>
+				<description>
+					Returns the entire Vector of sources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSources(Vector<Object> sources)
+				</name>
+				<description>
+					Sets the entire Vector of sources to a given Vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeSources()
+				</name>
+				<description>
+					Clears the list of source images.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumParameters()
+				</name>
+				<description>
+					Returns the number of parameters (not including source images).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<Object> getParameters()
+				</name>
+				<description>
+					Returns the entire Vector of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParameters(Vector<Object> parameters)
+				</name>
+				<description>
+					Sets the entire Vector of parameters to a given Vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeParameters()
+				</name>
+				<description>
+					Clears the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(Object obj)
+				</name>
+				<description>
+					Adds an object to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(byte b)
+				</name>
+				<description>
+					Adds a Byte to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(char c)
+				</name>
+				<description>
+					Adds a Character to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(short s)
+				</name>
+				<description>
+					Adds a Short to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(int i)
+				</name>
+				<description>
+					Adds a Integer to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(long l)
+				</name>
+				<description>
+					Adds a Long to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(float f)
+				</name>
+				<description>
+					Adds a Float to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock add(double d)
+				</name>
+				<description>
+					Adds a Double to the list of parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(Object obj,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(byte b,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters with a Byte. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(char c,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters with a Character. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(short s,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters with a Short. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(int i,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters with an Integer. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(long l,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters with a Long. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(float f,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters with a Float. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock set(double d,                   int index)
+				</name>
+				<description>
+					Replaces an Object in the list of parameters with a Double. If the index lies beyond the current source list, the list is extended with nulls as needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getObjectParameter(int index)
+				</name>
+				<description>
+					Gets a parameter as an object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte getByteParameter(int index)
+				</name>
+				<description>
+					A convenience method to return a parameter as a byte. An exception is thrown if the parameter is null or not a Byte.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public char getCharParameter(int index)
+				</name>
+				<description>
+					A convenience method to return a parameter as a char. An exception is thrown if the parameter is null or not a Character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public short getShortParameter(int index)
+				</name>
+				<description>
+					A convenience method to return a parameter as a short. An exception is thrown if the parameter is null or not a Short.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIntParameter(int index)
+				</name>
+				<description>
+					A convenience method to return a parameter as an int. An exception is thrown if the parameter is null or not an Integer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getLongParameter(int index)
+				</name>
+				<description>
+					A convenience method to return a parameter as a long. An exception is thrown if the parameter is null or not a Long.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getFloatParameter(int index)
+				</name>
+				<description>
+					A convenience method to return a parameter as a float. An exception is thrown if the parameter is null or not a Float.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getDoubleParameter(int index)
+				</name>
+				<description>
+					A convenience method to return a parameter as a double. An exception is thrown if the parameter is null or not a Double.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class[] getParamClasses()
+				</name>
+				<description>
+					Returns an array of Class objects describing the types of the parameters.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

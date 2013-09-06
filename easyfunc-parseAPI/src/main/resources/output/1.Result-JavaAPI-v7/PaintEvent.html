@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.awt.event
+	</package>
+	<type>
+		<name>
+			public class PaintEvent  extends ComponentEvent
+		</name>
+		<description>
+			The component-level paint event. This event is a special type which is used to ensure that paint/update method calls are serialized along with the other events delivered from the event queue. This event is not designed to be used with the Event Listener model; programs should continue to override paint/update methods in order render themselves properly. An unspecified behavior will be caused if the id parameter of any particular PaintEvent instance is not in the range from PAINT_FIRST to PAINT_LAST.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int PAINT_FIRST
+				</name>
+				<description>
+					Marks the first integer id for the range of paint event ids.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PAINT_LAST
+				</name>
+				<description>
+					Marks the last integer id for the range of paint event ids.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PAINT
+				</name>
+				<description>
+					The paint event type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int UPDATE
+				</name>
+				<description>
+					The update event type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PaintEvent(Component source,            int id,            Rectangle updateRect)
+				</name>
+				<description>
+					Constructs a PaintEvent object with the specified source component and type. This method throws an IllegalArgumentException if source is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getUpdateRect()
+				</name>
+				<description>
+					Returns the rectangle representing the area which needs to be repainted in response to this event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUpdateRect(Rectangle updateRect)
+				</name>
+				<description>
+					Sets the rectangle representing the area which needs to be repainted in response to this event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String paramString()
+				</name>
+				<description>
+					Description copied from class: ComponentEvent Returns a parameter string identifying this event. This method is useful for event-logging and for debugging.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.lang
+	</package>
+	<type>
+		<name>
+			public abstract class Process  extends Object
+		</name>
+		<description>
+			The ProcessBuilder.start() and Runtime.exec methods create a native process and return an instance of a subclass of Process that can be used to control the process and obtain information about it. The class Process provides methods for performing input from the process, performing output to the process, waiting for the process to complete, checking the exit status of the process, and destroying (killing) the process. The methods that create processes may not work well for special processes on certain native platforms, such as native windowing processes, daemon processes, Win16/DOS processes on Microsoft Windows, or shell scripts. By default, the created subprocess does not have its own terminal or console. All its standard I/O (i.e. stdin, stdout, stderr) operations will be redirected to the parent process, where they can be accessed via the streams obtained using the methods getOutputStream(), getInputStream(), and getErrorStream(). The parent process uses these streams to feed input to and get output from the subprocess. Because some native platforms only provide limited buffer size for standard input and output streams, failure to promptly write the input stream or read the output stream of the subprocess may cause the subprocess to block, or even deadlock. Where desired, subprocess I/O can also be redirected using methods of the ProcessBuilder class. The subprocess is not killed when there are no more references to the Process object, but rather the subprocess continues executing asynchronously. There is no requirement that a process represented by a Process object execute asynchronously or concurrently with respect to the Java process that owns the Process object. As of 1.5, ProcessBuilder.start() is the preferred way to create a Process.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Process()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract OutputStream getOutputStream()
+				</name>
+				<description>
+					Returns the output stream connected to the normal input of the subprocess. Output to the stream is piped into the standard input of the process represented by this Process object. If the standard input of the subprocess has been redirected using ProcessBuilder.redirectInput then this method will return a null output stream. Implementation note: It is a good idea for the returned output stream to be buffered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract InputStream getInputStream()
+				</name>
+				<description>
+					Returns the input stream connected to the normal output of the subprocess. The stream obtains data piped from the standard output of the process represented by this Process object. If the standard output of the subprocess has been redirected using ProcessBuilder.redirectOutput then this method will return a null input stream. Otherwise, if the standard error of the subprocess has been redirected using ProcessBuilder.redirectErrorStream then the input stream returned by this method will receive the merged standard output and the standard error of the subprocess. Implementation note: It is a good idea for the returned input stream to be buffered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract InputStream getErrorStream()
+				</name>
+				<description>
+					Returns the input stream connected to the error output of the subprocess. The stream obtains data piped from the error output of the process represented by this Process object. If the standard error of the subprocess has been redirected using ProcessBuilder.redirectError or ProcessBuilder.redirectErrorStream then this method will return a null input stream. Implementation note: It is a good idea for the returned input stream to be buffered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int waitFor()                       throws InterruptedException
+				</name>
+				<description>
+					Causes the current thread to wait, if necessary, until the process represented by this Process object has terminated. This method returns immediately if the subprocess has already terminated. If the subprocess has not yet terminated, the calling thread will be blocked until the subprocess exits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int exitValue()
+				</name>
+				<description>
+					Returns the exit value for the subprocess.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void destroy()
+				</name>
+				<description>
+					Kills the subprocess. The subprocess represented by this Process object is forcibly terminated.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

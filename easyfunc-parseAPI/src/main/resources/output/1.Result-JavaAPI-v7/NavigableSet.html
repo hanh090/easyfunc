@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public interface NavigableSet<E>  extends SortedSet<E>
+		</name>
+		<description>
+			A SortedSet extended with navigation methods reporting closest matches for given search targets. Methods lower, floor, ceiling, and higher return elements respectively less than, less than or equal, greater than or equal, and greater than a given element, returning null if there is no such element. A NavigableSet may be accessed and traversed in either ascending or descending order. The descendingSet method returns a view of the set with the senses of all relational and directional methods inverted. The performance of ascending operations and views is likely to be faster than that of descending ones. This interface additionally defines methods pollFirst and pollLast that return and remove the lowest and highest element, if one exists, else returning null. Methods subSet, headSet, and tailSet differ from the like-named SortedSet methods in accepting additional arguments describing whether lower and upper bounds are inclusive versus exclusive. Subsets of any NavigableSet must implement the NavigableSet interface. The return values of navigation methods may be ambiguous in implementations that permit null elements. However, even in this case the result can be disambiguated by checking contains(null). To avoid such issues, implementations of this interface are encouraged to not permit insertion of null elements. (Note that sorted sets of Comparable elements intrinsically do not permit null.) Methods subSet(E, E), headSet(E), and tailSet(E) are specified to return SortedSet to allow existing implementations of SortedSet to be compatibly retrofitted to implement NavigableSet, but extensions and implementations of this interface are encouraged to override these methods to return NavigableSet. This interface is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					E lower(E e)
+				</name>
+				<description>
+					Returns the greatest element in this set strictly less than the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E floor(E e)
+				</name>
+				<description>
+					Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E ceiling(E e)
+				</name>
+				<description>
+					Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E higher(E e)
+				</name>
+				<description>
+					Returns the least element in this set strictly greater than the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E pollFirst()
+				</name>
+				<description>
+					Retrieves and removes the first (lowest) element, or returns null if this set is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E pollLast()
+				</name>
+				<description>
+					Retrieves and removes the last (highest) element, or returns null if this set is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this set, in ascending order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NavigableSet<E> descendingSet()
+				</name>
+				<description>
+					Returns a reverse order view of the elements contained in this set. The descending set is backed by this set, so changes to the set are reflected in the descending set, and vice-versa. If either set is modified while an iteration over either set is in progress (except through the iterator's own remove operation), the results of the iteration are undefined. The returned set has an ordering equivalent to Collections.reverseOrder(comparator()). The expression s.descendingSet().descendingSet() returns a view of s essentially equivalent to s.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator<E> descendingIterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this set, in descending order. Equivalent in effect to descendingSet().iterator().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NavigableSet<E> subSet(E fromElement,                       boolean fromInclusive,                       E toElement,                       boolean toInclusive)
+				</name>
+				<description>
+					Returns a view of the portion of this set whose elements range from fromElement to toElement. If fromElement and toElement are equal, the returned set is empty unless fromInclusive and toInclusive are both true. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NavigableSet<E> headSet(E toElement,                        boolean inclusive)
+				</name>
+				<description>
+					Returns a view of the portion of this set whose elements are less than (or equal to, if inclusive is true) toElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NavigableSet<E> tailSet(E fromElement,                        boolean inclusive)
+				</name>
+				<description>
+					Returns a view of the portion of this set whose elements are greater than (or equal to, if inclusive is true) fromElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SortedSet<E> subSet(E fromElement,                    E toElement)
+				</name>
+				<description>
+					Returns a view of the portion of this set whose elements range from fromElement, inclusive, to toElement, exclusive. (If fromElement and toElement are equal, the returned set is empty.) The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range. Equivalent to subSet(fromElement, true, toElement, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SortedSet<E> headSet(E toElement)
+				</name>
+				<description>
+					Returns a view of the portion of this set whose elements are strictly less than toElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range. Equivalent to headSet(toElement, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SortedSet<E> tailSet(E fromElement)
+				</name>
+				<description>
+					Returns a view of the portion of this set whose elements are greater than or equal to fromElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range. Equivalent to tailSet(fromElement, true).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

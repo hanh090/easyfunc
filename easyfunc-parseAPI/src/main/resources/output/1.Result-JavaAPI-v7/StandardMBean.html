@@ -1,0 +1,306 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class StandardMBean  extends Object  implements DynamicMBean, MBeanRegistration
+		</name>
+		<description>
+			An MBean whose management interface is determined by reflection on a Java interface. This class brings more flexibility to the notion of Management Interface in the use of Standard MBeans. Straightforward use of the patterns for Standard MBeans described in the JMX Specification means that there is a fixed relationship between the implementation class of an MBean and its management interface (i.e., if the implementation class is Thing, the management interface must be ThingMBean). This class makes it possible to keep the convenience of specifying the management interface with a Java interface, without requiring that there be any naming relationship between the implementation and interface classes. By making a DynamicMBean out of an MBean, this class makes it possible to select any interface implemented by the MBean as its management interface, provided that it complies with JMX patterns (i.e., attributes defined by getter/setter etc...). This class also provides hooks that make it possible to supply custom descriptions and names for the MBeanInfo returned by the DynamicMBean interface. Using this class, an MBean can be created with any implementation class name Impl and with a management interface defined (as for current Standard MBeans) by any interface Intf, in one of two general ways: Using the public constructor StandardMBean(impl,interface):        MBeanServer mbs;       ...       Impl impl = new Impl(...);       StandardMBean mbean = new StandardMBean(impl, Intf.class, false);       mbs.registerMBean(mbean, objectName);       Subclassing StandardMBean:        public class Impl extends StandardMBean implements Intf {          public Impl() {            super(Intf.class, false);         }         // implement methods of Intf       }         [...]         MBeanServer mbs;       ....       Impl impl = new Impl();       mbs.registerMBean(impl, objectName);       In either case, the class Impl must implement the interface Intf. Standard MBeans based on the naming relationship between implementation and interface classes are of course still available. This class may also be used to construct MXBeans. The usage is exactly the same as for Standard MBeans except that in the examples above, the false parameter to the constructor or super(...) invocation is instead true.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StandardMBean(T implementation,               Class<T> mbeanInterface)                throws NotCompliantMBeanException
+				</name>
+				<description>
+					Make a DynamicMBean out of the object implementation, using the specified mbeanInterface class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StandardMBean(Class<?> mbeanInterface)                   throws NotCompliantMBeanException
+				</name>
+				<description>
+					Make a DynamicMBean out of this, using the specified mbeanInterface class. Calls this(this,mbeanInterface). This constructor is reserved to subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StandardMBean(T implementation,               Class<T> mbeanInterface,               boolean isMXBean)
+				</name>
+				<description>
+					Make a DynamicMBean out of the object implementation, using the specified mbeanInterface class, and choosing whether the resultant MBean is an MXBean. This constructor can be used to make either Standard MBeans or MXBeans. Unlike the constructor StandardMBean(Object, Class), it does not throw NotCompliantMBeanException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StandardMBean(Class<?> mbeanInterface,               boolean isMXBean)
+				</name>
+				<description>
+					Make a DynamicMBean out of this, using the specified mbeanInterface class, and choosing whether the resulting MBean is an MXBean. This constructor can be used to make either Standard MBeans or MXBeans. Unlike the constructor StandardMBean(Object, Class), it does not throw NotCompliantMBeanException. Calls this(this, mbeanInterface, isMXBean). This constructor is reserved to subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setImplementation(Object implementation)                         throws NotCompliantMBeanException
+				</name>
+				<description>
+					Replace the implementation object wrapped in this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getImplementation()
+				</name>
+				<description>
+					Get the implementation of this Standard MBean (or MXBean).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Class<?> getMBeanInterface()
+				</name>
+				<description>
+					Get the Management Interface of this Standard MBean (or MXBean).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getImplementationClass()
+				</name>
+				<description>
+					Get the class of the implementation of this Standard MBean (or MXBean).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getAttribute(String attribute)                      throws AttributeNotFoundException,                             MBeanException,                             ReflectionException
+				</name>
+				<description>
+					Description copied from interface: DynamicMBean Obtain the value of a specific attribute of the Dynamic MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAttribute(Attribute attribute)                    throws AttributeNotFoundException,                           InvalidAttributeValueException,                           MBeanException,                           ReflectionException
+				</name>
+				<description>
+					Description copied from interface: DynamicMBean Set the value of a specific attribute of the Dynamic MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeList getAttributes(String[] attributes)
+				</name>
+				<description>
+					Description copied from interface: DynamicMBean Get the values of several attributes of the Dynamic MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeList setAttributes(AttributeList attributes)
+				</name>
+				<description>
+					Description copied from interface: DynamicMBean Sets the values of several attributes of the Dynamic MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object invoke(String actionName,              Object[] params,              String[] signature)                throws MBeanException,                       ReflectionException
+				</name>
+				<description>
+					Description copied from interface: DynamicMBean Allows an action to be invoked on the Dynamic MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanInfo getMBeanInfo()
+				</name>
+				<description>
+					Get the MBeanInfo for this MBean. This method implements DynamicMBean.getMBeanInfo(). This method first calls getCachedMBeanInfo() in order to retrieve the cached MBeanInfo for this MBean, if any. If the MBeanInfo returned by getCachedMBeanInfo() is not null, then it is returned. Otherwise, this method builds a default MBeanInfo for this MBean, using the Management Interface specified for this MBean. While building the MBeanInfo, this method calls the customization hooks that make it possible for subclasses to supply their custom descriptions, parameter names, etc... Finally, it calls cacheMBeanInfo() in order to cache the new MBeanInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getClassName(MBeanInfo info)
+				</name>
+				<description>
+					Customization hook: Get the className that will be used in the MBeanInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom class name. The default implementation returns info.getClassName().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getDescription(MBeanInfo info)
+				</name>
+				<description>
+					Customization hook: Get the description that will be used in the MBeanInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom MBean description. The default implementation returns info.getDescription().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getDescription(MBeanFeatureInfo info)
+				</name>
+				<description>
+					Customization hook: Get the description that will be used in the MBeanFeatureInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom description. The default implementation returns info.getDescription(). This method is called by getDescription(MBeanAttributeInfo), getDescription(MBeanOperationInfo), getDescription(MBeanConstructorInfo).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getDescription(MBeanAttributeInfo info)
+				</name>
+				<description>
+					Customization hook: Get the description that will be used in the MBeanAttributeInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom description. The default implementation returns getDescription((MBeanFeatureInfo) info).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getDescription(MBeanConstructorInfo info)
+				</name>
+				<description>
+					Customization hook: Get the description that will be used in the MBeanConstructorInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom description. The default implementation returns getDescription((MBeanFeatureInfo) info).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getDescription(MBeanConstructorInfo ctor,                      MBeanParameterInfo param,                      int sequence)
+				</name>
+				<description>
+					Customization hook: Get the description that will be used for the sequence MBeanParameterInfo of the MBeanConstructorInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom description. The default implementation returns param.getDescription().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getParameterName(MBeanConstructorInfo ctor,                        MBeanParameterInfo param,                        int sequence)
+				</name>
+				<description>
+					Customization hook: Get the name that will be used for the sequence MBeanParameterInfo of the MBeanConstructorInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom parameter name. The default implementation returns param.getName().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getDescription(MBeanOperationInfo info)
+				</name>
+				<description>
+					Customization hook: Get the description that will be used in the MBeanOperationInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom description. The default implementation returns getDescription((MBeanFeatureInfo) info).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getImpact(MBeanOperationInfo info)
+				</name>
+				<description>
+					Customization hook: Get the impact flag of the operation that will be used in the MBeanOperationInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom impact flag. The default implementation returns info.getImpact().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getParameterName(MBeanOperationInfo op,                        MBeanParameterInfo param,                        int sequence)
+				</name>
+				<description>
+					Customization hook: Get the name that will be used for the sequence MBeanParameterInfo of the MBeanOperationInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom parameter name. The default implementation returns param.getName().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getDescription(MBeanOperationInfo op,                      MBeanParameterInfo param,                      int sequence)
+				</name>
+				<description>
+					Customization hook: Get the description that will be used for the sequence MBeanParameterInfo of the MBeanOperationInfo returned by this MBean. Subclasses may redefine this method in order to supply their custom description. The default implementation returns param.getDescription().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MBeanConstructorInfo[] getConstructors(MBeanConstructorInfo[] ctors,                                       Object impl)
+				</name>
+				<description>
+					Customization hook: Get the MBeanConstructorInfo[] that will be used in the MBeanInfo returned by this MBean. By default, this method returns null if the wrapped implementation is not this. Indeed, if the wrapped implementation is not this object itself, it will not be possible to recreate a wrapped implementation by calling the implementation constructors through MBeanServer.createMBean(...). Otherwise, if the wrapped implementation is this, ctors is returned. Subclasses may redefine this method in order to modify this behavior, if needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MBeanInfo getCachedMBeanInfo()
+				</name>
+				<description>
+					Customization hook: Return the MBeanInfo cached for this object. Subclasses may redefine this method in order to implement their own caching policy. The default implementation stores one MBeanInfo object per instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void cacheMBeanInfo(MBeanInfo info)
+				</name>
+				<description>
+					Customization hook: cache the MBeanInfo built for this object. Subclasses may redefine this method in order to implement their own caching policy. The default implementation stores info in this instance. A subclass can define other policies, such as not saving info (so it is reconstructed every time getMBeanInfo() is called) or sharing a unique MBeanInfo object when several StandardMBean instances have equal MBeanInfo values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName preRegister(MBeanServer server,                       ObjectName name)                         throws Exception
+				</name>
+				<description>
+					Allows the MBean to perform any operations it needs before being registered in the MBean server. If the name of the MBean is not specified, the MBean can provide a name for its registration. If any exception is raised, the MBean will not be registered in the MBean server. The default implementation of this method returns the name parameter. It does nothing else for Standard MBeans. For MXBeans, it records the MBeanServer and ObjectName parameters so they can be used to translate inter-MXBean references. It is good practice for a subclass that overrides this method to call the overridden method via super.preRegister(...). This is necessary if this object is an MXBean that is referenced by attributes or operations in other MXBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postRegister(Boolean registrationDone)
+				</name>
+				<description>
+					Allows the MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. The default implementation of this method does nothing for Standard MBeans. For MXBeans, it undoes any work done by preRegister if registration fails. It is good practice for a subclass that overrides this method to call the overridden method via super.postRegister(...). This is necessary if this object is an MXBean that is referenced by attributes or operations in other MXBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preDeregister()                     throws Exception
+				</name>
+				<description>
+					Allows the MBean to perform any operations it needs before being unregistered by the MBean server. The default implementation of this method does nothing. It is good practice for a subclass that overrides this method to call the overridden method via super.preDeregister(...).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postDeregister()
+				</name>
+				<description>
+					Allows the MBean to perform any operations needed after having been unregistered in the MBean server. The default implementation of this method does nothing for Standard MBeans. For MXBeans, it removes any information that was recorded by the preRegister method. It is good practice for a subclass that overrides this method to call the overridden method via super.postRegister(...). This is necessary if this object is an MXBean that is referenced by attributes or operations in other MXBeans.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

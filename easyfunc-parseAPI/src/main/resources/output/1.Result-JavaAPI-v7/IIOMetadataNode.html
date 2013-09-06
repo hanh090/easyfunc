@@ -1,0 +1,585 @@
+<javaelement>
+	<package>
+		javax.imageio.metadata
+	</package>
+	<type>
+		<name>
+			public class IIOMetadataNode  extends Object  implements Element, NodeList
+		</name>
+		<description>
+			A class representing a node in a meta-data tree, which implements the org.w3c.dom.Element interface and additionally allows for the storage of non-textual objects via the getUserObject and setUserObject methods. This class is not intended to be used for general XML processing. In particular, Element nodes created within the Image I/O API are not compatible with those created by Sun's standard implementation of the org.w3.dom API. In particular, the implementation is tuned for simple uses and may not perform well for intensive processing. Namespaces are ignored in this implementation. The terms "tag name" and "node name" are always considered to be synonymous. Note: The DOM Level 3 specification added a number of new methods to the Node, Element and Attr interfaces that are not of value to the IIOMetadataNode implementation or specification. Calling such methods on an IIOMetadataNode, or an Attr instance returned from an IIOMetadataNode will result in a DOMException being thrown.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public IIOMetadataNode()
+				</name>
+				<description>
+					Constructs an empty IIOMetadataNode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOMetadataNode(String nodeName)
+				</name>
+				<description>
+					Constructs an IIOMetadataNode with a given node name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNodeName()
+				</name>
+				<description>
+					Returns the node name associated with this node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNodeValue()
+				</name>
+				<description>
+					Returns the value associated with this node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNodeValue(String nodeValue)
+				</name>
+				<description>
+					Sets the String value associated with this node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public short getNodeType()
+				</name>
+				<description>
+					Returns the node type, which is always ELEMENT_NODE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getParentNode()
+				</name>
+				<description>
+					Returns the parent of this node. A null value indicates that the node is the root of its own tree. To add a node to an existing tree, use one of the insertBefore, replaceChild, or appendChild methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NodeList getChildNodes()
+				</name>
+				<description>
+					Returns a NodeList that contains all children of this node. If there are no children, this is a NodeList containing no nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getFirstChild()
+				</name>
+				<description>
+					Returns the first child of this node, or null if the node has no children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getLastChild()
+				</name>
+				<description>
+					Returns the last child of this node, or null if the node has no children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getPreviousSibling()
+				</name>
+				<description>
+					Returns the previous sibling of this node, or null if this node has no previous sibling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getNextSibling()
+				</name>
+				<description>
+					Returns the next sibling of this node, or null if the node has no next sibling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NamedNodeMap getAttributes()
+				</name>
+				<description>
+					Returns a NamedNodeMap containing the attributes of this node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Document getOwnerDocument()
+				</name>
+				<description>
+					Returns null, since IIOMetadataNodes do not belong to any Document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node insertBefore(Node newChild,                  Node refChild)
+				</name>
+				<description>
+					Inserts the node newChild before the existing child node refChild. If refChild is null, insert newChild at the end of the list of children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node replaceChild(Node newChild,                  Node oldChild)
+				</name>
+				<description>
+					Replaces the child node oldChild with newChild in the list of children, and returns the oldChild node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node removeChild(Node oldChild)
+				</name>
+				<description>
+					Removes the child node indicated by oldChild from the list of children, and returns it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node appendChild(Node newChild)
+				</name>
+				<description>
+					Adds the node newChild to the end of the list of children of this node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasChildNodes()
+				</name>
+				<description>
+					Returns true if this node has child nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node cloneNode(boolean deep)
+				</name>
+				<description>
+					Returns a duplicate of this node. The duplicate node has no parent (getParentNode returns null). If a shallow clone is being performed (deep is false), the new node will not have any children or siblings. If a deep clone is being performed, the new node will form the root of a complete cloned subtree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void normalize()
+				</name>
+				<description>
+					Does nothing, since IIOMetadataNodes do not contain Text children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSupported(String feature,                    String version)
+				</name>
+				<description>
+					Returns false since DOM features are not supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNamespaceURI()                         throws DOMException
+				</name>
+				<description>
+					Returns null, since namespaces are not supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPrefix()
+				</name>
+				<description>
+					Returns null, since namespaces are not supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrefix(String prefix)
+				</name>
+				<description>
+					Does nothing, since namespaces are not supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLocalName()
+				</name>
+				<description>
+					Equivalent to getNodeName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTagName()
+				</name>
+				<description>
+					Equivalent to getNodeName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttribute(String name)
+				</name>
+				<description>
+					Retrieves an attribute value by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeNS(String namespaceURI,                      String localName)
+				</name>
+				<description>
+					Equivalent to getAttribute(localName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAttribute(String name,                  String value)
+				</name>
+				<description>
+					Description copied from interface: Element Adds a new attribute. If an attribute with that name is already present in the element, its value is changed to be that of the value parameter. This value is a simple string; it is not parsed as it is being set. So any markup (such as syntax to be recognized as an entity reference) is treated as literal text, and needs to be appropriately escaped by the implementation when it is written out. In order to assign an attribute value that contains entity references, the user must create an Attr node plus any Text and EntityReference nodes, build the appropriate subtree, and use setAttributeNode to assign it as the value of an attribute. To set an attribute with a qualified name and namespace URI, use the setAttributeNS method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAttributeNS(String namespaceURI,                    String qualifiedName,                    String value)
+				</name>
+				<description>
+					Equivalent to setAttribute(qualifiedName, value).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttribute(String name)
+				</name>
+				<description>
+					Description copied from interface: Element Removes an attribute by name. If a default value for the removed attribute is defined in the DTD, a new attribute immediately appears with the default value as well as the corresponding namespace URI, local name, and prefix when applicable. The implementation may handle default values from other schemas similarly but applications should use Document.normalizeDocument() to guarantee this information is up-to-date. If no attribute with this name is found, this method has no effect. To remove an attribute by local name and namespace URI, use the removeAttributeNS method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttributeNS(String namespaceURI,                       String localName)
+				</name>
+				<description>
+					Equivalent to removeAttribute(localName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attr getAttributeNode(String name)
+				</name>
+				<description>
+					Description copied from interface: Element Retrieves an attribute node by name. To retrieve an attribute node by qualified name and namespace URI, use the getAttributeNodeNS method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attr getAttributeNodeNS(String namespaceURI,                        String localName)
+				</name>
+				<description>
+					Equivalent to getAttributeNode(localName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attr setAttributeNode(Attr newAttr)                        throws DOMException
+				</name>
+				<description>
+					Description copied from interface: Element Adds a new attribute node. If an attribute with that name ( nodeName) is already present in the element, it is replaced by the new one. Replacing an attribute node by itself has no effect. To add a new attribute node with a qualified name and namespace URI, use the setAttributeNodeNS method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attr setAttributeNodeNS(Attr newAttr)
+				</name>
+				<description>
+					Equivalent to setAttributeNode(newAttr).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attr removeAttributeNode(Attr oldAttr)
+				</name>
+				<description>
+					Description copied from interface: Element Removes the specified attribute node. If a default value for the removed Attr node is defined in the DTD, a new node immediately appears with the default value as well as the corresponding namespace URI, local name, and prefix when applicable. The implementation may handle default values from other schemas similarly but applications should use Document.normalizeDocument() to guarantee this information is up-to-date.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NodeList getElementsByTagName(String name)
+				</name>
+				<description>
+					Description copied from interface: Element Returns a NodeList of all descendant Elements with a given tag name, in document order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NodeList getElementsByTagNameNS(String namespaceURI,                                String localName)
+				</name>
+				<description>
+					Equivalent to getElementsByTagName(localName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasAttributes()
+				</name>
+				<description>
+					Description copied from interface: Node Returns whether this node (if it is an element) has any attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasAttribute(String name)
+				</name>
+				<description>
+					Description copied from interface: Element Returns true when an attribute with a given name is specified on this element or has a default value, false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasAttributeNS(String namespaceURI,                       String localName)
+				</name>
+				<description>
+					Equivalent to hasAttribute(localName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLength()
+				</name>
+				<description>
+					Description copied from interface: NodeList The number of nodes in the list. The range of valid child node indices is 0 to length-1 inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node item(int index)
+				</name>
+				<description>
+					Description copied from interface: NodeList Returns the indexth item in the collection. If index is greater than or equal to the number of nodes in the list, this returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getUserObject()
+				</name>
+				<description>
+					Returns the Object value associated with this node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUserObject(Object userObject)
+				</name>
+				<description>
+					Sets the value associated with this node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIdAttribute(String name,                    boolean isId)                      throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIdAttributeNS(String namespaceURI,                      String localName,                      boolean isId)                        throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIdAttributeNode(Attr idAttr,                        boolean isId)                          throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TypeInfo getSchemaTypeInfo()                             throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object setUserData(String key,                   Object data,                   UserDataHandler handler)                     throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getUserData(String key)                     throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getFeature(String feature,                  String version)                    throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSameNode(Node node)                     throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEqualNode(Node node)                      throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String lookupNamespaceURI(String prefix)                            throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDefaultNamespace(String namespaceURI)                             throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String lookupPrefix(String namespaceURI)                      throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTextContent()                        throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTextContent(String textContent)                      throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public short compareDocumentPosition(Node other)                                throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getBaseURI()                    throws DOMException
+				</name>
+				<description>
+					This DOM Level 3 method is not supported for IIOMetadataNode and will throw a DOMException.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

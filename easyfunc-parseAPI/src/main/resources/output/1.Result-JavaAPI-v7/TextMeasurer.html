@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.awt.font
+	</package>
+	<type>
+		<name>
+			public final class TextMeasurer  extends Object  implements Cloneable
+		</name>
+		<description>
+			The TextMeasurer class provides the primitive operations needed for line break: measuring up to a given advance, determining the advance of a range of characters, and generating a TextLayout for a range of characters. It also provides methods for incremental editing of paragraphs. A TextMeasurer object is constructed with an AttributedCharacterIterator representing a single paragraph of text. The value returned by the getBeginIndex method of AttributedCharacterIterator defines the absolute index of the first character. The value returned by the getEndIndex method of AttributedCharacterIterator defines the index past the last character. These values define the range of indexes to use in calls to the TextMeasurer. For example, calls to get the advance of a range of text or the line break of a range of text must use indexes between the beginning and end index values. Calls to insertChar and deleteChar reset the TextMeasurer to use the beginning index and end index of the AttributedCharacterIterator passed in those calls. Most clients will use the more convenient LineBreakMeasurer, which implements the standard line break policy (placing as many words as will fit on each line).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TextMeasurer(AttributedCharacterIterator text,              FontRenderContext frc)
+				</name>
+				<description>
+					Constructs a TextMeasurer from the source text. The source text should be a single entire paragraph.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object clone()
+				</name>
+				<description>
+					Description copied from class: Object Creates and returns a copy of this object. The precise meaning of "copy" may depend on the class of the object. The general intent is that, for any object x, the expression:    x.clone() != x will be true, and that the expression:    x.clone().getClass() == x.getClass() will be true, but these are not absolute requirements. While it is typically the case that:    x.clone().equals(x) will be true, this is not an absolute requirement. By convention, the returned object should be obtained by calling super.clone. If a class and all of its superclasses (except Object) obey this convention, it will be the case that x.clone().getClass() == x.getClass(). By convention, the object returned by this method should be independent of this object (which is being cloned). To achieve this independence, it may be necessary to modify one or more fields of the object returned by super.clone before returning it. Typically, this means copying any mutable objects that comprise the internal "deep structure" of the object being cloned and replacing the references to these objects with references to the copies. If a class contains only primitive fields or references to immutable objects, then it is usually the case that no fields in the object returned by super.clone need to be modified. The method clone for class Object performs a specific cloning operation. First, if the class of this object does not implement the interface Cloneable, then a CloneNotSupportedException is thrown. Note that all arrays are considered to implement the interface Cloneable and that the return type of the clone method of an array type T[] is T[] where T is any reference or primitive type. Otherwise, this method creates a new instance of the class of this object and initializes all its fields with exactly the contents of the corresponding fields of this object, as if by assignment; the contents of the fields are not themselves cloned. Thus, this method performs a "shallow copy" of this object, not a "deep copy" operation. The class Object does not itself implement the interface Cloneable, so calling the clone method on an object whose class is Object will result in throwing an exception at run time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineBreakIndex(int start,                      float maxAdvance)
+				</name>
+				<description>
+					Returns the index of the first character which will not fit on on a line beginning at start and possible measuring up to maxAdvance in graphical width.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAdvanceBetween(int start,                        int limit)
+				</name>
+				<description>
+					Returns the graphical width of a line beginning at start and including characters up to limit. start and limit are absolute indices, not relative to the start of the paragraph.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextLayout getLayout(int start,                     int limit)
+				</name>
+				<description>
+					Returns a TextLayout on the given character range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertChar(AttributedCharacterIterator newParagraph,                int insertPos)
+				</name>
+				<description>
+					Updates the TextMeasurer after a single character has been inserted into the paragraph currently represented by this TextMeasurer. After this call, this TextMeasurer is equivalent to a new TextMeasurer created from the text; however, it will usually be more efficient to update an existing TextMeasurer than to create a new one from scratch.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deleteChar(AttributedCharacterIterator newParagraph,                int deletePos)
+				</name>
+				<description>
+					Updates the TextMeasurer after a single character has been deleted from the paragraph currently represented by this TextMeasurer. After this call, this TextMeasurer is equivalent to a new TextMeasurer created from the text; however, it will usually be more efficient to update an existing TextMeasurer than to create a new one from scratch.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

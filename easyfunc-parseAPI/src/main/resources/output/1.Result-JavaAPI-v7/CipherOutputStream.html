@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.crypto
+	</package>
+	<type>
+		<name>
+			public class CipherOutputStream  extends FilterOutputStream
+		</name>
+		<description>
+			A CipherOutputStream is composed of an OutputStream and a Cipher so that write() methods first process the data before writing them out to the underlying OutputStream. The cipher must be fully initialized before being used by a CipherOutputStream. For example, if the cipher is initialized for encryption, the CipherOutputStream will attempt to encrypt data before writing out the encrypted data. This class adheres strictly to the semantics, especially the failure semantics, of its ancestor classes java.io.OutputStream and java.io.FilterOutputStream. This class has exactly those methods specified in its ancestor classes, and overrides them all. Moreover, this class catches all exceptions that are not thrown by its ancestor classes. It is crucial for a programmer using this class not to use methods that are not defined or overriden in this class (such as a new method or constructor that is later added to one of the super classes), because the design and implementation of those methods are unlikely to have considered security impact with regard to CipherOutputStream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CipherOutputStream(OutputStream os,                    Cipher c)
+				</name>
+				<description>
+					Constructs a CipherOutputStream from an OutputStream and a Cipher. Note: if the specified output stream or cipher is null, a NullPointerException may be thrown later when they are used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected CipherOutputStream(OutputStream os)
+				</name>
+				<description>
+					Constructs a CipherOutputStream from an OutputStream without specifying a Cipher. This has the effect of constructing a CipherOutputStream using a NullCipher. Note: if the specified output stream is null, a NullPointerException may be thrown later when it is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(int b)             throws IOException
+				</name>
+				<description>
+					Writes the specified byte to this output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(byte[] b)             throws IOException
+				</name>
+				<description>
+					Writes b.length bytes from the specified byte array to this output stream. The write method of CipherOutputStream calls the write method of three arguments with the three arguments b, 0, and b.length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(byte[] b,           int off,           int len)             throws IOException
+				</name>
+				<description>
+					Writes len bytes from the specified byte array starting at offset off to this output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flush()             throws IOException
+				</name>
+				<description>
+					Flushes this output stream by forcing any buffered output bytes that have already been processed by the encapsulated cipher object to be written out. Any bytes buffered by the encapsulated cipher and waiting to be processed by it will not be written out. For example, if the encapsulated cipher is a block cipher, and the total number of bytes written using one of the write methods is less than the cipher's block size, no bytes will be written out.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this output stream and releases any system resources associated with this stream. This method invokes the doFinal method of the encapsulated cipher object, which causes any bytes buffered by the encapsulated cipher to be processed. The result is written out by calling the flush method of this output stream. This method resets the encapsulated cipher object to its initial state and calls the close method of the underlying output stream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

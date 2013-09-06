@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.sound.sampled
+	</package>
+	<type>
+		<name>
+			public interface Clip  extends DataLine
+		</name>
+		<description>
+			The Clip interface represents a special kind of data line whose audio data can be loaded prior to playback, instead of being streamed in real time. Because the data is pre-loaded and has a known length, you can set a clip to start playing at any position in its audio data. You can also create a loop, so that when the clip is played it will cycle repeatedly. Loops are specified with a starting and ending sample frame, along with the number of times that the loop should be played. Clips may be obtained from a Mixer that supports lines of this type. Data is loaded into a clip when it is opened. Playback of an audio clip may be started and stopped using the start and stop methods. These methods do not reset the media position; start causes playback to continue from the position where playback was last stopped. To restart playback from the beginning of the clip's audio data, simply follow the invocation of stop with setFramePosition(0), which rewinds the media to the beginning of the clip.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final int LOOP_CONTINUOUSLY
+				</name>
+				<description>
+					A value indicating that looping should continue indefinitely rather than complete after a specific number of loops.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void open(AudioFormat format,          byte[] data,          int offset,          int bufferSize)            throws LineUnavailableException
+				</name>
+				<description>
+					Opens the clip, meaning that it should acquire any required system resources and become operational. The clip is opened with the format and audio data indicated. If this operation succeeds, the line is marked as open and an OPEN event is dispatched to the line's listeners. Invoking this method on a line which is already open is illegal and may result in an IllegalStateException. Note that some lines, once closed, cannot be reopened. Attempts to reopen such a line will always result in a LineUnavailableException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void open(AudioInputStream stream)            throws LineUnavailableException,                   IOException
+				</name>
+				<description>
+					Opens the clip with the format and audio data present in the provided audio input stream. Opening a clip means that it should acquire any required system resources and become operational. If this operation input stream. If this operation succeeds, the line is marked open and an OPEN event is dispatched to the line's listeners. Invoking this method on a line which is already open is illegal and may result in an IllegalStateException. Note that some lines, once closed, cannot be reopened. Attempts to reopen such a line will always result in a LineUnavailableException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getFrameLength()
+				</name>
+				<description>
+					Obtains the media length in sample frames.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getMicrosecondLength()
+				</name>
+				<description>
+					Obtains the media duration in microseconds
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setFramePosition(int frames)
+				</name>
+				<description>
+					Sets the media position in sample frames. The position is zero-based; the first frame is frame number zero. When the clip begins playing the next time, it will start by playing the frame at this position. To obtain the current position in sample frames, use the getFramePosition method of DataLine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setMicrosecondPosition(long microseconds)
+				</name>
+				<description>
+					Sets the media position in microseconds. When the clip begins playing the next time, it will start at this position. The level of precision is not guaranteed. For example, an implementation might calculate the microsecond position from the current frame position and the audio sample frame rate. The precision in microseconds would then be limited to the number of microseconds per sample frame. To obtain the current position in microseconds, use the getMicrosecondPosition method of DataLine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setLoopPoints(int start,                   int end)
+				</name>
+				<description>
+					Sets the first and last sample frames that will be played in the loop. The ending point must be greater than or equal to the starting point, and both must fall within the the size of the loaded media. A value of 0 for the starting point means the beginning of the loaded media. Similarly, a value of -1 for the ending point indicates the last frame of the media.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void loop(int count)
+				</name>
+				<description>
+					Starts looping playback from the current position. Playback will continue to the loop's end point, then loop back to the loop start point count times, and finally continue playback to the end of the clip. If the current position when this method is invoked is greater than the loop end point, playback simply continues to the end of the clip without looping. A count value of 0 indicates that any current looping should cease and playback should continue to the end of the clip. The behavior is undefined when this method is invoked with any other value during a loop operation. If playback is stopped during looping, the current loop status is cleared; the behavior of subsequent loop and start requests is not affected by an interrupted loop operation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract class EditorKit  extends Object  implements Cloneable, Serializable
+		</name>
+		<description>
+			Establishes the set of things needed by a text component to be a reasonably functioning editor for some type of text content. The EditorKit acts as a factory for some kind of policy. For example, an implementation of html and rtf can be provided that is replaceable with other implementations. A kit can safely store editing state as an instance of the kit will be dedicated to a text component. New kits will normally be created by cloning a prototype kit. The kit will have it's setComponent method called to establish it's relationship with a JTextComponent.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public EditorKit()
+				</name>
+				<description>
+					Construct an EditorKit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates a copy of the editor kit. This is implemented to use Object.clone. If the kit cannot be cloned, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void install(JEditorPane c)
+				</name>
+				<description>
+					Called when the kit is being installed into the a JEditorPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deinstall(JEditorPane c)
+				</name>
+				<description>
+					Called when the kit is being removed from the JEditorPane. This is used to unregister any listeners that were attached.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getContentType()
+				</name>
+				<description>
+					Gets the MIME type of the data that this kit represents support for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ViewFactory getViewFactory()
+				</name>
+				<description>
+					Fetches a factory that is suitable for producing views of any models that are produced by this kit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Action[] getActions()
+				</name>
+				<description>
+					Fetches the set of commands that can be used on a text component that is using a model and view produced by this kit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Caret createCaret()
+				</name>
+				<description>
+					Fetches a caret that can navigate through views produced by the associated ViewFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Document createDefaultDocument()
+				</name>
+				<description>
+					Creates an uninitialized text storage model that is appropriate for this type of editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void read(InputStream in,          Document doc,          int pos)                     throws IOException,                            BadLocationException
+				</name>
+				<description>
+					Inserts content from the given stream which is expected to be in a format appropriate for this kind of content handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void write(OutputStream out,           Document doc,           int pos,           int len)                      throws IOException,                             BadLocationException
+				</name>
+				<description>
+					Writes content from a document to the given stream in a format appropriate for this kind of content handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void read(Reader in,          Document doc,          int pos)                     throws IOException,                            BadLocationException
+				</name>
+				<description>
+					Inserts content from the given stream which is expected to be in a format appropriate for this kind of content handler. Since actual text editing is unicode based, this would generally be the preferred way to read in the data. Some types of content are stored in an 8-bit form however, and will favor the InputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void write(Writer out,           Document doc,           int pos,           int len)                      throws IOException,                             BadLocationException
+				</name>
+				<description>
+					Writes content from a document to the given stream in a format appropriate for this kind of content handler. Since actual text editing is unicode based, this would generally be the preferred way to write the data. Some types of content are stored in an 8-bit form however, and will favor the OutputStream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

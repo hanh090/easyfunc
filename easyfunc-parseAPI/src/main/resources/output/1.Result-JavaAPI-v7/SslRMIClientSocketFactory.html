@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.rmi.ssl
+	</package>
+	<type>
+		<name>
+			public class SslRMIClientSocketFactory  extends Object  implements RMIClientSocketFactory, Serializable
+		</name>
+		<description>
+			An SslRMIClientSocketFactory instance is used by the RMI runtime in order to obtain client sockets for RMI calls via SSL. This class implements RMIClientSocketFactory over the Secure Sockets Layer (SSL) or Transport Layer Security (TLS) protocols. This class creates SSL sockets using the default SSLSocketFactory (see SSLSocketFactory.getDefault()). All instances of this class are functionally equivalent. In particular, they all share the same truststore, and the same keystore when client authentication is required by the server. This behavior can be modified in subclasses by overriding the createSocket(String,int) method; in that case, equals and hashCode may also need to be overridden. If the system property javax.rmi.ssl.client.enabledCipherSuites is specified, the createSocket(String,int) method will call SSLSocket.setEnabledCipherSuites(String[]) before returning the socket. The value of this system property is a string that is a comma-separated list of SSL/TLS cipher suites to enable. If the system property javax.rmi.ssl.client.enabledProtocols is specified, the createSocket(String,int) method will call SSLSocket.setEnabledProtocols(String[]) before returning the socket. The value of this system property is a string that is a comma-separated list of SSL/TLS protocol versions to enable.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SslRMIClientSocketFactory()
+				</name>
+				<description>
+					Creates a new SslRMIClientSocketFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Socket createSocket(String host,                    int port)                      throws IOException
+				</name>
+				<description>
+					Creates an SSL socket. If the system property javax.rmi.ssl.client.enabledCipherSuites is specified, this method will call SSLSocket.setEnabledCipherSuites(String[]) before returning the socket. The value of this system property is a string that is a comma-separated list of SSL/TLS cipher suites to enable. If the system property javax.rmi.ssl.client.enabledProtocols is specified, this method will call SSLSocket.setEnabledProtocols(String[]) before returning the socket. The value of this system property is a string that is a comma-separated list of SSL/TLS protocol versions to enable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Indicates whether some other object is "equal to" this one. Because all instances of this class are functionally equivalent (they all use the default SSLSocketFactory), this method simply returns this.getClass().equals(obj.getClass()). A subclass should override this method (as well as hashCode()) if its instances are not all functionally equivalent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for this SslRMIClientSocketFactory.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

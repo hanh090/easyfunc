@@ -1,0 +1,27 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			@Documented  @Target(value=CONSTRUCTOR)  @Retention(value=RUNTIME)  public @interface ConstructorProperties
+		</name>
+		<description>
+			An annotation on a constructor that shows how the parameters of that constructor correspond to the constructed object's getter methods. For example:      public class Point {         @ConstructorProperties({"x", "y"})         public Point(int x, int y) {             this.x = x;             this.y = y;         }           public int getX() {             return x;         }           public int getY() {             return y;         }           private final int x, y;     }   The annotation shows that the first parameter of the constructor can be retrieved with the getX() method and the second with the getY() method. Since parameter names are not in general available at runtime, without the annotation there would be no way to know whether the parameters correspond to getX() and getY() or the other way around.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String[] value
+				</name>
+				<description>
+					The getter names.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

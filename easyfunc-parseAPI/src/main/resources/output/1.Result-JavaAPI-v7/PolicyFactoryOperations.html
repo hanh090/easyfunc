@@ -1,0 +1,27 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface PolicyFactoryOperations
+		</name>
+		<description>
+			Enables policy types to be constructed using CORBA.ORB.create_policy. A portable ORB service implementation registers an instance of the PolicyFactory interface during ORB initialization in order to enable its policy types to be constructed using CORBA.ORB.create_policy. The POA is required to preserve any policy which is registered with ORBInitInfo in this manner.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Policy create_policy(int type,                     Any value)                       throws PolicyError
+				</name>
+				<description>
+					Returns an instance of the appropriate interface derived from CORBA.Policy whose value corresponds to the specified any. The ORB calls create_policy on a registered PolicyFactory instance when CORBA.ORB.create_policy is called for the PolicyType under which the PolicyFactory has been registered. The create_policy operation then returns an instance of the appropriate interface derived from CORBA.Policy whose value corresponds to the specified any. If it cannot, it shall throw an exception as described for CORBA.ORB.create_policy.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

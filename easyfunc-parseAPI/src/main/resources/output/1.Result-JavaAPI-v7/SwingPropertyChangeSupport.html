@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.swing.event
+	</package>
+	<type>
+		<name>
+			public final class SwingPropertyChangeSupport  extends PropertyChangeSupport
+		</name>
+		<description>
+			This subclass of java.beans.PropertyChangeSupport is almost identical in functionality. The only difference is if constructed with SwingPropertyChangeSupport(sourceBean, true) it ensures listeners are only ever notified on the Event Dispatch Thread.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SwingPropertyChangeSupport(Object sourceBean)
+				</name>
+				<description>
+					Constructs a SwingPropertyChangeSupport object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SwingPropertyChangeSupport(Object sourceBean,                            boolean notifyOnEDT)
+				</name>
+				<description>
+					Constructs a SwingPropertyChangeSupport object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(PropertyChangeEvent evt)
+				</name>
+				<description>
+					Fires a property change event to listeners that have been registered to track updates of all properties or a property with the specified name. No event is fired if the given event's old and new values are equal and non-null. If isNotifyOnEDT() is true and called off the Event Dispatch Thread this implementation uses SwingUtilities.invokeLater to send out the notification on the Event Dispatch Thread. This ensures listeners are only ever notified on the Event Dispatch Thread.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isNotifyOnEDT()
+				</name>
+				<description>
+					Returns notifyOnEDT property.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

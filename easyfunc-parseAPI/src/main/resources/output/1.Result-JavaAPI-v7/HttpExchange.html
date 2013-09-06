@@ -1,0 +1,252 @@
+<javaelement>
+	<package>
+		javax.xml.ws.spi.http
+	</package>
+	<type>
+		<name>
+			public abstract class HttpExchange  extends Object
+		</name>
+		<description>
+			This class encapsulates a HTTP request received and a response to be generated in one exchange. It provides methods for examining the request from the client, and for building and sending the response. A HttpExchange must be closed to free or reuse underlying resources. The effect of failing to close an exchange is undefined.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String REQUEST_CIPHER_SUITE
+				</name>
+				<description>
+					Standard property: cipher suite value when the request is received over HTTPS Type: String
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String REQUEST_KEY_SIZE
+				</name>
+				<description>
+					Standard property: bit size of the algorithm when the request is received over HTTPS Type: Integer
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String REQUEST_X509CERTIFICATE
+				</name>
+				<description>
+					Standard property: A SSL certificate, if any, associated with the request Type: java.security.cert.X509Certificate[] The order of this array is defined as being in ascending order of trust. The first certificate in the chain is the one set by the client, the next is the one used to authenticate the first, and so on.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public HttpExchange()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Map<String,List<String>> getRequestHeaders()
+				</name>
+				<description>
+					Returns an immutable Map containing the HTTP headers that were included with this request. The keys in this Map will be the header names, while the values will be a List of Strings containing each value that was included (either for a header that was listed several times, or one that accepts a comma-delimited list of values on a single line). In either of these cases, the values for the header name will be presented in the order that they were included in the request. The keys in Map are case-insensitive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getRequestHeader(String name)
+				</name>
+				<description>
+					Returns the value of the specified request header. If the request did not include a header of the specified name, this method returns null. If there are multiple headers with the same name, this method returns the first header in the request. The header name is case-insensitive. This is a convienence method to get a header (instead of using the getRequestHeaders()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Map<String,List<String>> getResponseHeaders()
+				</name>
+				<description>
+					Returns a mutable Map into which the HTTP response headers can be stored and which will be transmitted as part of this response. The keys in the Map will be the header names, while the values must be a List of Strings containing each value that should be included multiple times (in the order that they should be included). The keys in Map are case-insensitive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void addResponseHeader(String name,                       String value)
+				</name>
+				<description>
+					Adds a response header with the given name and value. This method allows a response header to have multiple values. This is a convenience method to add a response header(instead of using the getResponseHeaders()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getRequestURI()
+				</name>
+				<description>
+					Returns the part of the request's URI from the protocol name up to the query string in the first line of the HTTP request. Container doesn't decode this string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getContextPath()
+				</name>
+				<description>
+					Returns the context path of all the endpoints in an application. This path is the portion of the request URI that indicates the context of the request. The context path always comes first in a request URI. The path starts with a "/" character but does not end with a "/" character. If this method returns "", the request is for default context. The container does not decode this string. Context path is used in computing the endpoint address. See HttpContext.getPath()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getRequestMethod()
+				</name>
+				<description>
+					Get the HTTP request method
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract HttpContext getHttpContext()
+				</name>
+				<description>
+					Returns a HttpContext for this exchange. Container matches the request with the associated Endpoint's HttpContext
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void close()                      throws IOException
+				</name>
+				<description>
+					This must be called to end an exchange. Container takes care of closing request and response streams. This must be called so that the container can free or reuse underlying resources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract InputStream getRequestBody()                                      throws IOException
+				</name>
+				<description>
+					Returns a stream from which the request body can be read. Multiple calls to this method will return the same stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract OutputStream getResponseBody()                                        throws IOException
+				</name>
+				<description>
+					Returns a stream to which the response body must be written. setStatus(int)) must be called prior to calling this method. Multiple calls to this method (for the same exchange) will return the same stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setStatus(int status)
+				</name>
+				<description>
+					Sets the HTTP status code for the response. This method must be called prior to calling getResponseBody().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract InetSocketAddress getRemoteAddress()
+				</name>
+				<description>
+					Returns the unresolved address of the remote entity invoking this request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract InetSocketAddress getLocalAddress()
+				</name>
+				<description>
+					Returns the unresolved local address on which the request was received.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getProtocol()
+				</name>
+				<description>
+					Returns the protocol string from the request in the form protocol/majorVersion.minorVersion. For example, "HTTP/1.1"
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getScheme()
+				</name>
+				<description>
+					Returns the name of the scheme used to make this request, for example: http, or https.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getPathInfo()
+				</name>
+				<description>
+					Returns the extra path information that follows the web service path but precedes the query string in the request URI and will start with a "/" character. This can be used for MessageContext.PATH_INFO
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getQueryString()
+				</name>
+				<description>
+					Returns the query string that is contained in the request URI after the path. This can be used for MessageContext.QUERY_STRING
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getAttribute(String name)
+				</name>
+				<description>
+					Returns an attribute that is associated with this HttpExchange. JAX-WS handlers and endpoints may then access the attribute via MessageContext. Servlet containers must expose MessageContext.SERVLET_CONTEXT, MessageContext.SERVLET_REQUEST, and MessageContext.SERVLET_RESPONSE as attributes. If the request has been received by the container using HTTPS, the following information must be exposed as attributes. These attributes are REQUEST_CIPHER_SUITE, and REQUEST_KEY_SIZE. If there is a SSL certificate associated with the request, it must be exposed using REQUEST_X509CERTIFICATE
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Set<String> getAttributeNames()
+				</name>
+				<description>
+					Gives all the attribute names that are associated with this HttpExchange.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Principal getUserPrincipal()
+				</name>
+				<description>
+					Returns the Principal that represents the authenticated user for this HttpExchange.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isUserInRole(String role)
+				</name>
+				<description>
+					Indicates whether an authenticated user is included in the specified logical "role".
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

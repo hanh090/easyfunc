@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.omg.CosNaming
+	</package>
+	<type>
+		<name>
+			public abstract class BindingIteratorPOA  extends Servant  implements BindingIteratorOperations, InvokeHandler
+		</name>
+		<description>
+			The BindingIterator interface allows a client to iterate through the bindings using the next_one or next_n operations. The bindings iterator is obtained by using the list method on the NamingContext.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BindingIteratorPOA()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream _invoke(String $method,                     InputStream in,                     ResponseHandler $rh)
+				</name>
+				<description>
+					Description copied from interface: InvokeHandler Invoked by the ORB to dispatch a request to the servant. ORB passes the method name, an InputStream containing the marshalled arguments, and a ResponseHandler which the servant uses to construct a proper reply. Only CORBA SystemException may be thrown by this method. The method must return an OutputStream created by the ResponseHandler which contains the marshalled reply. A servant must not retain a reference to the ResponseHandler beyond the lifetime of a method invocation. Servant behaviour is defined as follows: 1. Determine correct method, and unmarshal parameters from InputStream. 2. Invoke method implementation. 3. If no user exception, create a normal reply using ResponseHandler. 4. If user exception occurred, create exception reply using ResponseHandler. 5. Marshal reply into OutputStream returned by ResponseHandler. 6. Return OutputStream to ORB.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] _all_interfaces(POA poa,                         byte[] objectId)
+				</name>
+				<description>
+					Description copied from class: Servant Used by the ORB to obtain complete type information from the servant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BindingIterator _this()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BindingIterator _this(ORB orb)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

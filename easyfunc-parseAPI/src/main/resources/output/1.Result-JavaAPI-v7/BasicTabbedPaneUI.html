@@ -1,0 +1,1017 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public class BasicTabbedPaneUI  extends TabbedPaneUI  implements SwingConstants
+		</name>
+		<description>
+			A Basic L&F implementation of TabbedPaneUI.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected JTabbedPane tabPane
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color highlight
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color lightHighlight
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color shadow
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color darkShadow
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color focus
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int textIconGap
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int tabRunOverlay
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets tabInsets
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets selectedTabPadInsets
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets tabAreaInsets
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets contentBorderInsets
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke upKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke downKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke leftKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke rightKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int[] tabRuns
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int runCount
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int selectedRun
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle[] rects
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int maxTabHeight
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int maxTabWidth
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener tabChangeListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener propertyChangeListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseListener mouseListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener focusListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Rectangle calcRect
+				</name>
+				<description>
+					A rectangle used for general layout calculations in order to avoid constructing many new Rectangles on the fly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicTabbedPaneUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent c)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void installUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Configures the specified component appropriately for the look and feel. This method is invoked when the ComponentUI instance is being installed as the UI delegate on the specified component. This method should completely configure the component for the look and feel, including the following: Install default property values for color, fonts, borders, icons, opacity, etc. on the component. Whenever possible, property values initialized by the client program should not be overridden. Install a LayoutManager on the component if necessary. Create/add any required sub-components to the component. Create/install event listeners on the component. Create/install a PropertyChangeListener on the component in order to detect and respond to component property changes appropriately. Install keyboard UI (mnemonics, traversal, etc.) on the component. Initialize any appropriate instance data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Reverses configuration which was done on the specified component during installUI. This method is invoked when this UIComponent instance is being removed as the UI delegate for the specified component. This method should undo the configuration performed in installUI, being careful to leave the JComponent instance in a clean state (no extraneous listeners, look-and-feel-specific property objects, etc.). This should include the following: Remove any UI-set borders from the component. Remove any UI-set layout managers on the component. Remove any UI-added sub-components from the component. Remove any UI-added event/property listeners from the component. Remove any UI-installed keyboard UI from the component. Nullify any allocated instance data objects to allow for GC.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected LayoutManager createLayoutManager()
+				</name>
+				<description>
+					Invoked by installUI to create a layout manager object to manage the JTabbedPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installComponents()
+				</name>
+				<description>
+					Creates and installs any required subcomponents for the JTabbedPane. Invoked by installUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JButton createScrollButton(int direction)
+				</name>
+				<description>
+					Creates and returns a JButton that will provide the user with a way to scroll the tabs in a particular direction. The returned JButton must be instance of UIResource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallComponents()
+				</name>
+				<description>
+					Removes any installed subcomponents from the JTabbedPane. Invoked by uninstallUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseListener createMouseListener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener createFocusListener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener createChangeListener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createPropertyChangeListener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setRolloverTab(int index)
+				</name>
+				<description>
+					Sets the tab the mouse is currently over to index. index will be -1 if the mouse is no longer over any tab. No checking is done to ensure the passed in index identifies a valid tab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getRolloverTab()
+				</name>
+				<description>
+					Returns the tab the mouse is currently over, or -1 if the mouse is no longer over any tab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Returns the specified component's minimum size appropriate for the look and feel. If null is returned, the minimum size will be calculated by the component's layout manager instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method invokes getPreferredSize and returns that value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMaximumSize(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Returns the specified component's maximum size appropriate for the look and feel. If null is returned, the maximum size will be calculated by the component's layout manager instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method invokes getPreferredSize and returns that value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBaseline(JComponent c,                int width,                int height)
+				</name>
+				<description>
+					Returns the baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c)
+				</name>
+				<description>
+					Returns an enum indicating how the baseline of the component changes as the size changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getBaseline(int tab)
+				</name>
+				<description>
+					Returns the baseline for the specified tab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getBaselineOffset()
+				</name>
+				<description>
+					Returns the amount the baseline is offset by. This is typically the same as getTabLabelShiftY.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Paints the specified component appropriately for the look and feel. This method is invoked from the ComponentUI.update method when the specified component is being painted. Subclasses should override this method and use the specified Graphics object to render the content of the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintTabArea(Graphics g,                  int tabPlacement,                  int selectedIndex)
+				</name>
+				<description>
+					Paints the tabs in the tab area. Invoked by paint(). The graphics parameter must be a valid Graphics object. Tab placement may be either: JTabbedPane.TOP, JTabbedPane.BOTTOM, JTabbedPane.LEFT, or JTabbedPane.RIGHT. The selected index must be a valid tabbed pane tab index (0 to tab count - 1, inclusive) or -1 if no tab is currently selected. The handling of invalid parameters is unspecified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintTab(Graphics g,              int tabPlacement,              Rectangle[] rects,              int tabIndex,              Rectangle iconRect,              Rectangle textRect)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutLabel(int tabPlacement,                 FontMetrics metrics,                 int tabIndex,                 String title,                 Icon icon,                 Rectangle tabRect,                 Rectangle iconRect,                 Rectangle textRect,                 boolean isSelected)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintIcon(Graphics g,               int tabPlacement,               int tabIndex,               Icon icon,               Rectangle iconRect,               boolean isSelected)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintText(Graphics g,               int tabPlacement,               Font font,               FontMetrics metrics,               int tabIndex,               String title,               Rectangle textRect,               boolean isSelected)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getTabLabelShiftX(int tabPlacement,                      int tabIndex,                      boolean isSelected)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getTabLabelShiftY(int tabPlacement,                      int tabIndex,                      boolean isSelected)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintFocusIndicator(Graphics g,                         int tabPlacement,                         Rectangle[] rects,                         int tabIndex,                         Rectangle iconRect,                         Rectangle textRect,                         boolean isSelected)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintTabBorder(Graphics g,                    int tabPlacement,                    int tabIndex,                    int x,                    int y,                    int w,                    int h,                    boolean isSelected)
+				</name>
+				<description>
+					this function draws the border around each tab note that this function does now draw the background of the tab. that is done elsewhere
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintTabBackground(Graphics g,                        int tabPlacement,                        int tabIndex,                        int x,                        int y,                        int w,                        int h,                        boolean isSelected)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintContentBorder(Graphics g,                        int tabPlacement,                        int selectedIndex)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintContentBorderTopEdge(Graphics g,                               int tabPlacement,                               int selectedIndex,                               int x,                               int y,                               int w,                               int h)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintContentBorderLeftEdge(Graphics g,                                int tabPlacement,                                int selectedIndex,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintContentBorderBottomEdge(Graphics g,                                  int tabPlacement,                                  int selectedIndex,                                  int x,                                  int y,                                  int w,                                  int h)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintContentBorderRightEdge(Graphics g,                                 int tabPlacement,                                 int selectedIndex,                                 int x,                                 int y,                                 int w,                                 int h)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getTabBounds(JTabbedPane pane,                       int i)
+				</name>
+				<description>
+					Returns the bounds of the specified tab index. The bounds are with respect to the JTabbedPane's coordinate space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTabRunCount(JTabbedPane pane)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int tabForCoordinate(JTabbedPane pane,                     int x,                     int y)
+				</name>
+				<description>
+					Returns the tab index which intersects the specified point in the JTabbedPane's coordinate space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle getTabBounds(int tabIndex,                       Rectangle dest)
+				</name>
+				<description>
+					Returns the bounds of the specified tab in the coordinate space of the JTabbedPane component. This is required because the tab rects are by default defined in the coordinate space of the component where they are rendered, which could be the JTabbedPane (for WRAP_TAB_LAYOUT) or a ScrollableTabPanel (SCROLL_TAB_LAYOUT). This method should be used whenever the tab rectangle must be relative to the JTabbedPane itself and the result should be placed in a designated Rectangle object (rather than instantiating and returning a new Rectangle each time). The tab index parameter must be a valid tabbed pane tab index (0 to tab count - 1, inclusive). The destination rectangle parameter must be a valid Rectangle instance. The handling of invalid parameters is unspecified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component getVisibleComponent()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setVisibleComponent(Component component)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void assureRectsCreated(int tabCount)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void expandTabRunsArray()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getRunForTab(int tabCount,                 int tabIndex)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int lastTabInRun(int tabCount,                 int run)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getTabRunOverlay(int tabPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getTabRunIndent(int tabPlacement,                    int run)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean shouldPadTabRun(int tabPlacement,                        int run)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean shouldRotateTabRuns(int tabPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Icon getIconForTab(int tabIndex)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View getTextViewForTab(int tabIndex)
+				</name>
+				<description>
+					Returns the text View object required to render stylized text (HTML) for the specified tab or null if no specialized text rendering is needed for this tab. This is provided to support html rendering inside tabs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int calculateTabHeight(int tabPlacement,                       int tabIndex,                       int fontHeight)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int calculateMaxTabHeight(int tabPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int calculateTabWidth(int tabPlacement,                      int tabIndex,                      FontMetrics metrics)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int calculateMaxTabWidth(int tabPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int calculateTabAreaHeight(int tabPlacement,                           int horizRunCount,                           int maxTabHeight)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int calculateTabAreaWidth(int tabPlacement,                          int vertRunCount,                          int maxTabWidth)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets getTabInsets(int tabPlacement,                    int tabIndex)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets getSelectedTabPadInsets(int tabPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets getTabAreaInsets(int tabPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets getContentBorderInsets(int tabPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FontMetrics getFontMetrics()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void navigateSelectedTab(int direction)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectNextTabInRun(int current)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectPreviousTabInRun(int current)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectNextTab(int current)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectPreviousTab(int current)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectAdjacentRunTab(int tabPlacement,                          int tabIndex,                          int offset)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getFocusIndex()
+				</name>
+				<description>
+					Returns the index of the tab that has focus.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getTabRunOffset(int tabPlacement,                    int tabCount,                    int tabIndex,                    boolean forward)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getPreviousTabIndex(int base)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getNextTabIndex(int base)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getNextTabIndexInRun(int tabCount,                         int base)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getPreviousTabIndexInRun(int tabCount,                             int base)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getPreviousTabRun(int baseRun)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getNextTabRun(int baseRun)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static void rotateInsets(Insets topInsets,                  Insets targetInsets,                  int targetPlacement)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

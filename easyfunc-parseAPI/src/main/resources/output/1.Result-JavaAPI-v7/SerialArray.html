@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.sql.rowset.serial
+	</package>
+	<type>
+		<name>
+			public class SerialArray  extends Object  implements Array, Serializable, Cloneable
+		</name>
+		<description>
+			A serialized version of an Array object, which is the mapping in the Java programming language of an SQL ARRAY value. The SerialArray class provides a constructor for creating a SerialArray instance from an Array object, methods for getting the base type and the SQL name for the base type, and methods for copying all or part of a SerialArray object. Note: In order for this class to function correctly, a connection to the data source must be available in order for the SQL Array object to be materialized (have all of its elements brought to the client server) if necessary. At this time, logical pointers to the data in the data source, such as locators, are not currently supported.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SerialArray(Array array,             Map<String,Class<?>> map)              throws SerialException,                     SQLException
+				</name>
+				<description>
+					Constructs a new SerialArray object from the given Array object, using the given type map for the custom mapping of each element when the elements are SQL UDTs. This method does custom mapping if the array elements are a UDT and the given type map has an entry for that UDT. Custom mapping is recursive, meaning that if, for instance, an element of an SQL structured type is an SQL structured type that itself has an element that is an SQL structured type, each structured type that has a custom mapping will be mapped according to the given type map. The new SerialArray object contains the same elements as the Array object from which it is built, except when the base type is the SQL type STRUCT, ARRAY, BLOB, CLOB, DATALINK or JAVA_OBJECT. In this case, each element in the new SerialArray object is the appropriate serialized form, that is, a SerialStruct, SerialArray, SerialBlob, SerialClob, SerialDatalink, or SerialJavaObject object. Note: (1) The Array object from which a SerialArray object is created must have materialized the SQL ARRAY value's data on the client before it is passed to the constructor. Otherwise, the new SerialArray object will contain no data. Note: (2) If the Array contains java.sql.Types.JAVA_OBJECT types, the SerialJavaObject constructor is called where checks are made to ensure this object is serializable. Note: (3) The Array object supplied to this constructor cannot return null for any Array.getArray() methods. SerialArray cannot serialize null array values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SerialArray(Array array)              throws SerialException,                     SQLException
+				</name>
+				<description>
+					Constructs a new SerialArray object from the given Array object. This constructor does not do custom mapping. If the base type of the array is an SQL structured type and custom mapping is desired, the constructor SerialArray(Array array, Map map) should be used. The new SerialArray object contains the same elements as the Array object from which it is built, except when the base type is the SQL type BLOB, CLOB, DATALINK or JAVA_OBJECT. In this case, each element in the new SerialArray object is the appropriate serialized form, that is, a SerialBlob, SerialClob, SerialDatalink, or SerialJavaObject object. Note: (1) The Array object from which a SerialArray object is created must have materialized the SQL ARRAY value's data on the client before it is passed to the constructor. Otherwise, the new SerialArray object will contain no data. Note: (2) The Array object supplied to this constructor cannot return null for any Array.getArray() methods. SerialArray cannot serialize null array values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void free()            throws SQLException
+				</name>
+				<description>
+					This method frees the Array object and releases the resources that it holds. The object is invalid once the free method is called. After free has been called, any attempt to invoke a method other than free will result in a SQLException being thrown. If free is called multiple times, the subsequent calls to free are treated as a no-op.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getArray()                  throws SerialException
+				</name>
+				<description>
+					Returns a new array that is a copy of this SerialArray object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getArray(Map<String,Class<?>> map)                  throws SerialException
+				</name>
+				<description>
+					Returns a new array that is a copy of this SerialArray object, using the given type map for the custom mapping of each element when the elements are SQL UDTs. This method does custom mapping if the array elements are a UDT and the given type map has an entry for that UDT. Custom mapping is recursive, meaning that if, for instance, an element of an SQL structured type is an SQL structured type that itself has an element that is an SQL structured type, each structured type that has a custom mapping will be mapped according to the given type map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getArray(long index,                int count)                  throws SerialException
+				</name>
+				<description>
+					Returns a new array that is a copy of a slice of this SerialArray object, starting with the element at the given index and containing the given number of consecutive elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getArray(long index,                int count,                Map<String,Class<?>> map)                  throws SerialException
+				</name>
+				<description>
+					Returns a new array that is a copy of a slice of this SerialArray object, starting with the element at the given index and containing the given number of consecutive elements. This method does custom mapping if the array elements are a UDT and the given type map has an entry for that UDT. Custom mapping is recursive, meaning that if, for instance, an element of an SQL structured type is an SQL structured type that itself has an element that is an SQL structured type, each structured type that has a custom mapping will be mapped according to the given type map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBaseType()                  throws SerialException
+				</name>
+				<description>
+					Retrieves the SQL type of the elements in this SerialArray object. The int returned is one of the constants in the class java.sql.Types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getBaseTypeName()                         throws SerialException
+				</name>
+				<description>
+					Retrieves the DBMS-specific type name for the elements in this SerialArray object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ResultSet getResultSet(long index,                       int count)                         throws SerialException
+				</name>
+				<description>
+					Retrieves a ResultSet object holding the elements of the subarray that starts at index index and contains up to count successive elements. This method uses the connection's type map to map the elements of the array if the map contains an entry for the base type. Otherwise, the standard mapping is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ResultSet getResultSet(Map<String,Class<?>> map)                         throws SerialException
+				</name>
+				<description>
+					Retrieves a ResultSet object that contains all of the elements of the SQL ARRAY value represented by this SerialArray object. This method uses the specified map for type map customizations unless the base type of the array does not match a user-defined type (UDT) in map, in which case it uses the standard mapping. This version of the method getResultSet uses either the given type map or the standard mapping; it never uses the type map associated with the connection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ResultSet getResultSet()                         throws SerialException
+				</name>
+				<description>
+					Retrieves a ResultSet object that contains all of the elements in the ARRAY value that this SerialArray object represents. If appropriate, the elements of the array are mapped using the connection's type map; otherwise, the standard mapping is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ResultSet getResultSet(long index,                       int count,                       Map<String,Class<?>> map)                         throws SerialException
+				</name>
+				<description>
+					Retrieves a result set holding the elements of the subarray that starts at Retrieves a ResultSet object that contains a subarray of the elements in this SerialArray object, starting at index index and containing up to count successive elements. This method uses the specified map for type map customizations unless the base type of the array does not match a user-defined type (UDT) in map, in which case it uses the standard mapping. This version of the method getResultSet uses either the given type map or the standard mapping; it never uses the type map associated with the connection.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

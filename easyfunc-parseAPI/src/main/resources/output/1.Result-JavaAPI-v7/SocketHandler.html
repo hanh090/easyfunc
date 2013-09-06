@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.util.logging
+	</package>
+	<type>
+		<name>
+			public class SocketHandler  extends StreamHandler
+		</name>
+		<description>
+			Simple network logging Handler. LogRecords are published to a network stream connection. By default the XMLFormatter class is used for formatting. Configuration: By default each SocketHandler is initialized using the following LogManager configuration properties. If properties are not defined (or have invalid values) then the specified default values are used. java.util.logging.SocketHandler.level specifies the default level for the Handler (defaults to Level.ALL). java.util.logging.SocketHandler.filter specifies the name of a Filter class to use (defaults to no Filter). java.util.logging.SocketHandler.formatter specifies the name of a Formatter class to use (defaults to java.util.logging.XMLFormatter). java.util.logging.SocketHandler.encoding the name of the character set encoding to use (defaults to the default platform encoding). java.util.logging.SocketHandler.host specifies the target host name to connect to (no default). java.util.logging.SocketHandler.port specifies the target TCP port to use (no default). The output IO stream is buffered, but is flushed after each LogRecord is written.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SocketHandler()                throws IOException
+				</name>
+				<description>
+					Create a SocketHandler, using only LogManager properties (or their defaults).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SocketHandler(String host,               int port)                throws IOException
+				</name>
+				<description>
+					Construct a SocketHandler using a specified host and port. The SocketHandler is configured based on LogManager properties (or their default values) except that the given target host and port arguments are used. If the host argument is empty, but not null String then the localhost is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws SecurityException
+				</name>
+				<description>
+					Close this output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void publish(LogRecord record)
+				</name>
+				<description>
+					Format and publish a LogRecord.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.imageio.spi
+	</package>
+	<type>
+		<name>
+			public abstract class IIOServiceProvider  extends Object  implements RegisterableService
+		</name>
+		<description>
+			A superinterface for functionality common to all Image I/O service provider interfaces (SPIs). For more information on service provider classes, see the class comment for the IIORegistry class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected String vendorName
+				</name>
+				<description>
+					A String to be returned from getVendorName, initially null. Constructors should set this to a non-null value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String version
+				</name>
+				<description>
+					A String to be returned from getVersion, initially null. Constructors should set this to a non-null value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOServiceProvider(String vendorName,                    String version)
+				</name>
+				<description>
+					Constructs an IIOServiceProvider with a given vendor name and version identifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOServiceProvider()
+				</name>
+				<description>
+					Constructs a blank IIOServiceProvider. It is up to the subclass to initialize instance variables and/or override method implementations in order to ensure that the getVendorName and getVersion methods will return non-null values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void onRegistration(ServiceRegistry registry,                    Class<?> category)
+				</name>
+				<description>
+					A callback that will be called exactly once after the Spi class has been instantiated and registered in a ServiceRegistry. This may be used to verify that the environment is suitable for this service, for example that native libraries can be loaded. If the service cannot function in the environment where it finds itself, it should deregister itself from the registry. Only the registry should call this method. The default implementation does nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void onDeregistration(ServiceRegistry registry,                      Class<?> category)
+				</name>
+				<description>
+					A callback that will be whenever the Spi class has been deregistered from a ServiceRegistry. Only the registry should call this method. The default implementation does nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getVendorName()
+				</name>
+				<description>
+					Returns the name of the vendor responsible for creating this service provider and its associated implementation. Because the vendor name may be used to select a service provider, it is not localized. The default implementation returns the value of the vendorName instance variable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getVersion()
+				</name>
+				<description>
+					Returns a string describing the version number of this service provider and its associated implementation. Because the version may be used by transcoders to identify the service providers they understand, this method is not localized. The default implementation returns the value of the version instance variable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getDescription(Locale locale)
+				</name>
+				<description>
+					Returns a brief, human-readable description of this service provider and its associated implementation. The resulting string should be localized for the supplied Locale, if possible.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

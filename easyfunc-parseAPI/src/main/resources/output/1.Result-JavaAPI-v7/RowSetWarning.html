@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.sql.rowset
+	</package>
+	<type>
+		<name>
+			public class RowSetWarning  extends SQLException
+		</name>
+		<description>
+			An extension of SQLException that provides information about database warnings set on RowSet objects. Warnings are silently chained to the object whose method call caused it to be reported. This class complements the SQLWarning class. Rowset warnings may be retrieved from JdbcRowSet, CachedRowSetTM, WebRowSet, FilteredRowSet, or JoinRowSet implementations. To retrieve the first warning reported on any RowSet implementation, use the method getRowSetWarnings defined in the JdbcRowSet interface or the CachedRowSet interface. To retrieve a warning chained to the first warning, use the RowSetWarning method getNextWarning. To retrieve subsequent warnings, call getNextWarning on each RowSetWarning object that is returned. The inherited methods getMessage, getSQLState, and getErrorCode retrieve information contained in a RowSetWarning object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RowSetWarning(String reason)
+				</name>
+				<description>
+					Constructs a RowSetWarning object with the given value for the reason; SQLState defaults to null, and vendorCode defaults to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RowSetWarning()
+				</name>
+				<description>
+					Constructs a default RowSetWarning object. The reason defaults to null, SQLState defaults to null and vendorCode defaults to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RowSetWarning(String reason,               String SQLState)
+				</name>
+				<description>
+					Constructs a RowSetWarning object initialized with the given values for the reason and SQLState. The vendor code defaults to 0. If the reason or SQLState parameters are null, this constructor behaves like the default (zero parameter) RowSetWarning constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RowSetWarning(String reason,               String SQLState,               int vendorCode)
+				</name>
+				<description>
+					Constructs a fully specified RowSetWarning object initialized with the given values for the reason, SQLState and vendorCode. If the reason, or the SQLState parameters are null, this constructor behaves like the default (zero parameter) RowSetWarning constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RowSetWarning getNextWarning()
+				</name>
+				<description>
+					Retrieves the warning chained to this RowSetWarning object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNextWarning(RowSetWarning warning)
+				</name>
+				<description>
+					Sets warning as the next warning, that is, the warning chained to this RowSetWarning object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

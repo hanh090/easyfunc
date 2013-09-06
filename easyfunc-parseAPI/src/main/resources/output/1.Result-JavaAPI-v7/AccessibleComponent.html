@@ -1,0 +1,261 @@
+<javaelement>
+	<package>
+		javax.accessibility
+	</package>
+	<type>
+		<name>
+			public interface AccessibleComponent
+		</name>
+		<description>
+			The AccessibleComponent interface should be supported by any object that is rendered on the screen. This interface provides the standard mechanism for an assistive technology to determine and set the graphical representation of an object. Applications can determine if an object supports the AccessibleComponent interface by first obtaining its AccessibleContext and then calling the AccessibleContext.getAccessibleComponent() method. If the return value is not null, the object supports this interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Color getBackground()
+				</name>
+				<description>
+					Gets the background color of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setBackground(Color c)
+				</name>
+				<description>
+					Sets the background color of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Color getForeground()
+				</name>
+				<description>
+					Gets the foreground color of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setForeground(Color c)
+				</name>
+				<description>
+					Sets the foreground color of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Cursor getCursor()
+				</name>
+				<description>
+					Gets the Cursor of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setCursor(Cursor cursor)
+				</name>
+				<description>
+					Sets the Cursor of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Font getFont()
+				</name>
+				<description>
+					Gets the Font of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setFont(Font f)
+				</name>
+				<description>
+					Sets the Font of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					FontMetrics getFontMetrics(Font f)
+				</name>
+				<description>
+					Gets the FontMetrics of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isEnabled()
+				</name>
+				<description>
+					Determines if the object is enabled. Objects that are enabled will also have the AccessibleState.ENABLED state set in their AccessibleStateSets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setEnabled(boolean b)
+				</name>
+				<description>
+					Sets the enabled state of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isVisible()
+				</name>
+				<description>
+					Determines if the object is visible. Note: this means that the object intends to be visible; however, it may not be showing on the screen because one of the objects that this object is contained by is currently not visible. To determine if an object is showing on the screen, use isShowing(). Objects that are visible will also have the AccessibleState.VISIBLE state set in their AccessibleStateSets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setVisible(boolean b)
+				</name>
+				<description>
+					Sets the visible state of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isShowing()
+				</name>
+				<description>
+					Determines if the object is showing. This is determined by checking the visibility of the object and its ancestors. Note: this will return true even if the object is obscured by another (for example, it is underneath a menu that was pulled down).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean contains(Point p)
+				</name>
+				<description>
+					Checks whether the specified point is within this object's bounds, where the point's x and y coordinates are defined to be relative to the coordinate system of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Point getLocationOnScreen()
+				</name>
+				<description>
+					Returns the location of the object on the screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Point getLocation()
+				</name>
+				<description>
+					Gets the location of the object relative to the parent in the form of a point specifying the object's top-left corner in the screen's coordinate space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setLocation(Point p)
+				</name>
+				<description>
+					Sets the location of the object relative to the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Rectangle getBounds()
+				</name>
+				<description>
+					Gets the bounds of this object in the form of a Rectangle object. The bounds specify this object's width, height, and location relative to its parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setBounds(Rectangle r)
+				</name>
+				<description>
+					Sets the bounds of this object in the form of a Rectangle object. The bounds specify this object's width, height, and location relative to its parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Dimension getSize()
+				</name>
+				<description>
+					Returns the size of this object in the form of a Dimension object. The height field of the Dimension object contains this object's height, and the width field of the Dimension object contains this object's width.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setSize(Dimension d)
+				</name>
+				<description>
+					Resizes this object so that it has width and height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Accessible getAccessibleAt(Point p)
+				</name>
+				<description>
+					Returns the Accessible child, if one exists, contained at the local coordinate Point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isFocusTraversable()
+				</name>
+				<description>
+					Returns whether this object can accept focus or not. Objects that can accept focus will also have the AccessibleState.FOCUSABLE state set in their AccessibleStateSets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void requestFocus()
+				</name>
+				<description>
+					Requests focus for this object. If this object cannot accept focus, nothing will happen. Otherwise, the object will attempt to take focus.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addFocusListener(FocusListener l)
+				</name>
+				<description>
+					Adds the specified focus listener to receive focus events from this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeFocusListener(FocusListener l)
+				</name>
+				<description>
+					Removes the specified focus listener so it no longer receives focus events from this component.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

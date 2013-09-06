@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public class HandshakeCompletedEvent  extends EventObject
+		</name>
+		<description>
+			This event indicates that an SSL handshake completed on a given SSL connection. All of the core information about that handshake's result is captured through an "SSLSession" object. As a convenience, this event class provides direct access to some important session attributes. The source of this event is the SSLSocket on which handshaking just completed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public HandshakeCompletedEvent(SSLSocket sock,                         SSLSession s)
+				</name>
+				<description>
+					Constructs a new HandshakeCompletedEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SSLSession getSession()
+				</name>
+				<description>
+					Returns the session that triggered this event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getCipherSuite()
+				</name>
+				<description>
+					Returns the cipher suite in use by the session which was produced by the handshake. (This is a convenience method for getting the ciphersuite from the SSLsession.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Certificate[] getLocalCertificates()
+				</name>
+				<description>
+					Returns the certificate(s) that were sent to the peer during handshaking. Note: This method is useful only when using certificate-based cipher suites. When multiple certificates are available for use in a handshake, the implementation chooses what it considers the "best" certificate chain available, and transmits that to the other side. This method allows the caller to know which certificate chain was actually used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Certificate[] getPeerCertificates()                                    throws SSLPeerUnverifiedException
+				</name>
+				<description>
+					Returns the identity of the peer which was established as part of defining the session. Note: This method can be used only when using certificate-based cipher suites; using it with non-certificate-based cipher suites, such as Kerberos, will throw an SSLPeerUnverifiedException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public X509Certificate[] getPeerCertificateChain()                                            throws SSLPeerUnverifiedException
+				</name>
+				<description>
+					Returns the identity of the peer which was identified as part of defining the session. Note: This method can be used only when using certificate-based cipher suites; using it with non-certificate-based cipher suites, such as Kerberos, will throw an SSLPeerUnverifiedException. Note: this method exists for compatibility with previous releases. New applications should use getPeerCertificates() instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Principal getPeerPrincipal()                             throws SSLPeerUnverifiedException
+				</name>
+				<description>
+					Returns the identity of the peer which was established as part of defining the session.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Principal getLocalPrincipal()
+				</name>
+				<description>
+					Returns the principal that was sent to the peer during handshaking.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SSLSocket getSocket()
+				</name>
+				<description>
+					Returns the socket which is the source of this event. (This is a convenience function, to let applications write code without type casts.)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

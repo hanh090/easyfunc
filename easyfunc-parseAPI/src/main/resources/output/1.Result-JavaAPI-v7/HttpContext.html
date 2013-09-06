@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.xml.ws.spi.http
+	</package>
+	<type>
+		<name>
+			public abstract class HttpContext  extends Object
+		</name>
+		<description>
+			HttpContext represents a mapping between the root URI path of a web service to a HttpHandler which is invoked to handle requests destined for that path on the associated container. Container provides the implementation for this and it matches web service requests to corresponding HttpContext objects.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected HttpHandler handler
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public HttpContext()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHandler(HttpHandler handler)
+				</name>
+				<description>
+					JAX-WS runtime sets its handler during Endpoint.publish(HttpContext) to handle HTTP requests for this context. Container or its extensions use this handler to process the requests.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getPath()
+				</name>
+				<description>
+					Returns the path for this context. This path uniquely identifies an endpoint inside an application and the path is relative to application's context path. Container should give this path based on how it matches request URIs to this HttpContext object. For servlet container, this is typically a url-pattern for an endpoint. Endpoint's address for this context can be computed as follows:     HttpExchange exch = ...;    String endpointAddress =        exch.getScheme() + "://"        + exch.getLocalAddress().getHostName()        + ":" + exch.getLocalAddress().getPort()        + exch.getContextPath() + getPath();
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getAttribute(String name)
+				</name>
+				<description>
+					Returns an attribute value for container's configuration and other data that can be used by jax-ws runtime.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Set<String> getAttributeNames()
+				</name>
+				<description>
+					Returns all attribute names for container's configuration and other data that can be used by jax-ws runtime.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

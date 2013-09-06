@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class Choice  extends Component  implements ItemSelectable, Accessible
+		</name>
+		<description>
+			The Choice class presents a pop-up menu of choices. The current choice is displayed as the title of the menu. The following code example produces a pop-up menu:    Choice ColorChooser = new Choice();   ColorChooser.add("Green");   ColorChooser.add("Red");   ColorChooser.add("Blue");   After this choice menu has been added to a panel, it appears as follows in its normal state: In the picture, "Green" is the current choice. Pushing the mouse button down on the object causes a menu to appear with the current choice highlighted. Some native platforms do not support arbitrary resizing of Choice components and the behavior of setSize()/getSize() is bound by such limitations. Native GUI Choice components' size are often bound by such attributes as font size and length of items contained within the Choice.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Choice()         throws HeadlessException
+				</name>
+				<description>
+					Creates a new choice menu. The menu initially has no items in it. By default, the first item added to the choice menu becomes the selected item, until a different selection is made by the user by calling one of the select methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotify()
+				</name>
+				<description>
+					Creates the Choice's peer. This peer allows us to change the look of the Choice without changing its functionality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getItemCount()
+				</name>
+				<description>
+					Returns the number of items in this Choice menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public int countItems()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by getItemCount().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getItem(int index)
+				</name>
+				<description>
+					Gets the string at the specified index in this Choice menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(String item)
+				</name>
+				<description>
+					Adds an item to this Choice menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addItem(String item)
+				</name>
+				<description>
+					Obsolete as of Java 2 platform v1.1. Please use the add method instead. Adds an item to this Choice menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert(String item,            int index)
+				</name>
+				<description>
+					Inserts the item into this choice at the specified position. Existing items at an index greater than or equal to index are shifted up by one to accommodate the new item. If index is greater than or equal to the number of items in this choice, item is added to the end of this choice. If the item is the first one being added to the choice, then the item becomes selected. Otherwise, if the selected item was one of the items shifted, the first item in the choice becomes the selected item. If the selected item was no among those shifted, it remains the selected item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(String item)
+				</name>
+				<description>
+					Removes the first occurrence of item from the Choice menu. If the item being removed is the currently selected item, then the first item in the choice becomes the selected item. Otherwise, the currently selected item remains selected (and the selected index is updated accordingly).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(int position)
+				</name>
+				<description>
+					Removes an item from the choice menu at the specified position. If the item being removed is the currently selected item, then the first item in the choice becomes the selected item. Otherwise, the currently selected item remains selected (and the selected index is updated accordingly).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAll()
+				</name>
+				<description>
+					Removes all items from the choice menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSelectedItem()
+				</name>
+				<description>
+					Gets a representation of the current choice as a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getSelectedObjects()
+				</name>
+				<description>
+					Returns an array (length 1) containing the currently selected item. If this choice has no items, returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectedIndex()
+				</name>
+				<description>
+					Returns the index of the currently selected item. If nothing is selected, returns -1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void select(int pos)
+				</name>
+				<description>
+					Sets the selected item in this Choice menu to be the item at the specified position. Note that this method should be primarily used to initially select an item in this component. Programmatically calling this method will not trigger an ItemEvent. The only way to trigger an ItemEvent is by user interaction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void select(String str)
+				</name>
+				<description>
+					Sets the selected item in this Choice menu to be the item whose name is equal to the specified string. If more than one item matches (is equal to) the specified string, the one with the smallest index is selected. Note that this method should be primarily used to initially select an item in this component. Programmatically calling this method will not trigger an ItemEvent. The only way to trigger an ItemEvent is by user interaction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addItemListener(ItemListener l)
+				</name>
+				<description>
+					Adds the specified item listener to receive item events from this Choice menu. Item events are sent in response to user input, but not in response to calls to select. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeItemListener(ItemListener l)
+				</name>
+				<description>
+					Removes the specified item listener so that it no longer receives item events from this Choice menu. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ItemListener[] getItemListeners()
+				</name>
+				<description>
+					Returns an array of all the item listeners registered on this choice.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Returns an array of all the objects currently registered as FooListeners upon this Choice. FooListeners are registered using the addFooListener method. You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a Choice c for its item listeners with the following code: ItemListener[] ils = (ItemListener[])(c.getListeners(ItemListener.class)); If no such listeners exist, this method returns an empty array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processEvent(AWTEvent e)
+				</name>
+				<description>
+					Processes events on this choice. If the event is an instance of ItemEvent, it invokes the processItemEvent method. Otherwise, it calls its superclass's processEvent method. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processItemEvent(ItemEvent e)
+				</name>
+				<description>
+					Processes item events occurring on this Choice menu by dispatching them to any registered ItemListener objects. This method is not called unless item events are enabled for this component. Item events are enabled when one of the following occurs: An ItemListener object is registered via addItemListener. Item events are enabled via enableEvents. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representing the state of this Choice menu. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this Choice. For Choice components, the AccessibleContext takes the form of an AccessibleAWTChoice. A new AccessibleAWTChoice instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

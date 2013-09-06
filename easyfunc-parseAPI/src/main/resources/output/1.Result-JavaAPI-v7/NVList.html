@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public abstract class NVList  extends Object
+		</name>
+		<description>
+			A modifiable list containing NamedValue objects. The class NVList is used as follows: to describe arguments for a Request object in the Dynamic Invocation Interface and the Dynamic Skeleton Interface to describe context values in a Context object Each NamedValue object consists of the following: a name, which is a String object a value, as an Any object an argument mode flag An NVList object may be created using one of the following ORB methods: org.omg.CORBA.ORB.create_list       org.omg.CORBA.NVList nv = orb.create_list(3);   The variable nv represents a newly-created NVList object. The argument is a memory-management hint to the orb and does not imply the actual length of the list. If, for example, you want to use an NVList object in a request, and the method being invoked takes three parameters, you might optimize by supplying 3 to the method create_list. Note that the new NVList will not necessarily have a length of 3; it could have a length of 2 or 4, for instance. Note also that you can add any number of NamedValue objects to this list regardless of its original length. org.omg.CORBA.ORB.create_operation_list       org.omg.CORBA.NVList nv = orb.create_operation_list(myOperationDef);   The variable nv represents a newly-created NVList object that contains descriptions of the arguments to the method described in the given OperationDef object. The methods in the class NVList all deal with the NamedValue objects in the list. There are three methods for adding a NamedValue object, a method for getting the count of NamedValue objects in the list, a method for retrieving a NamedValue object at a given index, and a method for removing a NamedValue object at a given index.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public NVList()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int count()
+				</name>
+				<description>
+					Returns the number of NamedValue objects that have been added to this NVList object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract NamedValue add(int flags)
+				</name>
+				<description>
+					Creates a new NamedValue object initialized with the given flag and adds it to the end of this NVList object. The flag can be any one of the argument passing modes: ARG_IN.value, ARG_OUT.value, or ARG_INOUT.value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract NamedValue add_item(String item_name,                    int flags)
+				</name>
+				<description>
+					Creates a new NamedValue object initialized with the given name and flag, and adds it to the end of this NVList object. The flag can be any one of the argument passing modes: ARG_IN.value, ARG_OUT.value, or ARG_INOUT.value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract NamedValue add_value(String item_name,                     Any val,                     int flags)
+				</name>
+				<description>
+					Creates a new NamedValue object initialized with the given name, value, and flag, and adds it to the end of this NVList object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract NamedValue item(int index)                           throws Bounds
+				</name>
+				<description>
+					Retrieves the NamedValue object at the given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void remove(int index)                       throws Bounds
+				</name>
+				<description>
+					Removes the NamedValue object at the given index. Note that the indices of all NamedValue objects following the one removed are shifted down by one.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

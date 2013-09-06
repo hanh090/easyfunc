@@ -1,0 +1,288 @@
+<javaelement>
+	<package>
+		javax.management.remote.rmi
+	</package>
+	<type>
+		<name>
+			public class RMIConnectionImpl  extends Object  implements RMIConnection, Unreferenced
+		</name>
+		<description>
+			Implementation of the RMIConnection interface. User code will not usually reference this class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RMIConnectionImpl(RMIServerImpl rmiServer,                   String connectionId,                   ClassLoader defaultClassLoader,                   Subject subject,                   Map<String,?> env)
+				</name>
+				<description>
+					Constructs a new RMIConnection. This connection can be used with either the JRMP or IIOP transport. This object does not export itself: it is the responsibility of the caller to export it appropriately (see RMIJRMPServerImpl.makeClient(String,Subject) and RMIIIOPServerImpl.makeClient(String,Subject).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getConnectionId()                         throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Returns the connection ID. This string is different for every open connection to a given RMI connector server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Closes this connection. On return from this method, the RMI object implementing this interface is unexported, so further remote calls to it will fail.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unreferenced()
+				</name>
+				<description>
+					Description copied from interface: Unreferenced Called by the RMI runtime sometime after the runtime determines that the reference list, the list of clients referencing the remote object, becomes empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectInstance createMBean(String className,                           ObjectName name,                           Subject delegationSubject)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException,                                    IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.createMBean(String, ObjectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectInstance createMBean(String className,                           ObjectName name,                           ObjectName loaderName,                           Subject delegationSubject)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException,                                    InstanceNotFoundException,                                    IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.createMBean(String, ObjectName, ObjectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectInstance createMBean(String className,                           ObjectName name,                           MarshalledObject params,                           String[] signature,                           Subject delegationSubject)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException,                                    IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.createMBean(String, ObjectName, Object[], String[]). The Object[] parameter is wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectInstance createMBean(String className,                           ObjectName name,                           ObjectName loaderName,                           MarshalledObject params,                           String[] signature,                           Subject delegationSubject)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException,                                    InstanceNotFoundException,                                    IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.createMBean(String, ObjectName, ObjectName, Object[], String[]). The Object[] parameter is wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unregisterMBean(ObjectName name,                     Subject delegationSubject)                       throws InstanceNotFoundException,                              MBeanRegistrationException,                              IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.unregisterMBean(ObjectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectInstance getObjectInstance(ObjectName name,                                 Subject delegationSubject)                                   throws InstanceNotFoundException,                                          IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.getObjectInstance(ObjectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<ObjectInstance> queryMBeans(ObjectName name,                                MarshalledObject query,                                Subject delegationSubject)                                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.queryMBeans(ObjectName, QueryExp). The QueryExp is wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<ObjectName> queryNames(ObjectName name,                           MarshalledObject query,                           Subject delegationSubject)                             throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.queryNames(ObjectName, QueryExp). The QueryExp is wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isRegistered(ObjectName name,                     Subject delegationSubject)                       throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.isRegistered(ObjectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer getMBeanCount(Subject delegationSubject)                        throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.getMBeanCount().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getAttribute(ObjectName name,                    String attribute,                    Subject delegationSubject)                      throws MBeanException,                             AttributeNotFoundException,                             InstanceNotFoundException,                             ReflectionException,                             IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.getAttribute(ObjectName, String).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeList getAttributes(ObjectName name,                            String[] attributes,                            Subject delegationSubject)                              throws InstanceNotFoundException,                                     ReflectionException,                                     IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.getAttributes(ObjectName, String[]).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAttribute(ObjectName name,                  MarshalledObject attribute,                  Subject delegationSubject)                    throws InstanceNotFoundException,                           AttributeNotFoundException,                           InvalidAttributeValueException,                           MBeanException,                           ReflectionException,                           IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.setAttribute(ObjectName, Attribute). The Attribute parameter is wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeList setAttributes(ObjectName name,                            MarshalledObject attributes,                            Subject delegationSubject)                              throws InstanceNotFoundException,                                     ReflectionException,                                     IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.setAttributes(ObjectName, AttributeList). The AttributeList parameter is wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object invoke(ObjectName name,              String operationName,              MarshalledObject params,              String[] signature,              Subject delegationSubject)                throws InstanceNotFoundException,                       MBeanException,                       ReflectionException,                       IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.invoke(ObjectName, String, Object[], String[]). The Object[] parameter is wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDefaultDomain(Subject delegationSubject)                          throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.getDefaultDomain().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getDomains(Subject delegationSubject)                      throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.getDomains().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanInfo getMBeanInfo(ObjectName name,                       Subject delegationSubject)                         throws InstanceNotFoundException,                                IntrospectionException,                                ReflectionException,                                IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.getMBeanInfo(ObjectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isInstanceOf(ObjectName name,                     String className,                     Subject delegationSubject)                       throws InstanceNotFoundException,                              IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.isInstanceOf(ObjectName, String).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer[] addNotificationListeners(ObjectName[] names,                                   MarshalledObject[] filters,                                   Subject[] delegationSubjects)                                     throws InstanceNotFoundException,                                            IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.addNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object). Register for notifications from the given MBeans that match the given filters. The remote client can subsequently retrieve the notifications using the fetchNotifications method. For each listener, the original NotificationListener and handback are kept on the client side; in order for the client to be able to identify them, the server generates and returns a unique listenerID. This listenerID is forwarded with the Notifications to the remote client. If any one of the given (name, filter) pairs cannot be registered, then the operation fails with an exception, and no names or filters are registered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotificationListener(ObjectName name,                             ObjectName listener,                             MarshalledObject filter,                             MarshalledObject handback,                             Subject delegationSubject)                               throws InstanceNotFoundException,                                      IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.addNotificationListener(ObjectName, ObjectName, NotificationFilter, Object). The NotificationFilter parameter is wrapped in a MarshalledObject. The Object (handback) parameter is also wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotificationListeners(ObjectName name,                                 Integer[] listenerIDs,                                 Subject delegationSubject)                                   throws InstanceNotFoundException,                                          ListenerNotFoundException,                                          IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the removeNotificationListener(ObjectName, NotificationListener) and removeNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object) methods. This method removes one or more NotificationListeners from a given MBean in the MBean server. The NotificationListeners are identified by the IDs which were returned by the RMIConnection.addNotificationListeners(ObjectName[], MarshalledObject[], Subject[]) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotificationListener(ObjectName name,                                ObjectName listener,                                Subject delegationSubject)                                  throws InstanceNotFoundException,                                         ListenerNotFoundException,                                         IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.removeNotificationListener(ObjectName, ObjectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotificationListener(ObjectName name,                                ObjectName listener,                                MarshalledObject filter,                                MarshalledObject handback,                                Subject delegationSubject)                                  throws InstanceNotFoundException,                                         ListenerNotFoundException,                                         IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Handles the method MBeanServerConnection.removeNotificationListener(ObjectName, ObjectName, NotificationFilter, Object). The NotificationFilter parameter is wrapped in a MarshalledObject. The Object parameter is also wrapped in a MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NotificationResult fetchNotifications(long clientSequenceNumber,                                      int maxNotifications,                                      long timeout)                                        throws IOException
+				</name>
+				<description>
+					Description copied from interface: RMIConnection Retrieves notifications from the connector server. This method can block until there is at least one notification or until the specified timeout is reached. The method can also return at any time with zero notifications. A notification can be included in the result if its sequence number is no less than clientSequenceNumber and this client has registered at least one listener for the MBean generating the notification, with a filter that accepts the notification. Each listener that is interested in the notification is identified by an Integer ID that was returned by RMIConnection.addNotificationListeners(ObjectName[], MarshalledObject[], Subject[]).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

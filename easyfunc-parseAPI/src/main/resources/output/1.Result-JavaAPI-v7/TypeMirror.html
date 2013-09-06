@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.lang.model.type
+	</package>
+	<type>
+		<name>
+			public interface TypeMirror
+		</name>
+		<description>
+			Represents a type in the Java programming language. Types include primitive types, declared types (class and interface types), array types, type variables, and the null type. Also represented are wildcard type arguments, the signature and return types of executables, and pseudo-types corresponding to packages and to the keyword void. Types should be compared using the utility methods in Types. There is no guarantee that any particular type will always be represented by the same object. To implement operations based on the class of an TypeMirror object, either use a visitor or use the result of the getKind() method. Using instanceof is not necessarily a reliable idiom for determining the effective class of an object in this modeling hierarchy since an implementation may choose to have a single object implement multiple TypeMirror subinterfaces.
+		</description>
+		<methods>
+			<method>
+				<name>
+					TypeKind getKind()
+				</name>
+				<description>
+					Returns the kind of this type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean equals(Object obj)
+				</name>
+				<description>
+					Obeys the general contract of Object.equals. This method does not, however, indicate whether two types represent the same type. Semantic comparisons of type equality should instead use Types.isSameType(TypeMirror, TypeMirror). The results of t1.equals(t2) and Types.isSameType(t1, t2) may differ.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int hashCode()
+				</name>
+				<description>
+					Obeys the general contract of Object.hashCode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String toString()
+				</name>
+				<description>
+					Returns an informative string representation of this type. If possible, the string should be of a form suitable for representing this type in source code. Any names embedded in the result are qualified if possible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					<R,P> R accept(TypeVisitor<R,P> v,               P p)
+				</name>
+				<description>
+					Applies a visitor to this type.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		javax.imageio
+	</package>
+	<type>
+		<name>
+			public class ImageTypeSpecifier  extends Object
+		</name>
+		<description>
+			A class that allows the format of an image (in particular, its SampleModel and ColorModel) to be specified in a convenient manner.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ColorModel colorModel
+				</name>
+				<description>
+					The ColorModel to be used as a prototype.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SampleModel sampleModel
+				</name>
+				<description>
+					A SampleModel to be used as a prototype.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageTypeSpecifier(ColorModel colorModel,                    SampleModel sampleModel)
+				</name>
+				<description>
+					Constructs an ImageTypeSpecifier directly from a ColorModel and a SampleModel. It is the caller's responsibility to supply compatible parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageTypeSpecifier(RenderedImage image)
+				</name>
+				<description>
+					Constructs an ImageTypeSpecifier from a RenderedImage. If a BufferedImage is being used, one of the factory methods createFromRenderedImage or createFromBufferedImageType should be used instead in order to get a more accurate result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createPacked(ColorSpace colorSpace,                                int redMask,                                int greenMask,                                int blueMask,                                int alphaMask,                                int transferType,                                boolean isAlphaPremultiplied)
+				</name>
+				<description>
+					Returns a specifier for a packed image format that will use a DirectColorModel and a packed SampleModel to store each pixel packed into in a single byte, short, or int.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createInterleaved(ColorSpace colorSpace,                                     int[] bandOffsets,                                     int dataType,                                     boolean hasAlpha,                                     boolean isAlphaPremultiplied)
+				</name>
+				<description>
+					Returns a specifier for an interleaved image format that will use a ComponentColorModel and a PixelInterleavedSampleModel to store each pixel component in a separate byte, short, or int.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createBanded(ColorSpace colorSpace,                                int[] bankIndices,                                int[] bandOffsets,                                int dataType,                                boolean hasAlpha,                                boolean isAlphaPremultiplied)
+				</name>
+				<description>
+					Returns a specifier for a banded image format that will use a ComponentColorModel and a BandedSampleModel to store each channel in a separate array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createGrayscale(int bits,                                   int dataType,                                   boolean isSigned)
+				</name>
+				<description>
+					Returns a specifier for a grayscale image format that will pack pixels of the given bit depth into array elements of the specified data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createGrayscale(int bits,                                   int dataType,                                   boolean isSigned,                                   boolean isAlphaPremultiplied)
+				</name>
+				<description>
+					Returns a specifier for a grayscale plus alpha image format that will pack pixels of the given bit depth into array elements of the specified data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createIndexed(byte[] redLUT,                                 byte[] greenLUT,                                 byte[] blueLUT,                                 byte[] alphaLUT,                                 int bits,                                 int dataType)
+				</name>
+				<description>
+					Returns a specifier for an indexed-color image format that will pack index values of the given bit depth into array elements of the specified data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createFromBufferedImageType(int bufferedImageType)
+				</name>
+				<description>
+					Returns an ImageTypeSpecifier that encodes one of the standard BufferedImage types (other than TYPE_CUSTOM).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageTypeSpecifier createFromRenderedImage(RenderedImage image)
+				</name>
+				<description>
+					Returns an ImageTypeSpecifier that encodes the layout of a RenderedImage (which may be a BufferedImage).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBufferedImageType()
+				</name>
+				<description>
+					Returns an int containing one of the enumerated constant values describing image formats from BufferedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumComponents()
+				</name>
+				<description>
+					Return the number of color components specified by this object. This is the same value as returned by ColorModel.getNumComponents
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumBands()
+				</name>
+				<description>
+					Return the number of bands specified by this object. This is the same value as returned by SampleModel.getNumBands
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBitsPerBand(int band)
+				</name>
+				<description>
+					Return the number of bits used to represent samples of the given band.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel getSampleModel()
+				</name>
+				<description>
+					Returns a SampleModel based on the settings encapsulated within this object. The width and height of the SampleModel will be set to arbitrary values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel getSampleModel(int width,                           int height)
+				</name>
+				<description>
+					Returns a SampleModel based on the settings encapsulated within this object. The width and height of the SampleModel will be set to the supplied values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorModel getColorModel()
+				</name>
+				<description>
+					Returns the ColorModel specified by this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedImage createBufferedImage(int width,                                  int height)
+				</name>
+				<description>
+					Creates a BufferedImage with a given width and height according to the specification embodied in this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Returns true if the given Object is an ImageTypeSpecifier and has a SampleModel and ColorModel that are equal to those of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code for this ImageTypeSpecifier.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

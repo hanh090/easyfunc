@@ -1,0 +1,261 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public final class PageAttributes  extends Object  implements Cloneable
+		</name>
+		<description>
+			A set of attributes which control the output of a printed page. Instances of this class control the color state, paper size (media type), orientation, logical origin, print quality, and resolution of every page which uses the instance. Attribute names are compliant with the Internet Printing Protocol (IPP) 1.1 where possible. Attribute values are partially compliant where possible. To use a method which takes an inner class type, pass a reference to one of the constant fields of the inner class. Client code cannot create new instances of the inner class types because none of those classes has a public constructor. For example, to set the color state to monochrome, use the following code:    import java.awt.PageAttributes;     public class MonochromeExample {       public void setMonochrome(PageAttributes pageAttributes) {           pageAttributes.setColor(PageAttributes.ColorType.MONOCHROME);       }   }   Every IPP attribute which supports an attributeName-default value has a corresponding setattributeNameToDefault method. Default value fields are not provided.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PageAttributes()
+				</name>
+				<description>
+					Constructs a PageAttributes instance with default values for every attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageAttributes(PageAttributes obj)
+				</name>
+				<description>
+					Constructs a PageAttributes instance which is a copy of the supplied PageAttributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageAttributes(PageAttributes.ColorType color,                PageAttributes.MediaType media,                PageAttributes.OrientationRequestedType orientationRequested,                PageAttributes.OriginType origin,                PageAttributes.PrintQualityType printQuality,                int[] printerResolution)
+				</name>
+				<description>
+					Constructs a PageAttributes instance with the specified values for every attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates and returns a copy of this PageAttributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set(PageAttributes obj)
+				</name>
+				<description>
+					Sets all of the attributes of this PageAttributes to the same values as the attributes of obj.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageAttributes.ColorType getColor()
+				</name>
+				<description>
+					Returns whether pages using these attributes will be rendered in color or monochrome. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColor(PageAttributes.ColorType color)
+				</name>
+				<description>
+					Specifies whether pages using these attributes will be rendered in color or monochrome. Not specifying this attribute is equivalent to specifying ColorType.MONOCHROME.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageAttributes.MediaType getMedia()
+				</name>
+				<description>
+					Returns the paper size for pages using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMedia(PageAttributes.MediaType media)
+				</name>
+				<description>
+					Specifies the desired paper size for pages using these attributes. The actual paper size will be determined by the limitations of the target printer. If an exact match cannot be found, an implementation will choose the closest possible match. Not specifying this attribute is equivalent to specifying the default size for the default locale. The default size for locales in the United States and Canada is MediaType.NA_LETTER. The default size for all other locales is MediaType.ISO_A4.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMediaToDefault()
+				</name>
+				<description>
+					Sets the paper size for pages using these attributes to the default size for the default locale. The default size for locales in the United States and Canada is MediaType.NA_LETTER. The default size for all other locales is MediaType.ISO_A4.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageAttributes.OrientationRequestedType getOrientationRequested()
+				</name>
+				<description>
+					Returns the print orientation for pages using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOrientationRequested(PageAttributes.OrientationRequestedType orientationRequested)
+				</name>
+				<description>
+					Specifies the print orientation for pages using these attributes. Not specifying the property is equivalent to specifying OrientationRequestedType.PORTRAIT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOrientationRequested(int orientationRequested)
+				</name>
+				<description>
+					Specifies the print orientation for pages using these attributes. Specifying 3 denotes portrait. Specifying 4 denotes landscape. Specifying any other value will generate an IllegalArgumentException. Not specifying the property is equivalent to calling setOrientationRequested(OrientationRequestedType.PORTRAIT).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOrientationRequestedToDefault()
+				</name>
+				<description>
+					Sets the print orientation for pages using these attributes to the default. The default orientation is portrait.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageAttributes.OriginType getOrigin()
+				</name>
+				<description>
+					Returns whether drawing at (0, 0) to pages using these attributes draws at the upper-left corner of the physical page, or at the upper-left corner of the printable area. (Note that these locations could be equivalent.) This attribute cannot be modified by, and is not subject to any limitations of, the implementation or the target printer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOrigin(PageAttributes.OriginType origin)
+				</name>
+				<description>
+					Specifies whether drawing at (0, 0) to pages using these attributes draws at the upper-left corner of the physical page, or at the upper-left corner of the printable area. (Note that these locations could be equivalent.) Not specifying the property is equivalent to specifying OriginType.PHYSICAL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageAttributes.PrintQualityType getPrintQuality()
+				</name>
+				<description>
+					Returns the print quality for pages using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrintQuality(PageAttributes.PrintQualityType printQuality)
+				</name>
+				<description>
+					Specifies the print quality for pages using these attributes. Not specifying the property is equivalent to specifying PrintQualityType.NORMAL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrintQuality(int printQuality)
+				</name>
+				<description>
+					Specifies the print quality for pages using these attributes. Specifying 3 denotes draft. Specifying 4 denotes normal. Specifying 5 denotes high. Specifying any other value will generate an IllegalArgumentException. Not specifying the property is equivalent to calling setPrintQuality(PrintQualityType.NORMAL).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrintQualityToDefault()
+				</name>
+				<description>
+					Sets the print quality for pages using these attributes to the default. The default print quality is normal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPrinterResolution()
+				</name>
+				<description>
+					Returns the print resolution for pages using these attributes. Index 0 of the array specifies the cross feed direction resolution (typically the horizontal resolution). Index 1 of the array specifies the feed direction resolution (typically the vertical resolution). Index 2 of the array specifies whether the resolutions are in dots per inch or dots per centimeter. 3 denotes dots per inch. 4 denotes dots per centimeter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrinterResolution(int[] printerResolution)
+				</name>
+				<description>
+					Specifies the desired print resolution for pages using these attributes. The actual resolution will be determined by the limitations of the implementation and the target printer. Index 0 of the array specifies the cross feed direction resolution (typically the horizontal resolution). Index 1 of the array specifies the feed direction resolution (typically the vertical resolution). Index 2 of the array specifies whether the resolutions are in dots per inch or dots per centimeter. 3 denotes dots per inch. 4 denotes dots per centimeter. Note that the 1.1 printing implementation (Toolkit.getPrintJob) requires that the feed and cross feed resolutions be the same. Not specifying the property is equivalent to calling setPrinterResolution(72).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrinterResolution(int printerResolution)
+				</name>
+				<description>
+					Specifies the desired cross feed and feed print resolutions in dots per inch for pages using these attributes. The same value is used for both resolutions. The actual resolutions will be determined by the limitations of the implementation and the target printer. Not specifying the property is equivalent to specifying 72.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrinterResolutionToDefault()
+				</name>
+				<description>
+					Sets the printer resolution for pages using these attributes to the default. The default is 72 dpi for both the feed and cross feed resolutions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Determines whether two PageAttributes are equal to each other. Two PageAttributes are equal if and only if each of their attributes are equal. Attributes of enumeration type are equal if and only if the fields refer to the same unique enumeration object. This means that an aliased media is equal to its underlying unique media. Printer resolutions are equal if and only if the feed resolution, cross feed resolution, and units are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for this PageAttributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this PageAttributes.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

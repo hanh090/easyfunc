@@ -1,0 +1,189 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public class SynthLookAndFeel  extends BasicLookAndFeel
+		</name>
+		<description>
+			SynthLookAndFeel provides the basis for creating a customized look and feel. SynthLookAndFeel does not directly provide a look, all painting is delegated. You need to either provide a configuration file, by way of the load(java.io.InputStream, java.lang.Class<?>) method, or provide your own SynthStyleFactory to setStyleFactory(javax.swing.plaf.synth.SynthStyleFactory). Refer to the package summary for an example of loading a file, and SynthStyleFactory for an example of providing your own SynthStyleFactory to setStyleFactory. Warning: This class implements Serializable as a side effect of it extending BasicLookAndFeel. It is not intended to be serialized. An attempt to serialize it will result in NotSerializableException.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SynthLookAndFeel()
+				</name>
+				<description>
+					Creates a SynthLookAndFeel. For the returned SynthLookAndFeel to be useful you need to invoke load to specify the set of SynthStyles, or invoke setStyleFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setStyleFactory(SynthStyleFactory cache)
+				</name>
+				<description>
+					Sets the SynthStyleFactory that the UI classes provided by synth will use to obtain a SynthStyle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SynthStyleFactory getStyleFactory()
+				</name>
+				<description>
+					Returns the current SynthStyleFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SynthStyle getStyle(JComponent c,                    Region region)
+				</name>
+				<description>
+					Gets a SynthStyle for the specified region of the specified component. This is not for general consumption, only custom UIs should call this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void updateStyles(Component c)
+				</name>
+				<description>
+					Updates the style associated with c, and all its children. This is a lighter version of SwingUtilities.updateComponentTreeUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Region getRegion(JComponent c)
+				</name>
+				<description>
+					Returns the Region for the JComponent c.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent c)
+				</name>
+				<description>
+					Creates the Synth look and feel ComponentUI for the passed in JComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void load(InputStream input,          Class<?> resourceBase)            throws ParseException
+				</name>
+				<description>
+					Loads the set of SynthStyles that will be used by this SynthLookAndFeel. resourceBase is used to resolve any path based resources, for example an Image would be resolved by resourceBase.getResource(path). Refer to Synth File Format for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void load(URL url)            throws ParseException,                   IOException
+				</name>
+				<description>
+					Loads the set of SynthStyles that will be used by this SynthLookAndFeel. Path based resources are resolved relatively to the specified URL of the style. For example an Image would be resolved by new URL(synthFile, path). Refer to Synth File Format for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void initialize()
+				</name>
+				<description>
+					Called by UIManager when this look and feel is installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninitialize()
+				</name>
+				<description>
+					Called by UIManager when this look and feel is uninstalled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UIDefaults getDefaults()
+				</name>
+				<description>
+					Returns the defaults for this SynthLookAndFeel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSupportedLookAndFeel()
+				</name>
+				<description>
+					Returns true, SynthLookAndFeel is always supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNativeLookAndFeel()
+				</name>
+				<description>
+					Returns false, SynthLookAndFeel is not a native look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDescription()
+				</name>
+				<description>
+					Returns a textual description of SynthLookAndFeel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Return a short string that identifies this look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getID()
+				</name>
+				<description>
+					Return a string that identifies this look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean shouldUpdateStyleOnAncestorChanged()
+				</name>
+				<description>
+					Returns whether or not the UIs should update their SynthStyles from the SynthStyleFactory when the ancestor of the JComponent changes. A subclass that provided a SynthStyleFactory that based the return value from getStyle off the containment hierarchy would override this method to return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean shouldUpdateStyleOnEvent(PropertyChangeEvent ev)
+				</name>
+				<description>
+					Returns whether or not the UIs should update their styles when a particular event occurs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

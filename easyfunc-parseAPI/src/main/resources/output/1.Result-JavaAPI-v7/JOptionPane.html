@@ -1,0 +1,972 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JOptionPane  extends JComponent  implements Accessible
+		</name>
+		<description>
+			JOptionPane makes it easy to pop up a standard dialog box that prompts users for a value or informs them of something. For information about using JOptionPane, see How to Make Dialogs, a section in The Java Tutorial. While the JOptionPane class may appear complex because of the large number of methods, almost all uses of this class are one-line calls to one of the static showXxxDialog methods shown below: Method Name Description showConfirmDialog Asks a confirming question, like yes/no/cancel. showInputDialog Prompt for some input. showMessageDialog Tell the user about something that has happened. showOptionDialog The Grand Unification of the above three. Each of these methods also comes in a showInternalXXX flavor, which uses an internal frame to hold the dialog box (see JInternalFrame). Multiple convenience methods have also been defined -- overloaded versions of the basic methods that use different parameter lists. All dialogs are modal. Each showXxxDialog method blocks the caller until the user's interaction is complete. icon message input value option buttons The basic appearance of one of these dialog boxes is generally similar to the picture at the right, although the various look-and-feels are ultimately responsible for the final result. In particular, the look-and-feels will adjust the layout to accommodate the option pane's ComponentOrientation property. Parameters: The parameters to these methods follow consistent patterns: parentComponent Defines the Component that is to be the parent of this dialog box. It is used in two ways: the Frame that contains it is used as the Frame parent for the dialog box, and its screen coordinates are used in the placement of the dialog box. In general, the dialog box is placed just below the component. This parameter may be null, in which case a default Frame is used as the parent, and the dialog will be centered on the screen (depending on the L&F). message A descriptive message to be placed in the dialog box. In the most common usage, message is just a String or String constant. However, the type of this parameter is actually Object. Its interpretation depends on its type: Object[] An array of objects is interpreted as a series of messages (one per object) arranged in a vertical stack. The interpretation is recursive -- each object in the array is interpreted according to its type. Component The Component is displayed in the dialog. Icon The Icon is wrapped in a JLabel and displayed in the dialog. others The object is converted to a String by calling its toString method. The result is wrapped in a JLabel and displayed. messageType Defines the style of the message. The Look and Feel manager may lay out the dialog differently depending on this value, and will often provide a default icon. The possible values are: ERROR_MESSAGE INFORMATION_MESSAGE WARNING_MESSAGE QUESTION_MESSAGE PLAIN_MESSAGE optionType Defines the set of option buttons that appear at the bottom of the dialog box: DEFAULT_OPTION YES_NO_OPTION YES_NO_CANCEL_OPTION OK_CANCEL_OPTION You aren't limited to this set of option buttons. You can provide any buttons you want using the options parameter. options A more detailed description of the set of option buttons that will appear at the bottom of the dialog box. The usual value for the options parameter is an array of Strings. But the parameter type is an array of Objects. A button is created for each object depending on its type: Component The component is added to the button row directly. Icon A JButton is created with this as its label. other The Object is converted to a string using its toString method and the result is used to label a JButton. icon A decorative icon to be placed in the dialog box. A default value for this is determined by the messageType parameter. title The title for the dialog box. initialValue The default selection (input value). When the selection is changed, setValue is invoked, which generates a PropertyChangeEvent. If a JOptionPane has configured to all input setWantsInput the bound property JOptionPane.INPUT_VALUE_PROPERTY can also be listened to, to determine when the user has input or selected a value. When one of the showXxxDialog methods returns an integer, the possible values are: YES_OPTION NO_OPTION CANCEL_OPTION OK_OPTION CLOSED_OPTION Examples: Show an error dialog that displays the message, 'alert': JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE); Show an internal information dialog with the message, 'information': JOptionPane.showInternalMessageDialog(frame, "information", "information", JOptionPane.INFORMATION_MESSAGE); Show an information panel with the options yes/no and message 'choose one': JOptionPane.showConfirmDialog(null, "choose one", "choose one", JOptionPane.YES_NO_OPTION); Show an internal information dialog with the options yes/no/cancel and message 'please choose one' and title information: JOptionPane.showInternalConfirmDialog(frame, "please choose one", "information", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE); Show a warning dialog with the options OK, CANCEL, title 'Warning', and message 'Click OK to continue': Object[] options = { "OK", "CANCEL" }; JOptionPane.showOptionDialog(null, "Click OK to continue", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]); Show a dialog asking the user to type in a String: String inputValue = JOptionPane.showInputDialog("Please input a value"); Show a dialog asking the user to select a String: Object[] possibleValues = { "First", "Second", "Third" }; Object selectedValue = JOptionPane.showInputDialog(null, "Choose one", "Input", JOptionPane.INFORMATION_MESSAGE, null, possibleValues, possibleValues[0]); Direct Use: To create and use an JOptionPane directly, the standard pattern is roughly as follows:        JOptionPane pane = new JOptionPane(arguments);       pane.set.Xxxx(...); // Configure       JDialog dialog = pane.createDialog(parentComponent, title);       dialog.show();       Object selectedValue = pane.getValue();       if(selectedValue == null)         return CLOSED_OPTION;       //If there is not an array of option buttons:       if(options == null) {         if(selectedValue instanceof Integer)            return ((Integer)selectedValue).intValue();         return CLOSED_OPTION;       }       //If there is an array of option buttons:       for(int counter = 0, maxCounter = options.length;          counter < maxCounter; counter++) {          if(options[counter].equals(selectedValue))          return counter;       }       return CLOSED_OPTION;   Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final Object UNINITIALIZED_VALUE
+				</name>
+				<description>
+					Indicates that the user has not yet selected a value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int DEFAULT_OPTION
+				</name>
+				<description>
+					Type meaning Look and Feel should not supply any options -- only use the options from the JOptionPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int YES_NO_OPTION
+				</name>
+				<description>
+					Type used for showConfirmDialog.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int YES_NO_CANCEL_OPTION
+				</name>
+				<description>
+					Type used for showConfirmDialog.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int OK_CANCEL_OPTION
+				</name>
+				<description>
+					Type used for showConfirmDialog.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int YES_OPTION
+				</name>
+				<description>
+					Return value from class method if YES is chosen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NO_OPTION
+				</name>
+				<description>
+					Return value from class method if NO is chosen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CANCEL_OPTION
+				</name>
+				<description>
+					Return value from class method if CANCEL is chosen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int OK_OPTION
+				</name>
+				<description>
+					Return value form class method if OK is chosen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CLOSED_OPTION
+				</name>
+				<description>
+					Return value from class method if user closes window without selecting anything, more than likely this should be treated as either a CANCEL_OPTION or NO_OPTION.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ERROR_MESSAGE
+				</name>
+				<description>
+					Used for error messages.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int INFORMATION_MESSAGE
+				</name>
+				<description>
+					Used for information messages.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int WARNING_MESSAGE
+				</name>
+				<description>
+					Used for warning messages.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int QUESTION_MESSAGE
+				</name>
+				<description>
+					Used for questions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PLAIN_MESSAGE
+				</name>
+				<description>
+					No icon is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ICON_PROPERTY
+				</name>
+				<description>
+					Bound property name for icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MESSAGE_PROPERTY
+				</name>
+				<description>
+					Bound property name for message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String VALUE_PROPERTY
+				</name>
+				<description>
+					Bound property name for value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String OPTIONS_PROPERTY
+				</name>
+				<description>
+					Bound property name for option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String INITIAL_VALUE_PROPERTY
+				</name>
+				<description>
+					Bound property name for initialValue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MESSAGE_TYPE_PROPERTY
+				</name>
+				<description>
+					Bound property name for type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String OPTION_TYPE_PROPERTY
+				</name>
+				<description>
+					Bound property name for optionType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String SELECTION_VALUES_PROPERTY
+				</name>
+				<description>
+					Bound property name for selectionValues.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String INITIAL_SELECTION_VALUE_PROPERTY
+				</name>
+				<description>
+					Bound property name for initialSelectionValue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String INPUT_VALUE_PROPERTY
+				</name>
+				<description>
+					Bound property name for inputValue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String WANTS_INPUT_PROPERTY
+				</name>
+				<description>
+					Bound property name for wantsInput.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Icon icon
+				</name>
+				<description>
+					Icon used in pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Object message
+				</name>
+				<description>
+					Message to display.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Object[] options
+				</name>
+				<description>
+					Options to display to the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Object initialValue
+				</name>
+				<description>
+					Value that should be initially selected in options.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int messageType
+				</name>
+				<description>
+					Message type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int optionType
+				</name>
+				<description>
+					Option type, one of DEFAULT_OPTION, YES_NO_OPTION, YES_NO_CANCEL_OPTION or OK_CANCEL_OPTION.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Object value
+				</name>
+				<description>
+					Currently selected value, will be a valid option, or UNINITIALIZED_VALUE or null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Object[] selectionValues
+				</name>
+				<description>
+					Array of values the user can choose from. Look and feel will provide the UI component to choose this from.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Object inputValue
+				</name>
+				<description>
+					Value the user has input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Object initialSelectionValue
+				</name>
+				<description>
+					Initial value to select in selectionValues.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean wantsInput
+				</name>
+				<description>
+					If true, a UI widget will be provided to the user to get input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JOptionPane()
+				</name>
+				<description>
+					Creates a JOptionPane with a test message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JOptionPane(Object message)
+				</name>
+				<description>
+					Creates a instance of JOptionPane to display a message using the plain-message message type and the default options delivered by the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JOptionPane(Object message,             int messageType)
+				</name>
+				<description>
+					Creates an instance of JOptionPane to display a message with the specified message type and the default options,
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JOptionPane(Object message,             int messageType,             int optionType)
+				</name>
+				<description>
+					Creates an instance of JOptionPane to display a message with the specified message type and options.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JOptionPane(Object message,             int messageType,             int optionType,             Icon icon)
+				</name>
+				<description>
+					Creates an instance of JOptionPane to display a message with the specified message type, options, and icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JOptionPane(Object message,             int messageType,             int optionType,             Icon icon,             Object[] options)
+				</name>
+				<description>
+					Creates an instance of JOptionPane to display a message with the specified message type, icon, and options. None of the options is initially selected. The options objects should contain either instances of Components, (which are added directly) or Strings (which are wrapped in a JButton). If you provide Components, you must ensure that when the Component is clicked it messages setValue in the created JOptionPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JOptionPane(Object message,             int messageType,             int optionType,             Icon icon,             Object[] options,             Object initialValue)
+				</name>
+				<description>
+					Creates an instance of JOptionPane to display a message with the specified message type, icon, and options, with the initially-selected option specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String showInputDialog(Object message)                                throws HeadlessException
+				</name>
+				<description>
+					Shows a question-message dialog requesting input from the user. The dialog uses the default frame, which usually means it is centered on the screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String showInputDialog(Object message,                       Object initialSelectionValue)
+				</name>
+				<description>
+					Shows a question-message dialog requesting input from the user, with the input value initialized to initialSelectionValue. The dialog uses the default frame, which usually means it is centered on the screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String showInputDialog(Component parentComponent,                       Object message)                                throws HeadlessException
+				</name>
+				<description>
+					Shows a question-message dialog requesting input from the user parented to parentComponent. The dialog is displayed on top of the Component's frame, and is usually positioned below the Component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String showInputDialog(Component parentComponent,                       Object message,                       Object initialSelectionValue)
+				</name>
+				<description>
+					Shows a question-message dialog requesting input from the user and parented to parentComponent. The input value will be initialized to initialSelectionValue. The dialog is displayed on top of the Component's frame, and is usually positioned below the Component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String showInputDialog(Component parentComponent,                       Object message,                       String title,                       int messageType)                                throws HeadlessException
+				</name>
+				<description>
+					Shows a dialog requesting input from the user parented to parentComponent with the dialog having the title title and message type messageType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object showInputDialog(Component parentComponent,                       Object message,                       String title,                       int messageType,                       Icon icon,                       Object[] selectionValues,                       Object initialSelectionValue)                                throws HeadlessException
+				</name>
+				<description>
+					Prompts the user for input in a blocking dialog where the initial selection, possible selections, and all other options can be specified. The user will able to choose from selectionValues, where null implies the user can input whatever they wish, usually by means of a JTextField. initialSelectionValue is the initial value to prompt the user with. It is up to the UI to decide how best to represent the selectionValues, but usually a JComboBox, JList, or JTextField will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void showMessageDialog(Component parentComponent,                       Object message)                                throws HeadlessException
+				</name>
+				<description>
+					Brings up an information-message dialog titled "Message".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void showMessageDialog(Component parentComponent,                       Object message,                       String title,                       int messageType)                                throws HeadlessException
+				</name>
+				<description>
+					Brings up a dialog that displays a message using a default icon determined by the messageType parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void showMessageDialog(Component parentComponent,                       Object message,                       String title,                       int messageType,                       Icon icon)                                throws HeadlessException
+				</name>
+				<description>
+					Brings up a dialog displaying a message, specifying all parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showConfirmDialog(Component parentComponent,                      Object message)                               throws HeadlessException
+				</name>
+				<description>
+					Brings up a dialog with the options Yes, No and Cancel; with the title, Select an Option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showConfirmDialog(Component parentComponent,                      Object message,                      String title,                      int optionType)                               throws HeadlessException
+				</name>
+				<description>
+					Brings up a dialog where the number of choices is determined by the optionType parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showConfirmDialog(Component parentComponent,                      Object message,                      String title,                      int optionType,                      int messageType)                               throws HeadlessException
+				</name>
+				<description>
+					Brings up a dialog where the number of choices is determined by the optionType parameter, where the messageType parameter determines the icon to display. The messageType parameter is primarily used to supply a default icon from the Look and Feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showConfirmDialog(Component parentComponent,                      Object message,                      String title,                      int optionType,                      int messageType,                      Icon icon)                               throws HeadlessException
+				</name>
+				<description>
+					Brings up a dialog with a specified icon, where the number of choices is determined by the optionType parameter. The messageType parameter is primarily used to supply a default icon from the look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showOptionDialog(Component parentComponent,                     Object message,                     String title,                     int optionType,                     int messageType,                     Icon icon,                     Object[] options,                     Object initialValue)                              throws HeadlessException
+				</name>
+				<description>
+					Brings up a dialog with a specified icon, where the initial choice is determined by the initialValue parameter and the number of choices is determined by the optionType parameter. If optionType is YES_NO_OPTION, or YES_NO_CANCEL_OPTION and the options parameter is null, then the options are supplied by the look and feel. The messageType parameter is primarily used to supply a default icon from the look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JDialog createDialog(Component parentComponent,                     String title)                       throws HeadlessException
+				</name>
+				<description>
+					Creates and returns a new JDialog wrapping this centered on the parentComponent in the parentComponent's frame. title is the title of the returned dialog. The returned JDialog will not be resizable by the user, however programs can invoke setResizable on the JDialog instance to change this property. The returned JDialog will be set up such that once it is closed, or the user clicks on one of the buttons, the optionpane's value property will be set accordingly and the dialog will be closed. Each time the dialog is made visible, it will reset the option pane's value property to JOptionPane.UNINITIALIZED_VALUE to ensure the user's subsequent action closes the dialog properly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JDialog createDialog(String title)                       throws HeadlessException
+				</name>
+				<description>
+					Creates and returns a new parentless JDialog with the specified title. The returned JDialog will not be resizable by the user, however programs can invoke setResizable on the JDialog instance to change this property. The returned JDialog will be set up such that once it is closed, or the user clicks on one of the buttons, the optionpane's value property will be set accordingly and the dialog will be closed. Each time the dialog is made visible, it will reset the option pane's value property to JOptionPane.UNINITIALIZED_VALUE to ensure the user's subsequent action closes the dialog properly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void showInternalMessageDialog(Component parentComponent,                               Object message)
+				</name>
+				<description>
+					Brings up an internal confirmation dialog panel. The dialog is a information-message dialog titled "Message".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void showInternalMessageDialog(Component parentComponent,                               Object message,                               String title,                               int messageType)
+				</name>
+				<description>
+					Brings up an internal dialog panel that displays a message using a default icon determined by the messageType parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void showInternalMessageDialog(Component parentComponent,                               Object message,                               String title,                               int messageType,                               Icon icon)
+				</name>
+				<description>
+					Brings up an internal dialog panel displaying a message, specifying all parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showInternalConfirmDialog(Component parentComponent,                              Object message)
+				</name>
+				<description>
+					Brings up an internal dialog panel with the options Yes, No and Cancel; with the title, Select an Option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showInternalConfirmDialog(Component parentComponent,                              Object message,                              String title,                              int optionType)
+				</name>
+				<description>
+					Brings up a internal dialog panel where the number of choices is determined by the optionType parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showInternalConfirmDialog(Component parentComponent,                              Object message,                              String title,                              int optionType,                              int messageType)
+				</name>
+				<description>
+					Brings up an internal dialog panel where the number of choices is determined by the optionType parameter, where the messageType parameter determines the icon to display. The messageType parameter is primarily used to supply a default icon from the Look and Feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showInternalConfirmDialog(Component parentComponent,                              Object message,                              String title,                              int optionType,                              int messageType,                              Icon icon)
+				</name>
+				<description>
+					Brings up an internal dialog panel with a specified icon, where the number of choices is determined by the optionType parameter. The messageType parameter is primarily used to supply a default icon from the look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int showInternalOptionDialog(Component parentComponent,                             Object message,                             String title,                             int optionType,                             int messageType,                             Icon icon,                             Object[] options,                             Object initialValue)
+				</name>
+				<description>
+					Brings up an internal dialog panel with a specified icon, where the initial choice is determined by the initialValue parameter and the number of choices is determined by the optionType parameter. If optionType is YES_NO_OPTION, or YES_NO_CANCEL_OPTION and the options parameter is null, then the options are supplied by the Look and Feel. The messageType parameter is primarily used to supply a default icon from the look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String showInternalInputDialog(Component parentComponent,                               Object message)
+				</name>
+				<description>
+					Shows an internal question-message dialog requesting input from the user parented to parentComponent. The dialog is displayed in the Component's frame, and is usually positioned below the Component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String showInternalInputDialog(Component parentComponent,                               Object message,                               String title,                               int messageType)
+				</name>
+				<description>
+					Shows an internal dialog requesting input from the user parented to parentComponent with the dialog having the title title and message type messageType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object showInternalInputDialog(Component parentComponent,                               Object message,                               String title,                               int messageType,                               Icon icon,                               Object[] selectionValues,                               Object initialSelectionValue)
+				</name>
+				<description>
+					Prompts the user for input in a blocking internal dialog where the initial selection, possible selections, and all other options can be specified. The user will able to choose from selectionValues, where null implies the user can input whatever they wish, usually by means of a JTextField. initialSelectionValue is the initial value to prompt the user with. It is up to the UI to decide how best to represent the selectionValues, but usually a JComboBox, JList, or JTextField will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame createInternalFrame(Component parentComponent,                                   String title)
+				</name>
+				<description>
+					Creates and returns an instance of JInternalFrame. The internal frame is created with the specified title, and wrapping the JOptionPane. The returned JInternalFrame is added to the JDesktopPane ancestor of parentComponent, or components parent if one its ancestors isn't a JDesktopPane, or if parentComponent doesn't have a parent then a RuntimeException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Frame getFrameForComponent(Component parentComponent)                                    throws HeadlessException
+				</name>
+				<description>
+					Returns the specified component's Frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static JDesktopPane getDesktopPaneForComponent(Component parentComponent)
+				</name>
+				<description>
+					Returns the specified component's desktop pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setRootFrame(Frame newRootFrame)
+				</name>
+				<description>
+					Sets the frame to use for class methods in which a frame is not provided. Note: It is recommended that rather than using this method you supply a valid parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Frame getRootFrame()                            throws HeadlessException
+				</name>
+				<description>
+					Returns the Frame to use for the class methods in which a frame is not provided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(OptionPaneUI ui)
+				</name>
+				<description>
+					Sets the UI object which implements the L&F for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OptionPaneUI getUI()
+				</name>
+				<description>
+					Returns the UI object which implements the L&F for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Notification from the UIManager that the L&F has changed. Replaces the current UI object with the latest version from the UIManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the UI class that implements the L&F for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMessage(Object newMessage)
+				</name>
+				<description>
+					Sets the option pane's message-object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getMessage()
+				</name>
+				<description>
+					Returns the message-object this pane displays.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIcon(Icon newIcon)
+				</name>
+				<description>
+					Sets the icon to display. If non-null, the look and feel does not provide an icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getIcon()
+				</name>
+				<description>
+					Returns the icon this pane displays.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValue(Object newValue)
+				</name>
+				<description>
+					Sets the value the user has chosen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getValue()
+				</name>
+				<description>
+					Returns the value the user has selected. UNINITIALIZED_VALUE implies the user has not yet made a choice, null means the user closed the window with out choosing anything. Otherwise the returned value will be one of the options defined in this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOptions(Object[] newOptions)
+				</name>
+				<description>
+					Sets the options this pane displays. If an element in newOptions is a Component it is added directly to the pane, otherwise a button is created for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getOptions()
+				</name>
+				<description>
+					Returns the choices the user can make.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInitialValue(Object newInitialValue)
+				</name>
+				<description>
+					Sets the initial value that is to be enabled -- the Component that has the focus when the pane is initially displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getInitialValue()
+				</name>
+				<description>
+					Returns the initial value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMessageType(int newType)
+				</name>
+				<description>
+					Sets the option pane's message type. The message type is used by the Look and Feel to determine the icon to display (if not supplied) as well as potentially how to lay out the parentComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMessageType()
+				</name>
+				<description>
+					Returns the message type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOptionType(int newType)
+				</name>
+				<description>
+					Sets the options to display. The option type is used by the Look and Feel to determine what buttons to show (unless options are supplied).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOptionType()
+				</name>
+				<description>
+					Returns the type of options that are displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionValues(Object[] newValues)
+				</name>
+				<description>
+					Sets the input selection values for a pane that provides the user with a list of items to choose from. (The UI provides a widget for choosing one of the values.) A null value implies the user can input whatever they wish, usually by means of a JTextField. Sets wantsInput to true. Use setInitialSelectionValue to specify the initially-chosen value. After the pane as been enabled, inputValue is set to the value the user has selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getSelectionValues()
+				</name>
+				<description>
+					Returns the input selection values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInitialSelectionValue(Object newValue)
+				</name>
+				<description>
+					Sets the input value that is initially displayed as selected to the user. Only used if wantsInput is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getInitialSelectionValue()
+				</name>
+				<description>
+					Returns the input value that is displayed as initially selected to the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInputValue(Object newValue)
+				</name>
+				<description>
+					Sets the input value that was selected or input by the user. Only used if wantsInput is true. Note that this method is invoked internally by the option pane (in response to user action) and should generally not be called by client programs. To set the input value initially displayed as selected to the user, use setInitialSelectionValue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getInputValue()
+				</name>
+				<description>
+					Returns the value the user has input, if wantsInput is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxCharactersPerLineCount()
+				</name>
+				<description>
+					Returns the maximum number of characters to place on a line in a message. Default is to return Integer.MAX_VALUE. The value can be changed by overriding this method in a subclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setWantsInput(boolean newValue)
+				</name>
+				<description>
+					Sets the wantsInput property. If newValue is true, an input component (such as a text field or combo box) whose parent is parentComponent is provided to allow the user to input a value. If getSelectionValues returns a non-null array, the input value is one of the objects in that array. Otherwise the input value is whatever the user inputs. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getWantsInput()
+				</name>
+				<description>
+					Returns the value of the wantsInput property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void selectInitialValue()
+				</name>
+				<description>
+					Requests that the initial value be selected, which will set focus to the initial value. This method should be invoked after the window containing the option pane is made visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JOptionPane. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Returns the AccessibleContext associated with this JOptionPane. For option panes, the AccessibleContext takes the form of an AccessibleJOptionPane. A new AccessibleJOptionPane instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

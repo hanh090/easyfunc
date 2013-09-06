@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public abstract class AlgorithmParametersSpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the AlgorithmParameters class, which is used to manage algorithm parameters. All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply parameter management for a particular algorithm.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AlgorithmParametersSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(AlgorithmParameterSpec paramSpec)                              throws InvalidParameterSpecException
+				</name>
+				<description>
+					Initializes this parameters object using the parameters specified in paramSpec.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(byte[] params)                              throws IOException
+				</name>
+				<description>
+					Imports the specified parameters and decodes them according to the primary decoding format for parameters. The primary decoding format for parameters is ASN.1, if an ASN.1 specification for this type of parameters exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(byte[] params,                String format)                              throws IOException
+				</name>
+				<description>
+					Imports the parameters from params and decodes them according to the specified decoding format. If format is null, the primary decoding format for parameters is used. The primary decoding format is ASN.1, if an ASN.1 specification for these parameters exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract <T extends AlgorithmParameterSpec> T engineGetParameterSpec(Class<T> paramSpec)                                                                      throws InvalidParameterSpecException
+				</name>
+				<description>
+					Returns a (transparent) specification of this parameters object. paramSpec identifies the specification class in which the parameters should be returned. It could, for example, be DSAParameterSpec.class, to indicate that the parameters should be returned in an instance of the DSAParameterSpec class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract byte[] engineGetEncoded()                                      throws IOException
+				</name>
+				<description>
+					Returns the parameters in their primary encoding format. The primary encoding format for parameters is ASN.1, if an ASN.1 specification for this type of parameters exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract byte[] engineGetEncoded(String format)                                      throws IOException
+				</name>
+				<description>
+					Returns the parameters encoded in the specified format. If format is null, the primary encoding format for parameters is used. The primary encoding format is ASN.1, if an ASN.1 specification for these parameters exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract String engineToString()
+				</name>
+				<description>
+					Returns a formatted string describing the parameters.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

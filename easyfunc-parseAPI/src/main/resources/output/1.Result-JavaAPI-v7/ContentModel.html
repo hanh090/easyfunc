@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		javax.swing.text.html.parser
+	</package>
+	<type>
+		<name>
+			public final class ContentModel  extends Object  implements Serializable
+		</name>
+		<description>
+			A representation of a content model. A content model is basically a restricted BNF expression. It is restricted in the sense that it must be deterministic. This means that you don't have to represent it as a finite state automata. See Annex H on page 556 of the SGML handbook for more information.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public int type
+				</name>
+				<description>
+					Type. Either '*', '?', '+', ',', '|', '&'.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object content
+				</name>
+				<description>
+					The content. Either an Element or a ContentModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ContentModel next
+				</name>
+				<description>
+					The next content model (in a ',', '|' or '&' expression).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ContentModel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ContentModel(Element content)
+				</name>
+				<description>
+					Create a content model for an element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ContentModel(int type,              ContentModel content)
+				</name>
+				<description>
+					Create a content model of a particular type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ContentModel(int type,              Object content,              ContentModel next)
+				</name>
+				<description>
+					Create a content model of a particular type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean empty()
+				</name>
+				<description>
+					Return true if the content model could match an empty input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void getElements(Vector<Element> elemVec)
+				</name>
+				<description>
+					Update elemVec with the list of elements that are part of the this contentModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean first(Object token)
+				</name>
+				<description>
+					Return true if the token could potentially be the first token in the input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element first()
+				</name>
+				<description>
+					Return the element that must be next.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Convert to a string.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

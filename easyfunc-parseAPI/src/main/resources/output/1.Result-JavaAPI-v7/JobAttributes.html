@@ -1,0 +1,351 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public final class JobAttributes  extends Object  implements Cloneable
+		</name>
+		<description>
+			A set of attributes which control a print job. Instances of this class control the number of copies, default selection, destination, print dialog, file and printer names, page ranges, multiple document handling (including collation), and multi-page imposition (such as duplex) of every print job which uses the instance. Attribute names are compliant with the Internet Printing Protocol (IPP) 1.1 where possible. Attribute values are partially compliant where possible. To use a method which takes an inner class type, pass a reference to one of the constant fields of the inner class. Client code cannot create new instances of the inner class types because none of those classes has a public constructor. For example, to set the print dialog type to the cross-platform, pure Java print dialog, use the following code:    import java.awt.JobAttributes;     public class PureJavaPrintDialogExample {       public void setPureJavaPrintDialog(JobAttributes jobAttributes) {           jobAttributes.setDialog(JobAttributes.DialogType.COMMON);       }   }   Every IPP attribute which supports an attributeName-default value has a corresponding setattributeNameToDefault method. Default value fields are not provided.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JobAttributes()
+				</name>
+				<description>
+					Constructs a JobAttributes instance with default values for every attribute. The dialog defaults to DialogType.NATIVE. Min page defaults to 1. Max page defaults to Integer.MAX_VALUE. Destination defaults to DestinationType.PRINTER. Selection defaults to DefaultSelectionType.ALL. Number of copies defaults to 1. Multiple document handling defaults to MultipleDocumentHandlingType.SEPARATE_DOCUMENTS_UNCOLLATED_COPIES. Sides defaults to SidesType.ONE_SIDED. File name defaults to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JobAttributes(JobAttributes obj)
+				</name>
+				<description>
+					Constructs a JobAttributes instance which is a copy of the supplied JobAttributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JobAttributes(int copies,               JobAttributes.DefaultSelectionType defaultSelection,               JobAttributes.DestinationType destination,               JobAttributes.DialogType dialog,               String fileName,               int maxPage,               int minPage,               JobAttributes.MultipleDocumentHandlingType multipleDocumentHandling,               int[][] pageRanges,               String printer,               JobAttributes.SidesType sides)
+				</name>
+				<description>
+					Constructs a JobAttributes instance with the specified values for every attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates and returns a copy of this JobAttributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set(JobAttributes obj)
+				</name>
+				<description>
+					Sets all of the attributes of this JobAttributes to the same values as the attributes of obj.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getCopies()
+				</name>
+				<description>
+					Returns the number of copies the application should render for jobs using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCopies(int copies)
+				</name>
+				<description>
+					Specifies the number of copies the application should render for jobs using these attributes. Not specifying this attribute is equivalent to specifying 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCopiesToDefault()
+				</name>
+				<description>
+					Sets the number of copies the application should render for jobs using these attributes to the default. The default number of copies is 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JobAttributes.DefaultSelectionType getDefaultSelection()
+				</name>
+				<description>
+					Specifies whether, for jobs using these attributes, the application should print all pages, the range specified by the return value of getPageRanges, or the current selection. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultSelection(JobAttributes.DefaultSelectionType defaultSelection)
+				</name>
+				<description>
+					Specifies whether, for jobs using these attributes, the application should print all pages, the range specified by the return value of getPageRanges, or the current selection. Not specifying this attribute is equivalent to specifying DefaultSelectionType.ALL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JobAttributes.DestinationType getDestination()
+				</name>
+				<description>
+					Specifies whether output will be to a printer or a file for jobs using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDestination(JobAttributes.DestinationType destination)
+				</name>
+				<description>
+					Specifies whether output will be to a printer or a file for jobs using these attributes. Not specifying this attribute is equivalent to specifying DesintationType.PRINTER.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JobAttributes.DialogType getDialog()
+				</name>
+				<description>
+					Returns whether, for jobs using these attributes, the user should see a print dialog in which to modify the print settings, and which type of print dialog should be displayed. DialogType.COMMON denotes a cross- platform, pure Java print dialog. DialogType.NATIVE denotes the platform's native print dialog. If a platform does not support a native print dialog, the pure Java print dialog is displayed instead. DialogType.NONE specifies no print dialog (i.e., background printing). This attribute cannot be modified by, and is not subject to any limitations of, the implementation or the target printer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDialog(JobAttributes.DialogType dialog)
+				</name>
+				<description>
+					Specifies whether, for jobs using these attributes, the user should see a print dialog in which to modify the print settings, and which type of print dialog should be displayed. DialogType.COMMON denotes a cross- platform, pure Java print dialog. DialogType.NATIVE denotes the platform's native print dialog. If a platform does not support a native print dialog, the pure Java print dialog is displayed instead. DialogType.NONE specifies no print dialog (i.e., background printing). Not specifying this attribute is equivalent to specifying DialogType.NATIVE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getFileName()
+				</name>
+				<description>
+					Specifies the file name for the output file for jobs using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFileName(String fileName)
+				</name>
+				<description>
+					Specifies the file name for the output file for jobs using these attributes. Default is platform-dependent and implementation-defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFromPage()
+				</name>
+				<description>
+					Returns, for jobs using these attributes, the first page to be printed, if a range of pages is to be printed. This attribute is updated to the value chosen by the user. An application should ignore this attribute on output, unless the return value of the getDefaultSelection method is DefaultSelectionType.RANGE. An application should honor the return value of getPageRanges over the return value of this method, if possible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFromPage(int fromPage)
+				</name>
+				<description>
+					Specifies, for jobs using these attributes, the first page to be printed, if a range of pages is to be printed. If this attribute is not specified, then the values from the pageRanges attribute are used. If pageRanges and either or both of fromPage and toPage are specified, pageRanges takes precedence. Specifying none of pageRanges, fromPage, or toPage is equivalent to calling setPageRanges(new int[][] { new int[] { minPage } });
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxPage()
+				</name>
+				<description>
+					Specifies the maximum value the user can specify as the last page to be printed for jobs using these attributes. This attribute cannot be modified by, and is not subject to any limitations of, the implementation or the target printer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaxPage(int maxPage)
+				</name>
+				<description>
+					Specifies the maximum value the user can specify as the last page to be printed for jobs using these attributes. Not specifying this attribute is equivalent to specifying Integer.MAX_VALUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinPage()
+				</name>
+				<description>
+					Specifies the minimum value the user can specify as the first page to be printed for jobs using these attributes. This attribute cannot be modified by, and is not subject to any limitations of, the implementation or the target printer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMinPage(int minPage)
+				</name>
+				<description>
+					Specifies the minimum value the user can specify as the first page to be printed for jobs using these attributes. Not specifying this attribute is equivalent to specifying 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JobAttributes.MultipleDocumentHandlingType getMultipleDocumentHandling()
+				</name>
+				<description>
+					Specifies the handling of multiple copies, including collation, for jobs using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMultipleDocumentHandling(JobAttributes.MultipleDocumentHandlingType multipleDocumentHandling)
+				</name>
+				<description>
+					Specifies the handling of multiple copies, including collation, for jobs using these attributes. Not specifying this attribute is equivalent to specifying MultipleDocumentHandlingType.SEPARATE_DOCUMENTS_UNCOLLATED_COPIES.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMultipleDocumentHandlingToDefault()
+				</name>
+				<description>
+					Sets the handling of multiple copies, including collation, for jobs using these attributes to the default. The default handling is MultipleDocumentHandlingType.SEPARATE_DOCUMENTS_UNCOLLATED_COPIES.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[][] getPageRanges()
+				</name>
+				<description>
+					Specifies, for jobs using these attributes, the ranges of pages to be printed, if a range of pages is to be printed. All range numbers are inclusive. This attribute is updated to the value chosen by the user. An application should ignore this attribute on output, unless the return value of the getDefaultSelection method is DefaultSelectionType.RANGE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPageRanges(int[][] pageRanges)
+				</name>
+				<description>
+					Specifies, for jobs using these attributes, the ranges of pages to be printed, if a range of pages is to be printed. All range numbers are inclusive. If this attribute is not specified, then the values from the fromPage and toPages attributes are used. If pageRanges and either or both of fromPage and toPage are specified, pageRanges takes precedence. Specifying none of pageRanges, fromPage, or toPage is equivalent to calling setPageRanges(new int[][] { new int[] { minPage, minPage } });
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPrinter()
+				</name>
+				<description>
+					Returns the destination printer for jobs using these attributes. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrinter(String printer)
+				</name>
+				<description>
+					Specifies the destination printer for jobs using these attributes. Default is platform-dependent and implementation-defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JobAttributes.SidesType getSides()
+				</name>
+				<description>
+					Returns how consecutive pages should be imposed upon the sides of the print medium for jobs using these attributes. SidesType.ONE_SIDED imposes each consecutive page upon the same side of consecutive media sheets. This imposition is sometimes called simplex. SidesType.TWO_SIDED_LONG_EDGE imposes each consecutive pair of pages upon front and back sides of consecutive media sheets, such that the orientation of each pair of pages on the medium would be correct for the reader as if for binding on the long edge. This imposition is sometimes called duplex. SidesType.TWO_SIDED_SHORT_EDGE imposes each consecutive pair of pages upon front and back sides of consecutive media sheets, such that the orientation of each pair of pages on the medium would be correct for the reader as if for binding on the short edge. This imposition is sometimes called tumble. This attribute is updated to the value chosen by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSides(JobAttributes.SidesType sides)
+				</name>
+				<description>
+					Specifies how consecutive pages should be imposed upon the sides of the print medium for jobs using these attributes. SidesType.ONE_SIDED imposes each consecutive page upon the same side of consecutive media sheets. This imposition is sometimes called simplex. SidesType.TWO_SIDED_LONG_EDGE imposes each consecutive pair of pages upon front and back sides of consecutive media sheets, such that the orientation of each pair of pages on the medium would be correct for the reader as if for binding on the long edge. This imposition is sometimes called duplex. SidesType.TWO_SIDED_SHORT_EDGE imposes each consecutive pair of pages upon front and back sides of consecutive media sheets, such that the orientation of each pair of pages on the medium would be correct for the reader as if for binding on the short edge. This imposition is sometimes called tumble. Not specifying this attribute is equivalent to specifying SidesType.ONE_SIDED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSidesToDefault()
+				</name>
+				<description>
+					Sets how consecutive pages should be imposed upon the sides of the print medium for jobs using these attributes to the default. The default imposition is SidesType.ONE_SIDED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getToPage()
+				</name>
+				<description>
+					Returns, for jobs using these attributes, the last page (inclusive) to be printed, if a range of pages is to be printed. This attribute is updated to the value chosen by the user. An application should ignore this attribute on output, unless the return value of the getDefaultSelection method is DefaultSelectionType.RANGE. An application should honor the return value of getPageRanges over the return value of this method, if possible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setToPage(int toPage)
+				</name>
+				<description>
+					Specifies, for jobs using these attributes, the last page (inclusive) to be printed, if a range of pages is to be printed. If this attribute is not specified, then the values from the pageRanges attribute are used. If pageRanges and either or both of fromPage and toPage are specified, pageRanges takes precedence. Specifying none of pageRanges, fromPage, or toPage is equivalent to calling setPageRanges(new int[][] { new int[] { minPage } });
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Determines whether two JobAttributes are equal to each other. Two JobAttributes are equal if and only if each of their attributes are equal. Attributes of enumeration type are equal if and only if the fields refer to the same unique enumeration object. A set of page ranges is equal if and only if the sets are of equal length, each range enumerates the same pages, and the ranges are in the same order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for this JobAttributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this JobAttributes.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

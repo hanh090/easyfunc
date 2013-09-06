@@ -1,0 +1,288 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class ScrollPaneLayout  extends Object  implements LayoutManager, ScrollPaneConstants, Serializable
+		</name>
+		<description>
+			The layout manager used by JScrollPane. JScrollPaneLayout is responsible for nine components: a viewport, two scrollbars, a row header, a column header, and four "corner" components. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected JViewport viewport
+				</name>
+				<description>
+					The scrollpane's viewport child. Default is an empty JViewport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JScrollBar vsb
+				</name>
+				<description>
+					The scrollpane's vertical scrollbar child. Default is a JScrollBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JScrollBar hsb
+				</name>
+				<description>
+					The scrollpane's horizontal scrollbar child. Default is a JScrollBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JViewport rowHead
+				</name>
+				<description>
+					The row header child. Default is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JViewport colHead
+				</name>
+				<description>
+					The column header child. Default is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component lowerLeft
+				</name>
+				<description>
+					The component to display in the lower left corner. Default is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component lowerRight
+				</name>
+				<description>
+					The component to display in the lower right corner. Default is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component upperLeft
+				</name>
+				<description>
+					The component to display in the upper left corner. Default is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component upperRight
+				</name>
+				<description>
+					The component to display in the upper right corner. Default is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int vsbPolicy
+				</name>
+				<description>
+					The display policy for the vertical scrollbar. The default is ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED. This field is obsolete, please use the JScrollPane field instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int hsbPolicy
+				</name>
+				<description>
+					The display policy for the horizontal scrollbar. The default is ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED. This field is obsolete, please use the JScrollPane field instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ScrollPaneLayout()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void syncWithScrollPane(JScrollPane sp)
+				</name>
+				<description>
+					This method is invoked after the ScrollPaneLayout is set as the LayoutManager of a JScrollPane. It initializes all of the internal fields that are ordinarily set by addLayoutComponent. For example:    ScrollPaneLayout mySPLayout = new ScrollPanelLayout() {       public void layoutContainer(Container p) {           super.layoutContainer(p);           // do some extra work here ...       }   };   scrollpane.setLayout(mySPLayout):
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component addSingletonComponent(Component oldC,                                Component newC)
+				</name>
+				<description>
+					Removes an existing component. When a new component, such as the left corner, or vertical scrollbar, is added, the old one, if it exists, must be removed. This method returns newC. If oldC is not equal to newC and is non-null, it will be removed from its parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addLayoutComponent(String s,                        Component c)
+				</name>
+				<description>
+					Adds the specified component to the layout. The layout is identified using one of: ScrollPaneConstants.VIEWPORT ScrollPaneConstants.VERTICAL_SCROLLBAR ScrollPaneConstants.HORIZONTAL_SCROLLBAR ScrollPaneConstants.ROW_HEADER ScrollPaneConstants.COLUMN_HEADER ScrollPaneConstants.LOWER_LEFT_CORNER ScrollPaneConstants.LOWER_RIGHT_CORNER ScrollPaneConstants.UPPER_LEFT_CORNER ScrollPaneConstants.UPPER_RIGHT_CORNER
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeLayoutComponent(Component c)
+				</name>
+				<description>
+					Removes the specified component from the layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVerticalScrollBarPolicy()
+				</name>
+				<description>
+					Returns the vertical scrollbar-display policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVerticalScrollBarPolicy(int x)
+				</name>
+				<description>
+					Sets the vertical scrollbar-display policy. The options are: ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS Note: Applications should use the JScrollPane version of this method. It only exists for backwards compatibility with the Swing 1.0.2 (and earlier) versions of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHorizontalScrollBarPolicy()
+				</name>
+				<description>
+					Returns the horizontal scrollbar-display policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHorizontalScrollBarPolicy(int x)
+				</name>
+				<description>
+					Sets the horizontal scrollbar-display policy. The options are: ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS Note: Applications should use the JScrollPane version of this method. It only exists for backwards compatibility with the Swing 1.0.2 (and earlier) versions of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JViewport getViewport()
+				</name>
+				<description>
+					Returns the JViewport object that displays the scrollable contents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JScrollBar getHorizontalScrollBar()
+				</name>
+				<description>
+					Returns the JScrollBar object that handles horizontal scrolling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JScrollBar getVerticalScrollBar()
+				</name>
+				<description>
+					Returns the JScrollBar object that handles vertical scrolling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JViewport getRowHeader()
+				</name>
+				<description>
+					Returns the JViewport object that is the row header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JViewport getColumnHeader()
+				</name>
+				<description>
+					Returns the JViewport object that is the column header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getCorner(String key)
+				</name>
+				<description>
+					Returns the Component at the specified corner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension preferredLayoutSize(Container parent)
+				</name>
+				<description>
+					The preferred size of a ScrollPane is the size of the insets, plus the preferred size of the viewport, plus the preferred size of the visible headers, plus the preferred size of the scrollbars that will appear given the current view and the current scrollbar displayPolicies. Note that the rowHeader is calculated as part of the preferred width and the colHeader is calculated as part of the preferred size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension minimumLayoutSize(Container parent)
+				</name>
+				<description>
+					The minimum size of a ScrollPane is the size of the insets plus minimum size of the viewport, plus the scrollpane's viewportBorder insets, plus the minimum size of the visible headers, plus the minimum size of the scrollbars whose displayPolicy isn't NEVER.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void layoutContainer(Container parent)
+				</name>
+				<description>
+					Lays out the scrollpane. The positioning of components depends on the following constraints: The row header, if present and visible, gets its preferred width and the viewport's height. The column header, if present and visible, gets its preferred height and the viewport's width. If a vertical scrollbar is needed, i.e. if the viewport's extent height is smaller than its view height or if the displayPolicy is ALWAYS, it's treated like the row header with respect to its dimensions and is made visible. If a horizontal scrollbar is needed, it is treated like the column header (see the paragraph above regarding the vertical scrollbar). If the scrollpane has a non-null viewportBorder, then space is allocated for that. The viewport gets the space available after accounting for the previous constraints. The corner components, if provided, are aligned with the ends of the scrollbars and headers. If there is a vertical scrollbar, the right corners appear; if there is a horizontal scrollbar, the lower corners appear; a row header gets left corners, and a column header gets upper corners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Rectangle getViewportBorderBounds(JScrollPane scrollpane)
+				</name>
+				<description>
+					Deprecated. As of JDK version Swing1.1 replaced by JScrollPane.getViewportBorderBounds(). Returns the bounds of the border around the specified scroll pane's viewport.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

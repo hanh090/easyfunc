@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		org.xml.sax.helpers
+	</package>
+	<type>
+		<name>
+			public class LocatorImpl  extends Object  implements Locator
+		</name>
+		<description>
+			Provide an optional convenience implementation of Locator. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. See http://www.saxproject.org for further information. This class is available mainly for application writers, who can use it to make a persistent snapshot of a locator at any point during a document parse:    Locator locator;   Locator startloc;     public void setLocator (Locator locator)   {           // note the locator     this.locator = locator;   }     public void startDocument ()   {           // save the location of the start of the document           // for future use.     Locator startloc = new LocatorImpl(locator);   }   Normally, parser writers will not use this class, since it is more efficient to provide location information only when requested, rather than constantly updating a Locator object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public LocatorImpl()
+				</name>
+				<description>
+					Zero-argument constructor. This will not normally be useful, since the main purpose of this class is to make a snapshot of an existing Locator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LocatorImpl(Locator locator)
+				</name>
+				<description>
+					Copy constructor. Create a persistent copy of the current state of a locator. When the original locator changes, this copy will still keep the original values (and it can be used outside the scope of DocumentHandler methods).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPublicId()
+				</name>
+				<description>
+					Return the saved public identifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSystemId()
+				</name>
+				<description>
+					Return the saved system identifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineNumber()
+				</name>
+				<description>
+					Return the saved line number (1-based).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getColumnNumber()
+				</name>
+				<description>
+					Return the saved column number (1-based).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPublicId(String publicId)
+				</name>
+				<description>
+					Set the public identifier for this locator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSystemId(String systemId)
+				</name>
+				<description>
+					Set the system identifier for this locator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLineNumber(int lineNumber)
+				</name>
+				<description>
+					Set the line number for this locator (1-based).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnNumber(int columnNumber)
+				</name>
+				<description>
+					Set the column number for this locator (1-based).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

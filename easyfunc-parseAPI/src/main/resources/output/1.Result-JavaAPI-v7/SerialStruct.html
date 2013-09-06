@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.sql.rowset.serial
+	</package>
+	<type>
+		<name>
+			public class SerialStruct  extends Object  implements Struct, Serializable, Cloneable
+		</name>
+		<description>
+			A serialized mapping in the Java programming language of an SQL structured type. Each attribute that is not already serialized is mapped to a serialized form, and if an attribute is itself a structured type, each of its attributes that is not already serialized is mapped to a serialized form. In addition, the structured type is custom mapped to a class in the Java programming language if there is such a mapping, as are its attributes, if appropriate. The SerialStruct class provides a constructor for creating an instance from a Struct object, a method for retrieving the SQL type name of the SQL structured type in the database, and methods for retrieving its attribute values.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SerialStruct(Struct in,              Map<String,Class<?>> map)               throws SerialException
+				</name>
+				<description>
+					Constructs a SerialStruct object from the given Struct object, using the given java.util.Map object for custom mapping the SQL structured type or any of its attributes that are SQL structured types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SerialStruct(SQLData in,              Map<String,Class<?>> map)               throws SerialException
+				</name>
+				<description>
+					Constructs a SerialStruct object from the given SQLData object, using the given type map to custom map it to a class in the Java programming language. The type map gives the SQL type and the class to which it is mapped. The SQLData object defines the class to which the SQL type will be mapped.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSQLTypeName()                        throws SerialException
+				</name>
+				<description>
+					Retrieves the SQL type name for this SerialStruct object. This is the name used in the SQL definition of the structured type
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getAttributes()                         throws SerialException
+				</name>
+				<description>
+					Retrieves an array of Object values containing the attributes of the SQL structured type that this SerialStruct object represents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getAttributes(Map<String,Class<?>> map)                         throws SerialException
+				</name>
+				<description>
+					Retrieves the attributes for the SQL structured type that this SerialStruct represents as an array of Object values, using the given type map for custom mapping if appropriate.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

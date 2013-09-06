@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		java.awt.datatransfer
+	</package>
+	<type>
+		<name>
+			public interface FlavorTable  extends FlavorMap
+		</name>
+		<description>
+			A FlavorMap which relaxes the traditional 1-to-1 restriction of a Map. A flavor is permitted to map to any number of natives, and likewise a native is permitted to map to any number of flavors. FlavorTables need not be symmetric, but typically are.
+		</description>
+		<methods>
+			<method>
+				<name>
+					List<String> getNativesForFlavor(DataFlavor flav)
+				</name>
+				<description>
+					Returns a List of String natives to which the specified DataFlavor corresponds. The List will be sorted from best native to worst. That is, the first native will best reflect data in the specified flavor to the underlying native platform. The returned List is a modifiable copy of this FlavorTable's internal data. Client code is free to modify the List without affecting this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<DataFlavor> getFlavorsForNative(String nat)
+				</name>
+				<description>
+					Returns a List of DataFlavors to which the specified String corresponds. The List will be sorted from best DataFlavor to worst. That is, the first DataFlavor will best reflect data in the specified native to a Java application. The returned List is a modifiable copy of this FlavorTable's internal data. Client code is free to modify the List without affecting this object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

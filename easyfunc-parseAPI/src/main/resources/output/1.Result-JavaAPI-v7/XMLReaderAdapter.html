@@ -1,0 +1,198 @@
+<javaelement>
+	<package>
+		org.xml.sax.helpers
+	</package>
+	<type>
+		<name>
+			public class XMLReaderAdapter  extends Object  implements Parser, ContentHandler
+		</name>
+		<description>
+			Adapt a SAX2 XMLReader as a SAX1 Parser. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. See http://www.saxproject.org for further information. This class wraps a SAX2 XMLReader and makes it act as a SAX1 Parser. The XMLReader must support a true value for the http://xml.org/sax/features/namespace-prefixes property or parsing will fail with a SAXException; if the XMLReader supports a false value for the http://xml.org/sax/features/namespaces property, that will also be used to improve efficiency.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public XMLReaderAdapter()                   throws SAXException
+				</name>
+				<description>
+					Create a new adapter. Use the "org.xml.sax.driver" property to locate the SAX2 driver to embed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLReaderAdapter(XMLReader xmlReader)
+				</name>
+				<description>
+					Create a new adapter. Create a new adapter, wrapped around a SAX2 XMLReader. The adapter will make the XMLReader act like a SAX1 Parser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocale(Locale locale)                 throws SAXException
+				</name>
+				<description>
+					Set the locale for error reporting. This is not supported in SAX2, and will always throw an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEntityResolver(EntityResolver resolver)
+				</name>
+				<description>
+					Register the entity resolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDTDHandler(DTDHandler handler)
+				</name>
+				<description>
+					Register the DTD event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDocumentHandler(DocumentHandler handler)
+				</name>
+				<description>
+					Register the SAX1 document event handler. Note that the SAX1 document handler has no Namespace support.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setErrorHandler(ErrorHandler handler)
+				</name>
+				<description>
+					Register the error event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void parse(String systemId)             throws IOException,                    SAXException
+				</name>
+				<description>
+					Parse the document. This method will throw an exception if the embedded XMLReader does not support the http://xml.org/sax/features/namespace-prefixes property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void parse(InputSource input)             throws IOException,                    SAXException
+				</name>
+				<description>
+					Parse the document. This method will throw an exception if the embedded XMLReader does not support the http://xml.org/sax/features/namespace-prefixes property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDocumentLocator(Locator locator)
+				</name>
+				<description>
+					Set a document locator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startDocument()                     throws SAXException
+				</name>
+				<description>
+					Start document event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endDocument()                   throws SAXException
+				</name>
+				<description>
+					End document event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startPrefixMapping(String prefix,                        String uri)
+				</name>
+				<description>
+					Adapt a SAX2 start prefix mapping event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endPrefixMapping(String prefix)
+				</name>
+				<description>
+					Adapt a SAX2 end prefix mapping event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startElement(String uri,                  String localName,                  String qName,                  Attributes atts)                    throws SAXException
+				</name>
+				<description>
+					Adapt a SAX2 start element event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endElement(String uri,                String localName,                String qName)                  throws SAXException
+				</name>
+				<description>
+					Adapt a SAX2 end element event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void characters(char[] ch,                int start,                int length)                  throws SAXException
+				</name>
+				<description>
+					Adapt a SAX2 characters event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void ignorableWhitespace(char[] ch,                         int start,                         int length)                           throws SAXException
+				</name>
+				<description>
+					Adapt a SAX2 ignorable whitespace event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void processingInstruction(String target,                           String data)                             throws SAXException
+				</name>
+				<description>
+					Adapt a SAX2 processing instruction event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void skippedEntity(String name)                     throws SAXException
+				</name>
+				<description>
+					Adapt a SAX2 skipped entity event.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

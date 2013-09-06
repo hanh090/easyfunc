@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public interface MBeanRegistration
+		</name>
+		<description>
+			Can be implemented by an MBean in order to carry out operations before and after being registered or unregistered from the MBean Server. An MBean can also implement this interface in order to get a reference to the MBean Server and/or its name within that MBean Server.
+		</description>
+		<methods>
+			<method>
+				<name>
+					ObjectName preRegister(MBeanServer server,                       ObjectName name)                         throws Exception
+				</name>
+				<description>
+					Allows the MBean to perform any operations it needs before being registered in the MBean Server. If the name of the MBean is not specified, the MBean can provide a name for its registration. If any exception is raised, the MBean will not be registered in the MBean Server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void postRegister(Boolean registrationDone)
+				</name>
+				<description>
+					Allows the MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postRegister will not change the state of the MBean: if the MBean was already registered (registrationDone is true), the MBean will remain registered. This might be confusing for the code calling createMBean() or registerMBean(), as such code might assume that MBean registration has failed when such an exception is raised. Therefore it is recommended that implementations of postRegister do not throw Runtime Exceptions or Errors if it can be avoided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void preDeregister()                     throws Exception
+				</name>
+				<description>
+					Allows the MBean to perform any operations it needs before being unregistered by the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void postDeregister()
+				</name>
+				<description>
+					Allows the MBean to perform any operations needed after having been unregistered in the MBean server. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postDeregister will not change the state of the MBean: the MBean was already successfully deregistered and will remain so. This might be confusing for the code calling unregisterMBean(), as it might assume that MBean deregistration has failed. Therefore it is recommended that implementations of postDeregister do not throw Runtime Exceptions or Errors if it can be avoided.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

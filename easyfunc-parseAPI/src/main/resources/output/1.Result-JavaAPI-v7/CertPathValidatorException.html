@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public class CertPathValidatorException  extends GeneralSecurityException
+		</name>
+		<description>
+			An exception indicating one of a variety of problems encountered when validating a certification path. A CertPathValidatorException provides support for wrapping exceptions. The getCause method returns the throwable, if any, that caused this exception to be thrown. A CertPathValidatorException may also include the certification path that was being validated when the exception was thrown, the index of the certificate in the certification path that caused the exception to be thrown, and the reason that caused the failure. Use the getCertPath, getIndex, and getReason methods to retrieve this information. Concurrent Access Unless otherwise specified, the methods defined in this class are not thread-safe. Multiple threads that need to access a single object concurrently should synchronize amongst themselves and provide the necessary locking. Multiple threads each manipulating separate objects need not synchronize.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CertPathValidatorException()
+				</name>
+				<description>
+					Creates a CertPathValidatorException with no detail message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertPathValidatorException(String msg)
+				</name>
+				<description>
+					Creates a CertPathValidatorException with the given detail message. A detail message is a String that describes this particular exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertPathValidatorException(Throwable cause)
+				</name>
+				<description>
+					Creates a CertPathValidatorException that wraps the specified throwable. This allows any exception to be converted into a CertPathValidatorException, while retaining information about the wrapped exception, which may be useful for debugging. The detail message is set to (cause==null ? null : cause.toString() ) (which typically contains the class and detail message of cause).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertPathValidatorException(String msg,                            Throwable cause)
+				</name>
+				<description>
+					Creates a CertPathValidatorException with the specified detail message and cause.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertPathValidatorException(String msg,                            Throwable cause,                            CertPath certPath,                            int index)
+				</name>
+				<description>
+					Creates a CertPathValidatorException with the specified detail message, cause, certification path, and index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertPathValidatorException(String msg,                            Throwable cause,                            CertPath certPath,                            int index,                            CertPathValidatorException.Reason reason)
+				</name>
+				<description>
+					Creates a CertPathValidatorException with the specified detail message, cause, certification path, index, and reason.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertPath getCertPath()
+				</name>
+				<description>
+					Returns the certification path that was being validated when the exception was thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIndex()
+				</name>
+				<description>
+					Returns the index of the certificate in the certification path that caused the exception to be thrown. Note that the list of certificates in a CertPath is zero based. If no index has been set, -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertPathValidatorException.Reason getReason()
+				</name>
+				<description>
+					Returns the reason that the validation failed. The reason is associated with the index of the certificate returned by getIndex().
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

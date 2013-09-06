@@ -1,0 +1,396 @@
+<javaelement>
+	<package>
+		java.awt.color
+	</package>
+	<type>
+		<name>
+			public abstract class ColorSpace  extends Object  implements Serializable
+		</name>
+		<description>
+			This abstract class is used to serve as a color space tag to identify the specific color space of a Color object or, via a ColorModel object, of an Image, a BufferedImage, or a GraphicsDevice. It contains methods that transform colors in a specific color space to/from sRGB and to/from a well-defined CIEXYZ color space. For purposes of the methods in this class, colors are represented as arrays of color components represented as floats in a normalized range defined by each ColorSpace. For many ColorSpaces (e.g. sRGB), this range is 0.0 to 1.0. However, some ColorSpaces have components whose values have a different range. Methods are provided to inquire per component minimum and maximum normalized values. Several variables are defined for purposes of referring to color space types (e.g. TYPE_RGB, TYPE_XYZ, etc.) and to refer to specific color spaces (e.g. CS_sRGB and CS_CIEXYZ). sRGB is a proposed standard RGB color space. For more information, see http://www.w3.org/pub/WWW/Graphics/Color/sRGB.html . The purpose of the methods to transform to/from the well-defined CIEXYZ color space is to support conversions between any two color spaces at a reasonably high degree of accuracy. It is expected that particular implementations of subclasses of ColorSpace (e.g. ICC_ColorSpace) will support high performance conversion based on underlying platform color management systems. The CS_CIEXYZ space used by the toCIEXYZ/fromCIEXYZ methods can be described as follows:           CIEXYZ        viewing illuminance: 200 lux        viewing white point: CIE D50        media white point: "that of a perfectly reflecting diffuser" -- D50        media black point: 0 lux or 0 Reflectance        flare: 1 percent        surround: 20percent of the media white point        media description: reflection print (i.e., RLAB, Hunt viewing media)        note: For developers creating an ICC profile for this conversion              space, the following is applicable.  Use a simple Von Kries              white point adaptation folded into the 3X3 matrix parameters              and fold the flare and surround effects into the three              one-dimensional lookup tables (assuming one uses the minimal              model for monitors).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int TYPE_XYZ
+				</name>
+				<description>
+					Any of the family of XYZ color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_Lab
+				</name>
+				<description>
+					Any of the family of Lab color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_Luv
+				</name>
+				<description>
+					Any of the family of Luv color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_YCbCr
+				</name>
+				<description>
+					Any of the family of YCbCr color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_Yxy
+				</name>
+				<description>
+					Any of the family of Yxy color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_RGB
+				</name>
+				<description>
+					Any of the family of RGB color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_GRAY
+				</name>
+				<description>
+					Any of the family of GRAY color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_HSV
+				</name>
+				<description>
+					Any of the family of HSV color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_HLS
+				</name>
+				<description>
+					Any of the family of HLS color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_CMYK
+				</name>
+				<description>
+					Any of the family of CMYK color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_CMY
+				</name>
+				<description>
+					Any of the family of CMY color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_2CLR
+				</name>
+				<description>
+					Generic 2 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_3CLR
+				</name>
+				<description>
+					Generic 3 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_4CLR
+				</name>
+				<description>
+					Generic 4 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_5CLR
+				</name>
+				<description>
+					Generic 5 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_6CLR
+				</name>
+				<description>
+					Generic 6 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_7CLR
+				</name>
+				<description>
+					Generic 7 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_8CLR
+				</name>
+				<description>
+					Generic 8 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_9CLR
+				</name>
+				<description>
+					Generic 9 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_ACLR
+				</name>
+				<description>
+					Generic 10 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_BCLR
+				</name>
+				<description>
+					Generic 11 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_CCLR
+				</name>
+				<description>
+					Generic 12 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_DCLR
+				</name>
+				<description>
+					Generic 13 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_ECLR
+				</name>
+				<description>
+					Generic 14 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_FCLR
+				</name>
+				<description>
+					Generic 15 component color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CS_sRGB
+				</name>
+				<description>
+					The sRGB color space defined at http://www.w3.org/pub/WWW/Graphics/Color/sRGB.html .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CS_LINEAR_RGB
+				</name>
+				<description>
+					A built-in linear RGB color space. This space is based on the same RGB primaries as CS_sRGB, but has a linear tone reproduction curve.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CS_CIEXYZ
+				</name>
+				<description>
+					The CIEXYZ conversion color space defined above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CS_PYCC
+				</name>
+				<description>
+					The Photo YCC conversion color space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CS_GRAY
+				</name>
+				<description>
+					The built-in linear gray scale color space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ColorSpace(int type,            int numcomponents)
+				</name>
+				<description>
+					Constructs a ColorSpace object given a color space type and the number of components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorSpace getInstance(int colorspace)
+				</name>
+				<description>
+					Returns a ColorSpace representing one of the specific predefined color spaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCS_sRGB()
+				</name>
+				<description>
+					Returns true if the ColorSpace is CS_sRGB.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float[] toRGB(float[] colorvalue)
+				</name>
+				<description>
+					Transforms a color value assumed to be in this ColorSpace into a value in the default CS_sRGB color space. This method transforms color values using algorithms designed to produce the best perceptual match between input and output colors. In order to do colorimetric conversion of color values, you should use the toCIEXYZ method of this color space to first convert from the input color space to the CS_CIEXYZ color space, and then use the fromCIEXYZ method of the CS_sRGB color space to convert from CS_CIEXYZ to the output color space. See toCIEXYZ and fromCIEXYZ for further information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float[] fromRGB(float[] rgbvalue)
+				</name>
+				<description>
+					Transforms a color value assumed to be in the default CS_sRGB color space into this ColorSpace. This method transforms color values using algorithms designed to produce the best perceptual match between input and output colors. In order to do colorimetric conversion of color values, you should use the toCIEXYZ method of the CS_sRGB color space to first convert from the input color space to the CS_CIEXYZ color space, and then use the fromCIEXYZ method of this color space to convert from CS_CIEXYZ to the output color space. See toCIEXYZ and fromCIEXYZ for further information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float[] toCIEXYZ(float[] colorvalue)
+				</name>
+				<description>
+					Transforms a color value assumed to be in this ColorSpace into the CS_CIEXYZ conversion color space. This method transforms color values using relative colorimetry, as defined by the International Color Consortium standard. This means that the XYZ values returned by this method are represented relative to the D50 white point of the CS_CIEXYZ color space. This representation is useful in a two-step color conversion process in which colors are transformed from an input color space to CS_CIEXYZ and then to an output color space. This representation is not the same as the XYZ values that would be measured from the given color value by a colorimeter. A further transformation is necessary to compute the XYZ values that would be measured using current CIE recommended practices. See the toCIEXYZ method of ICC_ColorSpace for further information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float[] fromCIEXYZ(float[] colorvalue)
+				</name>
+				<description>
+					Transforms a color value assumed to be in the CS_CIEXYZ conversion color space into this ColorSpace. This method transforms color values using relative colorimetry, as defined by the International Color Consortium standard. This means that the XYZ argument values taken by this method are represented relative to the D50 white point of the CS_CIEXYZ color space. This representation is useful in a two-step color conversion process in which colors are transformed from an input color space to CS_CIEXYZ and then to an output color space. The color values returned by this method are not those that would produce the XYZ value passed to the method when measured by a colorimeter. If you have XYZ values corresponding to measurements made using current CIE recommended practices, they must be converted to D50 relative values before being passed to this method. See the fromCIEXYZ method of ICC_ColorSpace for further information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getType()
+				</name>
+				<description>
+					Returns the color space type of this ColorSpace (for example TYPE_RGB, TYPE_XYZ, ...). The type defines the number of components of the color space and the interpretation, e.g. TYPE_RGB identifies a color space with three components - red, green, and blue. It does not define the particular color characteristics of the space, e.g. the chromaticities of the primaries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumComponents()
+				</name>
+				<description>
+					Returns the number of components of this ColorSpace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName(int idx)
+				</name>
+				<description>
+					Returns the name of the component given the component index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinValue(int component)
+				</name>
+				<description>
+					Returns the minimum normalized color component value for the specified component. The default implementation in this abstract class returns 0.0 for all components. Subclasses should override this method if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMaxValue(int component)
+				</name>
+				<description>
+					Returns the maximum normalized color component value for the specified component. The default implementation in this abstract class returns 1.0 for all components. Subclasses should override this method if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

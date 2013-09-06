@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.rmi.CORBA
+	</package>
+	<type>
+		<name>
+			public class Util  extends Object
+		</name>
+		<description>
+			Provides utility methods that can be used by stubs and ties to perform common operations.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static RemoteException mapSystemException(SystemException ex)
+				</name>
+				<description>
+					Maps a SystemException to a RemoteException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void writeAny(OutputStream out,              Object obj)
+				</name>
+				<description>
+					Writes any java.lang.Object as a CORBA any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object readAny(InputStream in)
+				</name>
+				<description>
+					Reads a java.lang.Object as a CORBA any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void writeRemoteObject(OutputStream out,                       Object obj)
+				</name>
+				<description>
+					Writes a java.lang.Object as a CORBA Object. If obj is an exported RMI-IIOP server object, the tie is found and wired to obj, then written to out.write_Object(org.omg.CORBA.Object). If obj is a CORBA Object, it is written to out.write_Object(org.omg.CORBA.Object).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void writeAbstractObject(OutputStream out,                         Object obj)
+				</name>
+				<description>
+					Writes a java.lang.Object as either a value or a CORBA Object. If obj is a value object or a stub object, it is written to out.write_abstract_interface(java.lang.Object). If obj is an exported RMI-IIOP server object, the tie is found and wired to obj, then written to out.write_abstract_interface(java.lang.Object).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void registerTarget(Tie tie,                    Remote target)
+				</name>
+				<description>
+					Registers a target for a tie. Adds the tie to an internal table and calls Tie.setTarget(java.rmi.Remote) on the tie object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void unexportObject(Remote target)                             throws NoSuchObjectException
+				</name>
+				<description>
+					Removes the associated tie from an internal table and calls Tie.deactivate() to deactivate the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Tie getTie(Remote target)
+				</name>
+				<description>
+					Returns the tie (if any) for a given target object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueHandler createValueHandler()
+				</name>
+				<description>
+					Returns a singleton instance of a class that implements the ValueHandler interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String getCodebase(Class clz)
+				</name>
+				<description>
+					Returns the codebase, if any, for the given class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Class loadClass(String className,                String remoteCodebase,                ClassLoader loader)                         throws ClassNotFoundException
+				</name>
+				<description>
+					Returns a class instance for the specified class. The spec for this method is the "Java to IDL language mapping", ptc/00-01-06. In Java SE Platform, this method works as follows: Find the first non-null ClassLoader on the call stack and attempt to load the class using this ClassLoader. If the first step fails, and if remoteCodebase is non-null and useCodebaseOnly is false, then call java.rmi.server.RMIClassLoader.loadClass(remoteCodebase, className). If remoteCodebase is null or useCodebaseOnly is true, then call java.rmi.server.RMIClassLoader.loadClass(className). If a class was not successfully loaded by step 1, 2, or 3, and loader is non-null, then call loader.loadClass(className). If a class was successfully loaded by step 1, 2, 3, or 4, then return the loaded class, else throw ClassNotFoundException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isLocal(Stub stub)                         throws RemoteException
+				</name>
+				<description>
+					The isLocal method has the same semantics as the ObjectImpl._is_local method, except that it can throw a RemoteException. The _is_local() method is provided so that stubs may determine if a particular object is implemented by a local servant and hence local invocation APIs may be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static RemoteException wrapException(Throwable orig)
+				</name>
+				<description>
+					Wraps an exception thrown by an implementation method. It returns the corresponding client-side exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object[] copyObjects(Object[] obj,                     ORB orb)                              throws RemoteException
+				</name>
+				<description>
+					Copies or connects an array of objects. Used by local stubs to copy any number of actual parameters, preserving sharing across parameters as necessary to support RMI semantics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object copyObject(Object obj,                  ORB orb)                           throws RemoteException
+				</name>
+				<description>
+					Copies or connects an object. Used by local stubs to copy an actual parameter, result object, or exception.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

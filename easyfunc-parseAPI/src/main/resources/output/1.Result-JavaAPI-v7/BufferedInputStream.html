@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class BufferedInputStream  extends FilterInputStream
+		</name>
+		<description>
+			A BufferedInputStream adds functionality to another input stream-namely, the ability to buffer the input and to support the mark and reset methods. When the BufferedInputStream is created, an internal buffer array is created. As bytes from the stream are read or skipped, the internal buffer is refilled as necessary from the contained input stream, many bytes at a time. The mark operation remembers a point in the input stream and the reset operation causes all the bytes read since the most recent mark operation to be reread before new bytes are taken from the contained input stream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected volatile byte[] buf
+				</name>
+				<description>
+					The internal buffer array where the data is stored. When necessary, it may be replaced by another array of a different size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int count
+				</name>
+				<description>
+					The index one greater than the index of the last valid byte in the buffer. This value is always in the range 0 through buf.length; elements buf[0] through buf[count-1] contain buffered input data obtained from the underlying input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int pos
+				</name>
+				<description>
+					The current position in the buffer. This is the index of the next character to be read from the buf array. This value is always in the range 0 through count. If it is less than count, then buf[pos] is the next byte to be supplied as input; if it is equal to count, then the next read or skip operation will require more bytes to be read from the contained input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int markpos
+				</name>
+				<description>
+					The value of the pos field at the time the last mark method was called. This value is always in the range -1 through pos. If there is no marked position in the input stream, this field is -1. If there is a marked position in the input stream, then buf[markpos] is the first byte to be supplied as input after a reset operation. If markpos is not -1, then all bytes from positions buf[markpos] through buf[pos-1] must remain in the buffer array (though they may be moved to another place in the buffer array, with suitable adjustments to the values of count, pos, and markpos); they may not be discarded unless and until the difference between pos and markpos exceeds marklimit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int marklimit
+				</name>
+				<description>
+					The maximum read ahead allowed after a call to the mark method before subsequent calls to the reset method fail. Whenever the difference between pos and markpos exceeds marklimit, then the mark may be dropped by setting markpos to -1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedInputStream(InputStream in)
+				</name>
+				<description>
+					Creates a BufferedInputStream and saves its argument, the input stream in, for later use. An internal buffer array is created and stored in buf.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedInputStream(InputStream in,                     int size)
+				</name>
+				<description>
+					Creates a BufferedInputStream with the specified buffer size, and saves its argument, the input stream in, for later use. An internal buffer array of length size is created and stored in buf.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					See the general contract of the read method of InputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads bytes from this byte-input stream into the specified byte array, starting at the given offset. This method implements the general contract of the corresponding read method of the InputStream class. As an additional convenience, it attempts to read as many bytes as possible by repeatedly invoking the read method of the underlying stream. This iterated read continues until one of the following conditions becomes true: The specified number of bytes have been read, The read method of the underlying stream returns -1, indicating end-of-file, or The available method of the underlying stream returns zero, indicating that further input requests would block. If the first read on the underlying stream returns -1 to indicate end-of-file then this method returns -1. Otherwise this method returns the number of bytes actually read. Subclasses of this class are encouraged, but not required, to attempt to read as many bytes as possible in the same fashion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					See the general contract of the skip method of InputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()                throws IOException
+				</name>
+				<description>
+					Returns an estimate of the number of bytes that can be read (or skipped over) from this input stream without blocking by the next invocation of a method for this input stream. The next invocation might be the same thread or another thread. A single read or skip of this many bytes will not block, but may read or skip fewer bytes. This method returns the sum of the number of bytes remaining to be read in the buffer (count - pos) and the result of calling the in.available().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mark(int readlimit)
+				</name>
+				<description>
+					See the general contract of the mark method of InputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()             throws IOException
+				</name>
+				<description>
+					See the general contract of the reset method of InputStream. If markpos is -1 (no mark has been set or the mark has been invalidated), an IOException is thrown. Otherwise, pos is set equal to markpos.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean markSupported()
+				</name>
+				<description>
+					Tests if this input stream supports the mark and reset methods. The markSupported method of BufferedInputStream returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this input stream and releases any system resources associated with the stream. Once the stream has been closed, further read(), available(), reset(), or skip() invocations will throw an IOException. Closing a previously closed stream has no effect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

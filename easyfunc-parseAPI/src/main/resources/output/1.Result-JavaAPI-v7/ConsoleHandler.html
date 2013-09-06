@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.util.logging
+	</package>
+	<type>
+		<name>
+			public class ConsoleHandler  extends StreamHandler
+		</name>
+		<description>
+			This Handler publishes log records to System.err. By default the SimpleFormatter is used to generate brief summaries. Configuration: By default each ConsoleHandler is initialized using the following LogManager configuration properties. If properties are not defined (or have invalid values) then the specified default values are used. java.util.logging.ConsoleHandler.level specifies the default level for the Handler (defaults to Level.INFO). java.util.logging.ConsoleHandler.filter specifies the name of a Filter class to use (defaults to no Filter). java.util.logging.ConsoleHandler.formatter specifies the name of a Formatter class to use (defaults to java.util.logging.SimpleFormatter). java.util.logging.ConsoleHandler.encoding the name of the character set encoding to use (defaults to the default platform encoding).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ConsoleHandler()
+				</name>
+				<description>
+					Create a ConsoleHandler for System.err. The ConsoleHandler is configured based on LogManager properties (or their default values).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void publish(LogRecord record)
+				</name>
+				<description>
+					Publish a LogRecord. The logging request was made initially to a Logger object, which initialized the LogRecord and forwarded it here.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()
+				</name>
+				<description>
+					Override StreamHandler.close to do a flush but not to close the output stream. That is, we do not close System.err.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

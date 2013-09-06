@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.imageio.stream
+	</package>
+	<type>
+		<name>
+			public class IIOByteBuffer  extends Object
+		</name>
+		<description>
+			A class representing a mutable reference to an array of bytes and an offset and length within that array. IIOByteBuffer is used by ImageInputStream to supply a sequence of bytes to the caller, possibly with fewer copies than using the conventional read methods that take a user-supplied byte array. The byte array referenced by an IIOByteBuffer will generally be part of an internal data structure belonging to an ImageReader implementation; its contents should be considered read-only and must not be modified.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public IIOByteBuffer(byte[] data,               int offset,               int length)
+				</name>
+				<description>
+					Constructs an IIOByteBuffer that references a given byte array, offset, and length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getData()
+				</name>
+				<description>
+					Returns a reference to the byte array. The returned value should be treated as read-only, and only the portion specified by the values of getOffset and getLength should be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setData(byte[] data)
+				</name>
+				<description>
+					Updates the array reference that will be returned by subsequent calls to the getData method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset()
+				</name>
+				<description>
+					Returns the offset within the byte array returned by getData at which the data of interest start.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOffset(int offset)
+				</name>
+				<description>
+					Updates the value that will be returned by subsequent calls to the getOffset method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLength()
+				</name>
+				<description>
+					Returns the length of the data of interest within the byte array returned by getData.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLength(int length)
+				</name>
+				<description>
+					Updates the value that will be returned by subsequent calls to the getLength method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

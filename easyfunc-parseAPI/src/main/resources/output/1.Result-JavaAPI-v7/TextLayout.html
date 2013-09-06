@@ -1,0 +1,468 @@
+<javaelement>
+	<package>
+		java.awt.font
+	</package>
+	<type>
+		<name>
+			public final class TextLayout  extends Object  implements Cloneable
+		</name>
+		<description>
+			TextLayout is an immutable graphical representation of styled character data. It provides the following capabilities: implicit bidirectional analysis and reordering, cursor positioning and movement, including split cursors for mixed directional text, highlighting, including both logical and visual highlighting for mixed directional text, multiple baselines (roman, hanging, and centered), hit testing, justification, default font substitution, metric information such as ascent, descent, and advance, and rendering A TextLayout object can be rendered using its draw method. TextLayout can be constructed either directly or through the use of a LineBreakMeasurer. When constructed directly, the source text represents a single paragraph. LineBreakMeasurer allows styled text to be broken into lines that fit within a particular width. See the LineBreakMeasurer documentation for more information. TextLayout construction logically proceeds as follows: paragraph attributes are extracted and examined, text is analyzed for bidirectional reordering, and reordering information is computed if needed, text is segmented into style runs fonts are chosen for style runs, first by using a font if the attribute TextAttribute.FONT is present, otherwise by computing a default font using the attributes that have been defined if text is on multiple baselines, the runs or subruns are further broken into subruns sharing a common baseline, glyphvectors are generated for each run using the chosen font, final bidirectional reordering is performed on the glyphvectors All graphical information returned from a TextLayout object's methods is relative to the origin of the TextLayout, which is the intersection of the TextLayout object's baseline with its left edge. Also, coordinates passed into a TextLayout object's methods are assumed to be relative to the TextLayout object's origin. Clients usually need to translate between a TextLayout object's coordinate system and the coordinate system in another object (such as a Graphics object). TextLayout objects are constructed from styled text, but they do not retain a reference to their source text. Thus, changes in the text previously used to generate a TextLayout do not affect the TextLayout. Three methods on a TextLayout object (getNextRightHit, getNextLeftHit, and hitTestChar) return instances of TextHitInfo. The offsets contained in these TextHitInfo objects are relative to the start of the TextLayout, not to the text used to create the TextLayout. Similarly, TextLayout methods that accept TextHitInfo instances as parameters expect the TextHitInfo object's offsets to be relative to the TextLayout, not to any underlying text storage model. Examples: Constructing and drawing a TextLayout and its bounding rectangle:      Graphics2D g = ...;     Point2D loc = ...;     Font font = Font.getFont("Helvetica-bold-italic");     FontRenderContext frc = g.getFontRenderContext();     TextLayout layout = new TextLayout("This is a string", font, frc);     layout.draw(g, (float)loc.getX(), (float)loc.getY());       Rectangle2D bounds = layout.getBounds();     bounds.setRect(bounds.getX()+loc.getX(),                    bounds.getY()+loc.getY(),                    bounds.getWidth(),                    bounds.getHeight());     g.draw(bounds);   Hit-testing a TextLayout (determining which character is at a particular graphical location):      Point2D click = ...;     TextHitInfo hit = layout.hitTestChar(                           (float) (click.getX() - loc.getX()),                           (float) (click.getY() - loc.getY()));   Responding to a right-arrow key press:      int insertionIndex = ...;     TextHitInfo next = layout.getNextRightHit(insertionIndex);     if (next != null) {         // translate graphics to origin of layout on screen         g.translate(loc.getX(), loc.getY());         Shape[] carets = layout.getCaretShapes(next.getInsertionIndex());         g.draw(carets[0]);         if (carets[1] != null) {             g.draw(carets[1]);         }     }   Drawing a selection range corresponding to a substring in the source text. The selected area may not be visually contiguous:      // selStart, selLimit should be relative to the layout,     // not to the source text       int selStart = ..., selLimit = ...;     Color selectionColor = ...;     Shape selection = layout.getLogicalHighlightShape(selStart, selLimit);     // selection may consist of disjoint areas     // graphics is assumed to be tranlated to origin of layout     g.setColor(selectionColor);     g.fill(selection);   Drawing a visually contiguous selection range. The selection range may correspond to more than one substring in the source text. The ranges of the corresponding source text substrings can be obtained with getLogicalRangesForVisualSelection():      TextHitInfo selStart = ..., selLimit = ...;     Shape selection = layout.getVisualHighlightShape(selStart, selLimit);     g.setColor(selectionColor);     g.fill(selection);     int[] ranges = getLogicalRangesForVisualSelection(selStart, selLimit);     // ranges[0], ranges[1] is the first selection range,     // ranges[2], ranges[3] is the second selection range, etc.   Note: Font rotations can cause text baselines to be rotated, and multiple runs with different rotations can cause the baseline to bend or zig-zag. In order to account for this (rare) possibility, some APIs are specified to return metrics and take parameters 'in baseline-relative coordinates' (e.g. ascent, advance), and others are in 'in standard coordinates' (e.g. getBounds). Values in baseline-relative coordinates map the 'x' coordinate to the distance along the baseline, (positive x is forward along the baseline), and the 'y' coordinate to a distance along the perpendicular to the baseline at 'x' (postitive y is 90 degrees clockwise from the baseline vector). Values in standard coordinates are measured along the x and y axes, with 0,0 at the origin of the TextLayout. Documentation for each relevant API indicates what values are in what coordinate system. In general, measurement-related APIs are in baseline-relative coordinates, while display-related APIs are in standard coordinates.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final TextLayout.CaretPolicy DEFAULT_CARET_POLICY
+				</name>
+				<description>
+					This CaretPolicy is used when a policy is not specified by the client. With this policy, a hit on a character whose direction is the same as the line direction is stronger than a hit on a counterdirectional character. If the characters' directions are the same, a hit on the leading edge of a character is stronger than a hit on the trailing edge of a character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextLayout(String string,            Font font,            FontRenderContext frc)
+				</name>
+				<description>
+					Constructs a TextLayout from a String and a Font. All the text is styled using the specified Font. The String must specify a single paragraph of text, because an entire paragraph is required for the bidirectional algorithm.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextLayout(String string,            Map<? extends AttributedCharacterIterator.Attribute,?> attributes,            FontRenderContext frc)
+				</name>
+				<description>
+					Constructs a TextLayout from a String and an attribute set. All the text is styled using the provided attributes. string must specify a single paragraph of text because an entire paragraph is required for the bidirectional algorithm.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextLayout(AttributedCharacterIterator text,            FontRenderContext frc)
+				</name>
+				<description>
+					Constructs a TextLayout from an iterator over styled text. The iterator must specify a single paragraph of text because an entire paragraph is required for the bidirectional algorithm.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object clone()
+				</name>
+				<description>
+					Creates a copy of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextLayout getJustifiedLayout(float justificationWidth)
+				</name>
+				<description>
+					Creates a copy of this TextLayout justified to the specified width. If this TextLayout has already been justified, an exception is thrown. If this TextLayout object's justification ratio is zero, a TextLayout identical to this TextLayout is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleJustify(float justificationWidth)
+				</name>
+				<description>
+					Justify this layout. Overridden by subclassers to control justification (if there were subclassers, that is...) The layout will only justify if the paragraph attributes (from the source text, possibly defaulted by the layout attributes) indicate a non-zero justification ratio. The text will be justified to the indicated width. The current implementation also adjusts hanging punctuation and trailing whitespace to overhang the justification width. Once justified, the layout may not be rejustified. Some code may rely on immutablity of layouts. Subclassers should not call this directly, but instead should call getJustifiedLayout, which will call this method on a clone of this layout, preserving the original.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte getBaseline()
+				</name>
+				<description>
+					Returns the baseline for this TextLayout. The baseline is one of the values defined in Font, which are roman, centered and hanging. Ascent and descent are relative to this baseline. The baselineOffsets are also relative to this baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getBaselineOffsets()
+				</name>
+				<description>
+					Returns the offsets array for the baselines used for this TextLayout. The array is indexed by one of the values defined in Font, which are roman, centered and hanging. The values are relative to this TextLayout object's baseline, so that getBaselineOffsets[getBaseline()] == 0. Offsets are added to the position of the TextLayout object's baseline to get the position for the new baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAdvance()
+				</name>
+				<description>
+					Returns the advance of this TextLayout. The advance is the distance from the origin to the advance of the rightmost (bottommost) character. This is in baseline-relative coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getVisibleAdvance()
+				</name>
+				<description>
+					Returns the advance of this TextLayout, minus trailing whitespace. This is in baseline-relative coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAscent()
+				</name>
+				<description>
+					Returns the ascent of this TextLayout. The ascent is the distance from the top (right) of the TextLayout to the baseline. It is always either positive or zero. The ascent is sufficient to accomodate superscripted text and is the maximum of the sum of the ascent, offset, and baseline of each glyph. The ascent is the maximum ascent from the baseline of all the text in the TextLayout. It is in baseline-relative coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getDescent()
+				</name>
+				<description>
+					Returns the descent of this TextLayout. The descent is the distance from the baseline to the bottom (left) of the TextLayout. It is always either positive or zero. The descent is sufficient to accomodate subscripted text and is the maximum of the sum of the descent, offset, and baseline of each glyph. This is the maximum descent from the baseline of all the text in the TextLayout. It is in baseline-relative coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getLeading()
+				</name>
+				<description>
+					Returns the leading of the TextLayout. The leading is the suggested interline spacing for this TextLayout. This is in baseline-relative coordinates. The leading is computed from the leading, descent, and baseline of all glyphvectors in the TextLayout. The algorithm is roughly as follows:    maxD = 0;   maxDL = 0;   for (GlyphVector g in all glyphvectors) {      maxD = max(maxD, g.getDescent() + offsets[g.getBaseline()]);      maxDL = max(maxDL, g.getDescent() + g.getLeading() +                         offsets[g.getBaseline()]);   }   return maxDL - maxD;
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getBounds()
+				</name>
+				<description>
+					Returns the bounds of this TextLayout. The bounds are in standard coordinates. Due to rasterization effects, this bounds might not enclose all of the pixels rendered by the TextLayout. It might not coincide exactly with the ascent, descent, origin or advance of the TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getPixelBounds(FontRenderContext frc,                         float x,                         float y)
+				</name>
+				<description>
+					Returns the pixel bounds of this TextLayout when rendered in a graphics with the given FontRenderContext at the given location. The graphics render context need not be the same as the FontRenderContext used to create this TextLayout, and can be null. If it is null, the FontRenderContext of this TextLayout is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLeftToRight()
+				</name>
+				<description>
+					Returns true if this TextLayout has a left-to-right base direction or false if it has a right-to-left base direction. The TextLayout has a base direction of either left-to-right (LTR) or right-to-left (RTL). The base direction is independent of the actual direction of text on the line, which may be either LTR, RTL, or mixed. Left-to-right layouts by default should position flush left. If the layout is on a tabbed line, the tabs run left to right, so that logically successive layouts position left to right. The opposite is true for RTL layouts. By default they should position flush left, and tabs run right-to-left.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isVertical()
+				</name>
+				<description>
+					Returns true if this TextLayout is vertical.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getCharacterCount()
+				</name>
+				<description>
+					Returns the number of characters represented by this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getCaretInfo(TextHitInfo hit,                     Rectangle2D bounds)
+				</name>
+				<description>
+					Returns information about the caret corresponding to hit. The first element of the array is the intersection of the caret with the baseline, as a distance along the baseline. The second element of the array is the inverse slope (run/rise) of the caret, measured with respect to the baseline at that point. This method is meant for informational use. To display carets, it is better to use getCaretShapes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getCaretInfo(TextHitInfo hit)
+				</name>
+				<description>
+					Returns information about the caret corresponding to hit. This method is a convenience overload of getCaretInfo and uses the natural bounds of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getNextRightHit(TextHitInfo hit)
+				</name>
+				<description>
+					Returns the hit for the next caret to the right (bottom); if there is no such hit, returns null. If the hit character index is out of bounds, an IllegalArgumentException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getNextRightHit(int offset,                            TextLayout.CaretPolicy policy)
+				</name>
+				<description>
+					Returns the hit for the next caret to the right (bottom); if no such hit, returns null. The hit is to the right of the strong caret at the specified offset, as determined by the specified policy. The returned hit is the stronger of the two possible hits, as determined by the specified policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getNextRightHit(int offset)
+				</name>
+				<description>
+					Returns the hit for the next caret to the right (bottom); if no such hit, returns null. The hit is to the right of the strong caret at the specified offset, as determined by the default policy. The returned hit is the stronger of the two possible hits, as determined by the default policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getNextLeftHit(TextHitInfo hit)
+				</name>
+				<description>
+					Returns the hit for the next caret to the left (top); if no such hit, returns null. If the hit character index is out of bounds, an IllegalArgumentException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getNextLeftHit(int offset,                           TextLayout.CaretPolicy policy)
+				</name>
+				<description>
+					Returns the hit for the next caret to the left (top); if no such hit, returns null. The hit is to the left of the strong caret at the specified offset, as determined by the specified policy. The returned hit is the stronger of the two possible hits, as determined by the specified policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getNextLeftHit(int offset)
+				</name>
+				<description>
+					Returns the hit for the next caret to the left (top); if no such hit, returns null. The hit is to the left of the strong caret at the specified offset, as determined by the default policy. The returned hit is the stronger of the two possible hits, as determined by the default policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getVisualOtherHit(TextHitInfo hit)
+				</name>
+				<description>
+					Returns the hit on the opposite side of the specified hit's caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getCaretShape(TextHitInfo hit,                    Rectangle2D bounds)
+				</name>
+				<description>
+					Returns a Shape representing the caret at the specified hit inside the specified bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getCaretShape(TextHitInfo hit)
+				</name>
+				<description>
+					Returns a Shape representing the caret at the specified hit inside the natural bounds of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte getCharacterLevel(int index)
+				</name>
+				<description>
+					Returns the level of the character at index. Indices -1 and characterCount are assigned the base level of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape[] getCaretShapes(int offset,                       Rectangle2D bounds,                       TextLayout.CaretPolicy policy)
+				</name>
+				<description>
+					Returns two paths corresponding to the strong and weak caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape[] getCaretShapes(int offset,                       Rectangle2D bounds)
+				</name>
+				<description>
+					Returns two paths corresponding to the strong and weak caret. This method is a convenience overload of getCaretShapes that uses the default caret policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape[] getCaretShapes(int offset)
+				</name>
+				<description>
+					Returns two paths corresponding to the strong and weak caret. This method is a convenience overload of getCaretShapes that uses the default caret policy and this TextLayout object's natural bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getLogicalRangesForVisualSelection(TextHitInfo firstEndpoint,                                         TextHitInfo secondEndpoint)
+				</name>
+				<description>
+					Returns the logical ranges of text corresponding to a visual selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getVisualHighlightShape(TextHitInfo firstEndpoint,                              TextHitInfo secondEndpoint,                              Rectangle2D bounds)
+				</name>
+				<description>
+					Returns a path enclosing the visual selection in the specified range, extended to bounds. If the selection includes the leftmost (topmost) position, the selection is extended to the left (top) of bounds. If the selection includes the rightmost (bottommost) position, the selection is extended to the right (bottom) of the bounds. The height (width on vertical lines) of the selection is always extended to bounds. Although the selection is always contiguous, the logically selected text can be discontiguous on lines with mixed-direction text. The logical ranges of text selected can be retrieved using getLogicalRangesForVisualSelection. For example, consider the text 'ABCdef' where capital letters indicate right-to-left text, rendered on a right-to-left line, with a visual selection from 0L (the leading edge of 'A') to 3T (the trailing edge of 'd'). The text appears as follows, with bold underlined areas representing the selection:       defCBA    The logical selection ranges are 0-3, 4-6 (ABC, ef) because the visually contiguous text is logically discontiguous. Also note that since the rightmost position on the layout (to the right of 'A') is selected, the selection is extended to the right of the bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getVisualHighlightShape(TextHitInfo firstEndpoint,                              TextHitInfo secondEndpoint)
+				</name>
+				<description>
+					Returns a Shape enclosing the visual selection in the specified range, extended to the bounds. This method is a convenience overload of getVisualHighlightShape that uses the natural bounds of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getLogicalHighlightShape(int firstEndpoint,                               int secondEndpoint,                               Rectangle2D bounds)
+				</name>
+				<description>
+					Returns a Shape enclosing the logical selection in the specified range, extended to the specified bounds. If the selection range includes the first logical character, the selection is extended to the portion of bounds before the start of this TextLayout. If the range includes the last logical character, the selection is extended to the portion of bounds after the end of this TextLayout. The height (width on vertical lines) of the selection is always extended to bounds. The selection can be discontiguous on lines with mixed-direction text. Only those characters in the logical range between start and limit appear selected. For example, consider the text 'ABCdef' where capital letters indicate right-to-left text, rendered on a right-to-left line, with a logical selection from 0 to 4 ('ABCd'). The text appears as follows, with bold standing in for the selection, and underlining for the extension:       defCBA    The selection is discontiguous because the selected characters are visually discontiguous. Also note that since the range includes the first logical character (A), the selection is extended to the portion of the bounds before the start of the layout, which in this case (a right-to-left line) is the right portion of the bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getLogicalHighlightShape(int firstEndpoint,                               int secondEndpoint)
+				</name>
+				<description>
+					Returns a Shape enclosing the logical selection in the specified range, extended to the natural bounds of this TextLayout. This method is a convenience overload of getLogicalHighlightShape that uses the natural bounds of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getBlackBoxBounds(int firstEndpoint,                        int secondEndpoint)
+				</name>
+				<description>
+					Returns the black box bounds of the characters in the specified range. The black box bounds is an area consisting of the union of the bounding boxes of all the glyphs corresponding to the characters between start and limit. This area can be disjoint.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo hitTestChar(float x,                        float y,                        Rectangle2D bounds)
+				</name>
+				<description>
+					Returns a TextHitInfo corresponding to the specified point. Coordinates outside the bounds of the TextLayout map to hits on the leading edge of the first logical character, or the trailing edge of the last logical character, as appropriate, regardless of the position of that character in the line. Only the direction along the baseline is used to make this evaluation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo hitTestChar(float x,                        float y)
+				</name>
+				<description>
+					Returns a TextHitInfo corresponding to the specified point. This method is a convenience overload of hitTestChar that uses the natural bounds of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Returns true if the specified Object is a TextLayout object and if the specified Object equals this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(TextLayout rhs)
+				</name>
+				<description>
+					Returns true if the two layouts are equal. Two layouts are equal if they contain equal glyphvectors in the same order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns debugging information for this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void draw(Graphics2D g2,          float x,          float y)
+				</name>
+				<description>
+					Renders this TextLayout at the specified location in the specified Graphics2D context. The origin of the layout is placed at x, y. Rendering may touch any point within getBounds() of this position. This leaves the g2 unchanged. Text is rendered along the baseline path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getOutline(AffineTransform tx)
+				</name>
+				<description>
+					Returns a Shape representing the outline of this TextLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LayoutPath getLayoutPath()
+				</name>
+				<description>
+					Return the LayoutPath, or null if the layout path is the default path (x maps to advance, y maps to offset).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void hitToPoint(TextHitInfo hit,                Point2D point)
+				</name>
+				<description>
+					Convert a hit to a point in standard coordinates. The point is on the baseline of the character at the leading or trailing edge of the character, as appropriate. If the path is broken at the side of the character represented by the hit, the point will be adjacent to the character.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

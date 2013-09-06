@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public class PropertyChangeEvent  extends EventObject
+		</name>
+		<description>
+			A "PropertyChange" event gets delivered whenever a bean changes a "bound" or "constrained" property. A PropertyChangeEvent object is sent as an argument to the PropertyChangeListener and VetoableChangeListener methods. Normally PropertyChangeEvents are accompanied by the name and the old and new value of the changed property. If the new value is a primitive type (such as int or boolean) it must be wrapped as the corresponding java.lang.* Object type (such as Integer or Boolean). Null values may be provided for the old and the new values if their true values are not known. An event source may send a null object as the name to indicate that an arbitrary set of if its properties have changed. In this case the old and new values should also be null.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PropertyChangeEvent(Object source,                     String propertyName,                     Object oldValue,                     Object newValue)
+				</name>
+				<description>
+					Constructs a new PropertyChangeEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPropertyName()
+				</name>
+				<description>
+					Gets the programmatic name of the property that was changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getNewValue()
+				</name>
+				<description>
+					Gets the new value for the property, expressed as an Object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getOldValue()
+				</name>
+				<description>
+					Gets the old value for the property, expressed as an Object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPropagationId(Object propagationId)
+				</name>
+				<description>
+					Sets the propagationId object for the event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getPropagationId()
+				</name>
+				<description>
+					The "propagationId" field is reserved for future use. In Beans 1.0 the sole requirement is that if a listener catches a PropertyChangeEvent and then fires a PropertyChangeEvent of its own, then it should make sure that it propagates the propagationId field from its incoming event to its outgoing event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of the object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

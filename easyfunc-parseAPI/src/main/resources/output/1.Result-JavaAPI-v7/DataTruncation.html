@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.sql
+	</package>
+	<type>
+		<name>
+			public class DataTruncation  extends SQLWarning
+		</name>
+		<description>
+			An exception thrown as a DataTruncation exception (on writes) or reported as a DataTruncation warning (on reads) when a data values is unexpectedly truncated for reasons other than its having execeeded MaxFieldSize. The SQLstate for a DataTruncation during read is 01004. The SQLstate for a DataTruncation during write is 22001.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DataTruncation(int index,                boolean parameter,                boolean read,                int dataSize,                int transferSize)
+				</name>
+				<description>
+					Creates a DataTruncation object with the SQLState initialized to 01004 when read is set to true and 22001 when read is set to false, the reason set to "Data truncation", the vendor code set to 0, and the other fields set to the given values. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataTruncation(int index,                boolean parameter,                boolean read,                int dataSize,                int transferSize,                Throwable cause)
+				</name>
+				<description>
+					Creates a DataTruncation object with the SQLState initialized to 01004 when read is set to true and 22001 when read is set to false, the reason set to "Data truncation", the vendor code set to 0, and the other fields set to the given values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIndex()
+				</name>
+				<description>
+					Retrieves the index of the column or parameter that was truncated. This may be -1 if the column or parameter index is unknown, in which case the parameter and read fields should be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getParameter()
+				</name>
+				<description>
+					Indicates whether the value truncated was a parameter value or a column value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getRead()
+				</name>
+				<description>
+					Indicates whether or not the value was truncated on a read.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDataSize()
+				</name>
+				<description>
+					Gets the number of bytes of data that should have been transferred. This number may be approximate if data conversions were being performed. The value may be -1 if the size is unknown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTransferSize()
+				</name>
+				<description>
+					Gets the number of bytes of data actually transferred. The value may be -1 if the size is unknown.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

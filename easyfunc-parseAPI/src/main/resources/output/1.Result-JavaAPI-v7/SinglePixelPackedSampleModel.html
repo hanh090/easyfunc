@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class SinglePixelPackedSampleModel  extends SampleModel
+		</name>
+		<description>
+			This class represents pixel data packed such that the N samples which make up a single pixel are stored in a single data array element, and each data data array element holds samples for only one pixel. This class supports TYPE_BYTE, TYPE_USHORT, TYPE_INT data types. All data array elements reside in the first bank of a DataBuffer. Accessor methods are provided so that the image data can be manipulated directly. Scanline stride is the number of data array elements between a given sample and the corresponding sample in the same column of the next scanline. Bit masks are the masks required to extract the samples representing the bands of the pixel. Bit offsets are the offsets in bits into the data array element of the samples representing the bands of the pixel. The following code illustrates extracting the bits of the sample representing band b for pixel x,y from DataBuffer data:         int sample = data.getElem(y * scanlineStride + x);        sample = (sample & bitMasks[b]) >>> bitOffsets[b];
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SinglePixelPackedSampleModel(int dataType,                              int w,                              int h,                              int[] bitMasks)
+				</name>
+				<description>
+					Constructs a SinglePixelPackedSampleModel with bitMasks.length bands. Each sample is stored in a data array element in the position of its corresponding bit mask. Each bit mask must be contiguous and masks must not overlap. Bit masks exceeding data type capacity are truncated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SinglePixelPackedSampleModel(int dataType,                              int w,                              int h,                              int scanlineStride,                              int[] bitMasks)
+				</name>
+				<description>
+					Constructs a SinglePixelPackedSampleModel with bitMasks.length bands and a scanline stride equal to scanlineStride data array elements. Each sample is stored in a data array element in the position of its corresponding bit mask. Each bit mask must be contiguous and masks must not overlap. Bit masks exceeding data type capacity are truncated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumDataElements()
+				</name>
+				<description>
+					Returns the number of data elements needed to transfer one pixel via the getDataElements and setDataElements methods. For a SinglePixelPackedSampleModel, this is one.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel createCompatibleSampleModel(int w,                                        int h)
+				</name>
+				<description>
+					Creates a new SinglePixelPackedSampleModel with the specified width and height. The new SinglePixelPackedSampleModel will have the same storage data type and bit masks as this SinglePixelPackedSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataBuffer createDataBuffer()
+				</name>
+				<description>
+					Creates a DataBuffer that corresponds to this SinglePixelPackedSampleModel. The DataBuffer's data type and size will be consistent with this SinglePixelPackedSampleModel. The DataBuffer will have a single bank.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSampleSize()
+				</name>
+				<description>
+					Returns the number of bits per sample for all bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSampleSize(int band)
+				</name>
+				<description>
+					Returns the number of bits per sample for the specified band.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset(int x,              int y)
+				</name>
+				<description>
+					Returns the offset (in data array elements) of pixel (x,y). The data element containing pixel x,y can be retrieved from a DataBuffer data with a SinglePixelPackedSampleModel sppsm as:           data.getElem(sppsm.getOffset(x, y));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getBitOffsets()
+				</name>
+				<description>
+					Returns the bit offsets into the data array element representing a pixel for all bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getBitMasks()
+				</name>
+				<description>
+					Returns the bit masks for all bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScanlineStride()
+				</name>
+				<description>
+					Returns the scanline stride of this SinglePixelPackedSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel createSubsetSampleModel(int[] bands)
+				</name>
+				<description>
+					This creates a new SinglePixelPackedSampleModel with a subset of the bands of this SinglePixelPackedSampleModel. The new SinglePixelPackedSampleModel can be used with any DataBuffer that the existing SinglePixelPackedSampleModel can be used with. The new SinglePixelPackedSampleModel/DataBuffer combination will represent an image with a subset of the bands of the original SinglePixelPackedSampleModel/DataBuffer combination.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getDataElements(int x,                       int y,                       Object obj,                       DataBuffer data)
+				</name>
+				<description>
+					Returns data for a single pixel in a primitive array of type TransferType. For a SinglePixelPackedSampleModel, the array will have one element, and the type will be the same as the storage data type. Generally, obj should be passed in as null, so that the Object will be created automatically and will be of the right primitive data type. The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by SinglePixelPackedSampleModel sppsm1, to DataBuffer db2, whose storage layout is described by SinglePixelPackedSampleModel sppsm2. The transfer will generally be more efficient than using getPixel/setPixel.          SinglePixelPackedSampleModel sppsm1, sppsm2;         DataBufferInt db1, db2;         sppsm2.setDataElements(x, y, sppsm1.getDataElements(x, y, null,                                db1), db2);   Using getDataElements/setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModels have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. If obj is non-null, it should be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if obj is non-null and is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixel(int x,               int y,               int[] iArray,               DataBuffer data)
+				</name>
+				<description>
+					Returns all samples in for the specified pixel in an int array. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixels(int x,                int y,                int w,                int h,                int[] iArray,                DataBuffer data)
+				</name>
+				<description>
+					Returns all samples for the specified rectangle of pixels in an int array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSample(int x,              int y,              int b,              DataBuffer data)
+				</name>
+				<description>
+					Returns as int the sample in a specified band for the pixel located at (x,y). ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSamples(int x,                 int y,                 int w,                 int h,                 int b,                 int[] iArray,                 DataBuffer data)
+				</name>
+				<description>
+					Returns the samples for a specified band for the specified rectangle of pixels in an int array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDataElements(int x,                     int y,                     Object obj,                     DataBuffer data)
+				</name>
+				<description>
+					Sets the data for a single pixel in the specified DataBuffer from a primitive array of type TransferType. For a SinglePixelPackedSampleModel, only the first element of the array will hold valid data, and the type of the array must be the same as the storage data type of the SinglePixelPackedSampleModel. The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by SinglePixelPackedSampleModel sppsm1, to DataBuffer db2, whose storage layout is described by SinglePixelPackedSampleModel sppsm2. The transfer will generally be more efficient than using getPixel/setPixel.          SinglePixelPackedSampleModel sppsm1, sppsm2;         DataBufferInt db1, db2;         sppsm2.setDataElements(x, y, sppsm1.getDataElements(x, y, null,                                db1), db2);   Using getDataElements/setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModels have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. obj must be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if obj is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              int[] iArray,              DataBuffer data)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using an int array of samples for input. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               int[] iArray,               DataBuffer data)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from an int array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               int s,               DataBuffer data)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using an int for input. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                int[] iArray,                DataBuffer data)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from an int array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Description copied from class: Object Indicates whether some other object is "equal to" this one. The equals method implements an equivalence relation on non-null object references: It is reflexive: for any non-null reference value x, x.equals(x) should return true. It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true. It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true. It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified. For any non-null reference value x, x.equals(null) should return false. The equals method for class Object implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true). Note that it is generally necessary to override the hashCode method whenever this method is overridden, so as to maintain the general contract for the hashCode method, which states that equal objects must have equal hash codes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Description copied from class: Object Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap. The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the Object.equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables. As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

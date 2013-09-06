@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public static class JTree.DynamicUtilTreeNode  extends DefaultMutableTreeNode
+		</name>
+		<description>
+			DynamicUtilTreeNode can wrap vectors/hashtables/arrays/strings and create the appropriate children tree nodes as necessary. It is dynamic in that it will only create the children as necessary. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected boolean hasChildren
+				</name>
+				<description>
+					Does the this JTree have children? This property is currently not implemented.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object childValue
+				</name>
+				<description>
+					Value to create children with.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean loadedChildren
+				</name>
+				<description>
+					Have the children been loaded yet?
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTree.DynamicUtilTreeNode(Object value,                           Object children)
+				</name>
+				<description>
+					Creates a node with the specified object as its value and with the specified children. For the node to allow children, the children-object must be an array of objects, a Vector, or a Hashtable -- even if empty. Otherwise, the node is not allowed to have children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void createChildren(DefaultMutableTreeNode parent,                    Object children)
+				</name>
+				<description>
+					Adds to parent all the children in children. If children is an array or vector all of its elements are added is children, otherwise if children is a hashtable all the key/value pairs are added in the order Enumeration returns them.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLeaf()
+				</name>
+				<description>
+					Returns true if this node allows children. Whether the node allows children depends on how it was created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getChildCount()
+				</name>
+				<description>
+					Returns the number of child nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void loadChildren()
+				</name>
+				<description>
+					Loads the children based on childValue. If childValue is a Vector or array each element is added as a child, if childValue is a Hashtable each key/value pair is added in the order that Enumeration returns the keys.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeNode getChildAt(int index)
+				</name>
+				<description>
+					Subclassed to load the children, if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration children()
+				</name>
+				<description>
+					Subclassed to load the children, if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

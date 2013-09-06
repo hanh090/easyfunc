@@ -1,0 +1,378 @@
+<javaelement>
+	<package>
+		javax.xml.datatype
+	</package>
+	<type>
+		<name>
+			public abstract class XMLGregorianCalendar  extends Object  implements Cloneable
+		</name>
+		<description>
+			Representation for W3C XML Schema 1.0 date/time datatypes. Specifically, these date/time datatypes are DatatypeConstants.DATETIME, DatatypeConstants.TIME, DatatypeConstants.DATE, DatatypeConstants.GYEARMONTH, DatatypeConstants.GMONTHDAY, DatatypeConstants.GYEAR, DatatypeConstants.GMONTH, and DatatypeConstants.GDAY defined in the XML Namespace "http://www.w3.org/2001/XMLSchema". These datatypes are normatively defined in W3C XML Schema 1.0 Part 2, Section 3.2.7-14. The table below defines the mapping between XML Schema 1.0 date/time datatype fields and this class' fields. It also summarizes the value constraints for the date and time fields defined in W3C XML Schema 1.0 Part 2, Appendix D, ISO 8601 Date and Time Formats. Date/Time Datatype Field Mapping Between XML Schema 1.0 and Java Representation XML Schema 1.0 datatype field Related XMLGregorianCalendar Accessor(s) Value Range year getYear() + getEon() or getEonAndYear() getYear() is a value between -(10^9-1) to (10^9)-1 or DatatypeConstants.FIELD_UNDEFINED. getEon() is high order year value in billion of years. getEon() has values greater than or equal to (10^9) or less than or equal to -(10^9). A value of null indicates field is undefined. Given that XML Schema 1.0 errata states that the year zero will be a valid lexical value in a future version of XML Schema, this class allows the year field to be set to zero. Otherwise, the year field value is handled exactly as described in the errata and [ISO-8601-1988]. Note that W3C XML Schema 1.0 validation does not allow for the year field to have a value of zero. month getMonth() 1 to 12 or DatatypeConstants.FIELD_UNDEFINED day getDay() Independent of month, max range is 1 to 31 or DatatypeConstants.FIELD_UNDEFINED. The normative value constraint stated relative to month field's value is in W3C XML Schema 1.0 Part 2, Appendix D. hour getHour() 0 to 23 or DatatypeConstants.FIELD_UNDEFINED. An hour value of 24 is allowed to be set in the lexical space provided the minute and second field values are zero. However, an hour value of 24 is not allowed in value space and will be transformed to represent the value of the first instance of the following day as per XML Schema Part 2: Datatypes Second Edition, 3.2 Primitive datatypes. minute getMinute() 0 to 59 or DatatypeConstants.FIELD_UNDEFINED second getSecond() + getMillisecond()/1000 or getSecond() + getFractionalSecond() getSecond() from 0 to 60 or DatatypeConstants.FIELD_UNDEFINED. (Note: 60 only allowable for leap second.) getFractionalSecond() allows for infinite precision over the range from 0.0 to 1.0 when the getSecond() is defined. FractionalSecond is optional and has a value of null when it is undefined. getMillisecond() is the convenience millisecond precision of value of getFractionalSecond(). timezone getTimezone() Number of minutes or DatatypeConstants.FIELD_UNDEFINED. Value range from -14 hours (-14 * 60 minutes) to 14 hours (14 * 60 minutes). All maximum value space constraints listed for the fields in the table above are checked by factory methods, @{link DatatypeFactory}, setter methods and parse methods of this class. IllegalArgumentException is thrown when a parameter's value is outside the value constraint for the field or if the composite values constitute an invalid XMLGregorianCalendar instance (for example, if the 31st of June is specified). The following operations are defined for this class: accessors/mutators for independent date/time fields conversion between this class and W3C XML Schema 1.0 lexical representation, toString(), DatatypeFactory.newXMLGregorianCalendar(String lexicalRepresentation) conversion between this class and GregorianCalendar, toGregorianCalendar(java.util.TimeZone timezone, java.util.Locale aLocale, XMLGregorianCalendar defaults), DatatypeFactory partial order relation comparator method, compare(XMLGregorianCalendar xmlGregorianCalendar) equals(Object) defined relative to compare(XMLGregorianCalendar xmlGregorianCalendar). addition operation with Duration instance as defined in W3C XML Schema 1.0 Part 2, Appendix E, Adding durations to dateTimes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public XMLGregorianCalendar()
+				</name>
+				<description>
+					Default no-arg constructor. Note: Always use the DatatypeFactory to construct an instance of XMLGregorianCalendar. The constructor on this class cannot be guaranteed to produce an object with a consistent state and may be removed in the future.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void clear()
+				</name>
+				<description>
+					Unset all fields to undefined. Set all int fields to DatatypeConstants.FIELD_UNDEFINED and reference fields to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void reset()
+				</name>
+				<description>
+					Reset this XMLGregorianCalendar to its original values. XMLGregorianCalendar is reset to the same values as when it was created with DatatypeFactory.newXMLGregorianCalendar(), DatatypeFactory.newXMLGregorianCalendar(String lexicalRepresentation), DatatypeFactory.newXMLGregorianCalendar( BigInteger year, int month, int day, int hour, int minute, int second, BigDecimal fractionalSecond, int timezone), DatatypeFactory.newXMLGregorianCalendar( int year, int month, int day, int hour, int minute, int second, int millisecond, int timezone), DatatypeFactory.newXMLGregorianCalendar(GregorianCalendar cal), DatatypeFactory.newXMLGregorianCalendarDate( int year, int month, int day, int timezone), DatatypeFactory.newXMLGregorianCalendarTime( int hours, int minutes, int seconds, int timezone), DatatypeFactory.newXMLGregorianCalendarTime( int hours, int minutes, int seconds, BigDecimal fractionalSecond, int timezone) or DatatypeFactory.newXMLGregorianCalendarTime( int hours, int minutes, int seconds, int milliseconds, int timezone). reset() is designed to allow the reuse of existing XMLGregorianCalendars thus saving resources associated with the creation of new XMLGregorianCalendars.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setYear(BigInteger year)
+				</name>
+				<description>
+					Set low and high order component of XSD dateTime year field. Unset this field by invoking the setter with a parameter value of null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setYear(int year)
+				</name>
+				<description>
+					Set year of XSD dateTime year field. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED. Note: if the absolute value of the year parameter is less than 10^9, the eon component of the XSD year field is set to null by this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setMonth(int month)
+				</name>
+				<description>
+					Set month. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setDay(int day)
+				</name>
+				<description>
+					Set days in month. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setTimezone(int offset)
+				</name>
+				<description>
+					Set the number of minutes in the timezone offset. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTime(int hour,             int minute,             int second)
+				</name>
+				<description>
+					Set time as one unit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setHour(int hour)
+				</name>
+				<description>
+					Set hours. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setMinute(int minute)
+				</name>
+				<description>
+					Set minutes. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setSecond(int second)
+				</name>
+				<description>
+					Set seconds. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setMillisecond(int millisecond)
+				</name>
+				<description>
+					Set milliseconds. Unset this field by invoking the setter with a parameter value of DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setFractionalSecond(BigDecimal fractional)
+				</name>
+				<description>
+					Set fractional seconds. Unset this field by invoking the setter with a parameter value of null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTime(int hour,             int minute,             int second,             BigDecimal fractional)
+				</name>
+				<description>
+					Set time as one unit, including the optional infinite precision fractional seconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTime(int hour,             int minute,             int second,             int millisecond)
+				</name>
+				<description>
+					Set time as one unit, including optional milliseconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract BigInteger getEon()
+				</name>
+				<description>
+					Return high order component for XML Schema 1.0 dateTime datatype field for year. null if this optional part of the year field is not defined. Value constraints for this value are summarized in year field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getYear()
+				</name>
+				<description>
+					Return low order component for XML Schema 1.0 dateTime datatype field for year or DatatypeConstants.FIELD_UNDEFINED. Value constraints for this value are summarized in year field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract BigInteger getEonAndYear()
+				</name>
+				<description>
+					Return XML Schema 1.0 dateTime datatype field for year. Value constraints for this value are summarized in year field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getMonth()
+				</name>
+				<description>
+					Return number of month or DatatypeConstants.FIELD_UNDEFINED. Value constraints for this value are summarized in month field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getDay()
+				</name>
+				<description>
+					Return day in month or DatatypeConstants.FIELD_UNDEFINED. Value constraints for this value are summarized in day field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getTimezone()
+				</name>
+				<description>
+					Return timezone offset in minutes or DatatypeConstants.FIELD_UNDEFINED if this optional field is not defined. Value constraints for this value are summarized in timezone field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getHour()
+				</name>
+				<description>
+					Return hours or DatatypeConstants.FIELD_UNDEFINED. Returns DatatypeConstants.FIELD_UNDEFINED if this field is not defined. Value constraints for this value are summarized in hour field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getMinute()
+				</name>
+				<description>
+					Return minutes or DatatypeConstants.FIELD_UNDEFINED. Returns DatatypeConstants.FIELD_UNDEFINED if this field is not defined. Value constraints for this value are summarized in minute field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getSecond()
+				</name>
+				<description>
+					Return seconds or DatatypeConstants.FIELD_UNDEFINED. Returns DatatypeConstants.FIELD_UNDEFINED if this field is not defined. When this field is not defined, the optional xs:dateTime fractional seconds field, represented by getFractionalSecond() and getMillisecond(), must not be defined. Value constraints for this value are summarized in second field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMillisecond()
+				</name>
+				<description>
+					Return millisecond precision of getFractionalSecond(). This method represents a convenience accessor to infinite precision fractional second value returned by getFractionalSecond(). The returned value is the rounded down to milliseconds value of getFractionalSecond(). When getFractionalSecond() returns null, this method must return DatatypeConstants.FIELD_UNDEFINED. Value constraints for this value are summarized in second field of date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract BigDecimal getFractionalSecond()
+				</name>
+				<description>
+					Return fractional seconds. null is returned when this optional field is not defined. Value constraints are detailed in second field of date/time field mapping table. This optional field can only have a defined value when the xs:dateTime second field, represented by getSecond(), does not return DatatypeConstants.FIELD_UNDEFINED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int compare(XMLGregorianCalendar xmlGregorianCalendar)
+				</name>
+				<description>
+					Compare two instances of W3C XML Schema 1.0 date/time datatypes according to partial order relation defined in W3C XML Schema 1.0 Part 2, Section 3.2.7.3, Order relation on dateTime. xsd:dateTime datatype field mapping to accessors of this class are defined in date/time field mapping table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract XMLGregorianCalendar normalize()
+				</name>
+				<description>
+					Normalize this instance to UTC. 2000-03-04T23:00:00+03:00 normalizes to 2000-03-04T20:00:00Z Implements W3C XML Schema Part 2, Section 3.2.7.3 (A).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this calendar to the specified object. The result is true if and only if the argument is not null and is an XMLGregorianCalendar object that represents the same instant in time as this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code consistent with the definition of the equals method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String toXMLFormat()
+				</name>
+				<description>
+					Return the lexical representation of this instance. The format is specified in XML Schema 1.0 Part 2, Section 3.2.[7-14].1, Lexical Representation". Specific target lexical representation format is determined by getXMLSchemaType().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract QName getXMLSchemaType()
+				</name>
+				<description>
+					Return the name of the XML Schema date/time type that this instance maps to. Type is computed based on fields that are set. Required fields for XML Schema 1.0 Date/Time Datatypes. (timezone is optional for all date/time datatypes) Datatype year month day hour minute second DatatypeConstants.DATETIME X X X X X X DatatypeConstants.DATE X X X DatatypeConstants.TIME X X X DatatypeConstants.GYEARMONTH X X DatatypeConstants.GMONTHDAY X X DatatypeConstants.GYEAR X DatatypeConstants.GMONTH X DatatypeConstants.GDAY X
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a String representation of this XMLGregorianCalendar Object. The result is a lexical representation generated by toXMLFormat().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isValid()
+				</name>
+				<description>
+					Validate instance by getXMLSchemaType() constraints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void add(Duration duration)
+				</name>
+				<description>
+					Add duration to this instance. The computation is specified in XML Schema 1.0 Part 2, Appendix E, Adding durations to dateTimes>. date/time field mapping table defines the mapping from XML Schema 1.0 dateTime fields to this class' representation of those fields.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GregorianCalendar toGregorianCalendar()
+				</name>
+				<description>
+					Convert this XMLGregorianCalendar to a GregorianCalendar. When this instance has an undefined field, this conversion relies on the java.util.GregorianCalendar default for its corresponding field. A notable difference between XML Schema 1.0 date/time datatypes and java.util.GregorianCalendar is that Timezone value is optional for date/time datatypes and it is a required field for java.util.GregorianCalendar. See javadoc for java.util.TimeZone.getDefault() on how the default is determined. To explicitly specify the TimeZone instance, see toGregorianCalendar(TimeZone, Locale, XMLGregorianCalendar). Field by Field Conversion from this class to java.util.GregorianCalendar java.util.GregorianCalendar field javax.xml.datatype.XMLGregorianCalendar field ERA getEonAndYear().signum() < 0 ? GregorianCalendar.BC : GregorianCalendar.AD YEAR getEonAndYear().abs().intValue()* MONTH getMonth() - DatatypeConstants.JANUARY + Calendar.JANUARY DAY_OF_MONTH getDay() HOUR_OF_DAY getHour() MINUTE getMinute() SECOND getSecond() MILLISECOND get millisecond order from getFractionalSecond()* GregorianCalendar.setTimeZone(TimeZone) getTimezone() formatted into Custom timezone id * designates possible loss of precision during the conversion due to source datatype having higher precision than target datatype. To ensure consistency in conversion implementations, the new GregorianCalendar should be instantiated in following manner. Using timeZone value as defined above, create a new java.util.GregorianCalendar(timeZone,Locale.getDefault()). Initialize all GregorianCalendar fields by calling Calendar.clear(). Obtain a pure Gregorian Calendar by invoking GregorianCalendar.setGregorianChange( new Date(Long.MIN_VALUE)). Its fields ERA, YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY, MINUTE, SECOND and MILLISECOND are set using the method Calendar.set(int,int)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GregorianCalendar toGregorianCalendar(TimeZone timezone,                                      Locale aLocale,                                      XMLGregorianCalendar defaults)
+				</name>
+				<description>
+					Convert this XMLGregorianCalendar along with provided parameters to a GregorianCalendar instance. Since XML Schema 1.0 date/time datetypes has no concept of timezone ids or daylight savings timezone ids, this conversion operation allows the user to explicitly specify one with timezone parameter. To compute the return value's TimeZone field, when parameter timeZone is non-null, it is the timezone field. else when this.getTimezone() != FIELD_UNDEFINED, create a java.util.TimeZone with a custom timezone id using the this.getTimezone(). else when defaults.getTimezone() != FIELD_UNDEFINED, create a java.util.TimeZone with a custom timezone id using defaults.getTimezone(). else use the GregorianCalendar default timezone value for the host is defined as specified by java.util.TimeZone.getDefault(). To ensure consistency in conversion implementations, the new GregorianCalendar should be instantiated in following manner. Create a new java.util.GregorianCalendar(TimeZone, Locale) with TimeZone set as specified above and the Locale parameter. Initialize all GregorianCalendar fields by calling Calendar.clear() Obtain a pure Gregorian Calendar by invoking GregorianCalendar.setGregorianChange( new Date(Long.MIN_VALUE)). Its fields ERA, YEAR, MONTH, DAY_OF_MONTH, HOUR_OF_DAY, MINUTE, SECOND and MILLISECOND are set using the method Calendar.set(int,int)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract TimeZone getTimeZone(int defaultZoneoffset)
+				</name>
+				<description>
+					Returns a java.util.TimeZone for this class. If timezone field is defined for this instance, returns TimeZone initialized with custom timezone id of zoneoffset. If timezone field is undefined, try the defaultZoneoffset that was passed in. If defaultZoneoffset is FIELD_UNDEFINED, return default timezone for this host. (Same default as java.util.GregorianCalendar).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object clone()
+				</name>
+				<description>
+					Creates and returns a copy of this object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

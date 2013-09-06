@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.naming.ldap
+	</package>
+	<type>
+		<name>
+			public final class SortResponseControl  extends BasicControl
+		</name>
+		<description>
+			Indicates whether the requested sort of search results was successful or not. When the result code indicates success then the results have been sorted as requested. Otherwise the sort was unsuccessful and additional details regarding the cause of the error may have been provided by the server. The code sample in SortControl shows how this class may be used. This class implements the LDAPv3 Response Control for server-side sorting as defined in RFC 2891. The control's value has the following ASN.1 definition:          SortResult ::= SEQUENCE {          sortResult  ENUMERATED {              success                   (0), -- results are sorted              operationsError           (1), -- server internal failure              timeLimitExceeded         (3), -- timelimit reached before                                             -- sorting was completed              strongAuthRequired        (8), -- refused to return sorted                                             -- results via insecure                                             -- protocol              adminLimitExceeded       (11), -- too many matching entries                                             -- for the server to sort              noSuchAttribute          (16), -- unrecognized attribute                                             -- type in sort key              inappropriateMatching    (18), -- unrecognized or inappro-                                             -- priate matching rule in                                             -- sort key              insufficientAccessRights (50), -- refused to return sorted                                             -- results to this client              busy                     (51), -- too busy to process              unwillingToPerform       (53), -- unable to sort              other                    (80)              },        attributeType [0] AttributeType OPTIONAL }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String OID
+				</name>
+				<description>
+					The server-side sort response control's assigned object identifier is 1.2.840.113556.1.4.474.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SortResponseControl(String id,                     boolean criticality,                     byte[] value)                      throws IOException
+				</name>
+				<description>
+					Constructs a control to indicate the outcome of a sort request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSorted()
+				</name>
+				<description>
+					Determines if the search results have been successfully sorted. If an error occurred during sorting a NamingException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getResultCode()
+				</name>
+				<description>
+					Retrieves the LDAP result code of the sort operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeID()
+				</name>
+				<description>
+					Retrieves the ID of the attribute that caused the sort to fail. Returns null if no ID was returned by the server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NamingException getException()
+				</name>
+				<description>
+					Retrieves the NamingException appropriate for the result code.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

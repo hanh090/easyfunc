@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.management.openmbean
+	</package>
+	<type>
+		<name>
+			public interface TabularData
+		</name>
+		<description>
+			The TabularData interface specifies the behavior of a specific type of complex open data objects which represent tabular data structures.
+		</description>
+		<methods>
+			<method>
+				<name>
+					TabularType getTabularType()
+				</name>
+				<description>
+					Returns the tabular type describing this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object[] calculateIndex(CompositeData value)
+				</name>
+				<description>
+					Calculates the index that would be used in this TabularData instance to refer to the specified composite data value parameter if it were added to this instance. This method checks for the type validity of the specified value, but does not check if the calculated index is already used to refer to a value in this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int size()
+				</name>
+				<description>
+					Returns the number of CompositeData values (ie the number of rows) contained in this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isEmpty()
+				</name>
+				<description>
+					Returns true if the number of CompositeData values (ie the number of rows) contained in this TabularData instance is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean containsKey(Object[] key)
+				</name>
+				<description>
+					Returns true if and only if this TabularData instance contains a CompositeData value (ie a row) whose index is the specified key. If key is null or does not conform to this TabularData instance's TabularType definition, this method simply returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean containsValue(CompositeData value)
+				</name>
+				<description>
+					Returns true if and only if this TabularData instance contains the specified CompositeData value. If value is null or does not conform to this TabularData instance's row type definition, this method simply returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					CompositeData get(Object[] key)
+				</name>
+				<description>
+					Returns the CompositeData value whose index is key, or null if there is no value mapping to key, in this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void put(CompositeData value)
+				</name>
+				<description>
+					Adds value to this TabularData instance. The composite type of value must be the same as this instance's row type (ie the composite type returned by this.getTabularType().getRowType()), and there must not already be an existing value in this TabularData instance whose index is the same as the one calculated for the value to be added. The index for value is calculated according to this TabularData instance's TabularType definition (see TabularType.getIndexNames()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					CompositeData remove(Object[] key)
+				</name>
+				<description>
+					Removes the CompositeData value whose index is key from this TabularData instance, and returns the removed value, or returns null if there is no value whose index is key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void putAll(CompositeData[] values)
+				</name>
+				<description>
+					Add all the elements in values to this TabularData instance. If any element in values does not satisfy the constraints defined in put, or if any two elements in values have the same index calculated according to this TabularData instance's TabularType definition, then an exception describing the failure is thrown and no element of values is added, thus leaving this TabularData instance unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void clear()
+				</name>
+				<description>
+					Removes all CompositeData values (ie rows) from this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Set<?> keySet()
+				</name>
+				<description>
+					Returns a set view of the keys (ie the index values) of the CompositeData values (ie the rows) contained in this TabularData instance. The returned Set is a Set<List<?>> but is declared as a Set<?> for compatibility reasons. The returned set can be used to iterate over the keys.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Collection<?> values()
+				</name>
+				<description>
+					Returns a collection view of the CompositeData values (ie the rows) contained in this TabularData instance. The returned Collection is a Collection<CompositeData> but is declared as a Collection<?> for compatibility reasons. The returned collection can be used to iterate over the values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean equals(Object obj)
+				</name>
+				<description>
+					Compares the specified obj parameter with this TabularData instance for equality. Returns true if and only if all of the following statements are true: obj is non null, obj also implements the TabularData interface, their row types are equal their contents (ie index to value mappings) are equal This ensures that this equals method works properly for obj parameters which are different implementations of the TabularData interface.  
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this TabularData instance. The hash code of a TabularData instance is the sum of the hash codes of all elements of information used in equals comparisons (ie: its tabular type and its content, where the content is defined as all the index to value mappings). This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two TabularDataSupport instances t1 and t2, as required by the general contract of the method Object.hashCode().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String toString()
+				</name>
+				<description>
+					Returns a string representation of this TabularData instance. The string representation consists of the name of the implementing class, and the tabular type of this instance.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.beans.beancontext
+	</package>
+	<type>
+		<name>
+			public interface BeanContextServiceProvider
+		</name>
+		<description>
+			One of the primary functions of a BeanContext is to act a as rendezvous between JavaBeans, and BeanContextServiceProviders. A JavaBean nested within a BeanContext, may ask that BeanContext to provide an instance of a "service", based upon a reference to a Java Class object that represents that service. If such a service has been registered with the context, or one of its nesting context's, in the case where a context delegate to its context to satisfy a service request, then the BeanContextServiceProvider associated with the service is asked to provide an instance of that service. The ServcieProvider may always return the same instance, or it may construct a new instance for each request.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Object getService(BeanContextServices bcs,                  Object requestor,                  Class serviceClass,                  Object serviceSelector)
+				</name>
+				<description>
+					Invoked by BeanContextServices, this method requests an instance of a service from this BeanContextServiceProvider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void releaseService(BeanContextServices bcs,                    Object requestor,                    Object service)
+				</name>
+				<description>
+					Invoked by BeanContextServices, this method releases a nested BeanContextChild's (or any arbitrary object associated with a BeanContextChild) reference to the specified service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator getCurrentServiceSelectors(BeanContextServices bcs,                                    Class serviceClass)
+				</name>
+				<description>
+					Invoked by BeanContextServices, this method gets the current service selectors for the specified service. A service selector is a service specific parameter, typical examples of which could include: a parameter to a constructor for the service implementation class, a value for a particular service's property, or a key into a map of existing implementations.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

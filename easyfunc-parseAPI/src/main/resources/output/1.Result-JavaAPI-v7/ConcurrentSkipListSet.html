@@ -1,0 +1,297 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class ConcurrentSkipListSet<E>  extends AbstractSet<E>  implements NavigableSet<E>, Cloneable, Serializable
+		</name>
+		<description>
+			A scalable concurrent NavigableSet implementation based on a ConcurrentSkipListMap. The elements of the set are kept sorted according to their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used. This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants. Insertion, removal, and access operations safely execute concurrently by multiple threads. Iterators are weakly consistent, returning elements reflecting the state of the set at some point at or since the creation of the iterator. They do not throw ConcurrentModificationException, and may proceed concurrently with other operations. Ascending ordered views and their iterators are faster than descending ones. Beware that, unlike in most collections, the size method is not a constant-time operation. Because of the asynchronous nature of these sets, determining the current number of elements requires a traversal of the elements, and so may report inaccurate results if this collection is modified during traversal. Additionally, the bulk operations addAll, removeAll, retainAll, containsAll, equals, and toArray are not guaranteed to be performed atomically. For example, an iterator operating concurrently with an addAll operation might view only some of the added elements. This class and its iterators implement all of the optional methods of the Set and Iterator interfaces. Like most other concurrent collection implementations, this class does not permit the use of null elements, because null arguments and return values cannot be reliably distinguished from the absence of elements. This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ConcurrentSkipListSet()
+				</name>
+				<description>
+					Constructs a new, empty set that orders its elements according to their natural ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentSkipListSet(Comparator<? super E> comparator)
+				</name>
+				<description>
+					Constructs a new, empty set that orders its elements according to the specified comparator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentSkipListSet(Collection<? extends E> c)
+				</name>
+				<description>
+					Constructs a new set containing the elements in the specified collection, that orders its elements according to their natural ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentSkipListSet(SortedSet<E> s)
+				</name>
+				<description>
+					Constructs a new set containing the same elements and using the same ordering as the specified sorted set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentSkipListSet<E> clone()
+				</name>
+				<description>
+					Returns a shallow copy of this ConcurrentSkipListSet instance. (The elements themselves are not cloned.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of elements in this set. If this set contains more than Integer.MAX_VALUE elements, it returns Integer.MAX_VALUE. Beware that, unlike in most collections, this method is NOT a constant-time operation. Because of the asynchronous nature of these sets, determining the current number of elements requires traversing them all to count them. Additionally, it is possible for the size to change during execution of this method, in which case the returned result will be inaccurate. Thus, this method is typically not very useful in concurrent applications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Returns true if this set contains no elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object o)
+				</name>
+				<description>
+					Returns true if this set contains the specified element. More formally, returns true if and only if this set contains an element e such that o.equals(e).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(E e)
+				</name>
+				<description>
+					Adds the specified element to this set if it is not already present. More formally, adds the specified element e to this set if the set contains no element e2 such that e.equals(e2). If this set already contains the element, the call leaves the set unchanged and returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object o)
+				</name>
+				<description>
+					Removes the specified element from this set if it is present. More formally, removes an element e such that o.equals(e), if this set contains such an element. Returns true if this set contained the element (or equivalently, if this set changed as a result of the call). (This set will not contain the element once the call returns.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all of the elements from this set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this set in ascending order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<E> descendingIterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this set in descending order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compares the specified object with this set for equality. Returns true if the specified object is also a set, the two sets have the same size, and every member of the specified set is contained in this set (or equivalently, every member of this set is contained in the specified set). This definition ensures that the equals method works properly across different implementations of the set interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean removeAll(Collection<?> c)
+				</name>
+				<description>
+					Removes from this set all of its elements that are contained in the specified collection. If the specified collection is also a set, this operation effectively modifies this set so that its value is the asymmetric set difference of the two sets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E lower(E e)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns the greatest element in this set strictly less than the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E floor(E e)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E ceiling(E e)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E higher(E e)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns the least element in this set strictly greater than the given element, or null if there is no such element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E pollFirst()
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Retrieves and removes the first (lowest) element, or returns null if this set is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E pollLast()
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Retrieves and removes the last (highest) element, or returns null if this set is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparator<? super E> comparator()
+				</name>
+				<description>
+					Description copied from interface: SortedSet Returns the comparator used to order the elements in this set, or null if this set uses the natural ordering of its elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E first()
+				</name>
+				<description>
+					Description copied from interface: SortedSet Returns the first (lowest) element currently in this set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E last()
+				</name>
+				<description>
+					Description copied from interface: SortedSet Returns the last (highest) element currently in this set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigableSet<E> subSet(E fromElement,                       boolean fromInclusive,                       E toElement,                       boolean toInclusive)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns a view of the portion of this set whose elements range from fromElement to toElement. If fromElement and toElement are equal, the returned set is empty unless fromInclusive and toInclusive are both true. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigableSet<E> headSet(E toElement,                        boolean inclusive)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns a view of the portion of this set whose elements are less than (or equal to, if inclusive is true) toElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigableSet<E> tailSet(E fromElement,                        boolean inclusive)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns a view of the portion of this set whose elements are greater than (or equal to, if inclusive is true) fromElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigableSet<E> subSet(E fromElement,                       E toElement)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns a view of the portion of this set whose elements range from fromElement, inclusive, to toElement, exclusive. (If fromElement and toElement are equal, the returned set is empty.) The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range. Equivalent to subSet(fromElement, true, toElement, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigableSet<E> headSet(E toElement)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns a view of the portion of this set whose elements are strictly less than toElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range. Equivalent to headSet(toElement, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigableSet<E> tailSet(E fromElement)
+				</name>
+				<description>
+					Description copied from interface: NavigableSet Returns a view of the portion of this set whose elements are greater than or equal to fromElement. The returned set is backed by this set, so changes in the returned set are reflected in this set, and vice-versa. The returned set supports all optional set operations that this set supports. The returned set will throw an IllegalArgumentException on an attempt to insert an element outside its range. Equivalent to tailSet(fromElement, true).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigableSet<E> descendingSet()
+				</name>
+				<description>
+					Returns a reverse order view of the elements contained in this set. The descending set is backed by this set, so changes to the set are reflected in the descending set, and vice-versa. The returned set has an ordering equivalent to Collections.reverseOrder(comparator()). The expression s.descendingSet().descendingSet() returns a view of s essentially equivalent to s.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

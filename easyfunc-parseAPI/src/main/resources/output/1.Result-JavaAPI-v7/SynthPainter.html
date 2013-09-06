@@ -1,0 +1,1251 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public abstract class SynthPainter  extends Object
+		</name>
+		<description>
+			SynthPainter is used for painting portions of JComponents. At a minimum each JComponent has two paint methods: one for the border and one for the background. Some JComponents have more than one Region, and as a consequence more paint methods. Instances of SynthPainter are obtained from the SynthStyle.getPainter(javax.swing.plaf.synth.SynthContext) method. You typically supply a SynthPainter by way of Synth's file format. The following example registers a painter for all JButtons that will render the image myImage.png:     <style id="buttonStyle">      <imagePainter path="myImage.png" sourceInsets="2 2 2 2"                    paintCenter="true" stretch="true"/>      <insets top="2" bottom="2" left="2" right="2"/>    </style>    <bind style="buttonStyle" type="REGION" key="button"/>   SynthPainter is abstract in so far as it does no painting, all the methods are empty. While none of these methods are typed to throw an exception, subclasses can assume that valid arguments are passed in, and if not they can throw a NullPointerException or IllegalArgumentException in response to invalid arguments.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SynthPainter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintArrowButtonBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of an arrow button. Arrow buttons are created by some components, such as JScrollBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintArrowButtonBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the border of an arrow button. Arrow buttons are created by some components, such as JScrollBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintArrowButtonForeground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h,                                int direction)
+				</name>
+				<description>
+					Paints the foreground of an arrow button. This method is responsible for drawing a graphical representation of a direction, typically an arrow. Arrow buttons are created by some components, such as JScrollBar
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintButtonBackground(SynthContext context,                           Graphics g,                           int x,                           int y,                           int w,                           int h)
+				</name>
+				<description>
+					Paints the background of a button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintButtonBorder(SynthContext context,                       Graphics g,                       int x,                       int y,                       int w,                       int h)
+				</name>
+				<description>
+					Paints the border of a button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintCheckBoxMenuItemBackground(SynthContext context,                                     Graphics g,                                     int x,                                     int y,                                     int w,                                     int h)
+				</name>
+				<description>
+					Paints the background of a check box menu item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintCheckBoxMenuItemBorder(SynthContext context,                                 Graphics g,                                 int x,                                 int y,                                 int w,                                 int h)
+				</name>
+				<description>
+					Paints the border of a check box menu item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintCheckBoxBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of a check box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintCheckBoxBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of a check box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintColorChooserBackground(SynthContext context,                                 Graphics g,                                 int x,                                 int y,                                 int w,                                 int h)
+				</name>
+				<description>
+					Paints the background of a color chooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintColorChooserBorder(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the border of a color chooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintComboBoxBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of a combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintComboBoxBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of a combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintDesktopIconBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of a desktop icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintDesktopIconBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the border of a desktop icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintDesktopPaneBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of a desktop pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintDesktopPaneBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the background of a desktop pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintEditorPaneBackground(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h)
+				</name>
+				<description>
+					Paints the background of an editor pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintEditorPaneBorder(SynthContext context,                           Graphics g,                           int x,                           int y,                           int w,                           int h)
+				</name>
+				<description>
+					Paints the border of an editor pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintFileChooserBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of a file chooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintFileChooserBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the border of a file chooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintFormattedTextFieldBackground(SynthContext context,                                       Graphics g,                                       int x,                                       int y,                                       int w,                                       int h)
+				</name>
+				<description>
+					Paints the background of a formatted text field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintFormattedTextFieldBorder(SynthContext context,                                   Graphics g,                                   int x,                                   int y,                                   int w,                                   int h)
+				</name>
+				<description>
+					Paints the border of a formatted text field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintInternalFrameTitlePaneBackground(SynthContext context,                                           Graphics g,                                           int x,                                           int y,                                           int w,                                           int h)
+				</name>
+				<description>
+					Paints the background of an internal frame title pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintInternalFrameTitlePaneBorder(SynthContext context,                                       Graphics g,                                       int x,                                       int y,                                       int w,                                       int h)
+				</name>
+				<description>
+					Paints the border of an internal frame title pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintInternalFrameBackground(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h)
+				</name>
+				<description>
+					Paints the background of an internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintInternalFrameBorder(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h)
+				</name>
+				<description>
+					Paints the border of an internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintLabelBackground(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the background of a label.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintLabelBorder(SynthContext context,                      Graphics g,                      int x,                      int y,                      int w,                      int h)
+				</name>
+				<description>
+					Paints the border of a label.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintListBackground(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the background of a list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintListBorder(SynthContext context,                     Graphics g,                     int x,                     int y,                     int w,                     int h)
+				</name>
+				<description>
+					Paints the border of a list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintMenuBarBackground(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the background of a menu bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintMenuBarBorder(SynthContext context,                        Graphics g,                        int x,                        int y,                        int w,                        int h)
+				</name>
+				<description>
+					Paints the border of a menu bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintMenuItemBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of a menu item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintMenuItemBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of a menu item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintMenuBackground(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the background of a menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintMenuBorder(SynthContext context,                     Graphics g,                     int x,                     int y,                     int w,                     int h)
+				</name>
+				<description>
+					Paints the border of a menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintOptionPaneBackground(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h)
+				</name>
+				<description>
+					Paints the background of an option pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintOptionPaneBorder(SynthContext context,                           Graphics g,                           int x,                           int y,                           int w,                           int h)
+				</name>
+				<description>
+					Paints the border of an option pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintPanelBackground(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the background of a panel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintPanelBorder(SynthContext context,                      Graphics g,                      int x,                      int y,                      int w,                      int h)
+				</name>
+				<description>
+					Paints the border of a panel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintPasswordFieldBackground(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h)
+				</name>
+				<description>
+					Paints the background of a password field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintPasswordFieldBorder(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h)
+				</name>
+				<description>
+					Paints the border of a password field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintPopupMenuBackground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h)
+				</name>
+				<description>
+					Paints the background of a popup menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintPopupMenuBorder(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the border of a popup menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintProgressBarBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of a progress bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintProgressBarBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h,                                int orientation)
+				</name>
+				<description>
+					Paints the background of a progress bar. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintProgressBarBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the border of a progress bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintProgressBarBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h,                            int orientation)
+				</name>
+				<description>
+					Paints the border of a progress bar. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintProgressBarForeground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h,                                int orientation)
+				</name>
+				<description>
+					Paints the foreground of a progress bar. is responsible for providing an indication of the progress of the progress bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintRadioButtonMenuItemBackground(SynthContext context,                                        Graphics g,                                        int x,                                        int y,                                        int w,                                        int h)
+				</name>
+				<description>
+					Paints the background of a radio button menu item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintRadioButtonMenuItemBorder(SynthContext context,                                    Graphics g,                                    int x,                                    int y,                                    int w,                                    int h)
+				</name>
+				<description>
+					Paints the border of a radio button menu item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintRadioButtonBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of a radio button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintRadioButtonBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the border of a radio button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintRootPaneBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of a root pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintRootPaneBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of a root pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarBackground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h)
+				</name>
+				<description>
+					Paints the background of a scrollbar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarBackground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h,                              int orientation)
+				</name>
+				<description>
+					Paints the background of a scrollbar. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarBorder(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the border of a scrollbar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarBorder(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h,                          int orientation)
+				</name>
+				<description>
+					Paints the border of a scrollbar. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarThumbBackground(SynthContext context,                                   Graphics g,                                   int x,                                   int y,                                   int w,                                   int h,                                   int orientation)
+				</name>
+				<description>
+					Paints the background of the thumb of a scrollbar. The thumb provides a graphical indication as to how much of the Component is visible in a JScrollPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarThumbBorder(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h,                               int orientation)
+				</name>
+				<description>
+					Paints the border of the thumb of a scrollbar. The thumb provides a graphical indication as to how much of the Component is visible in a JScrollPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarTrackBackground(SynthContext context,                                   Graphics g,                                   int x,                                   int y,                                   int w,                                   int h)
+				</name>
+				<description>
+					Paints the background of the track of a scrollbar. The track contains the thumb.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarTrackBackground(SynthContext context,                                   Graphics g,                                   int x,                                   int y,                                   int w,                                   int h,                                   int orientation)
+				</name>
+				<description>
+					Paints the background of the track of a scrollbar. The track contains the thumb. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarTrackBorder(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h)
+				</name>
+				<description>
+					Paints the border of the track of a scrollbar. The track contains the thumb.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollBarTrackBorder(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h,                               int orientation)
+				</name>
+				<description>
+					Paints the border of the track of a scrollbar. The track contains the thumb. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollPaneBackground(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h)
+				</name>
+				<description>
+					Paints the background of a scroll pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintScrollPaneBorder(SynthContext context,                           Graphics g,                           int x,                           int y,                           int w,                           int h)
+				</name>
+				<description>
+					Paints the border of a scroll pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSeparatorBackground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h)
+				</name>
+				<description>
+					Paints the background of a separator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSeparatorBackground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h,                              int orientation)
+				</name>
+				<description>
+					Paints the background of a separator. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSeparatorBorder(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the border of a separator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSeparatorBorder(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h,                          int orientation)
+				</name>
+				<description>
+					Paints the border of a separator. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSeparatorForeground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h,                              int orientation)
+				</name>
+				<description>
+					Paints the foreground of a separator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderBackground(SynthContext context,                           Graphics g,                           int x,                           int y,                           int w,                           int h)
+				</name>
+				<description>
+					Paints the background of a slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderBackground(SynthContext context,                           Graphics g,                           int x,                           int y,                           int w,                           int h,                           int orientation)
+				</name>
+				<description>
+					Paints the background of a slider. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderBorder(SynthContext context,                       Graphics g,                       int x,                       int y,                       int w,                       int h)
+				</name>
+				<description>
+					Paints the border of a slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderBorder(SynthContext context,                       Graphics g,                       int x,                       int y,                       int w,                       int h,                       int orientation)
+				</name>
+				<description>
+					Paints the border of a slider. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderThumbBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h,                                int orientation)
+				</name>
+				<description>
+					Paints the background of the thumb of a slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderThumbBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h,                            int orientation)
+				</name>
+				<description>
+					Paints the border of the thumb of a slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderTrackBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of the track of a slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderTrackBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h,                                int orientation)
+				</name>
+				<description>
+					Paints the background of the track of a slider. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderTrackBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the border of the track of a slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSliderTrackBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h,                            int orientation)
+				</name>
+				<description>
+					Paints the border of the track of a slider. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSpinnerBackground(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the background of a spinner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSpinnerBorder(SynthContext context,                        Graphics g,                        int x,                        int y,                        int w,                        int h)
+				</name>
+				<description>
+					Paints the border of a spinner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSplitPaneDividerBackground(SynthContext context,                                     Graphics g,                                     int x,                                     int y,                                     int w,                                     int h)
+				</name>
+				<description>
+					Paints the background of the divider of a split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSplitPaneDividerBackground(SynthContext context,                                     Graphics g,                                     int x,                                     int y,                                     int w,                                     int h,                                     int orientation)
+				</name>
+				<description>
+					Paints the background of the divider of a split pane. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSplitPaneDividerForeground(SynthContext context,                                     Graphics g,                                     int x,                                     int y,                                     int w,                                     int h,                                     int orientation)
+				</name>
+				<description>
+					Paints the foreground of the divider of a split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSplitPaneDragDivider(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h,                               int orientation)
+				</name>
+				<description>
+					Paints the divider, when the user is dragging the divider, of a split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSplitPaneBackground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h)
+				</name>
+				<description>
+					Paints the background of a split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintSplitPaneBorder(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the border of a split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneBackground(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h)
+				</name>
+				<description>
+					Paints the background of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneBorder(SynthContext context,                           Graphics g,                           int x,                           int y,                           int w,                           int h)
+				</name>
+				<description>
+					Paints the border of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabAreaBackground(SynthContext context,                                      Graphics g,                                      int x,                                      int y,                                      int w,                                      int h)
+				</name>
+				<description>
+					Paints the background of the area behind the tabs of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabAreaBackground(SynthContext context,                                      Graphics g,                                      int x,                                      int y,                                      int w,                                      int h,                                      int orientation)
+				</name>
+				<description>
+					Paints the background of the area behind the tabs of a tabbed pane. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabAreaBorder(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h)
+				</name>
+				<description>
+					Paints the border of the area behind the tabs of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabAreaBorder(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h,                                  int orientation)
+				</name>
+				<description>
+					Paints the border of the area behind the tabs of a tabbed pane. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabBackground(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h,                                  int tabIndex)
+				</name>
+				<description>
+					Paints the background of a tab of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabBackground(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h,                                  int tabIndex,                                  int orientation)
+				</name>
+				<description>
+					Paints the background of a tab of a tabbed pane. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabBorder(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h,                              int tabIndex)
+				</name>
+				<description>
+					Paints the border of a tab of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneTabBorder(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h,                              int tabIndex,                              int orientation)
+				</name>
+				<description>
+					Paints the border of a tab of a tabbed pane. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneContentBackground(SynthContext context,                                      Graphics g,                                      int x,                                      int y,                                      int w,                                      int h)
+				</name>
+				<description>
+					Paints the background of the area that contains the content of the selected tab of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTabbedPaneContentBorder(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h)
+				</name>
+				<description>
+					Paints the border of the area that contains the content of the selected tab of a tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTableHeaderBackground(SynthContext context,                                Graphics g,                                int x,                                int y,                                int w,                                int h)
+				</name>
+				<description>
+					Paints the background of the header of a table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTableHeaderBorder(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the border of the header of a table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTableBackground(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the background of a table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTableBorder(SynthContext context,                      Graphics g,                      int x,                      int y,                      int w,                      int h)
+				</name>
+				<description>
+					Paints the border of a table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTextAreaBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of a text area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTextAreaBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of a text area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTextPaneBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of a text pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTextPaneBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of a text pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTextFieldBackground(SynthContext context,                              Graphics g,                              int x,                              int y,                              int w,                              int h)
+				</name>
+				<description>
+					Paints the background of a text field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTextFieldBorder(SynthContext context,                          Graphics g,                          int x,                          int y,                          int w,                          int h)
+				</name>
+				<description>
+					Paints the border of a text field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToggleButtonBackground(SynthContext context,                                 Graphics g,                                 int x,                                 int y,                                 int w,                                 int h)
+				</name>
+				<description>
+					Paints the background of a toggle button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToggleButtonBorder(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the border of a toggle button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarBackground(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the background of a tool bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarBackground(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h,                            int orientation)
+				</name>
+				<description>
+					Paints the background of a tool bar. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarBorder(SynthContext context,                        Graphics g,                        int x,                        int y,                        int w,                        int h)
+				</name>
+				<description>
+					Paints the border of a tool bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarBorder(SynthContext context,                        Graphics g,                        int x,                        int y,                        int w,                        int h,                        int orientation)
+				</name>
+				<description>
+					Paints the border of a tool bar. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarContentBackground(SynthContext context,                                   Graphics g,                                   int x,                                   int y,                                   int w,                                   int h)
+				</name>
+				<description>
+					Paints the background of the tool bar's content area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarContentBackground(SynthContext context,                                   Graphics g,                                   int x,                                   int y,                                   int w,                                   int h,                                   int orientation)
+				</name>
+				<description>
+					Paints the background of the tool bar's content area. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarContentBorder(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h)
+				</name>
+				<description>
+					Paints the border of the content area of a tool bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarContentBorder(SynthContext context,                               Graphics g,                               int x,                               int y,                               int w,                               int h,                               int orientation)
+				</name>
+				<description>
+					Paints the border of the content area of a tool bar. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarDragWindowBackground(SynthContext context,                                      Graphics g,                                      int x,                                      int y,                                      int w,                                      int h)
+				</name>
+				<description>
+					Paints the background of the window containing the tool bar when it has been detached from its primary frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarDragWindowBackground(SynthContext context,                                      Graphics g,                                      int x,                                      int y,                                      int w,                                      int h,                                      int orientation)
+				</name>
+				<description>
+					Paints the background of the window containing the tool bar when it has been detached from its primary frame. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarDragWindowBorder(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h)
+				</name>
+				<description>
+					Paints the border of the window containing the tool bar when it has been detached from it's primary frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolBarDragWindowBorder(SynthContext context,                                  Graphics g,                                  int x,                                  int y,                                  int w,                                  int h,                                  int orientation)
+				</name>
+				<description>
+					Paints the border of the window containing the tool bar when it has been detached from it's primary frame. This implementation invokes the method of the same name without the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolTipBackground(SynthContext context,                            Graphics g,                            int x,                            int y,                            int w,                            int h)
+				</name>
+				<description>
+					Paints the background of a tool tip.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintToolTipBorder(SynthContext context,                        Graphics g,                        int x,                        int y,                        int w,                        int h)
+				</name>
+				<description>
+					Paints the border of a tool tip.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTreeBackground(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the background of a tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTreeBorder(SynthContext context,                     Graphics g,                     int x,                     int y,                     int w,                     int h)
+				</name>
+				<description>
+					Paints the border of a tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTreeCellBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of the row containing a cell in a tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTreeCellBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of the row containing a cell in a tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTreeCellFocus(SynthContext context,                        Graphics g,                        int x,                        int y,                        int w,                        int h)
+				</name>
+				<description>
+					Paints the focus indicator for a cell in a tree when it has focus.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintViewportBackground(SynthContext context,                             Graphics g,                             int x,                             int y,                             int w,                             int h)
+				</name>
+				<description>
+					Paints the background of the viewport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintViewportBorder(SynthContext context,                         Graphics g,                         int x,                         int y,                         int w,                         int h)
+				</name>
+				<description>
+					Paints the border of a viewport.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class MenuShortcut  extends Object  implements Serializable
+		</name>
+		<description>
+			The MenuShortcutclass represents a keyboard accelerator for a MenuItem. Menu shortcuts are created using virtual keycodes, not characters. For example, a menu shortcut for Ctrl-a (assuming that Control is the accelerator key) would be created with code like the following: MenuShortcut ms = new MenuShortcut(KeyEvent.VK_A, false); or alternatively MenuShortcut ms = new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('A'), false); Menu shortcuts may also be constructed for a wider set of keycodes using the java.awt.event.KeyEvent.getExtendedKeyCodeForChar call. For example, a menu shortcut for "Ctrl+cyrillic ef" is created by MenuShortcut ms = new MenuShortcut(KeyEvent.getExtendedKeyCodeForChar('?'), false); Note that shortcuts created with a keycode or an extended keycode defined as a constant in KeyEvent work regardless of the current keyboard layout. However, a shortcut made of an extended keycode not listed in KeyEvent only work if the current keyboard layout produces a corresponding letter. The accelerator key is platform-dependent and may be obtained via Toolkit.getMenuShortcutKeyMask().
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MenuShortcut(int key)
+				</name>
+				<description>
+					Constructs a new MenuShortcut for the specified virtual keycode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MenuShortcut(int key,              boolean useShiftModifier)
+				</name>
+				<description>
+					Constructs a new MenuShortcut for the specified virtual keycode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getKey()
+				</name>
+				<description>
+					Returns the raw keycode of this MenuShortcut.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean usesShiftModifier()
+				</name>
+				<description>
+					Returns whether this MenuShortcut must be invoked using the SHIFT key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(MenuShortcut s)
+				</name>
+				<description>
+					Returns whether this MenuShortcut is the same as another: equality is defined to mean that both MenuShortcuts use the same key and both either use or don't use the SHIFT key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Returns whether this MenuShortcut is the same as another: equality is defined to mean that both MenuShortcuts use the same key and both either use or don't use the SHIFT key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hashcode for this MenuShortcut.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns an internationalized description of the MenuShortcut.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns the parameter string representing the state of this MenuShortcut. This string is useful for debugging.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

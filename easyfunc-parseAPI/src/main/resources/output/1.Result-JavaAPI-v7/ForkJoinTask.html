@@ -1,0 +1,333 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public abstract class ForkJoinTask<V>  extends Object  implements Future<V>, Serializable
+		</name>
+		<description>
+			Abstract base class for tasks that run within a ForkJoinPool. A ForkJoinTask is a thread-like entity that is much lighter weight than a normal thread. Huge numbers of tasks and subtasks may be hosted by a small number of actual threads in a ForkJoinPool, at the price of some usage limitations. A "main" ForkJoinTask begins execution when submitted to a ForkJoinPool. Once started, it will usually in turn start other subtasks. As indicated by the name of this class, many programs using ForkJoinTask employ only methods fork() and join(), or derivatives such as invokeAll. However, this class also provides a number of other methods that can come into play in advanced usages, as well as extension mechanics that allow support of new forms of fork/join processing. A ForkJoinTask is a lightweight form of Future. The efficiency of ForkJoinTasks stems from a set of restrictions (that are only partially statically enforceable) reflecting their intended use as computational tasks calculating pure functions or operating on purely isolated objects. The primary coordination mechanisms are fork(), that arranges asynchronous execution, and join(), that doesn't proceed until the task's result has been computed. Computations should avoid synchronized methods or blocks, and should minimize other blocking synchronization apart from joining other tasks or using synchronizers such as Phasers that are advertised to cooperate with fork/join scheduling. Tasks should also not perform blocking IO, and should ideally access variables that are completely independent of those accessed by other running tasks. Minor breaches of these restrictions, for example using shared output streams, may be tolerable in practice, but frequent use may result in poor performance, and the potential to indefinitely stall if the number of threads not waiting for IO or other external synchronization becomes exhausted. This usage restriction is in part enforced by not permitting checked exceptions such as IOExceptions to be thrown. However, computations may still encounter unchecked exceptions, that are rethrown to callers attempting to join them. These exceptions may additionally include RejectedExecutionException stemming from internal resource exhaustion, such as failure to allocate internal task queues. Rethrown exceptions behave in the same way as regular exceptions, but, when possible, contain stack traces (as displayed for example using ex.printStackTrace()) of both the thread that initiated the computation as well as the thread actually encountering the exception; minimally only the latter. The primary method for awaiting completion and extracting results of a task is join(), but there are several variants: The Future.get() methods support interruptible and/or timed waits for completion and report results using Future conventions. Method invoke() is semantically equivalent to fork(); join() but always attempts to begin execution in the current thread. The "quiet" forms of these methods do not extract results or report exceptions. These may be useful when a set of tasks are being executed, and you need to delay processing of results or exceptions until all complete. Method invokeAll (available in multiple versions) performs the most common form of parallel invocation: forking a set of tasks and joining them all. The execution status of tasks may be queried at several levels of detail: isDone() is true if a task completed in any way (including the case where a task was cancelled without executing); isCompletedNormally() is true if a task completed without cancellation or encountering an exception; isCancelled() is true if the task was cancelled (in which case getException() returns a CancellationException); and isCompletedAbnormally() is true if a task was either cancelled or encountered an exception, in which case getException() will return either the encountered exception or CancellationException. The ForkJoinTask class is not usually directly subclassed. Instead, you subclass one of the abstract classes that support a particular style of fork/join processing, typically RecursiveAction for computations that do not return results, or RecursiveTask for those that do. Normally, a concrete ForkJoinTask subclass declares fields comprising its parameters, established in a constructor, and then defines a compute method that somehow uses the control methods supplied by this base class. While these methods have public access (to allow instances of different task subclasses to call each other's methods), some of them may only be called from within other ForkJoinTasks (as may be determined using method inForkJoinPool()). Attempts to invoke them in other contexts result in exceptions or errors, possibly including ClassCastException. Method join() and its variants are appropriate for use only when completion dependencies are acyclic; that is, the parallel computation can be described as a directed acyclic graph (DAG). Otherwise, executions may encounter a form of deadlock as tasks cyclically wait for each other. However, this framework supports other methods and techniques (for example the use of Phaser, helpQuiesce(), and complete(V)) that may be of use in constructing custom subclasses for problems that are not statically structured as DAGs. Most base support methods are final, to prevent overriding of implementations that are intrinsically tied to the underlying lightweight task scheduling framework. Developers creating new basic styles of fork/join processing should minimally implement protected methods exec(), setRawResult(V), and getRawResult(), while also introducing an abstract computational method that can be implemented in its subclasses, possibly relying on other protected methods provided by this class. ForkJoinTasks should perform relatively small amounts of computation. Large tasks should be split into smaller subtasks, usually via recursive decomposition. As a very rough rule of thumb, a task should perform more than 100 and less than 10000 basic computational steps, and should avoid indefinite looping. If tasks are too big, then parallelism cannot improve throughput. If too small, then memory and internal task maintenance overhead may overwhelm processing. This class provides adapt methods for Runnable and Callable, that may be of use when mixing execution of ForkJoinTasks with other kinds of tasks. When all tasks are of this form, consider using a pool constructed in asyncMode. ForkJoinTasks are Serializable, which enables them to be used in extensions such as remote execution frameworks. It is sensible to serialize tasks only before or after, but not during, execution. Serialization is not relied on during execution itself.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ForkJoinTask()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final ForkJoinTask<V> fork()
+				</name>
+				<description>
+					Arranges to asynchronously execute this task. While it is not necessarily enforced, it is a usage error to fork a task more than once unless it has completed and been reinitialized. Subsequent modifications to the state of this task or any data it operates on are not necessarily consistently observable by any thread other than the one executing it unless preceded by a call to join() or related methods, or a call to isDone() returning true. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final V join()
+				</name>
+				<description>
+					Returns the result of the computation when it is done. This method differs from get() in that abnormal completion results in RuntimeException or Error, not ExecutionException, and that interrupts of the calling thread do not cause the method to abruptly return by throwing InterruptedException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final V invoke()
+				</name>
+				<description>
+					Commences performing this task, awaits its completion if necessary, and returns its result, or throws an (unchecked) RuntimeException or Error if the underlying computation did so.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void invokeAll(ForkJoinTask<?> t1,               ForkJoinTask<?> t2)
+				</name>
+				<description>
+					Forks the given tasks, returning when isDone holds for each task or an (unchecked) exception is encountered, in which case the exception is rethrown. If more than one task encounters an exception, then this method throws any one of these exceptions. If any task encounters an exception, the other may be cancelled. However, the execution status of individual tasks is not guaranteed upon exceptional return. The status of each task may be obtained using getException() and related methods to check if they have been cancelled, completed normally or exceptionally, or left unprocessed. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void invokeAll(ForkJoinTask<?>... tasks)
+				</name>
+				<description>
+					Forks the given tasks, returning when isDone holds for each task or an (unchecked) exception is encountered, in which case the exception is rethrown. If more than one task encounters an exception, then this method throws any one of these exceptions. If any task encounters an exception, others may be cancelled. However, the execution status of individual tasks is not guaranteed upon exceptional return. The status of each task may be obtained using getException() and related methods to check if they have been cancelled, completed normally or exceptionally, or left unprocessed. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T extends ForkJoinTask<?>> Collection<T> invokeAll(Collection<T> tasks)
+				</name>
+				<description>
+					Forks all tasks in the specified collection, returning when isDone holds for each task or an (unchecked) exception is encountered, in which case the exception is rethrown. If more than one task encounters an exception, then this method throws any one of these exceptions. If any task encounters an exception, others may be cancelled. However, the execution status of individual tasks is not guaranteed upon exceptional return. The status of each task may be obtained using getException() and related methods to check if they have been cancelled, completed normally or exceptionally, or left unprocessed. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean cancel(boolean mayInterruptIfRunning)
+				</name>
+				<description>
+					Attempts to cancel execution of this task. This attempt will fail if the task has already completed or could not be cancelled for some other reason. If successful, and this task has not started when cancel is called, execution of this task is suppressed. After this method returns successfully, unless there is an intervening call to reinitialize(), subsequent calls to isCancelled(), isDone(), and cancel will return true and calls to join() and related methods will result in CancellationException. This method may be overridden in subclasses, but if so, must still ensure that these properties hold. In particular, the cancel method itself must not throw exceptions. This method is designed to be invoked by other tasks. To terminate the current task, you can just return or throw an unchecked exception from its computation method, or invoke completeExceptionally(java.lang.Throwable).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isDone()
+				</name>
+				<description>
+					Description copied from interface: Future Returns true if this task completed. Completion may be due to normal termination, an exception, or cancellation -- in all of these cases, this method will return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isCancelled()
+				</name>
+				<description>
+					Description copied from interface: Future Returns true if this task was cancelled before it completed normally.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isCompletedAbnormally()
+				</name>
+				<description>
+					Returns true if this task threw an exception or was cancelled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isCompletedNormally()
+				</name>
+				<description>
+					Returns true if this task completed without throwing an exception and was not cancelled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Throwable getException()
+				</name>
+				<description>
+					Returns the exception thrown by the base computation, or a CancellationException if cancelled, or null if none or if the method has not yet completed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void completeExceptionally(Throwable ex)
+				</name>
+				<description>
+					Completes this task abnormally, and if not already aborted or cancelled, causes it to throw the given exception upon join and related operations. This method may be used to induce exceptions in asynchronous tasks, or to force completion of tasks that would not otherwise complete. Its use in other situations is discouraged. This method is overridable, but overridden versions must invoke super implementation to maintain guarantees.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void complete(V value)
+				</name>
+				<description>
+					Completes this task, and if not already aborted or cancelled, returning the given value as the result of subsequent invocations of join and related operations. This method may be used to provide results for asynchronous tasks, or to provide alternative handling for tasks that would not otherwise complete normally. Its use in other situations is discouraged. This method is overridable, but overridden versions must invoke super implementation to maintain guarantees.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final V get()              throws InterruptedException,                     ExecutionException
+				</name>
+				<description>
+					Waits if necessary for the computation to complete, and then retrieves its result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final V get(long timeout,      TimeUnit unit)              throws InterruptedException,                     ExecutionException,                     TimeoutException
+				</name>
+				<description>
+					Waits if necessary for at most the given time for the computation to complete, and then retrieves its result, if available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void quietlyJoin()
+				</name>
+				<description>
+					Joins this task, without returning its result or throwing its exception. This method may be useful when processing collections of tasks when some have been cancelled or otherwise known to have aborted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void quietlyInvoke()
+				</name>
+				<description>
+					Commences performing this task and awaits its completion if necessary, without returning its result or throwing its exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void helpQuiesce()
+				</name>
+				<description>
+					Possibly executes tasks until the pool hosting the current task is quiescent. This method may be of use in designs in which many tasks are forked, but none are explicitly joined, instead executing them until all are processed. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reinitialize()
+				</name>
+				<description>
+					Resets the internal bookkeeping state of this task, allowing a subsequent fork. This method allows repeated reuse of this task, but only if reuse occurs when this task has either never been forked, or has been forked, then completed and all outstanding joins of this task have also completed. Effects under any other usage conditions are not guaranteed. This method may be useful when executing pre-constructed trees of subtasks in loops. Upon completion of this method, isDone() reports false, and getException() reports null. However, the value returned by getRawResult is unaffected. To clear this value, you can invoke setRawResult(null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ForkJoinPool getPool()
+				</name>
+				<description>
+					Returns the pool hosting the current task execution, or null if this task is executing outside of any ForkJoinPool.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean inForkJoinPool()
+				</name>
+				<description>
+					Returns true if the current thread is a ForkJoinWorkerThread executing as a ForkJoinPool computation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean tryUnfork()
+				</name>
+				<description>
+					Tries to unschedule this task for execution. This method will typically succeed if this task is the most recently forked task by the current thread, and has not commenced executing in another thread. This method may be useful when arranging alternative local processing of tasks that could have been, but were not, stolen. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int getQueuedTaskCount()
+				</name>
+				<description>
+					Returns an estimate of the number of tasks that have been forked by the current worker thread but not yet executed. This value may be useful for heuristic decisions about whether to fork other tasks. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int getSurplusQueuedTaskCount()
+				</name>
+				<description>
+					Returns an estimate of how many more locally queued tasks are held by the current worker thread than there are other worker threads that might steal them. This value may be useful for heuristic decisions about whether to fork other tasks. In many usages of ForkJoinTasks, at steady state, each worker should aim to maintain a small constant surplus (for example, 3) of tasks, and to process computations locally if this threshold is exceeded. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract V getRawResult()
+				</name>
+				<description>
+					Returns the result that would be returned by join(), even if this task completed abnormally, or null if this task is not known to have been completed. This method is designed to aid debugging, as well as to support extensions. Its use in any other context is discouraged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void setRawResult(V value)
+				</name>
+				<description>
+					Forces the given value to be returned as a result. This method is designed to support extensions, and should not in general be called otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract boolean exec()
+				</name>
+				<description>
+					Immediately performs the base action of this task. This method is designed to support extensions, and should not in general be called otherwise. The return value controls whether this task is considered to be done normally. It may return false in asynchronous actions that require explicit invocations of complete(V) to become joinable. It may also throw an (unchecked) exception to indicate abnormal exit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static ForkJoinTask<?> peekNextLocalTask()
+				</name>
+				<description>
+					Returns, but does not unschedule or execute, a task queued by the current thread but not yet executed, if one is immediately available. There is no guarantee that this task will actually be polled or executed next. Conversely, this method may return null even if a task exists but cannot be accessed without contention with other threads. This method is designed primarily to support extensions, and is unlikely to be useful otherwise. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static ForkJoinTask<?> pollNextLocalTask()
+				</name>
+				<description>
+					Unschedules and returns, without executing, the next task queued by the current thread but not yet executed. This method is designed primarily to support extensions, and is unlikely to be useful otherwise. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static ForkJoinTask<?> pollTask()
+				</name>
+				<description>
+					Unschedules and returns, without executing, the next task queued by the current thread but not yet executed, if one is available, or if not available, a task that was forked by some other thread, if available. Availability may be transient, so a null result does not necessarily imply quiescence of the pool this task is operating in. This method is designed primarily to support extensions, and is unlikely to be useful otherwise. This method may be invoked only from within ForkJoinPool computations (as may be determined using method inForkJoinPool()). Attempts to invoke in other contexts result in exceptions or errors, possibly including ClassCastException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ForkJoinTask<?> adapt(Runnable runnable)
+				</name>
+				<description>
+					Returns a new ForkJoinTask that performs the run method of the given Runnable as its action, and returns a null result upon join().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> ForkJoinTask<T> adapt(Runnable runnable,                          T result)
+				</name>
+				<description>
+					Returns a new ForkJoinTask that performs the run method of the given Runnable as its action, and returns the given result upon join().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> ForkJoinTask<T> adapt(Callable<? extends T> callable)
+				</name>
+				<description>
+					Returns a new ForkJoinTask that performs the call method of the given Callable as its action, and returns its result upon join(), translating any checked exceptions encountered into RuntimeException.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

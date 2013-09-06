@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public interface SSLSessionContext
+		</name>
+		<description>
+			A SSLSessionContext represents a set of SSLSessions associated with a single entity. For example, it could be associated with a server or client who participates in many sessions concurrently. Not all environments will contain session contexts. There are SSLSessionContext parameters that affect how sessions are stored: Sessions can be set to expire after a specified time limit. The number of sessions that can be stored in context can be limited. A session can be retrieved based on its session id, and all session id's in a SSLSessionContext can be listed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					SSLSession getSession(byte[] sessionId)
+				</name>
+				<description>
+					Returns the SSLSession bound to the specified session id.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Enumeration<byte[]> getIds()
+				</name>
+				<description>
+					Returns an Enumeration of all session id's grouped under this SSLSessionContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setSessionTimeout(int seconds)                         throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the timeout limit for SSLSession objects grouped under this SSLSessionContext. If the timeout limit is set to 't' seconds, a session exceeds the timeout limit 't' seconds after its creation time. When the timeout limit is exceeded for a session, the SSLSession object is invalidated and future connections cannot resume or rejoin the session. A check for sessions exceeding the timeout is made immediately whenever the timeout limit is changed for this SSLSessionContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getSessionTimeout()
+				</name>
+				<description>
+					Returns the timeout limit of SSLSession objects grouped under this SSLSessionContext. If the timeout limit is set to 't' seconds, a session exceeds the timeout limit 't' seconds after its creation time. When the timeout limit is exceeded for a session, the SSLSession object is invalidated and future connections cannot resume or rejoin the session. A check for sessions exceeding the timeout limit is made immediately whenever the timeout limit is changed for this SSLSessionContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setSessionCacheSize(int size)                           throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the size of the cache used for storing SSLSession objects grouped under this SSLSessionContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getSessionCacheSize()
+				</name>
+				<description>
+					Returns the size of the cache used for storing SSLSession objects grouped under this SSLSessionContext.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		org.ietf.jgss
+	</package>
+	<type>
+		<name>
+			public interface GSSName
+		</name>
+		<description>
+			This interface encapsulates a single GSS-API principal entity. The application obtains an implementation of this interface through one of the createName methods that exist in the GSSManager class. Conceptually a GSSName contains many representations of the entity or many primitive name elements, one for each supported underlying mechanism. In GSS terminology, a GSSName that contains an element from just one mechanism is called a Mechanism Name (MN) Since different authentication mechanisms may employ different namespaces for identifying their principals, GSS-API's naming support is necessarily complex in multi-mechanism environments (or even in some single-mechanism environments where the underlying mechanism supports multiple namespaces). Different name formats and their definitions are identified with Oid's and some standard types are defind in this interface. The format of the names can be derived based on the unique Oid of its name type. Included below are code examples utilizing the GSSName interface. The code below creates a GSSName, converts it to an MN, performs a comparison, obtains a printable representation of the name, exports it to a byte array and then re-imports to obtain a new GSSName.         GSSManager manager = GSSManager.getInstance();          // create a host based service name        GSSName name = manager.createName("service@host",                     GSSName.NT_HOSTBASED_SERVICE);          Oid krb5 = new Oid("1.2.840.113554.1.2.2");          GSSName mechName = name.canonicalize(krb5);          // the above two steps are equivalent to the following        GSSName mechName = manager.createName("service@host",                        GSSName.NT_HOSTBASED_SERVICE, krb5);          // perform name comparison        if (name.equals(mechName))                print("Names are equals.");          // obtain textual representation of name and its printable        // name type        print(mechName.toString() +                        mechName.getStringNameType().toString());          // export and re-import the name        byte [] exportName = mechName.export();          // create a new name object from the exported buffer        GSSName newName = manager.createName(exportName,                        GSSName.NT_EXPORT_NAME);
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final Oid NT_HOSTBASED_SERVICE
+				</name>
+				<description>
+					Oid indicating a host-based service name form. It is used to represent services associated with host computers. This name form is constructed using two elements, "service" and "hostname", as follows: service@hostname. It represents the following Oid value: { iso(1) member-body(2) United States(840) mit(113554) infosys(1) gssapi(2) generic(1) service_name(4) }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final Oid NT_USER_NAME
+				</name>
+				<description>
+					Name type to indicate a named user on a local system. It represents the following Oid value: { iso(1) member-body(2) United States(840) mit(113554) infosys(1) gssapi(2) generic(1) user_name(1) }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final Oid NT_MACHINE_UID_NAME
+				</name>
+				<description>
+					Name type to indicate a numeric user identifier corresponding to a user on a local system. (e.g. Uid). It represents the following Oid value: { iso(1) member-body(2) United States(840) mit(113554) infosys(1) gssapi(2) generic(1) machine_uid_name(2) }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final Oid NT_STRING_UID_NAME
+				</name>
+				<description>
+					Name type to indicate a string of digits representing the numeric user identifier of a user on a local system. It represents the following Oid value: { iso(1) member-body(2) United States(840) mit(113554) infosys(1) gssapi(2) generic(1) string_uid_name(3) }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final Oid NT_ANONYMOUS
+				</name>
+				<description>
+					Name type for representing an anonymous entity. It represents the following Oid value: { 1(iso), 3(org), 6(dod), 1(internet), 5(security), 6(nametypes), 3(gss-anonymous-name) }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final Oid NT_EXPORT_NAME
+				</name>
+				<description>
+					Name type used to indicate an exported name produced by the export method. It represents the following Oid value: { 1(iso), 3(org), 6(dod), 1(internet), 5(security), 6(nametypes), 4(gss-api-exported-name) }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean equals(GSSName another)                 throws GSSException
+				</name>
+				<description>
+					Compares two GSSName objects to determine if they refer to the same entity.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean equals(Object another)
+				</name>
+				<description>
+					Compares this GSSName object to another Object that might be a GSSName. The behaviour is exactly the same as in equals except that no GSSException is thrown; instead, false will be returned in the situation where an error occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int hashCode()
+				</name>
+				<description>
+					Returns a hashcode value for this GSSName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					GSSName canonicalize(Oid mech)                       throws GSSException
+				</name>
+				<description>
+					Creates a name that is canonicalized for some mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] export()                throws GSSException
+				</name>
+				<description>
+					Returns a canonical contiguous byte representation of a mechanism name (MN), suitable for direct, byte by byte comparison by authorization functions. If the name is not an MN, implementations may throw a GSSException with the NAME_NOT_MN status code. If an implementation chooses not to throw an exception, it should use some system specific default mechanism to canonicalize the name and then export it. Structurally, an exported name object consists of a header containing an OID identifying the mechanism that authenticated the name, and a trailer containing the name itself, where the syntax of the trailer is defined by the individual mechanism specification. The format of the header of the output buffer is specified in RFC 2743. The exported name is useful when used in large access control lists where the overhead of creating a GSSName object on each name and invoking the equals method on each name from the ACL may be prohibitive. Exported names may be re-imported by using the byte array factory method GSSManager.createName and specifying the NT_EXPORT_NAME as the name type object identifier. The resulting GSSName name will also be a MN.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String toString()
+				</name>
+				<description>
+					Returns a textual representation of the GSSName object. To retrieve the printed name format, which determines the syntax of the returned string, use the getStringNameType method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Oid getStringNameType()                        throws GSSException
+				</name>
+				<description>
+					Returns the name type of the printable representation of this name that can be obtained from the toString method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isAnonymous()
+				</name>
+				<description>
+					Tests if this name object represents an anonymous entity.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isMN()
+				</name>
+				<description>
+					Tests if this name object represents a Mechanism Name (MN). An MN is a GSSName the contains exactly one mechanism's primitive name element.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

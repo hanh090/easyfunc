@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public abstract class Authenticator  extends Object
+		</name>
+		<description>
+			The class Authenticator represents an object that knows how to obtain authentication for a network connection. Usually, it will do this by prompting the user for information. Applications use this class by overriding getPasswordAuthentication() in a sub-class. This method will typically use the various getXXX() accessor methods to get information about the entity requesting authentication. It must then acquire a username and password either by interacting with the user or through some other non-interactive means. The credentials are then returned as a PasswordAuthentication return value. An instance of this concrete sub-class is then registered with the system by calling setDefault(Authenticator). When authentication is required, the system will invoke one of the requestPasswordAuthentication() methods which in turn will call the getPasswordAuthentication() method of the registered object. All methods that request authentication have a default implementation that fails.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Authenticator()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefault(Authenticator a)
+				</name>
+				<description>
+					Sets the authenticator that will be used by the networking code when a proxy or an HTTP server asks for authentication. First, if there is a security manager, its checkPermission method is called with a NetPermission("setDefaultAuthenticator") permission. This may result in a java.lang.SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PasswordAuthentication requestPasswordAuthentication(InetAddress addr,                                                     int port,                                                     String protocol,                                                     String prompt,                                                     String scheme)
+				</name>
+				<description>
+					Ask the authenticator that has been registered with the system for a password. First, if there is a security manager, its checkPermission method is called with a NetPermission("requestPasswordAuthentication") permission. This may result in a java.lang.SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PasswordAuthentication requestPasswordAuthentication(String host,                                                     InetAddress addr,                                                     int port,                                                     String protocol,                                                     String prompt,                                                     String scheme)
+				</name>
+				<description>
+					Ask the authenticator that has been registered with the system for a password. This is the preferred method for requesting a password because the hostname can be provided in cases where the InetAddress is not available. First, if there is a security manager, its checkPermission method is called with a NetPermission("requestPasswordAuthentication") permission. This may result in a java.lang.SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PasswordAuthentication requestPasswordAuthentication(String host,                                                     InetAddress addr,                                                     int port,                                                     String protocol,                                                     String prompt,                                                     String scheme,                                                     URL url,                                                     Authenticator.RequestorType reqType)
+				</name>
+				<description>
+					Ask the authenticator that has been registered with the system for a password. First, if there is a security manager, its checkPermission method is called with a NetPermission("requestPasswordAuthentication") permission. This may result in a java.lang.SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final String getRequestingHost()
+				</name>
+				<description>
+					Gets the hostname of the site or proxy requesting authentication, or null if not available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final InetAddress getRequestingSite()
+				</name>
+				<description>
+					Gets the InetAddress of the site requesting authorization, or null if not available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final int getRequestingPort()
+				</name>
+				<description>
+					Gets the port number for the requested connection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final String getRequestingProtocol()
+				</name>
+				<description>
+					Give the protocol that's requesting the connection. Often this will be based on a URL, but in a future JDK it could be, for example, "SOCKS" for a password-protected SOCKS5 firewall.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final String getRequestingPrompt()
+				</name>
+				<description>
+					Gets the prompt string given by the requestor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final String getRequestingScheme()
+				</name>
+				<description>
+					Gets the scheme of the requestor (the HTTP scheme for an HTTP firewall, for example).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PasswordAuthentication getPasswordAuthentication()
+				</name>
+				<description>
+					Called when password authorization is needed. Subclasses should override the default implementation, which returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected URL getRequestingURL()
+				</name>
+				<description>
+					Returns the URL that resulted in this request for authentication.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Authenticator.RequestorType getRequestorType()
+				</name>
+				<description>
+					Returns whether the requestor is a Proxy or a Server.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

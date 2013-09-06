@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.swing.event
+	</package>
+	<type>
+		<name>
+			public class ListSelectionEvent  extends EventObject
+		</name>
+		<description>
+			An event that characterizes a change in selection. The change is limited to a a single inclusive interval. The selection of at least one index within the range will have changed. A decent ListSelectionModel implementation will keep the range as small as possible. ListSelectionListeners will generally query the source of the event for the new selected status of each potentially changed row. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ListSelectionEvent(Object source,                    int firstIndex,                    int lastIndex,                    boolean isAdjusting)
+				</name>
+				<description>
+					Represents a change in selection status between firstIndex and lastIndex, inclusive. firstIndex is less than or equal to lastIndex. The selection of at least one index within the range will have changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFirstIndex()
+				</name>
+				<description>
+					Returns the index of the first row whose selection may have changed. getFirstIndex() &lt;= getLastIndex()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLastIndex()
+				</name>
+				<description>
+					Returns the index of the last row whose selection may have changed. getLastIndex() &gt;= getFirstIndex()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getValueIsAdjusting()
+				</name>
+				<description>
+					Returns whether or not this is one in a series of multiple events, where changes are still being made. See the documentation for ListSelectionModel.setValueIsAdjusting(boolean) for more details on how this is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a String that displays and identifies this object's properties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

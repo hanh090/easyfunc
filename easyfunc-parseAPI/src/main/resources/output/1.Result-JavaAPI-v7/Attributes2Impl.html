@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		org.xml.sax.ext
+	</package>
+	<type>
+		<name>
+			public class Attributes2Impl  extends AttributesImpl  implements Attributes2
+		</name>
+		<description>
+			SAX2 extension helper for additional Attributes information, implementing the Attributes2 interface. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. This is not part of core-only SAX2 distributions. The specified flag for each attribute will always be true, unless it has been set to false in the copy constructor or using setSpecified(int, boolean). Similarly, the declared flag for each attribute will always be false, except for defaulted attributes (specified is false), non-CDATA attributes, or when it is set to true using setDeclared(int, boolean). If you change an attribute's type by hand, you may need to modify its declared flag to match.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Attributes2Impl()
+				</name>
+				<description>
+					Construct a new, empty Attributes2Impl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attributes2Impl(Attributes atts)
+				</name>
+				<description>
+					Copy an existing Attributes or Attributes2 object. If the object implements Attributes2, values of the specified and declared flags for each attribute are copied. Otherwise the flag values are defaulted to assume no DTD was used, unless there is evidence to the contrary (such as attributes with type other than CDATA, which must have been declared). This constructor is especially useful inside a startElement event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDeclared(int index)
+				</name>
+				<description>
+					Returns the current value of the attribute's "declared" flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDeclared(String uri,                   String localName)
+				</name>
+				<description>
+					Returns the current value of the attribute's "declared" flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDeclared(String qName)
+				</name>
+				<description>
+					Returns the current value of the attribute's "declared" flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSpecified(int index)
+				</name>
+				<description>
+					Returns the current value of an attribute's "specified" flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSpecified(String uri,                    String localName)
+				</name>
+				<description>
+					Returns the current value of an attribute's "specified" flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSpecified(String qName)
+				</name>
+				<description>
+					Returns the current value of an attribute's "specified" flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAttributes(Attributes atts)
+				</name>
+				<description>
+					Copy an entire Attributes object. The "specified" flags are assigned as true, and "declared" flags as false (except when an attribute's type is not CDATA), unless the object is an Attributes2 object. In that case those flag values are all copied.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addAttribute(String uri,                  String localName,                  String qName,                  String type,                  String value)
+				</name>
+				<description>
+					Add an attribute to the end of the list, setting its "specified" flag to true. To set that flag's value to false, use setSpecified(int, boolean). Unless the attribute type is CDATA, this attribute is marked as being declared in the DTD. To set that flag's value to true for CDATA attributes, use setDeclared(int, boolean).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttribute(int index)
+				</name>
+				<description>
+					Description copied from class: AttributesImpl Remove an attribute from the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDeclared(int index,                 boolean value)
+				</name>
+				<description>
+					Assign a value to the "declared" flag of a specific attribute. This is normally needed only for attributes of type CDATA, including attributes whose type is changed to or from CDATA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSpecified(int index,                  boolean value)
+				</name>
+				<description>
+					Assign a value to the "specified" flag of a specific attribute. This is the only way this flag can be cleared, except clearing by initialization with the copy constructor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

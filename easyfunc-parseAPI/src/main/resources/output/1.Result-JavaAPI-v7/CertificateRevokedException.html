@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public class CertificateRevokedException  extends CertificateException
+		</name>
+		<description>
+			An exception that indicates an X.509 certificate is revoked. A CertificateRevokedException contains additional information about the revoked certificate, such as the date on which the certificate was revoked and the reason it was revoked.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CertificateRevokedException(Date revocationDate,                             CRLReason reason,                             X500Principal authority,                             Map<String,Extension> extensions)
+				</name>
+				<description>
+					Constructs a CertificateRevokedException with the specified revocation date, reason code, authority name, and map of extensions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Date getRevocationDate()
+				</name>
+				<description>
+					Returns the date on which the certificate was revoked. A new copy is returned each time the method is invoked to protect against subsequent modification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CRLReason getRevocationReason()
+				</name>
+				<description>
+					Returns the reason the certificate was revoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public X500Principal getAuthorityName()
+				</name>
+				<description>
+					Returns the name of the authority that signed the certificate's revocation status information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Date getInvalidityDate()
+				</name>
+				<description>
+					Returns the invalidity date, as specifed in the Invalidity Date extension of this CertificateRevokedException. The invalidity date is the date on which it is known or suspected that the private key was compromised or that the certificate otherwise became invalid. This implementation calls getExtensions() and checks the returned map for an entry for the Invalidity Date extension OID ("2.5.29.24"). If found, it returns the invalidity date in the extension; otherwise null. A new Date object is returned each time the method is invoked to protect against subsequent modification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<String,Extension> getExtensions()
+				</name>
+				<description>
+					Returns a map of X.509 extensions containing additional information about the revoked certificate, such as the Invalidity Date Extension. Each key is an OID String that maps to the corresponding Extension.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMessage()
+				</name>
+				<description>
+					Description copied from class: Throwable Returns the detail message string of this throwable.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

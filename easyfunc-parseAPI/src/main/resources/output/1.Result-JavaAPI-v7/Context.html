@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public abstract class Context  extends Object
+		</name>
+		<description>
+			An object used in Request operations to specify the context object in which context strings must be resolved before being sent along with the request invocation. A Context object contains a list of properties in the form of NamedValue objects. These properties represent information about the client, the environment, or the circumstances of a request and generally are properties that might be inconvenient to pass as parameters. A Context object is created by first calling the ORB method get_default_context and then calling the method create_child on the default context. Each property in a Context object is represented by a NamedValue object. The property name is contained in the NamedValue object's name field, and the value associated with the name is contained in the Any object that was assigned to the NamedValue object's value field. Context properties can represent a portion of a client's or application's environment that is meant to be propagated to (and made implicitly part of) a server's environment. (Examples might be a window identifier or user preference information). Once a server has been invoked (that is, after the properties are propagated), the server may query its Context object for these properties using the method get_values. When an operation declaration includes a context clause, the stubs and skeletons will have an additional argument added for the context. When an operation invocation occurs, the ORB causes the properties that were named in the operation definition in IDL and that are present in the client's Context object to be provided in the Context object parameter to the invoked method. Context property names (which are strings) typically have the form of an OMG IDL identifier or a series of OMG IDL identifiers separated by periods. A context property name pattern is either a property name or a property name followed by a single "*". A property name pattern without a trailing "*" is said to match only itself. A property name pattern of the form "<name>*" matches any property name that starts with <name> and continues with zero or more additional characters. Property name patterns are used in the context clause of an operation definition and as a parameter for the method Context.get_values. Context objects may be "chained" together to achieve a particular defaulting behavior. A Context object created with the method create_child will be chained to its parent (the Context object that created it), and that means that the parent will be searched after the child in a search for property names. Properties defined in a particular Context object effectively override those properties in the next higher level. The scope used in a search for properties may be restricted by specifying a starting scope and by using the flag CTX_RESTRICT_SCOPE when invoking the method get_values. A Context object may be named for purposes of specifying a starting search scope.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Context()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String context_name()
+				</name>
+				<description>
+					Retrieves the name of this Context object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Context parent()
+				</name>
+				<description>
+					Retrieves the parent of this Context object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Context create_child(String child_ctx_name)
+				</name>
+				<description>
+					Creates a Context object with the given string as its name and with this Context object set as its parent. The new Context object is chained into its parent Context object. This means that in a search for matching property names, if a match is not found in this context, the search will continue in the parent. If that is not successful, the search will continue in the grandparent, if there is one, and so on.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void set_one_value(String propname,                   Any propvalue)
+				</name>
+				<description>
+					Creates a NamedValue object and adds it to this Context object. The name field of the new NamedValue object is set to the given string, the value field is set to the given Any object, and the flags field is set to zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void set_values(NVList values)
+				</name>
+				<description>
+					I Sets one or more property values in this Context object. The NVList supplied to this method contains one or more NamedValue objects. In each NamedValue object, the name field holds the name of the property, and the flags field must be set to zero. The NamedValue object's value field contains an Any object, which, in turn, contains the value for the property. Since the value is always a string, the Any object must have the kind field of its TypeCode set to TCKind.tk_string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void delete_values(String propname)
+				</name>
+				<description>
+					Deletes from this Context object the NamedValue object(s) whose name field matches the given property name. If the String object supplied for propname has a trailing wildcard character ("*"), then all NamedValue objects whose name fields match will be deleted. The search scope is always limited to this Context object. If no matching property is found, an exception is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract NVList get_values(String start_scope,                  int op_flags,                  String pattern)
+				</name>
+				<description>
+					Retrieves the NamedValue objects whose name field matches the given name or name pattern. This method allows for wildcard searches, which means that there can be multiple matches and therefore multiple values returned. If the property is not found at the indicated level, the search continues up the context object tree until a match is found or all Context objects in the chain have been exhausted. If no match is found, an error is returned and no property list is returned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class PipedWriter  extends Writer
+		</name>
+		<description>
+			Piped character-output streams.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PipedWriter(PipedReader snk)              throws IOException
+				</name>
+				<description>
+					Creates a piped writer connected to the specified piped reader. Data characters written to this stream will then be available as input from snk.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PipedWriter()
+				</name>
+				<description>
+					Creates a piped writer that is not yet connected to a piped reader. It must be connected to a piped reader, either by the receiver or the sender, before being used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void connect(PipedReader snk)               throws IOException
+				</name>
+				<description>
+					Connects this piped writer to a receiver. If this object is already connected to some other piped reader, an IOException is thrown. If snk is an unconnected piped reader and src is an unconnected piped writer, they may be connected by either the call:    src.connect(snk) or the call:    snk.connect(src) The two calls have the same effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(int c)             throws IOException
+				</name>
+				<description>
+					Writes the specified char to the piped output stream. If a thread was reading data characters from the connected piped input stream, but the thread is no longer alive, then an IOException is thrown. Implements the write method of Writer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(char[] cbuf,           int off,           int len)             throws IOException
+				</name>
+				<description>
+					Writes len characters from the specified character array starting at offset off to this piped output stream. This method blocks until all the characters are written to the output stream. If a thread was reading data characters from the connected piped input stream, but the thread is no longer alive, then an IOException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flush()             throws IOException
+				</name>
+				<description>
+					Flushes this output stream and forces any buffered output characters to be written out. This will notify any readers that characters are waiting in the pipe.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this piped output stream and releases any system resources associated with this stream. This stream may no longer be used for writing characters.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

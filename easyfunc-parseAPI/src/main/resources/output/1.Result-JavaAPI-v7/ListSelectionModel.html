@@ -1,0 +1,225 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public interface ListSelectionModel
+		</name>
+		<description>
+			This interface represents the current state of the selection for any of the components that display a list of values with stable indices. The selection is modeled as a set of intervals, each interval represents a contiguous range of selected list elements. The methods for modifying the set of selected intervals all take a pair of indices, index0 and index1, that represent a closed interval, i.e. the interval includes both index0 and index1.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final int SINGLE_SELECTION
+				</name>
+				<description>
+					A value for the selectionMode property: select one list index at a time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int SINGLE_INTERVAL_SELECTION
+				</name>
+				<description>
+					A value for the selectionMode property: select one contiguous range of indices at a time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int MULTIPLE_INTERVAL_SELECTION
+				</name>
+				<description>
+					A value for the selectionMode property: select one or more contiguous ranges of indices at a time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setSelectionInterval(int index0,                          int index1)
+				</name>
+				<description>
+					Changes the selection to be between index0 and index1 inclusive. index0 doesn't have to be less than or equal to index1. In SINGLE_SELECTION selection mode, only the second index is used. If this represents a change to the current selection, then each ListSelectionListener is notified of the change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addSelectionInterval(int index0,                          int index1)
+				</name>
+				<description>
+					Changes the selection to be the set union of the current selection and the indices between index0 and index1 inclusive. index0 doesn't have to be less than or equal to index1. In SINGLE_SELECTION selection mode, this is equivalent to calling setSelectionInterval, and only the second index is used. In SINGLE_INTERVAL_SELECTION selection mode, this method behaves like setSelectionInterval, unless the given interval is immediately adjacent to or overlaps the existing selection, and can therefore be used to grow the selection. If this represents a change to the current selection, then each ListSelectionListener is notified of the change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeSelectionInterval(int index0,                             int index1)
+				</name>
+				<description>
+					Changes the selection to be the set difference of the current selection and the indices between index0 and index1 inclusive. index0 doesn't have to be less than or equal to index1. In SINGLE_INTERVAL_SELECTION selection mode, if the removal would produce two disjoint selections, the removal is extended through the greater end of the selection. For example, if the selection is 0-10 and you supply indices 5,6 (in any order) the resulting selection is 0-4. If this represents a change to the current selection, then each ListSelectionListener is notified of the change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMinSelectionIndex()
+				</name>
+				<description>
+					Returns the first selected index or -1 if the selection is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMaxSelectionIndex()
+				</name>
+				<description>
+					Returns the last selected index or -1 if the selection is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSelectedIndex(int index)
+				</name>
+				<description>
+					Returns true if the specified index is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getAnchorSelectionIndex()
+				</name>
+				<description>
+					Return the first index argument from the most recent call to setSelectionInterval(), addSelectionInterval() or removeSelectionInterval(). The most recent index0 is considered the "anchor" and the most recent index1 is considered the "lead". Some interfaces display these indices specially, e.g. Windows95 displays the lead index with a dotted yellow outline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setAnchorSelectionIndex(int index)
+				</name>
+				<description>
+					Set the anchor selection index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getLeadSelectionIndex()
+				</name>
+				<description>
+					Return the second index argument from the most recent call to setSelectionInterval(), addSelectionInterval() or removeSelectionInterval().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setLeadSelectionIndex(int index)
+				</name>
+				<description>
+					Set the lead selection index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void clearSelection()
+				</name>
+				<description>
+					Change the selection to the empty set. If this represents a change to the current selection then notify each ListSelectionListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSelectionEmpty()
+				</name>
+				<description>
+					Returns true if no indices are selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insertIndexInterval(int index,                         int length,                         boolean before)
+				</name>
+				<description>
+					Insert length indices beginning before/after index. This is typically called to sync the selection model with a corresponding change in the data model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeIndexInterval(int index0,                         int index1)
+				</name>
+				<description>
+					Remove the indices in the interval index0,index1 (inclusive) from the selection model. This is typically called to sync the selection model width a corresponding change in the data model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setValueIsAdjusting(boolean valueIsAdjusting)
+				</name>
+				<description>
+					Sets the valueIsAdjusting property, which indicates whether or not upcoming selection changes should be considered part of a single change. The value of this property is used to initialize the valueIsAdjusting property of the ListSelectionEvents that are generated. For example, if the selection is being updated in response to a user drag, this property can be set to true when the drag is initiated and set to false when the drag is finished. During the drag, listeners receive events with a valueIsAdjusting property set to true. At the end of the drag, when the change is finalized, listeners receive an event with the value set to false. Listeners can use this pattern if they wish to update only when a change has been finalized. Setting this property to true begins a series of changes that is to be considered part of a single change. When the property is changed back to false, an event is sent out characterizing the entire selection change (if there was one), with the event's valueIsAdjusting property set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean getValueIsAdjusting()
+				</name>
+				<description>
+					Returns true if the selection is undergoing a series of changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setSelectionMode(int selectionMode)
+				</name>
+				<description>
+					Sets the selection mode. The following list describes the accepted selection modes: ListSelectionModel.SINGLE_SELECTION - Only one list index can be selected at a time. In this mode, setSelectionInterval and addSelectionInterval are equivalent, both replacing the current selection with the index represented by the second argument (the "lead"). ListSelectionModel.SINGLE_INTERVAL_SELECTION - Only one contiguous interval can be selected at a time. In this mode, addSelectionInterval behaves like setSelectionInterval (replacing the current selection), unless the given interval is immediately adjacent to or overlaps the existing selection, and can therefore be used to grow it. ListSelectionModel.MULTIPLE_INTERVAL_SELECTION - In this mode, there's no restriction on what can be selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getSelectionMode()
+				</name>
+				<description>
+					Returns the current selection mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addListSelectionListener(ListSelectionListener x)
+				</name>
+				<description>
+					Add a listener to the list that's notified each time a change to the selection occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeListSelectionListener(ListSelectionListener x)
+				</name>
+				<description>
+					Remove a listener from the list that's notified each time a change to the selection occurs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		javax.swing.table
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractTableModel  extends Object  implements TableModel, Serializable
+		</name>
+		<description>
+			This abstract class provides default implementations for most of the methods in the TableModel interface. It takes care of the management of listeners and provides some conveniences for generating TableModelEvents and dispatching them to the listeners. To create a concrete TableModel as a subclass of AbstractTableModel you need only provide implementations for the following three methods:     public int getRowCount();    public int getColumnCount();    public Object getValueAt(int row, int column);    Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected EventListenerList listenerList
+				</name>
+				<description>
+					List of listeners
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AbstractTableModel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getColumnName(int column)
+				</name>
+				<description>
+					Returns a default name for the column using spreadsheet conventions: A, B, C, ... Z, AA, AB, etc. If column cannot be found, returns an empty string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int findColumn(String columnName)
+				</name>
+				<description>
+					Returns a column given its name. Implementation is naive so this should be overridden if this method is to be called often. This method is not in the TableModel interface and is not used by the JTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getColumnClass(int columnIndex)
+				</name>
+				<description>
+					Returns Object.class regardless of columnIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCellEditable(int rowIndex,                       int columnIndex)
+				</name>
+				<description>
+					Returns false. This is the default implementation for all cells.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValueAt(Object aValue,                int rowIndex,                int columnIndex)
+				</name>
+				<description>
+					This empty implementation is provided so users don't have to implement this method if their data model is not editable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTableModelListener(TableModelListener l)
+				</name>
+				<description>
+					Adds a listener to the list that's notified each time a change to the data model occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeTableModelListener(TableModelListener l)
+				</name>
+				<description>
+					Removes a listener from the list that's notified each time a change to the data model occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableModelListener[] getTableModelListeners()
+				</name>
+				<description>
+					Returns an array of all the table model listeners registered on this model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTableDataChanged()
+				</name>
+				<description>
+					Notifies all listeners that all cell values in the table's rows may have changed. The number of rows may also have changed and the JTable should redraw the table from scratch. The structure of the table (as in the order of the columns) is assumed to be the same.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTableStructureChanged()
+				</name>
+				<description>
+					Notifies all listeners that the table's structure has changed. The number of columns in the table, and the names and types of the new columns may be different from the previous state. If the JTable receives this event and its autoCreateColumnsFromModel flag is set it discards any table columns that it had and reallocates default columns in the order they appear in the model. This is the same as calling setModel(TableModel) on the JTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTableRowsInserted(int firstRow,                           int lastRow)
+				</name>
+				<description>
+					Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been inserted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTableRowsUpdated(int firstRow,                          int lastRow)
+				</name>
+				<description>
+					Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been updated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTableRowsDeleted(int firstRow,                          int lastRow)
+				</name>
+				<description>
+					Notifies all listeners that rows in the range [firstRow, lastRow], inclusive, have been deleted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTableCellUpdated(int row,                          int column)
+				</name>
+				<description>
+					Notifies all listeners that the value of the cell at [row, column] has been updated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTableChanged(TableModelEvent e)
+				</name>
+				<description>
+					Forwards the given notification event to all TableModelListeners that registered themselves as listeners for this table model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Returns an array of all the objects currently registered as FooListeners upon this AbstractTableModel. FooListeners are registered using the addFooListener method. You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a model m for its table model listeners with the following code: TableModelListener[] tmls = (TableModelListener[])(m.getListeners(TableModelListener.class)); If no such listeners exist, this method returns an empty array.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

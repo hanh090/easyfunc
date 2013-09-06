@@ -1,0 +1,396 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class DefaultButtonModel  extends Object  implements ButtonModel, Serializable
+		</name>
+		<description>
+			The default implementation of a Button component's data model. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int stateMask
+				</name>
+				<description>
+					The bitmask used to store the state of the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String actionCommand
+				</name>
+				<description>
+					The action command string fired by the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ButtonGroup group
+				</name>
+				<description>
+					The button group that the button belongs to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int mnemonic
+				</name>
+				<description>
+					The button's mnemonic.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient ChangeEvent changeEvent
+				</name>
+				<description>
+					Only one ChangeEvent is needed per button model instance since the event's only state is the source property. The source of events generated is always "this".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected EventListenerList listenerList
+				</name>
+				<description>
+					Stores the listeners on this model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ARMED
+				</name>
+				<description>
+					Identifies the "armed" bit in the bitmask, which indicates partial commitment towards choosing/triggering the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int SELECTED
+				</name>
+				<description>
+					Identifies the "selected" bit in the bitmask, which indicates that the button has been selected. Only needed for certain types of buttons - such as radio button or check box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PRESSED
+				</name>
+				<description>
+					Identifies the "pressed" bit in the bitmask, which indicates that the button is pressed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ENABLED
+				</name>
+				<description>
+					Identifies the "enabled" bit in the bitmask, which indicates that the button can be selected by an input device (such as a mouse pointer).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROLLOVER
+				</name>
+				<description>
+					Identifies the "rollover" bit in the bitmask, which indicates that the mouse is over the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultButtonModel()
+				</name>
+				<description>
+					Constructs a DefaultButtonModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setActionCommand(String actionCommand)
+				</name>
+				<description>
+					Sets the action command string that gets sent as part of the ActionEvent when the button is triggered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getActionCommand()
+				</name>
+				<description>
+					Returns the action command string for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isArmed()
+				</name>
+				<description>
+					Indicates partial commitment towards triggering the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSelected()
+				</name>
+				<description>
+					Indicates if the button has been selected. Only needed for certain types of buttons - such as radio buttons and check boxes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEnabled()
+				</name>
+				<description>
+					Indicates if the button can be selected or triggered by an input device, such as a mouse pointer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPressed()
+				</name>
+				<description>
+					Indicates if the button is pressed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isRollover()
+				</name>
+				<description>
+					Indicates that the mouse is over the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setArmed(boolean b)
+				</name>
+				<description>
+					Marks the button as armed or unarmed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEnabled(boolean b)
+				</name>
+				<description>
+					Enables or disables the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelected(boolean b)
+				</name>
+				<description>
+					Selects or deselects the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPressed(boolean b)
+				</name>
+				<description>
+					Sets the button to pressed or unpressed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRollover(boolean b)
+				</name>
+				<description>
+					Sets or clears the button's rollover state
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMnemonic(int key)
+				</name>
+				<description>
+					Sets the keyboard mnemonic (shortcut key or accelerator key) for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMnemonic()
+				</name>
+				<description>
+					Gets the keyboard mnemonic for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Adds a ChangeListener to the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Removes a ChangeListener from the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ChangeListener[] getChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the change listeners registered on this DefaultButtonModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireStateChanged()
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is created lazily.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addActionListener(ActionListener l)
+				</name>
+				<description>
+					Adds an ActionListener to the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeActionListener(ActionListener l)
+				</name>
+				<description>
+					Removes an ActionListener from the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActionListener[] getActionListeners()
+				</name>
+				<description>
+					Returns an array of all the action listeners registered on this DefaultButtonModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireActionPerformed(ActionEvent e)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addItemListener(ItemListener l)
+				</name>
+				<description>
+					Adds an ItemListener to the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeItemListener(ItemListener l)
+				</name>
+				<description>
+					Removes an ItemListener from the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ItemListener[] getItemListeners()
+				</name>
+				<description>
+					Returns an array of all the item listeners registered on this DefaultButtonModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireItemStateChanged(ItemEvent e)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Returns an array of all the objects currently registered as FooListeners upon this model. FooListeners are registered using the addFooListener method. You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a DefaultButtonModel instance m for its action listeners with the following code: ActionListener[] als = (ActionListener[])(m.getListeners(ActionListener.class)); If no such listeners exist, this method returns an empty array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getSelectedObjects()
+				</name>
+				<description>
+					Overridden to return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setGroup(ButtonGroup group)
+				</name>
+				<description>
+					Identifies the group the button belongs to -- needed for radio buttons, which are mutually exclusive within their group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ButtonGroup getGroup()
+				</name>
+				<description>
+					Returns the group that the button belongs to. Normally used with radio buttons, which are mutually exclusive within their group.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

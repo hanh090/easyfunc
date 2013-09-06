@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		java.beans.beancontext
+	</package>
+	<type>
+		<name>
+			public interface BeanContext  extends BeanContextChild, Collection, DesignMode, Visibility
+		</name>
+		<description>
+			The BeanContext acts a logical hierarchical container for JavaBeans.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final Object globalHierarchyLock
+				</name>
+				<description>
+					This global lock is used by both BeanContext and BeanContextServices implementors to serialize changes in a BeanContext hierarchy and any service requests etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object instantiateChild(String beanName)                          throws IOException,                                 ClassNotFoundException
+				</name>
+				<description>
+					Instantiate the javaBean named as a child of this BeanContext. The implementation of the JavaBean is derived from the value of the beanName parameter, and is defined by the java.beans.Beans.instantiate() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream getResourceAsStream(String name,                                BeanContextChild bcc)                                  throws IllegalArgumentException
+				</name>
+				<description>
+					Analagous to java.lang.ClassLoader.getResourceAsStream(), this method allows a BeanContext implementation to interpose behavior between the child Component and underlying ClassLoader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					URL getResource(String name,                BeanContextChild bcc)                  throws IllegalArgumentException
+				</name>
+				<description>
+					Analagous to java.lang.ClassLoader.getResource(), this method allows a BeanContext implementation to interpose behavior between the child Component and underlying ClassLoader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addBeanContextMembershipListener(BeanContextMembershipListener bcml)
+				</name>
+				<description>
+					Adds the specified BeanContextMembershipListener to receive BeanContextMembershipEvents from this BeanContext whenever it adds or removes a child Component(s).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeBeanContextMembershipListener(BeanContextMembershipListener bcml)
+				</name>
+				<description>
+					Removes the specified BeanContextMembershipListener so that it no longer receives BeanContextMembershipEvents when the child Component(s) are added or removed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

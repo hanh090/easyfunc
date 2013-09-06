@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.awt.dnd
+	</package>
+	<type>
+		<name>
+			public class DropTargetDragEvent  extends DropTargetEvent
+		</name>
+		<description>
+			The DropTargetDragEvent is delivered to a DropTargetListener via its dragEnter() and dragOver() methods. The DropTargetDragEvent reports the source drop actions and the user drop action that reflect the current state of the drag operation. Source drop actions is a bitwise mask of DnDConstants that represents the set of drop actions supported by the drag source for this drag operation. User drop action depends on the drop actions supported by the drag source and the drop action selected by the user. The user can select a drop action by pressing modifier keys during the drag operation:      Ctrl + Shift -> ACTION_LINK     Ctrl         -> ACTION_COPY     Shift        -> ACTION_MOVE   If the user selects a drop action, the user drop action is one of DnDConstants that represents the selected drop action if this drop action is supported by the drag source or DnDConstants.ACTION_NONE if this drop action is not supported by the drag source. If the user doesn't select a drop action, the set of DnDConstants that represents the set of drop actions supported by the drag source is searched for DnDConstants.ACTION_MOVE, then for DnDConstants.ACTION_COPY, then for DnDConstants.ACTION_LINK and the user drop action is the first constant found. If no constant is found the user drop action is DnDConstants.ACTION_NONE.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DropTargetDragEvent(DropTargetContext dtc,                     Point cursorLocn,                     int dropAction,                     int srcActions)
+				</name>
+				<description>
+					Construct a DropTargetDragEvent given the DropTargetContext for this operation, the location of the "Drag" Cursor's hotspot in the Component's coordinates, the user drop action, and the source drop actions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point getLocation()
+				</name>
+				<description>
+					This method returns a Point indicating the Cursor's current location within the Component's coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataFlavor[] getCurrentDataFlavors()
+				</name>
+				<description>
+					This method returns the current DataFlavors from the DropTargetContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<DataFlavor> getCurrentDataFlavorsAsList()
+				</name>
+				<description>
+					This method returns the current DataFlavors as a java.util.List
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDataFlavorSupported(DataFlavor df)
+				</name>
+				<description>
+					This method returns a boolean indicating if the specified DataFlavor is supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSourceActions()
+				</name>
+				<description>
+					This method returns the source drop actions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDropAction()
+				</name>
+				<description>
+					This method returns the user drop action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Transferable getTransferable()
+				</name>
+				<description>
+					This method returns the Transferable object that represents the data associated with the current drag operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void acceptDrag(int dragOperation)
+				</name>
+				<description>
+					Accepts the drag. This method should be called from a DropTargetListeners dragEnter, dragOver, and dropActionChanged methods if the implementation wishes to accept an operation from the srcActions other than the one selected by the user as represented by the dropAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void rejectDrag()
+				</name>
+				<description>
+					Rejects the drag as a result of examining either the dropAction or the available DataFlavor types.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

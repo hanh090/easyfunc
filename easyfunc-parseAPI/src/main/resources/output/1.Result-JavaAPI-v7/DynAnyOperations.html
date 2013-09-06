@@ -1,0 +1,468 @@
+<javaelement>
+	<package>
+		org.omg.DynamicAny
+	</package>
+	<type>
+		<name>
+			public interface DynAnyOperations
+		</name>
+		<description>
+			Any values can be dynamically interpreted (traversed) and constructed through DynAny objects. A DynAny object is associated with a data value which corresponds to a copy of the value inserted into an any. A DynAny object may be viewed as an ordered collection of component DynAnys. For DynAnys representing a basic type, such as long, or a type without components, such as an empty exception, the ordered collection of components is empty. Each DynAny object maintains the notion of a current position into its collection of component DynAnys. The current position is identified by an index value that runs from 0 to n-1, where n is the number of components. The special index value -1 indicates a current position that points nowhere. For values that cannot have a current position (such as an empty exception), the index value is fixed at -1. If a DynAny is initialized with a value that has components, the index is initialized to 0. After creation of an uninitialized DynAny (that is, a DynAny that has no value but a TypeCode that permits components), the current position depends on the type of value represented by the DynAny. (The current position is set to 0 or -1, depending on whether the new DynAny gets default values for its components.) The iteration operations rewind, seek, and next can be used to change the current position and the current_component operation returns the component at the current position. The component_count operation returns the number of components of a DynAny. Collectively, these operations enable iteration over the components of a DynAny, for example, to (recursively) examine its contents. A constructed DynAny object is a DynAny object associated with a constructed type. There is a different interface, inheriting from the DynAny interface, associated with each kind of constructed type in IDL (fixed, enum, struct, sequence, union, array, exception, and value type). A constructed DynAny object exports operations that enable the creation of new DynAny objects, each of them associated with a component of the constructed data value. As an example, a DynStruct is associated with a struct value. This means that the DynStruct may be seen as owning an ordered collection of components, one for each structure member. The DynStruct object exports operations that enable the creation of new DynAny objects, each of them associated with a member of the struct. If a DynAny object has been obtained from another (constructed) DynAny object, such as a DynAny representing a structure member that was created from a DynStruct, the member DynAny is logically contained in the DynStruct. Calling an insert or get operation leaves the current position unchanged. Destroying a top-level DynAny object (one that was not obtained as a component of another DynAny) also destroys any component DynAny objects obtained from it. Destroying a non-top level DynAny object does nothing. Invoking operations on a destroyed top-level DynAny or any of its descendants raises OBJECT_NOT_EXIST. If the programmer wants to destroy a DynAny object but still wants to manipulate some component of the data value associated with it, then he or she should first create a DynAny for the component and, after that, make a copy of the created DynAny object. The behavior of DynAny objects has been defined in order to enable efficient implementations in terms of allocated memory space and speed of access. DynAny objects are intended to be used for traversing values extracted from anys or constructing values of anys at runtime. Their use for other purposes is not recommended. Insert and get operations are necessary to handle basic DynAny objects but are also helpful to handle constructed DynAny objects. Inserting a basic data type value into a constructed DynAny object implies initializing the current component of the constructed data value associated with the DynAny object. For example, invoking insert_boolean on a DynStruct implies inserting a boolean data value at the current position of the associated struct data value. A type is consistent for inserting or extracting a value if its TypeCode is equivalent to the TypeCode contained in the DynAny or, if the DynAny has components, is equivalent to the TypeCode of the DynAny at the current position. DynAny and DynAnyFactory objects are intended to be local to the process in which they are created and used. This means that references to DynAny and DynAnyFactory objects cannot be exported to other processes, or externalized with ORB.object_to_string(). If any attempt is made to do so, the offending operation will raise a MARSHAL system exception. Since their interfaces are specified in IDL, DynAny objects export operations defined in the standard org.omg.CORBA.Object interface. However, any attempt to invoke operations exported through the Object interface may raise the standard NO_IMPLEMENT exception. An attempt to use a DynAny object with the DII may raise the NO_IMPLEMENT exception.
+		</description>
+		<methods>
+			<method>
+				<name>
+					TypeCode type()
+				</name>
+				<description>
+					Returns the TypeCode associated with this DynAny object. A DynAny object is created with a TypeCode value assigned to it. This TypeCode value determines the type of the value handled through the DynAny object. Note that the TypeCode associated with a DynAny object is initialized at the time the DynAny is created and cannot be changed during lifetime of the DynAny object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void assign(DynAny dyn_any)              throws TypeMismatch
+				</name>
+				<description>
+					Initializes the value associated with a DynAny object with the value associated with another DynAny object. The current position of the target DynAny is set to zero for values that have components and to -1 for values that do not have components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void from_any(Any value)                throws TypeMismatch,                       InvalidValue
+				</name>
+				<description>
+					Initializes the value associated with a DynAny object with the value contained in an any. The current position of the target DynAny is set to zero for values that have components and to -1 for values that do not have components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Any to_any()
+				</name>
+				<description>
+					Creates an any value from a DynAny object. A copy of the TypeCode associated with the DynAny object is assigned to the resulting any. The value associated with the DynAny object is copied into the any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean equal(DynAny dyn_any)
+				</name>
+				<description>
+					Compares two DynAny values for equality. Two DynAny values are equal if their TypeCodes are equivalent and, recursively, all component DynAnys have equal values. The current position of the two DynAnys being compared has no effect on the result of equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void destroy()
+				</name>
+				<description>
+					Destroys a DynAny object. This operation frees any resources used to represent the data value associated with a DynAny object. It must be invoked on references obtained from one of the creation operations on the ORB interface or on a reference returned by DynAny.copy() to avoid resource leaks. Invoking destroy on component DynAny objects (for example, on objects returned by the current_component operation) does nothing. Destruction of a DynAny object implies destruction of all DynAny objects obtained from it. That is, references to components of a destroyed DynAny become invalid. Invocations on such references raise OBJECT_NOT_EXIST. It is possible to manipulate a component of a DynAny beyond the life time of the DynAny from which the component was obtained by making a copy of the component with the copy operation before destroying the DynAny from which the component was obtained.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DynAny copy()
+				</name>
+				<description>
+					Creates a new DynAny object whose value is a deep copy of the DynAny on which it is invoked. The operation is polymorphic, that is, invoking it on one of the types derived from DynAny, such as DynStruct, creates the derived type but returns its reference as the DynAny base type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_boolean(boolean value)                      throws TypeMismatch,                             InvalidValue
+				</name>
+				<description>
+					Inserts a boolean value into the DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_octet(byte value)                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Inserts a byte value into the DynAny. The IDL octet data type is mapped to the Java byte data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_char(char value)                   throws TypeMismatch,                          InvalidValue
+				</name>
+				<description>
+					Inserts a char value into the DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_short(short value)                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Inserts a short value into the DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_ushort(short value)                     throws TypeMismatch,                            InvalidValue
+				</name>
+				<description>
+					Inserts a short value into the DynAny. The IDL ushort data type is mapped to the Java short data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_long(int value)                   throws TypeMismatch,                          InvalidValue
+				</name>
+				<description>
+					Inserts an integer value into the DynAny. The IDL long data type is mapped to the Java int data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_ulong(int value)                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Inserts an integer value into the DynAny. The IDL ulong data type is mapped to the Java int data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_float(float value)                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Inserts a float value into the DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_double(double value)                     throws TypeMismatch,                            InvalidValue
+				</name>
+				<description>
+					Inserts a double value into the DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_string(String value)                     throws TypeMismatch,                            InvalidValue
+				</name>
+				<description>
+					Inserts a string value into the DynAny. Both bounded and unbounded strings are inserted using this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_reference(Object value)                        throws TypeMismatch,                               InvalidValue
+				</name>
+				<description>
+					Inserts a reference to a CORBA object into the DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_typecode(TypeCode value)                       throws TypeMismatch,                              InvalidValue
+				</name>
+				<description>
+					Inserts a TypeCode object into the DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_longlong(long value)                       throws TypeMismatch,                              InvalidValue
+				</name>
+				<description>
+					Inserts a long value into the DynAny. The IDL long long data type is mapped to the Java long data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_ulonglong(long value)                        throws TypeMismatch,                               InvalidValue
+				</name>
+				<description>
+					Inserts a long value into the DynAny. The IDL unsigned long long data type is mapped to the Java long data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_wchar(char value)                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Inserts a char value into the DynAny. The IDL wchar data type is mapped to the Java char data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_wstring(String value)                      throws TypeMismatch,                             InvalidValue
+				</name>
+				<description>
+					Inserts a string value into the DynAny. Both bounded and unbounded strings are inserted using this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_any(Any value)                  throws TypeMismatch,                         InvalidValue
+				</name>
+				<description>
+					Inserts an Any value into the Any represented by this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_dyn_any(DynAny value)                      throws TypeMismatch,                             InvalidValue
+				</name>
+				<description>
+					Inserts the Any value contained in the parameter DynAny into the Any represented by this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void insert_val(Serializable value)                  throws TypeMismatch,                         InvalidValue
+				</name>
+				<description>
+					Inserts a reference to a Serializable object into this DynAny. The IDL ValueBase type is mapped to the Java Serializable type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean get_boolean()                      throws TypeMismatch,                             InvalidValue
+				</name>
+				<description>
+					Extracts the boolean value from this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte get_octet()                 throws TypeMismatch,                        InvalidValue
+				</name>
+				<description>
+					Extracts the byte value from this DynAny. The IDL octet data type is mapped to the Java byte data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char get_char()                throws TypeMismatch,                       InvalidValue
+				</name>
+				<description>
+					Extracts the char value from this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short get_short()                  throws TypeMismatch,                         InvalidValue
+				</name>
+				<description>
+					Extracts the short value from this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short get_ushort()                   throws TypeMismatch,                          InvalidValue
+				</name>
+				<description>
+					Extracts the short value from this DynAny. The IDL ushort data type is mapped to the Java short data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int get_long()               throws TypeMismatch,                      InvalidValue
+				</name>
+				<description>
+					Extracts the integer value from this DynAny. The IDL long data type is mapped to the Java int data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int get_ulong()                throws TypeMismatch,                       InvalidValue
+				</name>
+				<description>
+					Extracts the integer value from this DynAny. The IDL ulong data type is mapped to the Java int data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					float get_float()                  throws TypeMismatch,                         InvalidValue
+				</name>
+				<description>
+					Extracts the float value from this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					double get_double()                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Extracts the double value from this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String get_string()                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Extracts the string value from this DynAny. Both bounded and unbounded strings are extracted using this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object get_reference()                       throws TypeMismatch,                              InvalidValue
+				</name>
+				<description>
+					Extracts the reference to a CORBA Object from this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeCode get_typecode()                        throws TypeMismatch,                               InvalidValue
+				</name>
+				<description>
+					Extracts the TypeCode object from this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long get_longlong()                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Extracts the long value from this DynAny. The IDL long long data type is mapped to the Java long data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long get_ulonglong()                     throws TypeMismatch,                            InvalidValue
+				</name>
+				<description>
+					Extracts the long value from this DynAny. The IDL unsigned long long data type is mapped to the Java long data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char get_wchar()                 throws TypeMismatch,                        InvalidValue
+				</name>
+				<description>
+					Extracts the long value from this DynAny. The IDL wchar data type is mapped to the Java char data type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String get_wstring()                     throws TypeMismatch,                            InvalidValue
+				</name>
+				<description>
+					Extracts the string value from this DynAny. Both bounded and unbounded strings are extracted using this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Any get_any()              throws TypeMismatch,                     InvalidValue
+				</name>
+				<description>
+					Extracts an Any value contained in the Any represented by this DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DynAny get_dyn_any()                     throws TypeMismatch,                            InvalidValue
+				</name>
+				<description>
+					Extracts the Any value contained in the Any represented by this DynAny and returns it wrapped into a new DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Serializable get_val()                       throws TypeMismatch,                              InvalidValue
+				</name>
+				<description>
+					Extracts a Serializable object from this DynAny. The IDL ValueBase type is mapped to the Java Serializable type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean seek(int index)
+				</name>
+				<description>
+					Sets the current position to index. The current position is indexed 0 to n-1, that is, index zero corresponds to the first component. The operation returns true if the resulting current position indicates a component of the DynAny and false if index indicates a position that does not correspond to a component. Calling seek with a negative index is legal. It sets the current position to -1 to indicate no component and returns false. Passing a non-negative index value for a DynAny that does not have a component at the corresponding position sets the current position to -1 and returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void rewind()
+				</name>
+				<description>
+					Is equivalent to seek(0).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean next()
+				</name>
+				<description>
+					Advances the current position to the next component. The operation returns true while the resulting current position indicates a component, false otherwise. A false return value leaves the current position at -1. Invoking next on a DynAny without components leaves the current position at -1 and returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int component_count()
+				</name>
+				<description>
+					Returns the number of components of a DynAny. For a DynAny without components, it returns zero. The operation only counts the components at the top level. For example, if component_count is invoked on a DynStruct with a single member, the return value is 1, irrespective of the type of the member. For sequences, the operation returns the current number of elements. For structures, exceptions, and value types, the operation returns the number of members. For arrays, the operation returns the number of elements. For unions, the operation returns 2 if the discriminator indicates that a named member is active, otherwise, it returns 1. For DynFixed and DynEnum, the operation returns zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DynAny current_component()                           throws TypeMismatch
+				</name>
+				<description>
+					Returns the DynAny for the component at the current position. It does not advance the current position, so repeated calls to current_component without an intervening call to rewind, next, or seek return the same component. The returned DynAny object reference can be used to get/set the value of the current component. If the current component represents a complex type, the returned reference can be narrowed based on the TypeCode to get the interface corresponding to the to the complex type. Calling current_component on a DynAny that cannot have components, such as a DynEnum or an empty exception, raises TypeMismatch. Calling current_component on a DynAny whose current position is -1 returns a nil reference. The iteration operations, together with current_component, can be used to dynamically compose an any value. After creating a dynamic any, such as a DynStruct, current_component and next can be used to initialize all the components of the value. Once the dynamic value is completely initialized, to_any creates the corresponding any value.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

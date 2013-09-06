@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public class MulticastSocket  extends DatagramSocket
+		</name>
+		<description>
+			The multicast datagram socket class is useful for sending and receiving IP multicast packets. A MulticastSocket is a (UDP) DatagramSocket, with additional capabilities for joining "groups" of other multicast hosts on the internet. A multicast group is specified by a class D IP address and by a standard UDP port number. Class D IP addresses are in the range 224.0.0.0 to 239.255.255.255, inclusive. The address 224.0.0.0 is reserved and should not be used. One would join a multicast group by first creating a MulticastSocket with the desired port, then invoking the joinGroup(InetAddress groupAddr) method:    // join a Multicast group and send the group salutations   ...   String msg = "Hello";   InetAddress group = InetAddress.getByName("228.5.6.7");   MulticastSocket s = new MulticastSocket(6789);   s.joinGroup(group);   DatagramPacket hi = new DatagramPacket(msg.getBytes(), msg.length(),                               group, 6789);   s.send(hi);   // get their responses!   byte[] buf = new byte[1000];   DatagramPacket recv = new DatagramPacket(buf, buf.length);   s.receive(recv);   ...   // OK, I'm done talking - leave the group...   s.leaveGroup(group);   When one sends a message to a multicast group, all subscribing recipients to that host and port receive the message (within the time-to-live range of the packet, see below). The socket needn't be a member of the multicast group to send messages to it. When a socket subscribes to a multicast group/port, it receives datagrams sent by other hosts to the group/port, as do all other members of the group and port. A socket relinquishes membership in a group by the leaveGroup(InetAddress addr) method. Multiple MulticastSocket's may subscribe to a multicast group and port concurrently, and they will all receive group datagrams. Currently applets are not allowed to use multicast sockets.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MulticastSocket()                  throws IOException
+				</name>
+				<description>
+					Create a multicast socket. If there is a security manager, its checkListen method is first called with 0 as its argument to ensure the operation is allowed. This could result in a SecurityException. When the socket is created the DatagramSocket.setReuseAddress(boolean) method is called to enable the SO_REUSEADDR socket option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MulticastSocket(int port)                  throws IOException
+				</name>
+				<description>
+					Create a multicast socket and bind it to a specific port. If there is a security manager, its checkListen method is first called with the port argument as its argument to ensure the operation is allowed. This could result in a SecurityException. When the socket is created the DatagramSocket.setReuseAddress(boolean) method is called to enable the SO_REUSEADDR socket option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MulticastSocket(SocketAddress bindaddr)                  throws IOException
+				</name>
+				<description>
+					Create a MulticastSocket bound to the specified socket address. Or, if the address is null, create an unbound socket. If there is a security manager, its checkListen method is first called with the SocketAddress port as its argument to ensure the operation is allowed. This could result in a SecurityException. When the socket is created the DatagramSocket.setReuseAddress(boolean) method is called to enable the SO_REUSEADDR socket option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setTTL(byte ttl)              throws IOException
+				</name>
+				<description>
+					Deprecated. use the setTimeToLive method instead, which uses int instead of byte as the type for ttl. Set the default time-to-live for multicast packets sent out on this MulticastSocket in order to control the scope of the multicasts. The ttl is an unsigned 8-bit quantity, and so must be in the range 0 <= ttl <= 0xFF .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTimeToLive(int ttl)                     throws IOException
+				</name>
+				<description>
+					Set the default time-to-live for multicast packets sent out on this MulticastSocket in order to control the scope of the multicasts. The ttl must be in the range 0 <= ttl <= 255 or an IllegalArgumentException will be thrown. Multicast packets sent with a TTL of 0 are not transmitted on the network but may be delivered locally.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public byte getTTL()              throws IOException
+				</name>
+				<description>
+					Deprecated. use the getTimeToLive method instead, which returns an int instead of a byte. Get the default time-to-live for multicast packets sent out on the socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTimeToLive()                    throws IOException
+				</name>
+				<description>
+					Get the default time-to-live for multicast packets sent out on the socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void joinGroup(InetAddress mcastaddr)                 throws IOException
+				</name>
+				<description>
+					Joins a multicast group. Its behavior may be affected by setInterface or setNetworkInterface. If there is a security manager, this method first calls its checkMulticast method with the mcastaddr argument as its argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void leaveGroup(InetAddress mcastaddr)                  throws IOException
+				</name>
+				<description>
+					Leave a multicast group. Its behavior may be affected by setInterface or setNetworkInterface. If there is a security manager, this method first calls its checkMulticast method with the mcastaddr argument as its argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void joinGroup(SocketAddress mcastaddr,               NetworkInterface netIf)                 throws IOException
+				</name>
+				<description>
+					Joins the specified multicast group at the specified interface. If there is a security manager, this method first calls its checkMulticast method with the mcastaddr argument as its argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void leaveGroup(SocketAddress mcastaddr,                NetworkInterface netIf)                  throws IOException
+				</name>
+				<description>
+					Leave a multicast group on a specified local interface. If there is a security manager, this method first calls its checkMulticast method with the mcastaddr argument as its argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInterface(InetAddress inf)                    throws SocketException
+				</name>
+				<description>
+					Set the multicast network interface used by methods whose behavior would be affected by the value of the network interface. Useful for multihomed hosts.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InetAddress getInterface()                           throws SocketException
+				</name>
+				<description>
+					Retrieve the address of the network interface used for multicast packets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNetworkInterface(NetworkInterface netIf)                           throws SocketException
+				</name>
+				<description>
+					Specify the network interface for outgoing multicast datagrams sent on this socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NetworkInterface getNetworkInterface()                                       throws SocketException
+				</name>
+				<description>
+					Get the multicast network interface set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLoopbackMode(boolean disable)                       throws SocketException
+				</name>
+				<description>
+					Disable/Enable local loopback of multicast datagrams The option is used by the platform's networking code as a hint for setting whether multicast data will be looped back to the local socket. Because this option is a hint, applications that want to verify what loopback mode is set to should call getLoopbackMode()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getLoopbackMode()                          throws SocketException
+				</name>
+				<description>
+					Get the setting for local loopback of multicast datagrams.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void send(DatagramPacket p,                     byte ttl)            throws IOException
+				</name>
+				<description>
+					Deprecated. Use the following code or its equivalent instead: ...... int ttl = mcastSocket.getTimeToLive(); mcastSocket.setTimeToLive(newttl); mcastSocket.send(p); mcastSocket.setTimeToLive(ttl); ...... Sends a datagram packet to the destination, with a TTL (time- to-live) other than the default for the socket. This method need only be used in instances where a particular TTL is desired; otherwise it is preferable to set a TTL once on the socket, and use that default TTL for all packets. This method does not alter the default TTL for the socket. Its behavior may be affected by setInterface. If there is a security manager, this method first performs some security checks. First, if p.getAddress().isMulticastAddress() is true, this method calls the security manager's checkMulticast method with p.getAddress() and ttl as its arguments. If the evaluation of that expression is false, this method instead calls the security manager's checkConnect method with arguments p.getAddress().getHostAddress() and p.getPort(). Each call to a security manager method could result in a SecurityException if the operation is not allowed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

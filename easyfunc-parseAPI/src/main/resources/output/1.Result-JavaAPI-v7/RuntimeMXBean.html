@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		java.lang.management
+	</package>
+	<type>
+		<name>
+			public interface RuntimeMXBean  extends PlatformManagedObject
+		</name>
+		<description>
+			The management interface for the runtime system of the Java virtual machine. A Java virtual machine has a single instance of the implementation class of this interface. This instance implementing this interface is an MXBean that can be obtained by calling the ManagementFactory.getRuntimeMXBean() method or from the platform MBeanServer method. The ObjectName for uniquely identifying the MXBean for the runtime system within an MBeanServer is: java.lang:type=Runtime It can be obtained by calling the PlatformManagedObject.getObjectName() method. This interface defines several convenient methods for accessing system properties about the Java virtual machine.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getName()
+				</name>
+				<description>
+					Returns the name representing the running Java virtual machine. The returned name string can be any arbitrary string and a Java virtual machine implementation can choose to embed platform-specific useful information in the returned name string. Each running virtual machine could have a different name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getVmName()
+				</name>
+				<description>
+					Returns the Java virtual machine implementation name. This method is equivalent to System.getProperty("java.vm.name").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getVmVendor()
+				</name>
+				<description>
+					Returns the Java virtual machine implementation vendor. This method is equivalent to System.getProperty("java.vm.vendor").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getVmVersion()
+				</name>
+				<description>
+					Returns the Java virtual machine implementation version. This method is equivalent to System.getProperty("java.vm.version").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getSpecName()
+				</name>
+				<description>
+					Returns the Java virtual machine specification name. This method is equivalent to System.getProperty("java.vm.specification.name").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getSpecVendor()
+				</name>
+				<description>
+					Returns the Java virtual machine specification vendor. This method is equivalent to System.getProperty("java.vm.specification.vendor").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getSpecVersion()
+				</name>
+				<description>
+					Returns the Java virtual machine specification version. This method is equivalent to System.getProperty("java.vm.specification.version").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getManagementSpecVersion()
+				</name>
+				<description>
+					Returns the version of the specification for the management interface implemented by the running Java virtual machine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getClassPath()
+				</name>
+				<description>
+					Returns the Java class path that is used by the system class loader to search for class files. This method is equivalent to System.getProperty("java.class.path"). Multiple paths in the Java class path are separated by the path separator character of the platform of the Java virtual machine being monitored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getLibraryPath()
+				</name>
+				<description>
+					Returns the Java library path. This method is equivalent to System.getProperty("java.library.path"). Multiple paths in the Java library path are separated by the path separator character of the platform of the Java virtual machine being monitored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isBootClassPathSupported()
+				</name>
+				<description>
+					Tests if the Java virtual machine supports the boot class path mechanism used by the bootstrap class loader to search for class files.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getBootClassPath()
+				</name>
+				<description>
+					Returns the boot class path that is used by the bootstrap class loader to search for class files. Multiple paths in the boot class path are separated by the path separator character of the platform on which the Java virtual machine is running. A Java virtual machine implementation may not support the boot class path mechanism for the bootstrap class loader to search for class files. The isBootClassPathSupported() method can be used to determine if the Java virtual machine supports this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<String> getInputArguments()
+				</name>
+				<description>
+					Returns the input arguments passed to the Java virtual machine which does not include the arguments to the main method. This method returns an empty list if there is no input argument to the Java virtual machine. Some Java virtual machine implementations may take input arguments from multiple different sources: for examples, arguments passed from the application that launches the Java virtual machine such as the 'java' command, environment variables, configuration files, etc. Typically, not all command-line options to the 'java' command are passed to the Java virtual machine. Thus, the returned input arguments may not include all command-line options. MBeanServer access: The mapped type of List is String[].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getUptime()
+				</name>
+				<description>
+					Returns the uptime of the Java virtual machine in milliseconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getStartTime()
+				</name>
+				<description>
+					Returns the start time of the Java virtual machine in milliseconds. This method returns the approximate time when the Java virtual machine started.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Map<String,String> getSystemProperties()
+				</name>
+				<description>
+					Returns a map of names and values of all system properties. This method calls System.getProperties() to get all system properties. Properties whose name or value is not a String are omitted. MBeanServer access: The mapped type of Map is TabularData with two items in each row as follows: Item Name Item Type key String value String
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

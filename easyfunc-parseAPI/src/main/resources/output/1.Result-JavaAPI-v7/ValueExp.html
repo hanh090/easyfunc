@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public interface ValueExp  extends Serializable
+		</name>
+		<description>
+			Represents values that can be passed as arguments to relational expressions. Strings, numbers, attributes are valid values and should be represented by implementations of ValueExp.
+		</description>
+		<methods>
+			<method>
+				<name>
+					ValueExp apply(ObjectName name)                 throws BadStringOperationException,                        BadBinaryOpValueExpException,                        BadAttributeValueExpException,                        InvalidApplicationException
+				</name>
+				<description>
+					Applies the ValueExp on a MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  void setMBeanServer(MBeanServer s)
+				</name>
+				<description>
+					Deprecated. This method is not needed because a ValueExp can access the MBean server in which it is being evaluated by using QueryEval.getMBeanServer(). Sets the MBean server on which the query is to be performed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

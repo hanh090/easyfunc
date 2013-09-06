@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.swing.plaf
+	</package>
+	<type>
+		<name>
+			public abstract class ListUI  extends ComponentUI
+		</name>
+		<description>
+			The JList pluggable look and feel delegate.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ListUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int locationToIndex(JList list,                    Point location)
+				</name>
+				<description>
+					Returns the cell index in the specified JList closest to the given location in the list's coordinate system. To determine if the cell actually contains the specified location, compare the point against the cell's bounds, as provided by getCellBounds. This method returns -1 if the list's model is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Point indexToLocation(JList list,                      int index)
+				</name>
+				<description>
+					Returns the origin in the given JList, of the specified item, in the list's coordinate system. Returns null if the index isn't valid.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Rectangle getCellBounds(JList list,                        int index1,                        int index2)
+				</name>
+				<description>
+					Returns the bounding rectangle, in the given list's coordinate system, for the range of cells specified by the two indices. The indices can be supplied in any order. If the smaller index is outside the list's range of cells, this method returns null. If the smaller index is valid, but the larger index is outside the list's range, the bounds of just the first index is returned. Otherwise, the bounds of the valid range is returned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

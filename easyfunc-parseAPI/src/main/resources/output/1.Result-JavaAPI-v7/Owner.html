@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.security.acl
+	</package>
+	<type>
+		<name>
+			public interface Owner
+		</name>
+		<description>
+			Interface for managing owners of Access Control Lists (ACLs) or ACL configurations. (Note that the Acl interface in the java.security.acl package extends this Owner interface.) The initial owner Principal should be specified as an argument to the constructor of the class implementing this interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean addOwner(Principal caller,                 Principal owner)                   throws NotOwnerException
+				</name>
+				<description>
+					Adds an owner. Only owners can modify ACL contents. The caller principal must be an owner of the ACL in order to invoke this method. That is, only an owner can add another owner. The initial owner is configured at ACL construction time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean deleteOwner(Principal caller,                    Principal owner)                      throws NotOwnerException,                             LastOwnerException
+				</name>
+				<description>
+					Deletes an owner. If this is the last owner in the ACL, an exception is raised. The caller principal must be an owner of the ACL in order to invoke this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isOwner(Principal owner)
+				</name>
+				<description>
+					Returns true if the given principal is an owner of the ACL.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.lang.model.util
+	</package>
+	<type>
+		<name>
+			public interface Elements
+		</name>
+		<description>
+			Utility methods for operating on program elements. Compatibility Note: Methods may be added to this interface in future releases of the platform.
+		</description>
+		<methods>
+			<method>
+				<name>
+					PackageElement getPackageElement(CharSequence name)
+				</name>
+				<description>
+					Returns a package given its fully qualified name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeElement getTypeElement(CharSequence name)
+				</name>
+				<description>
+					Returns a type element given its canonical name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Map<? extends ExecutableElement,? extends AnnotationValue> getElementValuesWithDefaults(AnnotationMirror a)
+				</name>
+				<description>
+					Returns the values of an annotation's elements, including defaults.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getDocComment(Element e)
+				</name>
+				<description>
+					Returns the text of the documentation ("Javadoc") comment of an element. A documentation comment of an element is a comment that begins with "/**" , ends with a separate "*/", and immediately precedes the element, ignoring white space. Therefore, a documentation comment contains at least three"*" characters. The text returned for the documentation comment is a processed form of the comment as it appears in source code. The leading "/**" and trailing "*/" are removed. For lines of the comment starting after the initial "/**", leading white space characters are discarded as are any consecutive "*" characters appearing after the white space or starting the line. The processed lines are then concatenated together (including line terminators) and returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isDeprecated(Element e)
+				</name>
+				<description>
+					Returns true if the element is deprecated, false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name getBinaryName(TypeElement type)
+				</name>
+				<description>
+					Returns the binary name of a type element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					PackageElement getPackageOf(Element type)
+				</name>
+				<description>
+					Returns the package of an element. The package of a package is itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<? extends Element> getAllMembers(TypeElement type)
+				</name>
+				<description>
+					Returns all members of a type element, whether inherited or declared directly. For a class the result also includes its constructors, but not local or anonymous classes. Note that elements of certain kinds can be isolated using methods in ElementFilter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<? extends AnnotationMirror> getAllAnnotationMirrors(Element e)
+				</name>
+				<description>
+					Returns all annotations of an element, whether inherited or directly present.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean hides(Element hider,              Element hidden)
+				</name>
+				<description>
+					Tests whether one type, method, or field hides another.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean overrides(ExecutableElement overrider,                  ExecutableElement overridden,                  TypeElement type)
+				</name>
+				<description>
+					Tests whether one method, as a member of a given type, overrides another method. When a non-abstract method overrides an abstract one, the former is also said to implement the latter. In the simplest and most typical usage, the value of the type parameter will simply be the class or interface directly enclosing overrider (the possibly-overriding method). For example, suppose m1 represents the method String.hashCode and m2 represents Object.hashCode. We can then ask whether m1 overrides m2 within the class String (it does): assert elements.overrides(m1, m2, elements.getTypeElement("java.lang.String")); A more interesting case can be illustrated by the following example in which a method in type A does not override a like-named method in type B: class A { public void m() {} } interface B { void m(); } ... m1 = ...; // A.m m2 = ...; // B.m assert ! elements.overrides(m1, m2, elements.getTypeElement("A")); When viewed as a member of a third type C, however, the method in A does override the one in B: class C extends A implements B {} ... assert elements.overrides(m1, m2, elements.getTypeElement("C"));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getConstantExpression(Object value)
+				</name>
+				<description>
+					Returns the text of a constant expression representing a primitive value or a string. The text returned is in a form suitable for representing the value in source code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void printElements(Writer w,                   Element... elements)
+				</name>
+				<description>
+					Prints a representation of the elements to the given writer in the specified order. The main purpose of this method is for diagnostics. The exact format of the output is not specified and is subject to change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name getName(CharSequence cs)
+				</name>
+				<description>
+					Return a name with the same sequence of characters as the argument.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

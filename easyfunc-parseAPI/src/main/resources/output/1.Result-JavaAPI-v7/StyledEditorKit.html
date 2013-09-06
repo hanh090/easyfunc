@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class StyledEditorKit  extends DefaultEditorKit
+		</name>
+		<description>
+			This is the set of things needed by a text component to be a reasonably functioning editor for some type of text document. This implementation provides a default implementation which treats text as styled text and provides a minimal set of actions for editing styled text.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StyledEditorKit()
+				</name>
+				<description>
+					Creates a new EditorKit used for styled documents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MutableAttributeSet getInputAttributes()
+				</name>
+				<description>
+					Gets the input attributes for the pane. When the caret moves and there is no selection, the input attributes are automatically mutated to reflect the character attributes of the current caret location. The styled editing actions use the input attributes to carry out their actions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getCharacterAttributeRun()
+				</name>
+				<description>
+					Fetches the element representing the current run of character attributes for the caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Action[] getActions()
+				</name>
+				<description>
+					Fetches the command list for the editor. This is the list of commands supported by the superclass augmented by the collection of commands defined locally for style operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Document createDefaultDocument()
+				</name>
+				<description>
+					Creates an uninitialized text storage model that is appropriate for this type of editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void install(JEditorPane c)
+				</name>
+				<description>
+					Called when the kit is being installed into a JEditorPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deinstall(JEditorPane c)
+				</name>
+				<description>
+					Called when the kit is being removed from the JEditorPane. This is used to unregister any listeners that were attached.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ViewFactory getViewFactory()
+				</name>
+				<description>
+					Fetches a factory that is suitable for producing views of any models that are produced by this kit. This is implemented to return View implementations for the following kinds of elements: AbstractDocument.ContentElementName AbstractDocument.ParagraphElementName AbstractDocument.SectionElementName StyleConstants.ComponentElementName StyleConstants.IconElementName
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates a copy of the editor kit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void createInputAttributes(Element element,                           MutableAttributeSet set)
+				</name>
+				<description>
+					Copies the key/values in elements AttributeSet into set. This does not copy component, icon, or element names attributes. Subclasses may wish to refine what is and what isn't copied here. But be sure to first remove all the attributes that are in set. This is called anytime the caret moves over a different location.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		javax.imageio.stream
+	</package>
+	<type>
+		<name>
+			public abstract class ImageOutputStreamImpl  extends ImageInputStreamImpl  implements ImageOutputStream
+		</name>
+		<description>
+			An abstract class implementing the ImageOutputStream interface. This class is designed to reduce the number of methods that must be implemented by subclasses.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ImageOutputStreamImpl()
+				</name>
+				<description>
+					Constructs an ImageOutputStreamImpl.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void write(int b)                      throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a single byte to the stream at the current position. The 24 high-order bits of b are ignored. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write. Implementers can use the flushBits method of ImageOutputStreamImpl to guarantee this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(byte[] b)             throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of bytes to the stream at the current position. If b.length is 0, nothing is written. The byte b[0] is written first, then the byte b[1], and so on. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void write(byte[] b,           int off,           int len)                      throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of bytes to the stream at the current position. If len is 0, nothing is written. The byte b[off] is written first, then the byte b[off + 1], and so on. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write. Implementers can use the flushBits method of ImageOutputStreamImpl to guarantee this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeBoolean(boolean v)                    throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a boolean value to the stream. If v is true, the value (byte)1 is written; if v is false, the value (byte)0 is written. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeByte(int v)                 throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes the 8 low-order bits of v to the stream. The 24 high-order bits of v are ignored. (This means that writeByte does exactly the same thing as write for an integer argument.) If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeShort(int v)                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes the 16 low-order bits of v to the stream. The 16 high-order bits of v are ignored. If the stream uses network byte order, the bytes written, in order, will be:    (byte)((v >> 8) & 0xff)   (byte)(v & 0xff)   Otherwise, the bytes written will be:    (byte)(v & 0xff)   (byte)((v >> 8) & 0xff)   If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeChar(int v)                 throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream This method is a synonym for writeShort.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeInt(int v)                throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes the 32 bits of v to the stream. If the stream uses network byte order, the bytes written, in order, will be:    (byte)((v >> 24) & 0xff)   (byte)((v >> 16) & 0xff)   (byte)((v >> 8) & 0xff)   (byte)(v & 0xff)   Otheriwse, the bytes written will be:    (byte)(v & 0xff)   (byte)((v >> 8) & 0xff)   (byte)((v >> 16) & 0xff)   (byte)((v >> 24) & 0xff)   If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeLong(long v)                 throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes the 64 bits of v to the stream. If the stream uses network byte order, the bytes written, in order, will be:    (byte)((v >> 56) & 0xff)   (byte)((v >> 48) & 0xff)   (byte)((v >> 40) & 0xff)   (byte)((v >> 32) & 0xff)   (byte)((v >> 24) & 0xff)   (byte)((v >> 16) & 0xff)   (byte)((v >> 8) & 0xff)   (byte)(v & 0xff)   Otherwise, the bytes written will be:    (byte)(v & 0xff)   (byte)((v >> 8) & 0xff)   (byte)((v >> 16) & 0xff)   (byte)((v >> 24) & 0xff)   (byte)((v >> 32) & 0xff)   (byte)((v >> 40) & 0xff)   (byte)((v >> 48) & 0xff)   (byte)((v >> 56) & 0xff)   If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeFloat(float v)                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a float value, which is comprised of four bytes, to the output stream. It does this as if it first converts this float value to an int in exactly the manner of the Float.floatToIntBits method and then writes the int value in exactly the manner of the writeInt method. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeDouble(double v)                   throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a double value, which is comprised of four bytes, to the output stream. It does this as if it first converts this double value to an long in exactly the manner of the Double.doubleToLongBits method and then writes the long value in exactly the manner of the writeLong method. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeBytes(String s)                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a string to the output stream. For every character in the string s, taken in order, one byte is written to the output stream. If s is null, a NullPointerException is thrown. If s.length is zero, then no bytes are written. Otherwise, the character s[0] is written first, then s[1], and so on; the last character written is s[s.length-1]. For each character, one byte is written, the low-order byte, in exactly the manner of the writeByte method. The high-order eight bits of each character in the string are ignored. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeChars(String s)                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a string to the output stream. For every character in the string s, taken in order, two bytes are written to the output stream, ordered according to the current byte order setting. If network byte order is being used, the high-order byte is written first; the order is reversed otherwise. If s is null, a NullPointerException is thrown. If s.length is zero, then no bytes are written. Otherwise, the character s[0] is written first, then s[1], and so on; the last character written is s[s.length-1]. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeUTF(String s)                throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes two bytes of length information to the output stream in network byte order, followed by the modified UTF-8 representation of every character in the string s. If s is null, a NullPointerException is thrown. Each character in the string s is converted to a group of one, two, or three bytes, depending on the value of the character. If a character c is in the range \u0001 through \u007f, it is represented by one byte:    (byte)c   If a character c is \u0000 or is in the range \u0080 through \u07ff, then it is represented by two bytes, to be written in the order shown:    (byte)(0xc0 | (0x1f & (c >> 6)))   (byte)(0x80 | (0x3f & c))   If a character c is in the range \u0800 through uffff, then it is represented by three bytes, to be written in the order shown:    (byte)(0xe0 | (0x0f & (c >> 12)))   (byte)(0x80 | (0x3f & (c >> 6)))   (byte)(0x80 | (0x3f & c))   First, the total number of bytes needed to represent all the characters of s is calculated. If this number is larger than 65535, then a UTFDataFormatException is thrown. Otherwise, this length is written to the output stream in exactly the manner of the writeShort method; after this, the one-, two-, or three-byte representation of each character in the string s is written. The current byte order setting is ignored. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write. Note: This method should not be used in the implementation of image formats that use standard UTF-8, because the modified UTF-8 used here is incompatible with standard UTF-8.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeShorts(short[] s,                 int off,                 int len)                   throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of shorts to the stream at the current position. If len is 0, nothing is written. The short s[off] is written first, then the short s[off + 1], and so on. The byte order of the stream is used to determine the order in which the individual bytes are written. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeChars(char[] c,                int off,                int len)                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of chars to the stream at the current position. If len is 0, nothing is written. The char c[off] is written first, then the char c[off + 1], and so on. The byte order of the stream is used to determine the order in which the individual bytes are written. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeInts(int[] i,               int off,               int len)                 throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of ints to the stream at the current position. If len is 0, nothing is written. The int i[off] is written first, then the int i[off + 1], and so on. The byte order of the stream is used to determine the order in which the individual bytes are written. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeLongs(long[] l,                int off,                int len)                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of longs to the stream at the current position. If len is 0, nothing is written. The long l[off] is written first, then the long l[off + 1], and so on. The byte order of the stream is used to determine the order in which the individual bytes are written. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeFloats(float[] f,                 int off,                 int len)                   throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of floats to the stream at the current position. If len is 0, nothing is written. The float f[off] is written first, then the float f[off + 1], and so on. The byte order of the stream is used to determine the order in which the individual bytes are written. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeDoubles(double[] d,                  int off,                  int len)                    throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of doubles to the stream at the current position. If len is 0, nothing is written. The double d[off] is written first, then the double d[off + 1], and so on. The byte order of the stream is used to determine the order in which the individual bytes are written. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeBit(int bit)                throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a single bit, given by the least significant bit of the argument, to the stream at the current bit offset within the current byte position. The upper 31 bits of the argument are ignored. The given bit replaces the previous bit at that position. The bit offset is advanced by one and reduced modulo 8. If any bits of a particular byte have never been set at the time the byte is flushed to the destination, those bits will be set to 0 automatically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeBits(long bits,               int numBits)                 throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of bits, given by the numBits least significant bits of the bits argument in left-to-right order, to the stream at the current bit offset within the current byte position. The upper 64 - numBits bits of the argument are ignored. The bit offset is advanced by numBits and reduced modulo 8. Note that a bit offset of 0 always indicates the most-significant bit of the byte, and bytes of bits are written out in sequence as they are encountered. Thus bit writes are always effectively in network byte order. The actual stream byte order setting is ignored. Bit data may be accumulated in memory indefinitely, until flushBefore is called. At that time, all bit data prior to the flushed position will be written. If any bits of a particular byte have never been set at the time the byte is flushed to the destination, those bits will be set to 0 automatically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void flushBits()                          throws IOException
+				</name>
+				<description>
+					If the bit offset is non-zero, forces the remaining bits in the current byte to 0 and advances the stream position by one. This method should be called by subclasses at the beginning of the write(int) and write(byte[], int, int) methods.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

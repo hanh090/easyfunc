@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class FileDialog  extends Dialog
+		</name>
+		<description>
+			The FileDialog class displays a dialog window from which the user can select a file. Since it is a modal dialog, when the application calls its show method to display the dialog, it blocks the rest of the application until the user has chosen a file.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int LOAD
+				</name>
+				<description>
+					This constant value indicates that the purpose of the file dialog window is to locate a file from which to read.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int SAVE
+				</name>
+				<description>
+					This constant value indicates that the purpose of the file dialog window is to locate a file to which to write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileDialog(Frame parent)
+				</name>
+				<description>
+					Creates a file dialog for loading a file. The title of the file dialog is initially empty. This is a convenience method for FileDialog(parent, "", LOAD).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileDialog(Frame parent,            String title)
+				</name>
+				<description>
+					Creates a file dialog window with the specified title for loading a file. The files shown are those in the current directory. This is a convenience method for FileDialog(parent, title, LOAD).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileDialog(Frame parent,            String title,            int mode)
+				</name>
+				<description>
+					Creates a file dialog window with the specified title for loading or saving a file. If the value of mode is LOAD, then the file dialog is finding a file to read, and the files shown are those in the current directory. If the value of mode is SAVE, the file dialog is finding a place to write a file.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileDialog(Dialog parent)
+				</name>
+				<description>
+					Creates a file dialog for loading a file. The title of the file dialog is initially empty. This is a convenience method for FileDialog(parent, "", LOAD).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileDialog(Dialog parent,            String title)
+				</name>
+				<description>
+					Creates a file dialog window with the specified title for loading a file. The files shown are those in the current directory. This is a convenience method for FileDialog(parent, title, LOAD).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileDialog(Dialog parent,            String title,            int mode)
+				</name>
+				<description>
+					Creates a file dialog window with the specified title for loading or saving a file. If the value of mode is LOAD, then the file dialog is finding a file to read, and the files shown are those in the current directory. If the value of mode is SAVE, the file dialog is finding a place to write a file.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotify()
+				</name>
+				<description>
+					Creates the file dialog's peer. The peer allows us to change the look of the file dialog without changing its functionality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMode()
+				</name>
+				<description>
+					Indicates whether this file dialog box is for loading from a file or for saving to a file.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMode(int mode)
+				</name>
+				<description>
+					Sets the mode of the file dialog. If mode is not a legal value, an exception will be thrown and mode will not be set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDirectory()
+				</name>
+				<description>
+					Gets the directory of this file dialog.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDirectory(String dir)
+				</name>
+				<description>
+					Sets the directory of this file dialog window to be the specified directory. Specifying a null or an invalid directory implies an implementation-defined default. This default will not be realized, however, until the user has selected a file. Until this point, getDirectory() will return the value passed into this method. Specifying "" as the directory is exactly equivalent to specifying null as the directory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getFile()
+				</name>
+				<description>
+					Gets the selected file of this file dialog. If the user selected CANCEL, the returned file is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File[] getFiles()
+				</name>
+				<description>
+					Returns files that the user selects. If the user cancels the file dialog, then the method returns an empty array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFile(String file)
+				</name>
+				<description>
+					Sets the selected file for this file dialog window to be the specified file. This file becomes the default file if it is set before the file dialog window is first shown. Specifying "" as the file is exactly equivalent to specifying null as the file.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMultipleMode(boolean enable)
+				</name>
+				<description>
+					Enables or disables multiple file selection for the file dialog.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMultipleMode()
+				</name>
+				<description>
+					Returns whether the file dialog allows the multiple file selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FilenameFilter getFilenameFilter()
+				</name>
+				<description>
+					Determines this file dialog's filename filter. A filename filter allows the user to specify which files appear in the file dialog window. Filename filters do not function in Sun's reference implementation for Microsoft Windows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFilenameFilter(FilenameFilter filter)
+				</name>
+				<description>
+					Sets the filename filter for this file dialog window to the specified filter. Filename filters do not function in Sun's reference implementation for Microsoft Windows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representing the state of this FileDialog window. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,342 @@
+<javaelement>
+	<package>
+		java.awt.geom
+	</package>
+	<type>
+		<name>
+			public abstract class QuadCurve2D  extends Object  implements Shape, Cloneable
+		</name>
+		<description>
+			The QuadCurve2D class defines a quadratic parametric curve segment in (x,y) coordinate space. This class is only the abstract superclass for all objects that store a 2D quadratic curve segment. The actual storage representation of the coordinates is left to the subclass.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected QuadCurve2D()
+				</name>
+				<description>
+					This is an abstract class that cannot be instantiated directly. Type-specific implementation subclasses are available for instantiation and provide a number of formats for storing the information necessary to satisfy the various accessor methods below.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getX1()
+				</name>
+				<description>
+					Returns the X coordinate of the start point in double in precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getY1()
+				</name>
+				<description>
+					Returns the Y coordinate of the start point in double precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Point2D getP1()
+				</name>
+				<description>
+					Returns the start point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getCtrlX()
+				</name>
+				<description>
+					Returns the X coordinate of the control point in double precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getCtrlY()
+				</name>
+				<description>
+					Returns the Y coordinate of the control point in double precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Point2D getCtrlPt()
+				</name>
+				<description>
+					Returns the control point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getX2()
+				</name>
+				<description>
+					Returns the X coordinate of the end point in double precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getY2()
+				</name>
+				<description>
+					Returns the Y coordinate of the end point in double precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Point2D getP2()
+				</name>
+				<description>
+					Returns the end point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setCurve(double x1,              double y1,              double ctrlx,              double ctrly,              double x2,              double y2)
+				</name>
+				<description>
+					Sets the location of the end points and control point of this curve to the specified double coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCurve(double[] coords,              int offset)
+				</name>
+				<description>
+					Sets the location of the end points and control points of this QuadCurve2D to the double coordinates at the specified offset in the specified array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCurve(Point2D p1,              Point2D cp,              Point2D p2)
+				</name>
+				<description>
+					Sets the location of the end points and control point of this QuadCurve2D to the specified Point2D coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCurve(Point2D[] pts,              int offset)
+				</name>
+				<description>
+					Sets the location of the end points and control points of this QuadCurve2D to the coordinates of the Point2D objects at the specified offset in the specified array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCurve(QuadCurve2D c)
+				</name>
+				<description>
+					Sets the location of the end points and control point of this QuadCurve2D to the same as those in the specified QuadCurve2D.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static double getFlatnessSq(double x1,                     double y1,                     double ctrlx,                     double ctrly,                     double x2,                     double y2)
+				</name>
+				<description>
+					Returns the square of the flatness, or maximum distance of a control point from the line connecting the end points, of the quadratic curve specified by the indicated control points.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static double getFlatness(double x1,                   double y1,                   double ctrlx,                   double ctrly,                   double x2,                   double y2)
+				</name>
+				<description>
+					Returns the flatness, or maximum distance of a control point from the line connecting the end points, of the quadratic curve specified by the indicated control points.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static double getFlatnessSq(double[] coords,                     int offset)
+				</name>
+				<description>
+					Returns the square of the flatness, or maximum distance of a control point from the line connecting the end points, of the quadratic curve specified by the control points stored in the indicated array at the indicated index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static double getFlatness(double[] coords,                   int offset)
+				</name>
+				<description>
+					Returns the flatness, or maximum distance of a control point from the line connecting the end points, of the quadratic curve specified by the control points stored in the indicated array at the indicated index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getFlatnessSq()
+				</name>
+				<description>
+					Returns the square of the flatness, or maximum distance of a control point from the line connecting the end points, of this QuadCurve2D.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getFlatness()
+				</name>
+				<description>
+					Returns the flatness, or maximum distance of a control point from the line connecting the end points, of this QuadCurve2D.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void subdivide(QuadCurve2D left,               QuadCurve2D right)
+				</name>
+				<description>
+					Subdivides this QuadCurve2D and stores the resulting two subdivided curves into the left and right curve parameters. Either or both of the left and right objects can be the same as this QuadCurve2D or null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void subdivide(QuadCurve2D src,               QuadCurve2D left,               QuadCurve2D right)
+				</name>
+				<description>
+					Subdivides the quadratic curve specified by the src parameter and stores the resulting two subdivided curves into the left and right curve parameters. Either or both of the left and right objects can be the same as the src object or null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void subdivide(double[] src,               int srcoff,               double[] left,               int leftoff,               double[] right,               int rightoff)
+				</name>
+				<description>
+					Subdivides the quadratic curve specified by the coordinates stored in the src array at indices srcoff through srcoff + 5 and stores the resulting two subdivided curves into the two result arrays at the corresponding indices. Either or both of the left and right arrays can be null or a reference to the same array and offset as the src array. Note that the last point in the first subdivided curve is the same as the first point in the second subdivided curve. Thus, it is possible to pass the same array for left and right and to use offsets such that rightoff equals leftoff + 4 in order to avoid allocating extra storage for this common point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int solveQuadratic(double[] eqn)
+				</name>
+				<description>
+					Solves the quadratic whose coefficients are in the eqn array and places the non-complex roots back into the same array, returning the number of roots. The quadratic solved is represented by the equation:        eqn = {C, B, A};       ax^2 + bx + c = 0   A return value of -1 is used to distinguish a constant equation, which might be always 0 or never 0, from an equation that has no zeroes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int solveQuadratic(double[] eqn,                   double[] res)
+				</name>
+				<description>
+					Solves the quadratic whose coefficients are in the eqn array and places the non-complex roots into the res array, returning the number of roots. The quadratic solved is represented by the equation:        eqn = {C, B, A};       ax^2 + bx + c = 0   A return value of -1 is used to distinguish a constant equation, which might be always 0 or never 0, from an equation that has no zeroes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y)
+				</name>
+				<description>
+					Tests if the specified coordinates are inside the boundary of the Shape, as described by the definition of insideness.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Point2D p)
+				</name>
+				<description>
+					Tests if a specified Point2D is inside the boundary of the Shape, as described by the definition of insideness.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean intersects(double x,                   double y,                   double w,                   double h)
+				</name>
+				<description>
+					Tests if the interior of the Shape intersects the interior of a specified rectangular area. The rectangular area is considered to intersect the Shape if any point is contained in both the interior of the Shape and the specified rectangular area. The Shape.intersects() method allows a Shape implementation to conservatively return true when: there is a high probability that the rectangular area and the Shape intersect, but the calculations to accurately determine this intersection are prohibitively expensive. This means that for some Shapes this method might return true even though the rectangular area does not intersect the Shape. The Area class performs more accurate computations of geometric intersection than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean intersects(Rectangle2D r)
+				</name>
+				<description>
+					Tests if the interior of the Shape intersects the interior of a specified Rectangle2D. The Shape.intersects() method allows a Shape implementation to conservatively return true when: there is a high probability that the Rectangle2D and the Shape intersect, but the calculations to accurately determine this intersection are prohibitively expensive. This means that for some Shapes this method might return true even though the Rectangle2D does not intersect the Shape. The Area class performs more accurate computations of geometric intersection than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y,                 double w,                 double h)
+				</name>
+				<description>
+					Tests if the interior of the Shape entirely contains the specified rectangular area. All coordinates that lie inside the rectangular area must lie within the Shape for the entire rectanglar area to be considered contained within the Shape. The Shape.contains() method allows a Shape implementation to conservatively return false when: the intersect method returns true and the calculations to determine whether or not the Shape entirely contains the rectangular area are prohibitively expensive. This means that for some Shapes this method might return false even though the Shape contains the rectangular area. The Area class performs more accurate geometric computations than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Rectangle2D r)
+				</name>
+				<description>
+					Tests if the interior of the Shape entirely contains the specified Rectangle2D. The Shape.contains() method allows a Shape implementation to conservatively return false when: the intersect method returns true and the calculations to determine whether or not the Shape entirely contains the Rectangle2D are prohibitively expensive. This means that for some Shapes this method might return false even though the Shape contains the Rectangle2D. The Area class performs more accurate geometric computations than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getBounds()
+				</name>
+				<description>
+					Returns an integer Rectangle that completely encloses the Shape. Note that there is no guarantee that the returned Rectangle is the smallest bounding box that encloses the Shape, only that the Shape lies entirely within the indicated Rectangle. The returned Rectangle might also fail to completely enclose the Shape if the Shape overflows the limited range of the integer data type. The getBounds2D method generally returns a tighter bounding box due to its greater flexibility in representation. Note that the definition of insideness can lead to situations where points on the defining outline of the shape may not be considered contained in the returned bounds object, but only in cases where those points are also not considered contained in the original shape. If a point is inside the shape according to the contains(point) method, then it must be inside the returned Rectangle bounds object according to the contains(point) method of the bounds. Specifically: shape.contains(x,y) requires bounds.contains(x,y) If a point is not inside the shape, then it might still be contained in the bounds object: bounds.contains(x,y) does not imply shape.contains(x,y)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PathIterator getPathIterator(AffineTransform at)
+				</name>
+				<description>
+					Returns an iteration object that defines the boundary of the shape of this QuadCurve2D. The iterator for this class is not multi-threaded safe, which means that this QuadCurve2D class does not guarantee that modifications to the geometry of this QuadCurve2D object do not affect any iterations of that geometry that are already in process.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PathIterator getPathIterator(AffineTransform at,                             double flatness)
+				</name>
+				<description>
+					Returns an iteration object that defines the boundary of the flattened shape of this QuadCurve2D. The iterator for this class is not multi-threaded safe, which means that this QuadCurve2D class does not guarantee that modifications to the geometry of this QuadCurve2D object do not affect any iterations of that geometry that are already in process.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates a new object of the same class and with the same contents as this object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

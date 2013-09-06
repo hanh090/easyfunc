@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class PipedReader  extends Reader
+		</name>
+		<description>
+			Piped character-input streams.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PipedReader(PipedWriter src)              throws IOException
+				</name>
+				<description>
+					Creates a PipedReader so that it is connected to the piped writer src. Data written to src will then be available as input from this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PipedReader(PipedWriter src,             int pipeSize)              throws IOException
+				</name>
+				<description>
+					Creates a PipedReader so that it is connected to the piped writer src and uses the specified pipe size for the pipe's buffer. Data written to src will then be available as input from this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PipedReader()
+				</name>
+				<description>
+					Creates a PipedReader so that it is not yet connected. It must be connected to a PipedWriter before being used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PipedReader(int pipeSize)
+				</name>
+				<description>
+					Creates a PipedReader so that it is not yet connected and uses the specified pipe size for the pipe's buffer. It must be connected to a PipedWriter before being used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void connect(PipedWriter src)               throws IOException
+				</name>
+				<description>
+					Causes this piped reader to be connected to the piped writer src. If this object is already connected to some other piped writer, an IOException is thrown. If src is an unconnected piped writer and snk is an unconnected piped reader, they may be connected by either the call: snk.connect(src) or the call: src.connect(snk) The two calls have the same effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads the next character of data from this piped stream. If no character is available because the end of the stream has been reached, the value -1 is returned. This method blocks until input data is available, the end of the stream is detected, or an exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(char[] cbuf,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads up to len characters of data from this piped stream into an array of characters. Less than len characters will be read if the end of the data stream is reached or if len exceeds the pipe's buffer size. This method blocks until at least one character of input is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean ready()                throws IOException
+				</name>
+				<description>
+					Tell whether this stream is ready to be read. A piped character stream is ready if the circular buffer is not empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this piped stream and releases any system resources associated with the stream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.swing.undo
+	</package>
+	<type>
+		<name>
+			public class AbstractUndoableEdit  extends Object  implements UndoableEdit, Serializable
+		</name>
+		<description>
+			An abstract implementation of UndoableEdit, implementing simple responses to all boolean methods in that interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected static final String UndoName
+				</name>
+				<description>
+					String returned by getUndoPresentationName; as of Java 2 platform v1.3.1 this field is no longer used. This value is now localized and comes from the defaults table with key AbstractUndoableEdit.undoText.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final String RedoName
+				</name>
+				<description>
+					String returned by getRedoPresentationName; as of Java 2 platform v1.3.1 this field is no longer used. This value is now localized and comes from the defaults table with key AbstractUndoableEdit.redoText.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AbstractUndoableEdit()
+				</name>
+				<description>
+					Creates an AbstractUndoableEdit which defaults hasBeenDone and alive to true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void die()
+				</name>
+				<description>
+					Sets alive to false. Note that this is a one way operation; dead edits cannot be resurrected. Sending undo or redo to a dead edit results in an exception being thrown. Typically an edit is killed when it is consolidated by another edit's addEdit or replaceEdit method, or when it is dequeued from an UndoManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void undo()            throws CannotUndoException
+				</name>
+				<description>
+					Throws CannotUndoException if canUndo returns false. Sets hasBeenDone to false. Subclasses should override to undo the operation represented by this edit. Override should begin with a call to super.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canUndo()
+				</name>
+				<description>
+					Returns true if this edit is alive and hasBeenDone is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void redo()            throws CannotRedoException
+				</name>
+				<description>
+					Throws CannotRedoException if canRedo returns false. Sets hasBeenDone to true. Subclasses should override to redo the operation represented by this edit. Override should begin with a call to super.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canRedo()
+				</name>
+				<description>
+					Returns true if this edit is alive and hasBeenDone is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addEdit(UndoableEdit anEdit)
+				</name>
+				<description>
+					This default implementation returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean replaceEdit(UndoableEdit anEdit)
+				</name>
+				<description>
+					This default implementation returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSignificant()
+				</name>
+				<description>
+					This default implementation returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPresentationName()
+				</name>
+				<description>
+					This default implementation returns "". Used by getUndoPresentationName and getRedoPresentationName to construct the strings they return. Subclasses should override to return an appropriate description of the operation this edit represents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUndoPresentationName()
+				</name>
+				<description>
+					Retreives the value from the defaults table with key AbstractUndoableEdit.undoText and returns that value followed by a space, followed by getPresentationName. If getPresentationName returns "", then the defaults value is returned alone.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRedoPresentationName()
+				</name>
+				<description>
+					Retreives the value from the defaults table with key AbstractUndoableEdit.redoText and returns that value followed by a space, followed by getPresentationName. If getPresentationName returns "", then the defaults value is returned alone.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string that displays and identifies this object's properties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

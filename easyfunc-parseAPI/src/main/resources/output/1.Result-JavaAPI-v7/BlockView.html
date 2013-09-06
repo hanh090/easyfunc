@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public class BlockView  extends BoxView
+		</name>
+		<description>
+			A view implementation to display a block (as a box) with CSS specifications.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BlockView(Element elem,           int axis)
+				</name>
+				<description>
+					Creates a new view that represents an html box. This can be used for a number of elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(View parent)
+				</name>
+				<description>
+					Establishes the parent view for this view. This is guaranteed to be called before any other methods if the parent view is functioning properly. This is implemented to forward to the superclass as well as call the setPropertiesFromAttributes() method to set the paragraph properties from the css attributes. The call is made at this time to ensure the ability to resolve upward through the parents view attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMajorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculate the requirements of the block along the major axis (i.e. the axis along with it tiles). This is implemented to provide the superclass behavior and then adjust it if the CSS width or height attribute is specified and applicable to the axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMinorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculate the requirements of the block along the minor axis (i.e. the axis orthoginal to the axis along with it tiles). This is implemented to provide the superclass behavior and then adjust it if the CSS width or height attribute is specified and applicable to the axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutMinorAxis(int targetSpan,                     int axis,                     int[] offsets,                     int[] spans)
+				</name>
+				<description>
+					Performs layout for the minor axis of the box (i.e. the axis orthoginal to the axis that it represents). The results of the layout (the offset and span for each children) are placed in the given arrays which represent the allocations to the children along the minor axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape allocation)
+				</name>
+				<description>
+					Renders using the given rendering surface and area on that surface. This is implemented to delegate to the css box painter to paint the border and background prior to the interior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getAttributes()
+				</name>
+				<description>
+					Fetches the attributes to use when rendering. This is implemented to multiplex the attributes specified in the model with a StyleSheet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getResizeWeight(int axis)
+				</name>
+				<description>
+					Gets the resize weight.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAlignment(int axis)
+				</name>
+				<description>
+					Gets the alignment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent changes,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Description copied from class: View Gives notification from the document that attributes were changed in a location that this view is responsible for. To reduce the burden to subclasses, this functionality is spread out into the following calls that subclasses can reimplement: updateChildren is called if there were any changes to the element this view is responsible for. If this view has child views that are represent the child elements, then this method should do whatever is necessary to make sure the child views correctly represent the model. forwardUpdate is called to forward the DocumentEvent to the appropriate child views. updateLayout is called to give the view a chance to either repair its layout, to reschedule layout, or do nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinimumSpan(int axis)
+				</name>
+				<description>
+					Determines the minimum span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMaximumSpan(int axis)
+				</name>
+				<description>
+					Determines the maximum span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setPropertiesFromAttributes()
+				</name>
+				<description>
+					Update any cached values that come from attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StyleSheet getStyleSheet()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

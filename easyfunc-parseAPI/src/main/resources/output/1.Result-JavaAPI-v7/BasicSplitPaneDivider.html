@@ -1,0 +1,297 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public class BasicSplitPaneDivider  extends Container  implements PropertyChangeListener
+		</name>
+		<description>
+			Divider used by BasicSplitPaneUI. Subclassers may wish to override paint to do something more interesting. The border effect is drawn in BasicSplitPaneUI, so if you don't like that border, reset it there. To conditionally drag from certain areas subclass mousePressed and call super when you wish the dragging to begin. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected static final int ONE_TOUCH_SIZE
+				</name>
+				<description>
+					Width or height of the divider based on orientation BasicSplitPaneUI adds two to this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int ONE_TOUCH_OFFSET
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSplitPaneDivider.DragController dragger
+				</name>
+				<description>
+					Handles mouse dragging message to do the actual dragging.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSplitPaneUI splitPaneUI
+				</name>
+				<description>
+					UI this instance was created from.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int dividerSize
+				</name>
+				<description>
+					Size of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component hiddenDivider
+				</name>
+				<description>
+					Divider that is used for noncontinuous layout mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JSplitPane splitPane
+				</name>
+				<description>
+					JSplitPane the receiver is contained in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSplitPaneDivider.MouseHandler mouseHandler
+				</name>
+				<description>
+					Handles mouse events from both this class, and the split pane. Mouse events are handled for the splitpane since you want to be able to drag when clicking on the border of the divider, which is not drawn by the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int orientation
+				</name>
+				<description>
+					Orientation of the JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JButton leftButton
+				</name>
+				<description>
+					Button for quickly toggling the left component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JButton rightButton
+				</name>
+				<description>
+					Button for quickly toggling the right component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicSplitPaneDivider(BasicSplitPaneUI ui)
+				</name>
+				<description>
+					Creates an instance of BasicSplitPaneDivider. Registers this instance for mouse events and mouse dragged events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBasicSplitPaneUI(BasicSplitPaneUI newUI)
+				</name>
+				<description>
+					Sets the SplitPaneUI that is using the receiver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicSplitPaneUI getBasicSplitPaneUI()
+				</name>
+				<description>
+					Returns the SplitPaneUI the receiver is currently in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDividerSize(int newSize)
+				</name>
+				<description>
+					Sets the size of the divider to newSize. That is the width if the splitpane is HORIZONTAL_SPLIT, or the height of VERTICAL_SPLIT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDividerSize()
+				</name>
+				<description>
+					Returns the size of the divider, that is the width if the splitpane is HORIZONTAL_SPLIT, or the height of VERTICAL_SPLIT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBorder(Border border)
+				</name>
+				<description>
+					Sets the border of this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Border getBorder()
+				</name>
+				<description>
+					Returns the border of this component or null if no border is currently set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getInsets()
+				</name>
+				<description>
+					If a border has been set on this component, returns the border's insets, else calls super.getInsets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setMouseOver(boolean mouseOver)
+				</name>
+				<description>
+					Sets whether or not the mouse is currently over the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMouseOver()
+				</name>
+				<description>
+					Returns whether or not the mouse is currently over the divider
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize()
+				</name>
+				<description>
+					Returns dividerSize x dividerSize
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize()
+				</name>
+				<description>
+					Returns dividerSize x dividerSize
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void propertyChange(PropertyChangeEvent e)
+				</name>
+				<description>
+					Property change event, presumably from the JSplitPane, will message updateOrientation if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g)
+				</name>
+				<description>
+					Paints the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void oneTouchExpandableChanged()
+				</name>
+				<description>
+					Messaged when the oneTouchExpandable value of the JSplitPane the receiver is contained in changes. Will create the leftButton and rightButton if they are null. invalidates the receiver as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JButton createLeftOneTouchButton()
+				</name>
+				<description>
+					Creates and return an instance of JButton that can be used to collapse the left component in the split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JButton createRightOneTouchButton()
+				</name>
+				<description>
+					Creates and return an instance of JButton that can be used to collapse the right component in the split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void prepareForDragging()
+				</name>
+				<description>
+					Message to prepare for dragging. This messages the BasicSplitPaneUI with startDragging.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void dragDividerTo(int location)
+				</name>
+				<description>
+					Messages the BasicSplitPaneUI with dragDividerTo that this instance is contained in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void finishDraggingTo(int location)
+				</name>
+				<description>
+					Messages the BasicSplitPaneUI with finishDraggingTo that this instance is contained in.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

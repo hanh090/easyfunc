@@ -1,0 +1,315 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractDocument.AbstractElement  extends Object  implements Element, MutableAttributeSet, Serializable, TreeNode
+		</name>
+		<description>
+			Implements the abstract part of an element. By default elements support attributes by having a field that represents the immutable part of the current attribute set for the element. The element itself implements MutableAttributeSet which can be used to modify the set by fetching a new immutable set. The immutable sets are provided by the AttributeContext associated with the document. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AbstractDocument.AbstractElement(Element parent,                                  AttributeSet a)
+				</name>
+				<description>
+					Creates a new AbstractElement.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dump(PrintStream psOut,          int indentAmount)
+				</name>
+				<description>
+					Dumps a debugging representation of the element hierarchy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAttributeCount()
+				</name>
+				<description>
+					Gets the number of attributes that are defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDefined(Object attrName)
+				</name>
+				<description>
+					Checks whether a given attribute is defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEqual(AttributeSet attr)
+				</name>
+				<description>
+					Checks whether two attribute sets are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet copyAttributes()
+				</name>
+				<description>
+					Copies a set of attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getAttribute(Object attrName)
+				</name>
+				<description>
+					Gets the value of an attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<?> getAttributeNames()
+				</name>
+				<description>
+					Gets the names of all attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAttribute(Object name,                          Object value)
+				</name>
+				<description>
+					Checks whether a given attribute name/value is defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAttributes(AttributeSet attrs)
+				</name>
+				<description>
+					Checks whether the element contains all the attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getResolveParent()
+				</name>
+				<description>
+					Gets the resolving parent. If not overridden, the resolving parent defaults to the parent element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addAttribute(Object name,                  Object value)
+				</name>
+				<description>
+					Adds an attribute to the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addAttributes(AttributeSet attr)
+				</name>
+				<description>
+					Adds a set of attributes to the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttribute(Object name)
+				</name>
+				<description>
+					Removes an attribute from the set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttributes(Enumeration<?> names)
+				</name>
+				<description>
+					Removes a set of attributes for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttributes(AttributeSet attrs)
+				</name>
+				<description>
+					Removes a set of attributes for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResolveParent(AttributeSet parent)
+				</name>
+				<description>
+					Sets the resolving parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Document getDocument()
+				</name>
+				<description>
+					Retrieves the underlying model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getParentElement()
+				</name>
+				<description>
+					Gets the parent of the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getAttributes()
+				</name>
+				<description>
+					Gets the attributes for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Gets the name of the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getStartOffset()
+				</name>
+				<description>
+					Gets the starting offset in the model for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getEndOffset()
+				</name>
+				<description>
+					Gets the ending offset in the model for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Element getElement(int index)
+				</name>
+				<description>
+					Gets a child element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getElementCount()
+				</name>
+				<description>
+					Gets the number of children for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getElementIndex(int offset)
+				</name>
+				<description>
+					Gets the child element index closest to the given model offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isLeaf()
+				</name>
+				<description>
+					Checks whether the element is a leaf.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeNode getChildAt(int childIndex)
+				</name>
+				<description>
+					Returns the child TreeNode at index childIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getChildCount()
+				</name>
+				<description>
+					Returns the number of children TreeNode's receiver contains.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeNode getParent()
+				</name>
+				<description>
+					Returns the parent TreeNode of the receiver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIndex(TreeNode node)
+				</name>
+				<description>
+					Returns the index of node in the receivers children. If the receiver does not contain node, -1 will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean getAllowsChildren()
+				</name>
+				<description>
+					Returns true if the receiver allows children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Enumeration children()
+				</name>
+				<description>
+					Returns the children of the receiver as an Enumeration.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

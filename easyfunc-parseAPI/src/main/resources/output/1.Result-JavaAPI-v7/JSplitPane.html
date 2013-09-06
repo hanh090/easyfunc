@@ -1,0 +1,594 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JSplitPane  extends JComponent  implements Accessible
+		</name>
+		<description>
+			JSplitPane is used to divide two (and only two) Components. The two Components are graphically divided based on the look and feel implementation, and the two Components can then be interactively resized by the user. Information on using JSplitPane is in How to Use Split Panes in The Java Tutorial. The two Components in a split pane can be aligned left to right using JSplitPane.HORIZONTAL_SPLIT, or top to bottom using JSplitPane.VERTICAL_SPLIT. The preferred way to change the size of the Components is to invoke setDividerLocation where location is either the new x or y position, depending on the orientation of the JSplitPane. To resize the Components to their preferred sizes invoke resetToPreferredSizes. When the user is resizing the Components the minimum size of the Components is used to determine the maximum/minimum position the Components can be set to. If the minimum size of the two components is greater than the size of the split pane the divider will not allow you to resize it. To alter the minimum size of a JComponent, see JComponent.setMinimumSize(java.awt.Dimension). When the user resizes the split pane the new space is distributed between the two components based on the resizeWeight property. A value of 0, the default, indicates the right/bottom component gets all the space, where as a value of 1 indicates the left/top component gets all the space. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int VERTICAL_SPLIT
+				</name>
+				<description>
+					Vertical split indicates the Components are split along the y axis. For example the two Components will be split one on top of the other.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int HORIZONTAL_SPLIT
+				</name>
+				<description>
+					Horizontal split indicates the Components are split along the x axis. For example the two Components will be split one to the left of the other.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LEFT
+				</name>
+				<description>
+					Used to add a Component to the left of the other Component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RIGHT
+				</name>
+				<description>
+					Used to add a Component to the right of the other Component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String TOP
+				</name>
+				<description>
+					Used to add a Component above the other Component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String BOTTOM
+				</name>
+				<description>
+					Used to add a Component below the other Component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String DIVIDER
+				</name>
+				<description>
+					Used to add a Component that will represent the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ORIENTATION_PROPERTY
+				</name>
+				<description>
+					Bound property name for orientation (horizontal or vertical).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CONTINUOUS_LAYOUT_PROPERTY
+				</name>
+				<description>
+					Bound property name for continuousLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String DIVIDER_SIZE_PROPERTY
+				</name>
+				<description>
+					Bound property name for border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ONE_TOUCH_EXPANDABLE_PROPERTY
+				</name>
+				<description>
+					Bound property for oneTouchExpandable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LAST_DIVIDER_LOCATION_PROPERTY
+				</name>
+				<description>
+					Bound property for lastLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String DIVIDER_LOCATION_PROPERTY
+				</name>
+				<description>
+					Bound property for the dividerLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RESIZE_WEIGHT_PROPERTY
+				</name>
+				<description>
+					Bound property for weight.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int orientation
+				</name>
+				<description>
+					How the views are split.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean continuousLayout
+				</name>
+				<description>
+					Whether or not the views are continuously redisplayed while resizing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component leftComponent
+				</name>
+				<description>
+					The left or top component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component rightComponent
+				</name>
+				<description>
+					The right or bottom component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int dividerSize
+				</name>
+				<description>
+					Size of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean oneTouchExpandable
+				</name>
+				<description>
+					Is a little widget provided to quickly expand/collapse the split pane?
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int lastDividerLocation
+				</name>
+				<description>
+					Previous location of the split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JSplitPane()
+				</name>
+				<description>
+					Creates a new JSplitPane configured to arrange the child components side-by-side horizontally, using two buttons for the components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@ConstructorProperties(value="orientation")  public JSplitPane(int newOrientation)
+				</name>
+				<description>
+					Creates a new JSplitPane configured with the specified orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JSplitPane(int newOrientation,            boolean newContinuousLayout)
+				</name>
+				<description>
+					Creates a new JSplitPane with the specified orientation and redrawing style.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JSplitPane(int newOrientation,            Component newLeftComponent,            Component newRightComponent)
+				</name>
+				<description>
+					Creates a new JSplitPane with the specified orientation and the specified components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JSplitPane(int newOrientation,            boolean newContinuousLayout,            Component newLeftComponent,            Component newRightComponent)
+				</name>
+				<description>
+					Creates a new JSplitPane with the specified orientation and redrawing style, and with the specified components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(SplitPaneUI ui)
+				</name>
+				<description>
+					Sets the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SplitPaneUI getUI()
+				</name>
+				<description>
+					Returns the SplitPaneUI that is providing the current look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Notification from the UIManager that the L&F has changed. Replaces the current UI object with the latest version from the UIManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the L&F class that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDividerSize(int newSize)
+				</name>
+				<description>
+					Sets the size of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDividerSize()
+				</name>
+				<description>
+					Returns the size of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLeftComponent(Component comp)
+				</name>
+				<description>
+					Sets the component to the left (or above) the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getLeftComponent()
+				</name>
+				<description>
+					Returns the component to the left (or above) the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTopComponent(Component comp)
+				</name>
+				<description>
+					Sets the component above, or to the left of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getTopComponent()
+				</name>
+				<description>
+					Returns the component above, or to the left of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRightComponent(Component comp)
+				</name>
+				<description>
+					Sets the component to the right (or below) the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getRightComponent()
+				</name>
+				<description>
+					Returns the component to the right (or below) the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBottomComponent(Component comp)
+				</name>
+				<description>
+					Sets the component below, or to the right of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getBottomComponent()
+				</name>
+				<description>
+					Returns the component below, or to the right of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOneTouchExpandable(boolean newValue)
+				</name>
+				<description>
+					Sets the value of the oneTouchExpandable property, which must be true for the JSplitPane to provide a UI widget on the divider to quickly expand/collapse the divider. The default value of this property is false. Some look and feels might not support one-touch expanding; they will ignore this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOneTouchExpandable()
+				</name>
+				<description>
+					Gets the oneTouchExpandable property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLastDividerLocation(int newLastLocation)
+				</name>
+				<description>
+					Sets the last location the divider was at to newLastLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLastDividerLocation()
+				</name>
+				<description>
+					Returns the last location the divider was at.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOrientation(int orientation)
+				</name>
+				<description>
+					Sets the orientation, or how the splitter is divided. The options are: JSplitPane.VERTICAL_SPLIT (above/below orientation of components) JSplitPane.HORIZONTAL_SPLIT (left/right orientation of components)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOrientation()
+				</name>
+				<description>
+					Returns the orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContinuousLayout(boolean newContinuousLayout)
+				</name>
+				<description>
+					Sets the value of the continuousLayout property, which must be true for the child components to be continuously redisplayed and laid out during user intervention. The default value of this property is look and feel dependent. Some look and feels might not support continuous layout; they will ignore this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isContinuousLayout()
+				</name>
+				<description>
+					Gets the continuousLayout property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResizeWeight(double value)
+				</name>
+				<description>
+					Specifies how to distribute extra space when the size of the split pane changes. A value of 0, the default, indicates the right/bottom component gets all the extra space (the left/top component acts fixed), where as a value of 1 specifies the left/top component gets all the extra space (the right/bottom component acts fixed). Specifically, the left/top component gets (weight * diff) extra space and the right/bottom component gets (1 - weight) * diff extra space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getResizeWeight()
+				</name>
+				<description>
+					Returns the number that determines how extra space is distributed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void resetToPreferredSizes()
+				</name>
+				<description>
+					Lays out the JSplitPane layout based on the preferred size of the children components. This will likely result in changing the divider location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDividerLocation(double proportionalLocation)
+				</name>
+				<description>
+					Sets the divider location as a percentage of the JSplitPane's size. This method is implemented in terms of setDividerLocation(int). This method immediately changes the size of the split pane based on its current size. If the split pane is not correctly realized and on screen, this method will have no effect (new divider location will become (current size * proportionalLocation) which is 0).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDividerLocation(int location)
+				</name>
+				<description>
+					Sets the location of the divider. This is passed off to the look and feel implementation, and then listeners are notified. A value less than 0 implies the divider should be reset to a value that attempts to honor the preferred size of the left/top component. After notifying the listeners, the last divider location is updated, via setLastDividerLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDividerLocation()
+				</name>
+				<description>
+					Returns the last value passed to setDividerLocation. The value returned from this method may differ from the actual divider location (if setDividerLocation was passed a value bigger than the curent size).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinimumDividerLocation()
+				</name>
+				<description>
+					Returns the minimum location of the divider from the look and feel implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaximumDividerLocation()
+				</name>
+				<description>
+					Returns the maximum location of the divider from the look and feel implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(Component component)
+				</name>
+				<description>
+					Removes the child component, component from the pane. Resets the leftComponent or rightComponent instance variable, as necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(int index)
+				</name>
+				<description>
+					Removes the Component at the specified index. Updates the leftComponent and rightComponent instance variables as necessary, and then messages super.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAll()
+				</name>
+				<description>
+					Removes all the child components from the split pane. Resets the leftComonent and rightComponent instance variables.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isValidateRoot()
+				</name>
+				<description>
+					Returns true, so that calls to revalidate on any descendant of this JSplitPane will cause a request to be queued that will validate the JSplitPane and all its descendants.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addImpl(Component comp,             Object constraints,             int index)
+				</name>
+				<description>
+					Adds the specified component to this split pane. If constraints identifies the left/top or right/bottom child component, and a component with that identifier was previously added, it will be removed and then comp will be added in its place. If constraints is not one of the known identifiers the layout manager may throw an IllegalArgumentException. The possible constraints objects (Strings) are: JSplitPane.TOP JSplitPane.LEFT JSplitPane.BOTTOM JSplitPane.RIGHT If the constraints object is null, the component is added in the first available position (left/top if open, else right/bottom).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintChildren(Graphics g)
+				</name>
+				<description>
+					Subclassed to message the UI with finishedPaintingChildren after super has been messaged, as well as painting the border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JSplitPane. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JSplitPane. For split panes, the AccessibleContext takes the form of an AccessibleJSplitPane. A new AccessibleJSplitPane instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		javax.sound.sampled
+	</package>
+	<type>
+		<name>
+			public class AudioInputStream  extends InputStream
+		</name>
+		<description>
+			An audio input stream is an input stream with a specified audio format and length. The length is expressed in sample frames, not bytes. Several methods are provided for reading a certain number of bytes from the stream, or an unspecified number of bytes. The audio input stream keeps track of the last byte that was read. You can skip over an arbitrary number of bytes to get to a later position for reading. An audio input stream may support marks. When you set a mark, the current position is remembered so that you can return to it later. The AudioSystem class includes many methods that manipulate AudioInputStream objects. For example, the methods let you: obtain an audio input stream from an external audio file, stream, or URL write an external file from an audio input stream convert an audio input stream to a different audio format
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AudioFormat format
+				</name>
+				<description>
+					The format of the audio data contained in the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected long frameLength
+				</name>
+				<description>
+					This stream's length, in sample frames.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int frameSize
+				</name>
+				<description>
+					The size of each frame, in bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected long framePos
+				</name>
+				<description>
+					The current position in this stream, in sample frames (zero-based).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AudioInputStream(InputStream stream,                  AudioFormat format,                  long length)
+				</name>
+				<description>
+					Constructs an audio input stream that has the requested format and length in sample frames, using audio data from the specified input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AudioInputStream(TargetDataLine line)
+				</name>
+				<description>
+					Constructs an audio input stream that reads its data from the target data line indicated. The format of the stream is the same as that of the target data line, and the length is AudioSystem#NOT_SPECIFIED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AudioFormat getFormat()
+				</name>
+				<description>
+					Obtains the audio format of the sound data in this audio input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getFrameLength()
+				</name>
+				<description>
+					Obtains the length of the stream, expressed in sample frames rather than bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads the next byte of data from the audio input stream. The audio input stream's frame size must be one byte, or an IOException will be thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b)           throws IOException
+				</name>
+				<description>
+					Reads some number of bytes from the audio input stream and stores them into the buffer array b. The number of bytes actually read is returned as an integer. This method blocks until input data is available, the end of the stream is detected, or an exception is thrown. This method will always read an integral number of frames. If the length of the array is not an integral number of frames, a maximum of b.length - (b.length % frameSize) bytes will be read.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads up to a specified maximum number of bytes of data from the audio stream, putting them into the given byte array. This method will always read an integral number of frames. If len does not specify an integral number of frames, a maximum of len - (len % frameSize) bytes will be read.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					Skips over and discards a specified number of bytes from this audio input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()                throws IOException
+				</name>
+				<description>
+					Returns the maximum number of bytes that can be read (or skipped over) from this audio input stream without blocking. This limit applies only to the next invocation of a read or skip method for this audio input stream; the limit can vary each time these methods are invoked. Depending on the underlying stream,an IOException may be thrown if this stream is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this audio input stream and releases any system resources associated with the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mark(int readlimit)
+				</name>
+				<description>
+					Marks the current position in this audio input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()             throws IOException
+				</name>
+				<description>
+					Repositions this audio input stream to the position it had at the time its mark method was last invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean markSupported()
+				</name>
+				<description>
+					Tests whether this audio input stream supports the mark and reset methods.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

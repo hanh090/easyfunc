@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.swing.event
+	</package>
+	<type>
+		<name>
+			public interface DocumentListener  extends EventListener
+		</name>
+		<description>
+			Interface for an observer to register to receive notifications of changes to a text document. The default implementation of the Document interface (AbstractDocument) supports asynchronous mutations. If this feature is used (i.e. mutations are made from a thread other than the Swing event thread), the listeners will be notified via the mutating thread. This means that if asynchronous updates are made, the implementation of this interface must be threadsafe! The DocumentEvent notification is based upon the JavaBeans event model. There is no guarantee about the order of delivery to listeners, and all listeners must be notified prior to making further mutations to the Document. This means implementations of the DocumentListener may not mutate the source of the event (i.e. the associated Document).
+		</description>
+		<methods>
+			<method>
+				<name>
+					void insertUpdate(DocumentEvent e)
+				</name>
+				<description>
+					Gives notification that there was an insert into the document. The range given by the DocumentEvent bounds the freshly inserted region.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeUpdate(DocumentEvent e)
+				</name>
+				<description>
+					Gives notification that a portion of the document has been removed. The range is given in terms of what the view last saw (that is, before updating sticky positions).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void changedUpdate(DocumentEvent e)
+				</name>
+				<description>
+					Gives notification that an attribute or set of attributes changed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

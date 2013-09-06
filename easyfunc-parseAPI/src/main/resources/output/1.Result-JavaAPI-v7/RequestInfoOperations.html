@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface RequestInfoOperations
+		</name>
+		<description>
+			Request Information, accessible to Interceptors. Each interception point is given an object through which the Interceptor can access request information. Client-side and server-side interception points are concerned with different information, so there are two information objects: ClientRequestInfo is passed to the client-side interception points and ServerRequestInfo is passed to the server-side interception points. But there is information that is common to both, so they both inherit from a common interface: RequestInfo.
+		</description>
+		<methods>
+			<method>
+				<name>
+					int request_id()
+				</name>
+				<description>
+					Returns an id that uniquely identifies an active request/reply sequence. Once a request/reply sequence is concluded this ID may be reused. Note that this id is not the same as the GIOP request_id. If GIOP is the transport mechanism used, then these IDs may very well be the same, but this is not guaranteed nor required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String operation()
+				</name>
+				<description>
+					Returns the name of the operation being invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Parameter[] arguments()
+				</name>
+				<description>
+					Returns an array of Parameter objects, containing the arguments on the operation being invoked. If there are no arguments, this attribute will be a zero length array. Not all environments provide access to the arguments. With the Java portable bindings, for example, the arguments are not available. In these environments, when this attribute is accessed, NO_RESOURCES will be thrown with a standard minor code of 1. Note: Arguments are available for DSI/DII calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeCode[] exceptions()
+				</name>
+				<description>
+					Returns an array of TypeCode objects describing the TypeCodes of the user exceptions that this operation invocation may throw. If there are no user exceptions, this will return a zero length array. Not all environments provide access to the exception list. With the Java portable bindings, for example, the exception list is not available. In these environments, when this attribute is accessed, NO_RESOURCES will be thrown with a standard minor code of 1. Note: Exceptions are available for DSI/DII calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] contexts()
+				</name>
+				<description>
+					Returns an array of String objects describing the contexts that may be passed on this operation invocation. If there are no contexts, this will return a zero length array. Not all environments provide access to the context list. With the Java portable bindings, for example, the context list is not available. In these environments, when this attribute is accessed, NO_RESOURCES will be thrown with a standard minor code of 1. Note: Contexts are available for DSI/DII calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] operation_context()
+				</name>
+				<description>
+					Returns an array of String objects containing the contexts being sent on the request. Not all environments provide access to the context. With the Java portable bindings, for example, the context is not available. In these environments, when this attribute is accessed, NO_RESOURCES will be thrown with standard minor code of 1. Note: operation_context is available for DSI/DII calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Any result()
+				</name>
+				<description>
+					Returns an any containing the result of the operation invocation. If the operation return type is void, this attribute will be an any containing a type code with a TCKind value of tk_void and no value. Not all environments provide access to the result. With the Java portable bindings, for example, the result is not available. In these environments, when this attribute is accessed, NO_RESOURCES will be thrown with a standard minor code of 1. Note: Result is available for DSI/DII calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean response_expected()
+				</name>
+				<description>
+					Indicates whether a response is expected. On the client, a reply is not returned when response_expected is false, so receive_reply cannot be called. receive_other is called unless an exception occurs, in which case receive_exception is called. On the client, within send_poll, this attribute is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short sync_scope()
+				</name>
+				<description>
+					Defines how far the request shall progress before control is returned to the client. This is defined in the Messaging specification, and is pertinent only when response_expected is false. If response_expected is true, the value of sync_scope is undefined. This attribute may have one of the following values: Messaging.SYNC_NONE Messaging.SYNC_WITH_TRANSPORT Messaging.SYNC_WITH_SERVER Messaging.SYNC_WITH_TARGET On the server, for all scopes, a reply will be created from the return of the target operation call, but the reply will not return to the client. Although it does not return to the client, it does occur, so the normal server-side interception points are followed (i.e., receive_request_service_contexts, receive_request, send_reply or send_exception). For SYNC_WITH_SERVER and SYNC_WITH_TARGET, the server does send an empty reply back to the client before the target is invoked. This reply is not intercepted by server-side Interceptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short reply_status()
+				</name>
+				<description>
+					Describes the state of the result of the operation invocation. The return value can be one of the following: PortableInterceptor.SUCCESSFUL PortableInterceptor.SYSTEM_EXCEPTION PortableInterceptor.USER_EXCEPTION PortableInterceptor.LOCATION_FORWARD PortableInterceptor.TRANSPORT_RETRY On the client: Within the receive_reply interception point, this will only return SUCCESSFUL. Within the receive_exception interception point, this will be either SYSTEM_EXCEPTION or USER_EXCEPTION. Within the receive_other interception point, this will be any of: SUCCESSFUL, LOCATION_FORWARD, or TRANSPORT_RETRY. SUCCESSFUL means an asynchronous request returned successfully. LOCATION_FORWARD means that a reply came back with LOCATION_FORWARD as its status. TRANSPORT_RETRY means that the transport mechanism indicated a retry - a GIOP reply with a status of NEEDS_ADDRESSING_MODE, for instance. On the server: Within the send_reply interception point, this will only be SUCCESSFUL. Within the send_exception interception point, this will be either SYSTEM_EXCEPTION or USER_EXCEPTION. Within the send_other interception point, this attribute will be any of: SUCCESSFUL, or LOCATION_FORWARD. SUCCESSFUL means an asynchronous request returned successfully. LOCATION_FORWARD means that a reply came back with LOCATION_FORWARD as its status.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object forward_reference()
+				</name>
+				<description>
+					Contains the object to which the request will be forwarded, if the reply_status attribute is LOCATION_FORWARD. It is indeterminate whether a forwarded request will actually occur.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Any get_slot(int id)               throws InvalidSlot
+				</name>
+				<description>
+					Returns the data from the given slot of the PortableInterceptor.Current that is in the scope of the request. If the given slot has not been set, then an any containing a type code with a TCKind value of tk_null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ServiceContext get_request_service_context(int id)
+				</name>
+				<description>
+					Returns a copy of the service context with the given ID that is associated with the request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ServiceContext get_reply_service_context(int id)
+				</name>
+				<description>
+					Returns a copy of the service context with the given ID that is associated with the reply.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.crypto
+	</package>
+	<type>
+		<name>
+			public abstract class ExemptionMechanismSpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the ExemptionMechanism class. All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply the implementation of a particular exemption mechanism.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ExemptionMechanismSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract int engineGetOutputSize(int inputLen)
+				</name>
+				<description>
+					Returns the length in bytes that an output buffer would need to be in order to hold the result of the next engineGenExemptionBlob operation, given the input length inputLen (in bytes). The actual output length of the next engineGenExemptionBlob call may be smaller than the length returned by this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(Key key)                              throws InvalidKeyException,                                     ExemptionMechanismException
+				</name>
+				<description>
+					Initializes this exemption mechanism with a key. If this exemption mechanism requires any algorithm parameters that cannot be derived from the given key, the underlying exemption mechanism implementation is supposed to generate the required parameters itself (using provider-specific default values); in the case that algorithm parameters must be specified by the caller, an InvalidKeyException is raised.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(Key key,                AlgorithmParameterSpec params)                              throws InvalidKeyException,                                     InvalidAlgorithmParameterException,                                     ExemptionMechanismException
+				</name>
+				<description>
+					Initializes this exemption mechanism with a key and a set of algorithm parameters. If this exemption mechanism requires any algorithm parameters and params is null, the underlying exemption mechanism implementation is supposed to generate the required parameters itself (using provider-specific default values); in the case that algorithm parameters must be specified by the caller, an InvalidAlgorithmParameterException is raised.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(Key key,                AlgorithmParameters params)                              throws InvalidKeyException,                                     InvalidAlgorithmParameterException,                                     ExemptionMechanismException
+				</name>
+				<description>
+					Initializes this exemption mechanism with a key and a set of algorithm parameters. If this exemption mechanism requires any algorithm parameters and params is null, the underlying exemption mechanism implementation is supposed to generate the required parameters itself (using provider-specific default values); in the case that algorithm parameters must be specified by the caller, an InvalidAlgorithmParameterException is raised.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract byte[] engineGenExemptionBlob()                                            throws ExemptionMechanismException
+				</name>
+				<description>
+					Generates the exemption mechanism key blob.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract int engineGenExemptionBlob(byte[] output,                           int outputOffset)                                         throws ShortBufferException,                                                ExemptionMechanismException
+				</name>
+				<description>
+					Generates the exemption mechanism key blob, and stores the result in the output buffer, starting at outputOffset inclusive. If the output buffer is too small to hold the result, a ShortBufferException is thrown. In this case, repeat this call with a larger output buffer. Use engineGetOutputSize to determine how big the output buffer should be.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

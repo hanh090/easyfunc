@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.management.openmbean
+	</package>
+	<type>
+		<name>
+			public abstract class OpenType<T>  extends Object  implements Serializable
+		</name>
+		<description>
+			The OpenType class is the parent abstract class of all classes which describe the actual open type of open data values. An open type is defined by: the fully qualified Java class name of the open data values this type describes; note that only a limited set of Java classes is allowed for open data values (see ALLOWED_CLASSNAMES_LIST), its name, its description.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final List<String> ALLOWED_CLASSNAMES_LIST
+				</name>
+				<description>
+					List of the fully qualified names of the Java classes allowed for open data values. A multidimensional array of any one of these classes or their corresponding primitive types is also an allowed class for open data values. ALLOWED_CLASSNAMES_LIST = {          "java.lang.Void",          "java.lang.Boolean",          "java.lang.Character",          "java.lang.Byte",          "java.lang.Short",          "java.lang.Integer",          "java.lang.Long",          "java.lang.Float",          "java.lang.Double",          "java.lang.String",          "java.math.BigDecimal",          "java.math.BigInteger",          "java.util.Date",          "javax.management.ObjectName",          CompositeData.class.getName(),          TabularData.class.getName() } ;
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public static final String[] ALLOWED_CLASSNAMES
+				</name>
+				<description>
+					Deprecated. Use ALLOWED_CLASSNAMES_LIST instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected OpenType(String className,          String typeName,          String description)              throws OpenDataException
+				</name>
+				<description>
+					Constructs an OpenType instance (actually a subclass instance as OpenType is abstract), checking for the validity of the given parameters. The validity constraints are described below for each parameter.  
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getClassName()
+				</name>
+				<description>
+					Returns the fully qualified Java class name of the open data values this open type describes. The only possible Java class names for open data values are listed in ALLOWED_CLASSNAMES_LIST. A multidimensional array of any one of these classes or their corresponding primitive types is also an allowed class, in which case the class name follows the rules defined by the method getName() of java.lang.Class. For example, a 3-dimensional array of Strings has for class name "[[[Ljava.lang.String;" (without the quotes), a 3-dimensional array of Integers has for class name "[[[Ljava.lang.Integer;" (without the quotes), and a 3-dimensional array of int has for class name "[[[I" (without the quotes)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTypeName()
+				</name>
+				<description>
+					Returns the name of this OpenType instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDescription()
+				</name>
+				<description>
+					Returns the text description of this OpenType instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isArray()
+				</name>
+				<description>
+					Returns true if the open data values this open type describes are arrays, false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isValue(Object obj)
+				</name>
+				<description>
+					Tests whether obj is a value for this open type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean equals(Object obj)
+				</name>
+				<description>
+					Compares the specified obj parameter with this open type instance for equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int hashCode()
+				</name>
+				<description>
+					Description copied from class: Object Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap. The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the Object.equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables. As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String toString()
+				</name>
+				<description>
+					Returns a string representation of this open type instance.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

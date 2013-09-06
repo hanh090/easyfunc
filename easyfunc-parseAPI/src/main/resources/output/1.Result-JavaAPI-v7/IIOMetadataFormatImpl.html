@@ -1,0 +1,441 @@
+<javaelement>
+	<package>
+		javax.imageio.metadata
+	</package>
+	<type>
+		<name>
+			public abstract class IIOMetadataFormatImpl  extends Object  implements IIOMetadataFormat
+		</name>
+		<description>
+			A concrete class providing a reusable implementation of the IIOMetadataFormat interface. In addition, a static instance representing the standard, plug-in neutral javax_imageio_1.0 format is provided by the getStandardFormatInstance method. In order to supply localized descriptions of elements and attributes, a ResourceBundle with a base name of this.getClass().getName() + "Resources" should be supplied via the usual mechanism used by ResourceBundle.getBundle. Briefly, the subclasser supplies one or more additional classes according to a naming convention (by default, the fully-qualified name of the subclass extending IIMetadataFormatImpl, plus the string "Resources", plus the country, language, and variant codes separated by underscores). At run time, calls to getElementDescription or getAttributeDescription will attempt to load such classes dynamically according to the supplied locale, and will use either the element name, or the element name followed by a '/' character followed by the attribute name as a key. This key will be supplied to the ResourceBundle's getString method, and the resulting localized description of the node or attribute is returned. The subclass may supply a different base name for the resource bundles using the setResourceBaseName method. A subclass may choose its own localization mechanism, if so desired, by overriding the supplied implementations of getElementDescription and getAttributeDescription.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String standardMetadataFormatName
+				</name>
+				<description>
+					A String constant containing the standard format name, "javax_imageio_1.0".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOMetadataFormatImpl(String rootName,                       int childPolicy)
+				</name>
+				<description>
+					Constructs a blank IIOMetadataFormatImpl instance, with a given root element name and child policy (other than CHILD_POLICY_REPEAT). Additional elements, and their attributes and Object reference information may be added using the various add methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOMetadataFormatImpl(String rootName,                       int minChildren,                       int maxChildren)
+				</name>
+				<description>
+					Constructs a blank IIOMetadataFormatImpl instance, with a given root element name and a child policy of CHILD_POLICY_REPEAT. Additional elements, and their attributes and Object reference information may be added using the various add methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setResourceBaseName(String resourceBaseName)
+				</name>
+				<description>
+					Sets a new base name for locating ResourceBundles containing descriptions of elements and attributes for this format. Prior to the first time this method is called, the base name will be equal to this.getClass().getName() + "Resources".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getResourceBaseName()
+				</name>
+				<description>
+					Returns the currently set base name for locating ResourceBundles.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addElement(String elementName,                String parentName,                int childPolicy)
+				</name>
+				<description>
+					Adds a new element type to this metadata document format with a child policy other than CHILD_POLICY_REPEAT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addElement(String elementName,                String parentName,                int minChildren,                int maxChildren)
+				</name>
+				<description>
+					Adds a new element type to this metadata document format with a child policy of CHILD_POLICY_REPEAT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addChildElement(String elementName,                     String parentName)
+				</name>
+				<description>
+					Adds an existing element to the list of legal children for a given parent node type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeElement(String elementName)
+				</name>
+				<description>
+					Removes an element from the format. If no element with the given name was present, nothing happens and no exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addAttribute(String elementName,                  String attrName,                  int dataType,                  boolean required,                  String defaultValue)
+				</name>
+				<description>
+					Adds a new attribute to a previously defined element that may be set to an arbitrary value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addAttribute(String elementName,                  String attrName,                  int dataType,                  boolean required,                  String defaultValue,                  List<String> enumeratedValues)
+				</name>
+				<description>
+					Adds a new attribute to a previously defined element that will be defined by a set of enumerated values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addAttribute(String elementName,                  String attrName,                  int dataType,                  boolean required,                  String defaultValue,                  String minValue,                  String maxValue,                  boolean minInclusive,                  boolean maxInclusive)
+				</name>
+				<description>
+					Adds a new attribute to a previously defined element that will be defined by a range of values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addAttribute(String elementName,                  String attrName,                  int dataType,                  boolean required,                  int listMinLength,                  int listMaxLength)
+				</name>
+				<description>
+					Adds a new attribute to a previously defined element that will be defined by a list of values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addBooleanAttribute(String elementName,                         String attrName,                         boolean hasDefaultValue,                         boolean defaultValue)
+				</name>
+				<description>
+					Adds a new attribute to a previously defined element that will be defined by the enumerated values TRUE and FALSE, with a datatype of DATATYPE_BOOLEAN.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeAttribute(String elementName,                     String attrName)
+				</name>
+				<description>
+					Removes an attribute from a previously defined element. If no attribute with the given name was present in the given element, nothing happens and no exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected <T> void addObjectValue(String elementName,                        Class<T> classType,                        boolean required,                        T defaultValue)
+				</name>
+				<description>
+					Allows an Object reference of a given class type to be stored in nodes implementing the named element. The value of the Object is unconstrained other than by its class type. If an Object reference was previously allowed, the previous settings are overwritten.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected <T> void addObjectValue(String elementName,                        Class<T> classType,                        boolean required,                        T defaultValue,                        List<? extends T> enumeratedValues)
+				</name>
+				<description>
+					Allows an Object reference of a given class type to be stored in nodes implementing the named element. The value of the Object must be one of the values given by enumeratedValues. If an Object reference was previously allowed, the previous settings are overwritten.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected <T extends Object & Comparable<? super T>> void addObjectValue(String elementName,                                                              Class<T> classType,                                                              T defaultValue,                                                              Comparable<? super T> minValue,                                                              Comparable<? super T> maxValue,                                                              boolean minInclusive,                                                              boolean maxInclusive)
+				</name>
+				<description>
+					Allows an Object reference of a given class type to be stored in nodes implementing the named element. The value of the Object must be within the range given by minValue and maxValue. Furthermore, the class type must implement the Comparable interface. If an Object reference was previously allowed, the previous settings are overwritten.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addObjectValue(String elementName,                    Class<?> classType,                    int arrayMinLength,                    int arrayMaxLength)
+				</name>
+				<description>
+					Allows an Object reference of a given class type to be stored in nodes implementing the named element. The value of the Object must an array of objects of class type given by classType, with at least arrayMinLength and at most arrayMaxLength elements. If an Object reference was previously allowed, the previous settings are overwritten.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeObjectValue(String elementName)
+				</name>
+				<description>
+					Disallows an Object reference from being stored in nodes implementing the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRootName()
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the name of the root element of the format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean canNodeAppear(String elementName,                      ImageTypeSpecifier imageType)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns true if the element (and the subtree below it) is allowed to appear in a metadata document for an image of the given type, defined by an ImageTypeSpecifier. For example, a metadata document format might contain an element that describes the primary colors of the image, which would not be allowed when writing a grayscale image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getElementMinChildren(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the minimum number of children of the named element with child policy CHILD_POLICY_REPEAT. For example, an element representing color primary information might be required to have at least 3 children, one for each primay.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getElementMaxChildren(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the maximum number of children of the named element with child policy CHILD_POLICY_REPEAT. For example, an element representing an entry in an 8-bit color palette might be allowed to repeat up to 256 times. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getElementDescription(String elementName,                             Locale locale)
+				</name>
+				<description>
+					Returns a String containing a description of the named element, or null. The desciption will be localized for the supplied Locale if possible. The default implementation will first locate a ResourceBundle using the current resource base name set by setResourceBaseName and the supplied Locale, using the fallback mechanism described in the comments for ResourceBundle.getBundle. If a ResourceBundle is found, the element name will be used as a key to its getString method, and the result returned. If no ResourceBundle is found, or no such key is present, null will be returned. If locale is null, the current default Locale returned by Locale.getLocale will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getChildPolicy(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns one of the constants starting with CHILD_POLICY_, indicating the legal pattern of children for the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getChildNames(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns an array of Strings indicating the names of the element which are allowed to be children of the named element, in the order in which they should appear. If the element cannot have children, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getAttributeNames(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns an array of Strings listing the names of the attributes that may be associated with the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAttributeValueType(String elementName,                          String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns one of the constants starting with VALUE_, indicating whether the values of the given attribute within the named element are arbitrary, constrained to lie within a specified range, constrained to be one of a set of enumerated values, or are a whitespace-separated list of arbitrary values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAttributeDataType(String elementName,                         String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns one of the constants starting with DATATYPE_, indicating the format and interpretation of the value of the given attribute within th enamed element. If getAttributeValueType returns VALUE_LIST, then the legal value is a whitespace-spearated list of values of the returned datatype.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAttributeRequired(String elementName,                            String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns true if the named attribute must be present within the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeDefaultValue(String elementName,                                String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the default value of the named attribute, if it is not explictly present within the named element, as a String, or null if no default value is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getAttributeEnumerations(String elementName,                                  String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns an array of Strings containing the legal enumerated values for the given attribute within the named element. This method should only be called if getAttributeValueType returns VALUE_ENUMERATION.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeMinValue(String elementName,                            String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the minimum legal value for the attribute. Whether this value is inclusive or exclusive may be determined by the value of getAttributeValueType. The value is returned as a String; its interpretation is dependent on the value of getAttributeDataType. This method should only be called if getAttributeValueType returns VALUE_RANGE_*.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeMaxValue(String elementName,                            String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the maximum legal value for the attribute. Whether this value is inclusive or exclusive may be determined by the value of getAttributeValueType. The value is returned as a String; its interpretation is dependent on the value of getAttributeDataType. This method should only be called if getAttributeValueType returns VALUE_RANGE_*.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAttributeListMinLength(String elementName,                              String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the minimum number of list items that may be used to define this attribute. The attribute itself is defined as a String containing multiple whitespace-separated items. This method should only be called if getAttributeValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAttributeListMaxLength(String elementName,                              String attrName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the maximum number of list items that may be used to define this attribute. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound. The attribute itself is defined as a String containing multiple whitespace-separated items. This method should only be called if getAttributeValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeDescription(String elementName,                               String attrName,                               Locale locale)
+				</name>
+				<description>
+					Returns a String containing a description of the named attribute, or null. The desciption will be localized for the supplied Locale if possible. The default implementation will first locate a ResourceBundle using the current resource base name set by setResourceBaseName and the supplied Locale, using the fallback mechanism described in the comments for ResourceBundle.getBundle. If a ResourceBundle is found, the element name followed by a "/" character followed by the attribute name (elementName + "/" + attrName) will be used as a key to its getString method, and the result returned. If no ResourceBundle is found, or no such key is present, null will be returned. If locale is null, the current default Locale returned by Locale.getLocale will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getObjectValueType(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns one of the enumerated values starting with VALUE_, indicating the type of values (enumeration, range, or array) that are allowed for the Object reference. If no object value can be stored within the given element, the result of this method will be VALUE_NONE. Object references whose legal values are defined as a range must implement the Comparable interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getObjectClass(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the Class type of the Object reference stored within the element. If this element may not contain an Object reference, an IllegalArgumentException will be thrown. If the class type is an array, this field indicates the underlying class type (e.g, for an array of ints, this method would return int.class). Object references whose legal values are defined as a range must implement the Comparable interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getObjectDefaultValue(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns an Objects containing the default value for the Object reference within the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getObjectEnumerations(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns an array of Objects containing the legal enumerated values for the Object reference within the named element. This method should only be called if getObjectValueType returns VALUE_ENUMERATION. The Object associated with a node that accepts emuerated values must be equal to one of the values returned by this method, as defined by the == operator (as opposed to the Object.equals method).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparable<?> getObjectMinValue(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the minimum legal value for the Object reference within the named element. Whether this value is inclusive or exclusive may be determined by the value of getObjectValueType. This method should only be called if getObjectValueType returns one of the constants starting with VALUE_RANGE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparable<?> getObjectMaxValue(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the maximum legal value for the Object reference within the named element. Whether this value is inclusive or exclusive may be determined by the value of getObjectValueType. This method should only be called if getObjectValueType returns one of the constants starting with VALUE_RANGE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getObjectArrayMinLength(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the minimum number of array elements that may be used to define the Object reference within the named element. This method should only be called if getObjectValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getObjectArrayMaxLength(String elementName)
+				</name>
+				<description>
+					Description copied from interface: IIOMetadataFormat Returns the maximum number of array elements that may be used to define the Object reference within the named element. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound. This method should only be called if getObjectValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static IIOMetadataFormat getStandardFormatInstance()
+				</name>
+				<description>
+					Returns an IIOMetadataFormat object describing the standard, plug-in neutral javax.imageio_1.0 metadata document format described in the comment of the javax.imageio.metadata package.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

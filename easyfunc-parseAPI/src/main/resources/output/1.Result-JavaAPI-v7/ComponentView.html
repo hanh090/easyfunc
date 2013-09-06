@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class ComponentView  extends View
+		</name>
+		<description>
+			Component decorator that implements the view interface. The entire element is used to represent the component. This acts as a gateway from the display-only View implementations to interactive lightweight components (ie it allows components to be embedded into the View hierarchy). The component is placed relative to the text baseline according to the value returned by Component.getAlignmentY. For Swing components this value can be conveniently set using the method JComponent.setAlignmentY. For example, setting a value of 0.75 will cause 75 percent of the component to be above the baseline, and 25 percent of the component to be below the baseline. This class is implemented to do the extra work necessary to work properly in the presence of multiple threads (i.e. from asynchronous notification of model changes for example) by ensuring that all component access is done on the event thread. The component used is determined by the return value of the createComponent method. The default implementation of this method is to return the component held as an attribute of the element (by calling StyleConstants.getComponent). A limitation of this behavior is that the component cannot be used by more than one text component (i.e. with a shared model). Subclasses can remove this constraint by implementing the createComponent to actually create a component based upon some kind of specification contained in the attributes. The ObjectView class in the html package is an example of a ComponentView implementation that supports multiple component views of a shared model.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ComponentView(Element elem)
+				</name>
+				<description>
+					Creates a new ComponentView object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component createComponent()
+				</name>
+				<description>
+					Create the component that is associated with this view. This will be called when it has been determined that a new component is needed. This would result from a call to setParent or as a result of being notified that attributes have changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Component getComponent()
+				</name>
+				<description>
+					Fetch the component associated with the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape a)
+				</name>
+				<description>
+					The real paint behavior occurs naturally from the association that the component has with its parent container (the same container hosting this view). This is implemented to do nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis. This is implemented to return the value returned by Component.getPreferredSize along the axis of interest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinimumSpan(int axis)
+				</name>
+				<description>
+					Determines the minimum span for this view along an axis. This is implemented to return the value returned by Component.getMinimumSize along the axis of interest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMaximumSpan(int axis)
+				</name>
+				<description>
+					Determines the maximum span for this view along an axis. This is implemented to return the value returned by Component.getMaximumSize along the axis of interest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAlignment(int axis)
+				</name>
+				<description>
+					Determines the desired alignment for this view along an axis. This is implemented to give the alignment of the embedded component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(View p)
+				</name>
+				<description>
+					Sets the parent for a child view. The parent calls this on the child to tell it who its parent is, giving the view access to things like the hosting Container. The superclass behavior is executed, followed by a call to createComponent if the parent view parameter is non-null and a component has not yet been created. The embedded components parent is then set to the value returned by getContainer. If the parent view parameter is null, this view is being cleaned up, thus the component is removed from its parent. The changing of the component hierarchy will touch the component lock, which is the one thing that is not safe from the View hierarchy. Therefore, this functionality is executed immediately if on the event thread, or is queued on the event queue if called from another thread (notification of change from an asynchronous update).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the coordinate space of the model to that of the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(float x,                float y,                Shape a,                Position.Bias[] bias)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

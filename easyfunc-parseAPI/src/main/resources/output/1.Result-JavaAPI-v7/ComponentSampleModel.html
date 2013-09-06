@@ -1,0 +1,342 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class ComponentSampleModel  extends SampleModel
+		</name>
+		<description>
+			This class represents image data which is stored such that each sample of a pixel occupies one data element of the DataBuffer. It stores the N samples which make up a pixel in N separate data array elements. Different bands may be in different banks of the DataBuffer. Accessor methods are provided so that image data can be manipulated directly. This class can support different kinds of interleaving, e.g. band interleaving, scanline interleaving, and pixel interleaving. Pixel stride is the number of data array elements between two samples for the same band on the same scanline. Scanline stride is the number of data array elements between a given sample and the corresponding sample in the same column of the next scanline. Band offsets denote the number of data array elements from the first data array element of the bank of the DataBuffer holding each band to the first sample of the band. The bands are numbered from 0 to N-1. This class can represent image data for which each sample is an unsigned integral number which can be stored in 8, 16, or 32 bits (using DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, or DataBuffer.TYPE_INT, respectively), data for which each sample is a signed integral number which can be stored in 16 bits (using DataBuffer.TYPE_SHORT), or data for which each sample is a signed float or double quantity (using DataBuffer.TYPE_FLOAT or DataBuffer.TYPE_DOUBLE, respectively). All samples of a given ComponentSampleModel are stored with the same precision. All strides and offsets must be non-negative. This class supports TYPE_BYTE, TYPE_USHORT, TYPE_SHORT, TYPE_INT, TYPE_FLOAT, TYPE_DOUBLE,
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int[] bandOffsets
+				</name>
+				<description>
+					Offsets for all bands in data array elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int[] bankIndices
+				</name>
+				<description>
+					Index for each bank storing a band of image data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int numBands
+				</name>
+				<description>
+					The number of bands in this ComponentSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int numBanks
+				</name>
+				<description>
+					The number of banks in this ComponentSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int scanlineStride
+				</name>
+				<description>
+					Line stride (in data array elements) of the region of image data described by this ComponentSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int pixelStride
+				</name>
+				<description>
+					Pixel stride (in data array elements) of the region of image data described by this ComponentSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ComponentSampleModel(int dataType,                      int w,                      int h,                      int pixelStride,                      int scanlineStride,                      int[] bandOffsets)
+				</name>
+				<description>
+					Constructs a ComponentSampleModel with the specified parameters. The number of bands will be given by the length of the bandOffsets array. All bands will be stored in the first bank of the DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ComponentSampleModel(int dataType,                      int w,                      int h,                      int pixelStride,                      int scanlineStride,                      int[] bankIndices,                      int[] bandOffsets)
+				</name>
+				<description>
+					Constructs a ComponentSampleModel with the specified parameters. The number of bands will be given by the length of the bandOffsets array. Different bands may be stored in different banks of the DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel createCompatibleSampleModel(int w,                                        int h)
+				</name>
+				<description>
+					Creates a new ComponentSampleModel with the specified width and height. The new SampleModel will have the same number of bands, storage data type, interleaving scheme, and pixel stride as this SampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel createSubsetSampleModel(int[] bands)
+				</name>
+				<description>
+					Creates a new ComponentSampleModel with a subset of the bands of this ComponentSampleModel. The new ComponentSampleModel can be used with any DataBuffer that the existing ComponentSampleModel can be used with. The new ComponentSampleModel/DataBuffer combination will represent an image with a subset of the bands of the original ComponentSampleModel/DataBuffer combination.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataBuffer createDataBuffer()
+				</name>
+				<description>
+					Creates a DataBuffer that corresponds to this ComponentSampleModel. The DataBuffer object's data type, number of banks, and size are be consistent with this ComponentSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset(int x,              int y)
+				</name>
+				<description>
+					Gets the offset for the first band of pixel (x,y). A sample of the first band can be retrieved from a DataBuffer data with a ComponentSampleModel csm as           data.getElem(csm.getOffset(x, y));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset(int x,              int y,              int b)
+				</name>
+				<description>
+					Gets the offset for band b of pixel (x,y). A sample of band b can be retrieved from a DataBuffer data with a ComponentSampleModel csm as          data.getElem(csm.getOffset(x, y, b));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int[] getSampleSize()
+				</name>
+				<description>
+					Returns the number of bits per sample for all bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getSampleSize(int band)
+				</name>
+				<description>
+					Returns the number of bits per sample for the specified band.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int[] getBankIndices()
+				</name>
+				<description>
+					Returns the bank indices for all bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int[] getBandOffsets()
+				</name>
+				<description>
+					Returns the band offset for all bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getScanlineStride()
+				</name>
+				<description>
+					Returns the scanline stride of this ComponentSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getPixelStride()
+				</name>
+				<description>
+					Returns the pixel stride of this ComponentSampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getNumDataElements()
+				</name>
+				<description>
+					Returns the number of data elements needed to transfer a pixel with the getDataElements(int, int, Object, DataBuffer) and setDataElements(int, int, Object, DataBuffer) methods. For a ComponentSampleModel, this is identical to the number of bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getDataElements(int x,                       int y,                       Object obj,                       DataBuffer data)
+				</name>
+				<description>
+					Returns data for a single pixel in a primitive array of type TransferType. For a ComponentSampleModel, this is the same as the data type, and samples are returned one per array element. Generally, obj should be passed in as null, so that the Object is created automatically and is the right primitive data type. The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by ComponentSampleModel csm1, to DataBuffer db2, whose storage layout is described by ComponentSampleModel csm2. The transfer is usually more efficient than using getPixel and setPixel.          ComponentSampleModel csm1, csm2;         DataBufferInt db1, db2;         csm2.setDataElements(x, y,                              csm1.getDataElements(x, y, null, db1), db2);   Using getDataElements and setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModel objects have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. If obj is not null, it should be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds, or if obj is not null and is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixel(int x,               int y,               int[] iArray,               DataBuffer data)
+				</name>
+				<description>
+					Returns all samples for the specified pixel in an int array, one sample per array element. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixels(int x,                int y,                int w,                int h,                int[] iArray,                DataBuffer data)
+				</name>
+				<description>
+					Returns all samples for the specified rectangle of pixels in an int array, one sample per array element. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSample(int x,              int y,              int b,              DataBuffer data)
+				</name>
+				<description>
+					Returns as int the sample in a specified band for the pixel located at (x,y). An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getSampleFloat(int x,                     int y,                     int b,                     DataBuffer data)
+				</name>
+				<description>
+					Returns the sample in a specified band for the pixel located at (x,y) as a float. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getSampleDouble(int x,                       int y,                       int b,                       DataBuffer data)
+				</name>
+				<description>
+					Returns the sample in a specified band for a pixel located at (x,y) as a double. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSamples(int x,                 int y,                 int w,                 int h,                 int b,                 int[] iArray,                 DataBuffer data)
+				</name>
+				<description>
+					Returns the samples in a specified band for the specified rectangle of pixels in an int array, one sample per data array element. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDataElements(int x,                     int y,                     Object obj,                     DataBuffer data)
+				</name>
+				<description>
+					Sets the data for a single pixel in the specified DataBuffer from a primitive array of type TransferType. For a ComponentSampleModel, this is the same as the data type, and samples are transferred one per array element. The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by ComponentSampleModel csm1, to DataBuffer db2, whose storage layout is described by ComponentSampleModel csm2. The transfer is usually more efficient than using getPixel and setPixel.          ComponentSampleModel csm1, csm2;         DataBufferInt db1, db2;         csm2.setDataElements(x, y, csm1.getDataElements(x, y, null, db1),                              db2);   Using getDataElements and setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModel objects have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. A ClassCastException is thrown if obj is not a primitive array of type TransferType. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds, or if obj is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              int[] iArray,              DataBuffer data)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using an int array of samples for input. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               int[] iArray,               DataBuffer data)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from an int array containing one sample per array element. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               int s,               DataBuffer data)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using an int for input. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               float s,               DataBuffer data)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using a float for input. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               double s,               DataBuffer data)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using a double for input. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                int[] iArray,                DataBuffer data)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from an int array containing one sample per data array element. An ArrayIndexOutOfBoundsException might be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Description copied from class: Object Indicates whether some other object is "equal to" this one. The equals method implements an equivalence relation on non-null object references: It is reflexive: for any non-null reference value x, x.equals(x) should return true. It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true. It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true. It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified. For any non-null reference value x, x.equals(null) should return false. The equals method for class Object implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true). Note that it is generally necessary to override the hashCode method whenever this method is overridden, so as to maintain the general contract for the hashCode method, which states that equal objects must have equal hash codes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Description copied from class: Object Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap. The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the Object.equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables. As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

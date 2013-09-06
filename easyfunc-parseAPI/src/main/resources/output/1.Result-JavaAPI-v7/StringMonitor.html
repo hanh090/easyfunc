@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.management.monitor
+	</package>
+	<type>
+		<name>
+			public class StringMonitor  extends Monitor  implements StringMonitorMBean
+		</name>
+		<description>
+			Defines a monitor MBean designed to observe the values of a string attribute. A string monitor sends notifications as follows: if the attribute value matches the string to compare value, a match notification is sent. The notify match flag must be set to true. Subsequent matchings of the string to compare values do not cause further notifications unless the attribute value differs from the string to compare value. if the attribute value differs from the string to compare value, a differ notification is sent. The notify differ flag must be set to true. Subsequent differences from the string to compare value do not cause further notifications unless the attribute value matches the string to compare value.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StringMonitor()
+				</name>
+				<description>
+					Default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void start()
+				</name>
+				<description>
+					Starts the string monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void stop()
+				</name>
+				<description>
+					Stops the string monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDerivedGauge(ObjectName object)
+				</name>
+				<description>
+					Gets the derived gauge of the specified object, if this object is contained in the set of observed MBeans, or null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getDerivedGaugeTimeStamp(ObjectName object)
+				</name>
+				<description>
+					Gets the derived gauge timestamp of the specified object, if this object is contained in the set of observed MBeans, or 0 otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public String getDerivedGauge()
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by getDerivedGauge(ObjectName) Returns the derived gauge of the first object in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public long getDerivedGaugeTimeStamp()
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by getDerivedGaugeTimeStamp(ObjectName) Gets the derived gauge timestamp of the first object in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getStringToCompare()
+				</name>
+				<description>
+					Gets the string to compare with the observed attribute common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setStringToCompare(String value)                          throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the string to compare with the observed attribute common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getNotifyMatch()
+				</name>
+				<description>
+					Gets the matching notification's on/off switch value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNotifyMatch(boolean value)
+				</name>
+				<description>
+					Sets the matching notification's on/off switch value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getNotifyDiffer()
+				</name>
+				<description>
+					Gets the differing notification's on/off switch value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNotifyDiffer(boolean value)
+				</name>
+				<description>
+					Sets the differing notification's on/off switch value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanNotificationInfo[] getNotificationInfo()
+				</name>
+				<description>
+					Returns a NotificationInfo object containing the name of the Java class of the notification and the notification types sent by the string monitor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

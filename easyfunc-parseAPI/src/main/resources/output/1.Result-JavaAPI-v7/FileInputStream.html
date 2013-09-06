@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class FileInputStream  extends InputStream
+		</name>
+		<description>
+			A FileInputStream obtains input bytes from a file in a file system. What files are available depends on the host environment. FileInputStream is meant for reading streams of raw bytes such as image data. For reading streams of characters, consider using FileReader.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FileInputStream(String name)                  throws FileNotFoundException
+				</name>
+				<description>
+					Creates a FileInputStream by opening a connection to an actual file, the file named by the path name name in the file system. A new FileDescriptor object is created to represent this file connection. First, if there is a security manager, its checkRead method is called with the name argument as its argument. If the named file does not exist, is a directory rather than a regular file, or for some other reason cannot be opened for reading then a FileNotFoundException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileInputStream(File file)                  throws FileNotFoundException
+				</name>
+				<description>
+					Creates a FileInputStream by opening a connection to an actual file, the file named by the File object file in the file system. A new FileDescriptor object is created to represent this file connection. First, if there is a security manager, its checkRead method is called with the path represented by the file argument as its argument. If the named file does not exist, is a directory rather than a regular file, or for some other reason cannot be opened for reading then a FileNotFoundException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileInputStream(FileDescriptor fdObj)
+				</name>
+				<description>
+					Creates a FileInputStream by using the file descriptor fdObj, which represents an existing connection to an actual file in the file system. If there is a security manager, its checkRead method is called with the file descriptor fdObj as its argument to see if it's ok to read the file descriptor. If read access is denied to the file descriptor a SecurityException is thrown. If fdObj is null then a NullPointerException is thrown. This constructor does not throw an exception if fdObj is invalid. However, if the methods are invoked on the resulting stream to attempt I/O on the stream, an IOException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads a byte of data from this input stream. This method blocks if no input is yet available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b)           throws IOException
+				</name>
+				<description>
+					Reads up to b.length bytes of data from this input stream into an array of bytes. This method blocks until some input is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads up to len bytes of data from this input stream into an array of bytes. If len is not zero, the method blocks until some input is available; otherwise, no bytes are read and 0 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					Skips over and discards n bytes of data from the input stream. The skip method may, for a variety of reasons, end up skipping over some smaller number of bytes, possibly 0. If n is negative, an IOException is thrown, even though the skip method of the InputStream superclass does nothing in this case. The actual number of bytes skipped is returned. This method may skip more bytes than are remaining in the backing file. This produces no exception and the number of bytes skipped may include some number of bytes that were beyond the EOF of the backing file. Attempting to read from the stream after skipping past the end will result in -1 indicating the end of the file.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()                throws IOException
+				</name>
+				<description>
+					Returns an estimate of the number of remaining bytes that can be read (or skipped over) from this input stream without blocking by the next invocation of a method for this input stream. The next invocation might be the same thread or another thread. A single read or skip of this many bytes will not block, but may read or skip fewer bytes. In some cases, a non-blocking read (or skip) may appear to be blocked when it is merely slow, for example when reading large files over slow networks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this file input stream and releases any system resources associated with the stream. If this stream has an associated channel then the channel is closed as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final FileDescriptor getFD()                             throws IOException
+				</name>
+				<description>
+					Returns the FileDescriptor object that represents the connection to the actual file in the file system being used by this FileInputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileChannel getChannel()
+				</name>
+				<description>
+					Returns the unique FileChannel object associated with this file input stream. The initial position of the returned channel will be equal to the number of bytes read from the file so far. Reading bytes from this stream will increment the channel's position. Changing the channel's position, either explicitly or by reading, will change this stream's file position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void finalize()                   throws IOException
+				</name>
+				<description>
+					Ensures that the close method of this file input stream is called when there are no more references to it.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

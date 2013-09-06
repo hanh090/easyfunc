@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig.dom
+	</package>
+	<type>
+		<name>
+			public class DOMSignContext  extends DOMCryptoContext  implements XMLSignContext
+		</name>
+		<description>
+			A DOM-specific XMLSignContext. This class contains additional methods to specify the location in a DOM tree where an XMLSignature object is to be marshalled when generating the signature. Note that DOMSignContext instances can contain information and state specific to the XML signature structure it is used with. The results are unpredictable if a DOMSignContext is used with different signature structures (for example, you should not use the same DOMSignContext instance to sign two different XMLSignature objects).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DOMSignContext(Key signingKey,                Node parent)
+				</name>
+				<description>
+					Creates a DOMSignContext with the specified signing key and parent node. The signing key is stored in a singleton KeySelector that is returned by the getKeySelector method. The marshalled XMLSignature will be added as the last child element of the specified parent node unless a next sibling node is specified by invoking the setNextSibling method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DOMSignContext(Key signingKey,                Node parent,                Node nextSibling)
+				</name>
+				<description>
+					Creates a DOMSignContext with the specified signing key, parent and next sibling nodes. The signing key is stored in a singleton KeySelector that is returned by the getKeySelector method. The marshalled XMLSignature will be inserted as a child element of the specified parent node and immediately before the specified next sibling node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DOMSignContext(KeySelector ks,                Node parent)
+				</name>
+				<description>
+					Creates a DOMSignContext with the specified key selector and parent node. The marshalled XMLSignature will be added as the last child element of the specified parent node unless a next sibling node is specified by invoking the setNextSibling method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DOMSignContext(KeySelector ks,                Node parent,                Node nextSibling)
+				</name>
+				<description>
+					Creates a DOMSignContext with the specified key selector, parent and next sibling nodes. The marshalled XMLSignature will be inserted as a child element of the specified parent node and immediately before the specified next sibling node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(Node parent)
+				</name>
+				<description>
+					Sets the parent node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNextSibling(Node nextSibling)
+				</name>
+				<description>
+					Sets the next sibling node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getParent()
+				</name>
+				<description>
+					Returns the parent node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getNextSibling()
+				</name>
+				<description>
+					Returns the nextSibling node.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

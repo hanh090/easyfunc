@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.text
+	</package>
+	<type>
+		<name>
+			public class DateFormatSymbols  extends Object  implements Serializable, Cloneable
+		</name>
+		<description>
+			DateFormatSymbols is a public class for encapsulating localizable date-time formatting data, such as the names of the months, the names of the days of the week, and the time zone data. DateFormat and SimpleDateFormat both use DateFormatSymbols to encapsulate this information. Typically you shouldn't use DateFormatSymbols directly. Rather, you are encouraged to create a date-time formatter with the DateFormat class's factory methods: getTimeInstance, getDateInstance, or getDateTimeInstance. These methods automatically create a DateFormatSymbols for the formatter so that you don't have to. After the formatter is created, you may modify its format pattern using the setPattern method. For more information about creating formatters using DateFormat's factory methods, see DateFormat. If you decide to create a date-time formatter with a specific format pattern for a specific locale, you can do so with:    new SimpleDateFormat(aPattern, DateFormatSymbols.getInstance(aLocale)).   DateFormatSymbols objects are cloneable. When you obtain a DateFormatSymbols object, feel free to modify the date-time formatting data. For instance, you can replace the localized date-time format pattern characters with the ones that you feel easy to remember. Or you can change the representative cities to your favorite ones. New DateFormatSymbols subclasses may be added to support SimpleDateFormat for date-time formatting for additional locales.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DateFormatSymbols()
+				</name>
+				<description>
+					Construct a DateFormatSymbols object by loading format data from resources for the default locale. This constructor can only construct instances for the locales supported by the Java runtime environment, not for those supported by installed DateFormatSymbolsProvider implementations. For full locale coverage, use the getInstance method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DateFormatSymbols(Locale locale)
+				</name>
+				<description>
+					Construct a DateFormatSymbols object by loading format data from resources for the given locale. This constructor can only construct instances for the locales supported by the Java runtime environment, not for those supported by installed DateFormatSymbolsProvider implementations. For full locale coverage, use the getInstance method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Locale[] getAvailableLocales()
+				</name>
+				<description>
+					Returns an array of all locales for which the getInstance methods of this class can return localized instances. The returned array represents the union of locales supported by the Java runtime and by installed DateFormatSymbolsProvider implementations. It must contain at least a Locale instance equal to Locale.US.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final DateFormatSymbols getInstance()
+				</name>
+				<description>
+					Gets the DateFormatSymbols instance for the default locale. This method provides access to DateFormatSymbols instances for locales supported by the Java runtime itself as well as for those supported by installed DateFormatSymbolsProvider implementations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final DateFormatSymbols getInstance(Locale locale)
+				</name>
+				<description>
+					Gets the DateFormatSymbols instance for the specified locale. This method provides access to DateFormatSymbols instances for locales supported by the Java runtime itself as well as for those supported by installed DateFormatSymbolsProvider implementations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getEras()
+				</name>
+				<description>
+					Gets era strings. For example: "AD" and "BC".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEras(String[] newEras)
+				</name>
+				<description>
+					Sets era strings. For example: "AD" and "BC".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getMonths()
+				</name>
+				<description>
+					Gets month strings. For example: "January", "February", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMonths(String[] newMonths)
+				</name>
+				<description>
+					Sets month strings. For example: "January", "February", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getShortMonths()
+				</name>
+				<description>
+					Gets short month strings. For example: "Jan", "Feb", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setShortMonths(String[] newShortMonths)
+				</name>
+				<description>
+					Sets short month strings. For example: "Jan", "Feb", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getWeekdays()
+				</name>
+				<description>
+					Gets weekday strings. For example: "Sunday", "Monday", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setWeekdays(String[] newWeekdays)
+				</name>
+				<description>
+					Sets weekday strings. For example: "Sunday", "Monday", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getShortWeekdays()
+				</name>
+				<description>
+					Gets short weekday strings. For example: "Sun", "Mon", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setShortWeekdays(String[] newShortWeekdays)
+				</name>
+				<description>
+					Sets short weekday strings. For example: "Sun", "Mon", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getAmPmStrings()
+				</name>
+				<description>
+					Gets ampm strings. For example: "AM" and "PM".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAmPmStrings(String[] newAmpms)
+				</name>
+				<description>
+					Sets ampm strings. For example: "AM" and "PM".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[][] getZoneStrings()
+				</name>
+				<description>
+					Gets time zone strings. Use of this method is discouraged; use TimeZone.getDisplayName() instead. The value returned is a two-dimensional array of strings of size n by m, where m is at least 5. Each of the n rows is an entry containing the localized names for a single TimeZone. Each such row contains (with i ranging from 0..n-1): zoneStrings[i][0] - time zone ID zoneStrings[i][1] - long name of zone in standard time zoneStrings[i][2] - short name of zone in standard time zoneStrings[i][3] - long name of zone in daylight saving time zoneStrings[i][4] - short name of zone in daylight saving time The zone ID is not localized; it's one of the valid IDs of the TimeZone class that are not custom IDs. All other entries are localized names. If a zone does not implement daylight saving time, the daylight saving time names should not be used. If setZoneStrings has been called on this DateFormatSymbols instance, then the strings provided by that call are returned. Otherwise, the returned array contains names provided by the Java runtime and by installed TimeZoneNameProvider implementations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setZoneStrings(String[][] newZoneStrings)
+				</name>
+				<description>
+					Sets time zone strings. The argument must be a two-dimensional array of strings of size n by m, where m is at least 5. Each of the n rows is an entry containing the localized names for a single TimeZone. Each such row contains (with i ranging from 0..n-1): zoneStrings[i][0] - time zone ID zoneStrings[i][1] - long name of zone in standard time zoneStrings[i][2] - short name of zone in standard time zoneStrings[i][3] - long name of zone in daylight saving time zoneStrings[i][4] - short name of zone in daylight saving time The zone ID is not localized; it's one of the valid IDs of the TimeZone class that are not custom IDs. All other entries are localized names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLocalPatternChars()
+				</name>
+				<description>
+					Gets localized date-time pattern characters. For example: 'u', 't', etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocalPatternChars(String newLocalPatternChars)
+				</name>
+				<description>
+					Sets localized date-time pattern characters. For example: 'u', 't', etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Overrides Cloneable
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Override hashCode. Generates a hash code for the DateFormatSymbols object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Override equals
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

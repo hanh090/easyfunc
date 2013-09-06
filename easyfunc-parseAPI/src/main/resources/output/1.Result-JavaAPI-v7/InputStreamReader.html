@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class InputStreamReader  extends Reader
+		</name>
+		<description>
+			An InputStreamReader is a bridge from byte streams to character streams: It reads bytes and decodes them into characters using a specified charset. The charset that it uses may be specified by name or may be given explicitly, or the platform's default charset may be accepted. Each invocation of one of an InputStreamReader's read() methods may cause one or more bytes to be read from the underlying byte-input stream. To enable the efficient conversion of bytes to characters, more bytes may be read ahead from the underlying stream than are necessary to satisfy the current read operation. For top efficiency, consider wrapping an InputStreamReader within a BufferedReader. For example:    BufferedReader in     = new BufferedReader(new InputStreamReader(System.in));
+		</description>
+		<methods>
+			<method>
+				<name>
+					public InputStreamReader(InputStream in)
+				</name>
+				<description>
+					Creates an InputStreamReader that uses the default charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStreamReader(InputStream in,                   String charsetName)                    throws UnsupportedEncodingException
+				</name>
+				<description>
+					Creates an InputStreamReader that uses the named charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStreamReader(InputStream in,                   Charset cs)
+				</name>
+				<description>
+					Creates an InputStreamReader that uses the given charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStreamReader(InputStream in,                   CharsetDecoder dec)
+				</name>
+				<description>
+					Creates an InputStreamReader that uses the given charset decoder.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getEncoding()
+				</name>
+				<description>
+					Returns the name of the character encoding being used by this stream. If the encoding has an historical name then that name is returned; otherwise the encoding's canonical name is returned. If this instance was created with the InputStreamReader(InputStream, String) constructor then the returned name, being unique for the encoding, may differ from the name passed to the constructor. This method will return null if the stream has been closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads a single character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(char[] cbuf,         int offset,         int length)           throws IOException
+				</name>
+				<description>
+					Reads characters into a portion of an array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean ready()                throws IOException
+				</name>
+				<description>
+					Tells whether this stream is ready to be read. An InputStreamReader is ready if its input buffer is not empty, or if bytes are available to be read from the underlying byte stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Description copied from class: Reader Closes the stream and releases any system resources associated with it. Once the stream has been closed, further read(), ready(), mark(), reset(), or skip() invocations will throw an IOException. Closing a previously closed stream has no effect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

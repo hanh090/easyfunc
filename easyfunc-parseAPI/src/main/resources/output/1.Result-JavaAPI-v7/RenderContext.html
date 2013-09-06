@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		java.awt.image.renderable
+	</package>
+	<type>
+		<name>
+			public class RenderContext  extends Object  implements Cloneable
+		</name>
+		<description>
+			A RenderContext encapsulates the information needed to produce a specific rendering from a RenderableImage. It contains the area to be rendered specified in rendering-independent terms, the resolution at which the rendering is to be performed, and hints used to control the rendering process. Users create RenderContexts and pass them to the RenderableImage via the createRendering method. Most of the methods of RenderContexts are not meant to be used directly by applications, but by the RenderableImage and operator classes to which it is passed. The AffineTransform parameter passed into and out of this class are cloned. The RenderingHints and Shape parameters are not necessarily cloneable and are therefore only reference copied. Altering RenderingHints or Shape instances that are in use by instances of RenderContext may have undesired side effects.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RenderContext(AffineTransform usr2dev,               Shape aoi,               RenderingHints hints)
+				</name>
+				<description>
+					Constructs a RenderContext with a given transform. The area of interest is supplied as a Shape, and the rendering hints are supplied as a RenderingHints object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderContext(AffineTransform usr2dev)
+				</name>
+				<description>
+					Constructs a RenderContext with a given transform. The area of interest is taken to be the entire renderable area. No rendering hints are used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderContext(AffineTransform usr2dev,               RenderingHints hints)
+				</name>
+				<description>
+					Constructs a RenderContext with a given transform and rendering hints. The area of interest is taken to be the entire renderable area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderContext(AffineTransform usr2dev,               Shape aoi)
+				</name>
+				<description>
+					Constructs a RenderContext with a given transform and area of interest. The area of interest is supplied as a Shape. No rendering hints are used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderingHints getRenderingHints()
+				</name>
+				<description>
+					Gets the rendering hints of this RenderContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRenderingHints(RenderingHints hints)
+				</name>
+				<description>
+					Sets the rendering hints of this RenderContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTransform(AffineTransform newTransform)
+				</name>
+				<description>
+					Sets the current user-to-device AffineTransform contained in the RenderContext to a given transform.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preConcatenateTransform(AffineTransform modTransform)
+				</name>
+				<description>
+					Modifies the current user-to-device transform by prepending another transform. In matrix notation the operation is:    [this] = [modTransform] x [this]
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void preConcetenateTransform(AffineTransform modTransform)
+				</name>
+				<description>
+					Deprecated. replaced by preConcatenateTransform(AffineTransform). Modifies the current user-to-device transform by prepending another transform. In matrix notation the operation is:    [this] = [modTransform] x [this]   This method does the same thing as the preConcatenateTransform method. It is here for backward compatibility with previous releases which misspelled the method name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void concatenateTransform(AffineTransform modTransform)
+				</name>
+				<description>
+					Modifies the current user-to-device transform by appending another transform. In matrix notation the operation is:    [this] = [this] x [modTransform]
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void concetenateTransform(AffineTransform modTransform)
+				</name>
+				<description>
+					Deprecated. replaced by concatenateTransform(AffineTransform). Modifies the current user-to-device transform by appending another transform. In matrix notation the operation is:    [this] = [this] x [modTransform]   This method does the same thing as the concatenateTransform method. It is here for backward compatibility with previous releases which misspelled the method name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AffineTransform getTransform()
+				</name>
+				<description>
+					Gets the current user-to-device AffineTransform.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAreaOfInterest(Shape newAoi)
+				</name>
+				<description>
+					Sets the current area of interest. The old area is discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getAreaOfInterest()
+				</name>
+				<description>
+					Gets the ares of interest currently contained in the RenderContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Makes a copy of a RenderContext. The area of interest is copied by reference. The usr2dev AffineTransform and hints are cloned, while the area of interest is copied by reference.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

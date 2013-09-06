@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.management.remote.rmi
+	</package>
+	<type>
+		<name>
+			public abstract class RMIServerImpl  extends Object  implements Closeable, RMIServer
+		</name>
+		<description>
+			An RMI object representing a connector server. Remote clients can make connections using the newClient(Object) method. This method returns an RMI object representing the connection. User code does not usually reference this class directly. RMI connection servers are usually created with the class RMIConnectorServer. Remote clients usually create connections either with JMXConnectorFactory or by instantiating RMIConnector. This is an abstract class. Concrete subclasses define the details of the client connection objects, such as whether they use JRMP or IIOP.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RMIServerImpl(Map<String,?> env)
+				</name>
+				<description>
+					Constructs a new RMIServerImpl.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void export()                          throws IOException
+				</name>
+				<description>
+					Exports this RMI object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Remote toStub()                         throws IOException
+				</name>
+				<description>
+					Returns a remotable stub for this server object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultClassLoader(ClassLoader cl)
+				</name>
+				<description>
+					Sets the default ClassLoader for this connector server. New client connections will use this classloader. Existing client connections are unaffected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ClassLoader getDefaultClassLoader()
+				</name>
+				<description>
+					Gets the default ClassLoader used by this connector server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMBeanServer(MBeanServer mbs)
+				</name>
+				<description>
+					Sets the MBeanServer to which this connector server is attached. New client connections will interact with this MBeanServer. Existing client connections are unaffected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanServer getMBeanServer()
+				</name>
+				<description>
+					The MBeanServer to which this connector server is attached. This is the last value passed to setMBeanServer(javax.management.MBeanServer) on this object, or null if that method has never been called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getVersion()
+				</name>
+				<description>
+					Description copied from interface: RMIServer The version of the RMI Connector Protocol understood by this connector server. This is a string with the following format:    protocol-version implementation-name   The protocol-version is a series of two or more non-negative integers separated by periods (.). An implementation of the version described by this documentation must use the string 1.0 here. After the protocol version there must be a space, followed by the implementation name. The format of the implementation name is unspecified. It is recommended that it include an implementation version number. An implementation can use an empty string as its implementation name, for example for security reasons.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RMIConnection newClient(Object credentials)                          throws IOException
+				</name>
+				<description>
+					Creates a new client connection. This method calls makeClient and adds the returned client connection object to an internal list. When this RMIServerImpl is shut down via its close() method, the close() method of each object remaining in the list is called. The fact that a client connection object is in this internal list does not prevent it from being garbage collected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract RMIConnection makeClient(String connectionId,                         Subject subject)                                       throws IOException
+				</name>
+				<description>
+					Creates a new client connection. This method is called by the public method newClient(Object).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void closeClient(RMIConnection client)                               throws IOException
+				</name>
+				<description>
+					Closes a client connection made by makeClient.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract String getProtocol()
+				</name>
+				<description>
+					Returns the protocol string for this object. The string is rmi for RMI/JRMP and iiop for RMI/IIOP.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void clientClosed(RMIConnection client)                       throws IOException
+				</name>
+				<description>
+					Method called when a client connection created by makeClient is closed. A subclass that defines makeClient must arrange for this method to be called when the resultant object's close method is called. This enables it to be removed from the RMIServerImpl's list of connections. It is not an error for client not to be in that list. After removing client from the list of connections, this method calls closeClient(client).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this connection server. This method first calls the closeServer() method so that no new client connections will be accepted. Then, for each remaining RMIConnection object returned by makeClient, its close method is called. The behavior when this method is called more than once is unspecified. If closeServer() throws an IOException, the individual connections are nevertheless closed, and then the IOException is thrown from this method. If closeServer() returns normally but one or more of the individual connections throws an IOException, then, after closing all the connections, one of those IOExceptions is thrown from this method. If more than one connection throws an IOException, it is unspecified which one is thrown from this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void closeServer()                               throws IOException
+				</name>
+				<description>
+					Called by close() to close the connector server. After returning from this method, the connector server must not accept any new connections.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

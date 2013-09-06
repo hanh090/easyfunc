@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public class SecureClassLoader  extends ClassLoader
+		</name>
+		<description>
+			This class extends ClassLoader with additional support for defining classes with an associated code source and permissions which are retrieved by the system policy by default.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected SecureClassLoader(ClassLoader parent)
+				</name>
+				<description>
+					Creates a new SecureClassLoader using the specified parent class loader for delegation. If there is a security manager, this method first calls the security manager's checkCreateClassLoader method to ensure creation of a class loader is allowed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SecureClassLoader()
+				</name>
+				<description>
+					Creates a new SecureClassLoader using the default parent class loader for delegation. If there is a security manager, this method first calls the security manager's checkCreateClassLoader method to ensure creation of a class loader is allowed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Class<?> defineClass(String name,                     byte[] b,                     int off,                     int len,                     CodeSource cs)
+				</name>
+				<description>
+					Converts an array of bytes into an instance of class Class, with an optional CodeSource. Before the class can be used it must be resolved. If a non-null CodeSource is supplied a ProtectionDomain is constructed and associated with the class being defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Class<?> defineClass(String name,                     ByteBuffer b,                     CodeSource cs)
+				</name>
+				<description>
+					Converts a ByteBuffer into an instance of class Class, with an optional CodeSource. Before the class can be used it must be resolved. If a non-null CodeSource is supplied a ProtectionDomain is constructed and associated with the class being defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PermissionCollection getPermissions(CodeSource codesource)
+				</name>
+				<description>
+					Returns the permissions for the given CodeSource object. This method is invoked by the defineClass method which takes a CodeSource as an argument when it is constructing the ProtectionDomain for the class being defined.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

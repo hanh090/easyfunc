@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.xml.soap
+	</package>
+	<type>
+		<name>
+			public abstract class SOAPPart  extends Object  implements Document, Node
+		</name>
+		<description>
+			The container for the SOAP-specific portion of a SOAPMessage object. All messages are required to have a SOAP part, so when a SOAPMessage object is created, it will automatically have a SOAPPart object. A SOAPPart object is a MIME part and has the MIME headers Content-Id, Content-Location, and Content-Type. Because the value of Content-Type must be "text/xml", a SOAPPart object automatically has a MIME header of Content-Type with its value set to "text/xml". The value must be "text/xml" because content in the SOAP part of a message must be in XML format. Content that is not of type "text/xml" must be in an AttachmentPart object rather than in the SOAPPart object. When a message is sent, its SOAP part must have the MIME header Content-Type set to "text/xml". Or, from the other perspective, the SOAP part of any message that is received must have the MIME header Content-Type with a value of "text/xml". A client can access the SOAPPart object of a SOAPMessage object by calling the method SOAPMessage.getSOAPPart. The following line of code, in which message is a SOAPMessage object, retrieves the SOAP part of a message.      SOAPPart soapPart = message.getSOAPPart();   A SOAPPart object contains a SOAPEnvelope object, which in turn contains a SOAPBody object and a SOAPHeader object. The SOAPPart method getEnvelope can be used to retrieve the SOAPEnvelope object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SOAPPart()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SOAPEnvelope getEnvelope()                                    throws SOAPException
+				</name>
+				<description>
+					Gets the SOAPEnvelope object associated with this SOAPPart object. Once the SOAP envelope is obtained, it can be used to get its contents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getContentId()
+				</name>
+				<description>
+					Retrieves the value of the MIME header whose name is "Content-Id".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getContentLocation()
+				</name>
+				<description>
+					Retrieves the value of the MIME header whose name is "Content-Location".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentId(String contentId)
+				</name>
+				<description>
+					Sets the value of the MIME header named "Content-Id" to the given String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentLocation(String contentLocation)
+				</name>
+				<description>
+					Sets the value of the MIME header "Content-Location" to the given String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void removeMimeHeader(String header)
+				</name>
+				<description>
+					Removes all MIME headers that match the given name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void removeAllMimeHeaders()
+				</name>
+				<description>
+					Removes all the MimeHeader objects for this SOAPEnvelope object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String[] getMimeHeader(String name)
+				</name>
+				<description>
+					Gets all the values of the MimeHeader object in this SOAPPart object that is identified by the given String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setMimeHeader(String name,                   String value)
+				</name>
+				<description>
+					Changes the first header entry that matches the given header name so that its value is the given value, adding a new header with the given name and value if no existing header is a match. If there is a match, this method clears all existing values for the first header that matches and sets the given value instead. If more than one header has the given name, this method removes all of the matching headers after the first one. Note that RFC822 headers can contain only US-ASCII characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void addMimeHeader(String name,                   String value)
+				</name>
+				<description>
+					Creates a MimeHeader object with the specified name and value and adds it to this SOAPPart object. If a MimeHeader with the specified name already exists, this method adds the specified value to the already existing value(s). Note that RFC822 headers can contain only US-ASCII characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Iterator getAllMimeHeaders()
+				</name>
+				<description>
+					Retrieves all the headers for this SOAPPart object as an iterator over the MimeHeader objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Iterator getMatchingMimeHeaders(String[] names)
+				</name>
+				<description>
+					Retrieves all MimeHeader objects that match a name in the given array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Iterator getNonMatchingMimeHeaders(String[] names)
+				</name>
+				<description>
+					Retrieves all MimeHeader objects whose name does not match a name in the given array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setContent(Source source)                           throws SOAPException
+				</name>
+				<description>
+					Sets the content of the SOAPEnvelope object with the data from the given Source object. This Source must contain a valid SOAP document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Source getContent()                             throws SOAPException
+				</name>
+				<description>
+					Returns the content of the SOAPEnvelope as a JAXP Source object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

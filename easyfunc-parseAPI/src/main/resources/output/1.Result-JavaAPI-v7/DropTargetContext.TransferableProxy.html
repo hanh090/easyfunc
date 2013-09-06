@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.awt.dnd
+	</package>
+	<type>
+		<name>
+			protected class DropTargetContext.TransferableProxy  extends Object  implements Transferable
+		</name>
+		<description>
+			TransferableProxy is a helper inner class that implements Transferable interface and serves as a proxy for another Transferable object which represents data transfer for a particular drag-n-drop operation. The proxy forwards all requests to the encapsulated transferable and automatically performs additional conversion on the data returned by the encapsulated transferable in case of local transfer.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Transferable transferable
+				</name>
+				<description>
+					The encapsulated Transferable object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isLocal
+				</name>
+				<description>
+					A boolean indicating if the encapsulated Transferable object represents the result of local drag-n-drop operation (within the same JVM).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataFlavor[] getTransferDataFlavors()
+				</name>
+				<description>
+					Returns an array of DataFlavor objects indicating the flavors the data can be provided in by the encapsulated transferable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDataFlavorSupported(DataFlavor flavor)
+				</name>
+				<description>
+					Returns whether or not the specified data flavor is supported by the encapsulated transferable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getTransferData(DataFlavor df)                         throws UnsupportedFlavorException,                                IOException
+				</name>
+				<description>
+					Returns an object which represents the data provided by the encapsulated transferable for the requested data flavor. In case of local transfer a serialized copy of the object returned by the encapsulated transferable is provided when the data is requested in application/x-java-serialized-object data flavor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

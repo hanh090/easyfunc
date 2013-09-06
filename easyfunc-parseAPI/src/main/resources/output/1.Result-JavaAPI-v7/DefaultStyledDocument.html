@@ -1,0 +1,270 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class DefaultStyledDocument  extends AbstractDocument  implements StyledDocument
+		</name>
+		<description>
+			A document that can be marked up with character and paragraph styles in a manner similar to the Rich Text Format. The element structure for this document represents style crossings for style runs. These style runs are mapped into a paragraph element structure (which may reside in some other structure). The style runs break at paragraph boundaries since logical styles are assigned to paragraph boundaries. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int BUFFER_SIZE_DEFAULT
+				</name>
+				<description>
+					The default size of the initial content buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DefaultStyledDocument.ElementBuffer buffer
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultStyledDocument(AbstractDocument.Content c,                       StyleContext styles)
+				</name>
+				<description>
+					Constructs a styled document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultStyledDocument(StyleContext styles)
+				</name>
+				<description>
+					Constructs a styled document with the default content storage implementation and a shared set of styles.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultStyledDocument()
+				</name>
+				<description>
+					Constructs a default styled document. This buffers input content by a size of BUFFER_SIZE_DEFAULT and has a style context that is scoped by the lifetime of the document and is not shared with other documents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getDefaultRootElement()
+				</name>
+				<description>
+					Gets the default root element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void create(DefaultStyledDocument.ElementSpec[] data)
+				</name>
+				<description>
+					Initialize the document to reflect the given element structure (i.e. the structure reported by the getDefaultRootElement method. If the document contained any data it will first be removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void insert(int offset,            DefaultStyledDocument.ElementSpec[] data)                 throws BadLocationException
+				</name>
+				<description>
+					Inserts new elements in bulk. This is useful to allow parsing with the document in an unlocked state and prepare an element structure modification. This method takes an array of tokens that describe how to update an element structure so the time within a write lock can be greatly reduced in an asynchronous update situation. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeElement(Element elem)
+				</name>
+				<description>
+					Removes an element from this document. The element is removed from its parent element, as well as the text in the range identified by the element. If the element isn't associated with the document, IllegalArgumentException is thrown. As empty branch elements are not allowed in the document, if the element is the sole child, its parent element is removed as well, recursively. This means that when replacing all the children of a particular element, new children should be added before removing old children. Element removal results in two events being fired, the DocumentEvent for changes in element structure and UndoableEditEvent for changes in document content. If the element contains end-of-content mark (the last "\n" character in document), this character is not removed; instead, preceding leaf element is extended to cover the character. If the last leaf already ends with "\n", it is included in content removal. If the element is null, NullPointerException is thrown. If the element structure would become invalid after the removal, for example if the element is the document root element, IllegalArgumentException is thrown. If the current element structure is invalid, IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style addStyle(String nm,               Style parent)
+				</name>
+				<description>
+					Adds a new style into the logical style hierarchy. Style attributes resolve from bottom up so an attribute specified in a child will override an attribute specified in the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeStyle(String nm)
+				</name>
+				<description>
+					Removes a named style previously added to the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style getStyle(String nm)
+				</name>
+				<description>
+					Fetches a named style previously added.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<?> getStyleNames()
+				</name>
+				<description>
+					Fetches the list of of style names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLogicalStyle(int pos,                     Style s)
+				</name>
+				<description>
+					Sets the logical style to use for the paragraph at the given position. If attributes aren't explicitly set for character and paragraph attributes they will resolve through the logical style assigned to the paragraph, which in turn may resolve through some hierarchy completely independent of the element hierarchy in the document. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style getLogicalStyle(int p)
+				</name>
+				<description>
+					Fetches the logical style assigned to the paragraph represented by the given position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCharacterAttributes(int offset,                            int length,                            AttributeSet s,                            boolean replace)
+				</name>
+				<description>
+					Sets attributes for some part of the document. A write lock is held by this operation while changes are being made, and a DocumentEvent is sent to the listeners after the change has been successfully completed. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParagraphAttributes(int offset,                            int length,                            AttributeSet s,                            boolean replace)
+				</name>
+				<description>
+					Sets attributes for a paragraph. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getParagraphElement(int pos)
+				</name>
+				<description>
+					Gets the paragraph element at the offset pos. A paragraph consists of at least one child Element, which is usually a leaf.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getCharacterElement(int pos)
+				</name>
+				<description>
+					Gets a character element based on a position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void insertUpdate(AbstractDocument.DefaultDocumentEvent chng,                  AttributeSet attr)
+				</name>
+				<description>
+					Updates document structure as a result of text insertion. This will happen within a write lock. This implementation simply parses the inserted content for line breaks and builds up a set of instructions for the element buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeUpdate(AbstractDocument.DefaultDocumentEvent chng)
+				</name>
+				<description>
+					Updates document structure as a result of text removal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected AbstractDocument.AbstractElement createDefaultRoot()
+				</name>
+				<description>
+					Creates the root element to be used to represent the default document structure.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getForeground(AttributeSet attr)
+				</name>
+				<description>
+					Gets the foreground color from an attribute set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackground(AttributeSet attr)
+				</name>
+				<description>
+					Gets the background color from an attribute set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont(AttributeSet attr)
+				</name>
+				<description>
+					Gets the font from an attribute set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void styleChanged(Style style)
+				</name>
+				<description>
+					Called when any of this document's styles have changed. Subclasses may wish to be intelligent about what gets damaged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addDocumentListener(DocumentListener listener)
+				</name>
+				<description>
+					Adds a document listener for notification of any changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeDocumentListener(DocumentListener listener)
+				</name>
+				<description>
+					Removes a document listener.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public abstract class ContextList  extends Object
+		</name>
+		<description>
+			An object containing a modifiable list of String objects that represent property names. This class is used in Request operations to describe the contexts that need to be resolved and sent with the invocation. (A context is resolved by giving a property name and getting back the value associated with it.) This is done by calling the Context method get_values and supplying a string from a ContextList object as the third parameter. The method get_values returns an NVList object containing the NamedValue objects that hold the value(s) identified by the given string. A ContextList object is created by the ORB, as illustrated here:      ORB orb = ORB.init(args, null);     org.omg.CORBA.ContextList ctxList = orb.create_context_list();   The variable ctxList represents an empty ContextList object. Strings are added to the list with the method add, accessed with the method item, and removed with the method remove.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ContextList()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int count()
+				</name>
+				<description>
+					Returns the number of String objects in this ContextList object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void add(String ctx)
+				</name>
+				<description>
+					Adds a String object to this ContextList object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String item(int index)                       throws Bounds
+				</name>
+				<description>
+					Returns the String object at the given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void remove(int index)                       throws Bounds
+				</name>
+				<description>
+					Removes the String object at the given index. Note that the indices of all strings following the one removed are shifted down by one.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

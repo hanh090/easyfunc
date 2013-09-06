@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.print.attribute.standard
+	</package>
+	<type>
+		<name>
+			public final class JobImpressionsCompleted  extends IntegerSyntax  implements PrintJobAttribute
+		</name>
+		<description>
+			Class JobImpressionsCompleted is an integer valued printing attribute class that specifies the number of impressions completed for the job so far. For printing devices, the impressions completed includes interpreting, marking, and stacking the output. The JobImpressionsCompleted attribute describes the progress of the job. This attribute is intended to be a counter. That is, the JobImpressionsCompleted value for a job that has not started processing must be 0. When the job's JobState is PROCESSING or PROCESSING_STOPPED, the JobImpressionsCompleted value is intended to increase as the job is processed; it indicates the amount of the job that has been processed at the time the Print Job's attribute set is queried or at the time a print job event is reported. When the job enters the COMPLETED, CANCELED, or ABORTED states, the JobImpressionsCompleted value is the final value for the job. IPP Compatibility: The integer value gives the IPP integer value. The category name returned by getName() gives the IPP attribute name.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JobImpressionsCompleted(int value)
+				</name>
+				<description>
+					Construct a new job impressions completed attribute with the given integer value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object object)
+				</name>
+				<description>
+					Returns whether this job impressions completed attribute is equivalent tp the passed in object. To be equivalent, all of the following conditions must be true: object is not null. object is an instance of class JobImpressionsCompleted. This job impressions completed attribute's value and object's value are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Class<? extends Attribute> getCategory()
+				</name>
+				<description>
+					Get the printing attribute class which is to be used as the "category" for this printing attribute value. For class JobImpressionsCompleted, the category is class JobImpressionsCompleted itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getName()
+				</name>
+				<description>
+					Get the name of the category of which this attribute value is an instance. For class JobImpressionsCompleted, the category name is "job-impressions-completed".
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

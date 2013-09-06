@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.crypto.spec
+	</package>
+	<type>
+		<name>
+			public class RC5ParameterSpec  extends Object  implements AlgorithmParameterSpec
+		</name>
+		<description>
+			This class specifies the parameters used with the RC5 algorithm. The parameters consist of a version number, a rounds count, a word size, and optionally an initialization vector (IV) (only in feedback mode). This class can be used to initialize a Cipher object that implements the RC5 algorithm as supplied by RSA Security Inc., or any parties authorized by RSA Security.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RC5ParameterSpec(int version,                  int rounds,                  int wordSize)
+				</name>
+				<description>
+					Constructs a parameter set for RC5 from the given version, number of rounds and word size (in bits).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RC5ParameterSpec(int version,                  int rounds,                  int wordSize,                  byte[] iv)
+				</name>
+				<description>
+					Constructs a parameter set for RC5 from the given version, number of rounds, word size (in bits), and IV. Note that the size of the IV (block size) must be twice the word size. The bytes that constitute the IV are those between iv[0] and iv[2*(wordSize/8)-1] inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RC5ParameterSpec(int version,                  int rounds,                  int wordSize,                  byte[] iv,                  int offset)
+				</name>
+				<description>
+					Constructs a parameter set for RC5 from the given version, number of rounds, word size (in bits), and IV. The IV is taken from iv, starting at offset inclusive. Note that the size of the IV (block size), starting at offset inclusive, must be twice the word size. The bytes that constitute the IV are those between iv[offset] and iv[offset+2*(wordSize/8)-1] inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVersion()
+				</name>
+				<description>
+					Returns the version.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRounds()
+				</name>
+				<description>
+					Returns the number of rounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getWordSize()
+				</name>
+				<description>
+					Returns the word size in bits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getIV()
+				</name>
+				<description>
+					Returns the IV or null if this parameter set does not contain an IV.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Tests for equality between the specified object and this object. Two RC5ParameterSpec objects are considered equal if their version numbers, number of rounds, word sizes, and IVs are equal. (Two IV references are considered equal if both are null.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Calculates a hash code value for the object. Objects that are equal will also have the same hashcode.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public abstract class AuthProvider  extends Provider
+		</name>
+		<description>
+			This class defines login and logout methods for a provider. While callers may invoke login directly, the provider may also invoke login on behalf of callers if it determines that a login must be performed prior to certain operations.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AuthProvider(String name,              double version,              String info)
+				</name>
+				<description>
+					Constructs a provider with the specified name, version number, and information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void login(Subject subject,           CallbackHandler handler)                      throws LoginException
+				</name>
+				<description>
+					Log in to this provider. The provider relies on a CallbackHandler to obtain authentication information from the caller (a PIN, for example). If the caller passes a null handler to this method, the provider uses the handler set in the setCallbackHandler method. If no handler was set in that method, the provider queries the auth.login.defaultCallbackHandler security property for the fully qualified class name of a default handler implementation. If the security property is not set, the provider is assumed to have alternative means for obtaining authentication information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void logout()                       throws LoginException
+				</name>
+				<description>
+					Log out from this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setCallbackHandler(CallbackHandler handler)
+				</name>
+				<description>
+					Set a CallbackHandler. The provider uses this handler if one is not passed to the login method. The provider also uses this handler if it invokes login on behalf of callers. In either case if a handler is not set via this method, the provider queries the auth.login.defaultCallbackHandler security property for the fully qualified class name of a default handler implementation. If the security property is not set, the provider is assumed to have alternative means for obtaining authentication information.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public class Observable  extends Object
+		</name>
+		<description>
+			This class represents an observable object, or "data" in the model-view paradigm. It can be subclassed to represent an object that the application wants to have observed. An observable object can have one or more observers. An observer may be any object that implements interface Observer. After an observable instance changes, an application calling the Observable's notifyObservers method causes all of its observers to be notified of the change by a call to their update method. The order in which notifications will be delivered is unspecified. The default implementation provided in the Observable class will notify Observers in the order in which they registered interest, but subclasses may change this order, use no guaranteed order, deliver notifications on separate threads, or may guarantee that their subclass follows this order, as they choose. Note that this notification mechanism is has nothing to do with threads and is completely separate from the wait and notify mechanism of class Object. When an observable object is newly created, its set of observers is empty. Two observers are considered the same if and only if the equals method returns true for them.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Observable()
+				</name>
+				<description>
+					Construct an Observable with zero Observers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addObserver(Observer o)
+				</name>
+				<description>
+					Adds an observer to the set of observers for this object, provided that it is not the same as some observer already in the set. The order in which notifications will be delivered to multiple observers is not specified. See the class comment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deleteObserver(Observer o)
+				</name>
+				<description>
+					Deletes an observer from the set of observers of this object. Passing null to this method will have no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void notifyObservers()
+				</name>
+				<description>
+					If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed. Each observer has its update method called with two arguments: this observable object and null. In other words, this method is equivalent to: notifyObservers(null)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void notifyObservers(Object arg)
+				</name>
+				<description>
+					If this object has changed, as indicated by the hasChanged method, then notify all of its observers and then call the clearChanged method to indicate that this object has no longer changed. Each observer has its update method called with two arguments: this observable object and the arg argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deleteObservers()
+				</name>
+				<description>
+					Clears the observer list so that this object no longer has any observers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setChanged()
+				</name>
+				<description>
+					Marks this Observable object as having been changed; the hasChanged method will now return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void clearChanged()
+				</name>
+				<description>
+					Indicates that this object has no longer changed, or that it has already notified all of its observers of its most recent change, so that the hasChanged method will now return false. This method is called automatically by the notifyObservers methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasChanged()
+				</name>
+				<description>
+					Tests if this object has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int countObservers()
+				</name>
+				<description>
+					Returns the number of observers of this Observable object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

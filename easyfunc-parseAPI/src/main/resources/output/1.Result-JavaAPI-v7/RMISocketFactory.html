@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.rmi.server
+	</package>
+	<type>
+		<name>
+			public abstract class RMISocketFactory  extends Object  implements RMIClientSocketFactory, RMIServerSocketFactory
+		</name>
+		<description>
+			An RMISocketFactory instance is used by the RMI runtime in order to obtain client and server sockets for RMI calls. An application may use the setSocketFactory method to request that the RMI runtime use its socket factory instance instead of the default implementation. The default socket factory implementation used goes through a three-tiered approach to creating client sockets. First, a direct socket connection to the remote VM is attempted. If that fails (due to a firewall), the runtime uses HTTP with the explicit port number of the server. If the firewall does not allow this type of communication, then HTTP to a cgi-bin script on the server is used to POST the RMI call.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RMISocketFactory()
+				</name>
+				<description>
+					Constructs an RMISocketFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Socket createSocket(String host,                    int port)                               throws IOException
+				</name>
+				<description>
+					Creates a client socket connected to the specified host and port.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ServerSocket createServerSocket(int port)                                           throws IOException
+				</name>
+				<description>
+					Create a server socket on the specified port (port 0 indicates an anonymous port).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setSocketFactory(RMISocketFactory fac)                               throws IOException
+				</name>
+				<description>
+					Set the global socket factory from which RMI gets sockets (if the remote object is not associated with a specific client and/or server socket factory). The RMI socket factory can only be set once. Note: The RMISocketFactory may only be set if the current security manager allows setting a socket factory; if disallowed, a SecurityException will be thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static RMISocketFactory getSocketFactory()
+				</name>
+				<description>
+					Returns the socket factory set by the setSocketFactory method. Returns null if no socket factory has been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static RMISocketFactory getDefaultSocketFactory()
+				</name>
+				<description>
+					Returns a reference to the default socket factory used by this RMI implementation. This will be the factory used by the RMI runtime when getSocketFactory returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setFailureHandler(RMIFailureHandler fh)
+				</name>
+				<description>
+					Sets the failure handler to be called by the RMI runtime if server socket creation fails. By default, if no failure handler is installed and server socket creation fails, the RMI runtime does attempt to recreate the server socket. If there is a security manager, this method first calls the security manager's checkSetFactory method to ensure the operation is allowed. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static RMIFailureHandler getFailureHandler()
+				</name>
+				<description>
+					Returns the handler for socket creation failure set by the setFailureHandler method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

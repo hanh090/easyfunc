@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		org.omg.PortableServer
+	</package>
+	<type>
+		<name>
+			public interface ServantActivatorOperations  extends ServantManagerOperations
+		</name>
+		<description>
+			When the POA has the RETAIN policy it uses servant managers that are ServantActivators.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Servant incarnate(byte[] oid,                  POA adapter)                    throws ForwardRequest
+				</name>
+				<description>
+					This operation is invoked by the POA whenever the POA receives a request for an object that is not currently active, assuming the POA has the USE_SERVANT_MANAGER and RETAIN policies.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void etherealize(byte[] oid,                 POA adapter,                 Servant serv,                 boolean cleanup_in_progress,                 boolean remaining_activations)
+				</name>
+				<description>
+					This operation is invoked whenever a servant for an object is deactivated, assuming the POA has the USE_SERVANT_MANAGER and RETAIN policies.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

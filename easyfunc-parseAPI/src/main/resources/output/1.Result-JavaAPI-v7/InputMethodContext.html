@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.awt.im.spi
+	</package>
+	<type>
+		<name>
+			public interface InputMethodContext  extends InputMethodRequests
+		</name>
+		<description>
+			Provides methods that input methods can use to communicate with their client components or to request other services. This interface is implemented by the input method framework, and input methods call its methods on the instance they receive through InputMethod.setInputMethodContext(java.awt.im.spi.InputMethodContext). There should be no other implementors or callers.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void dispatchInputMethodEvent(int id,                              AttributedCharacterIterator text,                              int committedCharacterCount,                              TextHitInfo caret,                              TextHitInfo visiblePosition)
+				</name>
+				<description>
+					Creates an input method event from the arguments given and dispatches it to the client component. For arguments, see InputMethodEvent.InputMethodEvent(java.awt.Component, int, java.awt.font.TextHitInfo, java.awt.font.TextHitInfo).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Window createInputMethodWindow(String title,                               boolean attachToInputContext)
+				</name>
+				<description>
+					Creates a top-level window for use by the input method. The intended behavior of this window is: it floats above all document windows and dialogs it and all components that it contains do not receive the focus it has lightweight decorations, such as a reduced drag region without title However, the actual behavior with respect to these three items is platform dependent. The title may or may not be displayed, depending on the actual type of window created. If attachToInputContext is true, the new window will share the input context that corresponds to this input method context, so that events for components in the window are automatically dispatched to the input method. Also, when the window is opened using setVisible(true), the input context will prevent deactivate and activate calls to the input method that might otherwise be caused. Input methods must call Window.dispose on the returned input method window when it is no longer needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					JFrame createInputMethodJFrame(String title,                               boolean attachToInputContext)
+				</name>
+				<description>
+					Creates a top-level Swing JFrame for use by the input method. The intended behavior of this window is: it floats above all document windows and dialogs it and all components that it contains do not receive the focus it has lightweight decorations, such as a reduced drag region without title However, the actual behavior with respect to these three items is platform dependent. The title may or may not be displayed, depending on the actual type of window created. If attachToInputContext is true, the new window will share the input context that corresponds to this input method context, so that events for components in the window are automatically dispatched to the input method. Also, when the window is opened using setVisible(true), the input context will prevent deactivate and activate calls to the input method that might otherwise be caused. Input methods must call Window.dispose on the returned input method window when it is no longer needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void enableClientWindowNotification(InputMethod inputMethod,                                    boolean enable)
+				</name>
+				<description>
+					Enables or disables notification of the current client window's location and state for the specified input method. When notification is enabled, the input method's notifyClientWindowChange method is called as described in that method's specification. Notification is automatically disabled when the input method is disposed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

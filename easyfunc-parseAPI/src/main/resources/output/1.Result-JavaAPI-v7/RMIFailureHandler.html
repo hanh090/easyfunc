@@ -1,0 +1,27 @@
+<javaelement>
+	<package>
+		java.rmi.server
+	</package>
+	<type>
+		<name>
+			public interface RMIFailureHandler
+		</name>
+		<description>
+			An RMIFailureHandler can be registered via the RMISocketFactory.setFailureHandler call. The failure method of the handler is invoked when the RMI runtime is unable to create a ServerSocket to listen for incoming calls. The failure method returns a boolean indicating whether the runtime should attempt to re-create the ServerSocket.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean failure(Exception ex)
+				</name>
+				<description>
+					The failure callback is invoked when the RMI runtime is unable to create a ServerSocket via the RMISocketFactory. An RMIFailureHandler is registered via a call to RMISocketFacotry.setFailureHandler. If no failure handler is installed, the default behavior is to attempt to re-create the ServerSocket.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

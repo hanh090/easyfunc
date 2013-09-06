@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.sound.sampled.spi
+	</package>
+	<type>
+		<name>
+			public abstract class AudioFileWriter  extends Object
+		</name>
+		<description>
+			Provider for audio file writing services. Classes providing concrete implementations can write one or more types of audio file from an audio stream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AudioFileWriter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioFileFormat.Type[] getAudioFileTypes()
+				</name>
+				<description>
+					Obtains the file types for which file writing support is provided by this audio file writer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFileTypeSupported(AudioFileFormat.Type fileType)
+				</name>
+				<description>
+					Indicates whether file writing support for the specified file type is provided by this audio file writer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioFileFormat.Type[] getAudioFileTypes(AudioInputStream stream)
+				</name>
+				<description>
+					Obtains the file types that this audio file writer can write from the audio input stream specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFileTypeSupported(AudioFileFormat.Type fileType,                            AudioInputStream stream)
+				</name>
+				<description>
+					Indicates whether an audio file of the type specified can be written from the audio input stream indicated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int write(AudioInputStream stream,          AudioFileFormat.Type fileType,          OutputStream out)                     throws IOException
+				</name>
+				<description>
+					Writes a stream of bytes representing an audio file of the file type indicated to the output stream provided. Some file types require that the length be written into the file header, and cannot be written from start to finish unless the length is known in advance. An attempt to write such a file type will fail with an IOException if the length in the audio file format is AudioSystem.NOT_SPECIFIED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int write(AudioInputStream stream,          AudioFileFormat.Type fileType,          File out)                     throws IOException
+				</name>
+				<description>
+					Writes a stream of bytes representing an audio file of the file format indicated to the external file provided.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

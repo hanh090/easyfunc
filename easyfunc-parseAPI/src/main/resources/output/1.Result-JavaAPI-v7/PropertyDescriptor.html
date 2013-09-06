@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public class PropertyDescriptor  extends FeatureDescriptor
+		</name>
+		<description>
+			A PropertyDescriptor describes one property that a Java Bean exports via a pair of accessor methods.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PropertyDescriptor(String propertyName,                    Class<?> beanClass)                     throws IntrospectionException
+				</name>
+				<description>
+					Constructs a PropertyDescriptor for a property that follows the standard Java convention by having getFoo and setFoo accessor methods. Thus if the argument name is "fred", it will assume that the writer method is "setFred" and the reader method is "getFred" (or "isFred" for a boolean property). Note that the property name should start with a lower case character, which will be capitalized in the method names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PropertyDescriptor(String propertyName,                    Class<?> beanClass,                    String readMethodName,                    String writeMethodName)                     throws IntrospectionException
+				</name>
+				<description>
+					This constructor takes the name of a simple property, and method names for reading and writing the property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PropertyDescriptor(String propertyName,                    Method readMethod,                    Method writeMethod)                     throws IntrospectionException
+				</name>
+				<description>
+					This constructor takes the name of a simple property, and Method objects for reading and writing the property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getPropertyType()
+				</name>
+				<description>
+					Returns the Java type info for the property. Note that the Class object may describe primitive Java types such as int. This type is returned by the read method or is used as the parameter type of the write method. Returns null if the type is an indexed property that does not support non-indexed access.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method getReadMethod()
+				</name>
+				<description>
+					Gets the method that should be used to read the property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReadMethod(Method readMethod)                     throws IntrospectionException
+				</name>
+				<description>
+					Sets the method that should be used to read the property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method getWriteMethod()
+				</name>
+				<description>
+					Gets the method that should be used to write the property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setWriteMethod(Method writeMethod)                      throws IntrospectionException
+				</name>
+				<description>
+					Sets the method that should be used to write the property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isBound()
+				</name>
+				<description>
+					Updates to "bound" properties will cause a "PropertyChange" event to get fired when the property is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBound(boolean bound)
+				</name>
+				<description>
+					Updates to "bound" properties will cause a "PropertyChange" event to get fired when the property is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isConstrained()
+				</name>
+				<description>
+					Attempted updates to "Constrained" properties will cause a "VetoableChange" event to get fired when the property is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setConstrained(boolean constrained)
+				</name>
+				<description>
+					Attempted updates to "Constrained" properties will cause a "VetoableChange" event to get fired when the property is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPropertyEditorClass(Class<?> propertyEditorClass)
+				</name>
+				<description>
+					Normally PropertyEditors will be found using the PropertyEditorManager. However if for some reason you want to associate a particular PropertyEditor with a given property, then you can do it with this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getPropertyEditorClass()
+				</name>
+				<description>
+					Gets any explicit PropertyEditor Class that has been registered for this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PropertyEditor createPropertyEditor(Object bean)
+				</name>
+				<description>
+					Constructs an instance of a property editor using the current property editor class. If the property editor class has a public constructor that takes an Object argument then it will be invoked using the bean parameter as the argument. Otherwise, the default constructor will be invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this PropertyDescriptor against the specified object. Returns true if the objects are the same. Two PropertyDescriptors are the same if the read, write, property types, property editor and flags are equivalent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for the object. See Object.hashCode() for a complete description.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

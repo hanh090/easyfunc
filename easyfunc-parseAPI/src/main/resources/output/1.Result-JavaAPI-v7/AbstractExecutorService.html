@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractExecutorService  extends Object  implements ExecutorService
+		</name>
+		<description>
+			Provides default implementations of ExecutorService execution methods. This class implements the submit, invokeAny and invokeAll methods using a RunnableFuture returned by newTaskFor, which defaults to the FutureTask class provided in this package. For example, the implementation of submit(Runnable) creates an associated RunnableFuture that is executed and returned. Subclasses may override the newTaskFor methods to return RunnableFuture implementations other than FutureTask. Extension example. Here is a sketch of a class that customizes ThreadPoolExecutor to use a CustomTask class instead of the default FutureTask:  public class CustomThreadPoolExecutor extends ThreadPoolExecutor {       static class CustomTask<V> implements RunnableFuture<V> {...}       protected <V> RunnableFuture<V> newTaskFor(Callable<V> c) {         return new CustomTask<V>(c);     }     protected <V> RunnableFuture<V> newTaskFor(Runnable r, V v) {         return new CustomTask<V>(r, v);     }     // ... add constructors, etc.   }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AbstractExecutorService()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected <T> RunnableFuture<T> newTaskFor(Runnable runnable,                                 T value)
+				</name>
+				<description>
+					Returns a RunnableFuture for the given runnable and default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable)
+				</name>
+				<description>
+					Returns a RunnableFuture for the given callable task.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Future<?> submit(Runnable task)
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Submits a Runnable task for execution and returns a Future representing that task. The Future's get method will return null upon successful completion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> Future<T> submit(Runnable task,                     T result)
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Submits a Runnable task for execution and returns a Future representing that task. The Future's get method will return the given result upon successful completion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> Future<T> submit(Callable<T> task)
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Submits a value-returning task for execution and returns a Future representing the pending results of the task. The Future's get method will return the task's result upon successful completion. If you would like to immediately block waiting for a task, you can use constructions of the form result = exec.submit(aCallable).get(); Note: The Executors class includes a set of methods that can convert some other common closure-like objects, for example, PrivilegedAction to Callable form so they can be submitted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T invokeAny(Collection<? extends Callable<T>> tasks)              throws InterruptedException,                     ExecutionException
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do. Upon normal or exceptional return, tasks that have not completed are cancelled. The results of this method are undefined if the given collection is modified while this operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T invokeAny(Collection<? extends Callable<T>> tasks,                long timeout,                TimeUnit unit)              throws InterruptedException,                     ExecutionException,                     TimeoutException
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do before the given timeout elapses. Upon normal or exceptional return, tasks that have not completed are cancelled. The results of this method are undefined if the given collection is modified while this operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)                            throws InterruptedException
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Executes the given tasks, returning a list of Futures holding their status and results when all complete. Future.isDone() is true for each element of the returned list. Note that a completed task could have terminated either normally or by throwing an exception. The results of this method are undefined if the given collection is modified while this operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks,                              long timeout,                              TimeUnit unit)                            throws InterruptedException
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Executes the given tasks, returning a list of Futures holding their status and results when all complete or the timeout expires, whichever happens first. Future.isDone() is true for each element of the returned list. Upon return, tasks that have not completed are cancelled. Note that a completed task could have terminated either normally or by throwing an exception. The results of this method are undefined if the given collection is modified while this operation is in progress.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

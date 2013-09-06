@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.management.modelmbean
+	</package>
+	<type>
+		<name>
+			public interface ModelMBeanInfo
+		</name>
+		<description>
+			This interface is implemented by the ModelMBeanInfo for every ModelMBean. An implementation of this interface must be shipped with every JMX Agent. Java resources wishing to be manageable instantiate the ModelMBean using the MBeanServer's createMBean method. The resource then sets the ModelMBeanInfo and Descriptors for the ModelMBean instance. The attributes, operations, and notifications exposed via the ModelMBeanInfo for the ModelMBean comprise the management interface and are accessible from MBeans, connectors/adaptors like other MBeans. Through the Descriptors, values and methods in the managed application can be defined and mapped to attributes and operations of the ModelMBean. This mapping can be defined during development in a file or dynamically and programmatically at runtime. Every ModelMBean which is instantiated in the MBeanServer becomes manageable: its attributes, operations, and notifications become remotely accessible through the connectors/adaptors connected to that MBeanServer. A Java object cannot be registered in the MBeanServer unless it is a JMX compliant MBean. By instantiating a ModelMBean, resources are guaranteed that the MBean is valid. MBeanException and RuntimeOperationsException must be thrown on every public method. This allows for wrapping exceptions from distributed communications (RMI, EJB, etc.)
+		</description>
+		<methods>
+			<method>
+				<name>
+					Descriptor[] getDescriptors(String inDescriptorType)                              throws MBeanException,                                     RuntimeOperationsException
+				</name>
+				<description>
+					Returns a Descriptor array consisting of all Descriptors for the ModelMBeanInfo of type inDescriptorType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setDescriptors(Descriptor[] inDescriptors)                      throws MBeanException,                             RuntimeOperationsException
+				</name>
+				<description>
+					Adds or replaces descriptors in the ModelMBeanInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Descriptor getDescriptor(String inDescriptorName,                         String inDescriptorType)                           throws MBeanException,                                  RuntimeOperationsException
+				</name>
+				<description>
+					Returns a Descriptor requested by name and descriptorType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setDescriptor(Descriptor inDescriptor,                   String inDescriptorType)                     throws MBeanException,                            RuntimeOperationsException
+				</name>
+				<description>
+					Sets descriptors in the info array of type inDescriptorType for the ModelMBean. The setDescriptor method of the corresponding ModelMBean*Info will be called to set the specified descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Descriptor getMBeanDescriptor()                                throws MBeanException,                                       RuntimeOperationsException
+				</name>
+				<description>
+					Returns the ModelMBean's descriptor which contains MBean wide policies. This descriptor contains metadata about the MBean and default policies for persistence and caching. The fields in the descriptor are defined, but not limited to, the following. Note that when the Type in this table is Number, a String that is the decimal representation of a Long can also be used. Name Type Meaning name String MBean name. descriptorType String Must be "mbean". displayName String Name of MBean to be used in displays. persistPolicy String One of: OnUpdate|OnTimer|NoMoreOftenThan|OnUnregister|Always|Never. See the section "MBean Descriptor Fields" in the JMX specification document. persistLocation String The fully qualified directory name where the MBean should be persisted (if appropriate). persistFile String File name into which the MBean should be persisted. persistPeriod Number Frequency of persist cycle in seconds, for OnTime and NoMoreOftenThan PersistPolicy currencyTimeLimit Number How long cached value is valid: <0 never, =0 always, >0 seconds. log String t: log all notifications, f: log no notifications. logfile String Fully qualified filename to log events to. visibility Number 1-4 where 1: always visible 4: rarely visible. export String Name to be used to export/expose this MBean so that it is findable by other JMX Agents. presentationString String XML formatted string to allow presentation of data to be associated with the MBean. The default descriptor is: name=className,descriptorType="mbean", displayName=className, persistPolicy="never",log="F",visibility="1" If the descriptor does not contain all these fields, they will be added with these default values. Note: because of inconsistencies in previous versions of this specification, it is recommended not to use negative or zero values for currencyTimeLimit. To indicate that a cached value is never valid, omit the currencyTimeLimit field. To indicate that it is always valid, use a very large number for this field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setMBeanDescriptor(Descriptor inDescriptor)                          throws MBeanException,                                 RuntimeOperationsException
+				</name>
+				<description>
+					Sets the ModelMBean's descriptor. This descriptor contains default, MBean wide metadata about the MBean and default policies for persistence and caching. This operation does a complete replacement of the descriptor, no merging is done. If the descriptor to set to is null then the default descriptor will be created. The default descriptor is: name=className,descriptorType="mbean", displayName=className, persistPolicy="never",log="F",visibility="1" If the descriptor does not contain all these fields, they will be added with these default values. See getMBeanDescriptor method javadoc for description of valid field names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ModelMBeanAttributeInfo getAttribute(String inName)                                       throws MBeanException,                                              RuntimeOperationsException
+				</name>
+				<description>
+					Returns a ModelMBeanAttributeInfo requested by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ModelMBeanOperationInfo getOperation(String inName)                                       throws MBeanException,                                              RuntimeOperationsException
+				</name>
+				<description>
+					Returns a ModelMBeanOperationInfo requested by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ModelMBeanNotificationInfo getNotification(String inName)                                             throws MBeanException,                                                    RuntimeOperationsException
+				</name>
+				<description>
+					Returns a ModelMBeanNotificationInfo requested by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object clone()
+				</name>
+				<description>
+					Creates and returns a copy of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					MBeanAttributeInfo[] getAttributes()
+				</name>
+				<description>
+					Returns the list of attributes exposed for management. Each attribute is described by an MBeanAttributeInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getClassName()
+				</name>
+				<description>
+					Returns the name of the Java class of the MBean described by this MBeanInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					MBeanConstructorInfo[] getConstructors()
+				</name>
+				<description>
+					Returns the list of the public constructors of the MBean. Each constructor is described by an MBeanConstructorInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getDescription()
+				</name>
+				<description>
+					Returns a human readable description of the MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					MBeanNotificationInfo[] getNotifications()
+				</name>
+				<description>
+					Returns the list of the notifications emitted by the MBean. Each notification is described by an MBeanNotificationInfo object. In addition to any notification specified by the application, a ModelMBean may always send also two additional notifications: One with descriptor name "GENERIC" and displayName "jmx.modelmbean.generic" Second is a standard attribute change notification with descriptor name "ATTRIBUTE_CHANGE" and displayName "jmx.attribute.change" Thus any implementation of ModelMBeanInfo should always add those two notifications in addition to those specified by the application.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					MBeanOperationInfo[] getOperations()
+				</name>
+				<description>
+					Returns the list of operations of the MBean. Each operation is described by an MBeanOperationInfo object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

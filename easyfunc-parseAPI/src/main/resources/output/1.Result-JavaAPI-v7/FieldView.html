@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class FieldView  extends PlainView
+		</name>
+		<description>
+			Extends the multi-line plain text view to be suitable for a single-line editor view. If the view is allocated extra space, the field must adjust for it. If the hosting component is a JTextField, this view will manage the ranges of the associated BoundedRangeModel and will adjust the horizontal allocation to match the current visibility settings of the JTextField.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FieldView(Element elem)
+				</name>
+				<description>
+					Constructs a new FieldView wrapped on an element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FontMetrics getFontMetrics()
+				</name>
+				<description>
+					Fetches the font metrics associated with the component hosting this view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Shape adjustAllocation(Shape a)
+				</name>
+				<description>
+					Adjusts the allocation given to the view to be a suitable allocation for a text field. If the view has been allocated more than the preferred span vertically, the allocation is changed to be centered vertically. Horizontally the view is adjusted according to the horizontal alignment property set on the associated JTextField (if that is the type of the hosting component).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape a)
+				</name>
+				<description>
+					Renders using the given rendering surface and area on that surface. The view may need to do layout and create child views to enable itself to render into the given allocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getResizeWeight(int axis)
+				</name>
+				<description>
+					Determines the resizability of the view along the given axis. A value of 0 or less is not resizable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(float fx,                float fy,                Shape a,                Position.Bias[] bias)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was inserted into the document in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was removed from the document in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

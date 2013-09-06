@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		javax.naming.directory
+	</package>
+	<type>
+		<name>
+			public class SearchControls  extends Object  implements Serializable
+		</name>
+		<description>
+			This class encapsulates factors that determine scope of search and what gets returned as a result of the search. A SearchControls instance is not synchronized against concurrent multithreaded access. Multiple threads trying to access and modify a single SearchControls instance should lock the object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int OBJECT_SCOPE
+				</name>
+				<description>
+					Search the named object. The NamingEnumeration that results from search() using OBJECT_SCOPE will contain one or zero element. The enumeration contains one element if the named object satisfies the search filter specified in search(). The element will have as its name the empty string because the names of elements in the NamingEnumeration are relative to the target context--in this case, the target context is the named object. It contains zero element if the named object does not satisfy the search filter specified in search(). The value of this constant is 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ONELEVEL_SCOPE
+				</name>
+				<description>
+					Search one level of the named context. The NamingEnumeration that results from search() using ONELEVEL_SCOPE contains elements with objects in the named context that satisfy the search filter specified in search(). The names of elements in the NamingEnumeration are atomic names relative to the named context. The value of this constant is 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int SUBTREE_SCOPE
+				</name>
+				<description>
+					Search the entire subtree rooted at the named object. If the named object is not a DirContext, search only the object. If the named object is a DirContext, search the subtree rooted at the named object, including the named object itself. The search will not cross naming system boundaries. The NamingEnumeration that results from search() using SUBTREE_SCOPE contains elements of objects from the subtree (including the named context) that satisfy the search filter specified in search(). The names of elements in the NamingEnumeration are either relative to the named context or is a URL string. If the named context satisfies the search filter, it is included in the enumeration with the empty string as its name. The value of this constant is 2.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SearchControls()
+				</name>
+				<description>
+					Constructs a search constraints using defaults. The defaults are: search one level no maximum return limit for search results no time limit for search return all attributes associated with objects that satisfy the search filter. do not return named object (return only name and class) do not dereference links during search
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SearchControls(int scope,                long countlim,                int timelim,                String[] attrs,                boolean retobj,                boolean deref)
+				</name>
+				<description>
+					Constructs a search constraints using arguments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSearchScope()
+				</name>
+				<description>
+					Retrieves the search scope of these SearchControls. One of OBJECT_SCOPE, ONELEVEL_SCOPE, SUBTREE_SCOPE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTimeLimit()
+				</name>
+				<description>
+					Retrieves the time limit of these SearchControls in milliseconds. If the value is 0, this means to wait indefinitely.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getDerefLinkFlag()
+				</name>
+				<description>
+					Determines whether links will be dereferenced during the search.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getReturningObjFlag()
+				</name>
+				<description>
+					Determines whether objects will be returned as part of the result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getCountLimit()
+				</name>
+				<description>
+					Retrieves the maximum number of entries that will be returned as a result of the search. 0 indicates that all entries will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getReturningAttributes()
+				</name>
+				<description>
+					Retrieves the attributes that will be returned as part of the search. A value of null indicates that all attributes will be returned. An empty array indicates that no attributes are to be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSearchScope(int scope)
+				</name>
+				<description>
+					Sets the search scope to one of: OBJECT_SCOPE, ONELEVEL_SCOPE, SUBTREE_SCOPE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTimeLimit(int ms)
+				</name>
+				<description>
+					Sets the time limit of these SearchControls in milliseconds. If the value is 0, this means to wait indefinitely.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDerefLinkFlag(boolean on)
+				</name>
+				<description>
+					Enables/disables link dereferencing during the search.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReturningObjFlag(boolean on)
+				</name>
+				<description>
+					Enables/disables returning objects returned as part of the result. If disabled, only the name and class of the object is returned. If enabled, the object will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCountLimit(long limit)
+				</name>
+				<description>
+					Sets the maximum number of entries to be returned as a result of the search. 0 indicates no limit: all entries will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReturningAttributes(String[] attrs)
+				</name>
+				<description>
+					Specifies the attributes that will be returned as part of the search. null indicates that all attributes will be returned. An empty array indicates no attributes are returned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

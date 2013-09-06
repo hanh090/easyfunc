@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.imageio.plugins.jpeg
+	</package>
+	<type>
+		<name>
+			public class JPEGQTable  extends Object
+		</name>
+		<description>
+			A class encapsulating a single JPEG quantization table. The elements appear in natural order (as opposed to zig-zag order). Static variables are provided for the "standard" tables taken from Annex K of the JPEG specification, as well as the default tables conventionally used for visually lossless encoding. For more information about the operation of the standard JPEG plug-in, see the JPEG metadata format specification and usage notes
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final JPEGQTable K1Luminance
+				</name>
+				<description>
+					The sample luminance quantization table given in the JPEG specification, table K.1. According to the specification, these values produce "good" quality output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final JPEGQTable K1Div2Luminance
+				</name>
+				<description>
+					The sample luminance quantization table given in the JPEG specification, table K.1, with all elements divided by 2. According to the specification, these values produce "very good" quality output. This is the table usually used for "visually lossless" encoding, and is the default luminance table used if the default tables and quality settings are used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final JPEGQTable K2Chrominance
+				</name>
+				<description>
+					The sample chrominance quantization table given in the JPEG specification, table K.2. According to the specification, these values produce "good" quality output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final JPEGQTable K2Div2Chrominance
+				</name>
+				<description>
+					The sample chrominance quantization table given in the JPEG specification, table K.1, with all elements divided by 2. According to the specification, these values produce "very good" quality output. This is the table usually used for "visually lossless" encoding, and is the default chrominance table used if the default tables and quality settings are used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JPEGQTable(int[] table)
+				</name>
+				<description>
+					Constructs a quantization table from the argument, which must contain 64 elements in natural order (not zig-zag order). A copy is made of the the input array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getTable()
+				</name>
+				<description>
+					Returns a copy of the current quantization table as an array of ints in natural (not zig-zag) order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JPEGQTable getScaledInstance(float scaleFactor,                             boolean forceBaseline)
+				</name>
+				<description>
+					Returns a new quantization table where the values are multiplied by scaleFactor and then clamped to the range 1..32767 (or to 1..255 if forceBaseline is true). Values of scaleFactor less than 1 tend to improve the quality level of the table, and values greater than 1.0 degrade the quality level of the table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a String representing this quantization table.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

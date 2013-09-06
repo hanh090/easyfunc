@@ -1,0 +1,333 @@
+<javaelement>
+	<package>
+		org.xml.sax.helpers
+	</package>
+	<type>
+		<name>
+			public class XMLFilterImpl  extends Object  implements XMLFilter, EntityResolver, DTDHandler, ContentHandler, ErrorHandler
+		</name>
+		<description>
+			Base class for deriving an XML filter. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. See http://www.saxproject.org for further information. This class is designed to sit between an XMLReader and the client application's event handlers. By default, it does nothing but pass requests up to the reader and events on to the handlers unmodified, but subclasses can override specific methods to modify the event stream or the configuration requests as they pass through.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public XMLFilterImpl()
+				</name>
+				<description>
+					Construct an empty XML filter, with no parent. This filter will have no parent: you must assign a parent before you start a parse or do any configuration with setFeature or setProperty, unless you use this as a pure event consumer rather than as an XMLReader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLFilterImpl(XMLReader parent)
+				</name>
+				<description>
+					Construct an XML filter with the specified parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(XMLReader parent)
+				</name>
+				<description>
+					Set the parent reader. This is the XMLReader from which this filter will obtain its events and to which it will pass its configuration requests. The parent may itself be another filter. If there is no parent reader set, any attempt to parse or to set or get a feature or property will fail.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLReader getParent()
+				</name>
+				<description>
+					Get the parent reader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFeature(String name,                boolean value)                  throws SAXNotRecognizedException,                         SAXNotSupportedException
+				</name>
+				<description>
+					Set the value of a feature. This will always fail if the parent is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getFeature(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Look up the value of a feature. This will always fail if the parent is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProperty(String name,                 Object value)                   throws SAXNotRecognizedException,                          SAXNotSupportedException
+				</name>
+				<description>
+					Set the value of a property. This will always fail if the parent is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Look up the value of a property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEntityResolver(EntityResolver resolver)
+				</name>
+				<description>
+					Set the entity resolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EntityResolver getEntityResolver()
+				</name>
+				<description>
+					Get the current entity resolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDTDHandler(DTDHandler handler)
+				</name>
+				<description>
+					Set the DTD event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DTDHandler getDTDHandler()
+				</name>
+				<description>
+					Get the current DTD event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentHandler(ContentHandler handler)
+				</name>
+				<description>
+					Set the content event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ContentHandler getContentHandler()
+				</name>
+				<description>
+					Get the content event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setErrorHandler(ErrorHandler handler)
+				</name>
+				<description>
+					Set the error event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ErrorHandler getErrorHandler()
+				</name>
+				<description>
+					Get the current error event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void parse(InputSource input)             throws SAXException,                    IOException
+				</name>
+				<description>
+					Parse a document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void parse(String systemId)             throws SAXException,                    IOException
+				</name>
+				<description>
+					Parse a document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputSource resolveEntity(String publicId,                          String systemId)                            throws SAXException,                                   IOException
+				</name>
+				<description>
+					Filter an external entity resolution.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void notationDecl(String name,                  String publicId,                  String systemId)                    throws SAXException
+				</name>
+				<description>
+					Filter a notation declaration event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unparsedEntityDecl(String name,                        String publicId,                        String systemId,                        String notationName)                          throws SAXException
+				</name>
+				<description>
+					Filter an unparsed entity declaration event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDocumentLocator(Locator locator)
+				</name>
+				<description>
+					Filter a new document locator event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startDocument()                     throws SAXException
+				</name>
+				<description>
+					Filter a start document event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endDocument()                   throws SAXException
+				</name>
+				<description>
+					Filter an end document event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startPrefixMapping(String prefix,                        String uri)                          throws SAXException
+				</name>
+				<description>
+					Filter a start Namespace prefix mapping event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endPrefixMapping(String prefix)                        throws SAXException
+				</name>
+				<description>
+					Filter an end Namespace prefix mapping event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startElement(String uri,                  String localName,                  String qName,                  Attributes atts)                    throws SAXException
+				</name>
+				<description>
+					Filter a start element event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endElement(String uri,                String localName,                String qName)                  throws SAXException
+				</name>
+				<description>
+					Filter an end element event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void characters(char[] ch,                int start,                int length)                  throws SAXException
+				</name>
+				<description>
+					Filter a character data event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void ignorableWhitespace(char[] ch,                         int start,                         int length)                           throws SAXException
+				</name>
+				<description>
+					Filter an ignorable whitespace event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void processingInstruction(String target,                           String data)                             throws SAXException
+				</name>
+				<description>
+					Filter a processing instruction event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void skippedEntity(String name)                     throws SAXException
+				</name>
+				<description>
+					Filter a skipped entity event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void warning(SAXParseException e)               throws SAXException
+				</name>
+				<description>
+					Filter a warning event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void error(SAXParseException e)             throws SAXException
+				</name>
+				<description>
+					Filter an error event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fatalError(SAXParseException e)                  throws SAXException
+				</name>
+				<description>
+					Filter a fatal error event.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

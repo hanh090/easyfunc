@@ -1,0 +1,1044 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractButton  extends JComponent  implements ItemSelectable, SwingConstants
+		</name>
+		<description>
+			Defines common behaviors for buttons and menu items. Buttons can be configured, and to some degree controlled, by Actions. Using an Action with a button has many benefits beyond directly configuring a button. Refer to Swing Components Supporting Action for more details, and you can find more information in How to Use Actions, a section in The Java Tutorial. For further information see How to Use Buttons, Check Boxes, and Radio Buttons, a section in The Java Tutorial. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String MODEL_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change in the button model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String TEXT_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change in the button's text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MNEMONIC_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the button's mnemonic.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MARGIN_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change in the button's margins.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String VERTICAL_ALIGNMENT_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change in the button's vertical alignment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String HORIZONTAL_ALIGNMENT_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change in the button's horizontal alignment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String VERTICAL_TEXT_POSITION_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change in the button's vertical text position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String HORIZONTAL_TEXT_POSITION_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change in the button's horizontal text position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String BORDER_PAINTED_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to having the border drawn, or having it not drawn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String FOCUS_PAINTED_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to having the border highlighted when focused, or not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ROLLOVER_ENABLED_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change from rollover enabled to disabled or back to enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CONTENT_AREA_FILLED_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to having the button paint the content area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ICON_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the icon that represents the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String PRESSED_ICON_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the icon used when the button has been pressed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String SELECTED_ICON_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the icon used when the button has been selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ROLLOVER_ICON_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the icon used when the cursor is over the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ROLLOVER_SELECTED_ICON_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the icon used when the cursor is over the button and it has been selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String DISABLED_ICON_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the icon used when the button has been disabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String DISABLED_SELECTED_ICON_CHANGED_PROPERTY
+				</name>
+				<description>
+					Identifies a change to the icon used when the button has been disabled and selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ButtonModel model
+				</name>
+				<description>
+					The data model that determines the button's state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener changeListener
+				</name>
+				<description>
+					The button model's changeListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ActionListener actionListener
+				</name>
+				<description>
+					The button model's ActionListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ItemListener itemListener
+				</name>
+				<description>
+					The button model's ItemListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient ChangeEvent changeEvent
+				</name>
+				<description>
+					Only one ChangeEvent is needed per button instance since the event's only state is the source property. The source of events generated is always "this".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AbstractButton()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHideActionText(boolean hideActionText)
+				</name>
+				<description>
+					Sets the hideActionText property, which determines whether the button displays text from the Action. This is useful only if an Action has been installed on the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getHideActionText()
+				</name>
+				<description>
+					Returns the value of the hideActionText property, which determines whether the button displays text from the Action. This is useful only if an Action has been installed on the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getText()
+				</name>
+				<description>
+					Returns the button's text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setText(String text)
+				</name>
+				<description>
+					Sets the button's text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSelected()
+				</name>
+				<description>
+					Returns the state of the button. True if the toggle button is selected, false if it's not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelected(boolean b)
+				</name>
+				<description>
+					Sets the state of the button. Note that this method does not trigger an actionEvent. Call doClick to perform a programatic action change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void doClick()
+				</name>
+				<description>
+					Programmatically perform a "click". This does the same thing as if the user had pressed and released the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void doClick(int pressTime)
+				</name>
+				<description>
+					Programmatically perform a "click". This does the same thing as if the user had pressed and released the button. The button stays visually "pressed" for pressTime milliseconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMargin(Insets m)
+				</name>
+				<description>
+					Sets space for margin between the button's border and the label. Setting to null will cause the button to use the default margin. The button's default Border object will use this value to create the proper margin. However, if a non-default border is set on the button, it is that Border object's responsibility to create the appropriate margin space (else this property will effectively be ignored).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getMargin()
+				</name>
+				<description>
+					Returns the margin between the button's border and the label.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getIcon()
+				</name>
+				<description>
+					Returns the default icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIcon(Icon defaultIcon)
+				</name>
+				<description>
+					Sets the button's default icon. This icon is also used as the "pressed" and "disabled" icon if there is no explicitly set pressed icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getPressedIcon()
+				</name>
+				<description>
+					Returns the pressed icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPressedIcon(Icon pressedIcon)
+				</name>
+				<description>
+					Sets the pressed icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getSelectedIcon()
+				</name>
+				<description>
+					Returns the selected icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedIcon(Icon selectedIcon)
+				</name>
+				<description>
+					Sets the selected icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getRolloverIcon()
+				</name>
+				<description>
+					Returns the rollover icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRolloverIcon(Icon rolloverIcon)
+				</name>
+				<description>
+					Sets the rollover icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getRolloverSelectedIcon()
+				</name>
+				<description>
+					Returns the rollover selection icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRolloverSelectedIcon(Icon rolloverSelectedIcon)
+				</name>
+				<description>
+					Sets the rollover selected icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledIcon()
+				</name>
+				<description>
+					Returns the icon used by the button when it's disabled. If no disabled icon has been set this will forward the call to the look and feel to construct an appropriate disabled Icon. Some look and feels might not render the disabled Icon, in which case they will ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDisabledIcon(Icon disabledIcon)
+				</name>
+				<description>
+					Sets the disabled icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledSelectedIcon()
+				</name>
+				<description>
+					Returns the icon used by the button when it's disabled and selected. If no disabled selection icon has been set, this will forward the call to the LookAndFeel to construct an appropriate disabled Icon from the selection icon if it has been set and to getDisabledIcon() otherwise. Some look and feels might not render the disabled selected Icon, in which case they will ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDisabledSelectedIcon(Icon disabledSelectedIcon)
+				</name>
+				<description>
+					Sets the disabled selection icon for the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVerticalAlignment()
+				</name>
+				<description>
+					Returns the vertical alignment of the text and icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVerticalAlignment(int alignment)
+				</name>
+				<description>
+					Sets the vertical alignment of the icon and text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHorizontalAlignment()
+				</name>
+				<description>
+					Returns the horizontal alignment of the icon and text. AbstractButton's default is SwingConstants.CENTER, but subclasses such as JCheckBox may use a different default.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHorizontalAlignment(int alignment)
+				</name>
+				<description>
+					Sets the horizontal alignment of the icon and text. AbstractButton's default is SwingConstants.CENTER, but subclasses such as JCheckBox may use a different default.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVerticalTextPosition()
+				</name>
+				<description>
+					Returns the vertical position of the text relative to the icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVerticalTextPosition(int textPosition)
+				</name>
+				<description>
+					Sets the vertical position of the text relative to the icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHorizontalTextPosition()
+				</name>
+				<description>
+					Returns the horizontal position of the text relative to the icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHorizontalTextPosition(int textPosition)
+				</name>
+				<description>
+					Sets the horizontal position of the text relative to the icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIconTextGap()
+				</name>
+				<description>
+					Returns the amount of space between the text and the icon displayed in this button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIconTextGap(int iconTextGap)
+				</name>
+				<description>
+					If both the icon and text properties are set, this property defines the space between them. The default value of this property is 4 pixels. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int checkHorizontalKey(int key,                       String exception)
+				</name>
+				<description>
+					Verify that the key argument is a legal value for the horizontalAlignment and horizontalTextPosition properties. Valid values are: SwingConstants.RIGHT SwingConstants.LEFT SwingConstants.CENTER SwingConstants.LEADING SwingConstants.TRAILING
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int checkVerticalKey(int key,                     String exception)
+				</name>
+				<description>
+					Verify that the key argument is a legal value for the vertical properties. Valid values are: SwingConstants.CENTER SwingConstants.TOP SwingConstants.BOTTOM
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotify()
+				</name>
+				<description>
+					Notifies this component that it no longer has a parent component. When this method is invoked, any KeyboardActions set up in the the chain of parent components are removed. This method is called by the toolkit internally and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setActionCommand(String actionCommand)
+				</name>
+				<description>
+					Sets the action command for this button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getActionCommand()
+				</name>
+				<description>
+					Returns the action command for this button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAction(Action a)
+				</name>
+				<description>
+					Sets the Action. The new Action replaces any previously set Action but does not affect ActionListeners independently added with addActionListener. If the Action is already a registered ActionListener for the button, it is not re-registered. Setting the Action results in immediately changing all the properties described in Swing Components Supporting Action. Subsequently, the button's properties are automatically updated as the Action's properties change. This method uses three other methods to set and help track the Action's property values. It uses the configurePropertiesFromAction method to immediately change the button's properties. To track changes in the Action's property values, this method registers the PropertyChangeListener returned by createActionPropertyChangeListener. The default PropertyChangeListener invokes the actionPropertyChanged method when a property in the Action changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Action getAction()
+				</name>
+				<description>
+					Returns the currently set Action for this ActionEvent source, or null if no Action is set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void configurePropertiesFromAction(Action a)
+				</name>
+				<description>
+					Sets the properties on this button to match those in the specified Action. Refer to Swing Components Supporting Action for more details as to which properties this sets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void actionPropertyChanged(Action action,                           String propertyName)
+				</name>
+				<description>
+					Updates the button's state in response to property changes in the associated action. This method is invoked from the PropertyChangeListener returned from createActionPropertyChangeListener. Subclasses do not normally need to invoke this. Subclasses that support additional Action properties should override this and configurePropertiesFromAction. Refer to the table at Swing Components Supporting Action for a list of the properties this method sets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createActionPropertyChangeListener(Action a)
+				</name>
+				<description>
+					Creates and returns a PropertyChangeListener that is responsible for listening for changes from the specified Action and updating the appropriate properties. Warning: If you subclass this do not create an anonymous inner class. If you do the lifetime of the button will be tied to that of the Action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isBorderPainted()
+				</name>
+				<description>
+					Gets the borderPainted property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBorderPainted(boolean b)
+				</name>
+				<description>
+					Sets the borderPainted property. If true and the button has a border, the border is painted. The default value for the borderPainted property is true. Some look and feels might not support the borderPainted property, in which case they ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintBorder(Graphics g)
+				</name>
+				<description>
+					Paint the button's border if BorderPainted property is true and the button has a border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFocusPainted()
+				</name>
+				<description>
+					Gets the paintFocus property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFocusPainted(boolean b)
+				</name>
+				<description>
+					Sets the paintFocus property, which must be true for the focus state to be painted. The default value for the paintFocus property is true. Some look and feels might not paint focus state; they will ignore this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isContentAreaFilled()
+				</name>
+				<description>
+					Gets the contentAreaFilled property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentAreaFilled(boolean b)
+				</name>
+				<description>
+					Sets the contentAreaFilled property. If true the button will paint the content area. If you wish to have a transparent button, such as an icon only button, for example, then you should set this to false. Do not call setOpaque(false). The default value for the the contentAreaFilled property is true. This function may cause the component's opaque property to change. The exact behavior of calling this function varies on a component-by-component and L&F-by-L&F basis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isRolloverEnabled()
+				</name>
+				<description>
+					Gets the rolloverEnabled property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRolloverEnabled(boolean b)
+				</name>
+				<description>
+					Sets the rolloverEnabled property, which must be true for rollover effects to occur. The default value for the rolloverEnabled property is false. Some look and feels might not implement rollover effects; they will ignore this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMnemonic()
+				</name>
+				<description>
+					Returns the keyboard mnemonic from the the current model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMnemonic(int mnemonic)
+				</name>
+				<description>
+					Sets the keyboard mnemonic on the current model. The mnemonic is the key which when combined with the look and feel's mouseless modifier (usually Alt) will activate this button if focus is contained somewhere within this button's ancestor window. A mnemonic must correspond to a single key on the keyboard and should be specified using one of the VK_XXX keycodes defined in java.awt.event.KeyEvent. These codes and the wider array of codes for international keyboards may be obtained through java.awt.event.KeyEvent.getExtendedKeyCodeForChar. Mnemonics are case-insensitive, therefore a key event with the corresponding keycode would cause the button to be activated whether or not the Shift modifier was pressed. If the character defined by the mnemonic is found within the button's label string, the first occurrence of it will be underlined to indicate the mnemonic to the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMnemonic(char mnemonic)
+				</name>
+				<description>
+					This method is now obsolete, please use setMnemonic(int) to set the mnemonic for a button. This method is only designed to handle character values which fall between 'a' and 'z' or 'A' and 'Z'.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDisplayedMnemonicIndex(int index)                                 throws IllegalArgumentException
+				</name>
+				<description>
+					Provides a hint to the look and feel as to which character in the text should be decorated to represent the mnemonic. Not all look and feels may support this. A value of -1 indicates either there is no mnemonic, the mnemonic character is not contained in the string, or the developer does not wish the mnemonic to be displayed. The value of this is updated as the properties relating to the mnemonic change (such as the mnemonic itself, the text...). You should only ever have to call this if you do not wish the default character to be underlined. For example, if the text was 'Save As', with a mnemonic of 'a', and you wanted the 'A' to be decorated, as 'Save As', you would have to invoke setDisplayedMnemonicIndex(5) after invoking setMnemonic(KeyEvent.VK_A).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDisplayedMnemonicIndex()
+				</name>
+				<description>
+					Returns the character, as an index, that the look and feel should provide decoration for as representing the mnemonic character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMultiClickThreshhold(long threshhold)
+				</name>
+				<description>
+					Sets the amount of time (in milliseconds) required between mouse press events for the button to generate the corresponding action events. After the initial mouse press occurs (and action event generated) any subsequent mouse press events which occur on intervals less than the threshhold will be ignored and no corresponding action event generated. By default the threshhold is 0, which means that for each mouse press, an action event will be fired, no matter how quickly the mouse clicks occur. In buttons where this behavior is not desirable (for example, the "OK" button in a dialog), this threshhold should be set to an appropriate positive value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getMultiClickThreshhold()
+				</name>
+				<description>
+					Gets the amount of time (in milliseconds) required between mouse press events for the button to generate the corresponding action events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ButtonModel getModel()
+				</name>
+				<description>
+					Returns the model that this button represents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(ButtonModel newModel)
+				</name>
+				<description>
+					Sets the model that this button represents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ButtonUI getUI()
+				</name>
+				<description>
+					Returns the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(ButtonUI ui)
+				</name>
+				<description>
+					Sets the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the UI property to a value from the current look and feel. Subtypes of AbstractButton should override this to update the UI. For example, JButton might do the following:         setUI((ButtonUI)UIManager.getUI(            "ButtonUI", "javax.swing.plaf.basic.BasicButtonUI", this));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addImpl(Component comp,             Object constraints,             int index)
+				</name>
+				<description>
+					Adds the specified component to this container at the specified index, refer to Container.addImpl(Component, Object, int) for a complete description of this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayout(LayoutManager mgr)
+				</name>
+				<description>
+					Sets the layout manager for this container, refer to Container.setLayout(LayoutManager) for a complete description of this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Adds a ChangeListener to the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Removes a ChangeListener from the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ChangeListener[] getChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the ChangeListeners added to this AbstractButton with addChangeListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireStateChanged()
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addActionListener(ActionListener l)
+				</name>
+				<description>
+					Adds an ActionListener to the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeActionListener(ActionListener l)
+				</name>
+				<description>
+					Removes an ActionListener from the button. If the listener is the currently set Action for the button, then the Action is set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActionListener[] getActionListeners()
+				</name>
+				<description>
+					Returns an array of all the ActionListeners added to this AbstractButton with addActionListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener createChangeListener()
+				</name>
+				<description>
+					Subclasses that want to handle ChangeEvents differently can override this to return another ChangeListener implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireActionPerformed(ActionEvent event)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the event parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireItemStateChanged(ItemEvent event)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the event parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ActionListener createActionListener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ItemListener createItemListener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEnabled(boolean b)
+				</name>
+				<description>
+					Enables (or disables) the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public String getLabel()
+				</name>
+				<description>
+					Deprecated. - Replaced by getText Returns the label text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setLabel(String label)
+				</name>
+				<description>
+					Deprecated. - Replaced by setText(text) Sets the label text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addItemListener(ItemListener l)
+				</name>
+				<description>
+					Adds an ItemListener to the checkbox.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeItemListener(ItemListener l)
+				</name>
+				<description>
+					Removes an ItemListener from the button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ItemListener[] getItemListeners()
+				</name>
+				<description>
+					Returns an array of all the ItemListeners added to this AbstractButton with addItemListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getSelectedObjects()
+				</name>
+				<description>
+					Returns an array (length 1) containing the label or null if the button is not selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void init(String text,          Icon icon)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean imageUpdate(Image img,                    int infoflags,                    int x,                    int y,                    int w,                    int h)
+				</name>
+				<description>
+					This is overridden to return false if the current Icon's Image is not equal to the passed in Image img.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this AbstractButton. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null. Overriding paramString to provide information about the specific new aspects of the JFC components.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

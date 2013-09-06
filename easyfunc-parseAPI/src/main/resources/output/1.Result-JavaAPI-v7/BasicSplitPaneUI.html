@@ -1,0 +1,639 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public class BasicSplitPaneUI  extends SplitPaneUI
+		</name>
+		<description>
+			A Basic L&F implementation of the SplitPaneUI.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected static final String NON_CONTINUOUS_DIVIDER
+				</name>
+				<description>
+					The divider used for non-continuous layout is added to the split pane with this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static int KEYBOARD_DIVIDER_MOVE_OFFSET
+				</name>
+				<description>
+					How far (relative) the divider does move when it is moved around by the cursor keys on the keyboard.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JSplitPane splitPane
+				</name>
+				<description>
+					JSplitPane instance this instance is providing the look and feel for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSplitPaneUI.BasicHorizontalLayoutManager layoutManager
+				</name>
+				<description>
+					LayoutManager that is created and placed into the split pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSplitPaneDivider divider
+				</name>
+				<description>
+					Instance of the divider for this JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener propertyChangeListener
+				</name>
+				<description>
+					Instance of the PropertyChangeListener for this JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener focusListener
+				</name>
+				<description>
+					Instance of the FocusListener for this JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int dividerSize
+				</name>
+				<description>
+					The size of the divider while the dragging session is valid.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component nonContinuousLayoutDivider
+				</name>
+				<description>
+					Instance for the shadow of the divider when non continuous layout is being used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean draggingHW
+				</name>
+				<description>
+					Set to true in startDragging if any of the children (not including the nonContinuousLayoutDivider) are heavy weights.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int beginDragDividerLocation
+				</name>
+				<description>
+					Location of the divider when the dragging session began.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke upKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke downKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke leftKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke rightKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke homeKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke endKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected KeyStroke dividerResizeToggleKey
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener keyboardUpLeftListener
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener keyboardDownRightListener
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener keyboardHomeListener
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener keyboardEndListener
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener keyboardResizeToggleListener
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this previously undocumented field is no longer used. Key bindings are now defined by the LookAndFeel, please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicSplitPaneUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent x)
+				</name>
+				<description>
+					Creates a new BasicSplitPaneUI instance
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void installUI(JComponent c)
+				</name>
+				<description>
+					Installs the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults()
+				</name>
+				<description>
+					Installs the UI defaults.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners()
+				</name>
+				<description>
+					Installs the event listeners for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installKeyboardActions()
+				</name>
+				<description>
+					Installs the keyboard actions for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallUI(JComponent c)
+				</name>
+				<description>
+					Uninstalls the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults()
+				</name>
+				<description>
+					Uninstalls the UI defaults.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners()
+				</name>
+				<description>
+					Uninstalls the event listeners for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallKeyboardActions()
+				</name>
+				<description>
+					Uninstalls the keyboard actions for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createPropertyChangeListener()
+				</name>
+				<description>
+					Creates a PropertyChangeListener for the JSplitPane UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener createFocusListener()
+				</name>
+				<description>
+					Creates a FocusListener for the JSplitPane UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener createKeyboardUpLeftListener()
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this method is no longer used. Subclassers previously using this method should instead create an Action wrapping the ActionListener, and register that Action by overriding installKeyboardActions and placing the Action in the SplitPane's ActionMap. Please refer to the key bindings specification for further details. Creates a ActionListener for the JSplitPane UI that listens for specific key presses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener createKeyboardDownRightListener()
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this method is no longer used. Subclassers previously using this method should instead create an Action wrapping the ActionListener, and register that Action by overriding installKeyboardActions and placing the Action in the SplitPane's ActionMap. Please refer to the key bindings specification for further details. Creates a ActionListener for the JSplitPane UI that listens for specific key presses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener createKeyboardHomeListener()
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this method is no longer used. Subclassers previously using this method should instead create an Action wrapping the ActionListener, and register that Action by overriding installKeyboardActions and placing the Action in the SplitPane's ActionMap. Please refer to the key bindings specification for further details. Creates a ActionListener for the JSplitPane UI that listens for specific key presses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener createKeyboardEndListener()
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this method is no longer used. Subclassers previously using this method should instead create an Action wrapping the ActionListener, and register that Action by overriding installKeyboardActions and placing the Action in the SplitPane's ActionMap. Please refer to the key bindings specification for further details. Creates a ActionListener for the JSplitPane UI that listens for specific key presses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected ActionListener createKeyboardResizeToggleListener()
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this method is no longer used. Subclassers previously using this method should instead create an Action wrapping the ActionListener, and register that Action by overriding installKeyboardActions and placing the Action in the SplitPane's ActionMap. Please refer to the key bindings specification for further details. Creates a ActionListener for the JSplitPane UI that listens for specific key presses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOrientation()
+				</name>
+				<description>
+					Returns the orientation for the JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOrientation(int orientation)
+				</name>
+				<description>
+					Set the orientation for the JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isContinuousLayout()
+				</name>
+				<description>
+					Determines wether the JSplitPane is set to use a continuous layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContinuousLayout(boolean b)
+				</name>
+				<description>
+					Turn continuous layout on/off.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLastDragLocation()
+				</name>
+				<description>
+					Returns the last drag location of the JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLastDragLocation(int l)
+				</name>
+				<description>
+					Set the last drag location of the JSplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicSplitPaneDivider getDivider()
+				</name>
+				<description>
+					Returns the divider between the top Components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component createDefaultNonContinuousLayoutDivider()
+				</name>
+				<description>
+					Returns the default non continuous layout divider, which is an instance of Canvas that fills in the background with dark gray.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setNonContinuousLayoutDivider(Component newDivider)
+				</name>
+				<description>
+					Sets the divider to use when the splitPane is configured to not continuously layout. This divider will only be used during a dragging session. It is recommended that the passed in component be a heavy weight.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setNonContinuousLayoutDivider(Component newDivider,                                   boolean rememberSizes)
+				</name>
+				<description>
+					Sets the divider to use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getNonContinuousLayoutDivider()
+				</name>
+				<description>
+					Returns the divider to use when the splitPane is configured to not continuously layout. This divider will only be used during a dragging session.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JSplitPane getSplitPane()
+				</name>
+				<description>
+					Returns the splitpane this instance is currently contained in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicSplitPaneDivider createDefaultDivider()
+				</name>
+				<description>
+					Creates the default divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void resetToPreferredSizes(JSplitPane jc)
+				</name>
+				<description>
+					Messaged to reset the preferred sizes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDividerLocation(JSplitPane jc,                        int location)
+				</name>
+				<description>
+					Sets the location of the divider to location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDividerLocation(JSplitPane jc)
+				</name>
+				<description>
+					Returns the location of the divider, which may differ from what the splitpane thinks the location of the divider is.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinimumDividerLocation(JSplitPane jc)
+				</name>
+				<description>
+					Gets the minimum location of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaximumDividerLocation(JSplitPane jc)
+				</name>
+				<description>
+					Gets the maximum location of the divider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void finishedPaintingChildren(JSplitPane sp,                              Graphics g)
+				</name>
+				<description>
+					Called when the specified split pane has finished painting its children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           JComponent jc)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Paints the specified component appropriately for the look and feel. This method is invoked from the ComponentUI.update method when the specified component is being painted. Subclasses should override this method and use the specified Graphics object to render the content of the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize(JComponent jc)
+				</name>
+				<description>
+					Returns the preferred size for the passed in component, This is passed off to the current layoutmanager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize(JComponent jc)
+				</name>
+				<description>
+					Returns the minimum size for the passed in component, This is passed off to the current layoutmanager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMaximumSize(JComponent jc)
+				</name>
+				<description>
+					Returns the maximum size for the passed in component, This is passed off to the current layoutmanager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getInsets(JComponent jc)
+				</name>
+				<description>
+					Returns the insets. The insets are returned from the border insets of the current border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void resetLayoutManager()
+				</name>
+				<description>
+					Resets the layout manager based on orientation and messages it with invalidateLayout to pull in appropriate Components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void startDragging()
+				</name>
+				<description>
+					Should be messaged before the dragging session starts, resets lastDragLocation and dividerSize.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void dragDividerTo(int location)
+				</name>
+				<description>
+					Messaged during a dragging session to move the divider to the passed in location. If continuousLayout is true the location is reset and the splitPane validated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void finishDraggingTo(int location)
+				</name>
+				<description>
+					Messaged to finish the dragging session. If not continuous display the dividers location will be reset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected int getDividerBorderSize()
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3, instead set the border on the divider. As of Java 2 platform v1.3 this method is no longer used. Instead you should set the border on the divider. Returns the width of one side of the divider border.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

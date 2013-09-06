@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class GradientPaint  extends Object  implements Paint
+		</name>
+		<description>
+			The GradientPaint class provides a way to fill a Shape with a linear color gradient pattern. If Point P1 with Color C1 and Point P2 with Color C2 are specified in user space, the Color on the P1, P2 connecting line is proportionally changed from C1 to C2. Any point P not on the extended P1, P2 connecting line has the color of the point P' that is the perpendicular projection of P on the extended P1, P2 connecting line. Points on the extended line outside of the P1, P2 segment can be colored in one of two ways. If the gradient is cyclic then the points on the extended P1, P2 connecting line cycle back and forth between the colors C1 and C2. If the gradient is acyclic then points on the P1 side of the segment have the constant Color C1 while points on the P2 side have the constant Color C2.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public GradientPaint(float x1,               float y1,               Color color1,               float x2,               float y2,               Color color2)
+				</name>
+				<description>
+					Constructs a simple acyclic GradientPaint object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GradientPaint(Point2D pt1,               Color color1,               Point2D pt2,               Color color2)
+				</name>
+				<description>
+					Constructs a simple acyclic GradientPaint object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GradientPaint(float x1,               float y1,               Color color1,               float x2,               float y2,               Color color2,               boolean cyclic)
+				</name>
+				<description>
+					Constructs either a cyclic or acyclic GradientPaint object depending on the boolean parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@ConstructorProperties(value={"point1","color1","point2","color2","cyclic"})  public GradientPaint(Point2D pt1,                                          Color color1,                                          Point2D pt2,                                          Color color2,                                          boolean cyclic)
+				</name>
+				<description>
+					Constructs either a cyclic or acyclic GradientPaint object depending on the boolean parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point2D getPoint1()
+				</name>
+				<description>
+					Returns a copy of the point P1 that anchors the first color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getColor1()
+				</name>
+				<description>
+					Returns the color C1 anchored by the point P1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point2D getPoint2()
+				</name>
+				<description>
+					Returns a copy of the point P2 which anchors the second color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getColor2()
+				</name>
+				<description>
+					Returns the color C2 anchored by the point P2.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCyclic()
+				</name>
+				<description>
+					Returns true if the gradient cycles repeatedly between the two colors C1 and C2.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PaintContext createContext(ColorModel cm,                           Rectangle deviceBounds,                           Rectangle2D userBounds,                           AffineTransform xform,                           RenderingHints hints)
+				</name>
+				<description>
+					Creates and returns a PaintContext used to generate a linear color gradient pattern. See the specification of the method in the Paint interface for information on null parameter handling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTransparency()
+				</name>
+				<description>
+					Returns the transparency mode for this GradientPaint.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

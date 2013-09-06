@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		org.w3c.dom.ls
+	</package>
+	<type>
+		<name>
+			public interface DOMImplementationLS
+		</name>
+		<description>
+			DOMImplementationLS contains the factory methods for creating Load and Save objects. The expectation is that an instance of the DOMImplementationLS interface can be obtained by using binding-specific casting methods on an instance of the DOMImplementation interface or, if the Document supports the feature "Core" version "3.0" defined in [DOM Level 3 Core] , by using the method DOMImplementation.getFeature with parameter values "LS" (or "LS-Async") and "3.0" (respectively). See also the Document Object Model (DOM) Level 3 Load and Save Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final short MODE_SYNCHRONOUS
+				</name>
+				<description>
+					Create a synchronous LSParser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short MODE_ASYNCHRONOUS
+				</name>
+				<description>
+					Create an asynchronous LSParser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					LSParser createLSParser(short mode,                        String schemaType)                          throws DOMException
+				</name>
+				<description>
+					Create a new LSParser. The newly constructed parser may then be configured by means of its DOMConfiguration object, and used to parse documents by means of its parse method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					LSSerializer createLSSerializer()
+				</name>
+				<description>
+					Create a new LSSerializer object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					LSInput createLSInput()
+				</name>
+				<description>
+					Create a new empty input source object where LSInput.characterStream, LSInput.byteStream , LSInput.stringData LSInput.systemId, LSInput.publicId, LSInput.baseURI, and LSInput.encoding are null, and LSInput.certifiedText is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					LSOutput createLSOutput()
+				</name>
+				<description>
+					Create a new empty output destination object where LSOutput.characterStream, LSOutput.byteStream, LSOutput.systemId, LSOutput.encoding are null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

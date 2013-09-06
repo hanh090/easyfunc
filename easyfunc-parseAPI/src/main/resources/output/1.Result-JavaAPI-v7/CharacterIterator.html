@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		java.text
+	</package>
+	<type>
+		<name>
+			public interface CharacterIterator  extends Cloneable
+		</name>
+		<description>
+			This interface defines a protocol for bidirectional iteration over text. The iterator iterates over a bounded sequence of characters. Characters are indexed with values beginning with the value returned by getBeginIndex() and continuing through the value returned by getEndIndex()-1. Iterators maintain a current character index, whose valid range is from getBeginIndex() to getEndIndex(); the value getEndIndex() is included to allow handling of zero-length text ranges and for historical reasons. The current index can be retrieved by calling getIndex() and set directly by calling setIndex(), first(), and last(). The methods previous() and next() are used for iteration. They return DONE if they would move outside the range from getBeginIndex() to getEndIndex() -1, signaling that the iterator has reached the end of the sequence. DONE is also returned by other methods to indicate that the current index is outside this range. Examples: Traverse the text from start to finish    public void traverseForward(CharacterIterator iter) {       for(char c = iter.first(); c != CharacterIterator.DONE; c = iter.next()) {           processChar(c);       }   }   Traverse the text backwards, from end to start    public void traverseBackward(CharacterIterator iter) {       for(char c = iter.last(); c != CharacterIterator.DONE; c = iter.previous()) {           processChar(c);       }   }   Traverse both forward and backward from a given position in the text. Calls to notBoundary() in this example represents some additional stopping criteria.    public void traverseOut(CharacterIterator iter, int pos) {       for (char c = iter.setIndex(pos);                c != CharacterIterator.DONE && notBoundary(c);                c = iter.next()) {       }       int end = iter.getIndex();       for (char c = iter.setIndex(pos);               c != CharacterIterator.DONE && notBoundary(c);               c = iter.previous()) {       }       int start = iter.getIndex();       processSection(start, end);   }
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final char DONE
+				</name>
+				<description>
+					Constant that is returned when the iterator has reached either the end or the beginning of the text. The value is '\\uFFFF', the "not a character" value which should not occur in any valid Unicode string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char first()
+				</name>
+				<description>
+					Sets the position to getBeginIndex() and returns the character at that position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char last()
+				</name>
+				<description>
+					Sets the position to getEndIndex()-1 (getEndIndex() if the text is empty) and returns the character at that position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char current()
+				</name>
+				<description>
+					Gets the character at the current position (as returned by getIndex()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char next()
+				</name>
+				<description>
+					Increments the iterator's index by one and returns the character at the new index. If the resulting index is greater or equal to getEndIndex(), the current index is reset to getEndIndex() and a value of DONE is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char previous()
+				</name>
+				<description>
+					Decrements the iterator's index by one and returns the character at the new index. If the current index is getBeginIndex(), the index remains at getBeginIndex() and a value of DONE is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					char setIndex(int position)
+				</name>
+				<description>
+					Sets the position to the specified position in the text and returns that character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getBeginIndex()
+				</name>
+				<description>
+					Returns the start index of the text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getEndIndex()
+				</name>
+				<description>
+					Returns the end index of the text. This index is the index of the first character following the end of the text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getIndex()
+				</name>
+				<description>
+					Returns the current index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object clone()
+				</name>
+				<description>
+					Create a copy of this iterator
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

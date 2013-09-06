@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.awt.datatransfer
+	</package>
+	<type>
+		<name>
+			public class Clipboard  extends Object
+		</name>
+		<description>
+			A class that implements a mechanism to transfer data using cut/copy/paste operations. FlavorListeners may be registered on an instance of the Clipboard class to be notified about changes to the set of DataFlavors available on this clipboard (see addFlavorListener(java.awt.datatransfer.FlavorListener)).
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ClipboardOwner owner
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Transferable contents
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Clipboard(String name)
+				</name>
+				<description>
+					Creates a clipboard object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Returns the name of this clipboard object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContents(Transferable contents,                 ClipboardOwner owner)
+				</name>
+				<description>
+					Sets the current contents of the clipboard to the specified transferable object and registers the specified clipboard owner as the owner of the new contents. If there is an existing owner different from the argument owner, that owner is notified that it no longer holds ownership of the clipboard contents via an invocation of ClipboardOwner.lostOwnership() on that owner. An implementation of setContents() is free not to invoke lostOwnership() directly from this method. For example, lostOwnership() may be invoked later on a different thread. The same applies to FlavorListeners registered on this clipboard. The method throws IllegalStateException if the clipboard is currently unavailable. For example, on some platforms, the system clipboard is unavailable while it is accessed by another application.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Transferable getContents(Object requestor)
+				</name>
+				<description>
+					Returns a transferable object representing the current contents of the clipboard. If the clipboard currently has no contents, it returns null. The parameter Object requestor is not currently used. The method throws IllegalStateException if the clipboard is currently unavailable. For example, on some platforms, the system clipboard is unavailable while it is accessed by another application.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataFlavor[] getAvailableDataFlavors()
+				</name>
+				<description>
+					Returns an array of DataFlavors in which the current contents of this clipboard can be provided. If there are no DataFlavors available, this method returns a zero-length array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDataFlavorAvailable(DataFlavor flavor)
+				</name>
+				<description>
+					Returns whether or not the current contents of this clipboard can be provided in the specified DataFlavor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getData(DataFlavor flavor)                 throws UnsupportedFlavorException,                        IOException
+				</name>
+				<description>
+					Returns an object representing the current contents of this clipboard in the specified DataFlavor. The class of the object returned is defined by the representation class of flavor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addFlavorListener(FlavorListener listener)
+				</name>
+				<description>
+					Registers the specified FlavorListener to receive FlavorEvents from this clipboard. If listener is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeFlavorListener(FlavorListener listener)
+				</name>
+				<description>
+					Removes the specified FlavorListener so that it no longer receives FlavorEvents from this Clipboard. This method performs no function, nor does it throw an exception, if the listener specified by the argument was not previously added to this Clipboard. If listener is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FlavorListener[] getFlavorListeners()
+				</name>
+				<description>
+					Returns an array of all the FlavorListeners currently registered on this Clipboard.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

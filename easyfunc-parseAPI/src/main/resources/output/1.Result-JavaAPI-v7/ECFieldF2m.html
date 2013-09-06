@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.security.spec
+	</package>
+	<type>
+		<name>
+			public class ECFieldF2m  extends Object  implements ECField
+		</name>
+		<description>
+			This immutable class defines an elliptic curve (EC) characteristic 2 finite field.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ECFieldF2m(int m)
+				</name>
+				<description>
+					Creates an elliptic curve characteristic 2 finite field which has 2^m elements with normal basis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ECFieldF2m(int m,            BigInteger rp)
+				</name>
+				<description>
+					Creates an elliptic curve characteristic 2 finite field which has 2^m elements with polynomial basis. The reduction polynomial for this field is based on rp whose i-th bit correspondes to the i-th coefficient of the reduction polynomial. Note: A valid reduction polynomial is either a trinomial (X^m + X^k + 1 with m > k >= 1) or a pentanomial (X^m + X^k3 + X^k2 + X^k1 + 1 with m > k3 > k2 > k1 >= 1).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ECFieldF2m(int m,            int[] ks)
+				</name>
+				<description>
+					Creates an elliptic curve characteristic 2 finite field which has 2^m elements with polynomial basis. The reduction polynomial for this field is based on ks whose content contains the order of the middle term(s) of the reduction polynomial. Note: A valid reduction polynomial is either a trinomial (X^m + X^k + 1 with m > k >= 1) or a pentanomial (X^m + X^k3 + X^k2 + X^k1 + 1 with m > k3 > k2 > k1 >= 1), so ks should have length 1 or 3.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFieldSize()
+				</name>
+				<description>
+					Returns the field size in bits which is m for this characteristic 2 finite field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getM()
+				</name>
+				<description>
+					Returns the value m of this characteristic 2 finite field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger getReductionPolynomial()
+				</name>
+				<description>
+					Returns a BigInteger whose i-th bit corresponds to the i-th coefficient of the reduction polynomial for polynomial basis or null for normal basis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getMidTermsOfReductionPolynomial()
+				</name>
+				<description>
+					Returns an integer array which contains the order of the middle term(s) of the reduction polynomial for polynomial basis or null for normal basis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this finite field for equality with the specified object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for this characteristic 2 finite field.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

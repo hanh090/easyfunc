@@ -1,0 +1,252 @@
+<javaelement>
+	<package>
+		java.lang
+	</package>
+	<type>
+		<name>
+			public class ThreadGroup  extends Object  implements Thread.UncaughtExceptionHandler
+		</name>
+		<description>
+			A thread group represents a set of threads. In addition, a thread group can also include other thread groups. The thread groups form a tree in which every thread group except the initial thread group has a parent. A thread is allowed to access information about its own thread group, but not to access information about its thread group's parent thread group or any other thread groups.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ThreadGroup(String name)
+				</name>
+				<description>
+					Constructs a new thread group. The parent of this new group is the thread group of the currently running thread. The checkAccess method of the parent thread group is called with no arguments; this may result in a security exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ThreadGroup(ThreadGroup parent,             String name)
+				</name>
+				<description>
+					Creates a new thread group. The parent of this new group is the specified thread group. The checkAccess method of the parent thread group is called with no arguments; this may result in a security exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getName()
+				</name>
+				<description>
+					Returns the name of this thread group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final ThreadGroup getParent()
+				</name>
+				<description>
+					Returns the parent of this thread group. First, if the parent is not null, the checkAccess method of the parent thread group is called with no arguments; this may result in a security exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getMaxPriority()
+				</name>
+				<description>
+					Returns the maximum priority of this thread group. Threads that are part of this group cannot have a higher priority than the maximum priority.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isDaemon()
+				</name>
+				<description>
+					Tests if this thread group is a daemon thread group. A daemon thread group is automatically destroyed when its last thread is stopped or its last thread group is destroyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDestroyed()
+				</name>
+				<description>
+					Tests if this thread group has been destroyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setDaemon(boolean daemon)
+				</name>
+				<description>
+					Changes the daemon status of this thread group. First, the checkAccess method of this thread group is called with no arguments; this may result in a security exception. A daemon thread group is automatically destroyed when its last thread is stopped or its last thread group is destroyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setMaxPriority(int pri)
+				</name>
+				<description>
+					Sets the maximum priority of the group. Threads in the thread group that already have a higher priority are not affected. First, the checkAccess method of this thread group is called with no arguments; this may result in a security exception. If the pri argument is less than Thread.MIN_PRIORITY or greater than Thread.MAX_PRIORITY, the maximum priority of the group remains unchanged. Otherwise, the priority of this ThreadGroup object is set to the smaller of the specified pri and the maximum permitted priority of the parent of this thread group. (If this thread group is the system thread group, which has no parent, then its maximum priority is simply set to pri.) Then this method is called recursively, with pri as its argument, for every thread group that belongs to this thread group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean parentOf(ThreadGroup g)
+				</name>
+				<description>
+					Tests if this thread group is either the thread group argument or one of its ancestor thread groups.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void checkAccess()
+				</name>
+				<description>
+					Determines if the currently running thread has permission to modify this thread group. If there is a security manager, its checkAccess method is called with this thread group as its argument. This may result in throwing a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int activeCount()
+				</name>
+				<description>
+					Returns an estimate of the number of active threads in this thread group and its subgroups. Recursively iterates over all subgroups in this thread group. The value returned is only an estimate because the number of threads may change dynamically while this method traverses internal data structures, and might be affected by the presence of certain system threads. This method is intended primarily for debugging and monitoring purposes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int enumerate(Thread[] list)
+				</name>
+				<description>
+					Copies into the specified array every active thread in this thread group and its subgroups. An invocation of this method behaves in exactly the same way as the invocation enumerate(list, true)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int enumerate(Thread[] list,              boolean recurse)
+				</name>
+				<description>
+					Copies into the specified array every active thread in this thread group. If recurse is true, this method recursively enumerates all subgroups of this thread group and references to every active thread in these subgroups are also included. If the array is too short to hold all the threads, the extra threads are silently ignored. An application might use the activeCount method to get an estimate of how big the array should be, however if the array is too short to hold all the threads, the extra threads are silently ignored. If it is critical to obtain every active thread in this thread group, the caller should verify that the returned int value is strictly less than the length of list. Due to the inherent race condition in this method, it is recommended that the method only be used for debugging and monitoring purposes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int activeGroupCount()
+				</name>
+				<description>
+					Returns an estimate of the number of active groups in this thread group and its subgroups. Recursively iterates over all subgroups in this thread group. The value returned is only an estimate because the number of thread groups may change dynamically while this method traverses internal data structures. This method is intended primarily for debugging and monitoring purposes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int enumerate(ThreadGroup[] list)
+				</name>
+				<description>
+					Copies into the specified array references to every active subgroup in this thread group and its subgroups. An invocation of this method behaves in exactly the same way as the invocation enumerate(list, true)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int enumerate(ThreadGroup[] list,              boolean recurse)
+				</name>
+				<description>
+					Copies into the specified array references to every active subgroup in this thread group. If recurse is true, this method recursively enumerates all subgroups of this thread group and references to every active thread group in these subgroups are also included. An application might use the activeGroupCount method to get an estimate of how big the array should be, however if the array is too short to hold all the thread groups, the extra thread groups are silently ignored. If it is critical to obtain every active subgroup in this thread group, the caller should verify that the returned int value is strictly less than the length of list. Due to the inherent race condition in this method, it is recommended that the method only be used for debugging and monitoring purposes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public final void stop()
+				</name>
+				<description>
+					Deprecated. This method is inherently unsafe. See Thread.stop() for details. Stops all threads in this thread group. First, the checkAccess method of this thread group is called with no arguments; this may result in a security exception. This method then calls the stop method on all the threads in this thread group and in all of its subgroups.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void interrupt()
+				</name>
+				<description>
+					Interrupts all threads in this thread group. First, the checkAccess method of this thread group is called with no arguments; this may result in a security exception. This method then calls the interrupt method on all the threads in this thread group and in all of its subgroups.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public final void suspend()
+				</name>
+				<description>
+					Deprecated. This method is inherently deadlock-prone. See Thread.suspend() for details. Suspends all threads in this thread group. First, the checkAccess method of this thread group is called with no arguments; this may result in a security exception. This method then calls the suspend method on all the threads in this thread group and in all of its subgroups.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public final void resume()
+				</name>
+				<description>
+					Deprecated. This method is used solely in conjunction with Thread.suspend and ThreadGroup.suspend, both of which have been deprecated, as they are inherently deadlock-prone. See Thread.suspend() for details. Resumes all threads in this thread group. First, the checkAccess method of this thread group is called with no arguments; this may result in a security exception. This method then calls the resume method on all the threads in this thread group and in all of its sub groups.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void destroy()
+				</name>
+				<description>
+					Destroys this thread group and all of its subgroups. This thread group must be empty, indicating that all threads that had been in this thread group have since stopped. First, the checkAccess method of this thread group is called with no arguments; this may result in a security exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void list()
+				</name>
+				<description>
+					Prints information about this thread group to the standard output. This method is useful only for debugging.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uncaughtException(Thread t,                       Throwable e)
+				</name>
+				<description>
+					Called by the Java Virtual Machine when a thread in this thread group stops because of an uncaught exception, and the thread does not have a specific Thread.UncaughtExceptionHandler installed. The uncaughtException method of ThreadGroup does the following: If this thread group has a parent thread group, the uncaughtException method of that parent is called with the same two arguments. Otherwise, this method checks to see if there is a default uncaught exception handler installed, and if so, its uncaughtException method is called with the same two arguments. Otherwise, this method determines if the Throwable argument is an instance of ThreadDeath. If so, nothing special is done. Otherwise, a message containing the thread's name, as returned from the thread's getName method, and a stack backtrace, using the Throwable's printStackTrace method, is printed to the standard error stream. Applications can override this method in subclasses of ThreadGroup to provide alternative handling of uncaught exceptions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public boolean allowThreadSuspension(boolean b)
+				</name>
+				<description>
+					Deprecated. The definition of this call depends on suspend(), which is deprecated. Further, the behavior of this call was never specified. Used by VM to control lowmem implicit suspension.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this Thread group.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

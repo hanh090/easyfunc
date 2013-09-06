@@ -1,0 +1,243 @@
+<javaelement>
+	<package>
+		java.nio
+	</package>
+	<type>
+		<name>
+			public abstract class ShortBuffer  extends Buffer  implements Comparable<ShortBuffer>
+		</name>
+		<description>
+			A short buffer. This class defines four categories of operations upon short buffers: Absolute and relative get and put methods that read and write single shorts; Relative bulk get methods that transfer contiguous sequences of shorts from this buffer into an array; and Relative bulk put methods that transfer contiguous sequences of shorts from a short array or some other short buffer into this buffer; and Methods for compacting, duplicating, and slicing a short buffer. Short buffers can be created either by allocation, which allocates space for the buffer's content, by wrapping an existing short array into a buffer, or by creating a view of an existing byte buffer. Like a byte buffer, a short buffer is either direct or non-direct. A short buffer created via the wrap methods of this class will be non-direct. A short buffer created as a view of a byte buffer will be direct if, and only if, the byte buffer itself is direct. Whether or not a short buffer is direct may be determined by invoking the isDirect method. Methods in this class that do not otherwise have a value to return are specified to return the buffer upon which they are invoked. This allows method invocations to be chained.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static ShortBuffer allocate(int capacity)
+				</name>
+				<description>
+					Allocates a new short buffer. The new buffer's position will be zero, its limit will be its capacity, its mark will be undefined, and each of its elements will be initialized to zero. It will have a backing array, and its array offset will be zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ShortBuffer wrap(short[] array,                 int offset,                 int length)
+				</name>
+				<description>
+					Wraps a short array into a buffer. The new buffer will be backed by the given short array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity will be array.length, its position will be offset, its limit will be offset + length, and its mark will be undefined. Its backing array will be the given array, and its array offset will be zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ShortBuffer wrap(short[] array)
+				</name>
+				<description>
+					Wraps a short array into a buffer. The new buffer will be backed by the given short array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity and limit will be array.length, its position will be zero, and its mark will be undefined. Its backing array will be the given array, and its array offset will be zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ShortBuffer slice()
+				</name>
+				<description>
+					Creates a new short buffer whose content is a shared subsequence of this buffer's content. The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' position, limit, and mark values will be independent. The new buffer's position will be zero, its capacity and its limit will be the number of shorts remaining in this buffer, and its mark will be undefined. The new buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ShortBuffer duplicate()
+				</name>
+				<description>
+					Creates a new short buffer that shares this buffer's content. The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' position, limit, and mark values will be independent. The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. The new buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ShortBuffer asReadOnlyBuffer()
+				</name>
+				<description>
+					Creates a new, read-only short buffer that shares this buffer's content. The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer; the new buffer itself, however, will be read-only and will not allow the shared content to be modified. The two buffers' position, limit, and mark values will be independent. The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. If this buffer is itself read-only then this method behaves in exactly the same way as the duplicate method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract short get()
+				</name>
+				<description>
+					Relative get method. Reads the short at this buffer's current position, and then increments the position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ShortBuffer put(short s)
+				</name>
+				<description>
+					Relative put method  (optional operation). Writes the given short into this buffer at the current position, and then increments the position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract short get(int index)
+				</name>
+				<description>
+					Absolute get method. Reads the short at the given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ShortBuffer put(int index,                short s)
+				</name>
+				<description>
+					Absolute put method  (optional operation). Writes the given short into this buffer at the given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortBuffer get(short[] dst,                int offset,                int length)
+				</name>
+				<description>
+					Relative bulk get method. This method transfers shorts from this buffer into the given destination array. If there are fewer shorts remaining in the buffer than are required to satisfy the request, that is, if length > remaining(), then no shorts are transferred and a BufferUnderflowException is thrown. Otherwise, this method copies length shorts from this buffer into the given array, starting at the current position of this buffer and at the given offset in the array. The position of this buffer is then incremented by length. In other words, an invocation of this method of the form src.get(dst, off, len) has exactly the same effect as the loop        for (int i = off; i < off + len; i++)           dst[i] = src.get(); except that it first checks that there are sufficient shorts in this buffer and it is potentially much more efficient.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortBuffer get(short[] dst)
+				</name>
+				<description>
+					Relative bulk get method. This method transfers shorts from this buffer into the given destination array. An invocation of this method of the form src.get(a) behaves in exactly the same way as the invocation        src.get(a, 0, a.length)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortBuffer put(ShortBuffer src)
+				</name>
+				<description>
+					Relative bulk put method  (optional operation). This method transfers the shorts remaining in the given source buffer into this buffer. If there are more shorts remaining in the source buffer than in this buffer, that is, if src.remaining() > remaining(), then no shorts are transferred and a BufferOverflowException is thrown. Otherwise, this method copies n = src.remaining() shorts from the given buffer into this buffer, starting at each buffer's current position. The positions of both buffers are then incremented by n. In other words, an invocation of this method of the form dst.put(src) has exactly the same effect as the loop        while (src.hasRemaining())           dst.put(src.get()); except that it first checks that there is sufficient space in this buffer and it is potentially much more efficient.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortBuffer put(short[] src,                int offset,                int length)
+				</name>
+				<description>
+					Relative bulk put method  (optional operation). This method transfers shorts into this buffer from the given source array. If there are more shorts to be copied from the array than remain in this buffer, that is, if length > remaining(), then no shorts are transferred and a BufferOverflowException is thrown. Otherwise, this method copies length shorts from the given array into this buffer, starting at the given offset in the array and at the current position of this buffer. The position of this buffer is then incremented by length. In other words, an invocation of this method of the form dst.put(src, off, len) has exactly the same effect as the loop        for (int i = off; i < off + len; i++)           dst.put(a[i]); except that it first checks that there is sufficient space in this buffer and it is potentially much more efficient.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final ShortBuffer put(short[] src)
+				</name>
+				<description>
+					Relative bulk put method  (optional operation). This method transfers the entire content of the given source short array into this buffer. An invocation of this method of the form dst.put(a) behaves in exactly the same way as the invocation        dst.put(a, 0, a.length)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean hasArray()
+				</name>
+				<description>
+					Tells whether or not this buffer is backed by an accessible short array. If this method returns true then the array and arrayOffset methods may safely be invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final short[] array()
+				</name>
+				<description>
+					Returns the short array that backs this buffer  (optional operation). Modifications to this buffer's content will cause the returned array's content to be modified, and vice versa. Invoke the hasArray method before invoking this method in order to ensure that this buffer has an accessible backing array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int arrayOffset()
+				</name>
+				<description>
+					Returns the offset within this buffer's backing array of the first element of the buffer  (optional operation). If this buffer is backed by an array then buffer position p corresponds to array index p + arrayOffset(). Invoke the hasArray method before invoking this method in order to ensure that this buffer has an accessible backing array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ShortBuffer compact()
+				</name>
+				<description>
+					Compacts this buffer  (optional operation). The shorts between the buffer's current position and its limit, if any, are copied to the beginning of the buffer. That is, the short at index p = position() is copied to index zero, the short at index p + 1 is copied to index one, and so forth until the short at index limit() - 1 is copied to index n = limit() - 1 - p. The buffer's position is then set to n+1 and its limit is set to its capacity. The mark, if defined, is discarded. The buffer's position is set to the number of shorts copied, rather than to zero, so that an invocation of this method can be followed immediately by an invocation of another relative put method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isDirect()
+				</name>
+				<description>
+					Tells whether or not this short buffer is direct.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string summarizing the state of this buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the current hash code of this buffer. The hash code of a short buffer depends only upon its remaining elements; that is, upon the elements from position() up to, and including, the element at limit() - 1. Because buffer hash codes are content-dependent, it is inadvisable to use buffers as keys in hash maps or similar data structures unless it is known that their contents will not change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object ob)
+				</name>
+				<description>
+					Tells whether or not this buffer is equal to another object. Two short buffers are equal if, and only if, They have the same element type, They have the same number of remaining elements, and The two sequences of remaining elements, considered independently of their starting positions, are pointwise equal. A short buffer is not equal to any other type of object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int compareTo(ShortBuffer that)
+				</name>
+				<description>
+					Compares this buffer to another. Two short buffers are compared by comparing their sequences of remaining elements lexicographically, without regard to the starting position of each sequence within its corresponding buffer. Pairs of short elements are compared as if by invoking Short.compare(short,short). A short buffer is not comparable to any other type of object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ByteOrder order()
+				</name>
+				<description>
+					Retrieves this buffer's byte order. The byte order of a short buffer created by allocation or by wrapping an existing short array is the native order of the underlying hardware. The byte order of a short buffer created as a view of a byte buffer is that of the byte buffer at the moment that the view is created.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

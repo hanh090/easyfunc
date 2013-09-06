@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig
+	</package>
+	<type>
+		<name>
+			public interface CanonicalizationMethod  extends Transform
+		</name>
+		<description>
+			A representation of the XML CanonicalizationMethod element as defined in the W3C Recommendation for XML-Signature Syntax and Processing. The XML Schema Definition is defined as:      <element name="CanonicalizationMethod" type="ds:CanonicalizationMethodType"/>       <complexType name="CanonicalizationMethodType" mixed="true">         <sequence>           <any namespace="##any" minOccurs="0" maxOccurs="unbounded"/>             <!-- (0,unbounded) elements from (1,1) namespace -->         </sequence>         <attribute name="Algorithm" type="anyURI" use="required"/>       </complexType>   A CanonicalizationMethod instance may be created by invoking the newCanonicalizationMethod method of the XMLSignatureFactory class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final String INCLUSIVE
+				</name>
+				<description>
+					The Canonical XML (without comments) canonicalization method algorithm URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String INCLUSIVE_WITH_COMMENTS
+				</name>
+				<description>
+					The Canonical XML with comments canonicalization method algorithm URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String EXCLUSIVE
+				</name>
+				<description>
+					The Exclusive Canonical XML (without comments) canonicalization method algorithm URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String EXCLUSIVE_WITH_COMMENTS
+				</name>
+				<description>
+					The Exclusive Canonical XML with comments canonicalization method algorithm URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AlgorithmParameterSpec getParameterSpec()
+				</name>
+				<description>
+					Returns the algorithm-specific input parameters associated with this CanonicalizationMethod. The returned parameters can be typecast to a C14NMethodParameterSpec object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

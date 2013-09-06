@@ -1,0 +1,486 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public class Vector<E>  extends AbstractList<E>  implements List<E>, RandomAccess, Cloneable, Serializable
+		</name>
+		<description>
+			The Vector class implements a growable array of objects. Like an array, it contains components that can be accessed using an integer index. However, the size of a Vector can grow or shrink as needed to accommodate adding and removing items after the Vector has been created. Each vector tries to optimize storage management by maintaining a capacity and a capacityIncrement. The capacity is always at least as large as the vector size; it is usually larger because as components are added to the vector, the vector's storage increases in chunks the size of capacityIncrement. An application can increase the capacity of a vector before inserting a large number of components; this reduces the amount of incremental reallocation. The iterators returned by this class's iterator and listIterator methods are fail-fast: if the vector is structurally modified at any time after the iterator is created, in any way except through the iterator's own remove or add methods, the iterator will throw a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator fails quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future. The Enumerations returned by the elements method are not fail-fast. Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs. As of the Java 2 platform v1.2, this class was retrofitted to implement the List interface, making it a member of the Java Collections Framework. Unlike the new collection implementations, Vector is synchronized. If a thread-safe implementation is not needed, it is recommended to use ArrayList in place of Vector.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Object[] elementData
+				</name>
+				<description>
+					The array buffer into which the components of the vector are stored. The capacity of the vector is the length of this array buffer, and is at least large enough to contain all the vector's elements. Any array elements following the last element in the Vector are null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int elementCount
+				</name>
+				<description>
+					The number of valid components in this Vector object. Components elementData[0] through elementData[elementCount-1] are the actual items.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int capacityIncrement
+				</name>
+				<description>
+					The amount by which the capacity of the vector is automatically incremented when its size becomes greater than its capacity. If the capacity increment is less than or equal to zero, the capacity of the vector is doubled each time it needs to grow.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector(int initialCapacity,        int capacityIncrement)
+				</name>
+				<description>
+					Constructs an empty vector with the specified initial capacity and capacity increment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector(int initialCapacity)
+				</name>
+				<description>
+					Constructs an empty vector with the specified initial capacity and with its capacity increment equal to zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector()
+				</name>
+				<description>
+					Constructs an empty vector so that its internal data array has size 10 and its standard capacity increment is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector(Collection<? extends E> c)
+				</name>
+				<description>
+					Constructs a vector containing the elements of the specified collection, in the order they are returned by the collection's iterator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void copyInto(Object[] anArray)
+				</name>
+				<description>
+					Copies the components of this vector into the specified array. The item at index k in this vector is copied into component k of anArray.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void trimToSize()
+				</name>
+				<description>
+					Trims the capacity of this vector to be the vector's current size. If the capacity of this vector is larger than its current size, then the capacity is changed to equal the size by replacing its internal data array, kept in the field elementData, with a smaller one. An application can use this operation to minimize the storage of a vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void ensureCapacity(int minCapacity)
+				</name>
+				<description>
+					Increases the capacity of this vector, if necessary, to ensure that it can hold at least the number of components specified by the minimum capacity argument. If the current capacity of this vector is less than minCapacity, then its capacity is increased by replacing its internal data array, kept in the field elementData, with a larger one. The size of the new data array will be the old size plus capacityIncrement, unless the value of capacityIncrement is less than or equal to zero, in which case the new capacity will be twice the old capacity; but if this new size is still smaller than minCapacity, then the new capacity will be minCapacity.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(int newSize)
+				</name>
+				<description>
+					Sets the size of this vector. If the new size is greater than the current size, new null items are added to the end of the vector. If the new size is less than the current size, all components at index newSize and greater are discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int capacity()
+				</name>
+				<description>
+					Returns the current capacity of this vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of components in this vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Tests if this vector has no components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<E> elements()
+				</name>
+				<description>
+					Returns an enumeration of the components of this vector. The returned Enumeration object will generate all items in this vector. The first item generated is the item at index 0, then the item at index 1, and so on.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object o)
+				</name>
+				<description>
+					Returns true if this vector contains the specified element. More formally, returns true if and only if this vector contains at least one element e such that (o==null ? e==null : o.equals(e)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOf(Object o)
+				</name>
+				<description>
+					Returns the index of the first occurrence of the specified element in this vector, or -1 if this vector does not contain the element. More formally, returns the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOf(Object o,            int index)
+				</name>
+				<description>
+					Returns the index of the first occurrence of the specified element in this vector, searching forwards from index, or returns -1 if the element is not found. More formally, returns the lowest index i such that (i >= index && (o==null ? get(i)==null : o.equals(get(i)))), or -1 if there is no such index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int lastIndexOf(Object o)
+				</name>
+				<description>
+					Returns the index of the last occurrence of the specified element in this vector, or -1 if this vector does not contain the element. More formally, returns the highest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int lastIndexOf(Object o,                int index)
+				</name>
+				<description>
+					Returns the index of the last occurrence of the specified element in this vector, searching backwards from index, or returns -1 if the element is not found. More formally, returns the highest index i such that (i <= index && (o==null ? get(i)==null : o.equals(get(i)))), or -1 if there is no such index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E elementAt(int index)
+				</name>
+				<description>
+					Returns the component at the specified index. This method is identical in functionality to the get(int) method (which is part of the List interface).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E firstElement()
+				</name>
+				<description>
+					Returns the first component (the item at index 0) of this vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E lastElement()
+				</name>
+				<description>
+					Returns the last component of the vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setElementAt(E obj,                  int index)
+				</name>
+				<description>
+					Sets the component at the specified index of this vector to be the specified object. The previous component at that position is discarded. The index must be a value greater than or equal to 0 and less than the current size of the vector. This method is identical in functionality to the set(int, E) method (which is part of the List interface). Note that the set method reverses the order of the parameters, to more closely match array usage. Note also that the set method returns the old value that was stored at the specified position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeElementAt(int index)
+				</name>
+				<description>
+					Deletes the component at the specified index. Each component in this vector with an index greater or equal to the specified index is shifted downward to have an index one smaller than the value it had previously. The size of this vector is decreased by 1. The index must be a value greater than or equal to 0 and less than the current size of the vector. This method is identical in functionality to the remove(int) method (which is part of the List interface). Note that the remove method returns the old value that was stored at the specified position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertElementAt(E obj,                     int index)
+				</name>
+				<description>
+					Inserts the specified object as a component in this vector at the specified index. Each component in this vector with an index greater or equal to the specified index is shifted upward to have an index one greater than the value it had previously. The index must be a value greater than or equal to 0 and less than or equal to the current size of the vector. (If the index is equal to the current size of the vector, the new element is appended to the Vector.) This method is identical in functionality to the add(int, E) method (which is part of the List interface). Note that the add method reverses the order of the parameters, to more closely match array usage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addElement(E obj)
+				</name>
+				<description>
+					Adds the specified component to the end of this vector, increasing its size by one. The capacity of this vector is increased if its size becomes greater than its capacity. This method is identical in functionality to the add(E) method (which is part of the List interface).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean removeElement(Object obj)
+				</name>
+				<description>
+					Removes the first (lowest-indexed) occurrence of the argument from this vector. If the object is found in this vector, each component in the vector with an index greater or equal to the object's index is shifted downward to have an index one smaller than the value it had previously. This method is identical in functionality to the remove(Object) method (which is part of the List interface).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAllElements()
+				</name>
+				<description>
+					Removes all components from this vector and sets its size to zero. This method is identical in functionality to the clear() method (which is part of the List interface).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Returns a clone of this vector. The copy will contain a reference to a clone of the internal data array, not a reference to the original internal data array of this Vector object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] toArray()
+				</name>
+				<description>
+					Returns an array containing all of the elements in this Vector in the correct order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T[] toArray(T[] a)
+				</name>
+				<description>
+					Returns an array containing all of the elements in this Vector in the correct order; the runtime type of the returned array is that of the specified array. If the Vector fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this Vector. If the Vector fits in the specified array with room to spare (i.e., the array has more elements than the Vector), the element in the array immediately following the end of the Vector is set to null. (This is useful in determining the length of the Vector only if the caller knows that the Vector does not contain any null elements.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E get(int index)
+				</name>
+				<description>
+					Returns the element at the specified position in this Vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E set(int index,      E element)
+				</name>
+				<description>
+					Replaces the element at the specified position in this Vector with the specified element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(E e)
+				</name>
+				<description>
+					Appends the specified element to the end of this Vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object o)
+				</name>
+				<description>
+					Removes the first occurrence of the specified element in this Vector If the Vector does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(int index,         E element)
+				</name>
+				<description>
+					Inserts the specified element at the specified position in this Vector. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E remove(int index)
+				</name>
+				<description>
+					Removes the element at the specified position in this Vector. Shifts any subsequent elements to the left (subtracts one from their indices). Returns the element that was removed from the Vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all of the elements from this Vector. The Vector will be empty after this call returns (unless it throws an exception).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAll(Collection<?> c)
+				</name>
+				<description>
+					Returns true if this Vector contains all of the elements in the specified Collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addAll(Collection<? extends E> c)
+				</name>
+				<description>
+					Appends all of the elements in the specified Collection to the end of this Vector, in the order that they are returned by the specified Collection's Iterator. The behavior of this operation is undefined if the specified Collection is modified while the operation is in progress. (This implies that the behavior of this call is undefined if the specified Collection is this Vector, and this Vector is nonempty.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean removeAll(Collection<?> c)
+				</name>
+				<description>
+					Removes from this Vector all of its elements that are contained in the specified Collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean retainAll(Collection<?> c)
+				</name>
+				<description>
+					Retains only the elements in this Vector that are contained in the specified Collection. In other words, removes from this Vector all of its elements that are not contained in the specified Collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addAll(int index,               Collection<? extends E> c)
+				</name>
+				<description>
+					Inserts all of the elements in the specified Collection into this Vector at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the Vector in the order that they are returned by the specified Collection's iterator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compares the specified Object with this Vector for equality. Returns true if and only if the specified Object is also a List, both Lists have the same size, and all corresponding pairs of elements in the two Lists are equal. (Two elements e1 and e2 are equal if (e1==null ? e2==null : e1.equals(e2)).) In other words, two Lists are defined to be equal if they contain the same elements in the same order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this Vector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this Vector, containing the String representation of each element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<E> subList(int fromIndex,                int toIndex)
+				</name>
+				<description>
+					Returns a view of the portion of this List between fromIndex, inclusive, and toIndex, exclusive. (If fromIndex and toIndex are equal, the returned List is empty.) The returned List is backed by this List, so changes in the returned List are reflected in this List, and vice-versa. The returned List supports all of the optional List operations supported by this List. This method eliminates the need for explicit range operations (of the sort that commonly exist for arrays). Any operation that expects a List can be used as a range operation by operating on a subList view instead of a whole List. For example, the following idiom removes a range of elements from a List:         list.subList(from, to).clear();   Similar idioms may be constructed for indexOf and lastIndexOf, and all of the algorithms in the Collections class can be applied to a subList. The semantics of the List returned by this method become undefined if the backing list (i.e., this List) is structurally modified in any way other than via the returned List. (Structural modifications are those that change the size of the List, or otherwise perturb it in such a fashion that iterations in progress may yield incorrect results.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeRange(int fromIndex,                 int toIndex)
+				</name>
+				<description>
+					Removes from this list all of the elements whose index is between fromIndex, inclusive, and toIndex, exclusive. Shifts any succeeding elements to the left (reduces their index). This call shortens the list by (toIndex - fromIndex) elements. (If toIndex==fromIndex, this operation has no effect.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListIterator<E> listIterator(int index)
+				</name>
+				<description>
+					Returns a list iterator over the elements in this list (in proper sequence), starting at the specified position in the list. The specified index indicates the first element that would be returned by an initial call to next. An initial call to previous would return the element with the specified index minus one. The returned list iterator is fail-fast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListIterator<E> listIterator()
+				</name>
+				<description>
+					Returns a list iterator over the elements in this list (in proper sequence). The returned list iterator is fail-fast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this list in proper sequence. The returned iterator is fail-fast.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

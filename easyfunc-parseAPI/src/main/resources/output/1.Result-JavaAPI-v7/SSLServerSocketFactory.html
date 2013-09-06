@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public abstract class SSLServerSocketFactory  extends ServerSocketFactory
+		</name>
+		<description>
+			SSLServerSocketFactorys create SSLServerSockets.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected SSLServerSocketFactory()
+				</name>
+				<description>
+					Constructor is used only by subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ServerSocketFactory getDefault()
+				</name>
+				<description>
+					Returns the default SSL server socket factory. The first time this method is called, the security property "ssl.ServerSocketFactory.provider" is examined. If it is non-null, a class by that name is loaded and instantiated. If that is successful and the object is an instance of SSLServerSocketFactory, it is made the default SSL server socket factory. Otherwise, this method returns SSLContext.getDefault().getServerSocketFactory(). If that call fails, an inoperative factory is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String[] getDefaultCipherSuites()
+				</name>
+				<description>
+					Returns the list of cipher suites which are enabled by default. Unless a different list is enabled, handshaking on an SSL connection will use one of these cipher suites. The minimum quality of service for these defaults requires confidentiality protection and server authentication (that is, no anonymous cipher suites).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String[] getSupportedCipherSuites()
+				</name>
+				<description>
+					Returns the names of the cipher suites which could be enabled for use on an SSL connection created by this factory. Normally, only a subset of these will actually be enabled by default, since this list may include cipher suites which do not meet quality of service requirements for those defaults. Such cipher suites are useful in specialized applications.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

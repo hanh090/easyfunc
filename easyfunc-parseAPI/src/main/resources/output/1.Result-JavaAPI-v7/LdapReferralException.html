@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.naming.ldap
+	</package>
+	<type>
+		<name>
+			public abstract class LdapReferralException  extends ReferralException
+		</name>
+		<description>
+			This abstract class is used to represent an LDAP referral exception. It extends the base ReferralException by providing a getReferralContext() method that accepts request controls. LdapReferralException is an abstract class. Concrete implementations of it determine its synchronization and serialization properties. A Control[] array passed as a parameter to the getReferralContext() method is owned by the caller. The service provider will not modify the array or keep a reference to it, although it may keep references to the individual Control objects in the array.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected LdapReferralException(String explanation)
+				</name>
+				<description>
+					Constructs a new instance of LdapReferralException using the explanation supplied. All other fields are set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected LdapReferralException()
+				</name>
+				<description>
+					Constructs a new instance of LdapReferralException. All fields are set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Context getReferralContext()                                      throws NamingException
+				</name>
+				<description>
+					Retrieves the context at which to continue the method using the context's environment and no controls. The referral context is created using the environment properties of the context that threw the ReferralException and no controls. This method is equivalent to    getReferralContext(ctx.getEnvironment(), null);   where ctx is the context that threw the ReferralException. It is overridden in this class for documentation purposes only. See ReferralException for how to use this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Context getReferralContext(Hashtable<?,?> env)                                      throws NamingException
+				</name>
+				<description>
+					Retrieves the context at which to continue the method using environment properties and no controls. The referral context is created using env as its environment properties and no controls. This method is equivalent to    getReferralContext(env, null);   It is overridden in this class for documentation purposes only. See ReferralException for how to use this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Context getReferralContext(Hashtable<?,?> env,                           Control[] reqCtls)                                      throws NamingException
+				</name>
+				<description>
+					Retrieves the context at which to continue the method using request controls and environment properties. Regardless of whether a referral is encountered directly during a context operation, or indirectly, for example, during a search enumeration, the referral exception should provide a context at which to continue the operation. To continue the operation, the client program should re-invoke the method using the same arguments as the original invocation. reqCtls is used when creating the connection to the referred server. These controls will be used as the connection request controls for the context and context instances derived from the context. reqCtls will also be the context's request controls for subsequent context operations. See the LdapContext class description for details. This method should be used instead of the other two overloaded forms when the caller needs to supply request controls for creating the referral context. It might need to do this, for example, when it needs to supply special controls relating to authentication. Service provider implementors should read the "Service Provider" section in the LdapContext class description for implementation details.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

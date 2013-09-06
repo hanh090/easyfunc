@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public final class NetworkInterface  extends Object
+		</name>
+		<description>
+			This class represents a Network Interface made up of a name, and a list of IP addresses assigned to this interface. It is used to identify the local interface on which a multicast group is joined. Interfaces are normally known by names such as "le0".
+		</description>
+		<methods>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Get the name of this network interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<InetAddress> getInetAddresses()
+				</name>
+				<description>
+					Convenience method to return an Enumeration with all or a subset of the InetAddresses bound to this network interface. If there is a security manager, its checkConnect method is called for each InetAddress. Only InetAddresses where the checkConnect doesn't throw a SecurityException will be returned in the Enumeration. However, if the caller has the NetPermission("getNetworkInformation") permission, then all InetAddresses are returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<InterfaceAddress> getInterfaceAddresses()
+				</name>
+				<description>
+					Get a List of all or a subset of the InterfaceAddresses of this network interface. If there is a security manager, its checkConnect method is called with the InetAddress for each InterfaceAddress. Only InterfaceAddresses where the checkConnect doesn't throw a SecurityException will be returned in the List.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<NetworkInterface> getSubInterfaces()
+				</name>
+				<description>
+					Get an Enumeration with all the subinterfaces (also known as virtual interfaces) attached to this network interface. For instance eth0:1 will be a subinterface to eth0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NetworkInterface getParent()
+				</name>
+				<description>
+					Returns the parent NetworkInterface of this interface if this is a subinterface, or null if it is a physical (non virtual) interface or has no parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIndex()
+				</name>
+				<description>
+					Returns the index of this network interface. The index is an integer greater or equal to zero, or -1 for unknown. This is a system specific value and interfaces with the same name can have different indexes on different machines.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDisplayName()
+				</name>
+				<description>
+					Get the display name of this network interface. A display name is a human readable String describing the network device.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static NetworkInterface getByName(String name)                                    throws SocketException
+				</name>
+				<description>
+					Searches for the network interface with the specified name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static NetworkInterface getByIndex(int index)                                     throws SocketException
+				</name>
+				<description>
+					Get a network interface given its index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static NetworkInterface getByInetAddress(InetAddress addr)                                           throws SocketException
+				</name>
+				<description>
+					Convenience method to search for a network interface that has the specified Internet Protocol (IP) address bound to it. If the specified IP address is bound to multiple network interfaces it is not defined which network interface is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Enumeration<NetworkInterface> getNetworkInterfaces()                                                            throws SocketException
+				</name>
+				<description>
+					Returns all the interfaces on this machine. Returns null if no network interfaces could be found on this machine. NOTE: can use getNetworkInterfaces()+getInetAddresses() to obtain all IP addresses for this node
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isUp()               throws SocketException
+				</name>
+				<description>
+					Returns whether a network interface is up and running.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLoopback()                     throws SocketException
+				</name>
+				<description>
+					Returns whether a network interface is a loopback interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPointToPoint()                         throws SocketException
+				</name>
+				<description>
+					Returns whether a network interface is a point to point interface. A typical point to point interface would be a PPP connection through a modem.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean supportsMulticast()                            throws SocketException
+				</name>
+				<description>
+					Returns whether a network interface supports multicasting or not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getHardwareAddress()                            throws SocketException
+				</name>
+				<description>
+					Returns the hardware address (usually MAC) of the interface if it has one and if it can be accessed given the current privileges. If a security manager is set, then the caller must have the permission NetPermission("getNetworkInformation").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMTU()             throws SocketException
+				</name>
+				<description>
+					Returns the Maximum Transmission Unit (MTU) of this interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isVirtual()
+				</name>
+				<description>
+					Returns whether this interface is a virtual interface (also called subinterface). Virtual interfaces are, on some systems, interfaces created as a child of a physical interface and given different settings (like address or MTU). Usually the name of the interface will the name of the parent followed by a colon (:) and a number identifying the child since there can be several virtual interfaces attached to a single physical interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this object against the specified object. The result is true if and only if the argument is not null and it represents the same NetworkInterface as this object. Two instances of NetworkInterface represent the same NetworkInterface if both name and addrs are the same for both.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Description copied from class: Object Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap. The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the Object.equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables. As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: Object Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method. The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:    getClass().getName() + '@' + Integer.toHexString(hashCode())
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,558 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class Raster  extends Object
+		</name>
+		<description>
+			A class representing a rectangular array of pixels. A Raster encapsulates a DataBuffer that stores the sample values and a SampleModel that describes how to locate a given sample value in a DataBuffer. A Raster defines values for pixels occupying a particular rectangular area of the plane, not necessarily including (0, 0). The rectangle, known as the Raster's bounding rectangle and available by means of the getBounds method, is defined by minX, minY, width, and height values. The minX and minY values define the coordinate of the upper left corner of the Raster. References to pixels outside of the bounding rectangle may result in an exception being thrown, or may result in references to unintended elements of the Raster's associated DataBuffer. It is the user's responsibility to avoid accessing such pixels. A SampleModel describes how samples of a Raster are stored in the primitive array elements of a DataBuffer. Samples may be stored one per data element, as in a PixelInterleavedSampleModel or BandedSampleModel, or packed several to an element, as in a SinglePixelPackedSampleModel or MultiPixelPackedSampleModel. The SampleModel is also controls whether samples are sign extended, allowing unsigned data to be stored in signed Java data types such as byte, short, and int. Although a Raster may live anywhere in the plane, a SampleModel makes use of a simple coordinate system that starts at (0, 0). A Raster therefore contains a translation factor that allows pixel locations to be mapped between the Raster's coordinate system and that of the SampleModel. The translation from the SampleModel coordinate system to that of the Raster may be obtained by the getSampleModelTranslateX and getSampleModelTranslateY methods. A Raster may share a DataBuffer with another Raster either by explicit construction or by the use of the createChild and createTranslatedChild methods. Rasters created by these methods can return a reference to the Raster they were created from by means of the getParent method. For a Raster that was not constructed by means of a call to createTranslatedChild or createChild, getParent will return null. The createTranslatedChild method returns a new Raster that shares all of the data of the current Raster, but occupies a bounding rectangle of the same width and height but with a different starting point. For example, if the parent Raster occupied the region (10, 10) to (100, 100), and the translated Raster was defined to start at (50, 50), then pixel (20, 20) of the parent and pixel (60, 60) of the child occupy the same location in the DataBuffer shared by the two Rasters. In the first case, (-10, -10) should be added to a pixel coordinate to obtain the corresponding SampleModel coordinate, and in the second case (-50, -50) should be added. The translation between a parent and child Raster may be determined by subtracting the child's sampleModelTranslateX and sampleModelTranslateY values from those of the parent. The createChild method may be used to create a new Raster occupying only a subset of its parent's bounding rectangle (with the same or a translated coordinate system) or with a subset of the bands of its parent. All constructors are protected. The correct way to create a Raster is to use one of the static create methods defined in this class. These methods create instances of Raster that use the standard Interleaved, Banded, and Packed SampleModels and that may be processed more efficiently than a Raster created by combining an externally generated SampleModel and DataBuffer.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected SampleModel sampleModel
+				</name>
+				<description>
+					The SampleModel that describes how pixels from this Raster are stored in the DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DataBuffer dataBuffer
+				</name>
+				<description>
+					The DataBuffer that stores the image data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int minX
+				</name>
+				<description>
+					The X coordinate of the upper-left pixel of this Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int minY
+				</name>
+				<description>
+					The Y coordinate of the upper-left pixel of this Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int width
+				</name>
+				<description>
+					The width of this Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int height
+				</name>
+				<description>
+					The height of this Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int sampleModelTranslateX
+				</name>
+				<description>
+					The X translation from the coordinate space of the Raster's SampleModel to that of the Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int sampleModelTranslateY
+				</name>
+				<description>
+					The Y translation from the coordinate space of the Raster's SampleModel to that of the Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int numBands
+				</name>
+				<description>
+					The number of bands in the Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int numDataElements
+				</name>
+				<description>
+					The number of DataBuffer data elements per pixel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Raster parent
+				</name>
+				<description>
+					The parent of this Raster, or null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Raster(SampleModel sampleModel,        Point origin)
+				</name>
+				<description>
+					Constructs a Raster with the given SampleModel. The Raster's upper left corner is origin and it is the same size as the SampleModel. A DataBuffer large enough to describe the Raster is automatically created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Raster(SampleModel sampleModel,        DataBuffer dataBuffer,        Point origin)
+				</name>
+				<description>
+					Constructs a Raster with the given SampleModel and DataBuffer. The Raster's upper left corner is origin and it is the same size as the SampleModel. The DataBuffer is not initialized and must be compatible with SampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Raster(SampleModel sampleModel,        DataBuffer dataBuffer,        Rectangle aRegion,        Point sampleModelTranslate,        Raster parent)
+				</name>
+				<description>
+					Constructs a Raster with the given SampleModel, DataBuffer, and parent. aRegion specifies the bounding rectangle of the new Raster. When translated into the base Raster's coordinate system, aRegion must be contained by the base Raster. (The base Raster is the Raster's ancestor which has no parent.) sampleModelTranslate specifies the sampleModelTranslateX and sampleModelTranslateY values of the new Raster. Note that this constructor should generally be called by other constructors or create methods, it should not be used directly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createInterleavedRaster(int dataType,                                       int w,                                       int h,                                       int bands,                                       Point location)
+				</name>
+				<description>
+					Creates a Raster based on a PixelInterleavedSampleModel with the specified data type, width, height, and number of bands. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used. The dataType parameter should be one of the enumerated values defined in the DataBuffer class. Note that interleaved DataBuffer.TYPE_INT Rasters are not supported. To create a 1-band Raster of type DataBuffer.TYPE_INT, use Raster.createPackedRaster(). The only dataTypes supported currently are TYPE_BYTE and TYPE_USHORT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createInterleavedRaster(int dataType,                                       int w,                                       int h,                                       int scanlineStride,                                       int pixelStride,                                       int[] bandOffsets,                                       Point location)
+				</name>
+				<description>
+					Creates a Raster based on a PixelInterleavedSampleModel with the specified data type, width, height, scanline stride, pixel stride, and band offsets. The number of bands is inferred from bandOffsets.length. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used. The dataType parameter should be one of the enumerated values defined in the DataBuffer class. Note that interleaved DataBuffer.TYPE_INT Rasters are not supported. To create a 1-band Raster of type DataBuffer.TYPE_INT, use Raster.createPackedRaster(). The only dataTypes supported currently are TYPE_BYTE and TYPE_USHORT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createBandedRaster(int dataType,                                  int w,                                  int h,                                  int bands,                                  Point location)
+				</name>
+				<description>
+					Creates a Raster based on a BandedSampleModel with the specified data type, width, height, and number of bands. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used. The dataType parameter should be one of the enumerated values defined in the DataBuffer class. The only dataTypes supported currently are TYPE_BYTE, TYPE_USHORT, and TYPE_INT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createBandedRaster(int dataType,                                  int w,                                  int h,                                  int scanlineStride,                                  int[] bankIndices,                                  int[] bandOffsets,                                  Point location)
+				</name>
+				<description>
+					Creates a Raster based on a BandedSampleModel with the specified data type, width, height, scanline stride, bank indices and band offsets. The number of bands is inferred from bankIndices.length and bandOffsets.length, which must be the same. The upper left corner of the Raster is given by the location argument. The dataType parameter should be one of the enumerated values defined in the DataBuffer class. The only dataTypes supported currently are TYPE_BYTE, TYPE_USHORT, and TYPE_INT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createPackedRaster(int dataType,                                  int w,                                  int h,                                  int[] bandMasks,                                  Point location)
+				</name>
+				<description>
+					Creates a Raster based on a SinglePixelPackedSampleModel with the specified data type, width, height, and band masks. The number of bands is inferred from bandMasks.length. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used. The dataType parameter should be one of the enumerated values defined in the DataBuffer class. The only dataTypes supported currently are TYPE_BYTE, TYPE_USHORT, and TYPE_INT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createPackedRaster(int dataType,                                  int w,                                  int h,                                  int bands,                                  int bitsPerBand,                                  Point location)
+				</name>
+				<description>
+					Creates a Raster based on a packed SampleModel with the specified data type, width, height, number of bands, and bits per band. If the number of bands is one, the SampleModel will be a MultiPixelPackedSampleModel. If the number of bands is more than one, the SampleModel will be a SinglePixelPackedSampleModel, with each band having bitsPerBand bits. In either case, the requirements on dataType and bitsPerBand imposed by the corresponding SampleModel must be met. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used. The dataType parameter should be one of the enumerated values defined in the DataBuffer class. The only dataTypes supported currently are TYPE_BYTE, TYPE_USHORT, and TYPE_INT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createInterleavedRaster(DataBuffer dataBuffer,                                       int w,                                       int h,                                       int scanlineStride,                                       int pixelStride,                                       int[] bandOffsets,                                       Point location)
+				</name>
+				<description>
+					Creates a Raster based on a PixelInterleavedSampleModel with the specified DataBuffer, width, height, scanline stride, pixel stride, and band offsets. The number of bands is inferred from bandOffsets.length. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used. Note that interleaved DataBuffer.TYPE_INT Rasters are not supported. To create a 1-band Raster of type DataBuffer.TYPE_INT, use Raster.createPackedRaster().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createBandedRaster(DataBuffer dataBuffer,                                  int w,                                  int h,                                  int scanlineStride,                                  int[] bankIndices,                                  int[] bandOffsets,                                  Point location)
+				</name>
+				<description>
+					Creates a Raster based on a BandedSampleModel with the specified DataBuffer, width, height, scanline stride, bank indices, and band offsets. The number of bands is inferred from bankIndices.length and bandOffsets.length, which must be the same. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createPackedRaster(DataBuffer dataBuffer,                                  int w,                                  int h,                                  int scanlineStride,                                  int[] bandMasks,                                  Point location)
+				</name>
+				<description>
+					Creates a Raster based on a SinglePixelPackedSampleModel with the specified DataBuffer, width, height, scanline stride, and band masks. The number of bands is inferred from bandMasks.length. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createPackedRaster(DataBuffer dataBuffer,                                  int w,                                  int h,                                  int bitsPerPixel,                                  Point location)
+				</name>
+				<description>
+					Creates a Raster based on a MultiPixelPackedSampleModel with the specified DataBuffer, width, height, and bits per pixel. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Raster createRaster(SampleModel sm,                    DataBuffer db,                    Point location)
+				</name>
+				<description>
+					Creates a Raster with the specified SampleModel and DataBuffer. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createWritableRaster(SampleModel sm,                                    Point location)
+				</name>
+				<description>
+					Creates a WritableRaster with the specified SampleModel. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableRaster createWritableRaster(SampleModel sm,                                    DataBuffer db,                                    Point location)
+				</name>
+				<description>
+					Creates a WritableRaster with the specified SampleModel and DataBuffer. The upper left corner of the Raster is given by the location argument. If location is null, (0, 0) will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Raster getParent()
+				</name>
+				<description>
+					Returns the parent Raster (if any) of this Raster or null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getSampleModelTranslateX()
+				</name>
+				<description>
+					Returns the X translation from the coordinate system of the SampleModel to that of the Raster. To convert a pixel's X coordinate from the Raster coordinate system to the SampleModel coordinate system, this value must be subtracted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getSampleModelTranslateY()
+				</name>
+				<description>
+					Returns the Y translation from the coordinate system of the SampleModel to that of the Raster. To convert a pixel's Y coordinate from the Raster coordinate system to the SampleModel coordinate system, this value must be subtracted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createCompatibleWritableRaster()
+				</name>
+				<description>
+					Create a compatible WritableRaster the same size as this Raster with the same SampleModel and a new initialized DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createCompatibleWritableRaster(int w,                                              int h)
+				</name>
+				<description>
+					Create a compatible WritableRaster with the specified size, a new SampleModel, and a new initialized DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createCompatibleWritableRaster(Rectangle rect)
+				</name>
+				<description>
+					Create a compatible WritableRaster with location (minX, minY) and size (width, height) specified by rect, a new SampleModel, and a new initialized DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createCompatibleWritableRaster(int x,                                              int y,                                              int w,                                              int h)
+				</name>
+				<description>
+					Create a compatible WritableRaster with the specified location (minX, minY) and size (width, height), a new SampleModel, and a new initialized DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Raster createTranslatedChild(int childMinX,                             int childMinY)
+				</name>
+				<description>
+					Create a Raster with the same size, SampleModel and DataBuffer as this one, but with a different location. The new Raster will possess a reference to the current Raster, accessible through its getParent() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Raster createChild(int parentX,                   int parentY,                   int width,                   int height,                   int childMinX,                   int childMinY,                   int[] bandList)
+				</name>
+				<description>
+					Returns a new Raster which shares all or part of this Raster's DataBuffer. The new Raster will possess a reference to the current Raster, accessible through its getParent() method. The parentX, parentY, width and height parameters form a Rectangle in this Raster's coordinate space, indicating the area of pixels to be shared. An error will be thrown if this Rectangle is not contained with the bounds of the current Raster. The new Raster may additionally be translated to a different coordinate system for the plane than that used by the current Raster. The childMinX and childMinY parameters give the new (x, y) coordinate of the upper-left pixel of the returned Raster; the coordinate (childMinX, childMinY) in the new Raster will map to the same pixel as the coordinate (parentX, parentY) in the current Raster. The new Raster may be defined to contain only a subset of the bands of the current Raster, possibly reordered, by means of the bandList parameter. If bandList is null, it is taken to include all of the bands of the current Raster in their current order. To create a new Raster that contains a subregion of the current Raster, but shares its coordinate system and bands, this method should be called with childMinX equal to parentX, childMinY equal to parentY, and bandList equal to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getBounds()
+				</name>
+				<description>
+					Returns the bounding Rectangle of this Raster. This function returns the same information as getMinX/MinY/Width/Height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getMinX()
+				</name>
+				<description>
+					Returns the minimum valid X coordinate of the Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getMinY()
+				</name>
+				<description>
+					Returns the minimum valid Y coordinate of the Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getWidth()
+				</name>
+				<description>
+					Returns the width in pixels of the Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getHeight()
+				</name>
+				<description>
+					Returns the height in pixels of the Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getNumBands()
+				</name>
+				<description>
+					Returns the number of bands (samples per pixel) in this Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getNumDataElements()
+				</name>
+				<description>
+					Returns the number of data elements needed to transfer one pixel via the getDataElements and setDataElements methods. When pixels are transferred via these methods, they may be transferred in a packed or unpacked format, depending on the implementation of the underlying SampleModel. Using these methods, pixels are transferred as an array of getNumDataElements() elements of a primitive type given by getTransferType(). The TransferType may or may not be the same as the storage data type of the DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getTransferType()
+				</name>
+				<description>
+					Returns the TransferType used to transfer pixels via the getDataElements and setDataElements methods. When pixels are transferred via these methods, they may be transferred in a packed or unpacked format, depending on the implementation of the underlying SampleModel. Using these methods, pixels are transferred as an array of getNumDataElements() elements of a primitive type given by getTransferType(). The TransferType may or may not be the same as the storage data type of the DataBuffer. The TransferType will be one of the types defined in DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataBuffer getDataBuffer()
+				</name>
+				<description>
+					Returns the DataBuffer associated with this Raster.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel getSampleModel()
+				</name>
+				<description>
+					Returns the SampleModel that describes the layout of the image data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getDataElements(int x,                       int y,                       Object outData)
+				</name>
+				<description>
+					Returns data for a single pixel in a primitive array of type TransferType. For image data supported by the Java 2D(tm) API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data may be returned in a packed format, thus increasing efficiency for data transfers. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed. A ClassCastException will be thrown if the input object is non null and references anything other than an array of TransferType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getDataElements(int x,                       int y,                       int w,                       int h,                       Object outData)
+				</name>
+				<description>
+					Returns the pixel data for the specified rectangle of pixels in a primitive array of type TransferType. For image data supported by the Java 2D API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data may be returned in a packed format, thus increasing efficiency for data transfers. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed. A ClassCastException will be thrown if the input object is non null and references anything other than an array of TransferType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixel(int x,               int y,               int[] iArray)
+				</name>
+				<description>
+					Returns the samples in an array of int for the specified pixel. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getPixel(int x,                 int y,                 float[] fArray)
+				</name>
+				<description>
+					Returns the samples in an array of float for the specified pixel. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double[] getPixel(int x,                  int y,                  double[] dArray)
+				</name>
+				<description>
+					Returns the samples in an array of double for the specified pixel. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixels(int x,                int y,                int w,                int h,                int[] iArray)
+				</name>
+				<description>
+					Returns an int array containing all samples for a rectangle of pixels, one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getPixels(int x,                  int y,                  int w,                  int h,                  float[] fArray)
+				</name>
+				<description>
+					Returns a float array containing all samples for a rectangle of pixels, one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double[] getPixels(int x,                   int y,                   int w,                   int h,                   double[] dArray)
+				</name>
+				<description>
+					Returns a double array containing all samples for a rectangle of pixels, one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSample(int x,              int y,              int b)
+				</name>
+				<description>
+					Returns the sample in a specified band for the pixel located at (x,y) as an int. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getSampleFloat(int x,                     int y,                     int b)
+				</name>
+				<description>
+					Returns the sample in a specified band for the pixel located at (x,y) as a float. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getSampleDouble(int x,                       int y,                       int b)
+				</name>
+				<description>
+					Returns the sample in a specified band for a pixel located at (x,y) as a double. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSamples(int x,                 int y,                 int w,                 int h,                 int b,                 int[] iArray)
+				</name>
+				<description>
+					Returns the samples for a specified band for the specified rectangle of pixels in an int array, one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getSamples(int x,                   int y,                   int w,                   int h,                   int b,                   float[] fArray)
+				</name>
+				<description>
+					Returns the samples for a specified band for the specified rectangle of pixels in a float array, one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double[] getSamples(int x,                    int y,                    int w,                    int h,                    int b,                    double[] dArray)
+				</name>
+				<description>
+					Returns the samples for a specified band for a specified rectangle of pixels in a double array, one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

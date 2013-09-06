@@ -1,0 +1,252 @@
+<javaelement>
+	<package>
+		javax.security.auth.kerberos
+	</package>
+	<type>
+		<name>
+			public class KerberosTicket  extends Object  implements Destroyable, Refreshable, Serializable
+		</name>
+		<description>
+			This class encapsulates a Kerberos ticket and associated information as viewed from the client's point of view. It captures all information that the Key Distribution Center (KDC) sends to the client in the reply message KDC-REP defined in the Kerberos Protocol Specification (RFC 4120). All Kerberos JAAS login modules that authenticate a user to a KDC should use this class. Where available, the login module might even read this information from a ticket cache in the operating system instead of directly communicating with the KDC. During the commit phase of the JAAS authentication process, the JAAS login module should instantiate this class and store the instance in the private credential set of a Subject. It might be necessary for the application to be granted a PrivateCredentialPermission if it needs to access a KerberosTicket instance from a Subject. This permission is not needed when the application depends on the default JGSS Kerberos mechanism to access the KerberosTicket. In that case, however, the application will need an appropriate ServicePermission. Note that this class is applicable to both ticket granting tickets and other regular service tickets. A ticket granting ticket is just a special case of a more generalized service ticket.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public KerberosTicket(byte[] asn1Encoding,                KerberosPrincipal client,                KerberosPrincipal server,                byte[] sessionKey,                int keyType,                boolean[] flags,                Date authTime,                Date startTime,                Date endTime,                Date renewTill,                InetAddress[] clientAddresses)
+				</name>
+				<description>
+					Constructs a KerberosTicket using credentials information that a client either receives from a KDC or reads from a cache.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final KerberosPrincipal getClient()
+				</name>
+				<description>
+					Returns the client principal associated with this ticket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final KerberosPrincipal getServer()
+				</name>
+				<description>
+					Returns the service principal associated with this ticket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final SecretKey getSessionKey()
+				</name>
+				<description>
+					Returns the session key associated with this ticket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getSessionKeyType()
+				</name>
+				<description>
+					Returns the key type of the session key associated with this ticket as defined by the Kerberos Protocol Specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isForwardable()
+				</name>
+				<description>
+					Determines if this ticket is forwardable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isForwarded()
+				</name>
+				<description>
+					Determines if this ticket had been forwarded or was issued based on authentication involving a forwarded ticket-granting ticket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isProxiable()
+				</name>
+				<description>
+					Determines if this ticket is proxiable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isProxy()
+				</name>
+				<description>
+					Determines is this ticket is a proxy-ticket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isPostdated()
+				</name>
+				<description>
+					Determines is this ticket is post-dated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isRenewable()
+				</name>
+				<description>
+					Determines is this ticket is renewable. If so, the refresh method can be called, assuming the validity period for renewing is not already over.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isInitial()
+				</name>
+				<description>
+					Determines if this ticket was issued using the Kerberos AS-Exchange protocol, and not issued based on some ticket-granting ticket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean[] getFlags()
+				</name>
+				<description>
+					Returns the flags associated with this ticket. Each element in the returned array indicates the value for the corresponding bit in the ASN.1 BitString that represents the ticket flags.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Date getAuthTime()
+				</name>
+				<description>
+					Returns the time that the client was authenticated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Date getStartTime()
+				</name>
+				<description>
+					Returns the start time for this ticket's validity period.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Date getEndTime()
+				</name>
+				<description>
+					Returns the expiration time for this ticket's validity period.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Date getRenewTill()
+				</name>
+				<description>
+					Returns the latest expiration time for this ticket, including all renewals. This will return a null value for non-renewable tickets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final InetAddress[] getClientAddresses()
+				</name>
+				<description>
+					Returns a list of addresses from where the ticket can be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final byte[] getEncoded()
+				</name>
+				<description>
+					Returns an ASN.1 encoding of the entire ticket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCurrent()
+				</name>
+				<description>
+					Determines if this ticket is still current.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void refresh()               throws RefreshFailedException
+				</name>
+				<description>
+					Extends the validity period of this ticket. The ticket will contain a new session key if the refresh operation succeeds. The refresh operation will fail if the ticket is not renewable or the latest allowable renew time has passed. Any other error returned by the KDC will also cause this method to fail. Note: This method is not synchronized with the the accessor methods of this object. Hence callers need to be aware of multiple threads that might access this and try to renew it at the same time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void destroy()               throws DestroyFailedException
+				</name>
+				<description>
+					Destroys the ticket and destroys any sensitive information stored in it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDestroyed()
+				</name>
+				<description>
+					Determines if this ticket has been destroyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: Object Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method. The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:    getClass().getName() + '@' + Integer.toHexString(hashCode())
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this KerberosTicket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object other)
+				</name>
+				<description>
+					Compares the specified Object with this KerberosTicket for equality. Returns true if the given object is also a KerberosTicket and the two KerberosTicket instances are equivalent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

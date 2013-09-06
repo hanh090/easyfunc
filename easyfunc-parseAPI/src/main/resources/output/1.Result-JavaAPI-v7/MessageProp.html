@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		org.ietf.jgss
+	</package>
+	<type>
+		<name>
+			public class MessageProp  extends Object
+		</name>
+		<description>
+			This is a utility class used within the per-message GSSContext methods to convey per-message properties. When used with the GSSContext interface's wrap and getMIC methods, an instance of this class is used to indicate the desired Quality-of-Protection (QOP) and to request if confidentiality services are to be applied to caller supplied data (wrap only). To request default QOP, the value of 0 should be used for QOP. When used with the unwrap and verifyMIC methods of the GSSContext interface, an instance of this class will be used to indicate the applied QOP and confidentiality services over the supplied message. In the case of verifyMIC, the confidentiality state will always be false. Upon return from these methods, this object will also contain any supplementary status values applicable to the processed token. The supplementary status values can indicate old tokens, out of sequence tokens, gap tokens or duplicate tokens.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MessageProp(boolean privState)
+				</name>
+				<description>
+					Constructor which sets the desired privacy state. The QOP value used is 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MessageProp(int qop,             boolean privState)
+				</name>
+				<description>
+					Constructor which sets the values for the qop and privacy state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getQOP()
+				</name>
+				<description>
+					Retrieves the QOP value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getPrivacy()
+				</name>
+				<description>
+					Retrieves the privacy state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setQOP(int qop)
+				</name>
+				<description>
+					Sets the QOP value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrivacy(boolean privState)
+				</name>
+				<description>
+					Sets the privacy state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDuplicateToken()
+				</name>
+				<description>
+					Tests if this is a duplicate of an earlier token.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOldToken()
+				</name>
+				<description>
+					Tests if this token's validity period has expired, i.e., the token is too old to be checked for duplication.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isUnseqToken()
+				</name>
+				<description>
+					Tests if a later token had already been processed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isGapToken()
+				</name>
+				<description>
+					Tests if an expected token was not received, i.e., one or more predecessor tokens have not yet been successfully processed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinorStatus()
+				</name>
+				<description>
+					Retrieves the minor status code that the underlying mechanism might have set for this per-message operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMinorString()
+				</name>
+				<description>
+					Retrieves a string explaining the minor status code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSupplementaryStates(boolean duplicate,                            boolean old,                            boolean unseq,                            boolean gap,                            int minorStatus,                            String minorString)
+				</name>
+				<description>
+					This method sets the state for the supplementary information flags and the minor status in MessageProp. It is not used by the application but by the GSS implementation to return this information to the caller of a per-message context method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

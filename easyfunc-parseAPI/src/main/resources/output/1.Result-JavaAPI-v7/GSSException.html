@@ -1,0 +1,297 @@
+<javaelement>
+	<package>
+		org.ietf.jgss
+	</package>
+	<type>
+		<name>
+			public class GSSException  extends Exception
+		</name>
+		<description>
+			This exception is thrown whenever a GSS-API error occurs, including any mechanism specific error. It may contain both the major and the minor GSS-API status codes. Major error codes are those defined at the GSS-API level in this class. Minor error codes are mechanism specific error codes that can provide additional information. The underlying mechanism implementation is responsible for setting appropriate minor status codes when throwing this exception. Aside from delivering the numeric error codes to the caller, this class performs the mapping from their numeric values to textual representations.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int BAD_BINDINGS
+				</name>
+				<description>
+					Channel bindings mismatch.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BAD_MECH
+				</name>
+				<description>
+					Unsupported mechanism requested.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BAD_NAME
+				</name>
+				<description>
+					Invalid name provided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BAD_NAMETYPE
+				</name>
+				<description>
+					Name of unsupported type provided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BAD_STATUS
+				</name>
+				<description>
+					Invalid status code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BAD_MIC
+				</name>
+				<description>
+					Token had invalid integrity check.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CONTEXT_EXPIRED
+				</name>
+				<description>
+					Security context expired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CREDENTIALS_EXPIRED
+				</name>
+				<description>
+					Expired credentials.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int DEFECTIVE_CREDENTIAL
+				</name>
+				<description>
+					Defective credentials.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int DEFECTIVE_TOKEN
+				</name>
+				<description>
+					Defective token.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FAILURE
+				</name>
+				<description>
+					General failure, unspecified at GSS-API level.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NO_CONTEXT
+				</name>
+				<description>
+					Invalid security context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NO_CRED
+				</name>
+				<description>
+					Invalid credentials.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BAD_QOP
+				</name>
+				<description>
+					Unsupported QOP value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int UNAUTHORIZED
+				</name>
+				<description>
+					Operation unauthorized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int UNAVAILABLE
+				</name>
+				<description>
+					Operation unavailable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int DUPLICATE_ELEMENT
+				</name>
+				<description>
+					Duplicate credential element requested.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NAME_NOT_MN
+				</name>
+				<description>
+					Name contains multi-mechanism elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int DUPLICATE_TOKEN
+				</name>
+				<description>
+					The token was a duplicate of an earlier token. This is a fatal error code that may occur during context establishment. It is not used to indicate supplementary status values. The MessageProp object is used for that purpose.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int OLD_TOKEN
+				</name>
+				<description>
+					The token's validity period has expired. This is a fatal error code that may occur during context establishment. It is not used to indicate supplementary status values. The MessageProp object is used for that purpose.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int UNSEQ_TOKEN
+				</name>
+				<description>
+					A later token has already been processed. This is a fatal error code that may occur during context establishment. It is not used to indicate supplementary status values. The MessageProp object is used for that purpose.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int GAP_TOKEN
+				</name>
+				<description>
+					An expected per-message token was not received. This is a fatal error code that may occur during context establishment. It is not used to indicate supplementary status values. The MessageProp object is used for that purpose.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GSSException(int majorCode)
+				</name>
+				<description>
+					Creates a GSSException object with a specified major code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GSSException(int majorCode,              int minorCode,              String minorString)
+				</name>
+				<description>
+					Creates a GSSException object with the specified major code, minor code, and minor code textual explanation. This constructor is to be used when the exception is originating from the underlying mechanism level. It allows the setting of both the GSS code and the mechanism code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMajor()
+				</name>
+				<description>
+					Returns the GSS-API level major error code for the problem causing this exception to be thrown. Major error codes are defined at the mechanism independent GSS-API level in this class. Mechanism specific error codes that might provide more information aer set as the minor error code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinor()
+				</name>
+				<description>
+					Returns the mechanism level error code for the problem causing this exception to be thrown. The minor code is set by the underlying mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMajorString()
+				</name>
+				<description>
+					Returns a string explaining the GSS-API level major error code in this exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMinorString()
+				</name>
+				<description>
+					Returns a string explaining the mechanism specific error code. If the minor status code is 0, then no mechanism level error details will be available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMinor(int minorCode,              String message)
+				</name>
+				<description>
+					Used by the exception thrower to set the mechanism level minor error code and its string explanation. This is used by mechanism providers to indicate error details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a textual representation of both the major and the minor status codes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMessage()
+				</name>
+				<description>
+					Returns a textual representation of both the major and the minor status codes.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

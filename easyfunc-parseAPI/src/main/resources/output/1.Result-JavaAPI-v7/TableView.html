@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract class TableView  extends BoxView
+		</name>
+		<description>
+			Implements View interface for a table, that is composed of an element structure where the child elements of the element this view is responsible for represent rows and the child elements of the row elements are cells. The cell elements can have an arbitrary element structure under them, which will be built with the ViewFactory returned by the getViewFactory method.         TABLE        ROW          CELL          CELL        ROW          CELL          CELL     This is implemented as a hierarchy of boxes, the table itself is a vertical box, the rows are horizontal boxes, and the cells are vertical boxes. The cells are allowed to span multiple columns and rows. By default, the table can be thought of as being formed over a grid (i.e. somewhat like one would find in gridbag layout), where table cells can request to span more than one grid cell. The default horizontal span of table cells will be based upon this grid, but can be changed by reimplementing the requested span of the cell (i.e. table cells can have independant spans if desired).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TableView(Element elem)
+				</name>
+				<description>
+					Constructs a TableView for the given element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TableView.TableRow createTableRow(Element elem)
+				</name>
+				<description>
+					Creates a new table row.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected TableView.TableCell createTableCell(Element elem)
+				</name>
+				<description>
+					Deprecated. Table cells can now be any arbitrary View implementation and should be produced by the ViewFactory rather than the table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void forwardUpdate(DocumentEvent.ElementChange ec,                   DocumentEvent e,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Description copied from class: BoxView Forwards the given DocumentEvent to the child views that need to be notified of the change to the model. If a child changed its requirements and the allocation was valid prior to forwarding the portion of the box from the starting child to the end of the box will be repainted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replace(int offset,             int length,             View[] views)
+				</name>
+				<description>
+					Change the child views. This is implemented to provide the superclass behavior and invalidate the grid so that rows and columns will be recalculated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutColumns(int targetSpan,                   int[] offsets,                   int[] spans,                   SizeRequirements[] reqs)
+				</name>
+				<description>
+					Lays out the columns to fit within the given target span. Returns the results through offsets and spans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutMinorAxis(int targetSpan,                     int axis,                     int[] offsets,                     int[] spans)
+				</name>
+				<description>
+					Perform layout for the minor axis of the box (i.e. the axis orthoginal to the axis that it represents). The results of the layout should be placed in the given arrays which represent the allocations to the children along the minor axis. This is called by the superclass whenever the layout needs to be updated along the minor axis. This is implemented to call the layoutColumns method, and then forward to the superclass to actually carry out the layout of the tables rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMinorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculate the requirements for the minor axis. This is called by the superclass whenever the requirements need to be updated (i.e. a preferenceChanged was messaged through this view). This is implemented to calculate the requirements as the sum of the requirements of the columns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View getViewAtPosition(int pos,                       Rectangle a)
+				</name>
+				<description>
+					Fetches the child view that represents the given position in the model. This is implemented to walk through the children looking for a range that contains the given position. In this view the children do not necessarily have a one to one mapping with the child elements.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

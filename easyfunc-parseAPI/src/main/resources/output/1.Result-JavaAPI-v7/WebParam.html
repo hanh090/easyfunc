@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.jws
+	</package>
+	<type>
+		<name>
+			@Retention(value=RUNTIME)  @Target(value=PARAMETER)  public @interface WebParam
+		</name>
+		<description>
+			Customizes the mapping of an individual parameter to a Web Service message part and XML element.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String name
+				</name>
+				<description>
+					Name of the parameter. If the operation is rpc style and @WebParam.partName has not been specified, this is name of the wsdl:part representing the parameter. If the operation is document style or the parameter maps to a header, this is the local name of the XML element representing the parameter. A name MUST be specified if the operation is document style, the parameter style is BARE, and the mode is OUT or INOUT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String partName
+				</name>
+				<description>
+					The name of the wsdl:part representing this parameter. This is only used if the operation is rpc style or if the operation is document style and the parameter style is BARE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String targetNamespace
+				</name>
+				<description>
+					The XML namespace for the parameter. Only used if the operation is document style or the paramater maps to a header. If the target namespace is set to "", this represents the empty namespace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract WebParam.Mode mode
+				</name>
+				<description>
+					The direction in which the parameter is flowing (One of IN, OUT, or INOUT). The OUT and INOUT modes may only be specified for parameter types that conform to the definition of Holder types (JAX-WS 2.0 [5], section 2.3.3). Parameters that are Holder Types MUST be OUT or INOUT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean header
+				</name>
+				<description>
+					If true, the parameter is pulled from a message header rather then the message body.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

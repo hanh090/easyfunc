@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		java.awt.im
+	</package>
+	<type>
+		<name>
+			public class InputMethodHighlight  extends Object
+		</name>
+		<description>
+			An InputMethodHighlight is used to describe the highlight attributes of text being composed. The description can be at two levels: at the abstract level it specifies the conversion state and whether the text is selected; at the concrete level it specifies style attributes used to render the highlight. An InputMethodHighlight must provide the description at the abstract level; it may or may not provide the description at the concrete level. If no concrete style is provided, a renderer should use Toolkit.mapInputMethodHighlight(java.awt.im.InputMethodHighlight) to map to a concrete style. The abstract description consists of three fields: selected, state, and variation. selected indicates whether the text range is the one that the input method is currently working on, for example, the segment for which conversion candidates are currently shown in a menu. state represents the conversion state. State values are defined by the input method framework and should be distinguished in all mappings from abstract to concrete styles. Currently defined state values are raw (unconverted) and converted. These state values are recommended for use before and after the main conversion step of text composition, say, before and after kana->kanji or pinyin->hanzi conversion. The variation field allows input methods to express additional information about the conversion results. InputMethodHighlight instances are typically used as attribute values returned from AttributedCharacterIterator for the INPUT_METHOD_HIGHLIGHT attribute. They may be wrapped into Annotation instances to indicate separate text segments.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int RAW_TEXT
+				</name>
+				<description>
+					Constant for the raw text state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CONVERTED_TEXT
+				</name>
+				<description>
+					Constant for the converted text state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final InputMethodHighlight UNSELECTED_RAW_TEXT_HIGHLIGHT
+				</name>
+				<description>
+					Constant for the default highlight for unselected raw text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final InputMethodHighlight SELECTED_RAW_TEXT_HIGHLIGHT
+				</name>
+				<description>
+					Constant for the default highlight for selected raw text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final InputMethodHighlight UNSELECTED_CONVERTED_TEXT_HIGHLIGHT
+				</name>
+				<description>
+					Constant for the default highlight for unselected converted text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final InputMethodHighlight SELECTED_CONVERTED_TEXT_HIGHLIGHT
+				</name>
+				<description>
+					Constant for the default highlight for selected converted text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputMethodHighlight(boolean selected,                      int state)
+				</name>
+				<description>
+					Constructs an input method highlight record. The variation is set to 0, the style to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputMethodHighlight(boolean selected,                      int state,                      int variation)
+				</name>
+				<description>
+					Constructs an input method highlight record. The style is set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputMethodHighlight(boolean selected,                      int state,                      int variation,                      Map<TextAttribute,?> style)
+				</name>
+				<description>
+					Constructs an input method highlight record. The style attributes map provided must be unmodifiable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSelected()
+				</name>
+				<description>
+					Returns whether the text range is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getState()
+				</name>
+				<description>
+					Returns the conversion state of the text range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVariation()
+				</name>
+				<description>
+					Returns the variation of the text range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<TextAttribute,?> getStyle()
+				</name>
+				<description>
+					Returns the rendering style attributes for the text range, or null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

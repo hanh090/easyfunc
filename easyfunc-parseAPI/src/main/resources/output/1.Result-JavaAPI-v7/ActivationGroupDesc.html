@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.rmi.activation
+	</package>
+	<type>
+		<name>
+			public final class ActivationGroupDesc  extends Object  implements Serializable
+		</name>
+		<description>
+			An activation group descriptor contains the information necessary to create/recreate an activation group in which to activate objects. Such a descriptor contains: the group's class name, the group's code location (the location of the group's class), and a "marshalled" object that can contain group specific initialization data. The group's class must be a concrete subclass of ActivationGroup. A subclass of ActivationGroup is created/recreated via the ActivationGroup.createGroup static method that invokes a special constructor that takes two arguments: the group's ActivationGroupID, and the group's initialization data (in a java.rmi.MarshalledObject)
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ActivationGroupDesc(Properties overrides,                     ActivationGroupDesc.CommandEnvironment cmd)
+				</name>
+				<description>
+					Constructs a group descriptor that uses the system defaults for group implementation and code location. Properties specify Java environment overrides (which will override system properties in the group implementation's VM). The command environment can control the exact command/options used in starting the child VM, or can be null to accept rmid's default. This constructor will create an ActivationGroupDesc with a null group class name, which indicates the system's default ActivationGroup implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationGroupDesc(String className,                     String location,                     MarshalledObject<?> data,                     Properties overrides,                     ActivationGroupDesc.CommandEnvironment cmd)
+				</name>
+				<description>
+					Specifies an alternate group implementation and execution environment to be used for the group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getClassName()
+				</name>
+				<description>
+					Returns the group's class name (possibly null). A null group class name indicates the system's default ActivationGroup implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLocation()
+				</name>
+				<description>
+					Returns the group's code location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MarshalledObject<?> getData()
+				</name>
+				<description>
+					Returns the group's initialization data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Properties getPropertyOverrides()
+				</name>
+				<description>
+					Returns the group's property-override list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationGroupDesc.CommandEnvironment getCommandEnvironment()
+				</name>
+				<description>
+					Returns the group's command-environment control object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares two activation group descriptors for content equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Produce identical numbers for similar ActivationGroupDescs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

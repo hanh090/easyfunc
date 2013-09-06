@@ -1,0 +1,279 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JColorChooser  extends JComponent  implements Accessible
+		</name>
+		<description>
+			JColorChooser provides a pane of controls designed to allow a user to manipulate and select a color. For information about using color choosers, see How to Use Color Choosers, a section in The Java Tutorial. This class provides three levels of API: A static convenience method which shows a modal color-chooser dialog and returns the color selected by the user. A static convenience method for creating a color-chooser dialog where ActionListeners can be specified to be invoked when the user presses one of the dialog buttons. The ability to create instances of JColorChooser panes directly (within any container). PropertyChange listeners can be added to detect when the current "color" property changes. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String SELECTION_MODEL_PROPERTY
+				</name>
+				<description>
+					The selection model property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String PREVIEW_PANEL_PROPERTY
+				</name>
+				<description>
+					The preview panel property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CHOOSER_PANELS_PROPERTY
+				</name>
+				<description>
+					The chooserPanel array property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected AccessibleContext accessibleContext
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JColorChooser()
+				</name>
+				<description>
+					Creates a color chooser pane with an initial color of white.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JColorChooser(Color initialColor)
+				</name>
+				<description>
+					Creates a color chooser pane with the specified initial color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JColorChooser(ColorSelectionModel model)
+				</name>
+				<description>
+					Creates a color chooser pane with the specified ColorSelectionModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Color showDialog(Component component,                 String title,                 Color initialColor)                          throws HeadlessException
+				</name>
+				<description>
+					Shows a modal color-chooser dialog and blocks until the dialog is hidden. If the user presses the "OK" button, then this method hides/disposes the dialog and returns the selected color. If the user presses the "Cancel" button or closes the dialog without pressing "OK", then this method hides/disposes the dialog and returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static JDialog createDialog(Component c,                     String title,                     boolean modal,                     JColorChooser chooserPane,                     ActionListener okListener,                     ActionListener cancelListener)                              throws HeadlessException
+				</name>
+				<description>
+					Creates and returns a new dialog containing the specified ColorChooser pane along with "OK", "Cancel", and "Reset" buttons. If the "OK" or "Cancel" buttons are pressed, the dialog is automatically hidden (but not disposed). If the "Reset" button is pressed, the color-chooser's color will be reset to the color which was set the last time show was invoked on the dialog and the dialog will remain showing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorChooserUI getUI()
+				</name>
+				<description>
+					Returns the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(ColorChooserUI ui)
+				</name>
+				<description>
+					Sets the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Notification from the UIManager that the L&F has changed. Replaces the current UI object with the latest version from the UIManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the L&F class that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getColor()
+				</name>
+				<description>
+					Gets the current color value from the color chooser. By default, this delegates to the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColor(Color color)
+				</name>
+				<description>
+					Sets the current color of the color chooser to the specified color. The ColorSelectionModel will fire a ChangeEvent
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColor(int r,              int g,              int b)
+				</name>
+				<description>
+					Sets the current color of the color chooser to the specified RGB color. Note that the values of red, green, and blue should be between the numbers 0 and 255, inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColor(int c)
+				</name>
+				<description>
+					Sets the current color of the color chooser to the specified color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDragEnabled(boolean b)
+				</name>
+				<description>
+					Sets the dragEnabled property, which must be true to enable automatic drag handling (the first part of drag and drop) on this component. The transferHandler property needs to be set to a non-null value for the drag to do anything. The default value of the dragEnabled property is false. When automatic drag handling is enabled, most look and feels begin a drag-and-drop operation when the user presses the mouse button over the preview panel. Some look and feels might not support automatic drag and drop; they will ignore this property. You can work around such look and feels by modifying the component to directly call the exportAsDrag method of a TransferHandler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getDragEnabled()
+				</name>
+				<description>
+					Gets the value of the dragEnabled property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPreviewPanel(JComponent preview)
+				</name>
+				<description>
+					Sets the current preview panel. This will fire a PropertyChangeEvent for the property named "previewPanel".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JComponent getPreviewPanel()
+				</name>
+				<description>
+					Returns the preview panel that shows a chosen color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChooserPanel(AbstractColorChooserPanel panel)
+				</name>
+				<description>
+					Adds a color chooser panel to the color chooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AbstractColorChooserPanel removeChooserPanel(AbstractColorChooserPanel panel)
+				</name>
+				<description>
+					Removes the Color Panel specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setChooserPanels(AbstractColorChooserPanel[] panels)
+				</name>
+				<description>
+					Specifies the Color Panels used to choose a color value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AbstractColorChooserPanel[] getChooserPanels()
+				</name>
+				<description>
+					Returns the specified color panels.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorSelectionModel getSelectionModel()
+				</name>
+				<description>
+					Returns the data model that handles color selections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionModel(ColorSelectionModel newModel)
+				</name>
+				<description>
+					Sets the model containing the selected color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JColorChooser. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JColorChooser. For color choosers, the AccessibleContext takes the form of an AccessibleJColorChooser. A new AccessibleJColorChooser instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

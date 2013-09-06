@@ -1,0 +1,414 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public abstract class SampleModel  extends Object
+		</name>
+		<description>
+			This abstract class defines an interface for extracting samples of pixels in an image. All image data is expressed as a collection of pixels. Each pixel consists of a number of samples. A sample is a datum for one band of an image and a band consists of all samples of a particular type in an image. For example, a pixel might contain three samples representing its red, green and blue components. There are three bands in the image containing this pixel. One band consists of all the red samples from all pixels in the image. The second band consists of all the green samples and the remaining band consists of all of the blue samples. The pixel can be stored in various formats. For example, all samples from a particular band can be stored contiguously or all samples from a single pixel can be stored contiguously. Subclasses of SampleModel specify the types of samples they can represent (e.g. unsigned 8-bit byte, signed 16-bit short, etc.) and may specify how the samples are organized in memory. In the Java 2D(tm) API, built-in image processing operators may not operate on all possible sample types, but generally will work for unsigned integral samples of 16 bits or less. Some operators support a wider variety of sample types. A collection of pixels is represented as a Raster, which consists of a DataBuffer and a SampleModel. The SampleModel allows access to samples in the DataBuffer and may provide low-level information that a programmer can use to directly manipulate samples and pixels in the DataBuffer. This class is generally a fall back method for dealing with images. More efficient code will cast the SampleModel to the appropriate subclass and extract the information needed to directly manipulate pixels in the DataBuffer.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int width
+				</name>
+				<description>
+					Width in pixels of the region of image data that this SampleModel describes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int height
+				</name>
+				<description>
+					Height in pixels of the region of image data that this SampleModel describes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int numBands
+				</name>
+				<description>
+					Number of bands of the image data that this SampleModel describes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int dataType
+				</name>
+				<description>
+					Data type of the DataBuffer storing the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel(int dataType,             int w,             int h,             int numBands)
+				</name>
+				<description>
+					Constructs a SampleModel with the specified parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getWidth()
+				</name>
+				<description>
+					Returns the width in pixels.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getHeight()
+				</name>
+				<description>
+					Returns the height in pixels.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getNumBands()
+				</name>
+				<description>
+					Returns the total number of bands of image data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getNumDataElements()
+				</name>
+				<description>
+					Returns the number of data elements needed to transfer a pixel via the getDataElements and setDataElements methods. When pixels are transferred via these methods, they may be transferred in a packed or unpacked format, depending on the implementation of the SampleModel. Using these methods, pixels are transferred as an array of getNumDataElements() elements of a primitive type given by getTransferType(). The TransferType may or may not be the same as the storage DataType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getDataType()
+				</name>
+				<description>
+					Returns the data type of the DataBuffer storing the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTransferType()
+				</name>
+				<description>
+					Returns the TransferType used to transfer pixels via the getDataElements and setDataElements methods. When pixels are transferred via these methods, they may be transferred in a packed or unpacked format, depending on the implementation of the SampleModel. Using these methods, pixels are transferred as an array of getNumDataElements() elements of a primitive type given by getTransferType(). The TransferType may or may not be the same as the storage DataType. The TransferType will be one of the types defined in DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixel(int x,               int y,               int[] iArray,               DataBuffer data)
+				</name>
+				<description>
+					Returns the samples for a specified pixel in an int array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getDataElements(int x,                       int y,                       Object obj,                       DataBuffer data)
+				</name>
+				<description>
+					Returns data for a single pixel in a primitive array of type TransferType. For image data supported by the Java 2D API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data may be returned in a packed format, thus increasing efficiency for data transfers. Generally, obj should be passed in as null, so that the Object will be created automatically and will be of the right primitive data type. The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by SampleModel sm1, to DataBuffer db2, whose storage layout is described by SampleModel sm2. The transfer will generally be more efficient than using getPixel/setPixel.          SampleModel sm1, sm2;         DataBuffer db1, db2;         sm2.setDataElements(x, y, sm1.getDataElements(x, y, null, db1), db2);   Using getDataElements/setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModels have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. If obj is non-null, it should be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if obj is non-null and is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getDataElements(int x,                       int y,                       int w,                       int h,                       Object obj,                       DataBuffer data)
+				</name>
+				<description>
+					Returns the pixel data for the specified rectangle of pixels in a primitive array of type TransferType. For image data supported by the Java 2D API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data may be returned in a packed format, thus increasing efficiency for data transfers. Generally, obj should be passed in as null, so that the Object will be created automatically and will be of the right primitive data type. The following code illustrates transferring data for a rectangular region of pixels from DataBuffer db1, whose storage layout is described by SampleModel sm1, to DataBuffer db2, whose storage layout is described by SampleModel sm2. The transfer will generally be more efficient than using getPixels/setPixels.          SampleModel sm1, sm2;         DataBuffer db1, db2;         sm2.setDataElements(x, y, w, h, sm1.getDataElements(x, y, w,                             h, null, db1), db2);   Using getDataElements/setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModels have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. If obj is non-null, it should be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if obj is non-null and is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setDataElements(int x,                     int y,                     Object obj,                     DataBuffer data)
+				</name>
+				<description>
+					Sets the data for a single pixel in the specified DataBuffer from a primitive array of type TransferType. For image data supported by the Java 2D API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data in the array may be in a packed format, thus increasing efficiency for data transfers. The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by SampleModel sm1, to DataBuffer db2, whose storage layout is described by SampleModel sm2. The transfer will generally be more efficient than using getPixel/setPixel.          SampleModel sm1, sm2;         DataBuffer db1, db2;         sm2.setDataElements(x, y, sm1.getDataElements(x, y, null, db1),                             db2);   Using getDataElements/setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModels have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. obj must be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if obj is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDataElements(int x,                     int y,                     int w,                     int h,                     Object obj,                     DataBuffer data)
+				</name>
+				<description>
+					Sets the data for a rectangle of pixels in the specified DataBuffer from a primitive array of type TransferType. For image data supported by the Java 2D API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data in the array may be in a packed format, thus increasing efficiency for data transfers. The following code illustrates transferring data for a rectangular region of pixels from DataBuffer db1, whose storage layout is described by SampleModel sm1, to DataBuffer db2, whose storage layout is described by SampleModel sm2. The transfer will generally be more efficient than using getPixels/setPixels.          SampleModel sm1, sm2;         DataBuffer db1, db2;         sm2.setDataElements(x, y, w, h, sm1.getDataElements(x, y, w, h,                             null, db1), db2);   Using getDataElements/setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModels have the same number of bands, corresponding bands have the same number of bits per sample, and the TransferTypes are the same. obj must be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if obj is not large enough to hold the pixel data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getPixel(int x,                 int y,                 float[] fArray,                 DataBuffer data)
+				</name>
+				<description>
+					Returns the samples for the specified pixel in an array of float. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double[] getPixel(int x,                  int y,                  double[] dArray,                  DataBuffer data)
+				</name>
+				<description>
+					Returns the samples for the specified pixel in an array of double. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getPixels(int x,                int y,                int w,                int h,                int[] iArray,                DataBuffer data)
+				</name>
+				<description>
+					Returns all samples for a rectangle of pixels in an int array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getPixels(int x,                  int y,                  int w,                  int h,                  float[] fArray,                  DataBuffer data)
+				</name>
+				<description>
+					Returns all samples for a rectangle of pixels in a float array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double[] getPixels(int x,                   int y,                   int w,                   int h,                   double[] dArray,                   DataBuffer data)
+				</name>
+				<description>
+					Returns all samples for a rectangle of pixels in a double array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getSample(int x,              int y,              int b,              DataBuffer data)
+				</name>
+				<description>
+					Returns the sample in a specified band for the pixel located at (x,y) as an int. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getSampleFloat(int x,                     int y,                     int b,                     DataBuffer data)
+				</name>
+				<description>
+					Returns the sample in a specified band for the pixel located at (x,y) as a float. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getSampleDouble(int x,                       int y,                       int b,                       DataBuffer data)
+				</name>
+				<description>
+					Returns the sample in a specified band for a pixel located at (x,y) as a double. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSamples(int x,                 int y,                 int w,                 int h,                 int b,                 int[] iArray,                 DataBuffer data)
+				</name>
+				<description>
+					Returns the samples for a specified band for the specified rectangle of pixels in an int array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getSamples(int x,                   int y,                   int w,                   int h,                   int b,                   float[] fArray,                   DataBuffer data)
+				</name>
+				<description>
+					Returns the samples for a specified band for the specified rectangle of pixels in a float array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double[] getSamples(int x,                    int y,                    int w,                    int h,                    int b,                    double[] dArray,                    DataBuffer data)
+				</name>
+				<description>
+					Returns the samples for a specified band for a specified rectangle of pixels in a double array, one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              int[] iArray,              DataBuffer data)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using an int array of samples for input. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              float[] fArray,              DataBuffer data)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using a float array of samples for input. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              double[] dArray,              DataBuffer data)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using a double array of samples for input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               int[] iArray,               DataBuffer data)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from an int array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               float[] fArray,               DataBuffer data)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from a float array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               double[] dArray,               DataBuffer data)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from a double array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setSample(int x,               int y,               int b,               int s,               DataBuffer data)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using an int for input. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               float s,               DataBuffer data)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using a float for input. The default implementation of this method casts the input float sample to an int and then calls the setSample(int, int, int, DataBuffer) method using that int value. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               double s,               DataBuffer data)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using a double for input. The default implementation of this method casts the input double sample to an int and then calls the setSample(int, int, int, DataBuffer) method using that int value. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                int[] iArray,                DataBuffer data)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from an int array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                float[] fArray,                DataBuffer data)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from a float array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                double[] dArray,                DataBuffer data)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from a double array containing one sample per array element. ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SampleModel createCompatibleSampleModel(int w,                                        int h)
+				</name>
+				<description>
+					Creates a SampleModel which describes data in this SampleModel's format, but with a different width and height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SampleModel createSubsetSampleModel(int[] bands)
+				</name>
+				<description>
+					Creates a new SampleModel with a subset of the bands of this SampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract DataBuffer createDataBuffer()
+				</name>
+				<description>
+					Creates a DataBuffer that corresponds to this SampleModel. The DataBuffer's width and height will match this SampleModel's.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int[] getSampleSize()
+				</name>
+				<description>
+					Returns the size in bits of samples for all bands.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getSampleSize(int band)
+				</name>
+				<description>
+					Returns the size in bits of samples for the specified band.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

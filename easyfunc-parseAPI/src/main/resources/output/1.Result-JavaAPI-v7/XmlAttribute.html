@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.xml.bind.annotation
+	</package>
+	<type>
+		<name>
+			@Retention(value=RUNTIME)  @Target(value={FIELD,METHOD})  public @interface XmlAttribute
+		</name>
+		<description>
+			Maps a JavaBean property to a XML attribute. Usage The @XmlAttribute annotation can be used with the following program elements: JavaBean property field A static final field is mapped to a XML fixed attribute. See "Package Specification" in javax.xml.bind.package javadoc for additional common information. The usage is subject to the following constraints: If type of the field or the property is a collection type, then the collection item type must be mapped to schema simple type.        // Examples       @XmlAttribute List<Integer> items; //legal       @XmlAttribute List<Bar> foo; // illegal if Bar does not map to a schema simple type   If the type of the field or the property is a non collection type, then the type of the property or field must map to a simple schema type.        // Examples       @XmlAttribute int foo; // legal       @XmlAttribute Foo foo; // illegal if Foo does not map to a schema simple type   This annotation can be used with the following annotations: XmlID, XmlIDREF, XmlList, XmlSchemaType, XmlValue, XmlAttachmentRef, XmlMimeType, XmlInlineBinaryData, XmlJavaTypeAdapter. Example 1: Map a JavaBean property to an XML attribute.        //Example: Code fragment       public class USPrice {           @XmlAttribute           public java.math.BigDecimal getPrice() {...} ;           public void setPrice(java.math.BigDecimal ) {...};       }         <!-- Example: XML Schema fragment -->       <xs:complexType name="USPrice">         <xs:sequence>         </xs:sequence>         <xs:attribute name="price" type="xs:decimal"/>       </xs:complexType>   Example 2: Map a JavaBean property to an XML attribute with anonymous type. See Example 7 in @XmlType. Example 3: Map a JavaBean collection property to an XML attribute.        // Example: Code fragment       class Foo {           ...           @XmlAttribute List<Integer> items;       }         <!-- Example: XML Schema fragment -->       <xs:complexType name="foo">         ...         <xs:attribute name="items">           <xs:simpleType>             <xs:list itemType="xs:int"/>           </xs:simpleType>       </xs:complexType>
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String name
+				</name>
+				<description>
+					Name of the XML Schema attribute. By default, the XML Schema attribute name is derived from the JavaBean property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean required
+				</name>
+				<description>
+					Specifies if the XML Schema attribute is optional or required. If true, then the JavaBean property is mapped to a XML Schema attribute that is required. Otherwise it is mapped to a XML Schema attribute that is optional.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String namespace
+				</name>
+				<description>
+					Specifies the XML target namespace of the XML Schema attribute.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

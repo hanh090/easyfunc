@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		org.omg.DynamicAny
+	</package>
+	<type>
+		<name>
+			public interface DynFixedOperations  extends DynAnyOperations
+		</name>
+		<description>
+			DynFixed objects support the manipulation of IDL fixed values. Because IDL does not have a generic type that can represent fixed types with arbitrary number of digits and arbitrary scale, the operations use the IDL string type.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String get_value()
+				</name>
+				<description>
+					Returns the value of a DynFixed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean set_value(String val)                    throws TypeMismatch,                           InvalidValue
+				</name>
+				<description>
+					Sets the value of the DynFixed. The val string must contain a fixed string constant in the same format as used for IDL fixed-point literals. However, the trailing d or D is optional. The return value is true if val can be represented as the DynFixed without loss of precision. If val has more fractional digits than can be represented in the DynFixed, fractional digits are truncated and the return value is false.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

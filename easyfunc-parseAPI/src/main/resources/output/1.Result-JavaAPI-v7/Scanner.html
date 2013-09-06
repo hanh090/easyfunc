@@ -1,0 +1,603 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public final class Scanner  extends Object  implements Iterator<String>, Closeable
+		</name>
+		<description>
+			A simple text scanner which can parse primitive types and strings using regular expressions. A Scanner breaks its input into tokens using a delimiter pattern, which by default matches whitespace. The resulting tokens may then be converted into values of different types using the various next methods. For example, this code allows a user to read a number from System.in:        Scanner sc = new Scanner(System.in);       int i = sc.nextInt();   As another example, this code allows long types to be assigned from entries in a file myNumbers:         Scanner sc = new Scanner(new File("myNumbers"));        while (sc.hasNextLong()) {            long aLong = sc.nextLong();        } The scanner can also use delimiters other than whitespace. This example reads several items in from a string:        String input = "1 fish 2 fish red fish blue fish";       Scanner s = new Scanner(input).useDelimiter("\\s*fish\\s*");       System.out.println(s.nextInt());       System.out.println(s.nextInt());       System.out.println(s.next());       System.out.println(s.next());       s.close(); prints the following output:        1       2       red       blue The same output can be generated with this code, which uses a regular expression to parse all four tokens at once:        String input = "1 fish 2 fish red fish blue fish";       Scanner s = new Scanner(input);       s.findInLine("(\\d+) fish (\\d+) fish (\\w+) fish (\\w+)");       MatchResult result = s.match();       for (int i=1; i<=result.groupCount(); i++)           System.out.println(result.group(i));       s.close(); The default whitespace delimiter used by a scanner is as recognized by Character.isWhitespace. The reset() method will reset the value of the scanner's delimiter to the default whitespace delimiter regardless of whether it was previously changed. A scanning operation may block waiting for input. The next() and hasNext() methods and their primitive-type companion methods (such as nextInt() and hasNextInt()) first skip any input that matches the delimiter pattern, and then attempt to return the next token. Both hasNext and next methods may block waiting for further input. Whether a hasNext method blocks has no connection to whether or not its associated next method will block. The findInLine(java.lang.String), findWithinHorizon(java.lang.String, int), and skip(java.util.regex.Pattern) methods operate independently of the delimiter pattern. These methods will attempt to match the specified pattern with no regard to delimiters in the input and thus can be used in special circumstances where delimiters are not relevant. These methods may block waiting for more input. When a scanner throws an InputMismatchException, the scanner will not pass the token that caused the exception, so that it may be retrieved or skipped via some other method. Depending upon the type of delimiting pattern, empty tokens may be returned. For example, the pattern "\\s+" will return no empty tokens since it matches multiple instances of the delimiter. The delimiting pattern "\\s" could return empty tokens since it only passes one space at a time. A scanner can read text from any object which implements the Readable interface. If an invocation of the underlying readable's Readable.read(java.nio.CharBuffer) method throws an IOException then the scanner assumes that the end of the input has been reached. The most recent IOException thrown by the underlying readable can be retrieved via the ioException() method. When a Scanner is closed, it will close its input source if the source implements the Closeable interface. A Scanner is not safe for multithreaded use without external synchronization. Unless otherwise mentioned, passing a null parameter into any method of a Scanner will cause a NullPointerException to be thrown. A scanner will default to interpreting numbers as decimal unless a different radix has been set by using the useRadix(int) method. The reset() method will reset the value of the scanner's radix to 10 regardless of whether it was previously changed. Localized numbers An instance of this class is capable of scanning numbers in the standard formats as well as in the formats of the scanner's locale. A scanner's initial locale is the value returned by the Locale.getDefault() method; it may be changed via the useLocale(java.util.Locale) method. The reset() method will reset the value of the scanner's locale to the initial locale regardless of whether it was previously changed. The localized formats are defined in terms of the following parameters, which for a particular locale are taken from that locale's DecimalFormat object, df, and its and DecimalFormatSymbols object, dfs. LocalGroupSeparator   The character used to separate thousands groups, i.e., dfs.getGroupingSeparator() LocalDecimalSeparator   The character used for the decimal point, i.e., dfs.getDecimalSeparator() LocalPositivePrefix   The string that appears before a positive number (may be empty), i.e., df.getPositivePrefix() LocalPositiveSuffix   The string that appears after a positive number (may be empty), i.e., df.getPositiveSuffix() LocalNegativePrefix   The string that appears before a negative number (may be empty), i.e., df.getNegativePrefix() LocalNegativeSuffix   The string that appears after a negative number (may be empty), i.e., df.getNegativeSuffix() LocalNaN   The string that represents not-a-number for floating-point values, i.e., dfs.getNaN() LocalInfinity   The string that represents infinity for floating-point values, i.e., dfs.getInfinity() Number syntax The strings that can be parsed as numbers by an instance of this class are specified in terms of the following regular-expression grammar, where Rmax is the highest digit in the radix being used (for example, Rmax is 9 in base 10). NonASCIIDigit  :: = A non-ASCII character c for which Character.isDigit(c) returns true   Non0Digit  :: = [1-Rmax] | NonASCIIDigit   Digit  :: = [0-Rmax] | NonASCIIDigit   GroupedNumeral  :: = (  Non0Digit Digit? Digit? ( LocalGroupSeparator Digit Digit Digit )+ )   Numeral  :: = ( ( Digit+ ) | GroupedNumeral )   Integer  :: = ( [-+]? ( Numeral ) ) | LocalPositivePrefix Numeral LocalPositiveSuffix | LocalNegativePrefix Numeral LocalNegativeSuffix   DecimalNumeral  :: = Numeral | Numeral LocalDecimalSeparator Digit* | LocalDecimalSeparator Digit+   Exponent  :: = ( [eE] [+-]? Digit+ )   Decimal  :: = ( [-+]? DecimalNumeral Exponent? ) | LocalPositivePrefix DecimalNumeral LocalPositiveSuffix Exponent? | LocalNegativePrefix DecimalNumeral LocalNegativeSuffix Exponent?   HexFloat  :: = [-+]? 0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+ ([pP][-+]?[0-9]+)?   NonNumber  :: = NaN | LocalNan | Infinity | LocalInfinity   SignedNonNumber  :: = ( [-+]? NonNumber ) | LocalPositivePrefix NonNumber LocalPositiveSuffix | LocalNegativePrefix NonNumber LocalNegativeSuffix   Float  :: = Decimal | HexFloat | SignedNonNumber Whitespace is not significant in the above regular expressions.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Scanner(Readable source)
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(InputStream source)
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified input stream. Bytes from the stream are converted into characters using the underlying platform's default charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(InputStream source,         String charsetName)
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified input stream. Bytes from the stream are converted into characters using the specified charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(File source)          throws FileNotFoundException
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified file. Bytes from the file are converted into characters using the underlying platform's default charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(File source,         String charsetName)          throws FileNotFoundException
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified file. Bytes from the file are converted into characters using the specified charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(Path source)          throws IOException
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified file. Bytes from the file are converted into characters using the underlying platform's default charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(Path source,         String charsetName)          throws IOException
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified file. Bytes from the file are converted into characters using the specified charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(String source)
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(ReadableByteChannel source)
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified channel. Bytes from the source are converted into characters using the underlying platform's default charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner(ReadableByteChannel source,         String charsetName)
+				</name>
+				<description>
+					Constructs a new Scanner that produces values scanned from the specified channel. Bytes from the source are converted into characters using the specified charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()
+				</name>
+				<description>
+					Closes this scanner. If this scanner has not yet been closed then if its underlying readable also implements the Closeable interface then the readable's close method will be invoked. If this scanner is already closed then invoking this method will have no effect. Attempting to perform search operations after a scanner has been closed will result in an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IOException ioException()
+				</name>
+				<description>
+					Returns the IOException last thrown by this Scanner's underlying Readable. This method returns null if no such exception exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Pattern delimiter()
+				</name>
+				<description>
+					Returns the Pattern this Scanner is currently using to match delimiters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner useDelimiter(Pattern pattern)
+				</name>
+				<description>
+					Sets this scanner's delimiting pattern to the specified pattern.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner useDelimiter(String pattern)
+				</name>
+				<description>
+					Sets this scanner's delimiting pattern to a pattern constructed from the specified String. An invocation of this method of the form useDelimiter(pattern) behaves in exactly the same way as the invocation useDelimiter(Pattern.compile(pattern)). Invoking the reset() method will set the scanner's delimiter to the default.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Locale locale()
+				</name>
+				<description>
+					Returns this scanner's locale. A scanner's locale affects many elements of its default primitive matching regular expressions; see localized numbers above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner useLocale(Locale locale)
+				</name>
+				<description>
+					Sets this scanner's locale to the specified locale. A scanner's locale affects many elements of its default primitive matching regular expressions; see localized numbers above. Invoking the reset() method will set the scanner's locale to the initial locale.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int radix()
+				</name>
+				<description>
+					Returns this scanner's default radix. A scanner's radix affects elements of its default number matching regular expressions; see localized numbers above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner useRadix(int radix)
+				</name>
+				<description>
+					Sets this scanner's default radix to the specified radix. A scanner's radix affects elements of its default number matching regular expressions; see localized numbers above. If the radix is less than Character.MIN_RADIX or greater than Character.MAX_RADIX, then an IllegalArgumentException is thrown. Invoking the reset() method will set the scanner's radix to 10.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MatchResult match()
+				</name>
+				<description>
+					Returns the match result of the last scanning operation performed by this scanner. This method throws IllegalStateException if no match has been performed, or if the last match was not successful. The various nextmethods of Scanner make a match result available if they complete without throwing an exception. For instance, after an invocation of the nextInt() method that returned an int, this method returns a MatchResult for the search of the Integer regular expression defined above. Similarly the findInLine(java.lang.String), findWithinHorizon(java.lang.String, int), and skip(java.util.regex.Pattern) methods will make a match available if they succeed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the string representation of this Scanner. The string representation of a Scanner contains information that may be useful for debugging. The exact format is unspecified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNext()
+				</name>
+				<description>
+					Returns true if this scanner has another token in its input. This method may block while waiting for input to scan. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String next()
+				</name>
+				<description>
+					Finds and returns the next complete token from this scanner. A complete token is preceded and followed by input that matches the delimiter pattern. This method may block while waiting for input to scan, even if a previous invocation of hasNext() returned true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove()
+				</name>
+				<description>
+					The remove operation is not supported by this implementation of Iterator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNext(String pattern)
+				</name>
+				<description>
+					Returns true if the next token matches the pattern constructed from the specified string. The scanner does not advance past any input. An invocation of this method of the form hasNext(pattern) behaves in exactly the same way as the invocation hasNext(Pattern.compile(pattern)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String next(String pattern)
+				</name>
+				<description>
+					Returns the next token if it matches the pattern constructed from the specified string. If the match is successful, the scanner advances past the input that matched the pattern. An invocation of this method of the form next(pattern) behaves in exactly the same way as the invocation next(Pattern.compile(pattern)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNext(Pattern pattern)
+				</name>
+				<description>
+					Returns true if the next complete token matches the specified pattern. A complete token is prefixed and postfixed by input that matches the delimiter pattern. This method may block while waiting for input. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String next(Pattern pattern)
+				</name>
+				<description>
+					Returns the next token if it matches the specified pattern. This method may block while waiting for input to scan, even if a previous invocation of hasNext(Pattern) returned true. If the match is successful, the scanner advances past the input that matched the pattern.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextLine()
+				</name>
+				<description>
+					Returns true if there is another line in the input of this scanner. This method may block while waiting for input. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String nextLine()
+				</name>
+				<description>
+					Advances this scanner past the current line and returns the input that was skipped. This method returns the rest of the current line, excluding any line separator at the end. The position is set to the beginning of the next line. Since this method continues to search through the input looking for a line separator, it may buffer all of the input searching for the line to skip if no line separators are present.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String findInLine(String pattern)
+				</name>
+				<description>
+					Attempts to find the next occurrence of a pattern constructed from the specified string, ignoring delimiters. An invocation of this method of the form findInLine(pattern) behaves in exactly the same way as the invocation findInLine(Pattern.compile(pattern)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String findInLine(Pattern pattern)
+				</name>
+				<description>
+					Attempts to find the next occurrence of the specified pattern ignoring delimiters. If the pattern is found before the next line separator, the scanner advances past the input that matched and returns the string that matched the pattern. If no such pattern is detected in the input up to the next line separator, then null is returned and the scanner's position is unchanged. This method may block waiting for input that matches the pattern. Since this method continues to search through the input looking for the specified pattern, it may buffer all of the input searching for the desired token if no line separators are present.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String findWithinHorizon(String pattern,                         int horizon)
+				</name>
+				<description>
+					Attempts to find the next occurrence of a pattern constructed from the specified string, ignoring delimiters. An invocation of this method of the form findWithinHorizon(pattern) behaves in exactly the same way as the invocation findWithinHorizon(Pattern.compile(pattern, horizon)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String findWithinHorizon(Pattern pattern,                         int horizon)
+				</name>
+				<description>
+					Attempts to find the next occurrence of the specified pattern. This method searches through the input up to the specified search horizon, ignoring delimiters. If the pattern is found the scanner advances past the input that matched and returns the string that matched the pattern. If no such pattern is detected then the null is returned and the scanner's position remains unchanged. This method may block waiting for input that matches the pattern. A scanner will never search more than horizon code points beyond its current position. Note that a match may be clipped by the horizon; that is, an arbitrary match result may have been different if the horizon had been larger. The scanner treats the horizon as a transparent, non-anchoring bound (see Matcher.useTransparentBounds(boolean) and Matcher.useAnchoringBounds(boolean)). If horizon is 0, then the horizon is ignored and this method continues to search through the input looking for the specified pattern without bound. In this case it may buffer all of the input searching for the pattern. If horizon is negative, then an IllegalArgumentException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner skip(Pattern pattern)
+				</name>
+				<description>
+					Skips input that matches the specified pattern, ignoring delimiters. This method will skip input if an anchored match of the specified pattern succeeds. If a match to the specified pattern is not found at the current position, then no input is skipped and a NoSuchElementException is thrown. Since this method seeks to match the specified pattern starting at the scanner's current position, patterns that can match a lot of input (".*", for example) may cause the scanner to buffer a large amount of input. Note that it is possible to skip something without risking a NoSuchElementException by using a pattern that can match nothing, e.g., sc.skip("[ \t]*").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner skip(String pattern)
+				</name>
+				<description>
+					Skips input that matches a pattern constructed from the specified string. An invocation of this method of the form skip(pattern) behaves in exactly the same way as the invocation skip(Pattern.compile(pattern)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextBoolean()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a boolean value using a case insensitive pattern created from the string "true|false". The scanner does not advance past the input that matched.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean nextBoolean()
+				</name>
+				<description>
+					Scans the next token of the input into a boolean value and returns that value. This method will throw InputMismatchException if the next token cannot be translated into a valid boolean value. If the match is successful, the scanner advances past the input that matched.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextByte()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a byte value in the default radix using the nextByte() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextByte(int radix)
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a byte value in the specified radix using the nextByte() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte nextByte()
+				</name>
+				<description>
+					Scans the next token of the input as a byte. An invocation of this method of the form nextByte() behaves in exactly the same way as the invocation nextByte(radix), where radix is the default radix of this scanner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte nextByte(int radix)
+				</name>
+				<description>
+					Scans the next token of the input as a byte. This method will throw InputMismatchException if the next token cannot be translated into a valid byte value as described below. If the translation is successful, the scanner advances past the input that matched. If the next token matches the Integer regular expression defined above then the token is converted into a byte value as if by removing all locale specific prefixes, group separators, and locale specific suffixes, then mapping non-ASCII digits into ASCII digits via Character.digit, prepending a negative sign (-) if the locale specific negative prefixes and suffixes were present, and passing the resulting string to Byte.parseByte with the specified radix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextShort()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a short value in the default radix using the nextShort() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextShort(int radix)
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a short value in the specified radix using the nextShort() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public short nextShort()
+				</name>
+				<description>
+					Scans the next token of the input as a short. An invocation of this method of the form nextShort() behaves in exactly the same way as the invocation nextShort(radix), where radix is the default radix of this scanner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public short nextShort(int radix)
+				</name>
+				<description>
+					Scans the next token of the input as a short. This method will throw InputMismatchException if the next token cannot be translated into a valid short value as described below. If the translation is successful, the scanner advances past the input that matched. If the next token matches the Integer regular expression defined above then the token is converted into a short value as if by removing all locale specific prefixes, group separators, and locale specific suffixes, then mapping non-ASCII digits into ASCII digits via Character.digit, prepending a negative sign (-) if the locale specific negative prefixes and suffixes were present, and passing the resulting string to Short.parseShort with the specified radix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextInt()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as an int value in the default radix using the nextInt() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextInt(int radix)
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as an int value in the specified radix using the nextInt() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int nextInt()
+				</name>
+				<description>
+					Scans the next token of the input as an int. An invocation of this method of the form nextInt() behaves in exactly the same way as the invocation nextInt(radix), where radix is the default radix of this scanner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int nextInt(int radix)
+				</name>
+				<description>
+					Scans the next token of the input as an int. This method will throw InputMismatchException if the next token cannot be translated into a valid int value as described below. If the translation is successful, the scanner advances past the input that matched. If the next token matches the Integer regular expression defined above then the token is converted into an int value as if by removing all locale specific prefixes, group separators, and locale specific suffixes, then mapping non-ASCII digits into ASCII digits via Character.digit, prepending a negative sign (-) if the locale specific negative prefixes and suffixes were present, and passing the resulting string to Integer.parseInt with the specified radix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextLong()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a long value in the default radix using the nextLong() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextLong(int radix)
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a long value in the specified radix using the nextLong() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long nextLong()
+				</name>
+				<description>
+					Scans the next token of the input as a long. An invocation of this method of the form nextLong() behaves in exactly the same way as the invocation nextLong(radix), where radix is the default radix of this scanner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long nextLong(int radix)
+				</name>
+				<description>
+					Scans the next token of the input as a long. This method will throw InputMismatchException if the next token cannot be translated into a valid long value as described below. If the translation is successful, the scanner advances past the input that matched. If the next token matches the Integer regular expression defined above then the token is converted into a long value as if by removing all locale specific prefixes, group separators, and locale specific suffixes, then mapping non-ASCII digits into ASCII digits via Character.digit, prepending a negative sign (-) if the locale specific negative prefixes and suffixes were present, and passing the resulting string to Long.parseLong with the specified radix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextFloat()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a float value using the nextFloat() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float nextFloat()
+				</name>
+				<description>
+					Scans the next token of the input as a float. This method will throw InputMismatchException if the next token cannot be translated into a valid float value as described below. If the translation is successful, the scanner advances past the input that matched. If the next token matches the Float regular expression defined above then the token is converted into a float value as if by removing all locale specific prefixes, group separators, and locale specific suffixes, then mapping non-ASCII digits into ASCII digits via Character.digit, prepending a negative sign (-) if the locale specific negative prefixes and suffixes were present, and passing the resulting string to Float.parseFloat. If the token matches the localized NaN or infinity strings, then either "Nan" or "Infinity" is passed to Float.parseFloat as appropriate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextDouble()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a double value using the nextDouble() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double nextDouble()
+				</name>
+				<description>
+					Scans the next token of the input as a double. This method will throw InputMismatchException if the next token cannot be translated into a valid double value. If the translation is successful, the scanner advances past the input that matched. If the next token matches the Float regular expression defined above then the token is converted into a double value as if by removing all locale specific prefixes, group separators, and locale specific suffixes, then mapping non-ASCII digits into ASCII digits via Character.digit, prepending a negative sign (-) if the locale specific negative prefixes and suffixes were present, and passing the resulting string to Double.parseDouble. If the token matches the localized NaN or infinity strings, then either "Nan" or "Infinity" is passed to Double.parseDouble as appropriate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextBigInteger()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a BigInteger in the default radix using the nextBigInteger() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextBigInteger(int radix)
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a BigInteger in the specified radix using the nextBigInteger() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger nextBigInteger()
+				</name>
+				<description>
+					Scans the next token of the input as a BigInteger. An invocation of this method of the form nextBigInteger() behaves in exactly the same way as the invocation nextBigInteger(radix), where radix is the default radix of this scanner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger nextBigInteger(int radix)
+				</name>
+				<description>
+					Scans the next token of the input as a BigInteger. If the next token matches the Integer regular expression defined above then the token is converted into a BigInteger value as if by removing all group separators, mapping non-ASCII digits into ASCII digits via the Character.digit, and passing the resulting string to the BigInteger(String, int) constructor with the specified radix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNextBigDecimal()
+				</name>
+				<description>
+					Returns true if the next token in this scanner's input can be interpreted as a BigDecimal using the nextBigDecimal() method. The scanner does not advance past any input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal nextBigDecimal()
+				</name>
+				<description>
+					Scans the next token of the input as a BigDecimal. If the next token matches the Decimal regular expression defined above then the token is converted into a BigDecimal value as if by removing all group separators, mapping non-ASCII digits into ASCII digits via the Character.digit, and passing the resulting string to the BigDecimal(String) constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Scanner reset()
+				</name>
+				<description>
+					Resets this scanner. Resetting a scanner discards all of its explicit state information which may have been changed by invocations of useDelimiter(java.util.regex.Pattern), useLocale(java.util.Locale), or useRadix(int). An invocation of this method of the form scanner.reset() behaves in exactly the same way as the invocation      scanner.useDelimiter("\\p{javaWhitespace}+")            .useLocale(Locale.getDefault())            .useRadix(10);
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

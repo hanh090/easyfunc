@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class TexturePaint  extends Object  implements Paint
+		</name>
+		<description>
+			The TexturePaint class provides a way to fill a Shape with a texture that is specified as a BufferedImage. The size of the BufferedImage object should be small because the BufferedImage data is copied by the TexturePaint object. At construction time, the texture is anchored to the upper left corner of a Rectangle2D that is specified in user space. Texture is computed for locations in the device space by conceptually replicating the specified Rectangle2D infinitely in all directions in user space and mapping the BufferedImage to each replicated Rectangle2D.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TexturePaint(BufferedImage txtr,              Rectangle2D anchor)
+				</name>
+				<description>
+					Constructs a TexturePaint object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedImage getImage()
+				</name>
+				<description>
+					Returns the BufferedImage texture used to fill the shapes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getAnchorRect()
+				</name>
+				<description>
+					Returns a copy of the anchor rectangle which positions and sizes the textured image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PaintContext createContext(ColorModel cm,                           Rectangle deviceBounds,                           Rectangle2D userBounds,                           AffineTransform xform,                           RenderingHints hints)
+				</name>
+				<description>
+					Creates and returns a PaintContext used to generate a tiled image pattern. See the specification of the method in the Paint interface for information on null parameter handling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTransparency()
+				</name>
+				<description>
+					Returns the transparency mode for this TexturePaint.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

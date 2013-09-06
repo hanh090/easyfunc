@@ -1,0 +1,342 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public class BitSet  extends Object  implements Cloneable, Serializable
+		</name>
+		<description>
+			This class implements a vector of bits that grows as needed. Each component of the bit set has a boolean value. The bits of a BitSet are indexed by nonnegative integers. Individual indexed bits can be examined, set, or cleared. One BitSet may be used to modify the contents of another BitSet through logical AND, logical inclusive OR, and logical exclusive OR operations. By default, all bits in the set initially have the value false. Every bit set has a current size, which is the number of bits of space currently in use by the bit set. Note that the size is related to the implementation of a bit set, so it may change with implementation. The length of a bit set relates to logical length of a bit set and is defined independently of implementation. Unless otherwise noted, passing a null parameter to any of the methods in a BitSet will result in a NullPointerException. A BitSet is not safe for multithreaded use without external synchronization.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BitSet()
+				</name>
+				<description>
+					Creates a new bit set. All bits are initially false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BitSet(int nbits)
+				</name>
+				<description>
+					Creates a bit set whose initial size is large enough to explicitly represent bits with indices in the range 0 through nbits-1. All bits are initially false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BitSet valueOf(long[] longs)
+				</name>
+				<description>
+					Returns a new bit set containing all the bits in the given long array. More precisely, BitSet.valueOf(longs).get(n) == ((longs[n/64] & (1L<<(n%64))) != 0) for all n < 64 * longs.length. This method is equivalent to BitSet.valueOf(LongBuffer.wrap(longs)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BitSet valueOf(LongBuffer lb)
+				</name>
+				<description>
+					Returns a new bit set containing all the bits in the given long buffer between its position and limit. More precisely, BitSet.valueOf(lb).get(n) == ((lb.get(lb.position()+n/64) & (1L<<(n%64))) != 0) for all n < 64 * lb.remaining(). The long buffer is not modified by this method, and no reference to the buffer is retained by the bit set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BitSet valueOf(byte[] bytes)
+				</name>
+				<description>
+					Returns a new bit set containing all the bits in the given byte array. More precisely, BitSet.valueOf(bytes).get(n) == ((bytes[n/8] & (1<<(n%8))) != 0) for all n < 8 * bytes.length. This method is equivalent to BitSet.valueOf(ByteBuffer.wrap(bytes)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BitSet valueOf(ByteBuffer bb)
+				</name>
+				<description>
+					Returns a new bit set containing all the bits in the given byte buffer between its position and limit. More precisely, BitSet.valueOf(bb).get(n) == ((bb.get(bb.position()+n/8) & (1<<(n%8))) != 0) for all n < 8 * bb.remaining(). The byte buffer is not modified by this method, and no reference to the buffer is retained by the bit set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] toByteArray()
+				</name>
+				<description>
+					Returns a new byte array containing all the bits in this bit set. More precisely, if byte[] bytes = s.toByteArray(); then bytes.length == (s.length()+7)/8 and s.get(n) == ((bytes[n/8] & (1<<(n%8))) != 0) for all n < 8 * bytes.length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long[] toLongArray()
+				</name>
+				<description>
+					Returns a new long array containing all the bits in this bit set. More precisely, if long[] longs = s.toLongArray(); then longs.length == (s.length()+63)/64 and s.get(n) == ((longs[n/64] & (1L<<(n%64))) != 0) for all n < 64 * longs.length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flip(int bitIndex)
+				</name>
+				<description>
+					Sets the bit at the specified index to the complement of its current value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flip(int fromIndex,          int toIndex)
+				</name>
+				<description>
+					Sets each bit from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to the complement of its current value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set(int bitIndex)
+				</name>
+				<description>
+					Sets the bit at the specified index to true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set(int bitIndex,         boolean value)
+				</name>
+				<description>
+					Sets the bit at the specified index to the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set(int fromIndex,         int toIndex)
+				</name>
+				<description>
+					Sets the bits from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set(int fromIndex,         int toIndex,         boolean value)
+				</name>
+				<description>
+					Sets the bits from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear(int bitIndex)
+				</name>
+				<description>
+					Sets the bit specified by the index to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear(int fromIndex,           int toIndex)
+				</name>
+				<description>
+					Sets the bits from the specified fromIndex (inclusive) to the specified toIndex (exclusive) to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Sets all of the bits in this BitSet to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean get(int bitIndex)
+				</name>
+				<description>
+					Returns the value of the bit with the specified index. The value is true if the bit with the index bitIndex is currently set in this BitSet; otherwise, the result is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BitSet get(int fromIndex,           int toIndex)
+				</name>
+				<description>
+					Returns a new BitSet composed of bits from this BitSet from fromIndex (inclusive) to toIndex (exclusive).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int nextSetBit(int fromIndex)
+				</name>
+				<description>
+					Returns the index of the first bit that is set to true that occurs on or after the specified starting index. If no such bit exists then -1 is returned. To iterate over the true bits in a BitSet, use the following loop:  for (int i = bs.nextSetBit(0); i >= 0; i = bs.nextSetBit(i+1)) {       // operate on index i here   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int nextClearBit(int fromIndex)
+				</name>
+				<description>
+					Returns the index of the first bit that is set to false that occurs on or after the specified starting index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int previousSetBit(int fromIndex)
+				</name>
+				<description>
+					Returns the index of the nearest bit that is set to true that occurs on or before the specified starting index. If no such bit exists, or if -1 is given as the starting index, then -1 is returned. To iterate over the true bits in a BitSet, use the following loop:  for (int i = bs.length(); (i = bs.previousSetBit(i-1)) >= 0; ) {       // operate on index i here   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int previousClearBit(int fromIndex)
+				</name>
+				<description>
+					Returns the index of the nearest bit that is set to false that occurs on or before the specified starting index. If no such bit exists, or if -1 is given as the starting index, then -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int length()
+				</name>
+				<description>
+					Returns the "logical size" of this BitSet: the index of the highest set bit in the BitSet plus one. Returns zero if the BitSet contains no set bits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Returns true if this BitSet contains no bits that are set to true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean intersects(BitSet set)
+				</name>
+				<description>
+					Returns true if the specified BitSet has any bits set to true that are also set to true in this BitSet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int cardinality()
+				</name>
+				<description>
+					Returns the number of bits set to true in this BitSet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void and(BitSet set)
+				</name>
+				<description>
+					Performs a logical AND of this target bit set with the argument bit set. This bit set is modified so that each bit in it has the value true if and only if it both initially had the value true and the corresponding bit in the bit set argument also had the value true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void or(BitSet set)
+				</name>
+				<description>
+					Performs a logical OR of this bit set with the bit set argument. This bit set is modified so that a bit in it has the value true if and only if it either already had the value true or the corresponding bit in the bit set argument has the value true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void xor(BitSet set)
+				</name>
+				<description>
+					Performs a logical XOR of this bit set with the bit set argument. This bit set is modified so that a bit in it has the value true if and only if one of the following statements holds: The bit initially has the value true, and the corresponding bit in the argument has the value false. The bit initially has the value false, and the corresponding bit in the argument has the value true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void andNot(BitSet set)
+				</name>
+				<description>
+					Clears all of the bits in this BitSet whose corresponding bit is set in the specified BitSet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this bit set. The hash code depends only on which bits are set within this BitSet. The hash code is defined to be the result of the following calculation:  public int hashCode() {       long h = 1234;       long[] words = toLongArray();       for (int i = words.length; --i >= 0; )           h ^= words[i] * (i + 1);       return (int)((h >> 32) ^ h);   } Note that the hash code changes if the set of bits is altered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of bits of space actually in use by this BitSet to represent bit values. The maximum element in the set is the size - 1st element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this object against the specified object. The result is true if and only if the argument is not null and is a Bitset object that has exactly the same set of bits set to true as this bit set. That is, for every nonnegative int index k, ((BitSet)obj).get(k) == this.get(k) must be true. The current sizes of the two bit sets are not compared.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Cloning this BitSet produces a new BitSet that is equal to it. The clone of the bit set is another bit set that has exactly the same bits set to true as this bit set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this bit set. For every index for which this BitSet contains a bit in the set state, the decimal representation of that index is included in the result. Such indices are listed in order from lowest to highest, separated by ", " (a comma and a space) and surrounded by braces, resulting in the usual mathematical notation for a set of integers. Example:    BitSet drPepper = new BitSet(); Now drPepper.toString() returns "{}".    drPepper.set(2); Now drPepper.toString() returns "{2}".    drPepper.set(4);   drPepper.set(10); Now drPepper.toString() returns "{2, 4, 10}".
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

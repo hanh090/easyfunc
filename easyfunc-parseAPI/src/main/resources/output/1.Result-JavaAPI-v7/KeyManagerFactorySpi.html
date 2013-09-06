@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public abstract class KeyManagerFactorySpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the KeyManagerFactory class. All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply the implementation of a particular key manager factory.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public KeyManagerFactorySpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(KeyStore ks,                char[] password)                              throws KeyStoreException,                                     NoSuchAlgorithmException,                                     UnrecoverableKeyException
+				</name>
+				<description>
+					Initializes this factory with a source of key material.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(ManagerFactoryParameters spec)                              throws InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Initializes this factory with a source of key material. In some cases, initialization parameters other than a keystore and password may be needed by a provider. Users of that particular provider are expected to pass an implementation of the appropriate ManagerFactoryParameters as defined by the provider. The provider can then call the specified methods in the ManagerFactoryParameters implementation to obtain the needed information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract KeyManager[] engineGetKeyManagers()
+				</name>
+				<description>
+					Returns one key manager for each type of key material.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

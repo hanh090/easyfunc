@@ -1,0 +1,198 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public class SynthComboBoxUI  extends BasicComboBoxUI  implements PropertyChangeListener, SynthUI
+		</name>
+		<description>
+			Provides the Synth L&F UI delegate for JComboBox.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SynthComboBoxUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent c)
+				</name>
+				<description>
+					Creates a new UI object for the given component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void installUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Configures the specified component appropriately for the look and feel. This method is invoked when the ComponentUI instance is being installed as the UI delegate on the specified component. This method should completely configure the component for the look and feel, including the following: Install default property values for color, fonts, borders, icons, opacity, etc. on the component. Whenever possible, property values initialized by the client program should not be overridden. Install a LayoutManager on the component if necessary. Create/add any required sub-components to the component. Create/install event listeners on the component. Create/install a PropertyChangeListener on the component in order to detect and respond to component property changes appropriately. Install keyboard UI (mnemonics, traversal, etc.) on the component. Initialize any appropriate instance data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Installs the default colors, default font, default renderer, and default editor into the JComboBox.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Creates and installs listeners for the combo box and its model. This method is called when the UI is installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Reverses configuration which was done on the specified component during installUI. This method is invoked when this UIComponent instance is being removed as the UI delegate for the specified component. This method should undo the configuration performed in installUI, being careful to leave the JComponent instance in a clean state (no extraneous listeners, look-and-feel-specific property objects, etc.). This should include the following: Remove any UI-set borders from the component. Remove any UI-set layout managers on the component. Remove any UI-added sub-components from the component. Remove any UI-added event/property listeners from the component. Remove any UI-installed keyboard UI from the component. Nullify any allocated instance data objects to allow for GC.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Uninstalls the default colors, default font, default renderer, and default editor from the combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Removes the installed listeners from the combo box and its model. The number and types of listeners removed and in this method should be the same that was added in installListeners
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SynthContext getContext(JComponent c)
+				</name>
+				<description>
+					Description copied from interface: SynthUI Returns the Context for the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ComboPopup createPopup()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Creates the popup portion of the combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ListCellRenderer createRenderer()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Creates the default renderer that will be used in a non-editiable combo box. A default renderer will used only if a renderer has not been explicitly set with setRenderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ComboBoxEditor createEditor()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Creates the default editor that will be used in editable combo boxes. A default editor will be used only if an editor has not been explicitly set with setEditor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void propertyChange(PropertyChangeEvent e)
+				</name>
+				<description>
+					Description copied from interface: PropertyChangeListener This method gets called when a bound property is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JButton createArrowButton()
+				</name>
+				<description>
+					Description copied from class: BasicComboBoxUI Creates a button which will be used as the control to show or hide the popup portion of the combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void update(Graphics g,            JComponent c)
+				</name>
+				<description>
+					Notifies this UI delegate to repaint the specified component. This method paints the component background, then calls the paint(SynthContext,Graphics) method. In general, this method does not need to be overridden by subclasses. All Look and Feel rendering code should reside in the paint method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           JComponent c)
+				</name>
+				<description>
+					Paints the specified component according to the Look and Feel. This method is not used by Synth Look and Feel. Painting is handled by the paint(SynthContext,Graphics) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paint(SynthContext context,           Graphics g)
+				</name>
+				<description>
+					Paints the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintBorder(SynthContext context,                 Graphics g,                 int x,                 int y,                 int w,                 int h)
+				</name>
+				<description>
+					Description copied from interface: SynthUI Paints the border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintCurrentValue(Graphics g,                       Rectangle bounds,                       boolean hasFocus)
+				</name>
+				<description>
+					Paints the currently selected item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Dimension getDefaultSize()
+				</name>
+				<description>
+					Returns the default size of an empty display area of the combo box using the current renderer and font. This method was overridden to use SynthComboBoxRenderer instead of DefaultListCellRenderer as the default renderer when calculating the size of the combo box. This is used in the case of the combo not having any data.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

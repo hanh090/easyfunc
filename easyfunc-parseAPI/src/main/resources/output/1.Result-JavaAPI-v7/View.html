@@ -1,0 +1,495 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract class View  extends Object  implements SwingConstants
+		</name>
+		<description>
+			A very important part of the text package is the View class. As the name suggests it represents a view of the text model, or a piece of the text model. It is this class that is responsible for the look of the text component. The view is not intended to be some completely new thing that one must learn, but rather is much like a lightweight component. By default, a view is very light. It contains a reference to the parent view from which it can fetch many things without holding state, and it contains a reference to a portion of the model (Element). A view does not have to exactly represent an element in the model, that is simply a typical and therefore convenient mapping. A view can alternatively maintain a couple of Position objects to maintain its location in the model (i.e. represent a fragment of an element). This is typically the result of formatting where views have been broken down into pieces. The convenience of a substantial relationship to the element makes it easier to build factories to produce the views, and makes it easier to keep track of the view pieces as the model is changed and the view must be changed to reflect the model. Simple views therefore represent an Element directly and complex views do not. A view has the following responsibilities: Participate in layout. The view has a setSize method which is like doLayout and setSize in Component combined. The view has a preferenceChanged method which is like invalidate in Component except that one can invalidate just one axis and the child requesting the change is identified. A View expresses the size that it would like to be in terms of three values, a minimum, a preferred, and a maximum span. Layout in a view is can be done independently upon each axis. For a properly functioning View implementation, the minimum span will be <= the preferred span which in turn will be <= the maximum span. The minimum set of methods for layout are: getMinimumSpan getPreferredSpan getMaximumSpan getAlignment preferenceChanged setSize The setSize method should be prepared to be called a number of times (i.e. It may be called even if the size didn't change). The setSize method is generally called to make sure the View layout is complete prior to trying to perform an operation on it that requires an up-to-date layout. A view's size should always be set to a value within the minimum and maximum span specified by that view. Additionally, the view must always call the preferenceChanged method on the parent if it has changed the values for the layout it would like, and expects the parent to honor. The parent View is not required to recognize a change until the preferenceChanged has been sent. This allows parent View implementations to cache the child requirements if desired. The calling sequence looks something like the following: The exact calling sequence is up to the layout functionality of the parent view (if the view has any children). The view may collect the preferences of the children prior to determining what it will give each child, or it might iteratively update the children one at a time. Render a portion of the model. This is done in the paint method, which is pretty much like a component paint method. Views are expected to potentially populate a fairly large tree. A View has the following semantics for rendering: The view gets its allocation from the parent at paint time, so it must be prepared to redo layout if the allocated area is different from what it is prepared to deal with. The coordinate system is the same as the hosting Component (i.e. the Component returned by the getContainer method). This means a child view lives in the same coordinate system as the parent view unless the parent has explicitly changed the coordinate system. To schedule itself to be repainted a view can call repaint on the hosting Component. The default is to not clip the children. It is more efficient to allow a view to clip only if it really feels it needs clipping. The Graphics object given is not initialized in any way. A view should set any settings needed. A View is inherently transparent. While a view may render into its entire allocation, typically a view does not. Rendering is performed by tranversing down the tree of View implementations. Each View is responsible for rendering its children. This behavior is depended upon for thread safety. While view implementations do not necessarily have to be implemented with thread safety in mind, other view implementations that do make use of concurrency can depend upon a tree traversal to guarantee thread safety. The order of views relative to the model is up to the implementation. Although child views will typically be arranged in the same order that they occur in the model, they may be visually arranged in an entirely different order. View implementations may have Z-Order associated with them if the children are overlapping. The methods for rendering are: paint Translate between the model and view coordinate systems. Because the view objects are produced from a factory and therefore cannot necessarily be counted upon to be in a particular pattern, one must be able to perform translation to properly locate spatial representation of the model. The methods for doing this are: modelToView viewToModel getDocument getElement getStartOffset getEndOffset The layout must be valid prior to attempting to make the translation. The translation is not valid, and must not be attempted while changes are being broadcasted from the model via a DocumentEvent. Respond to changes from the model. If the overall view is represented by many pieces (which is the best situation if one want to be able to change the view and write the least amount of new code), it would be impractical to have a huge number of DocumentListeners. If each view listened to the model, only a few would actually be interested in the changes broadcasted at any given time. Since the model has no knowledge of views, it has no way to filter the broadcast of change information. The view hierarchy itself is instead responsible for propagating the change information. At any level in the view hierarchy, that view knows enough about its children to best distribute the change information further. Changes are therefore broadcasted starting from the root of the view hierarchy. The methods for doing this are: insertUpdate removeUpdate changedUpdate
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int BadBreakWeight
+				</name>
+				<description>
+					The weight to indicate a view is a bad break opportunity for the purpose of formatting. This value indicates that no attempt should be made to break the view into fragments as the view has not been written to support fragmenting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int GoodBreakWeight
+				</name>
+				<description>
+					The weight to indicate a view supports breaking, but better opportunities probably exist.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ExcellentBreakWeight
+				</name>
+				<description>
+					The weight to indicate a view supports breaking, and this represents a very attractive place to break.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ForcedBreakWeight
+				</name>
+				<description>
+					The weight to indicate a view supports breaking, and must be broken to be represented properly when placed in a view that formats its children by breaking them.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int X_AXIS
+				</name>
+				<description>
+					Axis for format/break operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int Y_AXIS
+				</name>
+				<description>
+					Axis for format/break operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View(Element elem)
+				</name>
+				<description>
+					Creates a new View object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View getParent()
+				</name>
+				<description>
+					Returns the parent of the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isVisible()
+				</name>
+				<description>
+					Returns a boolean that indicates whether the view is visible or not. By default all views are visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinimumSpan(int axis)
+				</name>
+				<description>
+					Determines the minimum span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMaximumSpan(int axis)
+				</name>
+				<description>
+					Determines the maximum span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preferenceChanged(View child,                       boolean width,                       boolean height)
+				</name>
+				<description>
+					Child views can call this on the parent to indicate that the preference has changed and should be reconsidered for layout. By default this just propagates upward to the next parent. The root view will call revalidate on the associated text component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAlignment(int axis)
+				</name>
+				<description>
+					Determines the desired alignment for this view along an axis. The desired alignment is returned. This should be a value >= 0.0 and <= 1.0, where 0 indicates alignment at the origin and 1.0 indicates alignment to the full span away from the origin. An alignment of 0.5 would be the center of the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void paint(Graphics g,           Shape allocation)
+				</name>
+				<description>
+					Renders using the given rendering surface and area on that surface. The view may need to do layout and create child views to enable itself to render into the given allocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(View parent)
+				</name>
+				<description>
+					Establishes the parent view for this view. This is guaranteed to be called before any other methods if the parent view is functioning properly. This is also the last method called, since it is called to indicate the view has been removed from the hierarchy as well. When this method is called to set the parent to null, this method does the same for each of its children, propogating the notification that they have been disconnected from the view tree. If this is reimplemented, super.setParent() should be called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getViewCount()
+				</name>
+				<description>
+					Returns the number of views in this view. Since the default is to not be a composite view this returns 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View getView(int n)
+				</name>
+				<description>
+					Gets the nth child view. Since there are no children by default, this returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAll()
+				</name>
+				<description>
+					Removes all of the children. This is a convenience call to replace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(int i)
+				</name>
+				<description>
+					Removes one of the children at the given position. This is a convenience call to replace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert(int offs,            View v)
+				</name>
+				<description>
+					Inserts a single child view. This is a convenience call to replace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void append(View v)
+				</name>
+				<description>
+					Appends a single child view. This is a convenience call to replace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replace(int offset,             int length,             View[] views)
+				</name>
+				<description>
+					Replaces child views. If there are no views to remove this acts as an insert. If there are no views to add this acts as a remove. Views being removed will have the parent set to null, and the internal reference to them removed so that they can be garbage collected. This is implemented to do nothing, because by default a view has no children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getViewIndex(int pos,                 Position.Bias b)
+				</name>
+				<description>
+					Returns the child view index representing the given position in the model. By default a view has no children so this is implemented to return -1 to indicate there is no valid child index for any position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getChildAllocation(int index,                         Shape a)
+				</name>
+				<description>
+					Fetches the allocation for the given child view. This enables finding out where various views are located, without assuming how the views store their location. This returns null since the default is to not have any child views.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNextVisualPositionFrom(int pos,                              Position.Bias b,                              Shape a,                              int direction,                              Position.Bias[] biasRet)                                throws BadLocationException
+				</name>
+				<description>
+					Provides a way to determine the next visually represented model location at which one might place a caret. Some views may not be visible, they might not be in the same order found in the model, or they just might not allow access to some of the locations in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                             throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping, for a given character, from the document model coordinate space to the view coordinate space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int p0,                  Position.Bias b0,                  int p1,                  Position.Bias b1,                  Shape a)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping, for a given region, from the document model coordinate space to the view coordinate space. The specified region is created as a union of the first and last character positions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int viewToModel(float x,                float y,                Shape a,                Position.Bias[] biasReturn)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model. The biasReturn argument will be filled in to indicate that the point given is closer to the next character in the model or the previous character in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(DocumentEvent e,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was inserted into the document in a location that this view is responsible for. To reduce the burden to subclasses, this functionality is spread out into the following calls that subclasses can reimplement: updateChildren is called if there were any changes to the element this view is responsible for. If this view has child views that are represent the child elements, then this method should do whatever is necessary to make sure the child views correctly represent the model. forwardUpdate is called to forward the DocumentEvent to the appropriate child views. updateLayout is called to give the view a chance to either repair its layout, to reschedule layout, or do nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(DocumentEvent e,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was removed from the document in a location that this view is responsible for. To reduce the burden to subclasses, this functionality is spread out into the following calls that subclasses can reimplement: updateChildren is called if there were any changes to the element this view is responsible for. If this view has child views that are represent the child elements, then this method should do whatever is necessary to make sure the child views correctly represent the model. forwardUpdate is called to forward the DocumentEvent to the appropriate child views. updateLayout is called to give the view a chance to either repair its layout, to reschedule layout, or do nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent e,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Gives notification from the document that attributes were changed in a location that this view is responsible for. To reduce the burden to subclasses, this functionality is spread out into the following calls that subclasses can reimplement: updateChildren is called if there were any changes to the element this view is responsible for. If this view has child views that are represent the child elements, then this method should do whatever is necessary to make sure the child views correctly represent the model. forwardUpdate is called to forward the DocumentEvent to the appropriate child views. updateLayout is called to give the view a chance to either repair its layout, to reschedule layout, or do nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Document getDocument()
+				</name>
+				<description>
+					Fetches the model associated with the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getStartOffset()
+				</name>
+				<description>
+					Fetches the portion of the model for which this view is responsible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getEndOffset()
+				</name>
+				<description>
+					Fetches the portion of the model for which this view is responsible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getElement()
+				</name>
+				<description>
+					Fetches the structural portion of the subject that this view is mapped to. The view may not be responsible for the entire portion of the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Graphics getGraphics()
+				</name>
+				<description>
+					Fetch a Graphics for rendering. This can be used to determine font characteristics, and will be different for a print view than a component view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getAttributes()
+				</name>
+				<description>
+					Fetches the attributes to use when rendering. By default this simply returns the attributes of the associated element. This method should be used rather than using the element directly to obtain access to the attributes to allow view-specific attributes to be mixed in or to allow the view to have view-specific conversion of attributes by subclasses. Each view should document what attributes it recognizes for the purpose of rendering or layout, and should always access them through the AttributeSet returned by this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View breakView(int axis,               int offset,               float pos,               float len)
+				</name>
+				<description>
+					Tries to break this view on the given axis. This is called by views that try to do formatting of their children. For example, a view of a paragraph will typically try to place its children into row and views representing chunks of text can sometimes be broken down into smaller pieces. This is implemented to return the view itself, which represents the default behavior on not being breakable. If the view does support breaking, the starting offset of the view returned should be the given offset, and the end offset should be less than or equal to the end offset of the view being broken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View createFragment(int p0,                    int p1)
+				</name>
+				<description>
+					Creates a view that represents a portion of the element. This is potentially useful during formatting operations for taking measurements of fragments of the view. If the view doesn't support fragmenting (the default), it should return itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBreakWeight(int axis,                   float pos,                   float len)
+				</name>
+				<description>
+					Determines how attractive a break opportunity in this view is. This can be used for determining which view is the most attractive to call breakView on in the process of formatting. A view that represents text that has whitespace in it might be more attractive than a view that has no whitespace, for example. The higher the weight, the more attractive the break. A value equal to or lower than BadBreakWeight should not be considered for a break. A value greater than or equal to ForcedBreakWeight should be broken. This is implemented to provide the default behavior of returning BadBreakWeight unless the length is greater than the length of the view in which case the entire view represents the fragment. Unless a view has been written to support breaking behavior, it is not attractive to try and break the view. An example of a view that does support breaking is LabelView. An example of a view that uses break weight is ParagraphView.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getResizeWeight(int axis)
+				</name>
+				<description>
+					Determines the resizability of the view along the given axis. A value of 0 or less is not resizable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(float width,             float height)
+				</name>
+				<description>
+					Sets the size of the view. This should cause layout of the view along the given axis, if it has any layout duties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Container getContainer()
+				</name>
+				<description>
+					Fetches the container hosting the view. This is useful for things like scheduling a repaint, finding out the host components font, etc. The default implementation of this is to forward the query to the parent view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ViewFactory getViewFactory()
+				</name>
+				<description>
+					Fetches the ViewFactory implementation that is feeding the view hierarchy. Normally the views are given this as an argument to updates from the model when they are most likely to need the factory, but this method serves to provide it at other times.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(float x,                      float y,                      Shape allocation)
+				</name>
+				<description>
+					Returns the tooltip text at the specified location. The default implementation returns the value from the child View identified by the passed in location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getViewIndex(float x,                 float y,                 Shape allocation)
+				</name>
+				<description>
+					Returns the child view index representing the given position in the view. This iterates over all the children returning the first with a bounds that contains x, y.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean updateChildren(DocumentEvent.ElementChange ec,                       DocumentEvent e,                       ViewFactory f)
+				</name>
+				<description>
+					Updates the child views in response to receiving notification that the model changed, and there is change record for the element this view is responsible for. This is implemented to assume the child views are directly responsible for the child elements of the element this view represents. The ViewFactory is used to create child views for each element specified as added in the ElementChange, starting at the index specified in the given ElementChange. The number of child views representing the removed elements specified are removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void forwardUpdate(DocumentEvent.ElementChange ec,                   DocumentEvent e,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Forwards the given DocumentEvent to the child views that need to be notified of the change to the model. If there were changes to the element this view is responsible for, that should be considered when forwarding (i.e. new child views should not get notified).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void forwardUpdateToView(View v,                         DocumentEvent e,                         Shape a,                         ViewFactory f)
+				</name>
+				<description>
+					Forwards the DocumentEvent to the give child view. This simply messages the view with a call to insertUpdate, removeUpdate, or changedUpdate depending upon the type of the event. This is called by forwardUpdate to forward the event to children that need it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateLayout(DocumentEvent.ElementChange ec,                  DocumentEvent e,                  Shape a)
+				</name>
+				<description>
+					Updates the layout in response to receiving notification of change from the model. This is implemented to call preferenceChanged to reschedule a new layout if the ElementChange record is not null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Shape modelToView(int pos,                             Shape a)                    throws BadLocationException
+				</name>
+				<description>
+					Deprecated.  Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. This is implemented to default the bias to Position.Bias.Forward which was previously implied.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public int viewToModel(float x,                           float y,                           Shape a)
+				</name>
+				<description>
+					Deprecated.  Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

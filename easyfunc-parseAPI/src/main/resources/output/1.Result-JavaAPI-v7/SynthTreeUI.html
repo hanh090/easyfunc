@@ -1,0 +1,225 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public class SynthTreeUI  extends BasicTreeUI  implements PropertyChangeListener, SynthUI
+		</name>
+		<description>
+			Provides the Synth L&F UI delegate for JTree.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SynthTreeUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent x)
+				</name>
+				<description>
+					Creates a new UI object for the given component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getExpandedIcon()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SynthContext getContext(JComponent c)
+				</name>
+				<description>
+					Description copied from interface: SynthUI Returns the Context for the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeCellEditor createDefaultCellEditor()
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Creates a default cell editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeCellRenderer createDefaultCellRenderer()
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Returns the default cell renderer that is used to do the stamping of each node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void update(Graphics g,            JComponent c)
+				</name>
+				<description>
+					Notifies this UI delegate to repaint the specified component. This method paints the component background, then calls the paint(SynthContext,Graphics) method. In general, this method does not need to be overridden by subclasses. All Look and Feel rendering code should reside in the paint method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintBorder(SynthContext context,                 Graphics g,                 int x,                 int y,                 int w,                 int h)
+				</name>
+				<description>
+					Description copied from interface: SynthUI Paints the border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           JComponent c)
+				</name>
+				<description>
+					Paints the specified component according to the Look and Feel. This method is not used by Synth Look and Feel. Painting is handled by the paint(SynthContext,Graphics) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paint(SynthContext context,           Graphics g)
+				</name>
+				<description>
+					Paints the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintHorizontalPartOfLeg(Graphics g,                              Rectangle clipBounds,                              Insets insets,                              Rectangle bounds,                              TreePath path,                              int row,                              boolean isExpanded,                              boolean hasBeenExpanded,                              boolean isLeaf)
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Paints the horizontal part of the leg. The receiver should NOT modify clipBounds, or insets. NOTE: parentRow can be -1 if the root is not visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintHorizontalLine(Graphics g,                         JComponent c,                         int y,                         int left,                         int right)
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Paints a horizontal line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintVerticalPartOfLeg(Graphics g,                            Rectangle clipBounds,                            Insets insets,                            TreePath path)
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Paints the vertical part of the leg. The receiver should NOT modify clipBounds, insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintVerticalLine(Graphics g,                       JComponent c,                       int x,                       int top,                       int bottom)
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Paints a vertical line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintExpandControl(Graphics g,                        Rectangle clipBounds,                        Insets insets,                        Rectangle bounds,                        TreePath path,                        int row,                        boolean isExpanded,                        boolean hasBeenExpanded,                        boolean isLeaf)
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Paints the expand (toggle) part of a row. The receiver should NOT modify clipBounds, or insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void drawCentered(Component c,                  Graphics graphics,                  Icon icon,                  int x,                  int y)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void propertyChange(PropertyChangeEvent event)
+				</name>
+				<description>
+					Description copied from interface: PropertyChangeListener This method gets called when a bound property is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintDropLine(Graphics g)
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Paints the drop line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getRowX(int row,            int depth)
+				</name>
+				<description>
+					Description copied from class: BasicTreeUI Returns the location, along the x-axis, to render a particular row at. The return value does not include any Insets specified on the JTree. This does not check for the validity of the row or depth, it is assumed to be correct and will not throw an Exception if the row or depth doesn't match that of the tree.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

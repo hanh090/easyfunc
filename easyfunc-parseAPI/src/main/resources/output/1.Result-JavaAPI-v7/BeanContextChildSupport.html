@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		java.beans.beancontext
+	</package>
+	<type>
+		<name>
+			public class BeanContextChildSupport  extends Object  implements BeanContextChild, BeanContextServicesListener, Serializable
+		</name>
+		<description>
+			This is a general support class to provide support for implementing the BeanContextChild protocol. This class may either be directly subclassed, or encapsulated and delegated to in order to implement this interface for a given component.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BeanContextChild beanContextChildPeer
+				</name>
+				<description>
+					The BeanContext in which this BeanContextChild is nested.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeSupport pcSupport
+				</name>
+				<description>
+					The PropertyChangeSupport associated with this BeanContextChildSupport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected VetoableChangeSupport vcSupport
+				</name>
+				<description>
+					The VetoableChangeSupport associated with this BeanContextChildSupport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient BeanContext beanContext
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient boolean rejectedSetBCOnce
+				</name>
+				<description>
+					A flag indicating that there has been at least one PropertyChangeVetoException thrown for the attempted setBeanContext operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextChildSupport()
+				</name>
+				<description>
+					construct a BeanContextChildSupport where this class has been subclassed in order to implement the JavaBean component itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextChildSupport(BeanContextChild bcc)
+				</name>
+				<description>
+					construct a BeanContextChildSupport where the JavaBean component itself implements BeanContextChild, and encapsulates this, delegating that interface to this implementation
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBeanContext(BeanContext bc)                      throws PropertyVetoException
+				</name>
+				<description>
+					Sets the BeanContext for this BeanContextChildSupport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContext getBeanContext()
+				</name>
+				<description>
+					Gets the nesting BeanContext for this BeanContextChildSupport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPropertyChangeListener(String name,                               PropertyChangeListener pcl)
+				</name>
+				<description>
+					Add a PropertyChangeListener for a specific property. The same listener object may be added more than once. For each property, the listener will be invoked the number of times it was added for that property. If name or pcl is null, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removePropertyChangeListener(String name,                                  PropertyChangeListener pcl)
+				</name>
+				<description>
+					Remove a PropertyChangeListener for a specific property. If pcl was added more than once to the same event source for the specified property, it will be notified one less time after being removed. If name is null, no exception is thrown and no action is taken. If pcl is null, or was never added for the specified property, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addVetoableChangeListener(String name,                               VetoableChangeListener vcl)
+				</name>
+				<description>
+					Add a VetoableChangeListener for a specific property. The same listener object may be added more than once. For each property, the listener will be invoked the number of times it was added for that property. If name or vcl is null, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeVetoableChangeListener(String name,                                  VetoableChangeListener vcl)
+				</name>
+				<description>
+					Removes a VetoableChangeListener. If pcl was added more than once to the same event source for the specified property, it will be notified one less time after being removed. If name is null, no exception is thrown and no action is taken. If vcl is null, or was never added for the specified property, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void serviceRevoked(BeanContextServiceRevokedEvent bcsre)
+				</name>
+				<description>
+					A service provided by the nesting BeanContext has been revoked. Subclasses may override this method in order to implement their own behaviors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void serviceAvailable(BeanContextServiceAvailableEvent bcsae)
+				</name>
+				<description>
+					A new service is available from the nesting BeanContext. Subclasses may override this method in order to implement their own behaviors
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextChild getBeanContextChildPeer()
+				</name>
+				<description>
+					Gets the BeanContextChild associated with this BeanContextChildSupport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDelegated()
+				</name>
+				<description>
+					Reports whether or not this class is a delegate of another.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String name,                        Object oldValue,                        Object newValue)
+				</name>
+				<description>
+					Report a bound property update to any registered listeners. No event is fired if old and new are equal and non-null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireVetoableChange(String name,                        Object oldValue,                        Object newValue)                          throws PropertyVetoException
+				</name>
+				<description>
+					Report a vetoable property update to any registered listeners. If anyone vetos the change, then fire a new event reverting everyone to the old value and then rethrow the PropertyVetoException. No event is fired if old and new are equal and non-null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean validatePendingSetBeanContext(BeanContext newValue)
+				</name>
+				<description>
+					Called from setBeanContext to validate (or otherwise) the pending change in the nesting BeanContext property value. Returning false will cause setBeanContext to throw PropertyVetoException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void releaseBeanContextResources()
+				</name>
+				<description>
+					This method may be overridden by subclasses to provide their own release behaviors. When invoked any resources held by this instance obtained from its current BeanContext property should be released since the object is no longer nested within that BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initializeBeanContextResources()
+				</name>
+				<description>
+					This method may be overridden by subclasses to provide their own initialization behaviors. When invoked any resources requried by the BeanContextChild should be obtained from the current BeanContext.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

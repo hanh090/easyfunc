@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class CopyOnWriteArraySet<E>  extends AbstractSet<E>  implements Serializable
+		</name>
+		<description>
+			A Set that uses an internal CopyOnWriteArrayList for all of its operations. Thus, it shares the same basic properties: It is best suited for applications in which set sizes generally stay small, read-only operations vastly outnumber mutative operations, and you need to prevent interference among threads during traversal. It is thread-safe. Mutative operations (add, set, remove, etc.) are expensive since they usually entail copying the entire underlying array. Iterators do not support the mutative remove operation. Traversal via iterators is fast and cannot encounter interference from other threads. Iterators rely on unchanging snapshots of the array at the time the iterators were constructed. Sample Usage. The following code sketch uses a copy-on-write set to maintain a set of Handler objects that perform some action upon state updates.  class Handler { void handle(); ... }     class X {     private final CopyOnWriteArraySet<Handler> handlers       = new CopyOnWriteArraySet<Handler>();     public void addHandler(Handler h) { handlers.add(h); }       private long internalState;     private synchronized void changeState() { internalState = ...; }       public void update() {       changeState();       for (Handler handler : handlers)          handler.handle();     }   } This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CopyOnWriteArraySet()
+				</name>
+				<description>
+					Creates an empty set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CopyOnWriteArraySet(Collection<? extends E> c)
+				</name>
+				<description>
+					Creates a set containing all of the elements of the specified collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of elements in this set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Returns true if this set contains no elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object o)
+				</name>
+				<description>
+					Returns true if this set contains the specified element. More formally, returns true if and only if this set contains an element e such that (o==null ? e==null : o.equals(e)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] toArray()
+				</name>
+				<description>
+					Returns an array containing all of the elements in this set. If this set makes any guarantees as to what order its elements are returned by its iterator, this method must return the elements in the same order. The returned array will be "safe" in that no references to it are maintained by this set. (In other words, this method must allocate a new array even if this set is backed by an array). The caller is thus free to modify the returned array. This method acts as bridge between array-based and collection-based APIs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T[] toArray(T[] a)
+				</name>
+				<description>
+					Returns an array containing all of the elements in this set; the runtime type of the returned array is that of the specified array. If the set fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this set. If this set fits in the specified array with room to spare (i.e., the array has more elements than this set), the element in the array immediately following the end of the set is set to null. (This is useful in determining the length of this set only if the caller knows that this set does not contain any null elements.) If this set makes any guarantees as to what order its elements are returned by its iterator, this method must return the elements in the same order. Like the toArray() method, this method acts as bridge between array-based and collection-based APIs. Further, this method allows precise control over the runtime type of the output array, and may, under certain circumstances, be used to save allocation costs. Suppose x is a set known to contain only strings. The following code can be used to dump the set into a newly allocated array of String:        String[] y = x.toArray(new String[0]); Note that toArray(new Object[0]) is identical in function to toArray().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all of the elements from this set. The set will be empty after this call returns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object o)
+				</name>
+				<description>
+					Removes the specified element from this set if it is present. More formally, removes an element e such that (o==null ? e==null : o.equals(e)), if this set contains such an element. Returns true if this set contained the element (or equivalently, if this set changed as a result of the call). (This set will not contain the element once the call returns.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(E e)
+				</name>
+				<description>
+					Adds the specified element to this set if it is not already present. More formally, adds the specified element e to this set if the set contains no element e2 such that (e==null ? e2==null : e.equals(e2)). If this set already contains the element, the call leaves the set unchanged and returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAll(Collection<?> c)
+				</name>
+				<description>
+					Returns true if this set contains all of the elements of the specified collection. If the specified collection is also a set, this method returns true if it is a subset of this set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addAll(Collection<? extends E> c)
+				</name>
+				<description>
+					Adds all of the elements in the specified collection to this set if they're not already present. If the specified collection is also a set, the addAll operation effectively modifies this set so that its value is the union of the two sets. The behavior of this operation is undefined if the specified collection is modified while the operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean removeAll(Collection<?> c)
+				</name>
+				<description>
+					Removes from this set all of its elements that are contained in the specified collection. If the specified collection is also a set, this operation effectively modifies this set so that its value is the asymmetric set difference of the two sets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean retainAll(Collection<?> c)
+				</name>
+				<description>
+					Retains only the elements in this set that are contained in the specified collection. In other words, removes from this set all of its elements that are not contained in the specified collection. If the specified collection is also a set, this operation effectively modifies this set so that its value is the intersection of the two sets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over the elements contained in this set in the order in which these elements were added. The returned iterator provides a snapshot of the state of the set when the iterator was constructed. No synchronization is needed while traversing the iterator. The iterator does NOT support the remove method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compares the specified object with this set for equality. Returns true if the specified object is the same object as this object, or if it is also a Set and the elements returned by an iterator over the specified set are the same as the elements returned by an iterator over this set. More formally, the two iterators are considered to return the same elements if they return the same number of elements and for every element e1 returned by the iterator over the specified set, there is an element e2 returned by the iterator over this set such that (e1==null ? e2==null : e1.equals(e2)).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

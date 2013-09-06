@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		java.nio.channels.spi
+	</package>
+	<type>
+		<name>
+			public abstract class AsynchronousChannelProvider  extends Object
+		</name>
+		<description>
+			Service-provider class for asynchronous channels. An asynchronous channel provider is a concrete subclass of this class that has a zero-argument constructor and implements the abstract methods specified below. A given invocation of the Java virtual machine maintains a single system-wide default provider instance, which is returned by the provider method. The first invocation of that method will locate the default provider as specified below. All of the methods in this class are safe for use by multiple concurrent threads.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AsynchronousChannelProvider()
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AsynchronousChannelProvider provider()
+				</name>
+				<description>
+					Returns the system-wide default asynchronous channel provider for this invocation of the Java virtual machine. The first invocation of this method locates the default provider object as follows: If the system property java.nio.channels.spi.AsynchronousChannelProvider is defined then it is taken to be the fully-qualified name of a concrete provider class. The class is loaded and instantiated; if this process fails then an unspecified error is thrown. If a provider class has been installed in a jar file that is visible to the system class loader, and that jar file contains a provider-configuration file named java.nio.channels.spi.AsynchronousChannelProvider in the resource directory META-INF/services, then the first class name specified in that file is taken. The class is loaded and instantiated; if this process fails then an unspecified error is thrown. Finally, if no provider has been specified by any of the above means then the system-default provider class is instantiated and the result is returned. Subsequent invocations of this method return the provider that was returned by the first invocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AsynchronousChannelGroup openAsynchronousChannelGroup(int nThreads,                                                      ThreadFactory threadFactory)                                                                 throws IOException
+				</name>
+				<description>
+					Constructs a new asynchronous channel group with a fixed thread pool.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AsynchronousChannelGroup openAsynchronousChannelGroup(ExecutorService executor,                                                      int initialSize)                                                                 throws IOException
+				</name>
+				<description>
+					Constructs a new asynchronous channel group with the given thread pool.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AsynchronousServerSocketChannel openAsynchronousServerSocketChannel(AsynchronousChannelGroup group)                                                                               throws IOException
+				</name>
+				<description>
+					Opens an asynchronous server-socket channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AsynchronousSocketChannel openAsynchronousSocketChannel(AsynchronousChannelGroup group)                                                                   throws IOException
+				</name>
+				<description>
+					Opens an asynchronous socket channel.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

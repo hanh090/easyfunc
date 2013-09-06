@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.swing.plaf
+	</package>
+	<type>
+		<name>
+			public abstract class TreeUI  extends ComponentUI
+		</name>
+		<description>
+			Pluggable look and feel interface for JTree.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TreeUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Rectangle getPathBounds(JTree tree,                        TreePath path)
+				</name>
+				<description>
+					Returns the Rectangle enclosing the label portion that the last item in path will be drawn into. Will return null if any component in path is currently valid.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract TreePath getPathForRow(JTree tree,                       int row)
+				</name>
+				<description>
+					Returns the path for passed in row. If row is not visible null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getRowForPath(JTree tree,                  TreePath path)
+				</name>
+				<description>
+					Returns the row that the last item identified in path is visible at. Will return -1 if any of the elements in path are not currently visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getRowCount(JTree tree)
+				</name>
+				<description>
+					Returns the number of rows that are being displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract TreePath getClosestPathForLocation(JTree tree,                                   int x,                                   int y)
+				</name>
+				<description>
+					Returns the path to the node that is closest to x,y. If there is nothing currently visible this will return null, otherwise it'll always return a valid path. If you need to test if the returned object is exactly at x, y you should get the bounds for the returned path and test x, y against that.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isEditing(JTree tree)
+				</name>
+				<description>
+					Returns true if the tree is being edited. The item that is being edited can be returned by getEditingPath().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean stopEditing(JTree tree)
+				</name>
+				<description>
+					Stops the current editing session. This has no effect if the tree isn't being edited. Returns true if the editor allows the editing session to stop.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void cancelEditing(JTree tree)
+				</name>
+				<description>
+					Cancels the current editing session. This has no effect if the tree isn't being edited. Returns true if the editor allows the editing session to stop.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void startEditingAtPath(JTree tree,                        TreePath path)
+				</name>
+				<description>
+					Selects the last item in path and tries to edit it. Editing will fail if the CellEditor won't allow it for the selected item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract TreePath getEditingPath(JTree tree)
+				</name>
+				<description>
+					Returns the path to the element that is being edited.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

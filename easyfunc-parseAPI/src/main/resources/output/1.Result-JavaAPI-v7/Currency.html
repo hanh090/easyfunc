@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public final class Currency  extends Object  implements Serializable
+		</name>
+		<description>
+			Represents a currency. Currencies are identified by their ISO 4217 currency codes. Visit the ISO web site for more information, including a table of currency codes. The class is designed so that there's never more than one Currency instance for any given currency. Therefore, there's no public constructor. You obtain a Currency instance using the getInstance methods. Users can supersede the Java runtime currency data by creating a properties file named <JAVA_HOME>/lib/currency.properties. The contents of the properties file are key/value pairs of the ISO 3166 country codes and the ISO 4217 currency data respectively. The value part consists of three ISO 4217 values of a currency, i.e., an alphabetic code, a numeric code, and a minor unit. Those three ISO 4217 values are separated by commas. The lines which start with '#'s are considered comment lines. For example, #Sample currency properties JP=JPZ,999,0 will supersede the currency data for Japan.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static Currency getInstance(String currencyCode)
+				</name>
+				<description>
+					Returns the Currency instance for the given currency code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Currency getInstance(Locale locale)
+				</name>
+				<description>
+					Returns the Currency instance for the country of the given locale. The language and variant components of the locale are ignored. The result may vary over time, as countries change their currencies. For example, for the original member countries of the European Monetary Union, the method returns the old national currencies until December 31, 2001, and the Euro from January 1, 2002, local time of the respective countries. The method returns null for territories that don't have a currency, such as Antarctica.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Set<Currency> getAvailableCurrencies()
+				</name>
+				<description>
+					Gets the set of available currencies. The returned set of currencies contains all of the available currencies, which may include currencies that represent obsolete ISO 4217 codes. The set can be modified without affecting the available currencies in the runtime.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getCurrencyCode()
+				</name>
+				<description>
+					Gets the ISO 4217 currency code of this currency.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSymbol()
+				</name>
+				<description>
+					Gets the symbol of this currency for the default locale. For example, for the US Dollar, the symbol is "$" if the default locale is the US, while for other locales it may be "US$". If no symbol can be determined, the ISO 4217 currency code is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSymbol(Locale locale)
+				</name>
+				<description>
+					Gets the symbol of this currency for the specified locale. For example, for the US Dollar, the symbol is "$" if the specified locale is the US, while for other locales it may be "US$". If no symbol can be determined, the ISO 4217 currency code is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDefaultFractionDigits()
+				</name>
+				<description>
+					Gets the default number of fraction digits used with this currency. For example, the default number of fraction digits for the Euro is 2, while for the Japanese Yen it's 0. In the case of pseudo-currencies, such as IMF Special Drawing Rights, -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumericCode()
+				</name>
+				<description>
+					Returns the ISO 4217 numeric code of this currency.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDisplayName()
+				</name>
+				<description>
+					Gets the name that is suitable for displaying this currency for the default locale. If there is no suitable display name found for the default locale, the ISO 4217 currency code is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDisplayName(Locale locale)
+				</name>
+				<description>
+					Gets the name that is suitable for displaying this currency for the specified locale. If there is no suitable display name found for the specified locale, the ISO 4217 currency code is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the ISO 4217 currency code of this currency.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

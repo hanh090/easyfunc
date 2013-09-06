@@ -1,0 +1,774 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract class JTextComponent  extends JComponent  implements Scrollable, Accessible
+		</name>
+		<description>
+			JTextComponent is the base class for swing text components. It tries to be compatible with the java.awt.TextComponent class where it can reasonably do so. Also provided are other services for additional flexibility (beyond the pluggable UI and bean support). You can find information on how to use the functionality this class provides in General Rules for Using Text Components, a section in The Java Tutorial. Caret Changes The caret is a pluggable object in swing text components. Notification of changes to the caret position and the selection are sent to implementations of the CaretListener interface that have been registered with the text component. The UI will install a default caret unless a customized caret has been set. By default the caret tracks all the document changes performed on the Event Dispatching Thread and updates it's position accordingly if an insertion occurs before or at the caret position or a removal occurs before the caret position. DefaultCaret tries to make itself visible which may lead to scrolling of a text component within JScrollPane. The default caret behavior can be changed by the DefaultCaret.setUpdatePolicy(int) method. Note: Non-editable text components also have a caret though it may not be painted. Commands Text components provide a number of commands that can be used to manipulate the component. This is essentially the way that the component expresses its capabilities. These are expressed in terms of the swing Action interface, using the TextAction implementation. The set of commands supported by the text component can be found with the getActions() method. These actions can be bound to key events, fired from buttons, etc. Text Input The text components support flexible and internationalized text input, using keymaps and the input method framework, while maintaining compatibility with the AWT listener model. A Keymap lets an application bind key strokes to actions. In order to allow keymaps to be shared across multiple text components, they can use actions that extend TextAction. TextAction can determine which JTextComponent most recently has or had focus and therefore is the subject of the action (In the case that the ActionEvent sent to the action doesn't contain the target text component as its source). The input method framework lets text components interact with input methods, separate software components that preprocess events to let users enter thousands of different characters using keyboards with far fewer keys. JTextComponent is an active client of the framework, so it implements the preferred user interface for interacting with input methods. As a consequence, some key events do not reach the text component because they are handled by an input method, and some text input reaches the text component as committed text within an InputMethodEvent instead of as a key event. The complete text input is the combination of the characters in keyTyped key events and committed text in input method events. The AWT listener model lets applications attach event listeners to components in order to bind events to actions. Swing encourages the use of keymaps instead of listeners, but maintains compatibility with listeners by giving the listeners a chance to steal an event by consuming it. Keyboard event and input method events are handled in the following stages, with each stage capable of consuming the event: Stage KeyEvent InputMethodEvent 1. input methods (generated here) 2. focus manager 3. registered key listeners registered input method listeners 4. input method handling in JTextComponent 5. keymap handling using the current keymap 6. keyboard handling in JComponent (e.g. accelerators, component navigation, etc.) To maintain compatibility with applications that listen to key events but are not aware of input method events, the input method handling in stage 4 provides a compatibility mode for components that do not process input method events. For these components, the committed text is converted to keyTyped key events and processed in the key event pipeline starting at stage 3 instead of in the input method event pipeline. By default the component will create a keymap (named DEFAULT_KEYMAP) that is shared by all JTextComponent instances as the default keymap. Typically a look-and-feel implementation will install a different keymap that resolves to the default keymap for those bindings not found in the different keymap. The minimal bindings include: inserting content into the editor for the printable keys. removing content with the backspace and del keys. caret movement forward and backward Model/View Split The text components have a model-view split. A text component pulls together the objects used to represent the model, view, and controller. The text document model may be shared by other views which act as observers of the model (e.g. a document may be shared by multiple components). The model is defined by the Document interface. This is intended to provide a flexible text storage mechanism that tracks change during edits and can be extended to more sophisticated models. The model interfaces are meant to capture the capabilities of expression given by SGML, a system used to express a wide variety of content. Each modification to the document causes notification of the details of the change to be sent to all observers in the form of a DocumentEvent which allows the views to stay up to date with the model. This event is sent to observers that have implemented the DocumentListener interface and registered interest with the model being observed. Location Information The capability of determining the location of text in the view is provided. There are two methods, modelToView(int) and viewToModel(java.awt.Point) for determining this information. Undo/Redo support Support for an edit history mechanism is provided to allow undo/redo operations. The text component does not itself provide the history buffer by default, but does provide the UndoableEdit records that can be used in conjunction with a history buffer to provide the undo/redo support. The support is provided by the Document model, which allows one to attach UndoableEditListener implementations. Thread Safety The swing text components provide some support of thread safe operations. Because of the high level of configurability of the text components, it is possible to circumvent the protection provided. The protection primarily comes from the model, so the documentation of AbstractDocument describes the assumptions of the protection provided. The methods that are safe to call asynchronously are marked with comments. Newlines For a discussion on how newlines are handled, see DefaultEditorKit. Printing support Several print methods are provided for basic document printing. If more advanced printing is needed, use the getPrintable(java.text.MessageFormat, java.text.MessageFormat) method. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String FOCUS_ACCELERATOR_KEY
+				</name>
+				<description>
+					The bound property name for the focus accelerator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String DEFAULT_KEYMAP
+				</name>
+				<description>
+					The default keymap that will be shared by all JTextComponent instances unless they have had a different keymap set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTextComponent()
+				</name>
+				<description>
+					Creates a new JTextComponent. Listeners for caret events are established, and the pluggable UI installed. The component is marked as editable. No layout manager is used, because layout is managed by the view subsystem of text. The document model is set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextUI getUI()
+				</name>
+				<description>
+					Fetches the user-interface factory for this text-oriented editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(TextUI ui)
+				</name>
+				<description>
+					Sets the user-interface factory for this text-oriented editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Reloads the pluggable UI. The key used to fetch the new interface is getUIClassID(). The type of the UI is TextUI. invalidate is called after setting the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addCaretListener(CaretListener listener)
+				</name>
+				<description>
+					Adds a caret listener for notification of any changes to the caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeCaretListener(CaretListener listener)
+				</name>
+				<description>
+					Removes a caret listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CaretListener[] getCaretListeners()
+				</name>
+				<description>
+					Returns an array of all the caret listeners registered on this text component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireCaretUpdate(CaretEvent e)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the parameters passed into the fire method. The listener list is processed in a last-to-first manner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDocument(Document doc)
+				</name>
+				<description>
+					Associates the editor with a text document. The currently registered factory is used to build a view for the document, which gets displayed by the editor after revalidation. A PropertyChange event ("document") is propagated to each listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Document getDocument()
+				</name>
+				<description>
+					Fetches the model associated with the editor. This is primarily for the UI to get at the minimal amount of state required to be a text editor. Subclasses will return the actual type of the model which will typically be something that extends Document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setComponentOrientation(ComponentOrientation o)
+				</name>
+				<description>
+					Description copied from class: Component Sets the language-sensitive orientation that is to be used to order the elements or text within this component. Language-sensitive LayoutManager and Component subclasses will use this property to determine how to lay out and draw components. At construction time, a component's orientation is set to ComponentOrientation.UNKNOWN, indicating that it has not been specified explicitly. The UNKNOWN orientation behaves the same as ComponentOrientation.LEFT_TO_RIGHT. To set the orientation of a single component, use this method. To set the orientation of an entire component hierarchy, use applyComponentOrientation. This method changes layout-related information, and therefore, invalidates the component hierarchy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Action[] getActions()
+				</name>
+				<description>
+					Fetches the command list for the editor. This is the list of commands supported by the plugged-in UI augmented by the collection of commands that the editor itself supports. These are useful for binding to events, such as in a keymap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMargin(Insets m)
+				</name>
+				<description>
+					Sets margin space between the text component's border and its text. The text component's default Border object will use this value to create the proper margin. However, if a non-default border is set on the text component, it is that Border object's responsibility to create the appropriate margin space (else this property will effectively be ignored). This causes a redraw of the component. A PropertyChange event ("margin") is sent to all listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getMargin()
+				</name>
+				<description>
+					Returns the margin between the text component's border and its text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNavigationFilter(NavigationFilter filter)
+				</name>
+				<description>
+					Sets the NavigationFilter. NavigationFilter is used by DefaultCaret and the default cursor movement actions as a way to restrict the cursor movement.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NavigationFilter getNavigationFilter()
+				</name>
+				<description>
+					Returns the NavigationFilter. NavigationFilter is used by DefaultCaret and the default cursor movement actions as a way to restrict the cursor movement. A null return value implies the cursor movement and selection should not be restricted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Caret getCaret()
+				</name>
+				<description>
+					Fetches the caret that allows text-oriented navigation over the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCaret(Caret c)
+				</name>
+				<description>
+					Sets the caret to be used. By default this will be set by the UI that gets installed. This can be changed to a custom caret if desired. Setting the caret results in a PropertyChange event ("caret") being fired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Highlighter getHighlighter()
+				</name>
+				<description>
+					Fetches the object responsible for making highlights.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHighlighter(Highlighter h)
+				</name>
+				<description>
+					Sets the highlighter to be used. By default this will be set by the UI that gets installed. This can be changed to a custom highlighter if desired. The highlighter can be set to null to disable it. A PropertyChange event ("highlighter") is fired when a new highlighter is installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setKeymap(Keymap map)
+				</name>
+				<description>
+					Sets the keymap to use for binding events to actions. Setting to null effectively disables keyboard input. A PropertyChange event ("keymap") is fired when a new keymap is installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDragEnabled(boolean b)
+				</name>
+				<description>
+					Turns on or off automatic drag handling. In order to enable automatic drag handling, this property should be set to true, and the component's TransferHandler needs to be non-null. The default value of the dragEnabled property is false. The job of honoring this property, and recognizing a user drag gesture, lies with the look and feel implementation, and in particular, the component's TextUI. When automatic drag handling is enabled, most look and feels (including those that subclass BasicLookAndFeel) begin a drag and drop operation whenever the user presses the mouse button over a selection and then moves the mouse a few pixels. Setting this property to true can therefore have a subtle effect on how selections behave. If a look and feel is used that ignores this property, you can still begin a drag and drop operation by calling exportAsDrag on the component's TransferHandler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getDragEnabled()
+				</name>
+				<description>
+					Returns whether or not automatic drag handling is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setDropMode(DropMode dropMode)
+				</name>
+				<description>
+					Sets the drop mode for this component. For backward compatibility, the default for this property is DropMode.USE_SELECTION. Usage of DropMode.INSERT is recommended, however, for an improved user experience. It offers similar behavior of dropping between text locations, but does so without affecting the actual text selection and caret location. JTextComponents support the following drop modes: DropMode.USE_SELECTION DropMode.INSERT The drop mode is only meaningful if this component has a TransferHandler that accepts drops.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final DropMode getDropMode()
+				</name>
+				<description>
+					Returns the drop mode for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final JTextComponent.DropLocation getDropLocation()
+				</name>
+				<description>
+					Returns the location that this component should visually indicate as the drop location during a DnD operation over the component, or null if no location is to currently be shown. This method is not meant for querying the drop location from a TransferHandler, as the drop location is only set after the TransferHandler's canImport has returned and has allowed for the location to be shown. When this property changes, a property change event with name "dropLocation" is fired by the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Keymap getKeymap()
+				</name>
+				<description>
+					Fetches the keymap currently active in this text component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Keymap addKeymap(String nm,                 Keymap parent)
+				</name>
+				<description>
+					Adds a new keymap into the keymap hierarchy. Keymap bindings resolve from bottom up so an attribute specified in a child will override an attribute specified in the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Keymap removeKeymap(String nm)
+				</name>
+				<description>
+					Removes a named keymap previously added to the document. Keymaps with null names may not be removed in this way.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Keymap getKeymap(String nm)
+				</name>
+				<description>
+					Fetches a named keymap previously added to the document. This does not work with null-named keymaps.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void loadKeymap(Keymap map,                JTextComponent.KeyBinding[] bindings,                Action[] actions)
+				</name>
+				<description>
+					Loads a keymap with a bunch of bindings. This can be used to take a static table of definitions and load them into some keymap. The following example illustrates an example of binding some keys to the cut, copy, and paste actions associated with a JTextComponent. A code fragment to accomplish this might look as follows:        static final JTextComponent.KeyBinding[] defaultBindings = {       new JTextComponent.KeyBinding(         KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK),         DefaultEditorKit.copyAction),       new JTextComponent.KeyBinding(         KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK),         DefaultEditorKit.pasteAction),       new JTextComponent.KeyBinding(         KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK),         DefaultEditorKit.cutAction),     };       JTextComponent c = new JTextPane();     Keymap k = c.getKeymap();     JTextComponent.loadKeymap(k, defaultBindings, c.getActions());     The sets of bindings and actions may be empty but must be non-null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getCaretColor()
+				</name>
+				<description>
+					Fetches the current color used to render the caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCaretColor(Color c)
+				</name>
+				<description>
+					Sets the current color used to render the caret. Setting to null effectively restores the default color. Setting the color results in a PropertyChange event ("caretColor") being fired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getSelectionColor()
+				</name>
+				<description>
+					Fetches the current color used to render the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionColor(Color c)
+				</name>
+				<description>
+					Sets the current color used to render the selection. Setting the color to null is the same as setting Color.white. Setting the color results in a PropertyChange event ("selectionColor").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getSelectedTextColor()
+				</name>
+				<description>
+					Fetches the current color used to render the selected text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedTextColor(Color c)
+				</name>
+				<description>
+					Sets the current color used to render the selected text. Setting the color to null is the same as Color.black. Setting the color results in a PropertyChange event ("selectedTextColor") being fired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getDisabledTextColor()
+				</name>
+				<description>
+					Fetches the current color used to render the disabled text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDisabledTextColor(Color c)
+				</name>
+				<description>
+					Sets the current color used to render the disabled text. Setting the color fires off a PropertyChange event ("disabledTextColor").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replaceSelection(String content)
+				</name>
+				<description>
+					Replaces the currently selected content with new content represented by the given string. If there is no selection this amounts to an insert of the given text. If there is no replacement text this amounts to a removal of the current selection. This is the method that is used by the default implementation of the action for inserting content that gets bound to the keymap actions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getText(int offs,               int len)                 throws BadLocationException
+				</name>
+				<description>
+					Fetches a portion of the text represented by the component. Returns an empty string if length is 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle modelToView(int pos)                        throws BadLocationException
+				</name>
+				<description>
+					Converts the given location in the model to a place in the view coordinate system. The component must have a positive size for this translation to be computed (i.e. layout cannot be computed until the component has been sized). The component does not have to be visible or painted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(Point pt)
+				</name>
+				<description>
+					Converts the given place in the view coordinate system to the nearest representative location in the model. The component must have a positive size for this translation to be computed (i.e. layout cannot be computed until the component has been sized). The component does not have to be visible or painted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void cut()
+				</name>
+				<description>
+					Transfers the currently selected range in the associated text model to the system clipboard, removing the contents from the model. The current selection is reset. Does nothing for null selections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void copy()
+				</name>
+				<description>
+					Transfers the currently selected range in the associated text model to the system clipboard, leaving the contents in the text model. The current selection remains intact. Does nothing for null selections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paste()
+				</name>
+				<description>
+					Transfers the contents of the system clipboard into the associated text model. If there is a selection in the associated view, it is replaced with the contents of the clipboard. If there is no selection, the clipboard contents are inserted in front of the current insert position in the associated view. If the clipboard is empty, does nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void moveCaretPosition(int pos)
+				</name>
+				<description>
+					Moves the caret to a new position, leaving behind a mark defined by the last time setCaretPosition was called. This forms a selection. If the document is null, does nothing. The position must be between 0 and the length of the component's text or else an exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFocusAccelerator(char aKey)
+				</name>
+				<description>
+					Sets the key accelerator that will cause the receiving text component to get the focus. The accelerator will be the key combination of the alt key and the character given (converted to upper case). By default, there is no focus accelerator key. Any previous key accelerator setting will be superseded. A '\0' key setting will be registered, and has the effect of turning off the focus accelerator. When the new key is set, a PropertyChange event (FOCUS_ACCELERATOR_KEY) will be fired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public char getFocusAccelerator()
+				</name>
+				<description>
+					Returns the key accelerator that will cause the receiving text component to get the focus. Return '\0' if no focus accelerator has been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void read(Reader in,          Object desc)            throws IOException
+				</name>
+				<description>
+					Initializes from a stream. This creates a model of the type appropriate for the component and initializes the model from the stream. By default this will load the model as plain text. Previous contents of the model are discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(Writer out)             throws IOException
+				</name>
+				<description>
+					Stores the contents of the model into the given stream. By default this will store the model as plain text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotify()
+				</name>
+				<description>
+					Description copied from class: JComponent Notifies this component that it no longer has a parent component. When this method is invoked, any KeyboardActions set up in the the chain of parent components are removed. This method is called by the toolkit internally and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCaretPosition(int position)
+				</name>
+				<description>
+					Sets the position of the text insertion caret for the TextComponent. Note that the caret tracks change, so this may move if the underlying text of the component is changed. If the document is null, does nothing. The position must be between 0 and the length of the component's text or else an exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getCaretPosition()
+				</name>
+				<description>
+					Returns the position of the text insertion caret for the text component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setText(String t)
+				</name>
+				<description>
+					Sets the text of this TextComponent to the specified text. If the text is null or empty, has the effect of simply deleting the old text. When text has been inserted, the resulting caret location is determined by the implementation of the caret class. Note that text is not a bound property, so no PropertyChangeEvent is fired when it changes. To listen for changes to the text, use DocumentListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getText()
+				</name>
+				<description>
+					Returns the text contained in this TextComponent. If the underlying document is null, will give a NullPointerException. Note that text is not a bound property, so no PropertyChangeEvent is fired when it changes. To listen for changes to the text, use DocumentListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSelectedText()
+				</name>
+				<description>
+					Returns the selected text contained in this TextComponent. If the selection is null or the document empty, returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEditable()
+				</name>
+				<description>
+					Returns the boolean indicating whether this TextComponent is editable or not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEditable(boolean b)
+				</name>
+				<description>
+					Sets the specified boolean to indicate whether or not this TextComponent should be editable. A PropertyChange event ("editable") is fired when the state is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectionStart()
+				</name>
+				<description>
+					Returns the selected text's start position. Return 0 for an empty document, or the value of dot if no selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionStart(int selectionStart)
+				</name>
+				<description>
+					Sets the selection start to the specified position. The new starting point is constrained to be before or at the current selection end. This is available for backward compatibility to code that called this method on java.awt.TextComponent. This is implemented to forward to the Caret implementation which is where the actual selection is maintained.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectionEnd()
+				</name>
+				<description>
+					Returns the selected text's end position. Return 0 if the document is empty, or the value of dot if there is no selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionEnd(int selectionEnd)
+				</name>
+				<description>
+					Sets the selection end to the specified position. The new end point is constrained to be at or after the current selection start. This is available for backward compatibility to code that called this method on java.awt.TextComponent. This is implemented to forward to the Caret implementation which is where the actual selection is maintained.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void select(int selectionStart,            int selectionEnd)
+				</name>
+				<description>
+					Selects the text between the specified start and end positions. This method sets the start and end positions of the selected text, enforcing the restriction that the start position must be greater than or equal to zero. The end position must be greater than or equal to the start position, and less than or equal to the length of the text component's text. If the caller supplies values that are inconsistent or out of bounds, the method enforces these constraints silently, and without failure. Specifically, if the start position or end position is greater than the length of the text, it is reset to equal the text length. If the start position is less than zero, it is reset to zero, and if the end position is less than the start position, it is reset to the start position. This call is provided for backward compatibility. It is routed to a call to setCaretPosition followed by a call to moveCaretPosition. The preferred way to manage selection is by calling those methods directly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void selectAll()
+				</name>
+				<description>
+					Selects all the text in the TextComponent. Does nothing on a null or empty document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(MouseEvent event)
+				</name>
+				<description>
+					Returns the string to be used as the tooltip for event. This will return one of: If setToolTipText has been invoked with a non-null value, it will be returned, otherwise The value from invoking getToolTipText on the UI will be returned. By default JTextComponent does not register itself with the ToolTipManager. This means that tooltips will NOT be shown from the TextUI unless registerComponent has been invoked on the ToolTipManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredScrollableViewportSize()
+				</name>
+				<description>
+					Returns the preferred size of the viewport for a view component. This is implemented to do the default behavior of returning the preferred size of the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableUnitIncrement(Rectangle visibleRect,                               int orientation,                               int direction)
+				</name>
+				<description>
+					Components that display logical rows or columns should compute the scroll increment that will completely expose one new row or column, depending on the value of orientation. Ideally, components should handle a partially exposed row or column by returning the distance required to completely expose the item. The default implementation of this is to simply return 10% of the visible area. Subclasses are likely to be able to provide a much more reasonable value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableBlockIncrement(Rectangle visibleRect,                                int orientation,                                int direction)
+				</name>
+				<description>
+					Components that display logical rows or columns should compute the scroll increment that will completely expose one block of rows or columns, depending on the value of orientation. The default implementation of this is to simply return the visible area. Subclasses will likely be able to provide a much more reasonable value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportWidth()
+				</name>
+				<description>
+					Returns true if a viewport should always force the width of this Scrollable to match the width of the viewport. For example a normal text view that supported line wrapping would return true here, since it would be undesirable for wrapped lines to disappear beyond the right edge of the viewport. Note that returning true for a Scrollable whose ancestor is a JScrollPane effectively disables horizontal scrolling. Scrolling containers, like JViewport, will use this method each time they are validated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportHeight()
+				</name>
+				<description>
+					Returns true if a viewport should always force the height of this Scrollable to match the height of the viewport. For example a columnar text view that flowed text in left to right columns could effectively disable vertical scrolling by returning true here. Scrolling containers, like JViewport, will use this method each time they are validated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean print()                throws PrinterException
+				</name>
+				<description>
+					A convenience print method that displays a print dialog, and then prints this JTextComponent in interactive mode with no header or footer text. Note: this method blocks until printing is done. Note: In headless mode, no dialogs will be shown. This method calls the full featured print method to perform printing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean print(MessageFormat headerFormat,              MessageFormat footerFormat)                throws PrinterException
+				</name>
+				<description>
+					A convenience print method that displays a print dialog, and then prints this JTextComponent in interactive mode with the specified header and footer text. Note: this method blocks until printing is done. Note: In headless mode, no dialogs will be shown. This method calls the full featured print method to perform printing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean print(MessageFormat headerFormat,              MessageFormat footerFormat,              boolean showPrintDialog,              PrintService service,              PrintRequestAttributeSet attributes,              boolean interactive)                throws PrinterException
+				</name>
+				<description>
+					Prints the content of this JTextComponent. Note: this method blocks until printing is done. Page header and footer text can be added to the output by providing MessageFormat arguments. The printing code requests Strings from the formats, providing a single item which may be included in the formatted string: an Integer representing the current page number. showPrintDialog boolean parameter allows you to specify whether a print dialog is displayed to the user. When it is, the user may use the dialog to change printing attributes or even cancel the print. service allows you to provide the initial PrintService for the print dialog, or to specify PrintService to print to when the dialog is not shown. attributes can be used to provide the initial values for the print dialog, or to supply any needed attributes when the dialog is not shown. attributes can be used to control how the job will print, for example duplex or single-sided. interactive boolean parameter allows you to specify whether to perform printing in interactive mode. If true, a progress dialog, with an abort option, is displayed for the duration of printing. This dialog is modal when print is invoked on the Event Dispatch Thread and non-modal otherwise. Warning: calling this method on the Event Dispatch Thread with interactive false blocks all events, including repaints, from being processed until printing is complete. It is only recommended when printing from an application with no visible GUI. Note: In headless mode, showPrintDialog and interactive parameters are ignored and no dialogs are shown. This method ensures the document is not mutated during printing. To indicate it visually, setEnabled(false) is set for the duration of printing. This method uses getPrintable(java.text.MessageFormat, java.text.MessageFormat) to render document content. This method is thread-safe, although most Swing methods are not. Please see How to Use Threads for more information. Sample Usage. This code snippet shows a cross-platform print dialog and then prints the JTextComponent in interactive mode unless the user cancels the dialog:    textComponent.print(new MessageFormat("My text component header"),       new MessageFormat("Footer. Page - {0}"), true, null, null, true);   Executing this code off the Event Dispatch Thread performs printing on the background. The following pattern might be used for background printing:        FutureTask<Boolean> future =           new FutureTask<Boolean>(               new Callable<Boolean>() {                   public Boolean call() {                       return textComponent.print(.....);                   }               });       executor.execute(future);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Printable getPrintable(MessageFormat headerFormat,                       MessageFormat footerFormat)
+				</name>
+				<description>
+					Returns a Printable to use for printing the content of this JTextComponent. The returned Printable prints the document as it looks on the screen except being reformatted to fit the paper. The returned Printable can be wrapped inside another Printable in order to create complex reports and documents. The returned Printable shares the document with this JTextComponent. It is the responsibility of the developer to ensure that the document is not mutated while this Printable is used. Printing behavior is undefined when the document is mutated during printing. Page header and footer text can be added to the output by providing MessageFormat arguments. The printing code requests Strings from the formats, providing a single item which may be included in the formatted string: an Integer representing the current page number. The returned Printable when printed, formats the document content appropriately for the page size. For correct line wrapping the imageable width of all pages must be the same. See PageFormat.getImageableWidth(). This method is thread-safe, although most Swing methods are not. Please see How to Use Threads for more information. The returned Printable can be printed on any thread. This implementation returned Printable performs all painting on the Event Dispatch Thread, regardless of what thread it is used on.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JTextComponent. For text components, the AccessibleContext takes the form of an AccessibleJTextComponent. A new AccessibleJTextComponent instance is created if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JTextComponent. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null. Overriding paramString to provide information about the specific new aspects of the JFC components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processInputMethodEvent(InputMethodEvent e)
+				</name>
+				<description>
+					Description copied from class: Component Processes input method events occurring on this component by dispatching them to any registered InputMethodListener objects. This method is not called unless input method events are enabled for this component. Input method events are enabled when one of the following occurs: An InputMethodListener object is registered via addInputMethodListener. Input method events are enabled via enableEvents. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputMethodRequests getInputMethodRequests()
+				</name>
+				<description>
+					Description copied from class: Component Gets the input method request handler which supports requests from input methods for this component. A component that supports on-the-spot text input must override this method to return an InputMethodRequests instance. At the same time, it also has to handle input method events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addInputMethodListener(InputMethodListener l)
+				</name>
+				<description>
+					Description copied from class: Component Adds the specified input method listener to receive input method events from this component. A component will only receive input method events from input methods if it also overrides getInputMethodRequests to return an InputMethodRequests instance. If listener l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean saveComposedText(int pos)
+				</name>
+				<description>
+					Saves composed text around the specified position. The composed text (if any) around the specified position is saved in a backing store and removed from the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void restoreComposedText()
+				</name>
+				<description>
+					Restores composed text previously saved by saveComposedText. The saved composed text is inserted back into the document. This method should be invoked only if saveComposedText returns true.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

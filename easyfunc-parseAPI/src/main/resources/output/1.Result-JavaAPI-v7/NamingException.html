@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		javax.naming
+	</package>
+	<type>
+		<name>
+			public class NamingException  extends Exception
+		</name>
+		<description>
+			This is the superclass of all exceptions thrown by operations in the Context and DirContext interfaces. The nature of the failure is described by the name of the subclass. This exception captures the information pinpointing where the operation failed, such as where resolution last proceeded to. Resolved Name. Portion of name that has been resolved. Resolved Object. Object to which resolution of name proceeded. Remaining Name. Portion of name that has not been resolved. Explanation. Detail explaining why name resolution failed. Root Exception. The exception that caused this naming exception to be thrown. null is an acceptable value for any of these fields. When null, it means that no such information has been recorded for that field. A NamingException instance is not synchronized against concurrent multithreaded access. Multiple threads trying to access and modify a single NamingException instance should lock the object. This exception has been retrofitted to conform to the general purpose exception-chaining mechanism. The root exception (or root cause) is the same object as the cause returned by the Throwable.getCause() method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Name resolvedName
+				</name>
+				<description>
+					Contains the part of the name that has been successfully resolved. It is a composite name and can be null. This field is initialized by the constructors. You should access and manipulate this field through its get and set methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object resolvedObj
+				</name>
+				<description>
+					Contains the object to which resolution of the part of the name was successful. Can be null. This field is initialized by the constructors. You should access and manipulate this field through its get and set methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Name remainingName
+				</name>
+				<description>
+					Contains the remaining name that has not been resolved yet. It is a composite name and can be null. This field is initialized by the constructors. You should access and manipulate this field through its get, set, "append" methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Throwable rootException
+				</name>
+				<description>
+					Contains the original exception that caused this NamingException to be thrown. This field is set if there is additional information that could be obtained from the original exception, or if the original exception could not be mapped to a subclass of NamingException. Can be null. This field predates the general-purpose exception chaining facility. The initCause(Throwable) and getCause() methods are now the preferred means of accessing this information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NamingException(String explanation)
+				</name>
+				<description>
+					Constructs a new NamingException with an explanation. All unspecified fields are set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NamingException()
+				</name>
+				<description>
+					Constructs a new NamingException. All fields are set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Name getResolvedName()
+				</name>
+				<description>
+					Retrieves the leading portion of the name that was resolved successfully.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Name getRemainingName()
+				</name>
+				<description>
+					Retrieves the remaining unresolved portion of the name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getResolvedObj()
+				</name>
+				<description>
+					Retrieves the object to which resolution was successful. This is the object to which the resolved name is bound.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getExplanation()
+				</name>
+				<description>
+					Retrieves the explanation associated with this exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResolvedName(Name name)
+				</name>
+				<description>
+					Sets the resolved name field of this exception. name is a composite name. If the intent is to set this field using a compound name or string, you must "stringify" the compound name, and create a composite name with a single component using the string. You can then invoke this method using the resulting composite name. A copy of name is made and stored. Subsequent changes to name does not affect the copy in this NamingException and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRemainingName(Name name)
+				</name>
+				<description>
+					Sets the remaining name field of this exception. name is a composite name. If the intent is to set this field using a compound name or string, you must "stringify" the compound name, and create a composite name with a single component using the string. You can then invoke this method using the resulting composite name. A copy of name is made and stored. Subsequent changes to name does not affect the copy in this NamingException and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResolvedObj(Object obj)
+				</name>
+				<description>
+					Sets the resolved object field of this exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void appendRemainingComponent(String name)
+				</name>
+				<description>
+					Add name as the last component in remaining name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void appendRemainingName(Name name)
+				</name>
+				<description>
+					Add components from 'name' as the last components in remaining name. name is a composite name. If the intent is to append a compound name, you should "stringify" the compound name then invoke the overloaded form that accepts a String parameter. Subsequent changes to name does not affect the remaining name field in this NamingException and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Throwable getRootCause()
+				</name>
+				<description>
+					Retrieves the root cause of this NamingException, if any. The root cause of a naming exception is used when the service provider wants to indicate to the caller a non-naming related exception but at the same time wants to use the NamingException structure to indicate how far the naming operation proceeded. This method predates the general-purpose exception chaining facility. The getCause() method is now the preferred means of obtaining this information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRootCause(Throwable e)
+				</name>
+				<description>
+					Records the root cause of this NamingException. If e is this, this method does not do anything. This method predates the general-purpose exception chaining facility. The initCause(Throwable) method is now the preferred means of recording this information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Throwable getCause()
+				</name>
+				<description>
+					Returns the cause of this exception. The cause is the throwable that caused this naming exception to be thrown. Returns null if the cause is nonexistent or unknown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Throwable initCause(Throwable cause)
+				</name>
+				<description>
+					Initializes the cause of this exception to the specified value. The cause is the throwable that caused this naming exception to be thrown. This method may be called at most once.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Generates the string representation of this exception. The string representation consists of this exception's class name, its detailed message, and if it has a root cause, the string representation of the root cause exception, followed by the remaining name (if it is not null). This string is used for debugging and not meant to be interpreted programmatically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString(boolean detail)
+				</name>
+				<description>
+					Generates the string representation in more detail. This string representation consists of the information returned by the toString() that takes no parameters, plus the string representation of the resolved object (if it is not null). This string is used for debugging and not meant to be interpreted programmatically.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			@Deprecated  public class LineNumberInputStream  extends FilterInputStream
+		</name>
+		<description>
+			Deprecated.  This class incorrectly assumes that bytes adequately represent characters. As of JDK 1.1, the preferred way to operate on character streams is via the new character-stream classes, which include a class for counting line numbers. This class is an input stream filter that provides the added functionality of keeping track of the current line number. A line is a sequence of bytes ending with a carriage return character ('\r'), a newline character ('\n'), or a carriage return character followed immediately by a linefeed character. In all three cases, the line terminating character(s) are returned as a single newline character. The line number begins at 0, and is incremented by 1 when a read returns a newline character.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public LineNumberInputStream(InputStream in)
+				</name>
+				<description>
+					Deprecated.  Constructs a newline number input stream that reads its input from the specified input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Deprecated.  Reads the next byte of data from this input stream. The value byte is returned as an int in the range 0 to 255. If no byte is available because the end of the stream has been reached, the value -1 is returned. This method blocks until input data is available, the end of the stream is detected, or an exception is thrown. The read method of LineNumberInputStream calls the read method of the underlying input stream. It checks for carriage returns and newline characters in the input, and modifies the current line number as appropriate. A carriage-return character or a carriage return followed by a newline character are both converted into a single newline character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Deprecated.  Reads up to len bytes of data from this input stream into an array of bytes. This method blocks until some input is available. The read method of LineNumberInputStream repeatedly calls the read method of zero arguments to fill in the byte array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					Deprecated.  Skips over and discards n bytes of data from this input stream. The skip method may, for a variety of reasons, end up skipping over some smaller number of bytes, possibly 0. The actual number of bytes skipped is returned. If n is negative, no bytes are skipped. The skip method of LineNumberInputStream creates a byte array and then repeatedly reads into it until n bytes have been read or the end of the stream has been reached.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLineNumber(int lineNumber)
+				</name>
+				<description>
+					Deprecated.  Sets the line number to the specified argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineNumber()
+				</name>
+				<description>
+					Deprecated.  Returns the current line number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()                throws IOException
+				</name>
+				<description>
+					Deprecated.  Returns the number of bytes that can be read from this input stream without blocking. Note that if the underlying input stream is able to supply k input characters without blocking, the LineNumberInputStream can guarantee only to provide k/2 characters without blocking, because the k characters from the underlying input stream might consist of k/2 pairs of '\r' and '\n', which are converted to just k/2 '\n' characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mark(int readlimit)
+				</name>
+				<description>
+					Deprecated.  Marks the current position in this input stream. A subsequent call to the reset method repositions this stream at the last marked position so that subsequent reads re-read the same bytes. The mark method of LineNumberInputStream remembers the current line number in a private variable, and then calls the mark method of the underlying input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()             throws IOException
+				</name>
+				<description>
+					Deprecated.  Repositions this stream to the position at the time the mark method was last called on this input stream. The reset method of LineNumberInputStream resets the line number to be the line number at the time the mark method was called, and then calls the reset method of the underlying input stream. Stream marks are intended to be used in situations where you need to read ahead a little to see what's in the stream. Often this is most easily done by invoking some general parser. If the stream is of the type handled by the parser, it just chugs along happily. If the stream is not of that type, the parser should toss an exception when it fails, which, if it happens within readlimit bytes, allows the outer code to reset the stream and try another parser.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

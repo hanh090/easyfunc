@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.swing.table
+	</package>
+	<type>
+		<name>
+			public interface TableModel
+		</name>
+		<description>
+			The TableModel interface specifies the methods the JTable will use to interrogate a tabular data model. The JTable can be set up to display any data model which implements the TableModel interface with a couple of lines of code:         TableModel myData = new MyTableModel();        JTable table = new JTable(myData);    For further documentation, see Creating a Table Model in The Java Tutorial.
+		</description>
+		<methods>
+			<method>
+				<name>
+					int getRowCount()
+				</name>
+				<description>
+					Returns the number of rows in the model. A JTable uses this method to determine how many rows it should display. This method should be quick, as it is called frequently during rendering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getColumnCount()
+				</name>
+				<description>
+					Returns the number of columns in the model. A JTable uses this method to determine how many columns it should create and display by default.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getColumnName(int columnIndex)
+				</name>
+				<description>
+					Returns the name of the column at columnIndex. This is used to initialize the table's column header name. Note: this name does not need to be unique; two columns in a table can have the same name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Class<?> getColumnClass(int columnIndex)
+				</name>
+				<description>
+					Returns the most specific superclass for all the cell values in the column. This is used by the JTable to set up a default renderer and editor for the column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isCellEditable(int rowIndex,                       int columnIndex)
+				</name>
+				<description>
+					Returns true if the cell at rowIndex and columnIndex is editable. Otherwise, setValueAt on the cell will not change the value of that cell.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getValueAt(int rowIndex,                  int columnIndex)
+				</name>
+				<description>
+					Returns the value for the cell at columnIndex and rowIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setValueAt(Object aValue,                int rowIndex,                int columnIndex)
+				</name>
+				<description>
+					Sets the value in the cell at columnIndex and rowIndex to aValue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addTableModelListener(TableModelListener l)
+				</name>
+				<description>
+					Adds a listener to the list that is notified each time a change to the data model occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeTableModelListener(TableModelListener l)
+				</name>
+				<description>
+					Removes a listener from the list that is notified each time a change to the data model occurs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

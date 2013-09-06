@@ -1,0 +1,324 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public abstract class DataBuffer  extends Object
+		</name>
+		<description>
+			This class exists to wrap one or more data arrays. Each data array in the DataBuffer is referred to as a bank. Accessor methods for getting and setting elements of the DataBuffer's banks exist with and without a bank specifier. The methods without a bank specifier use the default 0th bank. The DataBuffer can optionally take an offset per bank, so that data in an existing array can be used even if the interesting data doesn't start at array location zero. Getting or setting the 0th element of a bank, uses the (0+offset)th element of the array. The size field specifies how much of the data array is available for use. Size + offset for a given bank should never be greater than the length of the associated data array. The data type of a data buffer indicates the type of the data array(s) and may also indicate additional semantics, e.g. storing unsigned 8-bit data in elements of a byte array. The data type may be TYPE_UNDEFINED or one of the types defined below. Other types may be added in the future. Generally, an object of class DataBuffer will be cast down to one of its data type specific subclasses to access data type specific methods for improved performance. Currently, the Java 2D(tm) API image classes use TYPE_BYTE, TYPE_USHORT, TYPE_INT, TYPE_SHORT, TYPE_FLOAT, and TYPE_DOUBLE DataBuffers to store image data.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int TYPE_BYTE
+				</name>
+				<description>
+					Tag for unsigned byte data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_USHORT
+				</name>
+				<description>
+					Tag for unsigned short data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_SHORT
+				</name>
+				<description>
+					Tag for signed short data. Placeholder for future use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_INT
+				</name>
+				<description>
+					Tag for int data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_FLOAT
+				</name>
+				<description>
+					Tag for float data. Placeholder for future use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_DOUBLE
+				</name>
+				<description>
+					Tag for double data. Placeholder for future use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TYPE_UNDEFINED
+				</name>
+				<description>
+					Tag for undefined data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int dataType
+				</name>
+				<description>
+					The data type of this DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int banks
+				</name>
+				<description>
+					The number of banks in this DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int offset
+				</name>
+				<description>
+					Offset into default (first) bank from which to get the first element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int size
+				</name>
+				<description>
+					Usable size of all banks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int[] offsets
+				</name>
+				<description>
+					Offsets into all banks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DataBuffer(int dataType,            int size)
+				</name>
+				<description>
+					Constructs a DataBuffer containing one bank of the specified data type and size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DataBuffer(int dataType,            int size,            int numBanks)
+				</name>
+				<description>
+					Constructs a DataBuffer containing the specified number of banks. Each bank has the specified size and an offset of 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DataBuffer(int dataType,            int size,            int numBanks,            int offset)
+				</name>
+				<description>
+					Constructs a DataBuffer that contains the specified number of banks. Each bank has the specified datatype, size and offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DataBuffer(int dataType,            int size,            int numBanks,            int[] offsets)
+				</name>
+				<description>
+					Constructs a DataBuffer which contains the specified number of banks. Each bank has the specified datatype and size. The offset for each bank is specified by its respective entry in the offsets array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int getDataTypeSize(int type)
+				</name>
+				<description>
+					Returns the size (in bits) of the data type, given a datatype tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDataType()
+				</name>
+				<description>
+					Returns the data type of this DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSize()
+				</name>
+				<description>
+					Returns the size (in array elements) of all banks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset()
+				</name>
+				<description>
+					Returns the offset of the default bank in array elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getOffsets()
+				</name>
+				<description>
+					Returns the offsets (in array elements) of all the banks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumBanks()
+				</name>
+				<description>
+					Returns the number of banks in this DataBuffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getElem(int i)
+				</name>
+				<description>
+					Returns the requested data array element from the first (default) bank as an integer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getElem(int bank,            int i)
+				</name>
+				<description>
+					Returns the requested data array element from the specified bank as an integer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setElem(int i,             int val)
+				</name>
+				<description>
+					Sets the requested data array element in the first (default) bank from the given integer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setElem(int bank,             int i,             int val)
+				</name>
+				<description>
+					Sets the requested data array element in the specified bank from the given integer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getElemFloat(int i)
+				</name>
+				<description>
+					Returns the requested data array element from the first (default) bank as a float. The implementation in this class is to cast getElem(i) to a float. Subclasses may override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getElemFloat(int bank,                   int i)
+				</name>
+				<description>
+					Returns the requested data array element from the specified bank as a float. The implementation in this class is to cast getElem(int, int) to a float. Subclasses can override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setElemFloat(int i,                  float val)
+				</name>
+				<description>
+					Sets the requested data array element in the first (default) bank from the given float. The implementation in this class is to cast val to an int and call setElem(int, int). Subclasses can override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setElemFloat(int bank,                  int i,                  float val)
+				</name>
+				<description>
+					Sets the requested data array element in the specified bank from the given float. The implementation in this class is to cast val to an int and call setElem(int, int). Subclasses can override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getElemDouble(int i)
+				</name>
+				<description>
+					Returns the requested data array element from the first (default) bank as a double. The implementation in this class is to cast getElem(int) to a double. Subclasses can override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getElemDouble(int bank,                     int i)
+				</name>
+				<description>
+					Returns the requested data array element from the specified bank as a double. The implementation in this class is to cast getElem(bank, i) to a double. Subclasses may override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setElemDouble(int i,                   double val)
+				</name>
+				<description>
+					Sets the requested data array element in the first (default) bank from the given double. The implementation in this class is to cast val to an int and call setElem(int, int). Subclasses can override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setElemDouble(int bank,                   int i,                   double val)
+				</name>
+				<description>
+					Sets the requested data array element in the specified bank from the given double. The implementation in this class is to cast val to an int and call setElem(int, int). Subclasses can override this method if another implementation is needed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

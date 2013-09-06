@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.awt.image.renderable
+	</package>
+	<type>
+		<name>
+			public class RenderableImageOp  extends Object  implements RenderableImage
+		</name>
+		<description>
+			This class handles the renderable aspects of an operation with help from its associated instance of a ContextualRenderedImageFactory.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RenderableImageOp(ContextualRenderedImageFactory CRIF,                   ParameterBlock paramBlock)
+				</name>
+				<description>
+					Constructs a RenderedImageOp given a ContextualRenderedImageFactory object, and a ParameterBlock containing RenderableImage sources and other parameters. Any RenderedImage sources referenced by the ParameterBlock will be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<RenderableImage> getSources()
+				</name>
+				<description>
+					Returns a vector of RenderableImages that are the sources of image data for this RenderableImage. Note that this method may return an empty vector, to indicate that the image has no sources, or null, to indicate that no information is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)
+				</name>
+				<description>
+					Gets a property from the property set of this image. If the property name is not recognized, java.awt.Image.UndefinedProperty will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getPropertyNames()
+				</name>
+				<description>
+					Return a list of names recognized by getProperty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDynamic()
+				</name>
+				<description>
+					Returns true if successive renderings (that is, calls to createRendering() or createScaledRendering()) with the same arguments may produce different results. This method may be used to determine whether an existing rendering may be cached and reused. The CRIF's isDynamic method will be called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getWidth()
+				</name>
+				<description>
+					Gets the width in user coordinate space. By convention, the usual width of a RenderableImage is equal to the image's aspect ratio (width divided by height).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getHeight()
+				</name>
+				<description>
+					Gets the height in user coordinate space. By convention, the usual height of a RenderedImage is equal to 1.0F.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinX()
+				</name>
+				<description>
+					Gets the minimum X coordinate of the rendering-independent image data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinY()
+				</name>
+				<description>
+					Gets the minimum Y coordinate of the rendering-independent image data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock setParameterBlock(ParameterBlock paramBlock)
+				</name>
+				<description>
+					Change the current ParameterBlock of the operation, allowing editing of image rendering chains. The effects of such a change will be visible when a new rendering is created from this RenderableImageOp or any dependent RenderableImageOp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParameterBlock getParameterBlock()
+				</name>
+				<description>
+					Returns a reference to the current parameter block.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderedImage createScaledRendering(int w,                                    int h,                                    RenderingHints hints)
+				</name>
+				<description>
+					Creates a RenderedImage instance of this image with width w, and height h in pixels. The RenderContext is built automatically with an appropriate usr2dev transform and an area of interest of the full image. All the rendering hints come from hints passed in. If w == 0, it will be taken to equal Math.round(h*(getWidth()/getHeight())). Similarly, if h == 0, it will be taken to equal Math.round(w*(getHeight()/getWidth())). One of w or h must be non-zero or else an IllegalArgumentException will be thrown. The created RenderedImage may have a property identified by the String HINTS_OBSERVED to indicate which RenderingHints were used to create the image. In addition any RenderedImages that are obtained via the getSources() method on the created RenderedImage may have such a property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderedImage createDefaultRendering()
+				</name>
+				<description>
+					Gets a RenderedImage instance of this image with a default width and height in pixels. The RenderContext is built automatically with an appropriate usr2dev transform and an area of interest of the full image. All the rendering hints come from hints passed in. Implementors of this interface must be sure that there is a defined default width and height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderedImage createRendering(RenderContext renderContext)
+				</name>
+				<description>
+					Creates a RenderedImage which represents this RenderableImageOp (including its Renderable sources) rendered according to the given RenderContext. This method supports chaining of either Renderable or RenderedImage operations. If sources in the ParameterBlock used to construct the RenderableImageOp are RenderableImages, then a three step process is followed: mapRenderContext() is called on the associated CRIF for each RenderableImage source; createRendering() is called on each of the RenderableImage sources using the backwards-mapped RenderContexts obtained in step 1, resulting in a rendering of each source; ContextualRenderedImageFactory.create() is called with a new ParameterBlock containing the parameters of the RenderableImageOp and the RenderedImages that were created by the createRendering() calls. If the elements of the source Vector of the ParameterBlock used to construct the RenderableImageOp are instances of RenderedImage, then the CRIF.create() method is called immediately using the original ParameterBlock. This provides a basis case for the recursion. The created RenderedImage may have a property identified by the String HINTS_OBSERVED to indicate which RenderingHints (from the RenderContext) were used to create the image. In addition any RenderedImages that are obtained via the getSources() method on the created RenderedImage may have such a property.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

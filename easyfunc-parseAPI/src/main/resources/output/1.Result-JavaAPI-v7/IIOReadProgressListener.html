@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.imageio.event
+	</package>
+	<type>
+		<name>
+			public interface IIOReadProgressListener  extends EventListener
+		</name>
+		<description>
+			An interface used by ImageReader implementations to notify callers of their image and thumbnail reading methods of progress. This interface receives general indications of decoding progress (via the imageProgress and thumbnailProgress methods), and events indicating when an entire image has been updated (via the imageStarted, imageComplete, thumbnailStarted and thumbnailComplete methods). Applications that wish to be informed of pixel updates as they happen (for example, during progressive decoding), should provide an IIOReadUpdateListener.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void sequenceStarted(ImageReader source,                     int minIndex)
+				</name>
+				<description>
+					Reports that a sequence of read operations is beginning. ImageReader implementations are required to call this method exactly once from their readAll(Iterator) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void sequenceComplete(ImageReader source)
+				</name>
+				<description>
+					Reports that a sequence of read operationshas completed. ImageReader implementations are required to call this method exactly once from their readAll(Iterator) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void imageStarted(ImageReader source,                  int imageIndex)
+				</name>
+				<description>
+					Reports that an image read operation is beginning. All ImageReader implementations are required to call this method exactly once when beginning an image read operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void imageProgress(ImageReader source,                   float percentageDone)
+				</name>
+				<description>
+					Reports the approximate degree of completion of the current read call of the associated ImageReader. The degree of completion is expressed as a percentage varying from 0.0F to 100.0F. The percentage should ideally be calculated in terms of the remaining time to completion, but it is usually more practical to use a more well-defined metric such as pixels decoded or portion of input stream consumed. In any case, a sequence of calls to this method during a given read operation should supply a monotonically increasing sequence of percentage values. It is not necessary to supply the exact values 0 and 100, as these may be inferred by the callee from other methods. Each particular ImageReader implementation may call this method at whatever frequency it desires. A rule of thumb is to call it around each 5 percent mark.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void imageComplete(ImageReader source)
+				</name>
+				<description>
+					Reports that the current image read operation has completed. All ImageReader implementations are required to call this method exactly once upon completion of each image read operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void thumbnailStarted(ImageReader source,                      int imageIndex,                      int thumbnailIndex)
+				</name>
+				<description>
+					Reports that a thumbnail read operation is beginning. All ImageReader implementations are required to call this method exactly once when beginning a thumbnail read operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void thumbnailProgress(ImageReader source,                       float percentageDone)
+				</name>
+				<description>
+					Reports the approximate degree of completion of the current getThumbnail call within the associated ImageReader. The semantics are identical to those of imageProgress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void thumbnailComplete(ImageReader source)
+				</name>
+				<description>
+					Reports that a thumbnail read operation has completed. All ImageReader implementations are required to call this method exactly once upon completion of each thumbnail read operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void readAborted(ImageReader source)
+				</name>
+				<description>
+					Reports that a read has been aborted via the reader's abort method. No further notifications will be given.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

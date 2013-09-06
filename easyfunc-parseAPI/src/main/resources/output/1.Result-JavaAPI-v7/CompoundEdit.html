@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.swing.undo
+	</package>
+	<type>
+		<name>
+			public class CompoundEdit  extends AbstractUndoableEdit
+		</name>
+		<description>
+			A concrete subclass of AbstractUndoableEdit, used to assemble little UndoableEdits into great big ones.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Vector<UndoableEdit> edits
+				</name>
+				<description>
+					The collection of UndoableEdits undone/redone en masse by this CompoundEdit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CompoundEdit()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void undo()            throws CannotUndoException
+				</name>
+				<description>
+					Sends undo to all contained UndoableEdits in the reverse of the order in which they were added.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void redo()            throws CannotRedoException
+				</name>
+				<description>
+					Sends redo to all contained UndoableEdits in the order in which they were added.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected UndoableEdit lastEdit()
+				</name>
+				<description>
+					Returns the last UndoableEdit in edits, or null if edits is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void die()
+				</name>
+				<description>
+					Sends die to each subedit, in the reverse of the order that they were added.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addEdit(UndoableEdit anEdit)
+				</name>
+				<description>
+					If this edit is inProgress, accepts anEdit and returns true. The last edit added to this CompoundEdit is given a chance to addEdit(anEdit). If it refuses (returns false), anEdit is given a chance to replaceEdit the last edit. If anEdit returns false here, it is added to edits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void end()
+				</name>
+				<description>
+					Sets inProgress to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canUndo()
+				</name>
+				<description>
+					Returns false if isInProgress or if super returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canRedo()
+				</name>
+				<description>
+					Returns false if isInProgress or if super returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isInProgress()
+				</name>
+				<description>
+					Returns true if this edit is in progress--that is, it has not received end. This generally means that edits are still being added to it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSignificant()
+				</name>
+				<description>
+					Returns true if any of the UndoableEdits in edits do. Returns false if they all return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPresentationName()
+				</name>
+				<description>
+					Returns getPresentationName from the last UndoableEdit added to edits. If edits is empty, calls super.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUndoPresentationName()
+				</name>
+				<description>
+					Returns getUndoPresentationName from the last UndoableEdit added to edits. If edits is empty, calls super.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRedoPresentationName()
+				</name>
+				<description>
+					Returns getRedoPresentationName from the last UndoableEdit added to edits. If edits is empty, calls super.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string that displays and identifies this object's properties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

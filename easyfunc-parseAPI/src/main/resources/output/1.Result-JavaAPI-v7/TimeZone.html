@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public abstract class TimeZone  extends Object  implements Serializable, Cloneable
+		</name>
+		<description>
+			TimeZone represents a time zone offset, and also figures out daylight savings. Typically, you get a TimeZone using getDefault which creates a TimeZone based on the time zone where the program is running. For example, for a program running in Japan, getDefault creates a TimeZone object based on Japanese Standard Time. You can also get a TimeZone using getTimeZone along with a time zone ID. For instance, the time zone ID for the U.S. Pacific Time zone is "America/Los_Angeles". So, you can get a U.S. Pacific Time TimeZone object with:    TimeZone tz = TimeZone.getTimeZone("America/Los_Angeles");   You can use the getAvailableIDs method to iterate through all the supported time zone IDs. You can then choose a supported ID to get a TimeZone. If the time zone you want is not represented by one of the supported IDs, then a custom time zone ID can be specified to produce a TimeZone. The syntax of a custom time zone ID is:    CustomID:           GMT Sign Hours : Minutes           GMT Sign Hours Minutes           GMT Sign Hours   Sign: one of           + -   Hours:           Digit           Digit Digit   Minutes:           Digit Digit   Digit: one of           0 1 2 3 4 5 6 7 8 9   Hours must be between 0 to 23 and Minutes must be between 00 to 59. For example, "GMT+10" and "GMT+0010" mean ten hours and ten minutes ahead of GMT, respectively. The format is locale independent and digits must be taken from the Basic Latin block of the Unicode standard. No daylight saving time transition schedule can be specified with a custom time zone ID. If the specified string doesn't match the syntax, "GMT" is used. When creating a TimeZone, the specified custom time zone ID is normalized in the following syntax:    NormalizedCustomID:           GMT Sign TwoDigitHours : Minutes   Sign: one of           + -   TwoDigitHours:           Digit Digit   Minutes:           Digit Digit   Digit: one of           0 1 2 3 4 5 6 7 8 9   For example, TimeZone.getTimeZone("GMT-8").getID() returns "GMT-08:00". Three-letter time zone IDs For compatibility with JDK 1.1.x, some other three-letter time zone IDs (such as "PST", "CTT", "AST") are also supported. However, their use is deprecated because the same abbreviation is often used for multiple time zones (for example, "CST" could be U.S. "Central Standard Time" and "China Standard Time"), and the Java platform can then only recognize one of them.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int SHORT
+				</name>
+				<description>
+					A style specifier for getDisplayName() indicating a short name, such as "PST."
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int LONG
+				</name>
+				<description>
+					A style specifier for getDisplayName() indicating a long name, such as "Pacific Standard Time."
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TimeZone()
+				</name>
+				<description>
+					Sole constructor. (For invocation by subclass constructors, typically implicit.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getOffset(int era,              int year,              int month,              int day,              int dayOfWeek,              int milliseconds)
+				</name>
+				<description>
+					Gets the time zone offset, for current date, modified in case of daylight savings. This is the offset to add to UTC to get local time. This method returns a historically correct offset if an underlying TimeZone implementation subclass supports historical Daylight Saving Time schedule and GMT offset changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset(long date)
+				</name>
+				<description>
+					Returns the offset of this time zone from UTC at the specified date. If Daylight Saving Time is in effect at the specified date, the offset value is adjusted with the amount of daylight saving. This method returns a historically correct offset value if an underlying TimeZone implementation subclass supports historical Daylight Saving Time schedule and GMT offset changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setRawOffset(int offsetMillis)
+				</name>
+				<description>
+					Sets the base time zone offset to GMT. This is the offset to add to UTC to get local time. If an underlying TimeZone implementation subclass supports historical GMT offset changes, the specified GMT offset is set as the latest GMT offset and the difference from the known latest GMT offset value is used to adjust all historical GMT offset values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getRawOffset()
+				</name>
+				<description>
+					Returns the amount of time in milliseconds to add to UTC to get standard time in this time zone. Because this value is not affected by daylight saving time, it is called raw offset. If an underlying TimeZone implementation subclass supports historical GMT offset changes, the method returns the raw offset value of the current date. In Honolulu, for example, its raw offset changed from GMT-10:30 to GMT-10:00 in 1947, and this method always returns -36000000 milliseconds (i.e., -10 hours).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getID()
+				</name>
+				<description>
+					Gets the ID of this time zone.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setID(String ID)
+				</name>
+				<description>
+					Sets the time zone ID. This does not change any other data in the time zone object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getDisplayName()
+				</name>
+				<description>
+					Returns a long standard time name of this TimeZone suitable for presentation to the user in the default locale. This method is equivalent to:    getDisplayName(false, LONG,                  Locale.getDefault(Locale.Category.DISPLAY))
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getDisplayName(Locale locale)
+				</name>
+				<description>
+					Returns a long standard time name of this TimeZone suitable for presentation to the user in the specified locale. This method is equivalent to:    getDisplayName(false, LONG, locale)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getDisplayName(boolean daylight,                      int style)
+				</name>
+				<description>
+					Returns a name in the specified style of this TimeZone suitable for presentation to the user in the default locale. If the specified daylight is true, a Daylight Saving Time name is returned (even if this TimeZone doesn't observe Daylight Saving Time). Otherwise, a Standard Time name is returned. This method is equivalent to:    getDisplayName(daylight, style,                  Locale.getDefault(Locale.Category.DISPLAY))
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDisplayName(boolean daylight,                      int style,                      Locale locale)
+				</name>
+				<description>
+					Returns a name in the specified style of this TimeZone suitable for presentation to the user in the specified locale. If the specified daylight is true, a Daylight Saving Time name is returned (even if this TimeZone doesn't observe Daylight Saving Time). Otherwise, a Standard Time name is returned. When looking up a time zone name, the default Locale search path of ResourceBundle derived from the specified locale is used. (No fallback Locale search is performed.) If a time zone name in any Locale of the search path, including Locale.ROOT, is found, the name is returned. Otherwise, a string in the normalized custom ID format is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDSTSavings()
+				</name>
+				<description>
+					Returns the amount of time to be added to local standard time to get local wall clock time. The default implementation returns 3600000 milliseconds (i.e., one hour) if a call to useDaylightTime() returns true. Otherwise, 0 (zero) is returned. If an underlying TimeZone implementation subclass supports historical and future Daylight Saving Time schedule changes, this method returns the amount of saving time of the last known Daylight Saving Time rule that can be a future prediction. If the amount of saving time at any given time stamp is required, construct a Calendar with this TimeZone and the time stamp, and call Calendar.get(Calendar.DST_OFFSET).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean useDaylightTime()
+				</name>
+				<description>
+					Queries if this TimeZone uses Daylight Saving Time. If an underlying TimeZone implementation subclass supports historical and future Daylight Saving Time schedule changes, this method refers to the last known Daylight Saving Time rule that can be a future prediction and may not be the same as the current rule. Consider calling observesDaylightTime() if the current rule should also be taken into account.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean observesDaylightTime()
+				</name>
+				<description>
+					Returns true if this TimeZone is currently in Daylight Saving Time, or if a transition from Standard Time to Daylight Saving Time occurs at any future time. The default implementation returns true if useDaylightTime() or inDaylightTime(new Date()) returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean inDaylightTime(Date date)
+				</name>
+				<description>
+					Queries if the given date is in Daylight Saving Time in this time zone.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TimeZone getTimeZone(String ID)
+				</name>
+				<description>
+					Gets the TimeZone for the given ID.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getAvailableIDs(int rawOffset)
+				</name>
+				<description>
+					Gets the available IDs according to the given time zone offset in milliseconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getAvailableIDs()
+				</name>
+				<description>
+					Gets all the available IDs supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TimeZone getDefault()
+				</name>
+				<description>
+					Gets the default TimeZone for this host. The source of the default TimeZone may vary with implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefault(TimeZone zone)
+				</name>
+				<description>
+					Sets the TimeZone that is returned by the getDefault method. If zone is null, reset the default to the value it had originally when the VM first started.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasSameRules(TimeZone other)
+				</name>
+				<description>
+					Returns true if this zone has the same rule and offset as another zone. That is, if this zone differs only in ID, if at all. Returns false if the other zone is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates a copy of this TimeZone.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

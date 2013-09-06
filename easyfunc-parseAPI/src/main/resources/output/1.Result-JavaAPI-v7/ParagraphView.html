@@ -1,0 +1,243 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class ParagraphView  extends FlowView  implements TabExpander
+		</name>
+		<description>
+			View of a simple line-wrapping paragraph that supports multiple fonts, colors, components, icons, etc. It is basically a vertical box with a margin around it. The contents of the box are a bunch of rows which are special horizontal boxes. This view creates a collection of views that represent the child elements of the paragraph element. Each of these views are placed into a row directly if they will fit, otherwise the breakView method is called to try and carve the view into pieces that fit.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int firstLineIndent
+				</name>
+				<description>
+					Indentation for the first line, from the left inset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParagraphView(Element elem)
+				</name>
+				<description>
+					Constructs a ParagraphView for the given element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setJustification(int j)
+				</name>
+				<description>
+					Sets the type of justification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setLineSpacing(float ls)
+				</name>
+				<description>
+					Sets the line spacing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setFirstLineIndent(float fi)
+				</name>
+				<description>
+					Sets the indent on the first line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setPropertiesFromAttributes()
+				</name>
+				<description>
+					Set the cached properties from the attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getLayoutViewCount()
+				</name>
+				<description>
+					Returns the number of views that this view is responsible for. The child views of the paragraph are rows which have been used to arrange pieces of the Views that represent the child elements. This is the number of views that have been tiled in two dimensions, and should be equivalent to the number of child elements to the element this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View getLayoutView(int index)
+				</name>
+				<description>
+					Returns the view at a given index. The child views of the paragraph are rows which have been used to arrange pieces of the Views that represent the child elements. This methods returns the view responsible for the child element index (prior to breaking). These are the Views that were produced from a factory (to represent the child elements) and used for layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getNextNorthSouthVisualPositionFrom(int pos,                                        Position.Bias b,                                        Shape a,                                        int direction,                                        Position.Bias[] biasRet)                                             throws BadLocationException
+				</name>
+				<description>
+					Returns the next visual position for the cursor, in either the east or west direction. Overridden from CompositeView.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getClosestPositionTo(int pos,                         Position.Bias b,                         Shape a,                         int direction,                         Position.Bias[] biasRet,                         int rowIndex,                         int x)                              throws BadLocationException
+				</name>
+				<description>
+					Returns the closest model position to x. rowIndex gives the index of the view that corresponds that should be looked in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean flipEastAndWestAtEnds(int position,                              Position.Bias bias)
+				</name>
+				<description>
+					Determines in which direction the next view lays. Consider the View at index n. Typically the Views are layed out from left to right, so that the View to the EAST will be at index n + 1, and the View to the WEST will be at index n - 1. In certain situations, such as with bidirectional text, it is possible that the View to EAST is not at index n + 1, but rather at index n - 1, or that the View to the WEST is not at index n - 1, but index n + 1. In this case this method would return true, indicating the Views are layed out in descending order. This will return true if the text is layed out right to left at position, otherwise false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFlowSpan(int index)
+				</name>
+				<description>
+					Fetches the constraining span to flow against for the given child index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFlowStart(int index)
+				</name>
+				<description>
+					Fetches the location along the flow axis that the flow span will start at.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View createRow()
+				</name>
+				<description>
+					Create a View that should be used to hold a a row's worth of children in a flow.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float nextTabStop(float x,                  int tabOffset)
+				</name>
+				<description>
+					Returns the next tab stop position given a reference position. This view implements the tab coordinate system, and calls getTabbedSpan on the logical children in the process of layout to determine the desired span of the children. The logical children can delegate their tab expansion upward to the paragraph which knows how to expand tabs. LabelView is an example of a view that delegates its tab expansion needs upward to the paragraph. This is implemented to try and locate a TabSet in the paragraph element's attribute set. If one can be found, its settings will be used, otherwise a default expansion will be provided. The base location for for tab expansion is the left inset from the paragraphs most recent allocation (which is what the layout of the children is based upon).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TabSet getTabSet()
+				</name>
+				<description>
+					Gets the Tabset to be used in calculating tabs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected float getPartialSize(int startOffset,                     int endOffset)
+				</name>
+				<description>
+					Returns the size used by the views between startOffset and endOffset. This uses getPartialView to calculate the size if the child view implements the TabableView interface. If a size is needed and a View does not implement the TabableView interface, the preferredSpan will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int findOffsetToCharactersInString(char[] string,                                   int start)
+				</name>
+				<description>
+					Finds the next character in the document with a character in string, starting at offset start. If there are no characters found, -1 will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected float getTabBase()
+				</name>
+				<description>
+					Returns where the tabs are calculated from.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape a)
+				</name>
+				<description>
+					Renders using the given rendering surface and area on that surface. This is implemented to delgate to the superclass after stashing the base coordinate for tab calculations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAlignment(int axis)
+				</name>
+				<description>
+					Determines the desired alignment for this view along an axis. This is implemented to give the alignment to the center of the first row along the y axis, and the default along the x axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View breakView(int axis,               float len,               Shape a)
+				</name>
+				<description>
+					Breaks this view on the given axis at the given length. ParagraphView instances are breakable along the Y_AXIS only, and only if len is after the first line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBreakWeight(int axis,                   float len)
+				</name>
+				<description>
+					Gets the break weight for a given location. ParagraphView instances are breakable along the Y_AXIS only, and only if len is after the first row. If the length is less than one row, a value of BadBreakWeight is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMinorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculate the needs for the paragraph along the minor axis. This uses size requirements of the superclass, modified to take into account the non-breakable areas at the adjacent views edges. The minimal size requirements for such views should be no less than the sum of all adjacent fragments. If the axis parameter is neither View.X_AXIS nor View.Y_AXIS, IllegalArgumentException is thrown. If the r parameter is null, a new SizeRequirements object is created, otherwise the supplied SizeRequirements object is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent changes,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Gives notification from the document that attributes were changed in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

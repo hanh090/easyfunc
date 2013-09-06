@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.naming.spi
+	</package>
+	<type>
+		<name>
+			public class ResolveResult  extends Object  implements Serializable
+		</name>
+		<description>
+			This class represents the result of resolution of a name. It contains the object to which name was resolved, and the portion of the name that has not been resolved. A ResolveResult instance is not synchronized against concurrent multithreaded access. Multiple threads trying to access and modify a single ResolveResult instance should lock the object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Object resolvedObj
+				</name>
+				<description>
+					Field containing the Object that was resolved to successfully. It can be null only when constructed using a subclass. Constructors should always initialize this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Name remainingName
+				</name>
+				<description>
+					Field containing the remaining name yet to be resolved. It can be null only when constructed using a subclass. Constructors should always initialize this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ResolveResult()
+				</name>
+				<description>
+					Constructs an instance of ResolveResult with the resolved object and remaining name both initialized to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ResolveResult(Object robj,               String rcomp)
+				</name>
+				<description>
+					Constructs a new instance of ResolveResult consisting of the resolved object and the remaining unresolved component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ResolveResult(Object robj,               Name rname)
+				</name>
+				<description>
+					Constructs a new instance of ResolveResult consisting of the resolved Object and the remaining name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Name getRemainingName()
+				</name>
+				<description>
+					Retrieves the remaining unresolved portion of the name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getResolvedObj()
+				</name>
+				<description>
+					Retrieves the Object to which resolution was successful.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRemainingName(Name name)
+				</name>
+				<description>
+					Sets the remaining name field of this result to name. A copy of name is made so that modifying the copy within this ResolveResult does not affect name and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void appendRemainingName(Name name)
+				</name>
+				<description>
+					Adds components to the end of remaining name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void appendRemainingComponent(String name)
+				</name>
+				<description>
+					Adds a single component to the end of remaining name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResolvedObj(Object obj)
+				</name>
+				<description>
+					Sets the resolved Object field of this result to obj.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

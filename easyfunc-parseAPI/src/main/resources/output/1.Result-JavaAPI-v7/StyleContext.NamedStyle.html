@@ -1,0 +1,270 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class StyleContext.NamedStyle  extends Object  implements Style, Serializable
+		</name>
+		<description>
+			A collection of attributes, typically used to represent character and paragraph styles. This is an implementation of MutableAttributeSet that can be observed if desired. These styles will take advantage of immutability while the sets are small enough, and may be substantially more efficient than something like SimpleAttributeSet. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected EventListenerList listenerList
+				</name>
+				<description>
+					The change listeners for the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient ChangeEvent changeEvent
+				</name>
+				<description>
+					Only one ChangeEvent is needed per model instance since the event's only (read-only) state is the source property. The source of events generated here is always "this".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyleContext.NamedStyle(String name,                         Style parent)
+				</name>
+				<description>
+					Creates a new named style.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyleContext.NamedStyle(Style parent)
+				</name>
+				<description>
+					Creates a new named style.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyleContext.NamedStyle()
+				</name>
+				<description>
+					Creates a new named style, with a null name and parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Converts the style to a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Fetches the name of the style. A style is not required to be named, so null is returned if there is no name associated with the style.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setName(String name)
+				</name>
+				<description>
+					Changes the name of the style. Does nothing with a null name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Adds a change listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Removes a change listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ChangeListener[] getChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the ChangeListeners added to this NamedStyle with addChangeListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireStateChanged()
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the parameters passed into the fire method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Return an array of all the listeners of the given type that were added to this model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAttributeCount()
+				</name>
+				<description>
+					Gets the number of attributes that are defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDefined(Object attrName)
+				</name>
+				<description>
+					Checks whether a given attribute is defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEqual(AttributeSet attr)
+				</name>
+				<description>
+					Checks whether two attribute sets are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet copyAttributes()
+				</name>
+				<description>
+					Copies a set of attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getAttribute(Object attrName)
+				</name>
+				<description>
+					Gets the value of an attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<?> getAttributeNames()
+				</name>
+				<description>
+					Gets the names of all attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAttribute(Object name,                          Object value)
+				</name>
+				<description>
+					Checks whether a given attribute name/value is defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAttributes(AttributeSet attrs)
+				</name>
+				<description>
+					Checks whether the element contains all the attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getResolveParent()
+				</name>
+				<description>
+					Gets attributes from the parent. If not overriden, the resolving parent defaults to the parent element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addAttribute(Object name,                  Object value)
+				</name>
+				<description>
+					Adds an attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addAttributes(AttributeSet attr)
+				</name>
+				<description>
+					Adds a set of attributes to the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttribute(Object name)
+				</name>
+				<description>
+					Removes an attribute from the set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttributes(Enumeration<?> names)
+				</name>
+				<description>
+					Removes a set of attributes for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAttributes(AttributeSet attrs)
+				</name>
+				<description>
+					Removes a set of attributes for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResolveParent(AttributeSet parent)
+				</name>
+				<description>
+					Sets the resolving parent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

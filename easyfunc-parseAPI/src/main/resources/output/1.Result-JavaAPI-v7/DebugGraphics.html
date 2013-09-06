@@ -1,0 +1,567 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class DebugGraphics  extends Graphics
+		</name>
+		<description>
+			Graphics subclass supporting graphics debugging. Overrides most methods from Graphics. DebugGraphics objects are rarely created by hand. They are most frequently created automatically when a JComponent's debugGraphicsOptions are changed using the setDebugGraphicsOptions() method. NOTE: You must turn off double buffering to use DebugGraphics: RepaintManager repaintManager = RepaintManager.currentManager(component); repaintManager.setDoubleBufferingEnabled(false);
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int LOG_OPTION
+				</name>
+				<description>
+					Log graphics operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FLASH_OPTION
+				</name>
+				<description>
+					Flash graphics operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BUFFERED_OPTION
+				</name>
+				<description>
+					Show buffered operations in a separate Frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NONE_OPTION
+				</name>
+				<description>
+					Don't debug graphics operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DebugGraphics()
+				</name>
+				<description>
+					Constructs a new debug graphics context that supports slowed down drawing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DebugGraphics(Graphics graphics,               JComponent component)
+				</name>
+				<description>
+					Constructs a debug graphics context from an existing graphics context that slows down drawing for the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DebugGraphics(Graphics graphics)
+				</name>
+				<description>
+					Constructs a debug graphics context from an existing graphics context that supports slowed down drawing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Graphics create()
+				</name>
+				<description>
+					Overrides Graphics.create to return a DebugGraphics object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Graphics create(int x,                int y,                int width,                int height)
+				</name>
+				<description>
+					Overrides Graphics.create to return a DebugGraphics object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setFlashColor(Color flashColor)
+				</name>
+				<description>
+					Sets the Color used to flash drawing operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Color flashColor()
+				</name>
+				<description>
+					Returns the Color used to flash drawing operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setFlashTime(int flashTime)
+				</name>
+				<description>
+					Sets the time delay of drawing operation flashing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int flashTime()
+				</name>
+				<description>
+					Returns the time delay of drawing operation flashing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setFlashCount(int flashCount)
+				</name>
+				<description>
+					Sets the number of times that drawing operations will flash.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int flashCount()
+				</name>
+				<description>
+					Returns the number of times that drawing operations will flash.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setLogStream(PrintStream stream)
+				</name>
+				<description>
+					Sets the stream to which the DebugGraphics logs drawing operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PrintStream logStream()
+				</name>
+				<description>
+					Returns the stream to which the DebugGraphics logs drawing operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFont(Font aFont)
+				</name>
+				<description>
+					Sets the Font used for text drawing operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont()
+				</name>
+				<description>
+					Returns the Font used for text drawing operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColor(Color aColor)
+				</name>
+				<description>
+					Sets the color to be used for drawing and filling lines and shapes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getColor()
+				</name>
+				<description>
+					Returns the Color used for text drawing operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FontMetrics getFontMetrics()
+				</name>
+				<description>
+					Overrides Graphics.getFontMetrics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FontMetrics getFontMetrics(Font f)
+				</name>
+				<description>
+					Overrides Graphics.getFontMetrics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void translate(int x,               int y)
+				</name>
+				<description>
+					Overrides Graphics.translate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPaintMode()
+				</name>
+				<description>
+					Overrides Graphics.setPaintMode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setXORMode(Color aColor)
+				</name>
+				<description>
+					Overrides Graphics.setXORMode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getClipBounds()
+				</name>
+				<description>
+					Overrides Graphics.getClipBounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clipRect(int x,              int y,              int width,              int height)
+				</name>
+				<description>
+					Overrides Graphics.clipRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setClip(int x,             int y,             int width,             int height)
+				</name>
+				<description>
+					Overrides Graphics.setClip.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getClip()
+				</name>
+				<description>
+					Overrides Graphics.getClip.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setClip(Shape clip)
+				</name>
+				<description>
+					Overrides Graphics.setClip.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawRect(int x,              int y,              int width,              int height)
+				</name>
+				<description>
+					Overrides Graphics.drawRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fillRect(int x,              int y,              int width,              int height)
+				</name>
+				<description>
+					Overrides Graphics.fillRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clearRect(int x,               int y,               int width,               int height)
+				</name>
+				<description>
+					Overrides Graphics.clearRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawRoundRect(int x,                   int y,                   int width,                   int height,                   int arcWidth,                   int arcHeight)
+				</name>
+				<description>
+					Overrides Graphics.drawRoundRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fillRoundRect(int x,                   int y,                   int width,                   int height,                   int arcWidth,                   int arcHeight)
+				</name>
+				<description>
+					Overrides Graphics.fillRoundRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawLine(int x1,              int y1,              int x2,              int y2)
+				</name>
+				<description>
+					Overrides Graphics.drawLine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void draw3DRect(int x,                int y,                int width,                int height,                boolean raised)
+				</name>
+				<description>
+					Overrides Graphics.draw3DRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fill3DRect(int x,                int y,                int width,                int height,                boolean raised)
+				</name>
+				<description>
+					Overrides Graphics.fill3DRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawOval(int x,              int y,              int width,              int height)
+				</name>
+				<description>
+					Overrides Graphics.drawOval.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fillOval(int x,              int y,              int width,              int height)
+				</name>
+				<description>
+					Overrides Graphics.fillOval.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawArc(int x,             int y,             int width,             int height,             int startAngle,             int arcAngle)
+				</name>
+				<description>
+					Overrides Graphics.drawArc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fillArc(int x,             int y,             int width,             int height,             int startAngle,             int arcAngle)
+				</name>
+				<description>
+					Overrides Graphics.fillArc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawPolyline(int[] xPoints,                  int[] yPoints,                  int nPoints)
+				</name>
+				<description>
+					Overrides Graphics.drawPolyline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawPolygon(int[] xPoints,                 int[] yPoints,                 int nPoints)
+				</name>
+				<description>
+					Overrides Graphics.drawPolygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fillPolygon(int[] xPoints,                 int[] yPoints,                 int nPoints)
+				</name>
+				<description>
+					Overrides Graphics.fillPolygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawString(String aString,                int x,                int y)
+				</name>
+				<description>
+					Overrides Graphics.drawString.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawString(AttributedCharacterIterator iterator,                int x,                int y)
+				</name>
+				<description>
+					Overrides Graphics.drawString.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawBytes(byte[] data,               int offset,               int length,               int x,               int y)
+				</name>
+				<description>
+					Overrides Graphics.drawBytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drawChars(char[] data,               int offset,               int length,               int x,               int y)
+				</name>
+				<description>
+					Overrides Graphics.drawChars.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean drawImage(Image img,                  int x,                  int y,                  ImageObserver observer)
+				</name>
+				<description>
+					Overrides Graphics.drawImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean drawImage(Image img,                  int x,                  int y,                  int width,                  int height,                  ImageObserver observer)
+				</name>
+				<description>
+					Overrides Graphics.drawImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean drawImage(Image img,                  int x,                  int y,                  Color bgcolor,                  ImageObserver observer)
+				</name>
+				<description>
+					Overrides Graphics.drawImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean drawImage(Image img,                  int x,                  int y,                  int width,                  int height,                  Color bgcolor,                  ImageObserver observer)
+				</name>
+				<description>
+					Overrides Graphics.drawImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean drawImage(Image img,                  int dx1,                  int dy1,                  int dx2,                  int dy2,                  int sx1,                  int sy1,                  int sx2,                  int sy2,                  ImageObserver observer)
+				</name>
+				<description>
+					Overrides Graphics.drawImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean drawImage(Image img,                  int dx1,                  int dy1,                  int dx2,                  int dy2,                  int sx1,                  int sy1,                  int sx2,                  int sy2,                  Color bgcolor,                  ImageObserver observer)
+				</name>
+				<description>
+					Overrides Graphics.drawImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void copyArea(int x,              int y,              int width,              int height,              int destX,              int destY)
+				</name>
+				<description>
+					Overrides Graphics.copyArea.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dispose()
+				</name>
+				<description>
+					Overrides Graphics.dispose.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDrawingBuffer()
+				</name>
+				<description>
+					Returns the drawingBuffer value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDebugOptions(int options)
+				</name>
+				<description>
+					Enables/disables diagnostic information about every graphics operation. The value of options indicates how this information should be displayed. LOG_OPTION causes a text message to be printed. FLASH_OPTION causes the drawing to flash several times. BUFFERED_OPTION creates a new Frame that shows each operation on an offscreen buffer. The value of options is bitwise OR'd into the current value. To disable debugging use NONE_OPTION.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDebugOptions()
+				</name>
+				<description>
+					Returns the current debugging options for this DebugGraphics.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

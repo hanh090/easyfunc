@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig
+	</package>
+	<type>
+		<name>
+			public interface Reference  extends URIReference, XMLStructure
+		</name>
+		<description>
+			A representation of the Reference element as defined in the W3C Recommendation for XML-Signature Syntax and Processing. The XML schema is defined as:    <element name="Reference" type="ds:ReferenceType"/>   <complexType name="ReferenceType">     <sequence>       <element ref="ds:Transforms" minOccurs="0"/>       <element ref="ds:DigestMethod"/>       <element ref="ds:DigestValue"/>     </sequence>     <attribute name="Id" type="ID" use="optional"/>     <attribute name="URI" type="anyURI" use="optional"/>     <attribute name="Type" type="anyURI" use="optional"/>   </complexType>     <element name="DigestValue" type="ds:DigestValueType"/>   <simpleType name="DigestValueType">     <restriction base="base64Binary"/>   </simpleType>   A Reference instance may be created by invoking one of the newReference methods of the XMLSignatureFactory class; for example:      XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");     Reference ref = factory.newReference       ("http://www.ietf.org/rfc/rfc3275.txt",        factory.newDigestMethod(DigestMethod.SHA1, null));
+		</description>
+		<methods>
+			<method>
+				<name>
+					List getTransforms()
+				</name>
+				<description>
+					Returns an unmodifiable list of Transforms that are contained in this Reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DigestMethod getDigestMethod()
+				</name>
+				<description>
+					Returns the digest method of this Reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getId()
+				</name>
+				<description>
+					Returns the optional Id attribute of this Reference, which permits this reference to be referenced from elsewhere.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] getDigestValue()
+				</name>
+				<description>
+					Returns the digest value of this Reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] getCalculatedDigestValue()
+				</name>
+				<description>
+					Returns the calculated digest value of this Reference after a validation operation. This method is useful for debugging if the reference fails to validate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean validate(XMLValidateContext validateContext)                   throws XMLSignatureException
+				</name>
+				<description>
+					Validates this reference. This method verifies the digest of this reference. This method only validates the reference the first time it is invoked. On subsequent invocations, it returns a cached result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Data getDereferencedData()
+				</name>
+				<description>
+					Returns the dereferenced data, if reference caching is enabled. This is the result of dereferencing the URI of this reference during a validation or generation operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream getDigestInputStream()
+				</name>
+				<description>
+					Returns the pre-digested input stream, if reference caching is enabled. This is the input to the digest operation during a validation or signing operation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

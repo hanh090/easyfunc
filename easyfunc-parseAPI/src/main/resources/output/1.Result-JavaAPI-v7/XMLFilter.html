@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		org.xml.sax
+	</package>
+	<type>
+		<name>
+			public interface XMLFilter  extends XMLReader
+		</name>
+		<description>
+			Interface for an XML filter. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. See http://www.saxproject.org for further information. An XML filter is like an XML reader, except that it obtains its events from another XML reader rather than a primary source like an XML document or database. Filters can modify a stream of events as they pass on to the final application. The XMLFilterImpl helper class provides a convenient base for creating SAX2 filters, by passing on all EntityResolver, DTDHandler, ContentHandler and ErrorHandler events automatically.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void setParent(XMLReader parent)
+				</name>
+				<description>
+					Set the parent reader. This method allows the application to link the filter to a parent reader (which may be another filter). The argument may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					XMLReader getParent()
+				</name>
+				<description>
+					Get the parent reader. This method allows the application to query the parent reader (which may be another filter). It is generally a bad idea to perform any operations on the parent reader directly: they should all pass through this filter.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

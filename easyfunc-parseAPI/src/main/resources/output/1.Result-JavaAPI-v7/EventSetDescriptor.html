@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public class EventSetDescriptor  extends FeatureDescriptor
+		</name>
+		<description>
+			An EventSetDescriptor describes a group of events that a given Java bean fires. The given group of events are all delivered as method calls on a single event listener interface, and an event listener object can be registered via a call on a registration method supplied by the event source.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public EventSetDescriptor(Class<?> sourceClass,                    String eventSetName,                    Class<?> listenerType,                    String listenerMethodName)                     throws IntrospectionException
+				</name>
+				<description>
+					Creates an EventSetDescriptor assuming that you are following the most simple standard design pattern where a named event "fred" is (1) delivered as a call on the single method of interface FredListener, (2) has a single argument of type FredEvent, and (3) where the FredListener may be registered with a call on an addFredListener method of the source component and removed with a call on a removeFredListener method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EventSetDescriptor(Class<?> sourceClass,                    String eventSetName,                    Class<?> listenerType,                    String[] listenerMethodNames,                    String addListenerMethodName,                    String removeListenerMethodName)                     throws IntrospectionException
+				</name>
+				<description>
+					Creates an EventSetDescriptor from scratch using string names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EventSetDescriptor(Class<?> sourceClass,                    String eventSetName,                    Class<?> listenerType,                    String[] listenerMethodNames,                    String addListenerMethodName,                    String removeListenerMethodName,                    String getListenerMethodName)                     throws IntrospectionException
+				</name>
+				<description>
+					This constructor creates an EventSetDescriptor from scratch using string names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EventSetDescriptor(String eventSetName,                    Class<?> listenerType,                    Method[] listenerMethods,                    Method addListenerMethod,                    Method removeListenerMethod)                     throws IntrospectionException
+				</name>
+				<description>
+					Creates an EventSetDescriptor from scratch using java.lang.reflect.Method and java.lang.Class objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EventSetDescriptor(String eventSetName,                    Class<?> listenerType,                    Method[] listenerMethods,                    Method addListenerMethod,                    Method removeListenerMethod,                    Method getListenerMethod)                     throws IntrospectionException
+				</name>
+				<description>
+					This constructor creates an EventSetDescriptor from scratch using java.lang.reflect.Method and java.lang.Class objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EventSetDescriptor(String eventSetName,                    Class<?> listenerType,                    MethodDescriptor[] listenerMethodDescriptors,                    Method addListenerMethod,                    Method removeListenerMethod)                     throws IntrospectionException
+				</name>
+				<description>
+					Creates an EventSetDescriptor from scratch using java.lang.reflect.MethodDescriptor and java.lang.Class objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getListenerType()
+				</name>
+				<description>
+					Gets the Class object for the target interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method[] getListenerMethods()
+				</name>
+				<description>
+					Gets the methods of the target listener interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodDescriptor[] getListenerMethodDescriptors()
+				</name>
+				<description>
+					Gets the MethodDescriptors of the target listener interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method getAddListenerMethod()
+				</name>
+				<description>
+					Gets the method used to add event listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method getRemoveListenerMethod()
+				</name>
+				<description>
+					Gets the method used to remove event listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method getGetListenerMethod()
+				</name>
+				<description>
+					Gets the method used to access the registered event listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUnicast(boolean unicast)
+				</name>
+				<description>
+					Mark an event set as unicast (or not).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isUnicast()
+				</name>
+				<description>
+					Normally event sources are multicast. However there are some exceptions that are strictly unicast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInDefaultEventSet(boolean inDefaultEventSet)
+				</name>
+				<description>
+					Marks an event set as being in the "default" set (or not). By default this is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isInDefaultEventSet()
+				</name>
+				<description>
+					Reports if an event set is in the "default" set.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public interface ConcurrentMap<K,V>  extends Map<K,V>
+		</name>
+		<description>
+			A Map providing additional atomic putIfAbsent, remove, and replace methods. Memory consistency effects: As with other concurrent collections, actions in a thread prior to placing an object into a ConcurrentMap as a key or value happen-before actions subsequent to the access or removal of that object from the ConcurrentMap in another thread. This interface is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					V putIfAbsent(K key,              V value)
+				</name>
+				<description>
+					If the specified key is not already associated with a value, associate it with the given value. This is equivalent to      if (!map.containsKey(key))         return map.put(key, value);     else         return map.get(key); except that the action is performed atomically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean remove(Object key,               Object value)
+				</name>
+				<description>
+					Removes the entry for a key only if currently mapped to a given value. This is equivalent to      if (map.containsKey(key) && map.get(key).equals(value)) {         map.remove(key);         return true;     } else return false; except that the action is performed atomically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean replace(K key,                V oldValue,                V newValue)
+				</name>
+				<description>
+					Replaces the entry for a key only if currently mapped to a given value. This is equivalent to      if (map.containsKey(key) && map.get(key).equals(oldValue)) {         map.put(key, newValue);         return true;     } else return false; except that the action is performed atomically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					V replace(K key,          V value)
+				</name>
+				<description>
+					Replaces the entry for a key only if currently mapped to some value. This is equivalent to      if (map.containsKey(key)) {         return map.put(key, value);     } else return null; except that the action is performed atomically.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

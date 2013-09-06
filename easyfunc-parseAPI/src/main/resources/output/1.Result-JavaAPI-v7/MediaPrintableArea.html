@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.print.attribute.standard
+	</package>
+	<type>
+		<name>
+			public final class MediaPrintableArea  extends Object  implements DocAttribute, PrintRequestAttribute, PrintJobAttribute
+		</name>
+		<description>
+			Class MediaPrintableArea is a printing attribute used to distinguish the printable and non-printable areas of media. The printable area is specified to be a rectangle, within the overall dimensions of a media. Most printers cannot print on the entire surface of the media, due to printer hardware limitations. This class can be used to query the acceptable values for a supposed print job, and to request an area within the constraints of the printable area to be used in a print job. To query for the printable area, a client must supply a suitable context. Without specifying at the very least the size of the media being used no meaningful value for printable area can be obtained. The attribute is not described in terms of the distance from the edge of the paper, in part to emphasise that this attribute is not independent of a particular media, but must be described within the context of a choice of other attributes. Additionally it is usually more convenient for a client to use the printable area. The hardware's minimum margins is not just a property of the printer, but may be a function of the media size, orientation, media type, and any specified finishings. PrintService provides the method to query the supported values of an attribute in a suitable context : See PrintService.getSupportedAttributeValues() The rectangular printable area is defined thus: The (x,y) origin is positioned at the top-left of the paper in portrait mode regardless of the orientation specified in the requesting context. For example a printable area for A4 paper in portrait or landscape orientation will have height > width. A printable area attribute's values are stored internally as integers in units of micrometers (µm), where 1 micrometer = 10-6 meter = 1/1000 millimeter = 1/25400 inch. This permits dimensions to be represented exactly to a precision of 1/1000 mm (= 1 µm) or 1/100 inch (= 254 µm). If fractional inches are expressed in negative powers of two, this permits dimensions to be represented exactly to a precision of 1/8 inch (= 3175 µm) but not 1/16 inch (because 1/16 inch does not equal an integral number of µm). IPP Compatibility: MediaPrintableArea is not an IPP attribute.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int INCH
+				</name>
+				<description>
+					Value to indicate units of inches (in). It is actually the conversion factor by which to multiply inches to yield µm (25400).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int MM
+				</name>
+				<description>
+					Value to indicate units of millimeters (mm). It is actually the conversion factor by which to multiply mm to yield µm (1000).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MediaPrintableArea(float x,                    float y,                    float w,                    float h,                    int units)
+				</name>
+				<description>
+					Constructs a MediaPrintableArea object from floating point values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MediaPrintableArea(int x,                    int y,                    int w,                    int h,                    int units)
+				</name>
+				<description>
+					Constructs a MediaPrintableArea object from integer values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getPrintableArea(int units)
+				</name>
+				<description>
+					Get the printable area as an array of 4 values in the order x, y, w, h. The values returned are in the given units.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getX(int units)
+				</name>
+				<description>
+					Get the x location of the origin of the printable area in the specified units.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getY(int units)
+				</name>
+				<description>
+					Get the y location of the origin of the printable area in the specified units.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getWidth(int units)
+				</name>
+				<description>
+					Get the width of the printable area in the specified units.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getHeight(int units)
+				</name>
+				<description>
+					Get the height of the printable area in the specified units.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object object)
+				</name>
+				<description>
+					Returns whether this media margins attribute is equivalent to the passed in object. To be equivalent, all of the following conditions must be true: object is not null. object is an instance of class MediaPrintableArea. The origin and dimensions are the same.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Class<? extends Attribute> getCategory()
+				</name>
+				<description>
+					Get the printing attribute class which is to be used as the "category" for this printing attribute value. For class MediaPrintableArea, the category is class MediaPrintableArea itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getName()
+				</name>
+				<description>
+					Get the name of the category of which this attribute value is an instance. For class MediaPrintableArea, the category name is "media-printable-area". This is not an IPP V1.1 attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString(int units,                String unitsName)
+				</name>
+				<description>
+					Returns a string version of this rectangular size attribute in the given units.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string version of this rectangular size attribute in mm.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for this attribute.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

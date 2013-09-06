@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class DefaultBoundedRangeModel  extends Object  implements BoundedRangeModel, Serializable
+		</name>
+		<description>
+			A generic implementation of BoundedRangeModel. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected transient ChangeEvent changeEvent
+				</name>
+				<description>
+					Only one ChangeEvent is needed per model instance since the event's only (read-only) state is the source property. The source of events generated here is always "this".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected EventListenerList listenerList
+				</name>
+				<description>
+					The listeners waiting for model changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultBoundedRangeModel()
+				</name>
+				<description>
+					Initializes all of the properties with default values. Those values are: value = 0 extent = 0 minimum = 0 maximum = 100 adjusting = false
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultBoundedRangeModel(int value,                          int extent,                          int min,                          int max)
+				</name>
+				<description>
+					Initializes value, extent, minimum and maximum. Adjusting is false. Throws an IllegalArgumentException if the following constraints aren't satisfied:    min <= value <= value+extent <= max
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getValue()
+				</name>
+				<description>
+					Returns the model's current value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getExtent()
+				</name>
+				<description>
+					Returns the model's extent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinimum()
+				</name>
+				<description>
+					Returns the model's minimum.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaximum()
+				</name>
+				<description>
+					Returns the model's maximum.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValue(int n)
+				</name>
+				<description>
+					Sets the current value of the model. For a slider, that determines where the knob appears. Ensures that the new value, n falls within the model's constraints:        minimum <= value <= value+extent <= maximum
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExtent(int n)
+				</name>
+				<description>
+					Sets the extent to n after ensuring that n is greater than or equal to zero and falls within the model's constraints:        minimum <= value <= value+extent <= maximum
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMinimum(int n)
+				</name>
+				<description>
+					Sets the minimum to n after ensuring that n that the other three properties obey the model's constraints:        minimum <= value <= value+extent <= maximum
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaximum(int n)
+				</name>
+				<description>
+					Sets the maximum to n after ensuring that n that the other three properties obey the model's constraints:        minimum <= value <= value+extent <= maximum
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValueIsAdjusting(boolean b)
+				</name>
+				<description>
+					Sets the valueIsAdjusting property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getValueIsAdjusting()
+				</name>
+				<description>
+					Returns true if the value is in the process of changing as a result of actions being taken by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRangeProperties(int newValue,                        int newExtent,                        int newMin,                        int newMax,                        boolean adjusting)
+				</name>
+				<description>
+					Sets all of the BoundedRangeModel properties after forcing the arguments to obey the usual constraints:        minimum <= value <= value+extent <= maximum   At most, one ChangeEvent is generated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Adds a ChangeListener. The change listeners are run each time any one of the Bounded Range model properties changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Removes a ChangeListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ChangeListener[] getChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the change listeners registered on this DefaultBoundedRangeModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireStateChanged()
+				</name>
+				<description>
+					Runs each ChangeListener's stateChanged method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string that displays all of the BoundedRangeModel properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Returns an array of all the objects currently registered as FooListeners upon this model. FooListeners are registered using the addFooListener method. You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a DefaultBoundedRangeModel instance m for its change listeners with the following code: ChangeListener[] cls = (ChangeListener[])(m.getListeners(ChangeListener.class)); If no such listeners exist, this method returns an empty array.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

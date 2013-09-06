@@ -1,0 +1,576 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public class BasicComboPopup  extends JPopupMenu  implements ComboPopup
+		</name>
+		<description>
+			This is a basic implementation of the ComboPopup interface. This class represents the ui for the popup portion of the combo box. All event handling is handled by listener classes created with the createxxxListener() methods and internal classes. You can change the behavior of this class by overriding the createxxxListener() methods and supplying your own event listeners or subclassing from the ones supplied in this class. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected JComboBox comboBox
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JList list
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JScrollPane scroller
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the create method instead
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean valueIsAdjusting
+				</name>
+				<description>
+					As of Java 2 platform v1.4 this previously undocumented field is no longer used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseMotionListener mouseMotionListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor or create methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseListener mouseListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor or create methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected KeyListener keyListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor or create methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ListSelectionListener listSelectionListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the create method instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseListener listMouseListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the create method instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseMotionListener listMouseMotionListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the create method instead
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener propertyChangeListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the create method instead
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ListDataListener listDataListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the create method instead
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ItemListener itemListener
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the create method instead
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Timer autoscrollTimer
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean hasEntered
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isAutoScrolling
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int scrollDirection
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int SCROLL_UP
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int SCROLL_DOWN
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicComboPopup(JComboBox combo)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void show()
+				</name>
+				<description>
+					Implementation of ComboPopup.show().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void hide()
+				</name>
+				<description>
+					Implementation of ComboPopup.hide().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JList getList()
+				</name>
+				<description>
+					Implementation of ComboPopup.getList().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MouseListener getMouseListener()
+				</name>
+				<description>
+					Implementation of ComboPopup.getMouseListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MouseMotionListener getMouseMotionListener()
+				</name>
+				<description>
+					Implementation of ComboPopup.getMouseMotionListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public KeyListener getKeyListener()
+				</name>
+				<description>
+					Implementation of ComboPopup.getKeyListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallingUI()
+				</name>
+				<description>
+					Called when the UI is uninstalling. Since this popup isn't in the component tree, it won't get it's uninstallUI() called. It removes the listeners that were added in addComboBoxListeners().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallComboBoxModelListeners(ComboBoxModel model)
+				</name>
+				<description>
+					Removes the listeners from the combo box model
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void firePopupMenuWillBecomeVisible()
+				</name>
+				<description>
+					Description copied from class: JPopupMenu Notifies PopupMenuListeners that this popup menu will become visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void firePopupMenuWillBecomeInvisible()
+				</name>
+				<description>
+					Description copied from class: JPopupMenu Notifies PopupMenuListeners that this popup menu will become invisible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void firePopupMenuCanceled()
+				</name>
+				<description>
+					Description copied from class: JPopupMenu Notifies PopupMenuListeners that this popup menu is cancelled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseListener createMouseListener()
+				</name>
+				<description>
+					Creates a listener that will watch for mouse-press and release events on the combo box. Warning: When overriding this method, make sure to maintain the existing behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseMotionListener createMouseMotionListener()
+				</name>
+				<description>
+					Creates the mouse motion listener which will be added to the combo box. Warning: When overriding this method, make sure to maintain the existing behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected KeyListener createKeyListener()
+				</name>
+				<description>
+					Creates the key listener that will be added to the combo box. If this method returns null then it will not be added to the combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ListSelectionListener createListSelectionListener()
+				</name>
+				<description>
+					Creates a list selection listener that watches for selection changes in the popup's list. If this method returns null then it will not be added to the popup list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ListDataListener createListDataListener()
+				</name>
+				<description>
+					Creates a list data listener which will be added to the ComboBoxModel. If this method returns null then it will not be added to the combo box model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseListener createListMouseListener()
+				</name>
+				<description>
+					Creates a mouse listener that watches for mouse events in the popup's list. If this method returns null then it will not be added to the combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseMotionListener createListMouseMotionListener()
+				</name>
+				<description>
+					Creates a mouse motion listener that watches for mouse motion events in the popup's list. If this method returns null then it will not be added to the combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createPropertyChangeListener()
+				</name>
+				<description>
+					Creates a PropertyChangeListener which will be added to the combo box. If this method returns null then it will not be added to the combo box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ItemListener createItemListener()
+				</name>
+				<description>
+					Creates an ItemListener which will be added to the combo box. If this method returns null then it will not be added to the combo box. Subclasses may override this method to return instances of their own ItemEvent handlers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JList createList()
+				</name>
+				<description>
+					Creates the JList used in the popup to display the items in the combo box model. This method is called when the UI class is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void configureList()
+				</name>
+				<description>
+					Configures the list which is used to hold the combo box items in the popup. This method is called when the UI class is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListListeners()
+				</name>
+				<description>
+					Adds the listeners to the list control.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JScrollPane createScroller()
+				</name>
+				<description>
+					Creates the scroll pane which houses the scrollable list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void configureScroller()
+				</name>
+				<description>
+					Configures the scrollable portion which holds the list within the combo box popup. This method is called when the UI class is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void configurePopup()
+				</name>
+				<description>
+					Configures the popup portion of the combo box. This method is called when the UI class is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installComboBoxListeners()
+				</name>
+				<description>
+					This method adds the necessary listeners to the JComboBox.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installComboBoxModelListeners(ComboBoxModel model)
+				</name>
+				<description>
+					Installs the listeners on the combo box model. Any listeners installed on the combo box model should be removed in uninstallComboBoxModelListeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFocusTraversable()
+				</name>
+				<description>
+					Overridden to unconditionally return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void startAutoScrolling(int direction)
+				</name>
+				<description>
+					This protected method is implementation specific and should be private. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void stopAutoScrolling()
+				</name>
+				<description>
+					This protected method is implementation specific and should be private. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void autoScrollUp()
+				</name>
+				<description>
+					This protected method is implementation specific and should be private. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void autoScrollDown()
+				</name>
+				<description>
+					This protected method is implementation specific and should be private. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this BasicComboPopup. The AccessibleContext will have its parent set to the ComboBox.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void delegateFocus(MouseEvent e)
+				</name>
+				<description>
+					This is is a utility method that helps event handlers figure out where to send the focus when the popup is brought up. The standard implementation delegates the focus to the editor (if the combo box is editable) or to the JComboBox if it is not editable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void togglePopup()
+				</name>
+				<description>
+					Makes the popup visible if it is hidden and makes it hidden if it is visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseEvent convertMouseEvent(MouseEvent e)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getPopupHeightForRowCount(int maxRowCount)
+				</name>
+				<description>
+					Retrieves the height of the popup based on the current ListCellRenderer and the maximum row count.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle computePopupBounds(int px,                             int py,                             int pw,                             int ph)
+				</name>
+				<description>
+					Calculate the placement and size of the popup portion of the combo box based on the combo box location and the enclosing screen bounds. If no transformations are required, then the returned rectangle will have the same values as the parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateListBoxSelectionForEvent(MouseEvent anEvent,                                    boolean shouldScroll)
+				</name>
+				<description>
+					A utility method used by the event listeners. Given a mouse event, it changes the list selection to the list item below the mouse.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

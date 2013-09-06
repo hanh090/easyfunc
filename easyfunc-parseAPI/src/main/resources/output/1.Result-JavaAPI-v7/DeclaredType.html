@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.lang.model.type
+	</package>
+	<type>
+		<name>
+			public interface DeclaredType  extends ReferenceType
+		</name>
+		<description>
+			Represents a declared type, either a class type or an interface type. This includes parameterized types such as java.util.Set<String> as well as raw types. While a TypeElement represents a class or interface element, a DeclaredType represents a class or interface type, the latter being a use (or invocation) of the former. See TypeElement for more on this distinction. The supertypes (both class and interface types) of a declared type may be found using the Types.directSupertypes(TypeMirror) method. This returns the supertypes with any type arguments substituted in. This interface is also used to represent intersection types. An intersection type is implicit in a program rather than being explictly declared. For example, the bound of the type parameter <T extends Number & Runnable> is an intersection type. It is represented by a DeclaredType with Number as its superclass and Runnable as its lone superinterface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Element asElement()
+				</name>
+				<description>
+					Returns the element corresponding to this type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeMirror getEnclosingType()
+				</name>
+				<description>
+					Returns the type of the innermost enclosing instance or a NoType of kind NONE if there is no enclosing instance. Only types corresponding to inner classes have an enclosing instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<? extends TypeMirror> getTypeArguments()
+				</name>
+				<description>
+					Returns the actual type arguments of this type. For a type nested within a parameterized type (such as Outer<String>.Inner<Number>), only the type arguments of the innermost type are included.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

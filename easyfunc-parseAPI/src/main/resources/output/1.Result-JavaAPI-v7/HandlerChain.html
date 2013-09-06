@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.jws
+	</package>
+	<type>
+		<name>
+			@Retention(value=RUNTIME)  @Target(value={TYPE,METHOD,FIELD})  public @interface HandlerChain
+		</name>
+		<description>
+			Associates the Web Service with an externally defined handler chain. This annotation is typically used in scenarios where embedding the handler configuration directly in the Java source is not appropriate; for example, where the handler configuration needs to be shared across multiple Web Services, or where the handler chain consists of handlers for multiple transports. It is an error to combine this annotation with the @SOAPMessageHandlers annotation.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String file
+				</name>
+				<description>
+					Location of the handler chain file. The location supports 2 formats: An absolute java.net.URL in externalForm (ex: http://myhandlers.foo.com/handlerfile1.xml). A relative path from the source file or class file (ex: bar/handlerfile1.xml).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public abstract String name
+				</name>
+				<description>
+					Deprecated. As of JSR-181 2.0 with no replacement. Name of the handler chain in the configuration file
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

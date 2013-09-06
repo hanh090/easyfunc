@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.lang.model.util
+	</package>
+	<type>
+		<name>
+			@SupportedSourceVersion(value=RELEASE_6)  public abstract class AbstractAnnotationValueVisitor6<R,P>  extends Object  implements AnnotationValueVisitor<R,P>
+		</name>
+		<description>
+			A skeletal visitor for annotation values with default behavior appropriate for the RELEASE_6 source version. WARNING: The AnnotationValueVisitor interface implemented by this class may have methods added to it in the future to accommodate new, currently unknown, language structures added to future versions of the Java™ programming language. Therefore, methods whose names begin with "visit" may be added to this class in the future; to avoid incompatibilities, classes which extend this class should not declare any instance methods with names beginning with "visit". When such a new visit method is added, the default implementation in this class will be to call the visitUnknown method. A new abstract annotation value visitor class will also be introduced to correspond to the new language level; this visitor will have different default behavior for the visit method in question. When the new visitor is introduced, all or portions of this visitor may be deprecated.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AbstractAnnotationValueVisitor6()
+				</name>
+				<description>
+					Constructor for concrete subclasses to call.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final R visit(AnnotationValue av,        P p)
+				</name>
+				<description>
+					Visits an annotation value as if by passing itself to that value's accept. The invocation v.visit(av) is equivalent to av.accept(v, p).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final R visit(AnnotationValue av)
+				</name>
+				<description>
+					Visits an annotation value as if by passing itself to that value's accept method passing null for the additional parameter. The invocation v.visit(av) is equivalent to av.accept(v, null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitUnknown(AnnotationValue av,               P p)
+				</name>
+				<description>
+					Visits an unknown kind of annotation value. This can occur if the language evolves and new kinds of value can be stored in an annotation. The default implementation of this method in AbstractAnnotationValueVisitor6 will always throw UnknownAnnotationValueException. This behavior is not required of a subclass.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

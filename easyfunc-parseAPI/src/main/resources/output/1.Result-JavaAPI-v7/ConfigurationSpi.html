@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.security.auth.login
+	</package>
+	<type>
+		<name>
+			public abstract class ConfigurationSpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the Configuration class. All the abstract methods in this class must be implemented by each service provider who wishes to supply a Configuration implementation. Subclass implementations of this abstract class must provide a public constructor that takes a Configuration.Parameters object as an input parameter. This constructor also must throw an IllegalArgumentException if it does not understand the Configuration.Parameters input.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ConfigurationSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract AppConfigurationEntry[] engineGetAppConfigurationEntry(String name)
+				</name>
+				<description>
+					Retrieve the AppConfigurationEntries for the specified name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void engineRefresh()
+				</name>
+				<description>
+					Refresh and reload the Configuration. This method causes this Configuration object to refresh/reload its contents in an implementation-dependent manner. For example, if this Configuration object stores its entries in a file, calling refresh may cause the file to be re-read. The default implementation of this method does nothing. This method should be overridden if a refresh operation is supported by the implementation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig
+	</package>
+	<type>
+		<name>
+			public interface SignatureProperties  extends XMLStructure
+		</name>
+		<description>
+			A representation of the XML SignatureProperties element as defined in the W3C Recommendation for XML-Signature Syntax and Processing. The XML Schema Definition is defined as:   <element name="SignatureProperties" type="ds:SignaturePropertiesType"/>     <complexType name="SignaturePropertiesType">       <sequence>         <element ref="ds:SignatureProperty" maxOccurs="unbounded"/>       </sequence>       <attribute name="Id" type="ID" use="optional"/>     </complexType>   A SignatureProperties instance may be created by invoking the newSignatureProperties method of the XMLSignatureFactory class; for example:      XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");     SignatureProperties properties =        factory.newSignatureProperties(props, "signature-properties-1");
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final String TYPE
+				</name>
+				<description>
+					URI that identifies the SignatureProperties element (this can be specified as the value of the type parameter of the Reference class to identify the referent's type).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getId()
+				</name>
+				<description>
+					Returns the Id of this SignatureProperties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List getProperties()
+				</name>
+				<description>
+					Returns an unmodifiable list of one or more SignaturePropertys that are contained in this SignatureProperties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

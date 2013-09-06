@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig.keyinfo
+	</package>
+	<type>
+		<name>
+			public interface KeyValue  extends XMLStructure
+		</name>
+		<description>
+			A representation of the XML KeyValue element as defined in the W3C Recommendation for XML-Signature Syntax and Processing. A KeyValue object contains a single public key that may be useful in validating the signature. The XML schema definition is defined as:       <element name="KeyValue" type="ds:KeyValueType"/>      <complexType name="KeyValueType" mixed="true">        <choice>          <element ref="ds:DSAKeyValue"/>          <element ref="ds:RSAKeyValue"/>          <any namespace="##other" processContents="lax"/>        </choice>      </complexType>        <element name="DSAKeyValue" type="ds:DSAKeyValueType"/>      <complexType name="DSAKeyValueType">        <sequence>          <sequence minOccurs="0">            <element name="P" type="ds:CryptoBinary"/>            <element name="Q" type="ds:CryptoBinary"/>          </sequence>          <element name="G" type="ds:CryptoBinary" minOccurs="0"/>          <element name="Y" type="ds:CryptoBinary"/>          <element name="J" type="ds:CryptoBinary" minOccurs="0"/>          <sequence minOccurs="0">            <element name="Seed" type="ds:CryptoBinary"/>            <element name="PgenCounter" type="ds:CryptoBinary"/>          </sequence>        </sequence>      </complexType>        <element name="RSAKeyValue" type="ds:RSAKeyValueType"/>      <complexType name="RSAKeyValueType">        <sequence>          <element name="Modulus" type="ds:CryptoBinary"/>          <element name="Exponent" type="ds:CryptoBinary"/>        </sequence>      </complexType>   A KeyValue instance may be created by invoking the newKeyValue method of the KeyInfoFactory class, and passing it a PublicKey representing the value of the public key. Here is an example of creating a KeyValue from a DSAPublicKey of a Certificate stored in a KeyStore:    KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());   PublicKey dsaPublicKey = keyStore.getCertificate("myDSASigningCert").getPublicKey();   KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");   KeyValue keyValue = factory.newKeyValue(dsaPublicKey);   This class returns the DSAKeyValue and RSAKeyValue elements as objects of type DSAPublicKey and RSAPublicKey, respectively. Note that not all of the fields in the schema are accessible as parameters of these types.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final String DSA_TYPE
+				</name>
+				<description>
+					URI identifying the DSA KeyValue KeyInfo type: http://www.w3.org/2000/09/xmldsig#DSAKeyValue. This can be specified as the value of the type parameter of the RetrievalMethod class to describe a remote DSAKeyValue structure.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String RSA_TYPE
+				</name>
+				<description>
+					URI identifying the RSA KeyValue KeyInfo type: http://www.w3.org/2000/09/xmldsig#RSAKeyValue. This can be specified as the value of the type parameter of the RetrievalMethod class to describe a remote RSAKeyValue structure.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					PublicKey getPublicKey()                         throws KeyException
+				</name>
+				<description>
+					Returns the public key of this KeyValue.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.swing.border
+	</package>
+	<type>
+		<name>
+			public interface Border
+		</name>
+		<description>
+			Interface describing an object capable of rendering a border around the edges of a swing component. For examples of using borders see How to Use Borders, a section in The Java Tutorial. In the Swing component set, borders supercede Insets as the mechanism for creating a (decorated or plain) area around the edge of a component. Usage Notes: Use EmptyBorder to create a plain border (this mechanism replaces its predecessor, setInsets). Use CompoundBorder to nest multiple border objects, creating a single, combined border. Border instances are designed to be shared. Rather than creating a new border object using one of border classes, use the BorderFactory methods, which produces a shared instance of the common border types. Additional border styles include BevelBorder, SoftBevelBorder, EtchedBorder, LineBorder, TitledBorder, and MatteBorder. To create a new border class, subclass AbstractBorder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void paintBorder(Component c,                 Graphics g,                 int x,                 int y,                 int width,                 int height)
+				</name>
+				<description>
+					Paints the border for the specified component with the specified position and size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Insets getBorderInsets(Component c)
+				</name>
+				<description>
+					Returns the insets of the border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isBorderOpaque()
+				</name>
+				<description>
+					Returns whether or not the border is opaque. If the border is opaque, it is responsible for filling in it's own background when painting.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

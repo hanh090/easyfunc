@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public abstract class SSLContextSpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the SSLContext class. All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply the implementation of a particular SSL context.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SSLContextSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(KeyManager[] km,                TrustManager[] tm,                SecureRandom sr)                              throws KeyManagementException
+				</name>
+				<description>
+					Initializes this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract SSLSocketFactory engineGetSocketFactory()
+				</name>
+				<description>
+					Returns a SocketFactory object for this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract SSLServerSocketFactory engineGetServerSocketFactory()
+				</name>
+				<description>
+					Returns a ServerSocketFactory object for this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract SSLEngine engineCreateSSLEngine()
+				</name>
+				<description>
+					Creates a new SSLEngine using this context. Applications using this factory method are providing no hints for an internal session reuse strategy. If hints are desired, engineCreateSSLEngine(String, int) should be used instead. Some cipher suites (such as Kerberos) require remote hostname information, in which case this factory method should not be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract SSLEngine engineCreateSSLEngine(String host,                                int port)
+				</name>
+				<description>
+					Creates a SSLEngine using this context. Applications using this factory method are providing hints for an internal session reuse strategy. Some cipher suites (such as Kerberos) require remote hostname information, in which case peerHost needs to be specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract SSLSessionContext engineGetServerSessionContext()
+				</name>
+				<description>
+					Returns a server SSLSessionContext object for this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract SSLSessionContext engineGetClientSessionContext()
+				</name>
+				<description>
+					Returns a client SSLSessionContext object for this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SSLParameters engineGetDefaultSSLParameters()
+				</name>
+				<description>
+					Returns a copy of the SSLParameters indicating the default settings for this SSL context. The parameters will always have the ciphersuite and protocols arrays set to non-null values. The default implementation obtains the parameters from an SSLSocket created by calling the SocketFactory.createSocket() method of this context's SocketFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SSLParameters engineGetSupportedSSLParameters()
+				</name>
+				<description>
+					Returns a copy of the SSLParameters indicating the maximum supported settings for this SSL context. The parameters will always have the ciphersuite and protocols arrays set to non-null values. The default implementation obtains the parameters from an SSLSocket created by calling the SocketFactory.createSocket() method of this context's SocketFactory.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

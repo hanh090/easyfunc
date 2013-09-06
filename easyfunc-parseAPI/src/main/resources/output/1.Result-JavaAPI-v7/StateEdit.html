@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.swing.undo
+	</package>
+	<type>
+		<name>
+			public class StateEdit  extends AbstractUndoableEdit
+		</name>
+		<description>
+			StateEdit is a general edit for objects that change state. Objects being edited must conform to the StateEditable interface. This edit class works by asking an object to store it's state in Hashtables before and after editing occurs. Upon undo or redo the object is told to restore it's state from these Hashtables. A state edit is used as follows:         // Create the edit during the "before" state of the object        StateEdit newEdit = new StateEdit(myObject);        // Modify the object        myObject.someStateModifyingMethod();        // "end" the edit when you are done modifying the object        newEdit.end();   Note that when a StateEdit ends, it removes redundant state from the Hashtables - A state Hashtable is not guaranteed to contain all keys/values placed into it when the state is stored!
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected static final String RCSID
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StateEditable object
+				</name>
+				<description>
+					The object being edited
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Hashtable<Object,Object> preState
+				</name>
+				<description>
+					The state information prior to the edit
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Hashtable<Object,Object> postState
+				</name>
+				<description>
+					The state information after the edit
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String undoRedoName
+				</name>
+				<description>
+					The undo/redo presentation name
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StateEdit(StateEditable anObject)
+				</name>
+				<description>
+					Create and return a new StateEdit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StateEdit(StateEditable anObject,           String name)
+				</name>
+				<description>
+					Create and return a new StateEdit with a presentation name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void init(StateEditable anObject,          String name)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void end()
+				</name>
+				<description>
+					Gets the post-edit state of the StateEditable object and ends the edit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void undo()
+				</name>
+				<description>
+					Tells the edited object to apply the state prior to the edit
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void redo()
+				</name>
+				<description>
+					Tells the edited object to apply the state after the edit
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPresentationName()
+				</name>
+				<description>
+					Gets the presentation name for this edit
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeRedundantState()
+				</name>
+				<description>
+					Remove redundant key/values in state hashtables.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

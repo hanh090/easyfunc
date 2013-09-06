@@ -1,0 +1,990 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JInternalFrame  extends JComponent  implements Accessible, WindowConstants, RootPaneContainer
+		</name>
+		<description>
+			A lightweight object that provides many of the features of a native frame, including dragging, closing, becoming an icon, resizing, title display, and support for a menu bar. For task-oriented documentation and examples of using internal frames, see How to Use Internal Frames, a section in The Java Tutorial. Generally, you add JInternalFrames to a JDesktopPane. The UI delegates the look-and-feel-specific actions to the DesktopManager object maintained by the JDesktopPane. The JInternalFrame content pane is where you add child components. As a conveniance add and its variants, remove and setLayout have been overridden to forward to the contentPane as necessary. This means you can write:          internalFrame.add(child);   And the child will be added to the contentPane. The content pane is actually managed by an instance of JRootPane, which also manages a layout pane, glass pane, and optional menu bar for the internal frame. Please see the JRootPane documentation for a complete description of these components. Refer to RootPaneContainer for details on adding, removing and setting the LayoutManager of a JInternalFrame. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected JRootPane rootPane
+				</name>
+				<description>
+					The JRootPane instance that manages the content pane and optional menu bar for this internal frame, as well as the glass pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean rootPaneCheckingEnabled
+				</name>
+				<description>
+					If true then calls to add and setLayout will be forwarded to the contentPane. This is initially false, but is set to true when the JInternalFrame is constructed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean closable
+				</name>
+				<description>
+					The frame can be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isClosed
+				</name>
+				<description>
+					The frame has been closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean maximizable
+				</name>
+				<description>
+					The frame can be expanded to the size of the desktop pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isMaximum
+				</name>
+				<description>
+					The frame has been expanded to its maximum size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean iconable
+				</name>
+				<description>
+					The frame can "iconified" (shrunk down and displayed as an icon-image).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isIcon
+				</name>
+				<description>
+					The frame has been iconified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean resizable
+				</name>
+				<description>
+					The frame's size can be changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isSelected
+				</name>
+				<description>
+					The frame is currently selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Icon frameIcon
+				</name>
+				<description>
+					The icon shown in the top-left corner of this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String title
+				</name>
+				<description>
+					The title displayed in this internal frame's title bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JInternalFrame.JDesktopIcon desktopIcon
+				</name>
+				<description>
+					The icon that is displayed when this internal frame is iconified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CONTENT_PANE_PROPERTY
+				</name>
+				<description>
+					Bound property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MENU_BAR_PROPERTY
+				</name>
+				<description>
+					Bound property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String TITLE_PROPERTY
+				</name>
+				<description>
+					Bound property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LAYERED_PANE_PROPERTY
+				</name>
+				<description>
+					Bound property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ROOT_PANE_PROPERTY
+				</name>
+				<description>
+					Bound property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String GLASS_PANE_PROPERTY
+				</name>
+				<description>
+					Bound property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String FRAME_ICON_PROPERTY
+				</name>
+				<description>
+					Bound property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String IS_SELECTED_PROPERTY
+				</name>
+				<description>
+					Constrained property name indicated that this frame has selected status.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String IS_CLOSED_PROPERTY
+				</name>
+				<description>
+					Constrained property name indicating that the internal frame is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String IS_MAXIMUM_PROPERTY
+				</name>
+				<description>
+					Constrained property name indicating that the internal frame is maximized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String IS_ICON_PROPERTY
+				</name>
+				<description>
+					Constrained property name indicating that the internal frame is iconified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame()
+				</name>
+				<description>
+					Creates a non-resizable, non-closable, non-maximizable, non-iconifiable JInternalFrame with no title.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame(String title)
+				</name>
+				<description>
+					Creates a non-resizable, non-closable, non-maximizable, non-iconifiable JInternalFrame with the specified title. Note that passing in a null title results in unspecified behavior and possibly an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame(String title,                boolean resizable)
+				</name>
+				<description>
+					Creates a non-closable, non-maximizable, non-iconifiable JInternalFrame with the specified title and resizability.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame(String title,                boolean resizable,                boolean closable)
+				</name>
+				<description>
+					Creates a non-maximizable, non-iconifiable JInternalFrame with the specified title, resizability, and closability.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame(String title,                boolean resizable,                boolean closable,                boolean maximizable)
+				</name>
+				<description>
+					Creates a non-iconifiable JInternalFrame with the specified title, resizability, closability, and maximizability.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame(String title,                boolean resizable,                boolean closable,                boolean maximizable,                boolean iconifiable)
+				</name>
+				<description>
+					Creates a JInternalFrame with the specified title, resizability, closability, maximizability, and iconifiability. All JInternalFrame constructors use this one.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JRootPane createRootPane()
+				</name>
+				<description>
+					Called by the constructor to set up the JRootPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InternalFrameUI getUI()
+				</name>
+				<description>
+					Returns the look-and-feel object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(InternalFrameUI ui)
+				</name>
+				<description>
+					Sets the UI delegate for this JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Notification from the UIManager that the look and feel has changed. Replaces the current UI object with the latest version from the UIManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the look-and-feel class that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isRootPaneCheckingEnabled()
+				</name>
+				<description>
+					Returns whether calls to add and setLayout are forwarded to the contentPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setRootPaneCheckingEnabled(boolean enabled)
+				</name>
+				<description>
+					Sets whether calls to add and setLayout are forwarded to the contentPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addImpl(Component comp,             Object constraints,             int index)
+				</name>
+				<description>
+					Adds the specified child Component. This method is overridden to conditionally forward calls to the contentPane. By default, children are added to the contentPane instead of the frame, refer to RootPaneContainer for details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(Component comp)
+				</name>
+				<description>
+					Removes the specified component from the container. If comp is not a child of the JInternalFrame this will forward the call to the contentPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayout(LayoutManager manager)
+				</name>
+				<description>
+					Ensures that, by default, the layout of this component cannot be set. Overridden to conditionally forward the call to the contentPane. Refer to RootPaneContainer for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public JMenuBar getMenuBar()
+				</name>
+				<description>
+					Deprecated. As of Swing version 1.0.3, replaced by getJMenuBar(). Returns the current JMenuBar for this JInternalFrame, or null if no menu bar has been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMenuBar getJMenuBar()
+				</name>
+				<description>
+					Returns the current JMenuBar for this JInternalFrame, or null if no menu bar has been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setMenuBar(JMenuBar m)
+				</name>
+				<description>
+					Deprecated. As of Swing version 1.0.3 replaced by setJMenuBar(JMenuBar m). Sets the menuBar property for this JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setJMenuBar(JMenuBar m)
+				</name>
+				<description>
+					Sets the menuBar property for this JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Container getContentPane()
+				</name>
+				<description>
+					Returns the content pane for this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentPane(Container c)
+				</name>
+				<description>
+					Sets this JInternalFrame's contentPane property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JLayeredPane getLayeredPane()
+				</name>
+				<description>
+					Returns the layered pane for this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayeredPane(JLayeredPane layered)
+				</name>
+				<description>
+					Sets this JInternalFrame's layeredPane property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getGlassPane()
+				</name>
+				<description>
+					Returns the glass pane for this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setGlassPane(Component glass)
+				</name>
+				<description>
+					Sets this JInternalFrame's glassPane property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JRootPane getRootPane()
+				</name>
+				<description>
+					Returns the rootPane object for this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setRootPane(JRootPane root)
+				</name>
+				<description>
+					Sets the rootPane property for this JInternalFrame. This method is called by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setClosable(boolean b)
+				</name>
+				<description>
+					Sets whether this JInternalFrame can be closed by some user action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isClosable()
+				</name>
+				<description>
+					Returns whether this JInternalFrame can be closed by some user action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isClosed()
+				</name>
+				<description>
+					Returns whether this JInternalFrame is currently closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setClosed(boolean b)                 throws PropertyVetoException
+				</name>
+				<description>
+					Closes this internal frame if the argument is true. Do not invoke this method with a false argument; the result of invoking setClosed(false) is unspecified. If the internal frame is already closed, this method does nothing and returns immediately. Otherwise, this method begins by firing an INTERNAL_FRAME_CLOSING event. Then this method sets the closed property to true unless a listener vetoes the property change. This method finishes by making the internal frame invisible and unselected, and then firing an INTERNAL_FRAME_CLOSED event. Note: To reuse an internal frame that has been closed, you must add it to a container (even if you never removed it from its previous container). Typically, this container will be the JDesktopPane that previously contained the internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResizable(boolean b)
+				</name>
+				<description>
+					Sets whether the JInternalFrame can be resized by some user action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isResizable()
+				</name>
+				<description>
+					Returns whether the JInternalFrame can be resized by some user action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIconifiable(boolean b)
+				</name>
+				<description>
+					Sets the iconable property, which must be true for the user to be able to make the JInternalFrame an icon. Some look and feels might not implement iconification; they will ignore this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isIconifiable()
+				</name>
+				<description>
+					Gets the iconable property, which by default is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isIcon()
+				</name>
+				<description>
+					Returns whether the JInternalFrame is currently iconified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIcon(boolean b)               throws PropertyVetoException
+				</name>
+				<description>
+					Iconifies or de-iconifies this internal frame, if the look and feel supports iconification. If the internal frame's state changes to iconified, this method fires an INTERNAL_FRAME_ICONIFIED event. If the state changes to de-iconified, an INTERNAL_FRAME_DEICONIFIED event is fired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaximizable(boolean b)
+				</name>
+				<description>
+					Sets the maximizable property, which determines whether the JInternalFrame can be maximized by some user action. Some look and feels might not support maximizing internal frames; they will ignore this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMaximizable()
+				</name>
+				<description>
+					Gets the value of the maximizable property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMaximum()
+				</name>
+				<description>
+					Returns whether the JInternalFrame is currently maximized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaximum(boolean b)                  throws PropertyVetoException
+				</name>
+				<description>
+					Maximizes and restores this internal frame. A maximized frame is resized to fully fit the JDesktopPane area associated with the JInternalFrame. A restored frame's size is set to the JInternalFrame's actual size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTitle()
+				</name>
+				<description>
+					Returns the title of the JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTitle(String title)
+				</name>
+				<description>
+					Sets the JInternalFrame title. title may have a null value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelected(boolean selected)                   throws PropertyVetoException
+				</name>
+				<description>
+					Selects or deselects the internal frame if it's showing. A JInternalFrame normally draws its title bar differently if it is the selected frame, which indicates to the user that this internal frame has the focus. When this method changes the state of the internal frame from deselected to selected, it fires an InternalFrameEvent.INTERNAL_FRAME_ACTIVATED event. If the change is from selected to deselected, an InternalFrameEvent.INTERNAL_FRAME_DEACTIVATED event is fired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSelected()
+				</name>
+				<description>
+					Returns whether the JInternalFrame is the currently "selected" or active frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFrameIcon(Icon icon)
+				</name>
+				<description>
+					Sets an image to be displayed in the titlebar of this internal frame (usually in the top-left corner). This image is not the desktopIcon object, which is the image displayed in the JDesktop when this internal frame is iconified. Passing null to this function is valid, but the look and feel can choose the appropriate behavior for that situation, such as displaying no icon or a default icon for the look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getFrameIcon()
+				</name>
+				<description>
+					Returns the image displayed in the title bar of this internal frame (usually in the top-left corner).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void moveToFront()
+				</name>
+				<description>
+					Convenience method that moves this component to position 0 if its parent is a JLayeredPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void moveToBack()
+				</name>
+				<description>
+					Convenience method that moves this component to position -1 if its parent is a JLayeredPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Cursor getLastCursor()
+				</name>
+				<description>
+					Returns the last Cursor that was set by the setCursor method that is not a resizable Cursor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCursor(Cursor cursor)
+				</name>
+				<description>
+					Sets the cursor image to the specified cursor. This cursor image is displayed when the contains method for this component returns true for the current cursor location, and this Component is visible, displayable, and enabled. Setting the cursor of a Container causes that cursor to be displayed within all of the container's subcomponents, except for those that have a non-null cursor. The method may have no visual effect if the Java platform implementation and/or the native system do not support changing the mouse cursor shape.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayer(Integer layer)
+				</name>
+				<description>
+					Convenience method for setting the layer attribute of this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayer(int layer)
+				</name>
+				<description>
+					Convenience method for setting the layer attribute of this component. The method setLayer(Integer) should be used for layer values predefined in JLayeredPane. When using setLayer(int), care must be taken not to accidentally clash with those values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLayer()
+				</name>
+				<description>
+					Convenience method for getting the layer attribute of this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JDesktopPane getDesktopPane()
+				</name>
+				<description>
+					Convenience method that searches the ancestor hierarchy for a JDesktop instance. If JInternalFrame finds none, the desktopIcon tree is searched.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDesktopIcon(JInternalFrame.JDesktopIcon d)
+				</name>
+				<description>
+					Sets the JDesktopIcon associated with this JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JInternalFrame.JDesktopIcon getDesktopIcon()
+				</name>
+				<description>
+					Returns the JDesktopIcon used when this JInternalFrame is iconified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getNormalBounds()
+				</name>
+				<description>
+					If the JInternalFrame is not in maximized state, returns getBounds(); otherwise, returns the bounds that the JInternalFrame would be restored to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNormalBounds(Rectangle r)
+				</name>
+				<description>
+					Sets the normal bounds for this internal frame, the bounds that this internal frame would be restored to from its maximized state. This method is intended for use only by desktop managers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getFocusOwner()
+				</name>
+				<description>
+					If this JInternalFrame is active, returns the child that has focus. Otherwise, returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getMostRecentFocusOwner()
+				</name>
+				<description>
+					Returns the child component of this JInternalFrame that will receive the focus when this JInternalFrame is selected. If this JInternalFrame is currently selected, this method returns the same component as the getFocusOwner method. If this JInternalFrame is not selected, then the child component that most recently requested focus will be returned. If no child component has ever requested focus, then this JInternalFrame's initial focusable component is returned. If no such child exists, then this JInternalFrame's default component to focus is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void restoreSubcomponentFocus()
+				</name>
+				<description>
+					Requests the internal frame to restore focus to the last subcomponent that had focus. This is used by the UI when the user selected this internal frame -- for example, by clicking on the title bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reshape(int x,             int y,             int width,             int height)
+				</name>
+				<description>
+					Moves and resizes this component. Unlike other components, this implementation also forces re-layout, so that frame decorations such as the title bar are always redisplayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addInternalFrameListener(InternalFrameListener l)
+				</name>
+				<description>
+					Adds the specified listener to receive internal frame events from this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeInternalFrameListener(InternalFrameListener l)
+				</name>
+				<description>
+					Removes the specified internal frame listener so that it no longer receives internal frame events from this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InternalFrameListener[] getInternalFrameListeners()
+				</name>
+				<description>
+					Returns an array of all the InternalFrameListeners added to this JInternalFrame with addInternalFrameListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireInternalFrameEvent(int id)
+				</name>
+				<description>
+					Fires an internal frame event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void doDefaultCloseAction()
+				</name>
+				<description>
+					Fires an INTERNAL_FRAME_CLOSING event and then performs the action specified by the internal frame's default close operation. This method is typically invoked by the look-and-feel-implemented action handler for the internal frame's close button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultCloseOperation(int operation)
+				</name>
+				<description>
+					Sets the operation that will happen by default when the user initiates a "close" on this internal frame. The possible choices are: DO_NOTHING_ON_CLOSE Do nothing. This requires the program to handle the operation in the windowClosing method of a registered InternalFrameListener object. HIDE_ON_CLOSE Automatically make the internal frame invisible. DISPOSE_ON_CLOSE Automatically dispose of the internal frame. The default value is DISPOSE_ON_CLOSE. Before performing the specified close operation, the internal frame fires an INTERNAL_FRAME_CLOSING event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDefaultCloseOperation()
+				</name>
+				<description>
+					Returns the default operation that occurs when the user initiates a "close" on this internal frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void pack()
+				</name>
+				<description>
+					Causes subcomponents of this JInternalFrame to be laid out at their preferred size. Internal frames that are iconized or maximized are first restored and then packed. If the internal frame is unable to be restored its state is not changed and will not be packed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void show()
+				</name>
+				<description>
+					If the internal frame is not visible, brings the internal frame to the front, makes it visible, and attempts to select it. The first time the internal frame is made visible, this method also fires an INTERNAL_FRAME_OPENED event. This method does nothing if the internal frame is already visible. Invoking this method has the same result as invoking setVisible(true).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void hide()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dispose()
+				</name>
+				<description>
+					Makes this internal frame invisible, unselected, and closed. If the frame is not already closed, this method fires an INTERNAL_FRAME_CLOSED event. The results of invoking this method are similar to setClosed(true), but dispose always succeeds in closing the internal frame and does not fire an INTERNAL_FRAME_CLOSING event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void toFront()
+				</name>
+				<description>
+					Brings this internal frame to the front. Places this internal frame at the top of the stacking order and makes the corresponding adjustment to other visible internal frames.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void toBack()
+				</name>
+				<description>
+					Sends this internal frame to the back. Places this internal frame at the bottom of the stacking order and makes the corresponding adjustment to other visible internal frames.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setFocusCycleRoot(boolean focusCycleRoot)
+				</name>
+				<description>
+					Does nothing because JInternalFrames must always be roots of a focus traversal cycle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isFocusCycleRoot()
+				</name>
+				<description>
+					Always returns true because all JInternalFrames must be roots of a focus traversal cycle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Container getFocusCycleRootAncestor()
+				</name>
+				<description>
+					Always returns null because JInternalFrames must always be roots of a focus traversal cycle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getWarningString()
+				</name>
+				<description>
+					Gets the warning string that is displayed with this internal frame. Since an internal frame is always secure (since it's fully contained within a window that might need a warning string) this method always returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JInternalFrame. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintComponent(Graphics g)
+				</name>
+				<description>
+					Overridden to allow optimized painting when the internal frame is being dragged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JInternalFrame. For internal frames, the AccessibleContext takes the form of an AccessibleJInternalFrame object. A new AccessibleJInternalFrame instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

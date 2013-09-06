@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.swing.table
+	</package>
+	<type>
+		<name>
+			public class TableRowSorter<M extends TableModel>  extends DefaultRowSorter<M,Integer>
+		</name>
+		<description>
+			An implementation of RowSorter that provides sorting and filtering using a TableModel. The following example shows adding sorting to a JTable:      TableModel myModel = createMyTableModel();     JTable table = new JTable(myModel);     table.setRowSorter(new TableRowSorter(myModel));   This will do all the wiring such that when the user does the appropriate gesture, such as clicking on the column header, the table will visually sort. JTable's row-based methods and JTable's selection model refer to the view and not the underlying model. Therefore, it is necessary to convert between the two. For example, to get the selection in terms of myModel you need to convert the indices:      int[] selection = table.getSelectedRows();     for (int i = 0; i < selection.length; i++) {       selection[i] = table.convertRowIndexToModel(selection[i]);     }   Similarly to select a row in JTable based on a coordinate from the underlying model do the inverse:      table.setRowSelectionInterval(table.convertRowIndexToView(row),                                   table.convertRowIndexToView(row));   The previous example assumes you have not enabled filtering. If you have enabled filtering convertRowIndexToView will return -1 for locations that are not visible in the view. TableRowSorter uses Comparators for doing comparisons. The following defines how a Comparator is chosen for a column: If a Comparator has been specified for the column by the setComparator method, use it. If the column class as returned by getColumnClass is String, use the Comparator returned by Collator.getInstance(). If the column class implements Comparable, use a Comparator that invokes the compareTo method. If a TableStringConverter has been specified, use it to convert the values to Strings and then use the Comparator returned by Collator.getInstance(). Otherwise use the Comparator returned by Collator.getInstance() on the results from calling toString on the objects. In addition to sorting TableRowSorter provides the ability to filter. A filter is specified using the setFilter method. The following example will only show rows containing the string "foo":      TableModel myModel = createMyTableModel();     TableRowSorter sorter = new TableRowSorter(myModel);     sorter.setRowFilter(RowFilter.regexFilter(".*foo.*"));     JTable table = new JTable(myModel);     table.setRowSorter(sorter);   If the underlying model structure changes (the modelStructureChanged method is invoked) the following are reset to their default values: Comparators by column, current sort order, and whether each column is sortable. The default sort order is natural (the same as the model), and columns are sortable by default. TableRowSorter has one formal type parameter: the type of the model. Passing in a type that corresponds exactly to your model allows you to filter based on your model without casting. Refer to the documentation of RowFilter for an example of this. WARNING: DefaultTableModel returns a column class of Object. As such all comparisons will be done using toString. This may be unnecessarily expensive. If the column only contains one type of value, such as an Integer, you should override getColumnClass and return the appropriate Class. This will dramatically increase the performance of this class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TableRowSorter()
+				</name>
+				<description>
+					Creates a TableRowSorter with an empty model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableRowSorter(M model)
+				</name>
+				<description>
+					Creates a TableRowSorter using model as the underlying TableModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(M model)
+				</name>
+				<description>
+					Sets the TableModel to use as the underlying model for this TableRowSorter. A value of null can be used to set an empty model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setStringConverter(TableStringConverter stringConverter)
+				</name>
+				<description>
+					Sets the object responsible for converting values from the model to strings. If non-null this is used to convert any object values, that do not have a registered Comparator, to strings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableStringConverter getStringConverter()
+				</name>
+				<description>
+					Returns the object responsible for converting values from the model to strings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparator<?> getComparator(int column)
+				</name>
+				<description>
+					Returns the Comparator for the specified column. If a Comparator has not been specified using the setComparator method a Comparator will be returned based on the column class (TableModel.getColumnClass) of the specified column. If the column class is String, Collator.getInstance is returned. If the column class implements Comparable a private Comparator is returned that invokes the compareTo method. Otherwise Collator.getInstance is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean useToString(int column)
+				</name>
+				<description>
+					Returns whether or not to convert the value to a string before doing comparisons when sorting. If true ModelWrapper.getStringValueAt will be used, otherwise ModelWrapper.getValueAt will be used. It is up to subclasses, such as TableRowSorter, to honor this value in their ModelWrapper implementation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

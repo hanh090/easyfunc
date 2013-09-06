@@ -1,0 +1,801 @@
+<javaelement>
+	<package>
+		java.math
+	</package>
+	<type>
+		<name>
+			public class BigDecimal  extends Number  implements Comparable<BigDecimal>
+		</name>
+		<description>
+			Immutable, arbitrary-precision signed decimal numbers. A BigDecimal consists of an arbitrary precision integer unscaled value and a 32-bit integer scale. If zero or positive, the scale is the number of digits to the right of the decimal point. If negative, the unscaled value of the number is multiplied by ten to the power of the negation of the scale. The value of the number represented by the BigDecimal is therefore (unscaledValue × 10-scale). The BigDecimal class provides operations for arithmetic, scale manipulation, rounding, comparison, hashing, and format conversion. The toString() method provides a canonical representation of a BigDecimal. The BigDecimal class gives its user complete control over rounding behavior. If no rounding mode is specified and the exact result cannot be represented, an exception is thrown; otherwise, calculations can be carried out to a chosen precision and rounding mode by supplying an appropriate MathContext object to the operation. In either case, eight rounding modes are provided for the control of rounding. Using the integer fields in this class (such as ROUND_HALF_UP) to represent rounding mode is largely obsolete; the enumeration values of the RoundingMode enum, (such as RoundingMode.HALF_UP) should be used instead. When a MathContext object is supplied with a precision setting of 0 (for example, MathContext.UNLIMITED), arithmetic operations are exact, as are the arithmetic methods which take no MathContext object. (This is the only behavior that was supported in releases prior to 5.) As a corollary of computing the exact result, the rounding mode setting of a MathContext object with a precision setting of 0 is not used and thus irrelevant. In the case of divide, the exact quotient could have an infinitely long decimal expansion; for example, 1 divided by 3. If the quotient has a nonterminating decimal expansion and the operation is specified to return an exact result, an ArithmeticException is thrown. Otherwise, the exact result of the division is returned, as done for other operations. When the precision setting is not 0, the rules of BigDecimal arithmetic are broadly compatible with selected modes of operation of the arithmetic defined in ANSI X3.274-1996 and ANSI X3.274-1996/AM 1-2000 (section 7.4). Unlike those standards, BigDecimal includes many rounding modes, which were mandatory for division in BigDecimal releases prior to 5. Any conflicts between these ANSI standards and the BigDecimal specification are resolved in favor of BigDecimal. Since the same numerical value can have different representations (with different scales), the rules of arithmetic and rounding must specify both the numerical result and the scale used in the result's representation. In general the rounding modes and precision setting determine how operations return results with a limited number of digits when the exact result has more digits (perhaps infinitely many in the case of division) than the number of digits returned. First, the total number of digits to return is specified by the MathContext's precision setting; this determines the result's precision. The digit count starts from the leftmost nonzero digit of the exact result. The rounding mode determines how any discarded trailing digits affect the returned result. For all arithmetic operators , the operation is carried out as though an exact intermediate result were first calculated and then rounded to the number of digits specified by the precision setting (if necessary), using the selected rounding mode. If the exact result is not returned, some digit positions of the exact result are discarded. When rounding increases the magnitude of the returned result, it is possible for a new digit position to be created by a carry propagating to a leading "9" digit. For example, rounding the value 999.9 to three digits rounding up would be numerically equal to one thousand, represented as 100×101. In such cases, the new "1" is the leading digit position of the returned result. Besides a logical exact result, each arithmetic operation has a preferred scale for representing a result. The preferred scale for each operation is listed in the table below. Preferred Scales for Results of Arithmetic Operations Operation Preferred Scale of Result Add max(addend.scale(), augend.scale()) Subtract max(minuend.scale(), subtrahend.scale()) Multiply multiplier.scale() + multiplicand.scale() Divide dividend.scale() - divisor.scale() These scales are the ones used by the methods which return exact arithmetic results; except that an exact divide may have to use a larger scale since the exact result may have more digits. For example, 1/32 is 0.03125. Before rounding, the scale of the logical exact intermediate result is the preferred scale for that operation. If the exact numerical result cannot be represented in precision digits, rounding selects the set of digits to return and the scale of the result is reduced from the scale of the intermediate result to the least scale which can represent the precision digits actually returned. If the exact result can be represented with at most precision digits, the representation of the result with the scale closest to the preferred scale is returned. In particular, an exactly representable quotient may be represented in fewer than precision digits by removing trailing zeros and decreasing the scale. For example, rounding to three digits using the floor rounding mode, 19/100 = 0.19 // integer=19, scale=2 but 21/110 = 0.190 // integer=190, scale=3 Note that for add, subtract, and multiply, the reduction in scale will equal the number of digit positions of the exact result which are discarded. If the rounding causes a carry propagation to create a new high-order digit position, an additional digit of the result is discarded than when no new digit position is created. Other methods may have slightly different rounding semantics. For example, the result of the pow method using the specified algorithm can occasionally differ from the rounded mathematical result by more than one unit in the last place, one ulp. Two types of operations are provided for manipulating the scale of a BigDecimal: scaling/rounding operations and decimal point motion operations. Scaling/rounding operations (setScale and round) return a BigDecimal whose value is approximately (or exactly) equal to that of the operand, but whose scale or precision is the specified value; that is, they increase or decrease the precision of the stored number with minimal effect on its value. Decimal point motion operations (movePointLeft and movePointRight) return a BigDecimal created from the operand by moving the decimal point a specified distance in the specified direction. For the sake of brevity and clarity, pseudo-code is used throughout the descriptions of BigDecimal methods. The pseudo-code expression (i + j) is shorthand for "a BigDecimal whose value is that of the BigDecimal i added to that of the BigDecimal j." The pseudo-code expression (i == j) is shorthand for "true if and only if the BigDecimal i represents the same value as the BigDecimal j." Other pseudo-code expressions are interpreted similarly. Square brackets are used to represent the particular BigInteger and scale pair defining a BigDecimal value; for example [19, 2] is the BigDecimal numerically equal to 0.19 having a scale of 2. Note: care should be exercised if BigDecimal objects are used as keys in a SortedMap or elements in a SortedSet since BigDecimal's natural ordering is inconsistent with equals. See Comparable, SortedMap or SortedSet for more information. All methods and constructors for this class throw NullPointerException when passed a null object reference for any input parameter.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final BigDecimal ZERO
+				</name>
+				<description>
+					The value 0, with a scale of 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final BigDecimal ONE
+				</name>
+				<description>
+					The value 1, with a scale of 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final BigDecimal TEN
+				</name>
+				<description>
+					The value 10, with a scale of 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_UP
+				</name>
+				<description>
+					Rounding mode to round away from zero. Always increments the digit prior to a nonzero discarded fraction. Note that this rounding mode never decreases the magnitude of the calculated value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_DOWN
+				</name>
+				<description>
+					Rounding mode to round towards zero. Never increments the digit prior to a discarded fraction (i.e., truncates). Note that this rounding mode never increases the magnitude of the calculated value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_CEILING
+				</name>
+				<description>
+					Rounding mode to round towards positive infinity. If the BigDecimal is positive, behaves as for ROUND_UP; if negative, behaves as for ROUND_DOWN. Note that this rounding mode never decreases the calculated value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_FLOOR
+				</name>
+				<description>
+					Rounding mode to round towards negative infinity. If the BigDecimal is positive, behave as for ROUND_DOWN; if negative, behave as for ROUND_UP. Note that this rounding mode never increases the calculated value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_HALF_UP
+				</name>
+				<description>
+					Rounding mode to round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up. Behaves as for ROUND_UP if the discarded fraction is ? 0.5; otherwise, behaves as for ROUND_DOWN. Note that this is the rounding mode that most of us were taught in grade school.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_HALF_DOWN
+				</name>
+				<description>
+					Rounding mode to round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down. Behaves as for ROUND_UP if the discarded fraction is > 0.5; otherwise, behaves as for ROUND_DOWN.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_HALF_EVEN
+				</name>
+				<description>
+					Rounding mode to round towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor. Behaves as for ROUND_HALF_UP if the digit to the left of the discarded fraction is odd; behaves as for ROUND_HALF_DOWN if it's even. Note that this is the rounding mode that minimizes cumulative error when applied repeatedly over a sequence of calculations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROUND_UNNECESSARY
+				</name>
+				<description>
+					Rounding mode to assert that the requested operation has an exact result, hence no rounding is necessary. If this rounding mode is specified on an operation that yields an inexact result, an ArithmeticException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(char[] in,            int offset,            int len)
+				</name>
+				<description>
+					Translates a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor, while allowing a sub-array to be specified. Note that if the sequence of characters is already available within a character array, using this constructor is faster than converting the char array to string and using the BigDecimal(String) constructor .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(char[] in,            int offset,            int len,            MathContext mc)
+				</name>
+				<description>
+					Translates a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor, while allowing a sub-array to be specified and with rounding according to the context settings. Note that if the sequence of characters is already available within a character array, using this constructor is faster than converting the char array to string and using the BigDecimal(String) constructor .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(char[] in)
+				</name>
+				<description>
+					Translates a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor. Note that if the sequence of characters is already available as a character array, using this constructor is faster than converting the char array to string and using the BigDecimal(String) constructor .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(char[] in,            MathContext mc)
+				</name>
+				<description>
+					Translates a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor and with rounding according to the context settings. Note that if the sequence of characters is already available as a character array, using this constructor is faster than converting the char array to string and using the BigDecimal(String) constructor .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(String val)
+				</name>
+				<description>
+					Translates the string representation of a BigDecimal into a BigDecimal. The string representation consists of an optional sign, '+' ( '\u002B') or '-' ('\u002D'), followed by a sequence of zero or more decimal digits ("the integer"), optionally followed by a fraction, optionally followed by an exponent. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character 'e' ('\u0065') or 'E' ('\u0045') followed by one or more decimal digits. The value of the exponent must lie between -Integer.MAX_VALUE (Integer.MIN_VALUE+1) and Integer.MAX_VALUE, inclusive. More formally, the strings this constructor accepts are described by the following grammar: BigDecimalString: Signopt Significand Exponentopt Sign: + - Significand: IntegerPart . FractionPartopt . FractionPart IntegerPart IntegerPart: Digits FractionPart: Digits Exponent: ExponentIndicator SignedInteger ExponentIndicator: e E SignedInteger: Signopt Digits Digits: Digit Digits Digit Digit: any character for which Character.isDigit(char) returns true, including 0, 1, 2 ... The scale of the returned BigDecimal will be the number of digits in the fraction, or zero if the string contains no decimal point, subject to adjustment for any exponent; if the string contains an exponent, the exponent is subtracted from the scale. The value of the resulting scale must lie between Integer.MIN_VALUE and Integer.MAX_VALUE, inclusive. The character-to-digit mapping is provided by Character.digit(char, int) set to convert to radix 10. The String may not contain any extraneous characters (whitespace, for example). Examples: The value of the returned BigDecimal is equal to significand × 10 exponent. For each string on the left, the resulting representation [BigInteger, scale] is shown on the right.    "0"            [0,0]   "0.00"         [0,2]   "123"          [123,0]   "-123"         [-123,0]   "1.23E3"       [123,-1]   "1.23E+3"      [123,-1]   "12.3E+7"      [123,-6]   "12.0"         [120,1]   "12.3"         [123,1]   "0.00123"      [123,5]   "-1.23E-12"    [-123,14]   "1234.5E-4"    [12345,5]   "0E+7"         [0,-7]   "-0"           [0,0]   Note: For values other than float and double NaN and ±Infinity, this constructor is compatible with the values returned by Float.toString(float) and Double.toString(double). This is generally the preferred way to convert a float or double into a BigDecimal, as it doesn't suffer from the unpredictability of the BigDecimal(double) constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(String val,            MathContext mc)
+				</name>
+				<description>
+					Translates the string representation of a BigDecimal into a BigDecimal, accepting the same strings as the BigDecimal(String) constructor, with rounding according to the context settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(double val)
+				</name>
+				<description>
+					Translates a double into a BigDecimal which is the exact decimal representation of the double's binary floating-point value. The scale of the returned BigDecimal is the smallest value such that (10scale × val) is an integer. Notes: The results of this constructor can be somewhat unpredictable. One might assume that writing new BigDecimal(0.1) in Java creates a BigDecimal which is exactly equal to 0.1 (an unscaled value of 1, with a scale of 1), but it is actually equal to 0.1000000000000000055511151231257827021181583404541015625. This is because 0.1 cannot be represented exactly as a double (or, for that matter, as a binary fraction of any finite length). Thus, the value that is being passed in to the constructor is not exactly equal to 0.1, appearances notwithstanding. The String constructor, on the other hand, is perfectly predictable: writing new BigDecimal("0.1") creates a BigDecimal which is exactly equal to 0.1, as one would expect. Therefore, it is generally recommended that the String constructor be used in preference to this one. When a double must be used as a source for a BigDecimal, note that this constructor provides an exact conversion; it does not give the same result as converting the double to a String using the Double.toString(double) method and then using the BigDecimal(String) constructor. To get that result, use the static valueOf(double) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(double val,            MathContext mc)
+				</name>
+				<description>
+					Translates a double into a BigDecimal, with rounding according to the context settings. The scale of the BigDecimal is the smallest value such that (10scale × val) is an integer. The results of this constructor can be somewhat unpredictable and its use is generally not recommended; see the notes under the BigDecimal(double) constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(BigInteger val)
+				</name>
+				<description>
+					Translates a BigInteger into a BigDecimal. The scale of the BigDecimal is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(BigInteger val,            MathContext mc)
+				</name>
+				<description>
+					Translates a BigInteger into a BigDecimal rounding according to the context settings. The scale of the BigDecimal is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(BigInteger unscaledVal,            int scale)
+				</name>
+				<description>
+					Translates a BigInteger unscaled value and an int scale into a BigDecimal. The value of the BigDecimal is (unscaledVal × 10-scale).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(BigInteger unscaledVal,            int scale,            MathContext mc)
+				</name>
+				<description>
+					Translates a BigInteger unscaled value and an int scale into a BigDecimal, with rounding according to the context settings. The value of the BigDecimal is (unscaledVal × 10-scale), rounded according to the precision and rounding mode settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(int val)
+				</name>
+				<description>
+					Translates an int into a BigDecimal. The scale of the BigDecimal is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(int val,            MathContext mc)
+				</name>
+				<description>
+					Translates an int into a BigDecimal, with rounding according to the context settings. The scale of the BigDecimal, before any rounding, is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(long val)
+				</name>
+				<description>
+					Translates a long into a BigDecimal. The scale of the BigDecimal is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal(long val,            MathContext mc)
+				</name>
+				<description>
+					Translates a long into a BigDecimal, with rounding according to the context settings. The scale of the BigDecimal, before any rounding, is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BigDecimal valueOf(long unscaledVal,                   int scale)
+				</name>
+				<description>
+					Translates a long unscaled value and an int scale into a BigDecimal. This "static factory method" is provided in preference to a (long, int) constructor because it allows for reuse of frequently used BigDecimal values..
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BigDecimal valueOf(long val)
+				</name>
+				<description>
+					Translates a long value into a BigDecimal with a scale of zero. This "static factory method" is provided in preference to a (long) constructor because it allows for reuse of frequently used BigDecimal values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BigDecimal valueOf(double val)
+				</name>
+				<description>
+					Translates a double into a BigDecimal, using the double's canonical string representation provided by the Double.toString(double) method. Note: This is generally the preferred way to convert a double (or float) into a BigDecimal, as the value returned is equal to that resulting from constructing a BigDecimal from the result of using Double.toString(double).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal add(BigDecimal augend)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this + augend), and whose scale is max(this.scale(), augend.scale()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal add(BigDecimal augend,               MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this + augend), with rounding according to the context settings. If either number is zero and the precision setting is nonzero then the other number, rounded if necessary, is used as the result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal subtract(BigDecimal subtrahend)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this - subtrahend), and whose scale is max(this.scale(), subtrahend.scale()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal subtract(BigDecimal subtrahend,                    MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this - subtrahend), with rounding according to the context settings. If subtrahend is zero then this, rounded if necessary, is used as the result. If this is zero then the result is subtrahend.negate(mc).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal multiply(BigDecimal multiplicand)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this × multiplicand), and whose scale is (this.scale() + multiplicand.scale()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal multiply(BigDecimal multiplicand,                    MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this × multiplicand), with rounding according to the context settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divide(BigDecimal divisor,                  int scale,                  int roundingMode)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this / divisor), and whose scale is as specified. If rounding must be performed to generate a result with the specified scale, the specified rounding mode is applied. The new divide(BigDecimal, int, RoundingMode) method should be used in preference to this legacy method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divide(BigDecimal divisor,                  int scale,                  RoundingMode roundingMode)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this / divisor), and whose scale is as specified. If rounding must be performed to generate a result with the specified scale, the specified rounding mode is applied.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divide(BigDecimal divisor,                  int roundingMode)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this / divisor), and whose scale is this.scale(). If rounding must be performed to generate a result with the given scale, the specified rounding mode is applied. The new divide(BigDecimal, RoundingMode) method should be used in preference to this legacy method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divide(BigDecimal divisor,                  RoundingMode roundingMode)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this / divisor), and whose scale is this.scale(). If rounding must be performed to generate a result with the given scale, the specified rounding mode is applied.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divide(BigDecimal divisor)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this / divisor), and whose preferred scale is (this.scale() - divisor.scale()); if the exact quotient cannot be represented (because it has a non-terminating decimal expansion) an ArithmeticException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divide(BigDecimal divisor,                  MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this / divisor), with rounding according to the context settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divideToIntegralValue(BigDecimal divisor)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is the integer part of the quotient (this / divisor) rounded down. The preferred scale of the result is (this.scale() - divisor.scale()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal divideToIntegralValue(BigDecimal divisor,                                 MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is the integer part of (this / divisor). Since the integer part of the exact quotient does not depend on the rounding mode, the rounding mode does not affect the values returned by this method. The preferred scale of the result is (this.scale() - divisor.scale()). An ArithmeticException is thrown if the integer part of the exact quotient needs more than mc.precision digits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal remainder(BigDecimal divisor)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this % divisor). The remainder is given by this.subtract(this.divideToIntegralValue(divisor).multiply(divisor)). Note that this is not the modulo operation (the result can be negative).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal remainder(BigDecimal divisor,                     MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (this % divisor), with rounding according to the context settings. The MathContext settings affect the implicit divide used to compute the remainder. The remainder computation itself is by definition exact. Therefore, the remainder may contain more than mc.getPrecision() digits. The remainder is given by this.subtract(this.divideToIntegralValue(divisor, mc).multiply(divisor)). Note that this is not the modulo operation (the result can be negative).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal[] divideAndRemainder(BigDecimal divisor)
+				</name>
+				<description>
+					Returns a two-element BigDecimal array containing the result of divideToIntegralValue followed by the result of remainder on the two operands. Note that if both the integer quotient and remainder are needed, this method is faster than using the divideToIntegralValue and remainder methods separately because the division need only be carried out once.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal[] divideAndRemainder(BigDecimal divisor,                                MathContext mc)
+				</name>
+				<description>
+					Returns a two-element BigDecimal array containing the result of divideToIntegralValue followed by the result of remainder on the two operands calculated with rounding according to the context settings. Note that if both the integer quotient and remainder are needed, this method is faster than using the divideToIntegralValue and remainder methods separately because the division need only be carried out once.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal pow(int n)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (thisn), The power is computed exactly, to unlimited precision. The parameter n must be in the range 0 through 999999999, inclusive. ZERO.pow(0) returns ONE. Note that future releases may expand the allowable exponent range of this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal pow(int n,               MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (thisn). The current implementation uses the core algorithm defined in ANSI standard X3.274-1996 with rounding according to the context settings. In general, the returned numerical value is within two ulps of the exact numerical value for the chosen precision. Note that future releases may use a different algorithm with a decreased allowable error bound and increased allowable exponent range. The X3.274-1996 algorithm is: An ArithmeticException exception is thrown if abs(n) > 999999999 mc.precision == 0 and n < 0 mc.precision > 0 and n has more than mc.precision decimal digits if n is zero, ONE is returned even if this is zero, otherwise if n is positive, the result is calculated via the repeated squaring technique into a single accumulator. The individual multiplications with the accumulator use the same math context settings as in mc except for a precision increased to mc.precision + elength + 1 where elength is the number of decimal digits in n. if n is negative, the result is calculated as if n were positive; this value is then divided into one using the working precision specified above. The final value from either the positive or negative case is then rounded to the destination precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal abs()
+				</name>
+				<description>
+					Returns a BigDecimal whose value is the absolute value of this BigDecimal, and whose scale is this.scale().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal abs(MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is the absolute value of this BigDecimal, with rounding according to the context settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal negate()
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (-this), and whose scale is this.scale().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal negate(MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (-this), with rounding according to the context settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal plus()
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (+this), and whose scale is this.scale(). This method, which simply returns this BigDecimal is included for symmetry with the unary minus method negate().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal plus(MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal whose value is (+this), with rounding according to the context settings. The effect of this method is identical to that of the round(MathContext) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int signum()
+				</name>
+				<description>
+					Returns the signum function of this BigDecimal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int scale()
+				</name>
+				<description>
+					Returns the scale of this BigDecimal. If zero or positive, the scale is the number of digits to the right of the decimal point. If negative, the unscaled value of the number is multiplied by ten to the power of the negation of the scale. For example, a scale of -3 means the unscaled value is multiplied by 1000.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int precision()
+				</name>
+				<description>
+					Returns the precision of this BigDecimal. (The precision is the number of digits in the unscaled value.) The precision of a zero value is 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger unscaledValue()
+				</name>
+				<description>
+					Returns a BigInteger whose value is the unscaled value of this BigDecimal. (Computes (this * 10this.scale()).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal round(MathContext mc)
+				</name>
+				<description>
+					Returns a BigDecimal rounded according to the MathContext settings. If the precision setting is 0 then no rounding takes place. The effect of this method is identical to that of the plus(MathContext) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal setScale(int newScale,                    RoundingMode roundingMode)
+				</name>
+				<description>
+					Returns a BigDecimal whose scale is the specified value, and whose unscaled value is determined by multiplying or dividing this BigDecimal's unscaled value by the appropriate power of ten to maintain its overall value. If the scale is reduced by the operation, the unscaled value must be divided (rather than multiplied), and the value may be changed; in this case, the specified rounding mode is applied to the division. Note that since BigDecimal objects are immutable, calls of this method do not result in the original object being modified, contrary to the usual convention of having methods named setX mutate field X. Instead, setScale returns an object with the proper scale; the returned object may or may not be newly allocated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal setScale(int newScale,                    int roundingMode)
+				</name>
+				<description>
+					Returns a BigDecimal whose scale is the specified value, and whose unscaled value is determined by multiplying or dividing this BigDecimal's unscaled value by the appropriate power of ten to maintain its overall value. If the scale is reduced by the operation, the unscaled value must be divided (rather than multiplied), and the value may be changed; in this case, the specified rounding mode is applied to the division. Note that since BigDecimal objects are immutable, calls of this method do not result in the original object being modified, contrary to the usual convention of having methods named setX mutate field X. Instead, setScale returns an object with the proper scale; the returned object may or may not be newly allocated. The new setScale(int, RoundingMode) method should be used in preference to this legacy method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal setScale(int newScale)
+				</name>
+				<description>
+					Returns a BigDecimal whose scale is the specified value, and whose value is numerically equal to this BigDecimal's. Throws an ArithmeticException if this is not possible. This call is typically used to increase the scale, in which case it is guaranteed that there exists a BigDecimal of the specified scale and the correct value. The call can also be used to reduce the scale if the caller knows that the BigDecimal has sufficiently many zeros at the end of its fractional part (i.e., factors of ten in its integer value) to allow for the rescaling without changing its value. This method returns the same result as the two-argument versions of setScale, but saves the caller the trouble of specifying a rounding mode in cases where it is irrelevant. Note that since BigDecimal objects are immutable, calls of this method do not result in the original object being modified, contrary to the usual convention of having methods named setX mutate field X. Instead, setScale returns an object with the proper scale; the returned object may or may not be newly allocated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal movePointLeft(int n)
+				</name>
+				<description>
+					Returns a BigDecimal which is equivalent to this one with the decimal point moved n places to the left. If n is non-negative, the call merely adds n to the scale. If n is negative, the call is equivalent to movePointRight(-n). The BigDecimal returned by this call has value (this × 10-n) and scale max(this.scale()+n, 0).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal movePointRight(int n)
+				</name>
+				<description>
+					Returns a BigDecimal which is equivalent to this one with the decimal point moved n places to the right. If n is non-negative, the call merely subtracts n from the scale. If n is negative, the call is equivalent to movePointLeft(-n). The BigDecimal returned by this call has value (this × 10n) and scale max(this.scale()-n, 0).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal scaleByPowerOfTen(int n)
+				</name>
+				<description>
+					Returns a BigDecimal whose numerical value is equal to (this * 10n). The scale of the result is (this.scale() - n).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal stripTrailingZeros()
+				</name>
+				<description>
+					Returns a BigDecimal which is numerically equal to this one but with any trailing zeros removed from the representation. For example, stripping the trailing zeros from the BigDecimal value 600.0, which has [BigInteger, scale] components equals to [6000, 1], yields 6E2 with [BigInteger, scale] components equals to [6, -2]
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int compareTo(BigDecimal val)
+				</name>
+				<description>
+					Compares this BigDecimal with the specified BigDecimal. Two BigDecimal objects that are equal in value but have a different scale (like 2.0 and 2.00) are considered equal by this method. This method is provided in preference to individual methods for each of the six boolean comparison operators (<, ==, >, >=, !=, <=). The suggested idiom for performing these comparisons is: (x.compareTo(y) <op> 0), where <op> is one of the six comparison operators.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object x)
+				</name>
+				<description>
+					Compares this BigDecimal with the specified Object for equality. Unlike compareTo, this method considers two BigDecimal objects equal only if they are equal in value and scale (thus 2.0 is not equal to 2.00 when compared by this method).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal min(BigDecimal val)
+				</name>
+				<description>
+					Returns the minimum of this BigDecimal and val.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal max(BigDecimal val)
+				</name>
+				<description>
+					Returns the maximum of this BigDecimal and val.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code for this BigDecimal. Note that two BigDecimal objects that are numerically equal but differ in scale (like 2.0 and 2.00) will generally not have the same hash code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the string representation of this BigDecimal, using scientific notation if an exponent is needed. A standard canonical string form of the BigDecimal is created as though by the following steps: first, the absolute value of the unscaled value of the BigDecimal is converted to a string in base ten using the characters '0' through '9' with no leading zeros (except if its value is zero, in which case a single '0' character is used). Next, an adjusted exponent is calculated; this is the negated scale, plus the number of characters in the converted unscaled value, less one. That is, -scale+(ulength-1), where ulength is the length of the absolute value of the unscaled value in decimal digits (its precision). If the scale is greater than or equal to zero and the adjusted exponent is greater than or equal to -6, the number will be converted to a character form without using exponential notation. In this case, if the scale is zero then no decimal point is added and if the scale is positive a decimal point will be inserted with the scale specifying the number of characters to the right of the decimal point. '0' characters are added to the left of the converted unscaled value as necessary. If no character precedes the decimal point after this insertion then a conventional '0' character is prefixed. Otherwise (that is, if the scale is negative, or the adjusted exponent is less than -6), the number will be converted to a character form using exponential notation. In this case, if the converted BigInteger has more than one digit a decimal point is inserted after the first digit. An exponent in character form is then suffixed to the converted unscaled value (perhaps with inserted decimal point); this comprises the letter 'E' followed immediately by the adjusted exponent converted to a character form. The latter is in base ten, using the characters '0' through '9' with no leading zeros, and is always prefixed by a sign character '-' ('\u002D') if the adjusted exponent is negative, '+' ('\u002B') otherwise). Finally, the entire string is prefixed by a minus sign character '-' ('\u002D') if the unscaled value is less than zero. No sign character is prefixed if the unscaled value is zero or positive. Examples: For each representation [unscaled value, scale] on the left, the resulting string is shown on the right.    [123,0]      "123"   [-123,0]     "-123"   [123,-1]     "1.23E+3"   [123,-3]     "1.23E+5"   [123,1]      "12.3"   [123,5]      "0.00123"   [123,10]     "1.23E-8"   [-123,12]    "-1.23E-10"   Notes: There is a one-to-one mapping between the distinguishable BigDecimal values and the result of this conversion. That is, every distinguishable BigDecimal value (unscaled value and scale) has a unique string representation as a result of using toString. If that string representation is converted back to a BigDecimal using the BigDecimal(String) constructor, then the original value will be recovered. The string produced for a given number is always the same; it is not affected by locale. This means that it can be used as a canonical string representation for exchanging decimal data, or as a key for a Hashtable, etc. Locale-sensitive number formatting and parsing is handled by the NumberFormat class and its subclasses. The toEngineeringString() method may be used for presenting numbers with exponents in engineering notation, and the setScale method may be used for rounding a BigDecimal so it has a known number of digits after the decimal point. The digit-to-character mapping provided by Character.forDigit is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toEngineeringString()
+				</name>
+				<description>
+					Returns a string representation of this BigDecimal, using engineering notation if an exponent is needed. Returns a string that represents the BigDecimal as described in the toString() method, except that if exponential notation is used, the power of ten is adjusted to be a multiple of three (engineering notation) such that the integer part of nonzero values will be in the range 1 through 999. If exponential notation is used for zero values, a decimal point and one or two fractional zero digits are used so that the scale of the zero value is preserved. Note that unlike the output of toString(), the output of this method is not guaranteed to recover the same [integer, scale] pair of this BigDecimal if the output string is converting back to a BigDecimal using the string constructor. The result of this method meets the weaker constraint of always producing a numerically equal result from applying the string constructor to the method's output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toPlainString()
+				</name>
+				<description>
+					Returns a string representation of this BigDecimal without an exponent field. For values with a positive scale, the number of digits to the right of the decimal point is used to indicate scale. For values with a zero or negative scale, the resulting string is generated as if the value were converted to a numerically equal value with zero scale and as if all the trailing zeros of the zero scale value were present in the result. The entire string is prefixed by a minus sign character '-' ('\u002D') if the unscaled value is less than zero. No sign character is prefixed if the unscaled value is zero or positive. Note that if the result of this method is passed to the string constructor, only the numerical value of this BigDecimal will necessarily be recovered; the representation of the new BigDecimal may have a different scale. In particular, if this BigDecimal has a negative scale, the string resulting from this method will have a scale of zero when processed by the string constructor. (This method behaves analogously to the toString method in 1.4 and earlier releases.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger toBigInteger()
+				</name>
+				<description>
+					Converts this BigDecimal to a BigInteger. This conversion is analogous to the narrowing primitive conversion from double to long as defined in section 5.1.3 of The Java™ Language Specification: any fractional part of this BigDecimal will be discarded. Note that this conversion can lose information about the precision of the BigDecimal value. To have an exception thrown if the conversion is inexact (in other words if a nonzero fractional part is discarded), use the toBigIntegerExact() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger toBigIntegerExact()
+				</name>
+				<description>
+					Converts this BigDecimal to a BigInteger, checking for lost information. An exception is thrown if this BigDecimal has a nonzero fractional part.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long longValue()
+				</name>
+				<description>
+					Converts this BigDecimal to a long. This conversion is analogous to the narrowing primitive conversion from double to short as defined in section 5.1.3 of The Java™ Language Specification: any fractional part of this BigDecimal will be discarded, and if the resulting "BigInteger" is too big to fit in a long, only the low-order 64 bits are returned. Note that this conversion can lose information about the overall magnitude and precision of this BigDecimal value as well as return a result with the opposite sign.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long longValueExact()
+				</name>
+				<description>
+					Converts this BigDecimal to a long, checking for lost information. If this BigDecimal has a nonzero fractional part or is out of the possible range for a long result then an ArithmeticException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int intValue()
+				</name>
+				<description>
+					Converts this BigDecimal to an int. This conversion is analogous to the narrowing primitive conversion from double to short as defined in section 5.1.3 of The Java™ Language Specification: any fractional part of this BigDecimal will be discarded, and if the resulting "BigInteger" is too big to fit in an int, only the low-order 32 bits are returned. Note that this conversion can lose information about the overall magnitude and precision of this BigDecimal value as well as return a result with the opposite sign.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int intValueExact()
+				</name>
+				<description>
+					Converts this BigDecimal to an int, checking for lost information. If this BigDecimal has a nonzero fractional part or is out of the possible range for an int result then an ArithmeticException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public short shortValueExact()
+				</name>
+				<description>
+					Converts this BigDecimal to a short, checking for lost information. If this BigDecimal has a nonzero fractional part or is out of the possible range for a short result then an ArithmeticException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte byteValueExact()
+				</name>
+				<description>
+					Converts this BigDecimal to a byte, checking for lost information. If this BigDecimal has a nonzero fractional part or is out of the possible range for a byte result then an ArithmeticException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float floatValue()
+				</name>
+				<description>
+					Converts this BigDecimal to a float. This conversion is similar to the narrowing primitive conversion from double to float as defined in section 5.1.3 of The Java™ Language Specification: if this BigDecimal has too great a magnitude to represent as a float, it will be converted to Float.NEGATIVE_INFINITY or Float.POSITIVE_INFINITY as appropriate. Note that even when the return value is finite, this conversion can lose information about the precision of the BigDecimal value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double doubleValue()
+				</name>
+				<description>
+					Converts this BigDecimal to a double. This conversion is similar to the narrowing primitive conversion from double to float as defined in section 5.1.3 of The Java™ Language Specification: if this BigDecimal has too great a magnitude represent as a double, it will be converted to Double.NEGATIVE_INFINITY or Double.POSITIVE_INFINITY as appropriate. Note that even when the return value is finite, this conversion can lose information about the precision of the BigDecimal value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal ulp()
+				</name>
+				<description>
+					Returns the size of an ulp, a unit in the last place, of this BigDecimal. An ulp of a nonzero BigDecimal value is the positive distance between this value and the BigDecimal value next larger in magnitude with the same number of digits. An ulp of a zero value is numerically equal to 1 with the scale of this. The result is stored with the same scale as this so the result for zero and nonzero values is equal to [1, this.scale()].
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

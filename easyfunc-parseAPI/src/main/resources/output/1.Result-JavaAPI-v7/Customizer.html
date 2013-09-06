@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public interface Customizer
+		</name>
+		<description>
+			A customizer class provides a complete custom GUI for customizing a target Java Bean. Each customizer should inherit from the java.awt.Component class so it can be instantiated inside an AWT dialog or panel. Each customizer should have a null constructor.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void setObject(Object bean)
+				</name>
+				<description>
+					Set the object to be customized. This method should be called only once, before the Customizer has been added to any parent AWT container.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addPropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Register a listener for the PropertyChange event. The customizer should fire a PropertyChange event whenever it changes the target bean in a way that might require the displayed properties to be refreshed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removePropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Remove a listener for the PropertyChange event.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

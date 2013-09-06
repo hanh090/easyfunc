@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			protected abstract static class DefaultRowSorter.ModelWrapper<M,I>  extends Object
+		</name>
+		<description>
+			DefaultRowSorter.ModelWrapper is responsible for providing the data that gets sorted by DefaultRowSorter. You normally do not interact directly with ModelWrapper. Subclasses of DefaultRowSorter provide an implementation of ModelWrapper wrapping another model. For example, TableRowSorter provides a ModelWrapper that wraps a TableModel. ModelWrapper makes a distinction between values as Objects and Strings. This allows implementations to provide a custom string converter to be used instead of invoking toString on the object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected DefaultRowSorter.ModelWrapper()
+				</name>
+				<description>
+					Creates a new ModelWrapper.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract M getModel()
+				</name>
+				<description>
+					Returns the underlying model that this Model is wrapping.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getColumnCount()
+				</name>
+				<description>
+					Returns the number of columns in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getRowCount()
+				</name>
+				<description>
+					Returns the number of rows in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getValueAt(int row,                  int column)
+				</name>
+				<description>
+					Returns the value at the specified index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getStringValueAt(int row,                        int column)
+				</name>
+				<description>
+					Returns the value as a String at the specified index. This implementation uses toString on the result from getValueAt (making sure to return an empty string for null values). Subclasses that override this method should never return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract I getIdentifier(int row)
+				</name>
+				<description>
+					Returns the identifier for the specified row. The return value of this is used as the identifier for the RowFilter.Entry that is passed to the RowFilter.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

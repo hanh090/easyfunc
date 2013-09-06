@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		java.awt.dnd
+	</package>
+	<type>
+		<name>
+			public abstract class DragGestureRecognizer  extends Object  implements Serializable
+		</name>
+		<description>
+			The DragGestureRecognizer is an abstract base class for the specification of a platform-dependent listener that can be associated with a particular Component in order to identify platform-dependent drag initiating gestures. The appropriate DragGestureRecognizer subclass instance is obtained from the DragSource asssociated with a particular Component, or from the Toolkit object via its createDragGestureRecognizer() method. Once the DragGestureRecognizer is associated with a particular Component it will register the appropriate listener interfaces on that Component in order to track the input events delivered to the Component. Once the DragGestureRecognizer identifies a sequence of events on the Component as a drag initiating gesture, it will notify its unicast DragGestureListener by invoking its gestureRecognized() method. When a concrete DragGestureRecognizer instance detects a drag initiating gesture on the Component it is associated with, it fires a DragGestureEvent to the DragGestureListener registered on its unicast event source for DragGestureListener events. This DragGestureListener is responsible for causing the associated DragSource to start the Drag and Drop operation (if appropriate).
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected DragSource dragSource
+				</name>
+				<description>
+					The DragSource associated with this DragGestureRecognizer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component component
+				</name>
+				<description>
+					The Component associated with this DragGestureRecognizer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient DragGestureListener dragGestureListener
+				</name>
+				<description>
+					The DragGestureListener associated with this DragGestureRecognizer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int sourceActions
+				</name>
+				<description>
+					An int representing the type(s) of action(s) used in this Drag and Drop operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ArrayList<InputEvent> events
+				</name>
+				<description>
+					The list of events (in order) that the DragGestureRecognizer "recognized" as a "gesture" that triggers a drag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DragGestureRecognizer(DragSource ds,                       Component c,                       int sa,                       DragGestureListener dgl)
+				</name>
+				<description>
+					Construct a new DragGestureRecognizer given the DragSource to be used in this Drag and Drop operation, the Component this DragGestureRecognizer should "observe" for drag initiating gestures, the action(s) supported for this Drag and Drop operation, and the DragGestureListener to notify once a drag initiating gesture has been detected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DragGestureRecognizer(DragSource ds,                       Component c,                       int sa)
+				</name>
+				<description>
+					Construct a new DragGestureRecognizer given the DragSource to be used in this Drag and Drop operation, the Component this DragGestureRecognizer should "observe" for drag initiating gestures, and the action(s) supported for this Drag and Drop operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DragGestureRecognizer(DragSource ds,                       Component c)
+				</name>
+				<description>
+					Construct a new DragGestureRecognizer given the DragSource to be used in this Drag and Drop operation, and the Component this DragGestureRecognizer should "observe" for drag initiating gestures.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DragGestureRecognizer(DragSource ds)
+				</name>
+				<description>
+					Construct a new DragGestureRecognizer given the DragSource to be used in this Drag and Drop operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void registerListeners()
+				</name>
+				<description>
+					register this DragGestureRecognizer's Listeners with the Component subclasses must override this method
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void unregisterListeners()
+				</name>
+				<description>
+					unregister this DragGestureRecognizer's Listeners with the Component subclasses must override this method
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragSource getDragSource()
+				</name>
+				<description>
+					This method returns the DragSource this DragGestureRecognizer will use in order to process the Drag and Drop operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getComponent()
+				</name>
+				<description>
+					This method returns the Component that is to be "observed" by the DragGestureRecognizer for drag initiating gestures.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setComponent(Component c)
+				</name>
+				<description>
+					set the Component that the DragGestureRecognizer is associated with registerListeners() and unregisterListeners() are called as a side effect as appropriate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSourceActions()
+				</name>
+				<description>
+					This method returns an int representing the type of action(s) this Drag and Drop operation will support.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSourceActions(int actions)
+				</name>
+				<description>
+					This method sets the permitted source drag action(s) for this Drag and Drop operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputEvent getTriggerEvent()
+				</name>
+				<description>
+					This method returns the first event in the series of events that initiated the Drag and Drop operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void resetRecognizer()
+				</name>
+				<description>
+					Reset the Recognizer, if its currently recognizing a gesture, ignore it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addDragGestureListener(DragGestureListener dgl)                              throws TooManyListenersException
+				</name>
+				<description>
+					Register a new DragGestureListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeDragGestureListener(DragGestureListener dgl)
+				</name>
+				<description>
+					unregister the current DragGestureListener
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireDragGestureRecognized(int dragAction,                               Point p)
+				</name>
+				<description>
+					Notify the DragGestureListener that a Drag and Drop initiating gesture has occurred. Then reset the state of the Recognizer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void appendEvent(InputEvent awtie)
+				</name>
+				<description>
+					Listeners registered on the Component by this Recognizer shall record all Events that are recognized as part of the series of Events that go to comprise a Drag and Drop initiating gesture via this API. This method is used by a DragGestureRecognizer implementation to add an InputEvent subclass (that it believes is one in a series of events that comprise a Drag and Drop operation) to the array of events that this DragGestureRecognizer maintains internally.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

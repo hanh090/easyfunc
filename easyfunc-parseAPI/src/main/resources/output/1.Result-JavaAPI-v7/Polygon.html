@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class Polygon  extends Object  implements Shape, Serializable
+		</name>
+		<description>
+			The Polygon class encapsulates a description of a closed, two-dimensional region within a coordinate space. This region is bounded by an arbitrary number of line segments, each of which is one side of the polygon. Internally, a polygon comprises of a list of (x,y) coordinate pairs, where each pair defines a vertex of the polygon, and two successive pairs are the endpoints of a line that is a side of the polygon. The first and final pairs of (x,y) points are joined by a line segment that closes the polygon. This Polygon is defined with an even-odd winding rule. See WIND_EVEN_ODD for a definition of the even-odd winding rule. This class's hit-testing methods, which include the contains, intersects and inside methods, use the insideness definition described in the Shape class comments.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public int npoints
+				</name>
+				<description>
+					The total number of points. The value of npoints represents the number of valid points in this Polygon and might be less than the number of elements in xpoints or ypoints. This value can be NULL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] xpoints
+				</name>
+				<description>
+					The array of X coordinates. The number of elements in this array might be more than the number of X coordinates in this Polygon. The extra elements allow new points to be added to this Polygon without re-creating this array. The value of npoints is equal to the number of valid points in this Polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] ypoints
+				</name>
+				<description>
+					The array of Y coordinates. The number of elements in this array might be more than the number of Y coordinates in this Polygon. The extra elements allow new points to be added to this Polygon without re-creating this array. The value of npoints is equal to the number of valid points in this Polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle bounds
+				</name>
+				<description>
+					The bounds of this Polygon. This value can be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Polygon()
+				</name>
+				<description>
+					Creates an empty polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Polygon(int[] xpoints,         int[] ypoints,         int npoints)
+				</name>
+				<description>
+					Constructs and initializes a Polygon from the specified parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()
+				</name>
+				<description>
+					Resets this Polygon object to an empty polygon. The coordinate arrays and the data in them are left untouched but the number of points is reset to zero to mark the old vertex data as invalid and to start accumulating new vertex data at the beginning. All internally-cached data relating to the old vertices are discarded. Note that since the coordinate arrays from before the reset are reused, creating a new empty Polygon might be more memory efficient than resetting the current one if the number of vertices in the new polygon data is significantly smaller than the number of vertices in the data from before the reset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void invalidate()
+				</name>
+				<description>
+					Invalidates or flushes any internally-cached data that depends on the vertex coordinates of this Polygon. This method should be called after any direct manipulation of the coordinates in the xpoints or ypoints arrays to avoid inconsistent results from methods such as getBounds or contains that might cache data from earlier computations relating to the vertex coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void translate(int deltaX,               int deltaY)
+				</name>
+				<description>
+					Translates the vertices of the Polygon by deltaX along the x axis and by deltaY along the y axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPoint(int x,              int y)
+				</name>
+				<description>
+					Appends the specified coordinates to this Polygon. If an operation that calculates the bounding box of this Polygon has already been performed, such as getBounds or contains, then this method updates the bounding box.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getBounds()
+				</name>
+				<description>
+					Gets the bounding box of this Polygon. The bounding box is the smallest Rectangle whose sides are parallel to the x and y axes of the coordinate space, and can completely contain the Polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Rectangle getBoundingBox()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by getBounds(). Returns the bounds of this Polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Point p)
+				</name>
+				<description>
+					Determines whether the specified Point is inside this Polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(int x,                 int y)
+				</name>
+				<description>
+					Determines whether the specified coordinates are inside this Polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public boolean inside(int x,                          int y)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by contains(int, int). Determines whether the specified coordinates are contained in this Polygon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getBounds2D()
+				</name>
+				<description>
+					Returns a high precision and more accurate bounding box of the Shape than the getBounds method. Note that there is no guarantee that the returned Rectangle2D is the smallest bounding box that encloses the Shape, only that the Shape lies entirely within the indicated Rectangle2D. The bounding box returned by this method is usually tighter than that returned by the getBounds method and never fails due to overflow problems since the return value can be an instance of the Rectangle2D that uses double precision values to store the dimensions. Note that the definition of insideness can lead to situations where points on the defining outline of the shape may not be considered contained in the returned bounds object, but only in cases where those points are also not considered contained in the original shape. If a point is inside the shape according to the contains(point) method, then it must be inside the returned Rectangle2D bounds object according to the contains(point) method of the bounds. Specifically: shape.contains(p) requires bounds.contains(p) If a point is not inside the shape, then it might still be contained in the bounds object: bounds.contains(p) does not imply shape.contains(p)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y)
+				</name>
+				<description>
+					Tests if the specified coordinates are inside the boundary of the Shape, as described by the definition of insideness.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Point2D p)
+				</name>
+				<description>
+					Tests if a specified Point2D is inside the boundary of the Shape, as described by the definition of insideness.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean intersects(double x,                   double y,                   double w,                   double h)
+				</name>
+				<description>
+					Tests if the interior of the Shape intersects the interior of a specified rectangular area. The rectangular area is considered to intersect the Shape if any point is contained in both the interior of the Shape and the specified rectangular area. The Shape.intersects() method allows a Shape implementation to conservatively return true when: there is a high probability that the rectangular area and the Shape intersect, but the calculations to accurately determine this intersection are prohibitively expensive. This means that for some Shapes this method might return true even though the rectangular area does not intersect the Shape. The Area class performs more accurate computations of geometric intersection than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean intersects(Rectangle2D r)
+				</name>
+				<description>
+					Tests if the interior of the Shape intersects the interior of a specified Rectangle2D. The Shape.intersects() method allows a Shape implementation to conservatively return true when: there is a high probability that the Rectangle2D and the Shape intersect, but the calculations to accurately determine this intersection are prohibitively expensive. This means that for some Shapes this method might return true even though the Rectangle2D does not intersect the Shape. The Area class performs more accurate computations of geometric intersection than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y,                 double w,                 double h)
+				</name>
+				<description>
+					Tests if the interior of the Shape entirely contains the specified rectangular area. All coordinates that lie inside the rectangular area must lie within the Shape for the entire rectanglar area to be considered contained within the Shape. The Shape.contains() method allows a Shape implementation to conservatively return false when: the intersect method returns true and the calculations to determine whether or not the Shape entirely contains the rectangular area are prohibitively expensive. This means that for some Shapes this method might return false even though the Shape contains the rectangular area. The Area class performs more accurate geometric computations than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Rectangle2D r)
+				</name>
+				<description>
+					Tests if the interior of the Shape entirely contains the specified Rectangle2D. The Shape.contains() method allows a Shape implementation to conservatively return false when: the intersect method returns true and the calculations to determine whether or not the Shape entirely contains the Rectangle2D are prohibitively expensive. This means that for some Shapes this method might return false even though the Shape contains the Rectangle2D. The Area class performs more accurate geometric computations than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PathIterator getPathIterator(AffineTransform at)
+				</name>
+				<description>
+					Returns an iterator object that iterates along the boundary of this Polygon and provides access to the geometry of the outline of this Polygon. An optional AffineTransform can be specified so that the coordinates returned in the iteration are transformed accordingly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PathIterator getPathIterator(AffineTransform at,                             double flatness)
+				</name>
+				<description>
+					Returns an iterator object that iterates along the boundary of the Shape and provides access to the geometry of the outline of the Shape. Only SEG_MOVETO, SEG_LINETO, and SEG_CLOSE point types are returned by the iterator. Since polygons are already flat, the flatness parameter is ignored. An optional AffineTransform can be specified in which case the coordinates returned in the iteration are transformed accordingly.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

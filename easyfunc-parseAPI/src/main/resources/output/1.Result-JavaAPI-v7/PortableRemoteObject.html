@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.rmi
+	</package>
+	<type>
+		<name>
+			public class PortableRemoteObject  extends Object
+		</name>
+		<description>
+			Server implementation objects may either inherit from javax.rmi.PortableRemoteObject or they may implement a remote interface and then use the exportObject method to register themselves as a server object. The toStub method takes a server implementation and returns a stub that can be used to access that server object. The connect method makes a Remote object ready for remote communication. The unexportObject method is used to deregister a server object, allowing it to become available for garbage collection. The narrow method takes an object reference or abstract interface type and attempts to narrow it to conform to the given interface. If the operation is successful the result will be an object of the specified type, otherwise an exception will be thrown.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected PortableRemoteObject()                          throws RemoteException
+				</name>
+				<description>
+					Initializes the object by calling exportObject(this).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void exportObject(Remote obj)                           throws RemoteException
+				</name>
+				<description>
+					Makes a server object ready to receive remote calls. Note that subclasses of PortableRemoteObject do not need to call this method, as it is called by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Remote toStub(Remote obj)                       throws NoSuchObjectException
+				</name>
+				<description>
+					Returns a stub for the given server object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void unexportObject(Remote obj)                             throws NoSuchObjectException
+				</name>
+				<description>
+					Deregisters a server object from the runtime, allowing the object to become available for garbage collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object narrow(Object narrowFrom,              Class narrowTo)                       throws ClassCastException
+				</name>
+				<description>
+					Checks to ensure that an object of a remote or abstract interface type can be cast to a desired type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void connect(Remote target,             Remote source)                      throws RemoteException
+				</name>
+				<description>
+					Makes a Remote object ready for remote communication. This normally happens implicitly when the object is sent or received as an argument on a remote method call, but in some circumstances it is useful to perform this action by making an explicit call. See the Stub.connect(org.omg.CORBA.ORB) method for more information.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

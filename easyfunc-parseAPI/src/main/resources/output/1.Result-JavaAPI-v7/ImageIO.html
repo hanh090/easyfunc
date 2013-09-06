@@ -1,0 +1,297 @@
+<javaelement>
+	<package>
+		javax.imageio
+	</package>
+	<type>
+		<name>
+			public final class ImageIO  extends Object
+		</name>
+		<description>
+			A class containing static convenience methods for locating ImageReaders and ImageWriters, and performing simple encoding and decoding.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static void scanForPlugins()
+				</name>
+				<description>
+					Scans for plug-ins on the application class path, loads their service provider classes, and registers a service provider instance for each one found with the IIORegistry. This method is needed because the application class path can theoretically change, or additional plug-ins may become available. Rather than re-scanning the classpath on every invocation of the API, the class path is scanned automatically only on the first invocation. Clients can call this method to prompt a re-scan. Thus this method need only be invoked by sophisticated applications which dynamically make new plug-ins available at runtime. The getResources method of the context ClassLoader is used locate JAR files containing files named META-INF/services/javax.imageio.spi.classname, where classname is one of ImageReaderSpi, ImageWriterSpi, ImageTranscoderSpi, ImageInputStreamSpi, or ImageOutputStreamSpi, along the application class path. The contents of the located files indicate the names of actual implementation classes which implement the aforementioned service provider interfaces; the default class loader is then used to load each of these classes and to instantiate an instance of each class, which is then placed into the registry for later retrieval. The exact set of locations searched depends on the implementation of the Java runtime enviroment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setUseCache(boolean useCache)
+				</name>
+				<description>
+					Sets a flag indicating whether a disk-based cache file should be used when creating ImageInputStreams and ImageOutputStreams. When reading from a standard InputStream>, it may be necessary to save previously read information in a cache since the underlying stream does not allow data to be re-read. Similarly, when writing to a standard OutputStream, a cache may be used to allow a previously written value to be changed before flushing it to the final destination. The cache may reside in main memory or on disk. Setting this flag to false disallows the use of disk for future streams, which may be advantageous when working with small images, as the overhead of creating and destroying files is removed. On startup, the value is set to true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean getUseCache()
+				</name>
+				<description>
+					Returns the current value set by setUseCache, or true if no explicit setting has been made.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setCacheDirectory(File cacheDirectory)
+				</name>
+				<description>
+					Sets the directory where cache files are to be created. A value of null indicates that the system-dependent default temporary-file directory is to be used. If getUseCache returns false, this value is ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static File getCacheDirectory()
+				</name>
+				<description>
+					Returns the current value set by setCacheDirectory, or null if no explicit setting has been made.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageInputStream createImageInputStream(Object input)                                                 throws IOException
+				</name>
+				<description>
+					Returns an ImageInputStream that will take its input from the given Object. The set of ImageInputStreamSpis registered with the IIORegistry class is queried and the first one that is able to take input from the supplied object is used to create the returned ImageInputStream. If no suitable ImageInputStreamSpi exists, null is returned. The current cache settings from getUseCacheand getCacheDirectory will be used to control caching.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageOutputStream createImageOutputStream(Object output)                                                   throws IOException
+				</name>
+				<description>
+					Returns an ImageOutputStream that will send its output to the given Object. The set of ImageOutputStreamSpis registered with the IIORegistry class is queried and the first one that is able to send output from the supplied object is used to create the returned ImageOutputStream. If no suitable ImageOutputStreamSpi exists, null is returned. The current cache settings from getUseCacheand getCacheDirectory will be used to control caching.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getReaderFormatNames()
+				</name>
+				<description>
+					Returns an array of Strings listing all of the informal format names understood by the current set of registered readers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getReaderMIMETypes()
+				</name>
+				<description>
+					Returns an array of Strings listing all of the MIME types understood by the current set of registered readers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getReaderFileSuffixes()
+				</name>
+				<description>
+					Returns an array of Strings listing all of the file suffixes associated with the formats understood by the current set of registered readers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageReader> getImageReaders(Object input)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode the supplied Object, typically an ImageInputStream. The stream position is left at its prior position upon exit from this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageReader> getImageReadersByFormatName(String formatName)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode the named format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageReader> getImageReadersBySuffix(String fileSuffix)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode files with the given suffix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageReader> getImageReadersByMIMEType(String MIMEType)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode files with the given MIME type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getWriterFormatNames()
+				</name>
+				<description>
+					Returns an array of Strings listing all of the informal format names understood by the current set of registered writers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getWriterMIMETypes()
+				</name>
+				<description>
+					Returns an array of Strings listing all of the MIME types understood by the current set of registered writers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String[] getWriterFileSuffixes()
+				</name>
+				<description>
+					Returns an array of Strings listing all of the file suffixes associated with the formats understood by the current set of registered writers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageWriter> getImageWritersByFormatName(String formatName)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode the named format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageWriter> getImageWritersBySuffix(String fileSuffix)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode files with the given suffix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageWriter> getImageWritersByMIMEType(String MIMEType)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode files with the given MIME type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageWriter getImageWriter(ImageReader reader)
+				</name>
+				<description>
+					Returns an ImageWritercorresponding to the given ImageReader, if there is one, or null if the plug-in for this ImageReader does not specify a corresponding ImageWriter, or if the given ImageReader is not registered. This mechanism may be used to obtain an ImageWriter that will understand the internal structure of non-pixel metadata (as encoded by IIOMetadata objects) generated by the ImageReader. By obtaining this data from the ImageReader and passing it on to the ImageWriter obtained with this method, a client program can read an image, modify it in some way, and write it back out preserving all metadata, without having to understand anything about the structure of the metadata, or even about the image format. Note that this method returns the "preferred" writer, which is the first in the list returned by javax.imageio.spi.ImageReaderSpi.getImageWriterSpiNames().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ImageReader getImageReader(ImageWriter writer)
+				</name>
+				<description>
+					Returns an ImageReadercorresponding to the given ImageWriter, if there is one, or null if the plug-in for this ImageWriter does not specify a corresponding ImageReader, or if the given ImageWriter is not registered. This method is provided principally for symmetry with getImageWriter(ImageReader). Note that this method returns the "preferred" reader, which is the first in the list returned by javax.imageio.spi.ImageWriterSpi.getImageReaderSpiNames().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageWriter> getImageWriters(ImageTypeSpecifier type,                                      String formatName)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode images of the given layout (specified using an ImageTypeSpecifier) in the given format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Iterator<ImageTranscoder> getImageTranscoders(ImageReader reader,                                              ImageWriter writer)
+				</name>
+				<description>
+					Returns an Iterator containing all currently registered ImageTranscoders that claim to be able to transcode between the metadata of the given ImageReader and ImageWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BufferedImage read(File input)                            throws IOException
+				</name>
+				<description>
+					Returns a BufferedImage as the result of decoding a supplied File with an ImageReader chosen automatically from among those currently registered. The File is wrapped in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. The current cache settings from getUseCacheand getCacheDirectory will be used to control caching in the ImageInputStream that is created. Note that there is no read method that takes a filename as a String; use this method instead after creating a File from the filename. This method does not attempt to locate ImageReaders that can read directly from a File; that may be accomplished using IIORegistry and ImageReaderSpi.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BufferedImage read(InputStream input)                            throws IOException
+				</name>
+				<description>
+					Returns a BufferedImage as the result of decoding a supplied InputStream with an ImageReader chosen automatically from among those currently registered. The InputStream is wrapped in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. The current cache settings from getUseCacheand getCacheDirectory will be used to control caching in the ImageInputStream that is created. This method does not attempt to locate ImageReaders that can read directly from an InputStream; that may be accomplished using IIORegistry and ImageReaderSpi. This method does not close the provided InputStream after the read operation has completed; it is the responsibility of the caller to close the stream, if desired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BufferedImage read(URL input)                            throws IOException
+				</name>
+				<description>
+					Returns a BufferedImage as the result of decoding a supplied URL with an ImageReader chosen automatically from among those currently registered. An InputStream is obtained from the URL, which is wrapped in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. The current cache settings from getUseCacheand getCacheDirectory will be used to control caching in the ImageInputStream that is created. This method does not attempt to locate ImageReaders that can read directly from a URL; that may be accomplished using IIORegistry and ImageReaderSpi.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BufferedImage read(ImageInputStream stream)                            throws IOException
+				</name>
+				<description>
+					Returns a BufferedImage as the result of decoding a supplied ImageInputStream with an ImageReader chosen automatically from among those currently registered. If no registered ImageReader claims to be able to read the stream, null is returned. Unlike most other methods in this class, this method does close the provided ImageInputStream after the read operation has completed, unless null is returned, in which case this method does not close the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean write(RenderedImage im,              String formatName,              ImageOutputStream output)                       throws IOException
+				</name>
+				<description>
+					Writes an image using the an arbitrary ImageWriter that supports the given format to an ImageOutputStream. The image is written to the ImageOutputStream starting at the current stream pointer, overwriting existing stream data from that point forward, if present. This method does not close the provided ImageOutputStream after the write operation has completed; it is the responsibility of the caller to close the stream, if desired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean write(RenderedImage im,              String formatName,              File output)                       throws IOException
+				</name>
+				<description>
+					Writes an image using an arbitrary ImageWriter that supports the given format to a File. If there is already a File present, its contents are discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean write(RenderedImage im,              String formatName,              OutputStream output)                       throws IOException
+				</name>
+				<description>
+					Writes an image using an arbitrary ImageWriter that supports the given format to an OutputStream. This method does not close the provided OutputStream after the write operation has completed; it is the responsibility of the caller to close the stream, if desired. The current cache settings from getUseCacheand getCacheDirectory will be used to control caching.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

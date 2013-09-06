@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.nio.channels
+	</package>
+	<type>
+		<name>
+			public abstract class AsynchronousServerSocketChannel  extends Object  implements AsynchronousChannel, NetworkChannel
+		</name>
+		<description>
+			An asynchronous channel for stream-oriented listening sockets. An asynchronous server-socket channel is created by invoking the open method of this class. A newly-created asynchronous server-socket channel is open but not yet bound. It can be bound to a local address and configured to listen for connections by invoking the bind method. Once bound, the accept method is used to initiate the accepting of connections to the channel's socket. An attempt to invoke the accept method on an unbound channel will cause a NotYetBoundException to be thrown. Channels of this type are safe for use by multiple concurrent threads though at most one accept operation can be outstanding at any time. If a thread initiates an accept operation before a previous accept operation has completed then an AcceptPendingException will be thrown. Socket options are configured using the setOption method. Channels of this type support the following options: Option Name Description SO_RCVBUF The size of the socket receive buffer SO_REUSEADDR Re-use address Additional (implementation specific) options may also be supported. Usage Example:     final AsynchronousServerSocketChannel listener =        AsynchronousServerSocketChannel.open().bind(new InetSocketAddress(5000));      listener.accept(null, new CompletionHandler<AsynchronousSocketChannel,Void>() {        public void completed(AsynchronousSocketChannel ch, Void att) {            // accept the next connection            listener.accept(null, this);              // handle this connection            handle(ch);        }        public void failed(Throwable exc, Void att) {            ...        }    });
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AsynchronousServerSocketChannel(AsynchronousChannelProvider provider)
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final AsynchronousChannelProvider provider()
+				</name>
+				<description>
+					Returns the provider that created this channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AsynchronousServerSocketChannel open(AsynchronousChannelGroup group)                                              throws IOException
+				</name>
+				<description>
+					Opens an asynchronous server-socket channel. The new channel is created by invoking the openAsynchronousServerSocketChannel method on the AsynchronousChannelProvider object that created the given group. If the group parameter is null then the resulting channel is created by the system-wide default provider, and bound to the default group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AsynchronousServerSocketChannel open()                                              throws IOException
+				</name>
+				<description>
+					Opens an asynchronous server-socket channel. This method returns an asynchronous server socket channel that is bound to the default group. This method is equivalent to evaluating the expression:    open((AsynchronousChannelGroup)null);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final AsynchronousServerSocketChannel bind(SocketAddress local)                                             throws IOException
+				</name>
+				<description>
+					Binds the channel's socket to a local address and configures the socket to listen for connections. An invocation of this method is equivalent to the following:    bind(local, 0);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AsynchronousServerSocketChannel bind(SocketAddress local,                                     int backlog)                                                throws IOException
+				</name>
+				<description>
+					Binds the channel's socket to a local address and configures the socket to listen for connections. This method is used to establish an association between the socket and a local address. Once an association is established then the socket remains bound until the associated channel is closed. The backlog parameter is the maximum number of pending connections on the socket. Its exact semantics are implementation specific. In particular, an implementation may impose a maximum length or may choose to ignore the parameter altogther. If the backlog parameter has the value 0, or a negative value, then an implementation specific default is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <T> AsynchronousServerSocketChannel setOption(SocketOption<T> name,                                              T value)                                                     throws IOException
+				</name>
+				<description>
+					Description copied from interface: NetworkChannel Sets the value of a socket option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <A> void accept(A attachment,                CompletionHandler<AsynchronousSocketChannel,? super A> handler)
+				</name>
+				<description>
+					Accepts a connection. This method initiates an asynchronous operation to accept a connection made to this channel's socket. The handler parameter is a completion handler that is invoked when a connection is accepted (or the operation fails). The result passed to the completion handler is the AsynchronousSocketChannel to the new connection. When a new connection is accepted then the resulting AsynchronousSocketChannel will be bound to the same AsynchronousChannelGroup as this channel. If the group is shutdown and a connection is accepted, then the connection is closed, and the operation completes with an IOException and cause ShutdownChannelGroupException. To allow for concurrent handling of new connections, the completion handler is not invoked directly by the initiating thread when a new connection is accepted immediately (see Threading). If a security manager has been installed then it verifies that the address and port number of the connection's remote endpoint are permitted by the security manager's checkAccept method. The permission check is performed with privileges that are restricted by the calling context of this method. If the permission check fails then the connection is closed and the operation completes with a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Future<AsynchronousSocketChannel> accept()
+				</name>
+				<description>
+					Accepts a connection. This method initiates an asynchronous operation to accept a connection made to this channel's socket. The method behaves in exactly the same manner as the accept(Object, CompletionHandler) method except that instead of specifying a completion handler, this method returns a Future representing the pending result. The Future's get method returns the AsynchronousSocketChannel to the new connection on successful completion.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

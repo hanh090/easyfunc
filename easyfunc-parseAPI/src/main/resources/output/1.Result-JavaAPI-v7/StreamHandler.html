@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.util.logging
+	</package>
+	<type>
+		<name>
+			public class StreamHandler  extends Handler
+		</name>
+		<description>
+			Stream based logging Handler. This is primarily intended as a base class or support class to be used in implementing other logging Handlers. LogRecords are published to a given java.io.OutputStream. Configuration: By default each StreamHandler is initialized using the following LogManager configuration properties. If properties are not defined (or have invalid values) then the specified default values are used. java.util.logging.StreamHandler.level specifies the default level for the Handler (defaults to Level.INFO). java.util.logging.StreamHandler.filter specifies the name of a Filter class to use (defaults to no Filter). java.util.logging.StreamHandler.formatter specifies the name of a Formatter class to use (defaults to java.util.logging.SimpleFormatter). java.util.logging.StreamHandler.encoding the name of the character set encoding to use (defaults to the default platform encoding).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StreamHandler()
+				</name>
+				<description>
+					Create a StreamHandler, with no current output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StreamHandler(OutputStream out,               Formatter formatter)
+				</name>
+				<description>
+					Create a StreamHandler with a given Formatter and output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setOutputStream(OutputStream out)                          throws SecurityException
+				</name>
+				<description>
+					Change the output stream. If there is a current output stream then the Formatter's tail string is written and the stream is flushed and closed. Then the output stream is replaced with the new output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEncoding(String encoding)                   throws SecurityException,                          UnsupportedEncodingException
+				</name>
+				<description>
+					Set (or change) the character encoding used by this Handler. The encoding should be set before any LogRecords are written to the Handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void publish(LogRecord record)
+				</name>
+				<description>
+					Format and publish a LogRecord. The StreamHandler first checks if there is an OutputStream and if the given LogRecord has at least the required log level. If not it silently returns. If so, it calls any associated Filter to check if the record should be published. If so, it calls its Formatter to format the record and then writes the result to the current output stream. If this is the first LogRecord to be written to a given OutputStream, the Formatter's "head" string is written to the stream before the LogRecord is written.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLoggable(LogRecord record)
+				</name>
+				<description>
+					Check if this Handler would actually log a given LogRecord. This method checks if the LogRecord has an appropriate level and whether it satisfies any Filter. It will also return false if no output stream has been assigned yet or the LogRecord is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flush()
+				</name>
+				<description>
+					Flush any buffered messages.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws SecurityException
+				</name>
+				<description>
+					Close the current output stream. The Formatter's "tail" string is written to the stream before it is closed. In addition, if the Formatter's "head" string has not yet been written to the stream, it will be written before the "tail" string.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		org.ietf.jgss
+	</package>
+	<type>
+		<name>
+			public abstract class GSSManager  extends Object
+		</name>
+		<description>
+			This class serves as a factory for other important GSS-API classes and also provides information about the mechanisms that are supported. It can create instances of classes implementing the following three GSS-API interfaces: GSSName, GSSCredential, and GSSContext. It also has methods to query for the list of available mechanisms and the nametypes that each mechanism supports. An instance of the default GSSManager subclass may be obtained through the static method getInstance, but applications are free to instantiate other subclasses of GSSManager. The default GSSManager instance will support the Kerberos v5 GSS-API mechanism in addition to any others. This mechanism is identified by the Oid "1.2.840.113554.1.2.2" and is defined in RFC 1964. A subclass extending the GSSManager abstract class may be implemented as a modular provider based layer that utilizes some well known service provider specification. The GSSManager API allows the application to set provider preferences on such an implementation. These methods also allow the implementation to throw a well-defined exception in case provider based configuration is not supported. Applications that expect to be portable should be aware of this and recover cleanly by catching the exception. It is envisioned that there will be three most common ways in which providers will be used: The application does not care about what provider is used (the default case). The application wants a particular provider to be used preferentially, either for a particular mechanism or all the time, irrespective of mechanism. The application wants to use the locally configured providers as far as possible but if support is missing for one or more mechanisms then it wants to fall back on its own provider. The GSSManager class has two methods that enable these modes of usage: addProviderAtFront and addProviderAtEnd. These methods have the effect of creating an ordered list of <provider, oid> pairs where each pair indicates a preference of provider for a given oid. It is important to note that there are certain interactions between the different GSS-API objects that are created by a GSSManager, where the provider that is used for a particular mechanism might need to be consistent across all objects. For instance, if a GSSCredential contains elements from a provider p for a mechanism m, it should generally be passed in to a GSSContext that will use provider p for the mechanism m. A simple rule of thumb that will maximize portability is that objects created from different GSSManager's should not be mixed, and if possible, a different GSSManager instance should be created if the application wants to invoke the addProviderAtFront method on a GSSManager that has already created an object. Here is some sample code showing how the GSSManager might be used:        GSSManager manager = GSSManager.getInstance();         Oid krb5Mechanism = new Oid("1.2.840.113554.1.2.2");       Oid krb5PrincipalNameType = new Oid("1.2.840.113554.1.2.2.1");         // Identify who the client wishes to be       GSSName userName = manager.createName("duke", GSSName.NT_USER_NAME);         // Identify the name of the server. This uses a Kerberos specific       // name format.       GSSName serverName = manager.createName("nfs/foo.sun.com",                                               krb5PrincipalNameType);         // Acquire credentials for the user       GSSCredential userCreds = manager.createCredential(userName,                                               GSSCredential.DEFAULT_LIFETIME,                                               krb5Mechanism,                                               GSSCredential.INITIATE_ONLY);         // Instantiate and initialize a security context that will be       // established with the server       GSSContext context = manager.createContext(serverName,                                                  krb5Mechanism,                                                  userCreds,                                                  GSSContext.DEFAULT_LIFETIME);   The server side might use the following variation of this source:        // Acquire credentials for the server       GSSCredential serverCreds = manager.createCredential(serverName,                                               GSSCredential.DEFAULT_LIFETIME,                                               krb5Mechanism,                                               GSSCredential.ACCEPT_ONLY);         // Instantiate and initialize a security context that will       // wait for an establishment request token from the client       GSSContext context = manager.createContext(serverCreds);
+		</description>
+		<methods>
+			<method>
+				<name>
+					public GSSManager()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static GSSManager getInstance()
+				</name>
+				<description>
+					Returns the default GSSManager implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Oid[] getMechs()
+				</name>
+				<description>
+					Returns a list of mechanisms that are available to GSS-API callers through this GSSManager. The default GSSManager obtained from the getInstance() method includes the Oid "1.2.840.113554.1.2.2" in its list. This Oid identifies the Kerberos v5 GSS-API mechanism that is defined in RFC 1964.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Oid[] getNamesForMech(Oid mech)                                 throws GSSException
+				</name>
+				<description>
+					Returns then name types supported by the indicated mechanism. The default GSSManager instance includes support for the Kerberos v5 mechanism. When this mechanism ("1.2.840.113554.1.2.2") is indicated, the returned list will contain at least the following nametypes: GSSName.NT_HOSTBASED_SERVICE, GSSName.NT_EXPORT_NAME, and the Kerberos v5 specific Oid "1.2.840.113554.1.2.2.1". The namespace for the Oid "1.2.840.113554.1.2.2.1" is defined in RFC 1964.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Oid[] getMechsForName(Oid nameType)
+				</name>
+				<description>
+					Returns a list of mechanisms that support the indicated name type. The Kerberos v5 mechanism ("1.2.840.113554.1.2.2") will always be returned in this list when the indicated nametype is one of GSSName.NT_HOSTBASED_SERVICE, GSSName.NT_EXPORT_NAME, or "1.2.840.113554.1.2.2.1".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSName createName(String nameStr,                   Oid nameType)                              throws GSSException
+				</name>
+				<description>
+					Factory method to convert a string name from the specified namespace to a GSSName object. In general, the GSSName object created will contain multiple representations of the name, one for each mechanism that is supported; two examples that are exceptions to this are when the namespace type parameter indicates NT_EXPORT_NAME or when the GSS-API implementation is not multi-mechanism. It is not recommended to use this method with a NT_EXPORT_NAME type because representing a previously exported name consisting of abitrary bytes as a String might cause problems with character encoding schemes. In such cases it is recommended that the bytes be passed in directly to the overloaded form of this method createName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSName createName(byte[] name,                   Oid nameType)                              throws GSSException
+				</name>
+				<description>
+					Factory method to convert a byte array containing a name from the specified namespace to a GSSName object. In general, the GSSName object created will contain multiple representations of the name, one for each mechanism that is supported; two examples that are exceptions to this are when the namespace type parameter indicates NT_EXPORT_NAME or when the GSS-API implementation is not multi-mechanism. The bytes that are passed in are interpreted by each underlying mechanism according to some encoding scheme of its choice for the given nametype.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSName createName(String nameStr,                   Oid nameType,                   Oid mech)                              throws GSSException
+				</name>
+				<description>
+					Factory method to convert a string name from the specified namespace to a GSSName object and canonicalize it at the same time for a mechanism. In other words, this method is a utility that does the equivalent of two steps: the createName and then also the GSSName.canonicalize.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSName createName(byte[] name,                   Oid nameType,                   Oid mech)                              throws GSSException
+				</name>
+				<description>
+					Factory method to convert a byte array containing a name from the specified namespace to a GSSName object and canonicalize it at the same time for a mechanism. In other words, this method is a utility that does the equivalent of two steps: the createName and then also GSSName.canonicalize.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSCredential createCredential(int usage)                                          throws GSSException
+				</name>
+				<description>
+					Factory method for acquiring default credentials. This will cause the GSS-API to use system specific defaults for the set of mechanisms, name, and lifetime. GSS-API mechanism providers must impose a local access-control policy on callers to prevent unauthorized callers from acquiring credentials to which they are not entitled. The kinds of permissions needed by different mechanism providers will be documented on a per-mechanism basis. A failed permission check might cause a SecurityException to be thrown from this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSCredential createCredential(GSSName name,                               int lifetime,                               Oid mech,                               int usage)                                          throws GSSException
+				</name>
+				<description>
+					Factory method for acquiring a single mechanism credential. GSS-API mechanism providers must impose a local access-control policy on callers to prevent unauthorized callers from acquiring credentials to which they are not entitled. The kinds of permissions needed by different mechanism providers will be documented on a per-mechanism basis. A failed permission check might cause a SecurityException to be thrown from this method. Non-default values for lifetime cannot always be honored by the underlying mechanisms, thus applications should be prepared to call getRemainingLifetime on the returned credential.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSCredential createCredential(GSSName name,                               int lifetime,                               Oid[] mechs,                               int usage)                                          throws GSSException
+				</name>
+				<description>
+					Factory method for acquiring credentials over a set of mechanisms. This method attempts to acquire credentials for each of the mechanisms specified in the array called mechs. To determine the list of mechanisms for which the acquisition of credentials succeeded, the caller should use the GSSCredential.getMechs method. GSS-API mechanism providers must impose a local access-control policy on callers to prevent unauthorized callers from acquiring credentials to which they are not entitled. The kinds of permissions needed by different mechanism providers will be documented on a per-mechanism basis. A failed permission check might cause a SecurityException to be thrown from this method. Non-default values for lifetime cannot always be honored by the underlying mechanisms, thus applications should be prepared to call getRemainingLifetime on the returned credential.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSContext createContext(GSSName peer,                         Oid mech,                         GSSCredential myCred,                         int lifetime)                                    throws GSSException
+				</name>
+				<description>
+					Factory method for creating a context on the initiator's side. Some mechanism providers might require that the caller be granted permission to initiate a security context. A failed permission check might cause a SecurityException to be thrown from this method. Non-default values for lifetime cannot always be honored by the underlying mechanism, thus applications should be prepared to call getLifetime on the returned context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSContext createContext(GSSCredential myCred)                                    throws GSSException
+				</name>
+				<description>
+					Factory method for creating a context on the acceptor' side. The context's properties will be determined from the input token supplied to the accept method. Some mechanism providers might require that the caller be granted permission to accept a security context. A failed permission check might cause a SecurityException to be thrown from this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GSSContext createContext(byte[] interProcessToken)                                    throws GSSException
+				</name>
+				<description>
+					Factory method for creating a previously exported context. The context properties will be determined from the input token and cannot be modified through the set methods. Implementations are not required to support the inter-process transfer of security contexts. Before exporting a context, calling the GSSContext.isTransferable will indicate if the context is transferable. Calling this method in an implementation that does not support it will result in a GSSException with the error code GSSException.UNAVAILABLE. Some mechanism providers might require that the caller be granted permission to initiate or accept a security context. A failed permission check might cause a SecurityException to be thrown from this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void addProviderAtFront(Provider p,                        Oid mech)                                   throws GSSException
+				</name>
+				<description>
+					This method is used to indicate to the GSSManager that the application would like a particular provider to be used ahead of all others when support is desired for the given mechanism. When a value of null is used instead of an Oid for the mechanism, the GSSManager must use the indicated provider ahead of all others no matter what the mechanism is. Only when the indicated provider does not support the needed mechanism should the GSSManager move on to a different provider. Calling this method repeatedly preserves the older settings but lowers them in preference thus forming an ordered list of provider and Oid pairs that grows at the top. Calling addProviderAtFront with a null Oid will remove all previous preferences that were set for this provider in the GSSManager instance. Calling addProviderAtFront with a non-null Oid will remove any previous preference that was set using this mechanism and this provider together. If the GSSManager implementation does not support an SPI with a pluggable provider architecture it should throw a GSSException with the status code GSSException.UNAVAILABLE to indicate that the operation is unavailable. Suppose an application desired that the provider A always be checked first when any mechanism is needed, it would call:            GSSManager mgr = GSSManager.getInstance();           // mgr may at this point have its own pre-configured list           // of provider preferences. The following will prepend to           // any such list:             mgr.addProviderAtFront(A, null);   Now if it also desired that the mechanism of Oid m1 always be obtained from the provider B before the previously set A was checked, it would call:            mgr.addProviderAtFront(B, m1);   The GSSManager would then first check with B if m1 was needed. In case B did not provide support for m1, the GSSManager would continue on to check with A. If any mechanism m2 is needed where m2 is different from m1 then the GSSManager would skip B and check with A directly. Suppose at a later time the following call is made to the same GSSManager instance:            mgr.addProviderAtFront(B, null)   then the previous setting with the pair (B, m1) is subsumed by this and should be removed. Effectively the list of preferences now becomes {(B, null), (A, null), ... //followed by the pre-configured list. Please note, however, that the following call:            mgr.addProviderAtFront(A, m3)   does not subsume the previous setting of (A, null) and the list will effectively become {(A, m3), (B, null), (A, null), ...}
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void addProviderAtEnd(Provider p,                      Oid mech)                                 throws GSSException
+				</name>
+				<description>
+					This method is used to indicate to the GSSManager that the application would like a particular provider to be used if no other provider can be found that supports the given mechanism. When a value of null is used instead of an Oid for the mechanism, the GSSManager must use the indicated provider for any mechanism. Calling this method repeatedly preserves the older settings but raises them above newer ones in preference thus forming an ordered list of providers and Oid pairs that grows at the bottom. Thus the older provider settings will be utilized first before this one is. If there are any previously existing preferences that conflict with the preference being set here, then the GSSManager should ignore this request. If the GSSManager implementation does not support an SPI with a pluggable provider architecture it should throw a GSSException with the status code GSSException.UNAVAILABLE to indicate that the operation is unavailable. Suppose an application desired that when a mechanism of Oid m1 is needed the system default providers always be checked first, and only when they do not support m1 should a provider A be checked. It would then make the call:            GSSManager mgr = GSSManager.getInstance();           mgr.addProviderAtEnd(A, m1);   Now, if it also desired that for all mechanisms the provider B be checked after all configured providers have been checked, it would then call:            mgr.addProviderAtEnd(B, null);   Effectively the list of preferences now becomes {..., (A, m1), (B, null)}. Suppose at a later time the following call is made to the same GSSManager instance:            mgr.addProviderAtEnd(B, m2)   then the previous setting with the pair (B, null) subsumes this and therefore this request should be ignored. The same would happen if a request is made for the already existing pairs of (A, m1) or (B, null). Please note, however, that the following call:            mgr.addProviderAtEnd(A, null)   is not subsumed by the previous setting of (A, m1) and the list will effectively become {..., (A, m1), (B, null), (A, null)}
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

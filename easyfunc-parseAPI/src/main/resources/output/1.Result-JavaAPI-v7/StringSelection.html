@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.awt.datatransfer
+	</package>
+	<type>
+		<name>
+			public class StringSelection  extends Object  implements Transferable, ClipboardOwner
+		</name>
+		<description>
+			A Transferable which implements the capability required to transfer a String. This Transferable properly supports DataFlavor.stringFlavor and all equivalent flavors. Support for DataFlavor.plainTextFlavor and all equivalent flavors is deprecated. No other DataFlavors are supported.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StringSelection(String data)
+				</name>
+				<description>
+					Creates a Transferable capable of transferring the specified String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataFlavor[] getTransferDataFlavors()
+				</name>
+				<description>
+					Returns an array of flavors in which this Transferable can provide the data. DataFlavor.stringFlavor is properly supported. Support for DataFlavor.plainTextFlavor is deprecated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDataFlavorSupported(DataFlavor flavor)
+				</name>
+				<description>
+					Returns whether the requested flavor is supported by this Transferable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getTransferData(DataFlavor flavor)                         throws UnsupportedFlavorException,                                IOException
+				</name>
+				<description>
+					Returns the Transferable's data in the requested DataFlavor if possible. If the desired flavor is DataFlavor.stringFlavor, or an equivalent flavor, the String representing the selection is returned. If the desired flavor is DataFlavor.plainTextFlavor, or an equivalent flavor, a Reader is returned. Note: The behavior of this method for DataFlavor.plainTextFlavor and equivalent DataFlavors is inconsistent with the definition of DataFlavor.plainTextFlavor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void lostOwnership(Clipboard clipboard,                   Transferable contents)
+				</name>
+				<description>
+					Description copied from interface: ClipboardOwner Notifies this object that it is no longer the clipboard owner. This method will be called when another application or another object within this application asserts ownership of the clipboard.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

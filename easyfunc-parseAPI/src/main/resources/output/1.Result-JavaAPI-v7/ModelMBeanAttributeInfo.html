@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.management.modelmbean
+	</package>
+	<type>
+		<name>
+			public class ModelMBeanAttributeInfo  extends MBeanAttributeInfo  implements DescriptorAccess
+		</name>
+		<description>
+			The ModelMBeanAttributeInfo object describes an attribute of the ModelMBean. It is a subclass of MBeanAttributeInfo with the addition of an associated Descriptor and an implementation of the DescriptorAccess interface. The fields in the descriptor are defined, but not limited to, the following. Note that when the Type in this table is Number, a String that is the decimal representation of a Long can also be used. Name Type Meaning name String Attribute name. descriptorType String Must be "attribute". value Object Current (cached) value for attribute. default Object Default value for attribute. displayName String Name of attribute to be used in displays. getMethod String Name of operation descriptor for get method. setMethod String Name of operation descriptor for set method. protocolMap Descriptor See the section "Protocol Map Support" in the JMX specification document. Mappings must be appropriate for the attribute and entries can be updated or augmented at runtime. persistPolicy String One of: OnUpdate|OnTimer|NoMoreOftenThan|OnUnregister|Always|Never. See the section "MBean Descriptor Fields" in the JMX specification document. persistPeriod Number Frequency of persist cycle in seconds. Used when persistPolicy is "OnTimer" or "NoMoreOftenThan". currencyTimeLimit Number How long value is valid: <0 never, =0 always, >0 seconds. lastUpdatedTimeStamp Number When value was set. visibility Number 1-4 where 1: always visible, 4: rarely visible. presentationString String XML formatted string to allow presentation of data. The default descriptor contains the name, descriptorType and displayName fields. The default value of the name and displayName fields is the name of the attribute. Note: because of inconsistencies in previous versions of this specification, it is recommended not to use negative or zero values for currencyTimeLimit. To indicate that a cached value is never valid, omit the currencyTimeLimit field. To indicate that it is always valid, use a very large number for this field. The serialVersionUID of this class is 6181543027787327345L.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ModelMBeanAttributeInfo(String name,                         String description,                         Method getter,                         Method setter)                          throws IntrospectionException
+				</name>
+				<description>
+					Constructs a ModelMBeanAttributeInfo object with a default descriptor. The Descriptor of the constructed object will include fields contributed by any annotations on the Method objects that contain the DescriptorKey meta-annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanAttributeInfo(String name,                         String description,                         Method getter,                         Method setter,                         Descriptor descriptor)                          throws IntrospectionException
+				</name>
+				<description>
+					Constructs a ModelMBeanAttributeInfo object. The Descriptor of the constructed object will include fields contributed by any annotations on the Method objects that contain the DescriptorKey meta-annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanAttributeInfo(String name,                         String type,                         String description,                         boolean isReadable,                         boolean isWritable,                         boolean isIs)
+				</name>
+				<description>
+					Constructs a ModelMBeanAttributeInfo object with a default descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanAttributeInfo(String name,                         String type,                         String description,                         boolean isReadable,                         boolean isWritable,                         boolean isIs,                         Descriptor descriptor)
+				</name>
+				<description>
+					Constructs a ModelMBeanAttributeInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanAttributeInfo(ModelMBeanAttributeInfo inInfo)
+				</name>
+				<description>
+					Constructs a new ModelMBeanAttributeInfo object from this ModelMBeanAttributeInfo Object. A default descriptor will be created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor getDescriptor()
+				</name>
+				<description>
+					Gets a copy of the associated Descriptor for the ModelMBeanAttributeInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDescriptor(Descriptor inDescriptor)
+				</name>
+				<description>
+					Sets associated Descriptor (full replace) for the ModelMBeanAttributeDescriptor. If the new Descriptor is null, then the associated Descriptor reverts to a default descriptor. The Descriptor is validated before it is assigned. If the new Descriptor is invalid, then a RuntimeOperationsException wrapping an IllegalArgumentException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates and returns a new ModelMBeanAttributeInfo which is a duplicate of this ModelMBeanAttributeInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a human-readable version of the ModelMBeanAttributeInfo instance.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class AttributeValueExp  extends Object  implements ValueExp
+		</name>
+		<description>
+			Represents attributes used as arguments to relational constraints. Instances of this class are usually obtained using Query.attr. An AttributeValueExp may be used anywhere a ValueExp is required.
+		</description>
+		<methods>
+			<method>
+				<name>
+					@Deprecated  public AttributeValueExp()
+				</name>
+				<description>
+					Deprecated. An instance created with this constructor cannot be used in a query. An AttributeValueExp with a null attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeValueExp(String attr)
+				</name>
+				<description>
+					Creates a new AttributeValueExp representing the specified object attribute, named attr.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeName()
+				</name>
+				<description>
+					Returns a string representation of the name of the attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ValueExp apply(ObjectName name)                 throws BadStringOperationException,                        BadBinaryOpValueExpException,                        BadAttributeValueExpException,                        InvalidApplicationException
+				</name>
+				<description>
+					Applies the AttributeValueExp on an MBean. This method calls getAttribute(name) and wraps the result as a ValueExp. The value returned by getAttribute must be a Number, String, or Boolean; otherwise this method throws a BadAttributeValueExpException, which will cause the containing query to be false for this name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the string representing its value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setMBeanServer(MBeanServer s)
+				</name>
+				<description>
+					Deprecated. This method has no effect. The MBean Server used to obtain an attribute value is QueryEval.getMBeanServer(). Sets the MBean server on which the query is to be performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object getAttribute(ObjectName name)
+				</name>
+				<description>
+					Return the value of the given attribute in the named MBean. If the attempt to access the attribute generates an exception, return null. The MBean Server used is the one returned by QueryEval.getMBeanServer().
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.xml.transform.stax
+	</package>
+	<type>
+		<name>
+			public class StAXSource  extends Object  implements Source
+		</name>
+		<description>
+			Acts as a holder for an XML Source in the form of a StAX reader,i.e. XMLStreamReader or XMLEventReader. StAXSource can be used in all cases that accept a Source, e.g. Transformer, Validator which accept Source as input. StAXSources are consumed during processing and are not reusable.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String FEATURE
+				</name>
+				<description>
+					If TransformerFactory.getFeature(String name) returns true when passed this value as an argument, the Transformer supports Source input of this type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StAXSource(XMLEventReader xmlEventReader)             throws XMLStreamException
+				</name>
+				<description>
+					Creates a new instance of a StAXSource by supplying an XMLEventReader. XMLEventReader must be a non-null reference. XMLEventReader must be in XMLStreamConstants.START_DOCUMENT or XMLStreamConstants.START_ELEMENT state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StAXSource(XMLStreamReader xmlStreamReader)
+				</name>
+				<description>
+					Creates a new instance of a StAXSource by supplying an XMLStreamReader. XMLStreamReader must be a non-null reference. XMLStreamReader must be in XMLStreamConstants.START_DOCUMENT or XMLStreamConstants.START_ELEMENT state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLEventReader getXMLEventReader()
+				</name>
+				<description>
+					Get the XMLEventReader used by this StAXSource. XMLEventReader will be null. if this StAXSource was created with a XMLStreamReader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLStreamReader getXMLStreamReader()
+				</name>
+				<description>
+					Get the XMLStreamReader used by this StAXSource. XMLStreamReader will be null if this StAXSource was created with a XMLEventReader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSystemId(String systemId)
+				</name>
+				<description>
+					In the context of a StAXSource, it is not appropriate to explicitly set the system identifier. The XMLStreamReader or XMLEventReader used to construct this StAXSource determines the system identifier of the XML source. An UnsupportedOperationException is always thrown by this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSystemId()
+				</name>
+				<description>
+					Get the system identifier used by this StAXSource. The XMLStreamReader or XMLEventReader used to construct this StAXSource is queried to determine the system identifier of the XML source. The system identifier may be null or an empty "" String.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

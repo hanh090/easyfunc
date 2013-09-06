@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class MBeanServerPermission  extends BasicPermission
+		</name>
+		<description>
+			A Permission to perform actions related to MBeanServers. The name of the permission specifies the operation requested or granted by the permission. For a granted permission, it can be * to allow all of the MBeanServer operations specified below. Otherwise, for a granted or requested permission, it must be one of the following: createMBeanServer Create a new MBeanServer object using the method MBeanServerFactory.createMBeanServer() or MBeanServerFactory.createMBeanServer(java.lang.String). findMBeanServer Find an MBeanServer with a given name, or all MBeanServers in this JVM, using the method MBeanServerFactory.findMBeanServer(java.lang.String). newMBeanServer Create a new MBeanServer object without keeping a reference to it, using the method MBeanServerFactory.newMBeanServer() or MBeanServerFactory.newMBeanServer(java.lang.String). releaseMBeanServer Remove the MBeanServerFactory's reference to an MBeanServer, using the method MBeanServerFactory.releaseMBeanServer(javax.management.MBeanServer). The name of the permission can also denote a list of one or more comma-separated operations. Spaces are allowed at the beginning and end of the name and before and after commas. MBeanServerPermission("createMBeanServer") implies MBeanServerPermission("newMBeanServer").
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MBeanServerPermission(String name)
+				</name>
+				<description>
+					Create a new MBeanServerPermission with the given name. This constructor is equivalent to MBeanServerPermission(name,null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanServerPermission(String name,                       String actions)
+				</name>
+				<description>
+					Create a new MBeanServerPermission with the given name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Description copied from class: BasicPermission Returns the hash code value for this object. The hash code used is the hash code of the name, that is, getName().hashCode(), where getName is from the Permission superclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean implies(Permission p)
+				</name>
+				<description>
+					Checks if this MBeanServerPermission object "implies" the specified permission. More specifically, this method returns true if: p is an instance of MBeanServerPermission, p's target names are a subset of this object's target names The createMBeanServer permission implies the newMBeanServer permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Checks two MBeanServerPermission objects for equality. Checks that obj is an MBeanServerPermission, and represents the same list of allowable actions as this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PermissionCollection newPermissionCollection()
+				</name>
+				<description>
+					Description copied from class: BasicPermission Returns a new PermissionCollection object for storing BasicPermission objects. BasicPermission objects must be stored in a manner that allows them to be inserted in any order, but that also enables the PermissionCollection implies method to be implemented in an efficient (and consistent) manner.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

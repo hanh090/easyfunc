@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		java.awt.font
+	</package>
+	<type>
+		<name>
+			public class FontRenderContext  extends Object
+		</name>
+		<description>
+			The FontRenderContext class is a container for the information needed to correctly measure text. The measurement of text can vary because of rules that map outlines to pixels, and rendering hints provided by an application. One such piece of information is a transform that scales typographical points to pixels. (A point is defined to be exactly 1/72 of an inch, which is slightly different than the traditional mechanical measurement of a point.) A character that is rendered at 12pt on a 600dpi device might have a different size than the same character rendered at 12pt on a 72dpi device because of such factors as rounding to pixel boundaries and hints that the font designer may have specified. Anti-aliasing and Fractional-metrics specified by an application can also affect the size of a character because of rounding to pixel boundaries. Typically, instances of FontRenderContext are obtained from a Graphics2D object. A FontRenderContext which is directly constructed will most likely not represent any actual graphics device, and may lead to unexpected or incorrect results.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected FontRenderContext()
+				</name>
+				<description>
+					Constructs a new FontRenderContext object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FontRenderContext(AffineTransform tx,                   boolean isAntiAliased,                   boolean usesFractionalMetrics)
+				</name>
+				<description>
+					Constructs a FontRenderContext object from an optional AffineTransform and two boolean values that determine if the newly constructed object has anti-aliasing or fractional metrics. In each case the boolean values true and false correspond to the rendering hint values ON and OFF respectively. To specify other hint values, use the constructor which specifies the rendering hint values as parameters : FontRenderContext(AffineTransform, Object, Object).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FontRenderContext(AffineTransform tx,                   Object aaHint,                   Object fmHint)
+				</name>
+				<description>
+					Constructs a FontRenderContext object from an optional AffineTransform and two Object values that determine if the newly constructed object has anti-aliasing or fractional metrics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isTransformed()
+				</name>
+				<description>
+					Indicates whether or not this FontRenderContext object measures text in a transformed render context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTransformType()
+				</name>
+				<description>
+					Returns the integer type of the affine transform for this FontRenderContext as specified by AffineTransform.getType()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AffineTransform getTransform()
+				</name>
+				<description>
+					Gets the transform that is used to scale typographical points to pixels in this FontRenderContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAntiAliased()
+				</name>
+				<description>
+					Returns a boolean which indicates whether or not some form of antialiasing is specified by this FontRenderContext. Call getAntiAliasingHint() for the specific rendering hint value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean usesFractionalMetrics()
+				</name>
+				<description>
+					Returns a boolean which whether text fractional metrics mode is used in this FontRenderContext. Call getFractionalMetricsHint() to obtain the corresponding rendering hint value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getAntiAliasingHint()
+				</name>
+				<description>
+					Return the text anti-aliasing rendering mode hint used in this FontRenderContext. This will be one of the text antialiasing rendering hint values defined in java.awt.RenderingHints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getFractionalMetricsHint()
+				</name>
+				<description>
+					Return the text fractional metrics rendering mode hint used in this FontRenderContext. This will be one of the text fractional metrics rendering hint values defined in java.awt.RenderingHints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Return true if obj is an instance of FontRenderContext and has the same transform, antialiasing, and fractional metrics values as this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(FontRenderContext rhs)
+				</name>
+				<description>
+					Return true if rhs has the same transform, antialiasing, and fractional metrics values as this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Return a hashcode for this FontRenderContext.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

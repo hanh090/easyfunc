@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public interface Caret
+		</name>
+		<description>
+			A place within a document view that represents where things can be inserted into the document model. A caret has a position in the document referred to as a dot. The dot is where the caret is currently located in the model. There is a second position maintained by the caret that represents the other end of a selection called mark. If there is no selection the dot and mark will be equal. If a selection exists, the two values will be different. The dot can be placed by either calling setDot or moveDot. Setting the dot has the effect of removing any selection that may have previously existed. The dot and mark will be equal. Moving the dot has the effect of creating a selection as the mark is left at whatever position it previously had.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void install(JTextComponent c)
+				</name>
+				<description>
+					Called when the UI is being installed into the interface of a JTextComponent. This can be used to gain access to the model that is being navigated by the implementation of this interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void deinstall(JTextComponent c)
+				</name>
+				<description>
+					Called when the UI is being removed from the interface of a JTextComponent. This is used to unregister any listeners that were attached.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void paint(Graphics g)
+				</name>
+				<description>
+					Renders the caret. This method is called by UI classes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Adds a listener to track whenever the caret position has been changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Removes a listener that was tracking caret position changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isVisible()
+				</name>
+				<description>
+					Determines if the caret is currently visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setVisible(boolean v)
+				</name>
+				<description>
+					Sets the visibility of the caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSelectionVisible()
+				</name>
+				<description>
+					Determines if the selection is currently visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setSelectionVisible(boolean v)
+				</name>
+				<description>
+					Sets the visibility of the selection
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setMagicCaretPosition(Point p)
+				</name>
+				<description>
+					Set the current caret visual location. This can be used when moving between lines that have uneven end positions (such as when caret up or down actions occur). If text flows left-to-right or right-to-left the x-coordinate will indicate the desired navigation location for vertical movement. If the text flow is top-to-bottom, the y-coordinate will indicate the desired navigation location for horizontal movement.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Point getMagicCaretPosition()
+				</name>
+				<description>
+					Gets the current caret visual location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setBlinkRate(int rate)
+				</name>
+				<description>
+					Sets the blink rate of the caret. This determines if and how fast the caret blinks, commonly used as one way to attract attention to the caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getBlinkRate()
+				</name>
+				<description>
+					Gets the blink rate of the caret. This determines if and how fast the caret blinks, commonly used as one way to attract attention to the caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getDot()
+				</name>
+				<description>
+					Fetches the current position of the caret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMark()
+				</name>
+				<description>
+					Fetches the current position of the mark. If there is a selection, the mark will not be the same as the dot.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setDot(int dot)
+				</name>
+				<description>
+					Sets the caret position to some position. This causes the mark to become the same as the dot, effectively setting the selection range to zero. If the parameter is negative or beyond the length of the document, the caret is placed at the beginning or at the end, respectively.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void moveDot(int dot)
+				</name>
+				<description>
+					Moves the caret position (dot) to some other position, leaving behind the mark. This is useful for making selections.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

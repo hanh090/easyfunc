@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		javax.xml.validation
+	</package>
+	<type>
+		<name>
+			public abstract class SchemaFactory  extends Object
+		</name>
+		<description>
+			Factory that creates Schema objects. Entry-point to the validation API. SchemaFactory is a schema compiler. It reads external representations of schemas and prepares them for validation. The SchemaFactory class is not thread-safe. In other words, it is the application's responsibility to ensure that at most one thread is using a SchemaFactory object at any given moment. Implementations are encouraged to mark methods as synchronized to protect themselves from broken clients. SchemaFactory is not re-entrant. While one of the newSchema methods is being invoked, applications may not attempt to recursively invoke the newSchema method, even from the same thread. Schema Language This spec uses a namespace URI to designate a schema language. The following table shows the values defined by this specification. To be compliant with the spec, the implementation is only required to support W3C XML Schema 1.0. However, if it chooses to support other schema languages listed here, it must conform to the relevant behaviors described in this spec. Schema languages not listed here are expected to introduce their own URIs to represent themselves. The SchemaFactory class is capable of locating other implementations for other schema languages at run-time. Note that because the XML DTD is strongly tied to the parsing process and has a significant effect on the parsing process, it is impossible to define the DTD validation as a process independent from parsing. For this reason, this specification does not define the semantics for the XML DTD. This doesn't prohibit implentors from implementing it in a way they see fit, but users are warned that any DTD validation implemented on this interface necessarily deviate from the XML DTD semantics as defined in the XML 1.0. value language XMLConstants.W3C_XML_SCHEMA_NS_URI ("http://www.w3.org/2001/XMLSchema") W3C XML Schema 1.0 XMLConstants.RELAXNG_NS_URI ("http://relaxng.org/ns/structure/1.0") RELAX NG 1.0
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected SchemaFactory()
+				</name>
+				<description>
+					Constructor for derived classes. The constructor does nothing. Derived classes must create SchemaFactory objects that have null ErrorHandler and null LSResourceResolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final SchemaFactory newInstance(String schemaLanguage)
+				</name>
+				<description>
+					Lookup an implementation of the SchemaFactory that supports the specified schema language and return it. To find a SchemaFactory object for a given schema language, this method looks the following places in the following order where "the class loader" refers to the context class loader: If the system property "javax.xml.validation.SchemaFactory:schemaLanguage" is present (where schemaLanguage is the parameter to this method), then its value is read as a class name. The method will try to create a new instance of this class by using the class loader, and returns it if it is successfully created. $java.home/lib/jaxp.properties is read and the value associated with the key being the system property above is looked for. If present, the value is processed just like above. The class loader is asked for service provider provider-configuration files matching javax.xml.validation.SchemaFactory in the resource directory META-INF/services. See the JAR File Specification for file format and parsing rules. Each potential service provider is required to implement the method:           isSchemaLanguageSupported(String schemaLanguage)       The first service provider found in class loader order that supports the specified schema language is returned. Platform default SchemaFactory is located in a implementation specific way. There must be a platform default SchemaFactory for W3C XML Schema. If everything fails, IllegalArgumentException will be thrown. Tip for Trouble-shooting: See Properties.load(java.io.InputStream) for exactly how a property file is parsed. In particular, colons ':' need to be escaped in a property file, so make sure schema language URIs are properly escaped in it. For example:    http\://www.w3.org/2001/XMLSchema=org.acme.foo.XSSchemaFactory
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SchemaFactory newInstance(String schemaLanguage,                          String factoryClassName,                          ClassLoader classLoader)
+				</name>
+				<description>
+					Obtain a new instance of a SchemaFactory from class name. SchemaFactory is returned if specified factory class name supports the specified schema language. This function is useful when there are multiple providers in the classpath. It gives more control to the application as it can specify which provider should be loaded. Tip for Trouble-shooting Setting the jaxp.debug system property will cause this method to print a lot of debug messages to System.err about what it is doing and where it is looking at. If you have problems try:    java -Djaxp.debug=1 YourProgram ....
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isSchemaLanguageSupported(String schemaLanguage)
+				</name>
+				<description>
+					Is specified schema supported by this SchemaFactory?
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getFeature(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Look up the value of a feature flag. The feature name is any fully-qualified URI. It is possible for a SchemaFactory to recognize a feature name but temporarily be unable to return its value. Implementors are free (and encouraged) to invent their own features, using names built on their own URIs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFeature(String name,                boolean value)                  throws SAXNotRecognizedException,                         SAXNotSupportedException
+				</name>
+				<description>
+					Set a feature for this SchemaFactory, Schemas created by this factory, and by extension, Validators and ValidatorHandlers created by those Schemas. Implementors and developers should pay particular attention to how the special Schema object returned by newSchema() is processed. In some cases, for example, when the SchemaFactory and the class actually loading the schema come from different implementations, it may not be possible for SchemaFactory features to be inherited automatically. Developers should make sure that features, such as secure processing, are explicitly set in both places. The feature name is any fully-qualified URI. It is possible for a SchemaFactory to expose a feature value but to be unable to change the current value. All implementations are required to support the XMLConstants.FEATURE_SECURE_PROCESSING feature. When the feature is: true: the implementation will limit XML processing to conform to implementation limits. Examples include enity expansion limits and XML Schema constructs that would consume large amounts of resources. If XML processing is limited for security reasons, it will be reported via a call to the registered ErrorHandler.fatalError(SAXParseException exception). See setErrorHandler(ErrorHandler errorHandler). false: the implementation will processing XML according to the XML specifications without regard to possible implementation limits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProperty(String name,                 Object object)                   throws SAXNotRecognizedException,                          SAXNotSupportedException
+				</name>
+				<description>
+					Set the value of a property. The property name is any fully-qualified URI. It is possible for a SchemaFactory to recognize a property name but to be unable to change the current value. SchemaFactorys are not required to recognize setting any specific property names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Look up the value of a property. The property name is any fully-qualified URI. It is possible for a SchemaFactory to recognize a property name but temporarily be unable to return its value. SchemaFactorys are not required to recognize any specific property names. Implementors are free (and encouraged) to invent their own properties, using names built on their own URIs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setErrorHandler(ErrorHandler errorHandler)
+				</name>
+				<description>
+					Sets the ErrorHandler to receive errors encountered during the newSchema method invocation. Error handler can be used to customize the error handling process during schema parsing. When an ErrorHandler is set, errors found during the parsing of schemas will be first sent to the ErrorHandler. The error handler can abort the parsing of a schema immediately by throwing SAXException from the handler. Or for example it can print an error to the screen and try to continue the processing by returning normally from the ErrorHandler If any Throwable (or instances of its derived classes) is thrown from an ErrorHandler, the caller of the newSchema method will be thrown the same Throwable object. SchemaFactory is not allowed to throw SAXException without first reporting it to ErrorHandler. Applications can call this method even during a Schema is being parsed. When the ErrorHandler is null, the implementation will behave as if the following ErrorHandler is set:    class DraconianErrorHandler implements ErrorHandler {       public void fatalError( SAXParseException e ) throws SAXException {           throw e;       }       public void error( SAXParseException e ) throws SAXException {           throw e;       }       public void warning( SAXParseException e ) throws SAXException {           // noop       }   }   When a new SchemaFactory object is created, initially this field is set to null. This field will NOT be inherited to Schemas, Validators, or ValidatorHandlers that are created from this SchemaFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ErrorHandler getErrorHandler()
+				</name>
+				<description>
+					Gets the current ErrorHandler set to this SchemaFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setResourceResolver(LSResourceResolver resourceResolver)
+				</name>
+				<description>
+					Sets the LSResourceResolver to customize resource resolution when parsing schemas. SchemaFactory uses a LSResourceResolver when it needs to locate external resources while parsing schemas, although exactly what constitutes "locating external resources" is up to each schema language. For example, for W3C XML Schema, this includes files <include>d or <import>ed, and DTD referenced from schema files, etc. Applications can call this method even during a Schema is being parsed. When the LSResourceResolver is null, the implementation will behave as if the following LSResourceResolver is set:    class DumbDOMResourceResolver implements LSResourceResolver {       public LSInput resolveResource(           String publicId, String systemId, String baseURI) {             return null; // always return null       }   }   If a LSResourceResolver throws a RuntimeException (or instances of its derived classes), then the SchemaFactory will abort the parsing and the caller of the newSchema method will receive the same RuntimeException. When a new SchemaFactory object is created, initially this field is set to null. This field will NOT be inherited to Schemas, Validators, or ValidatorHandlers that are created from this SchemaFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract LSResourceResolver getResourceResolver()
+				</name>
+				<description>
+					Gets the current LSResourceResolver set to this SchemaFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Schema newSchema(Source schema)                   throws SAXException
+				</name>
+				<description>
+					Parses the specified source as a schema and returns it as a schema. This is a convenience method for newSchema(Source[] schemas).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Schema newSchema(File schema)                   throws SAXException
+				</name>
+				<description>
+					Parses the specified File as a schema and returns it as a Schema. This is a convenience method for newSchema(Source schema).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Schema newSchema(URL schema)                   throws SAXException
+				</name>
+				<description>
+					Parses the specified URL as a schema and returns it as a Schema. This is a convenience method for newSchema(Source schema).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Schema newSchema(Source[] schemas)                            throws SAXException
+				</name>
+				<description>
+					Parses the specified source(s) as a schema and returns it as a schema. The callee will read all the Sources and combine them into a single schema. The exact semantics of the combination depends on the schema language that this SchemaFactory object is created for. When an ErrorHandler is set, the callee will report all the errors found in sources to the handler. If the handler throws an exception, it will abort the schema compilation and the same exception will be thrown from this method. Also, after an error is reported to a handler, the callee is allowed to abort the further processing by throwing it. If an error handler is not set, the callee will throw the first error it finds in the sources. W3C XML Schema 1.0 The resulting schema contains components from the specified sources. The same result would be achieved if all these sources were imported, using appropriate values for schemaLocation and namespace, into a single schema document with a different targetNamespace and no components of its own, if the import elements were given in the same order as the sources. Section 4.2.3 of the XML Schema recommendation describes the options processors have in this regard. While a processor should be consistent in its treatment of JAXP schema sources and XML Schema imports, the behaviour between JAXP-compliant parsers may vary; in particular, parsers may choose to ignore all but the first <import> for a given namespace, regardless of information provided in schemaLocation. If the parsed set of schemas includes error(s) as specified in the section 5.1 of the XML Schema spec, then the error must be reported to the ErrorHandler. RELAX NG For RELAX NG, this method must throw UnsupportedOperationException if schemas.length!=1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Schema newSchema()                            throws SAXException
+				</name>
+				<description>
+					Creates a special Schema object. The exact semantics of the returned Schema object depend on the schema language for which this SchemaFactory is created. Also, implementations are allowed to use implementation-specific property/feature to alter the semantics of this method. Implementors and developers should pay particular attention to how the features set on this SchemaFactory are processed by this special Schema. In some cases, for example, when the SchemaFactory and the class actually loading the schema come from different implementations, it may not be possible for SchemaFactory features to be inherited automatically. Developers should make sure that features, such as secure processing, are explicitly set in both places. W3C XML Schema 1.0 For XML Schema, this method creates a Schema object that performs validation by using location hints specified in documents. The returned Schema object assumes that if documents refer to the same URL in the schema location hints, they will always resolve to the same schema document. This asusmption allows implementations to reuse parsed results of schema documents so that multiple validations against the same schema will run faster. Note that the use of schema location hints introduces a vulnerability to denial-of-service attacks. RELAX NG RELAX NG does not support this operation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public class TrustAnchor  extends Object
+		</name>
+		<description>
+			A trust anchor or most-trusted Certification Authority (CA). This class represents a "most-trusted CA", which is used as a trust anchor for validating X.509 certification paths. A most-trusted CA includes the public key of the CA, the CA's name, and any constraints upon the set of paths which may be validated using this key. These parameters can be specified in the form of a trusted X509Certificate or as individual parameters. Concurrent Access All TrustAnchor objects must be immutable and thread-safe. That is, multiple threads may concurrently invoke the methods defined in this class on a single TrustAnchor object (or more than one) with no ill effects. Requiring TrustAnchor objects to be immutable and thread-safe allows them to be passed around to various pieces of code without worrying about coordinating access. This stipulation applies to all public fields and methods of this class and any added or overridden by subclasses.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TrustAnchor(X509Certificate trustedCert,             byte[] nameConstraints)
+				</name>
+				<description>
+					Creates an instance of TrustAnchor with the specified X509Certificate and optional name constraints, which are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are specified as a byte array. This byte array should contain the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 3280 and X.509. The ASN.1 definition of this structure appears below.     NameConstraints ::= SEQUENCE {         permittedSubtrees       [0]     GeneralSubtrees OPTIONAL,         excludedSubtrees        [1]     GeneralSubtrees OPTIONAL }      GeneralSubtrees ::= SEQUENCE SIZE (1..MAX) OF GeneralSubtree      GeneralSubtree ::= SEQUENCE {         base                    GeneralName,         minimum         [0]     BaseDistance DEFAULT 0,         maximum         [1]     BaseDistance OPTIONAL }      BaseDistance ::= INTEGER (0..MAX)      GeneralName ::= CHOICE {         otherName                       [0]     OtherName,         rfc822Name                      [1]     IA5String,         dNSName                         [2]     IA5String,         x400Address                     [3]     ORAddress,         directoryName                   [4]     Name,         ediPartyName                    [5]     EDIPartyName,         uniformResourceIdentifier       [6]     IA5String,         iPAddress                       [7]     OCTET STRING,         registeredID                    [8]     OBJECT IDENTIFIER}   Note that the name constraints byte array supplied is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TrustAnchor(X500Principal caPrincipal,             PublicKey pubKey,             byte[] nameConstraints)
+				</name>
+				<description>
+					Creates an instance of TrustAnchor where the most-trusted CA is specified as an X500Principal and public key. Name constraints are an optional parameter, and are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are specified as a byte array. This byte array contains the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 3280 and X.509. The ASN.1 notation for this structure is supplied in the documentation for TrustAnchor(X509Certificate trustedCert, byte[] nameConstraints) . Note that the name constraints byte array supplied here is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TrustAnchor(String caName,             PublicKey pubKey,             byte[] nameConstraints)
+				</name>
+				<description>
+					Creates an instance of TrustAnchor where the most-trusted CA is specified as a distinguished name and public key. Name constraints are an optional parameter, and are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are specified as a byte array. This byte array contains the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 3280 and X.509. The ASN.1 notation for this structure is supplied in the documentation for TrustAnchor(X509Certificate trustedCert, byte[] nameConstraints) . Note that the name constraints byte array supplied here is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final X509Certificate getTrustedCert()
+				</name>
+				<description>
+					Returns the most-trusted CA certificate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final X500Principal getCA()
+				</name>
+				<description>
+					Returns the name of the most-trusted CA as an X500Principal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getCAName()
+				</name>
+				<description>
+					Returns the name of the most-trusted CA in RFC 2253 String format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final PublicKey getCAPublicKey()
+				</name>
+				<description>
+					Returns the public key of the most-trusted CA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final byte[] getNameConstraints()
+				</name>
+				<description>
+					Returns the name constraints parameter. The specified name constraints are associated with this trust anchor and are intended to be used as additional constraints when validating an X.509 certification path. The name constraints are returned as a byte array. This byte array contains the DER encoded form of the name constraints, as they would appear in the NameConstraints structure defined in RFC 3280 and X.509. The ASN.1 notation for this structure is supplied in the documentation for TrustAnchor(X509Certificate trustedCert, byte[] nameConstraints) . Note that the byte array returned is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a formatted string describing the TrustAnchor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.rmi.CORBA
+	</package>
+	<type>
+		<name>
+			public interface ValueHandler
+		</name>
+		<description>
+			Defines methods which allow serialization of Java objects to and from GIOP streams.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void writeValue(OutputStream out,                Serializable value)
+				</name>
+				<description>
+					Writes a value to the stream using Java semantics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Serializable readValue(InputStream in,                       int offset,                       Class clz,                       String repositoryID,                       RunTime sender)
+				</name>
+				<description>
+					Reads a value from the stream using Java semantics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getRMIRepositoryID(Class clz)
+				</name>
+				<description>
+					Returns the CORBA RepositoryId for the given Java class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isCustomMarshaled(Class clz)
+				</name>
+				<description>
+					Indicates whether the given class performs custom or default marshaling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RunTime getRunTimeCodeBase()
+				</name>
+				<description>
+					Returns the CodeBase for this ValueHandler. This is used by the ORB runtime. The server sends the service context containing the IOR for this CodeBase on the first GIOP reply. The client does the same on the first GIOP request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Serializable writeReplace(Serializable value)
+				</name>
+				<description>
+					If the value contains a writeReplace method then the result is returned. Otherwise, the value itself is returned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

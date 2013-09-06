@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public static interface JavaCompiler.CompilationTask  extends Callable<Boolean>
+		</name>
+		<description>
+			Interface representing a future for a compilation task. The compilation task has not yet started. To start the task, call the call method. Before calling the call method, additional aspects of the task can be configured, for example, by calling the setProcessors method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void setProcessors(Iterable<? extends Processor> processors)
+				</name>
+				<description>
+					Sets processors (for annotation processing). This will bypass the normal discovery mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setLocale(Locale locale)
+				</name>
+				<description>
+					Set the locale to be applied when formatting diagnostics and other localized data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Boolean call()
+				</name>
+				<description>
+					Performs this compilation task. The compilation may only be performed once. Subsequent calls to this method throw IllegalStateException.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

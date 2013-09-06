@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.nio.file
+	</package>
+	<type>
+		<name>
+			public interface WatchEvent<T>
+		</name>
+		<description>
+			An event or a repeated event for an object that is registered with a WatchService. An event is classified by its kind and has a count to indicate the number of times that the event has been observed. This allows for efficient representation of repeated events. The context method returns any context associated with the event. In the case of a repeated event then the context is the same for all events. Watch events are immutable and safe for use by multiple concurrent threads.
+		</description>
+		<methods>
+			<method>
+				<name>
+					WatchEvent.Kind<T> kind()
+				</name>
+				<description>
+					Returns the event kind.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int count()
+				</name>
+				<description>
+					Returns the event count. If the event count is greater than 1 then this is a repeated event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					T context()
+				</name>
+				<description>
+					Returns the context for the event. In the case of ENTRY_CREATE, ENTRY_DELETE, and ENTRY_MODIFY events the context is a Path that is the relative path between the directory registered with the watch service, and the entry that is created, deleted, or modified.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

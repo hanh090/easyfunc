@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.xml.crypto
+	</package>
+	<type>
+		<name>
+			public abstract class KeySelector  extends Object
+		</name>
+		<description>
+			A selector that finds and returns a key using the data contained in a KeyInfo object. An example of an implementation of this class is one that searchs a KeyStore for trusted keys that match information contained in a KeyInfo. Whether or not the returned key is trusted and the mechanisms used to determine that is implementation-specific.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected KeySelector()
+				</name>
+				<description>
+					Default no-args constructor; intended for invocation by subclasses only.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract KeySelectorResult select(KeyInfo keyInfo,                         KeySelector.Purpose purpose,                         AlgorithmMethod method,                         XMLCryptoContext context)                                    throws KeySelectorException
+				</name>
+				<description>
+					Attempts to find a key that satisfies the specified constraints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static KeySelector singletonKeySelector(Key key)
+				</name>
+				<description>
+					Returns a KeySelector that always selects the specified key, regardless of the KeyInfo passed to it.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

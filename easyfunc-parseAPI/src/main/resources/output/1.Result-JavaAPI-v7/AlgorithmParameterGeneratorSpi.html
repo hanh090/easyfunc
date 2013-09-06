@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public abstract class AlgorithmParameterGeneratorSpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the AlgorithmParameterGenerator class, which is used to generate a set of parameters to be used with a certain algorithm. All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply the implementation of a parameter generator for a particular algorithm. In case the client does not explicitly initialize the AlgorithmParameterGenerator (via a call to an engineInit method), each provider must supply (and document) a default initialization. For example, the Sun provider uses a default modulus prime size of 1024 bits for the generation of DSA parameters.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AlgorithmParameterGeneratorSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(int size,                SecureRandom random)
+				</name>
+				<description>
+					Initializes this parameter generator for a certain size and source of randomness.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(AlgorithmParameterSpec genParamSpec,                SecureRandom random)                              throws InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Initializes this parameter generator with a set of algorithm-specific parameter generation values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract AlgorithmParameters engineGenerateParameters()
+				</name>
+				<description>
+					Generates the parameters.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

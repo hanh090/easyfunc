@@ -1,0 +1,333 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public class StyleSheet  extends StyleContext
+		</name>
+		<description>
+			Support for defining the visual characteristics of HTML views being rendered. The StyleSheet is used to translate the HTML model into visual characteristics. This enables views to be customized by a look-and-feel, multiple views over the same model can be rendered differently, etc. This can be thought of as a CSS rule repository. The key for CSS attributes is an object of type CSS.Attribute. The type of the value is up to the StyleSheet implementation, but the toString method is required to return a string representation of CSS value. The primary entry point for HTML View implementations to get their attributes is the getViewAttributes method. This should be implemented to establish the desired policy used to associate attributes with the view. Each HTMLEditorKit (i.e. and therefore each associated JEditorPane) can have its own StyleSheet, but by default one sheet will be shared by all of the HTMLEditorKit instances. HTMLDocument instance can also have a StyleSheet, which holds the document-specific CSS specifications. In order for Views to store less state and therefore be more lightweight, the StyleSheet can act as a factory for painters that handle some of the rendering tasks. This allows implementations to determine what they want to cache and have the sharing potentially at the level that a selector is common to multiple views. Since the StyleSheet may be used by views over multiple documents and typically the HTML attributes don't effect the selector being used, the potential for sharing is significant. The rules are stored as named styles, and other information is stored to translate the context of an element to a rule quickly. The following code fragment will display the named styles, and therefore the CSS rules contained.          import java.util.*;     import javax.swing.text.*;     import javax.swing.text.html.*;         public class ShowStyles {             public static void main(String[] args) {           HTMLEditorKit kit = new HTMLEditorKit();           HTMLDocument doc = (HTMLDocument) kit.createDefaultDocument();           StyleSheet styles = doc.getStyleSheet();               Enumeration rules = styles.getStyleNames();           while (rules.hasMoreElements()) {               String name = (String) rules.nextElement();               Style rule = styles.getStyle(name);               System.out.println(rule.toString());           }           System.exit(0);         }     }       The semantics for when a CSS style should overide visual attributes defined by an element are not well defined. For example, the html <body bgcolor=red> makes the body have a red background. But if the html file also contains the CSS rule body { background: blue } it becomes less clear as to what color the background of the body should be. The current implemention gives visual attributes defined in the element the highest precedence, that is they are always checked before any styles. Therefore, in the previous example the background would have a red color as the body element defines the background color to be red. As already mentioned this supports CSS. We don't support the full CSS spec. Refer to the javadoc of the CSS class to see what properties we support. The two major CSS parsing related concepts we do not currently support are pseudo selectors, such as A:link { color: red }, and the important modifier. Note: This implementation is currently incomplete. It can be replaced with alternative implementations that are complete. Future versions of this class will provide better CSS support.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StyleSheet()
+				</name>
+				<description>
+					Construct a StyleSheet
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style getRule(HTML.Tag t,              Element e)
+				</name>
+				<description>
+					Fetches the style to use to render the given type of HTML tag. The element given is representing the tag and can be used to determine the nesting for situations where the attributes will differ if nesting inside of elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style getRule(String selector)
+				</name>
+				<description>
+					Fetches the rule that best matches the selector given in string form. Where selector is a space separated String of the element names. For example, selector might be 'html body tr td'' The attributes of the returned Style will change as rules are added and removed. That is if you to ask for a rule with a selector "table p" and a new rule was added with a selector of "p" the returned Style would include the new attributes from the rule "p".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addRule(String rule)
+				</name>
+				<description>
+					Adds a set of rules to the sheet. The rules are expected to be in valid CSS format. Typically this would be called as a result of parsing a <style> tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getDeclaration(String decl)
+				</name>
+				<description>
+					Translates a CSS declaration to an AttributeSet that represents the CSS declaration. Typically this would be called as a result of encountering an HTML style attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void loadRules(Reader in,               URL ref)                 throws IOException
+				</name>
+				<description>
+					Loads a set of rules that have been specified in terms of CSS1 grammar. If there are collisions with existing rules, the newly specified rule will win.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getViewAttributes(View v)
+				</name>
+				<description>
+					Fetches a set of attributes to use in the view for displaying. This is basically a set of attributes that can be used for View.getAttributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeStyle(String nm)
+				</name>
+				<description>
+					Removes a named style previously added to the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addStyleSheet(StyleSheet ss)
+				</name>
+				<description>
+					Adds the rules from the StyleSheet ss to those of the receiver. ss's rules will override the rules of any previously added style sheets. An added StyleSheet will never override the rules of the receiving style sheet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeStyleSheet(StyleSheet ss)
+				</name>
+				<description>
+					Removes the StyleSheet ss from those of the receiver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyleSheet[] getStyleSheets()
+				</name>
+				<description>
+					Returns an array of the linked StyleSheets. Will return null if there are no linked StyleSheets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void importStyleSheet(URL url)
+				</name>
+				<description>
+					Imports a style sheet from url. The resulting rules are directly added to the receiver. If you do not want the rules to become part of the receiver, create a new StyleSheet and use addStyleSheet to link it in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBase(URL base)
+				</name>
+				<description>
+					Sets the base. All import statements that are relative, will be relative to base.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URL getBase()
+				</name>
+				<description>
+					Returns the base.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addCSSAttribute(MutableAttributeSet attr,                     CSS.Attribute key,                     String value)
+				</name>
+				<description>
+					Adds a CSS attribute to the given set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addCSSAttributeFromHTML(MutableAttributeSet attr,                                CSS.Attribute key,                                String value)
+				</name>
+				<description>
+					Adds a CSS attribute to the given set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet translateHTMLToCSS(AttributeSet htmlAttrSet)
+				</name>
+				<description>
+					Converts a set of HTML attributes to an equivalent set of CSS attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet addAttribute(AttributeSet old,                          Object key,                          Object value)
+				</name>
+				<description>
+					Adds an attribute to the given set, and returns the new representative set. This is reimplemented to convert StyleConstant attributes to CSS prior to forwarding to the superclass behavior. The StyleConstants attribute has no corresponding CSS entry, the StyleConstants attribute is stored (but will likely be unused).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet addAttributes(AttributeSet old,                           AttributeSet attr)
+				</name>
+				<description>
+					Adds a set of attributes to the element. If any of these attributes are StyleConstants attributes, they will be converted to CSS prior to forwarding to the superclass behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet removeAttribute(AttributeSet old,                             Object key)
+				</name>
+				<description>
+					Removes an attribute from the set. If the attribute is a StyleConstants attribute, the request will be converted to a CSS attribute prior to forwarding to the superclass behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet removeAttributes(AttributeSet old,                              Enumeration<?> names)
+				</name>
+				<description>
+					Removes a set of attributes for the element. If any of the attributes is a StyleConstants attribute, the request will be converted to a CSS attribute prior to forwarding to the superclass behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet removeAttributes(AttributeSet old,                              AttributeSet attrs)
+				</name>
+				<description>
+					Removes a set of attributes. If any of the attributes is a StyleConstants attribute, the request will be converted to a CSS attribute prior to forwarding to the superclass behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StyleContext.SmallAttributeSet createSmallAttributeSet(AttributeSet a)
+				</name>
+				<description>
+					Creates a compact set of attributes that might be shared. This is a hook for subclasses that want to alter the behavior of SmallAttributeSet. This can be reimplemented to return an AttributeSet that provides some sort of attribute conversion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MutableAttributeSet createLargeAttributeSet(AttributeSet a)
+				</name>
+				<description>
+					Creates a large set of attributes that should trade off space for time. This set will not be shared. This is a hook for subclasses that want to alter the behavior of the larger attribute storage format (which is SimpleAttributeSet by default). This can be reimplemented to return a MutableAttributeSet that provides some sort of attribute conversion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont(AttributeSet a)
+				</name>
+				<description>
+					Fetches the font to use for the given set of attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getForeground(AttributeSet a)
+				</name>
+				<description>
+					Takes a set of attributes and turn it into a foreground color specification. This might be used to specify things like brighter, more hue, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackground(AttributeSet a)
+				</name>
+				<description>
+					Takes a set of attributes and turn it into a background color specification. This might be used to specify things like brighter, more hue, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyleSheet.BoxPainter getBoxPainter(AttributeSet a)
+				</name>
+				<description>
+					Fetches the box formatter to use for the given set of CSS attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyleSheet.ListPainter getListPainter(AttributeSet a)
+				</name>
+				<description>
+					Fetches the list formatter to use for the given set of CSS attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBaseFontSize(int sz)
+				</name>
+				<description>
+					Sets the base font size, with valid values between 1 and 7.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBaseFontSize(String size)
+				</name>
+				<description>
+					Sets the base font size from the passed in String. The string can either identify a specific font size, with legal values between 1 and 7, or identifiy a relative font size such as +1 or -2.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int getIndexOfSize(float pt)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPointSize(int index)
+				</name>
+				<description>
+					Returns the point size, given a size index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPointSize(String size)
+				</name>
+				<description>
+					Given a string such as "+2", "-2", or "2", returns a point size value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color stringToColor(String string)
+				</name>
+				<description>
+					Converts a color string such as "RED" or "#NNNNNN" to a Color. Note: This will only convert the HTML3.2 color strings or a string of length 7; otherwise, it will return null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

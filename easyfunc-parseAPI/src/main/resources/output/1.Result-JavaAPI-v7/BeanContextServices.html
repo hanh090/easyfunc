@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.beans.beancontext
+	</package>
+	<type>
+		<name>
+			public interface BeanContextServices  extends BeanContext, BeanContextServicesListener
+		</name>
+		<description>
+			The BeanContextServices interface provides a mechanism for a BeanContext to expose generic "services" to the BeanContextChild objects within.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean addService(Class serviceClass,                   BeanContextServiceProvider serviceProvider)
+				</name>
+				<description>
+					Adds a service to this BeanContext. BeanContextServiceProviders call this method to register a particular service with this context. If the service has not previously been added, the BeanContextServices associates the service with the BeanContextServiceProvider and fires a BeanContextServiceAvailableEvent to all currently registered BeanContextServicesListeners. The method then returns true, indicating that the addition of the service was successful. If the given service has already been added, this method simply returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void revokeService(Class serviceClass,                   BeanContextServiceProvider serviceProvider,                   boolean revokeCurrentServicesNow)
+				</name>
+				<description>
+					BeanContextServiceProviders wishing to remove a currently registered service from this context may do so via invocation of this method. Upon revocation of the service, the BeanContextServices fires a BeanContextServiceRevokedEvent to its list of currently registered BeanContextServiceRevokedListeners and BeanContextServicesListeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean hasService(Class serviceClass)
+				</name>
+				<description>
+					Reports whether or not a given service is currently available from this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getService(BeanContextChild child,                  Object requestor,                  Class serviceClass,                  Object serviceSelector,                  BeanContextServiceRevokedListener bcsrl)                    throws TooManyListenersException
+				</name>
+				<description>
+					A BeanContextChild, or any arbitrary object associated with a BeanContextChild, may obtain a reference to a currently registered service from its nesting BeanContextServices via invocation of this method. When invoked, this method gets the service by calling the getService() method on the underlying BeanContextServiceProvider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void releaseService(BeanContextChild child,                    Object requestor,                    Object service)
+				</name>
+				<description>
+					Releases a BeanContextChild's (or any arbitrary object associated with a BeanContextChild) reference to the specified service by calling releaseService() on the underlying BeanContextServiceProvider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator getCurrentServiceClasses()
+				</name>
+				<description>
+					Gets the currently available services for this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator getCurrentServiceSelectors(Class serviceClass)
+				</name>
+				<description>
+					Gets the list of service dependent service parameters (Service Selectors) for the specified service, by calling getCurrentServiceSelectors() on the underlying BeanContextServiceProvider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addBeanContextServicesListener(BeanContextServicesListener bcsl)
+				</name>
+				<description>
+					Adds a BeanContextServicesListener to this BeanContext
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeBeanContextServicesListener(BeanContextServicesListener bcsl)
+				</name>
+				<description>
+					Removes a BeanContextServicesListener from this BeanContext
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

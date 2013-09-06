@@ -1,0 +1,891 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public class BasicSliderUI  extends SliderUI
+		</name>
+		<description>
+			A Basic L&F implementation of SliderUI.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int POSITIVE_SCROLL
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NEGATIVE_SCROLL
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int MIN_SCROLL
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int MAX_SCROLL
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Timer scrollTimer
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JSlider slider
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets focusInsets
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Insets insetCache
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean leftToRightCache
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle focusRect
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle contentRect
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle labelRect
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle tickRect
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle trackRect
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle thumbRect
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int trackBuffer
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSliderUI.TrackListener trackListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener changeListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ComponentListener componentListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener focusListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSliderUI.ScrollListener scrollListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener propertyChangeListener
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicSliderUI(JSlider b)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color getShadowColor()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color getHighlightColor()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color getFocusColor()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isDragging()
+				</name>
+				<description>
+					Returns true if the user is dragging the slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent b)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void installUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Configures the specified component appropriately for the look and feel. This method is invoked when the ComponentUI instance is being installed as the UI delegate on the specified component. This method should completely configure the component for the look and feel, including the following: Install default property values for color, fonts, borders, icons, opacity, etc. on the component. Whenever possible, property values initialized by the client program should not be overridden. Install a LayoutManager on the component if necessary. Create/add any required sub-components to the component. Create/install event listeners on the component. Create/install a PropertyChangeListener on the component in order to detect and respond to component property changes appropriately. Install keyboard UI (mnemonics, traversal, etc.) on the component. Initialize any appropriate instance data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Reverses configuration which was done on the specified component during installUI. This method is invoked when this UIComponent instance is being removed as the UI delegate for the specified component. This method should undo the configuration performed in installUI, being careful to leave the JComponent instance in a clean state (no extraneous listeners, look-and-feel-specific property objects, etc.). This should include the following: Remove any UI-set borders from the component. Remove any UI-set layout managers on the component. Remove any UI-added sub-components from the component. Remove any UI-added event/property listeners from the component. Remove any UI-installed keyboard UI from the component. Nullify any allocated instance data objects to allow for GC.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSliderUI.TrackListener createTrackListener(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener createChangeListener(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ComponentListener createComponentListener(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener createFocusListener(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BasicSliderUI.ScrollListener createScrollListener(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createPropertyChangeListener(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installKeyboardActions(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallKeyboardActions(JSlider slider)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBaseline(JComponent c,                int width,                int height)
+				</name>
+				<description>
+					Returns the baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c)
+				</name>
+				<description>
+					Returns an enum indicating how the baseline of the component changes as the size changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean labelsHaveSameBaselines()
+				</name>
+				<description>
+					Returns true if all the labels from the label table have the same baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredHorizontalSize()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredVerticalSize()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumHorizontalSize()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumVerticalSize()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Returns the specified component's preferred size appropriate for the look and feel. If null is returned, the preferred size will be calculated by the component's layout manager instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Returns the specified component's minimum size appropriate for the look and feel. If null is returned, the minimum size will be calculated by the component's layout manager instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method invokes getPreferredSize and returns that value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMaximumSize(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Returns the specified component's maximum size appropriate for the look and feel. If null is returned, the maximum size will be calculated by the component's layout manager instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method invokes getPreferredSize and returns that value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateGeometry()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateFocusRect()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateThumbSize()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateContentRect()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateThumbLocation()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateTrackBuffer()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateTrackRect()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getTickLength()
+				</name>
+				<description>
+					Gets the height of the tick area for horizontal sliders and the width of the tick area for vertical sliders. BasicSliderUI uses the returned value to determine the tick area rectangle. If you want to give your ticks some room, make this larger than you need and paint your ticks away from the sides in paintTicks().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateTickRect()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void calculateLabelRect()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Dimension getThumbSize()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getWidthOfWidestLabel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getHeightOfTallestLabel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getWidthOfHighValueLabel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getWidthOfLowValueLabel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getHeightOfHighValueLabel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getHeightOfLowValueLabel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean drawInverted()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Integer getHighestValue()
+				</name>
+				<description>
+					Returns the biggest value that has an entry in the label table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Integer getLowestValue()
+				</name>
+				<description>
+					Returns the smallest value that has an entry in the label table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component getLowestValueLabel()
+				</name>
+				<description>
+					Returns the label that corresponds to the highest slider value in the label table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component getHighestValueLabel()
+				</name>
+				<description>
+					Returns the label that corresponds to the lowest slider value in the label table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Paints the specified component appropriately for the look and feel. This method is invoked from the ComponentUI.update method when the specified component is being painted. Subclasses should override this method and use the specified Graphics object to render the content of the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void recalculateIfInsetsChanged()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void recalculateIfOrientationChanged()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintFocus(Graphics g)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTrack(Graphics g)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintTicks(Graphics g)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintMinorTickForHorizSlider(Graphics g,                                  Rectangle tickBounds,                                  int x)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintMajorTickForHorizSlider(Graphics g,                                  Rectangle tickBounds,                                  int x)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintMinorTickForVertSlider(Graphics g,                                 Rectangle tickBounds,                                 int y)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintMajorTickForVertSlider(Graphics g,                                 Rectangle tickBounds,                                 int y)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintLabels(Graphics g)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintHorizontalLabel(Graphics g,                          int value,                          Component label)
+				</name>
+				<description>
+					Called for every label in the label table. Used to draw the labels for horizontal sliders. The graphics have been translated to labelRect.y already.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintVerticalLabel(Graphics g,                        int value,                        Component label)
+				</name>
+				<description>
+					Called for every label in the label table. Used to draw the labels for vertical sliders. The graphics have been translated to labelRect.x already.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintThumb(Graphics g)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setThumbLocation(int x,                      int y)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void scrollByBlock(int direction)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void scrollByUnit(int direction)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void scrollDueToClickInTrack(int dir)
+				</name>
+				<description>
+					This function is called when a mousePressed was detected in the track, not in the thumb. The default behavior is to scroll by block. You can override this method to stop it from scrolling or to add additional behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int xPositionForValue(int value)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int yPositionForValue(int value)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int yPositionForValue(int value,                      int trackY,                      int trackHeight)
+				</name>
+				<description>
+					Returns the y location for the specified value. No checking is done on the arguments. In particular if trackHeight is negative undefined results may occur.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int valueForYPosition(int yPos)
+				</name>
+				<description>
+					Returns the value at the y position. If yPos is beyond the track at the the bottom or the top, this method sets the value to either the minimum or maximum value of the slider, depending on if the slider is inverted or not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int valueForXPosition(int xPos)
+				</name>
+				<description>
+					Returns the value at the x position. If xPos is beyond the track at the left or the right, this method sets the value to either the minimum or maximum value of the slider, depending on if the slider is inverted or not.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

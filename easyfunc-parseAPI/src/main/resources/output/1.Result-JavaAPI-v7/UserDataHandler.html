@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		org.w3c.dom
+	</package>
+	<type>
+		<name>
+			public interface UserDataHandler
+		</name>
+		<description>
+			When associating an object to a key on a node using Node.setUserData() the application can provide a handler that gets called when the node the object is associated to is being cloned, imported, or renamed. This can be used by the application to implement various behaviors regarding the data it associates to the DOM nodes. This interface defines that handler. See also the Document Object Model (DOM) Level 3 Core Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final short NODE_CLONED
+				</name>
+				<description>
+					The node is cloned, using Node.cloneNode().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short NODE_IMPORTED
+				</name>
+				<description>
+					The node is imported, using Document.importNode().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short NODE_DELETED
+				</name>
+				<description>
+					The node is deleted. Note: This may not be supported or may not be reliable in certain environments, such as Java, where the implementation has no real control over when objects are actually deleted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short NODE_RENAMED
+				</name>
+				<description>
+					The node is renamed, using Document.renameNode().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short NODE_ADOPTED
+				</name>
+				<description>
+					The node is adopted, using Document.adoptNode().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void handle(short operation,            String key,            Object data,            Node src,            Node dst)
+				</name>
+				<description>
+					This method is called whenever the node for which this handler is registered is imported or cloned. DOM applications must not raise exceptions in a UserDataHandler. The effect of throwing exceptions from the handler is DOM implementation dependent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

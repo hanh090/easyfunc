@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.sql
+	</package>
+	<type>
+		<name>
+			public interface Struct
+		</name>
+		<description>
+			The standard mapping in the Java programming language for an SQL structured type. A Struct object contains a value for each attribute of the SQL structured type that it represents. By default, an instance ofStruct is valid as long as the application has a reference to it. All methods on the Struct interface must be fully implemented if the JDBC driver supports the data type.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getSQLTypeName()                        throws SQLException
+				</name>
+				<description>
+					Retrieves the SQL type name of the SQL structured type that this Struct object represents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object[] getAttributes()                         throws SQLException
+				</name>
+				<description>
+					Produces the ordered values of the attributes of the SQL structured type that this Struct object represents. As individual attributes are processed, this method uses the type map associated with the connection for customizations of the type mappings. If there is no entry in the connection's type map that matches the structured type that an attribute represents, the driver uses the standard mapping. Conceptually, this method calls the method getObject on each attribute of the structured type and returns a Java array containing the result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object[] getAttributes(Map<String,Class<?>> map)                         throws SQLException
+				</name>
+				<description>
+					Produces the ordered values of the attributes of the SQL structured type that this Struct object represents. As individual attrbutes are proccessed, this method uses the given type map for customizations of the type mappings. If there is no entry in the given type map that matches the structured type that an attribute represents, the driver uses the standard mapping. This method never uses the type map associated with the connection. Conceptually, this method calls the method getObject on each attribute of the structured type and returns a Java array containing the result.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

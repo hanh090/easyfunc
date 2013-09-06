@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		java.sql
+	</package>
+	<type>
+		<name>
+			public interface Blob
+		</name>
+		<description>
+			The representation (mapping) in the JavaTM programming language of an SQL BLOB value. An SQL BLOB is a built-in type that stores a Binary Large Object as a column value in a row of a database table. By default drivers implement Blob using an SQL locator(BLOB), which means that a Blob object contains a logical pointer to the SQL BLOB data rather than the data itself. A Blob object is valid for the duration of the transaction in which is was created. Methods in the interfaces ResultSet, CallableStatement, and PreparedStatement, such as getBlob and setBlob allow a programmer to access an SQL BLOB value. The Blob interface provides methods for getting the length of an SQL BLOB (Binary Large Object) value, for materializing a BLOB value on the client, and for determining the position of a pattern of bytes within a BLOB value. In addition, this interface has methods for updating a BLOB value. All methods on the Blob interface must be fully implemented if the JDBC driver supports the data type.
+		</description>
+		<methods>
+			<method>
+				<name>
+					long length()              throws SQLException
+				</name>
+				<description>
+					Returns the number of bytes in the BLOB value designated by this Blob object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] getBytes(long pos,                int length)                  throws SQLException
+				</name>
+				<description>
+					Retrieves all or part of the BLOB value that this Blob object represents, as an array of bytes. This byte array contains up to length consecutive bytes starting at position pos.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream getBinaryStream()                              throws SQLException
+				</name>
+				<description>
+					Retrieves the BLOB value designated by this Blob instance as a stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long position(byte[] pattern,              long start)                throws SQLException
+				</name>
+				<description>
+					Retrieves the byte position at which the specified byte array pattern begins within the BLOB value that this Blob object represents. The search for pattern begins at position start.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long position(Blob pattern,              long start)                throws SQLException
+				</name>
+				<description>
+					Retrieves the byte position in the BLOB value designated by this Blob object at which pattern begins. The search begins at position start.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int setBytes(long pos,             byte[] bytes)               throws SQLException
+				</name>
+				<description>
+					Writes the given array of bytes to the BLOB value that this Blob object represents, starting at position pos, and returns the number of bytes written. The array of bytes will overwrite the existing bytes in the Blob object starting at the position pos. If the end of the Blob value is reached while writing the array of bytes, then the length of the Blob value will be increased to accomodate the extra bytes. Note: If the value specified for pos is greater then the length+1 of the BLOB value then the behavior is undefined. Some JDBC drivers may throw a SQLException while other drivers may support this operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int setBytes(long pos,             byte[] bytes,             int offset,             int len)               throws SQLException
+				</name>
+				<description>
+					Writes all or part of the given byte array to the BLOB value that this Blob object represents and returns the number of bytes written. Writing starts at position pos in the BLOB value; len bytes from the given byte array are written. The array of bytes will overwrite the existing bytes in the Blob object starting at the position pos. If the end of the Blob value is reached while writing the array of bytes, then the length of the Blob value will be increased to accomodate the extra bytes. Note: If the value specified for pos is greater then the length+1 of the BLOB value then the behavior is undefined. Some JDBC drivers may throw a SQLException while other drivers may support this operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					OutputStream setBinaryStream(long pos)                               throws SQLException
+				</name>
+				<description>
+					Retrieves a stream that can be used to write to the BLOB value that this Blob object represents. The stream begins at position pos. The bytes written to the stream will overwrite the existing bytes in the Blob object starting at the position pos. If the end of the Blob value is reached while writing to the stream, then the length of the Blob value will be increased to accomodate the extra bytes. Note: If the value specified for pos is greater then the length+1 of the BLOB value then the behavior is undefined. Some JDBC drivers may throw a SQLException while other drivers may support this operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void truncate(long len)                throws SQLException
+				</name>
+				<description>
+					Truncates the BLOB value that this Blob object represents to be len bytes in length. Note: If the value specified for pos is greater then the length+1 of the BLOB value then the behavior is undefined. Some JDBC drivers may throw a SQLException while other drivers may support this operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void free()            throws SQLException
+				</name>
+				<description>
+					This method frees the Blob object and releases the resources that it holds. The object is invalid once the free method is called. After free has been called, any attempt to invoke a method other than free will result in a SQLException being thrown. If free is called multiple times, the subsequent calls to free are treated as a no-op.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream getBinaryStream(long pos,                            long length)                              throws SQLException
+				</name>
+				<description>
+					Returns an InputStream object that contains a partial Blob value, starting with the byte specified by pos, which is length bytes in length.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

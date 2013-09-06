@@ -1,0 +1,315 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public final class JLayer<V extends Component>  extends JComponent  implements Scrollable, PropertyChangeListener, Accessible
+		</name>
+		<description>
+			JLayer is a universal decorator for Swing components which enables you to implement various advanced painting effects as well as receive notifications of all AWTEvents generated within its borders. JLayer delegates the handling of painting and input events to a LayerUI object, which performs the actual decoration. The custom painting implemented in the LayerUI and events notification work for the JLayer itself and all its subcomponents. This combination enables you to enrich existing components by adding new advanced functionality such as temporary locking of a hierarchy, data tips for compound components, enhanced mouse scrolling etc and so on. JLayer is a good solution if you only need to do custom painting over compound component or catch input events from its subcomponents.    import javax.swing.*;   import javax.swing.plaf.LayerUI;   import java.awt.*;     public class JLayerSample {         private static JLayer<JComponent> createLayer() {           // This custom layerUI will fill the layer with translucent green           // and print out all mouseMotion events generated within its borders           LayerUI<JComponent> layerUI = new LayerUI<JComponent>() {                 public void paint(Graphics g, JComponent c) {                   // paint the layer as is                   super.paint(g, c);                   // fill it with the translucent green                   g.setColor(new Color(0, 128, 0, 128));                   g.fillRect(0, 0, c.getWidth(), c.getHeight());               }                 public void installUI(JComponent c) {                   super.installUI(c);                   // enable mouse motion events for the layer's subcomponents                   ((JLayer) c).setLayerEventMask(AWTEvent.MOUSE_MOTION_EVENT_MASK);               }                 public void uninstallUI(JComponent c) {                   super.uninstallUI(c);                   // reset the layer event mask                   ((JLayer) c).setLayerEventMask(0);               }                 // overridden method which catches MouseMotion events               public void eventDispatched(AWTEvent e, JLayer<? extends JComponent> l) {                   System.out.println("AWTEvent detected: " + e);               }           };           // create a component to be decorated with the layer           JPanel panel = new JPanel();           panel.add(new JButton("JButton"));             // create the layer for the panel using our custom layerUI           return new JLayer<JComponent>(panel, layerUI);       }         private static void createAndShowGUI() {           final JFrame frame = new JFrame();           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             // work with the layer as with any other Swing component           frame.add(createLayer());             frame.setSize(200, 200);           frame.setLocationRelativeTo(null);           frame.setVisible(true);       }         public static void main(String[] args) throws Exception {           SwingUtilities.invokeAndWait(new Runnable() {               public void run() {                   createAndShowGUI();               }           });       }   }   Note: JLayer doesn't support the following methods: Container.add(java.awt.Component) Container.add(String, java.awt.Component) Container.add(java.awt.Component, int) Container.add(java.awt.Component, Object) Container.add(java.awt.Component, Object, int) using any of of them will cause UnsupportedOperationException to be thrown, to add a component to JLayer use setView(Component) or setGlassPane(JPanel).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JLayer()
+				</name>
+				<description>
+					Creates a new JLayer object with a null view component and default LayerUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JLayer(V view)
+				</name>
+				<description>
+					Creates a new JLayer object with default LayerUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JLayer(V view,        LayerUI<V> ui)
+				</name>
+				<description>
+					Creates a new JLayer object with the specified view component and LayerUI object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V getView()
+				</name>
+				<description>
+					Returns the JLayer's view component or null. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setView(V view)
+				</name>
+				<description>
+					Sets the JLayer's view component, which can be null. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(LayerUI<? super V> ui)
+				</name>
+				<description>
+					Sets the LayerUI which will perform painting and receive input events for this JLayer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LayerUI<? super V> getUI()
+				</name>
+				<description>
+					Returns the LayerUI for this JLayer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JPanel getGlassPane()
+				</name>
+				<description>
+					Returns the JLayer's glassPane component or null. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setGlassPane(JPanel glassPane)
+				</name>
+				<description>
+					Sets the JLayer's glassPane component, which can be null. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JPanel createGlassPane()
+				</name>
+				<description>
+					Called by the constructor methods to create a default glassPane. By default this method creates a new JPanel with visibility set to true and opacity set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayout(LayoutManager mgr)
+				</name>
+				<description>
+					Sets the layout manager for this container. This method is overridden to prevent the layout manager from being set. Note: If mgr is non-null, this method will throw an exception as layout managers are not supported on a JLayer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBorder(Border border)
+				</name>
+				<description>
+					A non-null border, or non-zero insets, isn't supported, to prevent the geometry of this component from becoming complex enough to inhibit subclassing of LayerUI class. To create a JLayer with a border, add it to a JPanel that has a border. Note: If border is non-null, this method will throw an exception as borders are not supported on a JLayer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addImpl(Component comp,             Object constraints,             int index)
+				</name>
+				<description>
+					This method is not supported by JLayer and always throws UnsupportedOperationException
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(Component comp)
+				</name>
+				<description>
+					Removes the specified component from this container. This method also notifies the layout manager to remove the component from this container's layout via the removeLayoutComponent method. This method changes layout-related information, and therefore, invalidates the component hierarchy. If the container has already been displayed, the hierarchy must be validated thereafter in order to reflect the changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAll()
+				</name>
+				<description>
+					Removes all the components from this container. This method also notifies the layout manager to remove the components from this container's layout via the removeLayoutComponent method. This method changes layout-related information, and therefore, invalidates the component hierarchy. If the container has already been displayed, the hierarchy must be validated thereafter in order to reflect the changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isPaintingOrigin()
+				</name>
+				<description>
+					Always returns true to cause painting to originate from JLayer, or one of its ancestors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintImmediately(int x,                      int y,                      int w,                      int h)
+				</name>
+				<description>
+					Delegates its functionality to the LayerUI.paintImmediately(int, int, int, int, JLayer) method, if LayerUI is set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g)
+				</name>
+				<description>
+					Delegates all painting to the LayerUI object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintComponent(Graphics g)
+				</name>
+				<description>
+					This method is empty, because all painting is done by paint(Graphics) and ComponentUI.update(Graphics, JComponent) methods
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOptimizedDrawingEnabled()
+				</name>
+				<description>
+					The JLayer overrides the default implementation of this method (in JComponent) to return false. This ensures that the drawing machinery will call the JLayer's paint implementation rather than messaging the JLayer's children directly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void propertyChange(PropertyChangeEvent evt)
+				</name>
+				<description>
+					This method gets called when a bound property is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayerEventMask(long layerEventMask)
+				</name>
+				<description>
+					Enables the events from JLayer and all its descendants defined by the specified event mask parameter to be delivered to the LayerUI.eventDispatched(AWTEvent, JLayer) method. Events are delivered provided that LayerUI is set for this JLayer and the JLayer is displayable. The following example shows how to correctly use this method in the LayerUI implementations:       public void installUI(JComponent c) {         super.installUI(c);         JLayer l = (JLayer) c;         // this LayerUI will receive only key and focus events         l.setLayerEventMask(AWTEvent.KEY_EVENT_MASK | AWTEvent.FOCUS_EVENT_MASK);      }        public void uninstallUI(JComponent c) {         super.uninstallUI(c);         JLayer l = (JLayer) c;         // JLayer must be returned to its initial state         l.setLayerEventMask(0);      }   By default JLayer receives no events and its event mask is 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getLayerEventMask()
+				</name>
+				<description>
+					Returns the bitmap of event mask to receive by this JLayer and its LayerUI. It means that LayerUI.eventDispatched(AWTEvent, JLayer) method will only receive events that match the event mask. By default JLayer receives no events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Delegates its functionality to the LayerUI.updateUI(JLayer) method, if LayerUI is set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredScrollableViewportSize()
+				</name>
+				<description>
+					Returns the preferred size of the viewport for a view component. If the view component of this layer implements Scrollable, this method delegates its implementation to the view component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableBlockIncrement(Rectangle visibleRect,                                int orientation,                                int direction)
+				</name>
+				<description>
+					Returns a scroll increment, which is required for components that display logical rows or columns in order to completely expose one block of rows or columns, depending on the value of orientation. If the view component of this layer implements Scrollable, this method delegates its implementation to the view component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportHeight()
+				</name>
+				<description>
+					Returns false to indicate that the height of the viewport does not determine the height of the layer, unless the preferred height of the layer is smaller than the height of the viewport. If the view component of this layer implements Scrollable, this method delegates its implementation to the view component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportWidth()
+				</name>
+				<description>
+					Returns false to indicate that the width of the viewport does not determine the width of the layer, unless the preferred width of the layer is smaller than the width of the viewport. If the view component of this layer implements Scrollable, this method delegates its implementation to the view component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableUnitIncrement(Rectangle visibleRect,                               int orientation,                               int direction)
+				</name>
+				<description>
+					Returns a scroll increment, which is required for components that display logical rows or columns in order to completely expose one new row or column, depending on the value of orientation. Ideally, components should handle a partially exposed row or column by returning the distance required to completely expose the item. Scrolling containers, like JScrollPane, will use this method each time the user requests a unit scroll. If the view component of this layer implements Scrollable, this method delegates its implementation to the view component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotify()
+				</name>
+				<description>
+					Notifies this component that it now has a parent component. When this method is invoked, the chain of parent components is set up with KeyboardAction event listeners. This method is called by the toolkit internally and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotify()
+				</name>
+				<description>
+					Notifies this component that it no longer has a parent component. When this method is invoked, any KeyboardActions set up in the the chain of parent components are removed. This method is called by the toolkit internally and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void doLayout()
+				</name>
+				<description>
+					Delegates its functionality to the LayerUI.doLayout(JLayer) method, if LayerUI is set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JLayer.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class MBeanServerBuilder  extends Object
+		</name>
+		<description>
+			This class represents a builder that creates a default MBeanServer implementation. The JMX MBeanServerFactory allows applications to provide their custom MBeanServer implementation by providing a subclass of this class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MBeanServerBuilder()
+				</name>
+				<description>
+					Public default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanServerDelegate newMBeanServerDelegate()
+				</name>
+				<description>
+					This method creates a new MBeanServerDelegate for a new MBeanServer. When creating a new MBeanServer the MBeanServerFactory first calls this method in order to create a new MBeanServerDelegate. Then it calls newMBeanServer(defaultDomain,outer,delegate) passing the delegate that should be used by the MBeanServer implementation. Note that the passed delegate might not be directly the MBeanServerDelegate that was returned by this method. It could be, for instance, a new object wrapping the previously returned object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanServer newMBeanServer(String defaultDomain,                           MBeanServer outer,                           MBeanServerDelegate delegate)
+				</name>
+				<description>
+					This method creates a new MBeanServer implementation object. When creating a new MBeanServer the MBeanServerFactory first calls newMBeanServerDelegate() in order to obtain a new MBeanServerDelegate for the new MBeanServer. Then it calls newMBeanServer(defaultDomain,outer,delegate) passing the delegate that should be used by the MBeanServer implementation. Note that the passed delegate might not be directly the MBeanServerDelegate that was returned by this implementation. It could be, for instance, a new object wrapping the previously returned delegate. The outer parameter is a pointer to the MBeanServer that should be passed to the MBeanRegistration interface when registering MBeans inside the MBeanServer. If outer is null, then the MBeanServer implementation must use its own this reference when invoking the MBeanRegistration interface. This makes it possible for a MBeanServer implementation to wrap another MBeanServer implementation, in order to implement, e.g, security checks, or to prevent access to the actual MBeanServer implementation by returning a pointer to a wrapping object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

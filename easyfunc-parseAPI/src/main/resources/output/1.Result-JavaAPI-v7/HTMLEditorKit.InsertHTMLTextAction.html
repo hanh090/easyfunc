@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public static class HTMLEditorKit.InsertHTMLTextAction  extends HTMLEditorKit.HTMLTextAction
+		</name>
+		<description>
+			InsertHTMLTextAction can be used to insert an arbitrary string of HTML into an existing HTML document. At least two HTML.Tags need to be supplied. The first Tag, parentTag, identifies the parent in the document to add the elements to. The second tag, addTag, identifies the first tag that should be added to the document as seen in the HTML string. One important thing to remember, is that the parser is going to generate all the appropriate tags, even if they aren't in the HTML string passed in. For example, lets say you wanted to create an action to insert a table into the body. The parentTag would be HTML.Tag.BODY, addTag would be HTML.Tag.TABLE, and the string could be something like <table><tr><td></td></tr></table>. There is also an option to supply an alternate parentTag and addTag. These will be checked for if there is no parentTag at offset.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected String html
+				</name>
+				<description>
+					HTML to insert.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected HTML.Tag parentTag
+				</name>
+				<description>
+					Tag to check for in the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected HTML.Tag addTag
+				</name>
+				<description>
+					Tag in HTML to start adding tags from.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected HTML.Tag alternateParentTag
+				</name>
+				<description>
+					Alternate Tag to check for in the document if parentTag is not found.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected HTML.Tag alternateAddTag
+				</name>
+				<description>
+					Alternate tag in HTML to start adding tags from if parentTag is not found and alternateParentTag is found.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public HTMLEditorKit.InsertHTMLTextAction(String name,                                    String html,                                    HTML.Tag parentTag,                                    HTML.Tag addTag)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public HTMLEditorKit.InsertHTMLTextAction(String name,                                    String html,                                    HTML.Tag parentTag,                                    HTML.Tag addTag,                                    HTML.Tag alternateParentTag,                                    HTML.Tag alternateAddTag)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void insertHTML(JEditorPane editor,                HTMLDocument doc,                int offset,                String html,                int popDepth,                int pushDepth,                HTML.Tag addTag)
+				</name>
+				<description>
+					A cover for HTMLEditorKit.insertHTML. If an exception it thrown it is wrapped in a RuntimeException and thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void insertAtBoundary(JEditorPane editor,                      HTMLDocument doc,                      int offset,                      Element insertElement,                      String html,                      HTML.Tag parentTag,                      HTML.Tag addTag)
+				</name>
+				<description>
+					This is invoked when inserting at a boundary. It determines the number of pops, and then the number of pushes that need to be performed, and then invokes insertHTML.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected void insertAtBoundry(JEditorPane editor,                                HTMLDocument doc,                                int offset,                                Element insertElement,                                String html,                                HTML.Tag parentTag,                                HTML.Tag addTag)
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3, use insertAtBoundary This is invoked when inserting at a boundary. It determines the number of pops, and then the number of pushes that need to be performed, and then invokes insertHTML.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void actionPerformed(ActionEvent ae)
+				</name>
+				<description>
+					Inserts the HTML into the document.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public abstract class ExceptionList  extends Object
+		</name>
+		<description>
+			An object used in Request operations to describe the exceptions that can be thrown by a method. It maintains a modifiable list of TypeCodes of the exceptions. The following code fragment demonstrates creating an ExceptionList object:       ORB orb = ORB.init(args, null);      org.omg.CORBA.ExceptionList excList = orb.create_exception_list();   The variable excList represents an ExceptionList object with no TypeCode objects in it. To add items to the list, you first create a TypeCode object for the exception you want to include, using the ORB method create_exception_tc. Then you use the ExceptionList method add to add it to the list. The class ExceptionList has a method for getting the number of TypeCode objects in the list, and after items have been added, it is possible to call methods for accessing or deleting an item at a designated index.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ExceptionList()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int count()
+				</name>
+				<description>
+					Retrieves the number of TypeCode objects in this ExceptionList object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void add(TypeCode exc)
+				</name>
+				<description>
+					Adds a TypeCode object describing an exception to this ExceptionList object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract TypeCode item(int index)                         throws Bounds
+				</name>
+				<description>
+					Returns the TypeCode object at the given index. The first item is at index 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void remove(int index)                       throws Bounds
+				</name>
+				<description>
+					Removes the TypeCode object at the given index. Note that the indices of all the TypeCoded objects following the one deleted are shifted down by one.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

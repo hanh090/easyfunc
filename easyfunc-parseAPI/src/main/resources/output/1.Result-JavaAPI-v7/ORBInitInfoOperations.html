@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface ORBInitInfoOperations
+		</name>
+		<description>
+			Passed to each ORBInitializer, allowing it to to register interceptors and perform other duties while the ORB is initializing. The ORBInitInfo object is only valid during ORB.init. If a service keeps a reference to its ORBInitInfo object and tries to use it after ORB.init returns, the object no longer exists and an OBJECT_NOT_EXIST exception shall be thrown.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String[] arguments()
+				</name>
+				<description>
+					Returns the arguments passed to ORB.init. They may or may not contain the ORB's arguments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String orb_id()
+				</name>
+				<description>
+					Returns the ID of the ORB being initialized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					CodecFactory codec_factory()
+				</name>
+				<description>
+					Returns the IOP.CodecFactory. The CodecFactory is normally obtained via a call to ORB.resolve_initial_references( "CodecFactory" ), but since the ORB is not yet available and Interceptors, particularly when processing service contexts, will require a Codec, a means of obtaining a Codec is necessary during ORB initialization.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void register_initial_reference(String id,                                Object obj)                                  throws InvalidName
+				</name>
+				<description>
+					Identical to ORB.register_initial_reference. This same functionality exists here because the ORB, not yet fully initialized, is not yet available but initial references may need to be registered as part of Interceptor registration. The only difference is that the version of this operation on the ORB uses PIDL (CORBA.ORB.ObjectId) and (CORBA.ORB.InvalidName) whereas the version in this interface uses IDL defined in this interface; the semantics are identical.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object resolve_initial_references(String id)                                    throws InvalidName
+				</name>
+				<description>
+					Identical to ORB.resolve_initial_references. This same functionality exists here because the ORB, not yet fully initialized, is not yet available but initial references may be required from the ORB as part of Interceptor registration. The only difference is that the version of this operation on the ORB uses PIDL (CORBA::ORB::ObjectId and CORBA::ORB::InvalidName) whereas the version in this interface uses IDL defined in this interface; the semantics are identical. This operation is only valid during post_init.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void add_client_request_interceptor(ClientRequestInterceptor interceptor)                                      throws DuplicateName
+				</name>
+				<description>
+					Used to add a client-side request Interceptor to the list of client-side request Interceptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void add_server_request_interceptor(ServerRequestInterceptor interceptor)                                      throws DuplicateName
+				</name>
+				<description>
+					Used to add a server-side request Interceptor to the list of server-side request Interceptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void add_ior_interceptor(IORInterceptor interceptor)                           throws DuplicateName
+				</name>
+				<description>
+					Used to add an IOR Interceptor to the list of IOR Interceptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int allocate_slot_id()
+				</name>
+				<description>
+					Called to allocate a slot on PortableInterceptor.Current. Note that while slot id's can be allocated within an ORB initializer, the slots themselves cannot be initialized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void register_policy_factory(int type,                             PolicyFactory policy_factory)
+				</name>
+				<description>
+					Registers a PolicyFactory for the given PolicyType.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

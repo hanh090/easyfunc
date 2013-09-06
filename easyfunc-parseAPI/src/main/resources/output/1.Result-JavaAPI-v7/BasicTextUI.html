@@ -1,0 +1,360 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public abstract class BasicTextUI  extends TextUI  implements ViewFactory
+		</name>
+		<description>
+			Basis of a text components look-and-feel. This provides the basic editor view and controller services that may be useful when creating a look-and-feel for an extension of JTextComponent. Most state is held in the associated JTextComponent as bound properties, and the UI installs default values for the various properties. This default will install something for all of the properties. Typically, a LAF implementation will do more however. At a minimum, a LAF would generally install key bindings. This class also provides some concurrency support if the Document associated with the JTextComponent is a subclass of AbstractDocument. Access to the View (or View hierarchy) is serialized between any thread mutating the model and the Swing event thread (which is expected to render, do model/view coordinate translation, etc). Any access to the root view should first acquire a read-lock on the AbstractDocument and release that lock in a finally block. An important method to define is the getPropertyPrefix() method which is used as the basis of the keys used to fetch defaults from the UIManager. The string should reflect the type of TextUI (eg. TextField, TextArea, etc) without the particular LAF part of the name (eg Metal, Motif, etc). To build a view of the model, one of the following strategies can be employed. One strategy is to simply redefine the ViewFactory interface in the UI. By default, this UI itself acts as the factory for View implementations. This is useful for simple factories. To do this reimplement the create(javax.swing.text.Element) method. A common strategy for creating more complex types of documents is to have the EditorKit implementation return a factory. Since the EditorKit ties all of the pieces necessary to maintain a type of document, the factory is typically an important part of that and should be produced by the EditorKit implementation. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BasicTextUI()
+				</name>
+				<description>
+					Creates a new UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Caret createCaret()
+				</name>
+				<description>
+					Creates the object to use for a caret. By default an instance of BasicCaret is created. This method can be redefined to provide something else that implements the InputPosition interface or a subclass of JCaret.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Highlighter createHighlighter()
+				</name>
+				<description>
+					Creates the object to use for adding highlights. By default an instance of BasicHighlighter is created. This method can be redefined to provide something else that implements the Highlighter interface or a subclass of DefaultHighlighter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getKeymapName()
+				</name>
+				<description>
+					Fetches the name of the keymap that will be installed/used by default for this UI. This is implemented to create a name based upon the classname. The name is the the name of the class with the package prefix removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Keymap createKeymap()
+				</name>
+				<description>
+					Creates the keymap to use for the text component, and installs any necessary bindings into it. By default, the keymap is shared between all instances of this type of TextUI. The keymap has the name defined by the getKeymapName method. If the keymap is not found, then DEFAULT_KEYMAP from JTextComponent is used. The set of bindings used to create the keymap is fetched from the UIManager using a key formed by combining the getPropertyPrefix() method and the string .keyBindings. The type is expected to be JTextComponent.KeyBinding[].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void propertyChange(PropertyChangeEvent evt)
+				</name>
+				<description>
+					This method gets called when a bound property is changed on the associated JTextComponent. This is a hook which UI implementations may change to reflect how the UI displays bound properties of JTextComponent subclasses. This is implemented to do nothing (i.e. the response to properties in JTextComponent itself are handled prior to calling this method). This implementation updates the background of the text component if the editable and/or enabled state changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract String getPropertyPrefix()
+				</name>
+				<description>
+					Gets the name used as a key to look up properties through the UIManager. This is used as a prefix to all the standard text properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults()
+				</name>
+				<description>
+					Initializes component properties, such as font, foreground, background, caret color, selection color, selected text color, disabled text color, and border color. The font, foreground, and background properties are only set if their current value is either null or a UIResource, other properties are set if the current value is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults()
+				</name>
+				<description>
+					Sets the component properties that have not been explicitly overridden to null. A property is considered overridden if its current value is not a UIResource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners()
+				</name>
+				<description>
+					Installs listeners for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners()
+				</name>
+				<description>
+					Uninstalls listeners for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintBackground(Graphics g)
+				</name>
+				<description>
+					Paints a background for the view. This will only be called if isOpaque() on the associated component is true. The default is to paint the background color of the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final JTextComponent getComponent()
+				</name>
+				<description>
+					Fetches the text component associated with this UI implementation. This will be null until the ui has been installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void modelChanged()
+				</name>
+				<description>
+					Flags model changes. This is called whenever the model has changed. It is implemented to rebuild the view hierarchy to represent the default root element of the associated model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void setView(View v)
+				</name>
+				<description>
+					Sets the current root of the view hierarchy and calls invalidate(). If there were any child components, they will be removed (i.e. there are assumed to have come from components embedded in views).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintSafely(Graphics g)
+				</name>
+				<description>
+					Paints the interface safely with a guarantee that the model won't change from the view of this thread. This does the following things, rendering from back to front. If the component is marked as opaque, the background is painted in the current background color of the component. The highlights (if any) are painted. The view hierarchy is painted. The caret is painted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void installUI(JComponent c)
+				</name>
+				<description>
+					Installs the UI for a component. This does the following things. Sets the associated component to opaque if the opaque property has not already been set by the client program. This will cause the component's background color to be painted. Installs the default caret and highlighter into the associated component. These properties are only set if their current value is either null or an instance of UIResource. Attaches to the editor and model. If there is no model, a default one is created. Creates the view factory and the view hierarchy used to represent the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallUI(JComponent c)
+				</name>
+				<description>
+					Deinstalls the UI for a component. This removes the listeners, uninstalls the highlighter, removes views, and nulls out the keymap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void update(Graphics g,            JComponent c)
+				</name>
+				<description>
+					Superclass paints background in an uncontrollable way (i.e. one might want an image tiled into the background). To prevent this from happening twice, this method is reimplemented to simply paint. NOTE: NOTE: Superclass is also not thread-safe in its rendering of the background, although that is not an issue with the default rendering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void paint(Graphics g,           JComponent c)
+				</name>
+				<description>
+					Paints the interface. This is routed to the paintSafely method under the guarantee that the model won't change from the view of this thread while it's rendering (if the associated model is derived from AbstractDocument). This enables the model to potentially be updated asynchronously.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize(JComponent c)
+				</name>
+				<description>
+					Gets the preferred size for the editor component. If the component has been given a size prior to receiving this request, it will set the size of the view hierarchy to reflect the size of the component before requesting the preferred size of the view hierarchy. This allows formatted views to format to the current component size before answering the request. Other views don't care about currently formatted size and give the same answer either way.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize(JComponent c)
+				</name>
+				<description>
+					Gets the minimum size for the editor component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMaximumSize(JComponent c)
+				</name>
+				<description>
+					Gets the maximum size for the editor component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle getVisibleEditorRect()
+				</name>
+				<description>
+					Gets the allocation to give the root View. Due to an unfortunate set of historical events this method is inappropriately named. The Rectangle returned has nothing to do with visibility. The component must have a non-zero positive size for this translation to be computed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle modelToView(JTextComponent tc,                      int pos)                        throws BadLocationException
+				</name>
+				<description>
+					Converts the given location in the model to a place in the view coordinate system. The component must have a non-zero positive size for this translation to be computed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle modelToView(JTextComponent tc,                      int pos,                      Position.Bias bias)                        throws BadLocationException
+				</name>
+				<description>
+					Converts the given location in the model to a place in the view coordinate system. The component must have a non-zero positive size for this translation to be computed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(JTextComponent tc,                Point pt)
+				</name>
+				<description>
+					Converts the given place in the view coordinate system to the nearest representative location in the model. The component must have a non-zero positive size for this translation to be computed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(JTextComponent tc,                Point pt,                Position.Bias[] biasReturn)
+				</name>
+				<description>
+					Converts the given place in the view coordinate system to the nearest representative location in the model. The component must have a non-zero positive size for this translation to be computed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNextVisualPositionFrom(JTextComponent t,                              int pos,                              Position.Bias b,                              int direction,                              Position.Bias[] biasRet)                                throws BadLocationException
+				</name>
+				<description>
+					Provides a way to determine the next visually represented model location that one might place a caret. Some views may not be visible, they might not be in the same order found in the model, or they just might not allow access to some of the locations in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void damageRange(JTextComponent tc,                 int p0,                 int p1)
+				</name>
+				<description>
+					Causes the portion of the view responsible for the given part of the model to be repainted. Does nothing if the view is not currently painted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void damageRange(JTextComponent t,                 int p0,                 int p1,                 Position.Bias p0Bias,                 Position.Bias p1Bias)
+				</name>
+				<description>
+					Causes the portion of the view responsible for the given part of the model to be repainted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EditorKit getEditorKit(JTextComponent tc)
+				</name>
+				<description>
+					Fetches the EditorKit for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View getRootView(JTextComponent tc)
+				</name>
+				<description>
+					Fetches a View with the allocation of the associated text component (i.e. the root of the hierarchy) that can be traversed to determine how the model is being represented spatially. NOTE:The View hierarchy can be traversed from the root view, and other things can be done as well. Things done in this way cannot be protected like simple method calls through the TextUI. Therefore, proper operation in the presence of concurrency must be arranged by any logic that calls this method!
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(JTextComponent t,                      Point pt)
+				</name>
+				<description>
+					Returns the string to be used as the tooltip at the passed in location. This forwards the method onto the root View.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View create(Element elem)
+				</name>
+				<description>
+					Creates a view for an element. If a subclass wishes to directly implement the factory producing the view(s), it should reimplement this method. By default it simply returns null indicating it is unable to represent the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View create(Element elem,            int p0,            int p1)
+				</name>
+				<description>
+					Creates a view for an element. If a subclass wishes to directly implement the factory producing the view(s), it should reimplement this method. By default it simply returns null indicating it is unable to represent the part of the element.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

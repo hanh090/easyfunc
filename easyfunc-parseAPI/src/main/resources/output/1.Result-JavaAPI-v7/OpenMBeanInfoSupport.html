@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.management.openmbean
+	</package>
+	<type>
+		<name>
+			public class OpenMBeanInfoSupport  extends MBeanInfo  implements OpenMBeanInfo
+		</name>
+		<description>
+			The OpenMBeanInfoSupport class describes the management information of an open MBean: it is a subclass of MBeanInfo, and it implements the OpenMBeanInfo interface. Note that an open MBean is recognized as such if its getMBeanInfo() method returns an instance of a class which implements the OpenMBeanInfo interface, typically OpenMBeanInfoSupport.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public OpenMBeanInfoSupport(String className,                      String description,                      OpenMBeanAttributeInfo[] openAttributes,                      OpenMBeanConstructorInfo[] openConstructors,                      OpenMBeanOperationInfo[] openOperations,                      MBeanNotificationInfo[] notifications)
+				</name>
+				<description>
+					Constructs an OpenMBeanInfoSupport instance, which describes a class of open MBeans with the specified className, description, openAttributes, openConstructors , openOperations and notifications. The openAttributes, openConstructors, openOperations and notifications array parameters are internally copied, so that subsequent changes to the arrays referenced by these parameters have no effect on this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OpenMBeanInfoSupport(String className,                      String description,                      OpenMBeanAttributeInfo[] openAttributes,                      OpenMBeanConstructorInfo[] openConstructors,                      OpenMBeanOperationInfo[] openOperations,                      MBeanNotificationInfo[] notifications,                      Descriptor descriptor)
+				</name>
+				<description>
+					Constructs an OpenMBeanInfoSupport instance, which describes a class of open MBeans with the specified className, description, openAttributes, openConstructors , openOperations, notifications, and descriptor. The openAttributes, openConstructors, openOperations and notifications array parameters are internally copied, so that subsequent changes to the arrays referenced by these parameters have no effect on this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares the specified obj parameter with this OpenMBeanInfoSupport instance for equality. Returns true if and only if all of the following statements are true: obj is non null, obj also implements the OpenMBeanInfo interface, their class names are equal their infos on attributes, constructors, operations and notifications are equal This ensures that this equals method works properly for obj parameters which are different implementations of the OpenMBeanInfo interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this OpenMBeanInfoSupport instance. The hash code of an OpenMBeanInfoSupport instance is the sum of the hash codes of all elements of information used in equals comparisons (ie: its class name, and its infos on attributes, constructors, operations and notifications, where the hashCode of each of these arrays is calculated by a call to new java.util.HashSet(java.util.Arrays.asList(this.getSignature)).hashCode()). This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two OpenMBeanInfoSupport instances t1 and t2, as required by the general contract of the method Object.hashCode(). However, note that another instance of a class implementing the OpenMBeanInfo interface may be equal to this OpenMBeanInfoSupport instance as defined by equals(java.lang.Object), but may have a different hash code if it is calculated differently. As OpenMBeanInfoSupport instances are immutable, the hash code for this instance is calculated once, on the first call to hashCode, and then the same value is returned for subsequent calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this OpenMBeanInfoSupport instance. The string representation consists of the name of this class (ie javax.management.openmbean.OpenMBeanInfoSupport), the MBean class name, the string representation of infos on attributes, constructors, operations and notifications of the described MBean and the string representation of the descriptor. As OpenMBeanInfoSupport instances are immutable, the string representation for this instance is calculated once, on the first call to toString, and then the same value is returned for subsequent calls.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

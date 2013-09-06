@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.rmi.server
+	</package>
+	<type>
+		<name>
+			public class UnicastRemoteObject  extends RemoteServer
+		</name>
+		<description>
+			Used for exporting a remote object with JRMP and obtaining a stub that communicates to the remote object. For the constructors and static exportObject methods below, the stub for a remote object being exported is obtained as follows: If the remote object is exported using the UnicastRemoteObject.exportObject(Remote) method, a stub class (typically pregenerated from the remote object's class using the rmic tool) is loaded and an instance of that stub class is constructed as follows. A "root class" is determined as follows: if the remote object's class directly implements an interface that extends Remote, then the remote object's class is the root class; otherwise, the root class is the most derived superclass of the remote object's class that directly implements an interface that extends Remote. The name of the stub class to load is determined by concatenating the binary name of the root class with the suffix "_Stub". The stub class is loaded by name using the class loader of the root class. The stub class must extend RemoteStub and must have a public constructor that has one parameter, of type RemoteRef. Finally, an instance of the stub class is constructed with a RemoteRef. If the appropriate stub class could not be found, or the stub class could not be loaded, or a problem occurs creating the stub instance, a StubNotFoundException is thrown. For all other means of exporting: If the remote object's stub class (as defined above) could not be loaded or the system property java.rmi.server.ignoreStubClasses is set to "true" (case insensitive), a Proxy instance is constructed with the following properties: The proxy's class is defined by the class loader of the remote object's class. The proxy implements all the remote interfaces implemented by the remote object's class. The proxy's invocation handler is a RemoteObjectInvocationHandler instance constructed with a RemoteRef. If the proxy could not be created, a StubNotFoundException will be thrown. Otherwise, an instance of the remote object's stub class (as described above) is used as the stub.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected UnicastRemoteObject()                         throws RemoteException
+				</name>
+				<description>
+					Creates and exports a new UnicastRemoteObject object using an anonymous port.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected UnicastRemoteObject(int port)                         throws RemoteException
+				</name>
+				<description>
+					Creates and exports a new UnicastRemoteObject object using the particular supplied port.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected UnicastRemoteObject(int port,                     RMIClientSocketFactory csf,                     RMIServerSocketFactory ssf)                         throws RemoteException
+				</name>
+				<description>
+					Creates and exports a new UnicastRemoteObject object using the particular supplied port and socket factories.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()               throws CloneNotSupportedException
+				</name>
+				<description>
+					Returns a clone of the remote object that is distinct from the original.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static RemoteStub exportObject(Remote obj)                                 throws RemoteException
+				</name>
+				<description>
+					Exports the remote object to make it available to receive incoming calls using an anonymous port.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Remote exportObject(Remote obj,                    int port)                             throws RemoteException
+				</name>
+				<description>
+					Exports the remote object to make it available to receive incoming calls, using the particular supplied port.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Remote exportObject(Remote obj,                    int port,                    RMIClientSocketFactory csf,                    RMIServerSocketFactory ssf)                             throws RemoteException
+				</name>
+				<description>
+					Exports the remote object to make it available to receive incoming calls, using a transport specified by the given socket factory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean unexportObject(Remote obj,                       boolean force)                                throws NoSuchObjectException
+				</name>
+				<description>
+					Removes the remote object, obj, from the RMI runtime. If successful, the object can no longer accept incoming RMI calls. If the force parameter is true, the object is forcibly unexported even if there are pending calls to the remote object or the remote object still has calls in progress. If the force parameter is false, the object is only unexported if there are no pending or in progress calls to the object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

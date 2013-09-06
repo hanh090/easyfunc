@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class BufferedImageFilter  extends ImageFilter  implements Cloneable
+		</name>
+		<description>
+			The BufferedImageFilter class subclasses an ImageFilter to provide a simple means of using a single-source/single-destination image operator (BufferedImageOp) to filter a BufferedImage in the Image Producer/Consumer/Observer paradigm. Examples of these image operators are: ConvolveOp, AffineTransformOp and LookupOp.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BufferedImageFilter(BufferedImageOp op)
+				</name>
+				<description>
+					Constructs a BufferedImageFilter with the specified single-source/single-destination operator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedImageOp getBufferedImageOp()
+				</name>
+				<description>
+					Returns the BufferedImageOp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDimensions(int width,                   int height)
+				</name>
+				<description>
+					Filters the information provided in the setDimensions method of the ImageConsumer interface. Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to retrieve pixels from an image should avoid calling this method directly since that operation could result in problems with retrieving the requested pixels.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColorModel(ColorModel model)
+				</name>
+				<description>
+					Filters the information provided in the setColorModel method of the ImageConsumer interface. If model is null, this method clears the current ColorModel of this BufferedImageFilter. Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to retrieve pixels from an image should avoid calling this method directly since that operation could result in problems with retrieving the requested pixels.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               ColorModel model,               byte[] pixels,               int off,               int scansize)
+				</name>
+				<description>
+					Filters the information provided in the setPixels method of the ImageConsumer interface which takes an array of bytes. Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to retrieve pixels from an image should avoid calling this method directly since that operation could result in problems with retrieving the requested pixels.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               ColorModel model,               int[] pixels,               int off,               int scansize)
+				</name>
+				<description>
+					Filters the information provided in the setPixels method of the ImageConsumer interface which takes an array of integers. Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to retrieve pixels from an image should avoid calling this method directly since that operation could result in problems with retrieving the requested pixels.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void imageComplete(int status)
+				</name>
+				<description>
+					Filters the information provided in the imageComplete method of the ImageConsumer interface. Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to retrieve pixels from an image should avoid calling this method directly since that operation could result in problems with retrieving the requested pixels.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

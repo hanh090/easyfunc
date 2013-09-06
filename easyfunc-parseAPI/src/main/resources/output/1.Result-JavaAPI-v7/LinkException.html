@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.naming
+	</package>
+	<type>
+		<name>
+			public class LinkException  extends NamingException
+		</name>
+		<description>
+			This exception is used to describe problems encounter while resolving links. Addition information is added to the base NamingException for pinpointing the problem with the link. Analogous to how NamingException captures name resolution information, LinkException captures "link"-name resolution information pinpointing the problem encountered while resolving a link. All these fields may be null. Link Resolved Name. Portion of link name that has been resolved. Link Resolved Object. Object to which resolution of link name proceeded. Link Remaining Name. Portion of link name that has not been resolved. Link Explanation. Detail explaining why link resolution failed. A LinkException instance is not synchronized against concurrent multithreaded access. Multiple threads trying to access and modify a single LinkException instance should lock the object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Name linkResolvedName
+				</name>
+				<description>
+					Contains the part of the link that has been successfully resolved. It is a composite name and can be null. This field is initialized by the constructors. You should access and manipulate this field through its get and set methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object linkResolvedObj
+				</name>
+				<description>
+					Contains the object to which resolution of the part of the link was successful. Can be null. This field is initialized by the constructors. You should access and manipulate this field through its get and set methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Name linkRemainingName
+				</name>
+				<description>
+					Contains the remaining link name that has not been resolved yet. It is a composite name and can be null. This field is initialized by the constructors. You should access and manipulate this field through its get and set methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String linkExplanation
+				</name>
+				<description>
+					Contains the exception of why resolution of the link failed. Can be null. This field is initialized by the constructors. You should access and manipulate this field through its get and set methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LinkException(String explanation)
+				</name>
+				<description>
+					Constructs a new instance of LinkException with an explanation All the other fields are initialized to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LinkException()
+				</name>
+				<description>
+					Constructs a new instance of LinkException. All the non-link-related and link-related fields are initialized to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Name getLinkResolvedName()
+				</name>
+				<description>
+					Retrieves the leading portion of the link name that was resolved successfully.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Name getLinkRemainingName()
+				</name>
+				<description>
+					Retrieves the remaining unresolved portion of the link name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getLinkResolvedObj()
+				</name>
+				<description>
+					Retrieves the object to which resolution was successful. This is the object to which the resolved link name is bound.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLinkExplanation()
+				</name>
+				<description>
+					Retrieves the explanation associated with the problem encounter when resolving a link.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLinkExplanation(String msg)
+				</name>
+				<description>
+					Sets the explanation associated with the problem encounter when resolving a link.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLinkResolvedName(Name name)
+				</name>
+				<description>
+					Sets the resolved link name field of this exception. name is a composite name. If the intent is to set this field using a compound name or string, you must "stringify" the compound name, and create a composite name with a single component using the string. You can then invoke this method using the resulting composite name. A copy of name is made and stored. Subsequent changes to name does not affect the copy in this NamingException and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLinkRemainingName(Name name)
+				</name>
+				<description>
+					Sets the remaining link name field of this exception. name is a composite name. If the intent is to set this field using a compound name or string, you must "stringify" the compound name, and create a composite name with a single component using the string. You can then invoke this method using the resulting composite name. A copy of name is made and stored. Subsequent changes to name does not affect the copy in this NamingException and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLinkResolvedObj(Object obj)
+				</name>
+				<description>
+					Sets the link resolved object field of this exception. This indicates the last successfully resolved object of link name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Generates the string representation of this exception. This string consists of the NamingException information plus the link's remaining name. This string is used for debugging and not meant to be interpreted programmatically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString(boolean detail)
+				</name>
+				<description>
+					Generates the string representation of this exception. This string consists of the NamingException information plus the additional information of resolving the link. If 'detail' is true, the string also contains information on the link resolved object. If false, this method is the same as the form of toString() that accepts no parameters. This string is used for debugging and not meant to be interpreted programmatically.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

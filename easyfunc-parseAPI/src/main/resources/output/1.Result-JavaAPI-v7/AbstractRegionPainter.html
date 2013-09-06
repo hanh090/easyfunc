@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.nimbus
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractRegionPainter  extends Object  implements Painter<JComponent>
+		</name>
+		<description>
+			Convenient base class for defining Painter instances for rendering a region or component in Nimbus.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AbstractRegionPainter()
+				</name>
+				<description>
+					Create a new AbstractRegionPainter
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void paint(Graphics2D g,           JComponent c,           int w,           int h)
+				</name>
+				<description>
+					Description copied from interface: Painter Renders to the given Graphics2D object. Implementations of this method may modify state on the Graphics2D, and are not required to restore that state upon completion. In most cases, it is recommended that the caller pass in a scratch graphics object. The Graphics2D must never be null. State on the graphics object may be honored by the paint method, but may not be. For instance, setting the antialiasing rendering hint on the graphics may or may not be respected by the Painter implementation. The supplied object parameter acts as an optional configuration argument. For example, it could be of type Component. A Painter that expected it could then read state from that Component and use the state for painting. For example, an implementation may read the backgroundColor and use that. Generally, to enhance reusability, most standard Painters ignore this parameter. They can thus be reused in any context. The object may be null. Implementations must not throw a NullPointerException if the object parameter is null. Finally, the width and height arguments specify the width and height that the Painter should paint into. More specifically, the specified width and height instruct the painter that it should paint fully within this width and height. Any specified clip on the g param will further constrain the region. For example, suppose I have a Painter implementation that draws a gradient. The gradient goes from white to black. It "stretches" to fill the painted region. Thus, if I use this Painter to paint a 500 x 500 region, the far left would be black, the far right would be white, and a smooth gradient would be painted between. I could then, without modification, reuse the Painter to paint a region that is 20x20 in size. This region would also be black on the left, white on the right, and a smooth gradient painted between.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object[] getExtendedCacheKeys(JComponent c)
+				</name>
+				<description>
+					Get any extra attributes which the painter implementation would like to include in the image cache lookups. This is checked for every call of the paint(g, c, w, h) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract AbstractRegionPainter.PaintContext getPaintContext()
+				</name>
+				<description>
+					Gets the PaintContext for this painting operation. This method is called on every paint, and so should be fast and produce no garbage. The PaintContext contains information such as cache hints. It also contains data necessary for decoding points at runtime, such as the stretching insets, the canvas size at which the encoded points were defined, and whether the stretching insets are inverted. This method allows for subclasses to package the painting of different states with possibly different canvas sizes, etc, into one AbstractRegionPainter implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void configureGraphics(Graphics2D g)
+				</name>
+				<description>
+					Configures the given Graphics2D. Often, rendering hints or compositiing rules are applied to a Graphics2D object prior to painting, which should affect all of the subsequent painting operations. This method provides a convenient hook for configuring the Graphics object prior to rendering, regardless of whether the render operation is performed to an intermediate buffer or directly to the display.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void doPaint(Graphics2D g,             JComponent c,             int width,             int height,             Object[] extendedCacheKeys)
+				</name>
+				<description>
+					Actually performs the painting operation. Subclasses must implement this method. The graphics object passed may represent the actual surface being rendererd to, or it may be an intermediate buffer. It has also been pre-translated. Simply render the component as if it were located at 0, 0 and had a width of width and a height of height. For performance reasons, you may want to read the clip from the Graphics2D object and only render within that space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final float decodeX(float x)
+				</name>
+				<description>
+					Decodes and returns a float value representing the actual pixel location for the given encoded X value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final float decodeY(float y)
+				</name>
+				<description>
+					Decodes and returns a float value representing the actual pixel location for the given encoded y value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final float decodeAnchorX(float x,                    float dx)
+				</name>
+				<description>
+					Decodes and returns a float value representing the actual pixel location for the anchor point given the encoded X value of the control point, and the offset distance to the anchor from that control point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final float decodeAnchorY(float y,                    float dy)
+				</name>
+				<description>
+					Decodes and returns a float value representing the actual pixel location for the anchor point given the encoded Y value of the control point, and the offset distance to the anchor from that control point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Color decodeColor(String key,                  float hOffset,                  float sOffset,                  float bOffset,                  int aOffset)
+				</name>
+				<description>
+					Decodes and returns a color, which is derived from a base color in UI defaults.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Color decodeColor(Color color1,                  Color color2,                  float midPoint)
+				</name>
+				<description>
+					Decodes and returns a color, which is derived from a offset between two other colors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final LinearGradientPaint decodeGradient(float x1,                                   float y1,                                   float x2,                                   float y2,                                   float[] midpoints,                                   Color[] colors)
+				</name>
+				<description>
+					Given parameters for creating a LinearGradientPaint, this method will create and return a linear gradient paint. One primary purpose for this method is to avoid creating a LinearGradientPaint where the start and end points are equal. In such a case, the end y point is slightly increased to avoid the overlap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final RadialGradientPaint decodeRadialGradient(float x,                                         float y,                                         float r,                                         float[] midpoints,                                         Color[] colors)
+				</name>
+				<description>
+					Given parameters for creating a RadialGradientPaint, this method will create and return a radial gradient paint. One primary purpose for this method is to avoid creating a RadialGradientPaint where the radius is non-positive. In such a case, the radius is just slightly increased to avoid 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Color getComponentColor(JComponent c,                        String property,                        Color defaultColor,                        float saturationOffset,                        float brightnessOffset,                        int alphaOffset)
+				</name>
+				<description>
+					Get a color property from the given JComponent. First checks for a getXXX() method and if that fails checks for a client property with key property. If that still fails to return a Color then defaultColor is returned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

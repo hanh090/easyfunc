@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		java.util.spi
+	</package>
+	<type>
+		<name>
+			public abstract class LocaleServiceProvider  extends Object
+		</name>
+		<description>
+			This is the super class of all the locale sensitive service provider interfaces (SPIs). Locale sensitive service provider interfaces are interfaces that correspond to locale sensitive classes in the java.text and java.util packages. The interfaces enable the construction of locale sensitive objects and the retrieval of localized names for these packages. Locale sensitive factory methods and methods for name retrieval in the java.text and java.util packages use implementations of the provider interfaces to offer support for locales beyond the set of locales supported by the Java runtime environment itself. Packaging of Locale Sensitive Service Provider Implementations Implementations of these locale sensitive services are packaged using the Java Extension Mechanism as installed extensions. A provider identifies itself with a provider-configuration file in the resource directory META-INF/services, using the fully qualified provider interface class name as the file name. The file should contain a list of fully-qualified concrete provider class names, one per line. A line is terminated by any one of a line feed ('\n'), a carriage return ('\r'), or a carriage return followed immediately by a line feed. Space and tab characters surrounding each name, as well as blank lines, are ignored. The comment character is '#' ('#'); on each line all characters following the first comment character are ignored. The file must be encoded in UTF-8. If a particular concrete provider class is named in more than one configuration file, or is named in the same configuration file more than once, then the duplicates will be ignored. The configuration file naming a particular provider need not be in the same jar file or other distribution unit as the provider itself. The provider must be accessible from the same class loader that was initially queried to locate the configuration file; this is not necessarily the class loader that loaded the file. For example, an implementation of the DateFormatProvider class should take the form of a jar file which contains the file:    META-INF/services/java.text.spi.DateFormatProvider   And the file java.text.spi.DateFormatProvider should have a line such as:    com.foo.DateFormatProviderImpl   which is the fully qualified class name of the class implementing DateFormatProvider. Invocation of Locale Sensitive Services Locale sensitive factory methods and methods for name retrieval in the java.text and java.util packages invoke service provider methods when needed to support the requested locale. The methods first check whether the Java runtime environment itself supports the requested locale, and use its support if available. Otherwise, they call the getAvailableLocales() methods of installed providers for the appropriate interface to find one that supports the requested locale. If such a provider is found, its other methods are called to obtain the requested object or name. When checking whether a locale is supported, the locale's extensions are ignored. If neither the Java runtime environment itself nor an installed provider supports the requested locale, the methods go through a list of candidate locales and repeat the availability check for each until a match is found. The algorithm used for creating a list of candidate locales is same as the one used by ResourceBunlde by default (see getCandidateLocales for the details). Even if a locale is resolved from the candidate list, methods that return requested objects or names are invoked with the original requested locale including extensions. The Java runtime environment must support the root locale for all locale sensitive services in order to guarantee that this process terminates. Providers of names (but not providers of other objects) are allowed to return null for some name requests even for locales that they claim to support by including them in their return value for getAvailableLocales. Similarly, the Java runtime environment itself may not have all names for all locales that it supports. This is because the sets of objects for which names are requested can be large and vary over time, so that it's not always feasible to cover them completely. If the Java runtime environment or a provider returns null instead of a name, the lookup will proceed as described above as if the locale was not supported.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected LocaleServiceProvider()
+				</name>
+				<description>
+					Sole constructor. (For invocation by subclass constructors, typically implicit.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Locale[] getAvailableLocales()
+				</name>
+				<description>
+					Returns an array of all locales for which this locale service provider can provide localized objects or names. Note: Extensions in a Locale are ignored during service provider lookup. So the array returned by this method should not include two or more Locale objects only differing in their extensions.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

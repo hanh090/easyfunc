@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class ObjectStreamField  extends Object  implements Comparable<Object>
+		</name>
+		<description>
+			A description of a Serializable field from a Serializable class. An array of ObjectStreamFields is used to declare the Serializable fields of a class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ObjectStreamField(String name,                   Class<?> type)
+				</name>
+				<description>
+					Create a Serializable field with the specified type. This field should be documented with a serialField tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectStreamField(String name,                   Class<?> type,                   boolean unshared)
+				</name>
+				<description>
+					Creates an ObjectStreamField representing a serializable field with the given name and type. If unshared is false, values of the represented field are serialized and deserialized in the default manner--if the field is non-primitive, object values are serialized and deserialized as if they had been written and read by calls to writeObject and readObject. If unshared is true, values of the represented field are serialized and deserialized as if they had been written and read by calls to writeUnshared and readUnshared.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Get the name of this field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getType()
+				</name>
+				<description>
+					Get the type of the field. If the type is non-primitive and this ObjectStreamField was obtained from a deserialized ObjectStreamClass instance, then Object.class is returned. Otherwise, the Class object for the type of the field is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public char getTypeCode()
+				</name>
+				<description>
+					Returns character encoding of field type. The encoding is as follows:    B            byte   C            char   D            double   F            float   I            int   J            long   L            class or interface   S            short   Z            boolean   [            array
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTypeString()
+				</name>
+				<description>
+					Return the JVM type signature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset()
+				</name>
+				<description>
+					Offset of field within instance data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setOffset(int offset)
+				</name>
+				<description>
+					Offset within instance data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPrimitive()
+				</name>
+				<description>
+					Return true if this field has a primitive type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isUnshared()
+				</name>
+				<description>
+					Returns boolean value indicating whether or not the serializable field represented by this ObjectStreamField instance is unshared.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int compareTo(Object obj)
+				</name>
+				<description>
+					Compare this field with another ObjectStreamField. Return -1 if this is smaller, 0 if equal, 1 if greater. Types that are primitives are "smaller" than object types. If equal, the field names are compared.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Return a string that describes this field.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

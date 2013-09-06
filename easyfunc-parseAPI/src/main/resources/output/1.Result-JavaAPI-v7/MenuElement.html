@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public interface MenuElement
+		</name>
+		<description>
+			Any component that can be placed into a menu should implement this interface. This interface is used by MenuSelectionManager to handle selection and navigation in menu hierarchies.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void processMouseEvent(MouseEvent event,                       MenuElement[] path,                       MenuSelectionManager manager)
+				</name>
+				<description>
+					Processes a mouse event. event is a MouseEvent with source being the receiving element's component. path is the path of the receiving element in the menu hierarchy including the receiving element itself. manager is the MenuSelectionManager for the menu hierarchy. This method should process the MouseEvent and change the menu selection if necessary by using MenuSelectionManager's API Note: you do not have to forward the event to sub-components. This is done automatically by the MenuSelectionManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void processKeyEvent(KeyEvent event,                     MenuElement[] path,                     MenuSelectionManager manager)
+				</name>
+				<description>
+					Process a key event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void menuSelectionChanged(boolean isIncluded)
+				</name>
+				<description>
+					Call by the MenuSelectionManager when the MenuElement is added or remove from the menu selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					MenuElement[] getSubElements()
+				</name>
+				<description>
+					This method should return an array containing the sub-elements for the receiving menu element
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Component getComponent()
+				</name>
+				<description>
+					This method should return the java.awt.Component used to paint the receiving element. The returned component will be used to convert events and detect if an event is inside a MenuElement's component.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

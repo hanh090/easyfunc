@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.script
+	</package>
+	<type>
+		<name>
+			public abstract class CompiledScript  extends Object
+		</name>
+		<description>
+			Extended by classes that store results of compilations. State might be stored in the form of Java classes, Java class files or scripting language opcodes. The script may be executed repeatedly without reparsing. Each CompiledScript is associated with a ScriptEngine -- A call to an eval method of the CompiledScript causes the execution of the script by the ScriptEngine. Changes in the state of the ScriptEngine caused by execution of tne CompiledScript may visible during subsequent executions of scripts by the engine.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CompiledScript()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object eval(ScriptContext context)                       throws ScriptException
+				</name>
+				<description>
+					Executes the program stored in this CompiledScript object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object eval(Bindings bindings)              throws ScriptException
+				</name>
+				<description>
+					Executes the program stored in the CompiledScript object using the supplied Bindings of attributes as the ENGINE_SCOPE of the associated ScriptEngine during script execution. If bindings is null, then the effect of calling this method is same as that of eval(getEngine().getContext()). . The GLOBAL_SCOPE Bindings, Reader and Writer associated with the default ScriptContext of the associated ScriptEngine are used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object eval()              throws ScriptException
+				</name>
+				<description>
+					Executes the program stored in the CompiledScript object. The default ScriptContext of the associated ScriptEngine is used. The effect of calling this method is same as that of eval(getEngine().getContext()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ScriptEngine getEngine()
+				</name>
+				<description>
+					Returns the ScriptEngine whose compile method created this CompiledScript. The CompiledScript will execute in this engine.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

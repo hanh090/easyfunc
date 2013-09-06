@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.management.modelmbean
+	</package>
+	<type>
+		<name>
+			public class ModelMBeanInfoSupport  extends MBeanInfo  implements ModelMBeanInfo
+		</name>
+		<description>
+			This class represents the meta data for ModelMBeans. Descriptors have been added on the meta data objects. Java resources wishing to be manageable instantiate the ModelMBean using the MBeanServer's createMBean method. The resource then sets the ModelMBeanInfo and Descriptors for the ModelMBean instance. The attributes and operations exposed via the ModelMBeanInfo for the ModelMBean are accessible from MBeans, connectors/adaptors like other MBeans. Through the Descriptors, values and methods in the managed application can be defined and mapped to attributes and operations of the ModelMBean. This mapping can be defined during development in a file or dynamically and programmatically at runtime. Every ModelMBean which is instantiated in the MBeanServer becomes manageable: its attributes and operations become remotely accessible through the connectors/adaptors connected to that MBeanServer. A Java object cannot be registered in the MBeanServer unless it is a JMX compliant MBean. By instantiating a ModelMBean, resources are guaranteed that the MBean is valid. MBeanException and RuntimeOperationsException must be thrown on every public method. This allows for wrapping exceptions from distributed communications (RMI, EJB, etc.) The serialVersionUID of this class is -1935722590756516193L.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ModelMBeanInfoSupport(ModelMBeanInfo mbi)
+				</name>
+				<description>
+					Constructs a ModelMBeanInfoSupport which is a duplicate of the given ModelMBeanInfo. The returned object is a shallow copy of the given object. Neither the Descriptor nor the contained arrays (ModelMBeanAttributeInfo[] etc) are cloned. This method is chiefly of interest to modify the Descriptor of the returned instance via setDescriptor without affecting the Descriptor of the original object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanInfoSupport(String className,                       String description,                       ModelMBeanAttributeInfo[] attributes,                       ModelMBeanConstructorInfo[] constructors,                       ModelMBeanOperationInfo[] operations,                       ModelMBeanNotificationInfo[] notifications)
+				</name>
+				<description>
+					Creates a ModelMBeanInfoSupport with the provided information, but the descriptor is a default. The default descriptor is: name=className, descriptorType="mbean", displayName=className, persistPolicy="never", log="F", visibility="1"
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanInfoSupport(String className,                       String description,                       ModelMBeanAttributeInfo[] attributes,                       ModelMBeanConstructorInfo[] constructors,                       ModelMBeanOperationInfo[] operations,                       ModelMBeanNotificationInfo[] notifications,                       Descriptor mbeandescriptor)
+				</name>
+				<description>
+					Creates a ModelMBeanInfoSupport with the provided information and the descriptor given in parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Returns a shallow clone of this instance. Neither the Descriptor nor the contained arrays (ModelMBeanAttributeInfo[] etc) are cloned. This method is chiefly of interest to modify the Descriptor of the clone via setDescriptor without affecting the Descriptor of the original object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor[] getDescriptors(String inDescriptorType)                              throws MBeanException,                                     RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Returns a Descriptor array consisting of all Descriptors for the ModelMBeanInfo of type inDescriptorType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDescriptors(Descriptor[] inDescriptors)                      throws MBeanException,                             RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Adds or replaces descriptors in the ModelMBeanInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor getDescriptor(String inDescriptorName)                           throws MBeanException,                                  RuntimeOperationsException
+				</name>
+				<description>
+					Returns a Descriptor requested by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor getDescriptor(String inDescriptorName,                         String inDescriptorType)                           throws MBeanException,                                  RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Returns a Descriptor requested by name and descriptorType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDescriptor(Descriptor inDescriptor,                   String inDescriptorType)                     throws MBeanException,                            RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Sets descriptors in the info array of type inDescriptorType for the ModelMBean. The setDescriptor method of the corresponding ModelMBean*Info will be called to set the specified descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanAttributeInfo getAttribute(String inName)                                       throws MBeanException,                                              RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Returns a ModelMBeanAttributeInfo requested by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanOperationInfo getOperation(String inName)                                       throws MBeanException,                                              RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Returns a ModelMBeanOperationInfo requested by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanConstructorInfo getConstructor(String inName)                                           throws MBeanException,                                                  RuntimeOperationsException
+				</name>
+				<description>
+					Returns the ModelMBeanConstructorInfo requested by name. If no ModelMBeanConstructorInfo exists for this name null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanNotificationInfo getNotification(String inName)                                             throws MBeanException,                                                    RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Returns a ModelMBeanNotificationInfo requested by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor getDescriptor()
+				</name>
+				<description>
+					Description copied from class: MBeanInfo Get the descriptor of this MBeanInfo. Changing the returned value will have no affect on the original descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor getMBeanDescriptor()                                throws MBeanException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Returns the ModelMBean's descriptor which contains MBean wide policies. This descriptor contains metadata about the MBean and default policies for persistence and caching. The fields in the descriptor are defined, but not limited to, the following. Note that when the Type in this table is Number, a String that is the decimal representation of a Long can also be used. Name Type Meaning name String MBean name. descriptorType String Must be "mbean". displayName String Name of MBean to be used in displays. persistPolicy String One of: OnUpdate|OnTimer|NoMoreOftenThan|OnUnregister|Always|Never. See the section "MBean Descriptor Fields" in the JMX specification document. persistLocation String The fully qualified directory name where the MBean should be persisted (if appropriate). persistFile String File name into which the MBean should be persisted. persistPeriod Number Frequency of persist cycle in seconds, for OnTime and NoMoreOftenThan PersistPolicy currencyTimeLimit Number How long cached value is valid: <0 never, =0 always, >0 seconds. log String t: log all notifications, f: log no notifications. logfile String Fully qualified filename to log events to. visibility Number 1-4 where 1: always visible 4: rarely visible. export String Name to be used to export/expose this MBean so that it is findable by other JMX Agents. presentationString String XML formatted string to allow presentation of data to be associated with the MBean. The default descriptor is: name=className,descriptorType="mbean", displayName=className, persistPolicy="never",log="F",visibility="1" If the descriptor does not contain all these fields, they will be added with these default values. Note: because of inconsistencies in previous versions of this specification, it is recommended not to use negative or zero values for currencyTimeLimit. To indicate that a cached value is never valid, omit the currencyTimeLimit field. To indicate that it is always valid, use a very large number for this field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMBeanDescriptor(Descriptor inMBeanDescriptor)                          throws MBeanException,                                 RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: ModelMBeanInfo Sets the ModelMBean's descriptor. This descriptor contains default, MBean wide metadata about the MBean and default policies for persistence and caching. This operation does a complete replacement of the descriptor, no merging is done. If the descriptor to set to is null then the default descriptor will be created. The default descriptor is: name=className,descriptorType="mbean", displayName=className, persistPolicy="never",log="F",visibility="1" If the descriptor does not contain all these fields, they will be added with these default values. See getMBeanDescriptor method javadoc for description of valid field names.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

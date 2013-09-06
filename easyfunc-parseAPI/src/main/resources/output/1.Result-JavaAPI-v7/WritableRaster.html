@@ -1,0 +1,225 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class WritableRaster  extends Raster
+		</name>
+		<description>
+			This class extends Raster to provide pixel writing capabilities. Refer to the class comment for Raster for descriptions of how a Raster stores pixels. The constructors of this class are protected. To instantiate a WritableRaster, use one of the createWritableRaster factory methods in the Raster class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected WritableRaster(SampleModel sampleModel,                Point origin)
+				</name>
+				<description>
+					Constructs a WritableRaster with the given SampleModel. The WritableRaster's upper left corner is origin and it is the same size as the SampleModel. A DataBuffer large enough to describe the WritableRaster is automatically created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected WritableRaster(SampleModel sampleModel,                DataBuffer dataBuffer,                Point origin)
+				</name>
+				<description>
+					Constructs a WritableRaster with the given SampleModel and DataBuffer. The WritableRaster's upper left corner is origin and it is the same size as the SampleModel. The DataBuffer is not initialized and must be compatible with SampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected WritableRaster(SampleModel sampleModel,                DataBuffer dataBuffer,                Rectangle aRegion,                Point sampleModelTranslate,                WritableRaster parent)
+				</name>
+				<description>
+					Constructs a WritableRaster with the given SampleModel, DataBuffer, and parent. aRegion specifies the bounding rectangle of the new Raster. When translated into the base Raster's coordinate system, aRegion must be contained by the base Raster. (The base Raster is the Raster's ancestor which has no parent.) sampleModelTranslate specifies the sampleModelTranslateX and sampleModelTranslateY values of the new Raster. Note that this constructor should generally be called by other constructors or create methods, it should not be used directly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster getWritableParent()
+				</name>
+				<description>
+					Returns the parent WritableRaster (if any) of this WritableRaster, or else null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createWritableTranslatedChild(int childMinX,                                             int childMinY)
+				</name>
+				<description>
+					Create a WritableRaster with the same size, SampleModel and DataBuffer as this one, but with a different location. The new WritableRaster will possess a reference to the current WritableRaster, accessible through its getParent() and getWritableParent() methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createWritableChild(int parentX,                                   int parentY,                                   int w,                                   int h,                                   int childMinX,                                   int childMinY,                                   int[] bandList)
+				</name>
+				<description>
+					Returns a new WritableRaster which shares all or part of this WritableRaster's DataBuffer. The new WritableRaster will possess a reference to the current WritableRaster, accessible through its getParent() and getWritableParent() methods. The parentX, parentY, width and height parameters form a Rectangle in this WritableRaster's coordinate space, indicating the area of pixels to be shared. An error will be thrown if this Rectangle is not contained with the bounds of the current WritableRaster. The new WritableRaster may additionally be translated to a different coordinate system for the plane than that used by the current WritableRaster. The childMinX and childMinY parameters give the new (x, y) coordinate of the upper-left pixel of the returned WritableRaster; the coordinate (childMinX, childMinY) in the new WritableRaster will map to the same pixel as the coordinate (parentX, parentY) in the current WritableRaster. The new WritableRaster may be defined to contain only a subset of the bands of the current WritableRaster, possibly reordered, by means of the bandList parameter. If bandList is null, it is taken to include all of the bands of the current WritableRaster in their current order. To create a new WritableRaster that contains a subregion of the current WritableRaster, but shares its coordinate system and bands, this method should be called with childMinX equal to parentX, childMinY equal to parentY, and bandList equal to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDataElements(int x,                     int y,                     Object inData)
+				</name>
+				<description>
+					Sets the data for a single pixel from a primitive array of type TransferType. For image data supported by the Java 2D(tm) API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data in the array may be in a packed format, thus increasing efficiency for data transfers. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if inData is not large enough to hold the pixel data. However, explicit bounds checking is not guaranteed. A ClassCastException will be thrown if the input object is not null and references anything other than an array of TransferType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDataElements(int x,                     int y,                     Raster inRaster)
+				</name>
+				<description>
+					Sets the data for a rectangle of pixels from an input Raster. The input Raster must be compatible with this WritableRaster in that they must have the same number of bands, corresponding bands must have the same number of bits per sample, the TransferTypes and NumDataElements must be the same, and the packing used by the getDataElements/setDataElements must be identical. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDataElements(int x,                     int y,                     int w,                     int h,                     Object inData)
+				</name>
+				<description>
+					Sets the data for a rectangle of pixels from a primitive array of type TransferType. For image data supported by the Java 2D API, this will be one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, DataBuffer.TYPE_INT, DataBuffer.TYPE_SHORT, DataBuffer.TYPE_FLOAT, or DataBuffer.TYPE_DOUBLE. Data in the array may be in a packed format, thus increasing efficiency for data transfers. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds, or if inData is not large enough to hold the pixel data. However, explicit bounds checking is not guaranteed. A ClassCastException will be thrown if the input object is not null and references anything other than an array of TransferType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRect(Raster srcRaster)
+				</name>
+				<description>
+					Copies pixels from Raster srcRaster to this WritableRaster. Each pixel in srcRaster is copied to the same x,y address in this raster, unless the address falls outside the bounds of this raster. srcRaster must have the same number of bands as this WritableRaster. The copy is a simple copy of source samples to the corresponding destination samples. If all samples of both source and destination Rasters are of integral type and less than or equal to 32 bits in size, then calling this method is equivalent to executing the following code for all x,y addresses valid in both Rasters.          Raster srcRaster;         WritableRaster dstRaster;         for (int b = 0; b < srcRaster.getNumBands(); b++) {             dstRaster.setSample(x, y, b, srcRaster.getSample(x, y, b));         }   Thus, when copying an integral type source to an integral type destination, if the source sample size is greater than the destination sample size for a particular band, the high order bits of the source sample are truncated. If the source sample size is less than the destination size for a particular band, the high order bits of the destination are zero-extended or sign-extended depending on whether srcRaster's SampleModel treats the sample as a signed or unsigned quantity. When copying a float or double source to an integral type destination, each source sample is cast to the destination type. When copying an integral type source to a float or double destination, the source is first converted to a 32-bit int (if necessary), using the above rules for integral types, and then the int is cast to float or double.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRect(int dx,             int dy,             Raster srcRaster)
+				</name>
+				<description>
+					Copies pixels from Raster srcRaster to this WritableRaster. For each (x, y) address in srcRaster, the corresponding pixel is copied to address (x+dx, y+dy) in this WritableRaster, unless (x+dx, y+dy) falls outside the bounds of this raster. srcRaster must have the same number of bands as this WritableRaster. The copy is a simple copy of source samples to the corresponding destination samples. For details, see setRect(Raster).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              int[] iArray)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using an int array of samples for input. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              float[] fArray)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using a float array of samples for input. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixel(int x,              int y,              double[] dArray)
+				</name>
+				<description>
+					Sets a pixel in the DataBuffer using a double array of samples for input. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               int[] iArray)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from an int array containing one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               float[] fArray)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from a float array containing one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPixels(int x,               int y,               int w,               int h,               double[] dArray)
+				</name>
+				<description>
+					Sets all samples for a rectangle of pixels from a double array containing one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               int s)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using an int for input. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               float s)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using a float for input. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSample(int x,               int y,               int b,               double s)
+				</name>
+				<description>
+					Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using a double for input. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                int[] iArray)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from an int array containing one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                float[] fArray)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from a float array containing one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSamples(int x,                int y,                int w,                int h,                int b,                double[] dArray)
+				</name>
+				<description>
+					Sets the samples in the specified band for the specified rectangle of pixels from a double array containing one sample per array element. An ArrayIndexOutOfBoundsException may be thrown if the coordinates are not in bounds. However, explicit bounds checking is not guaranteed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

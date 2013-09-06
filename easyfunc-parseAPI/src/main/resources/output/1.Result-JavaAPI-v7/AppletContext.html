@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.applet
+	</package>
+	<type>
+		<name>
+			public interface AppletContext
+		</name>
+		<description>
+			This interface corresponds to an applet's environment: the document containing the applet and the other applets in the same document. The methods in this interface can be used by an applet to obtain information about its environment.
+		</description>
+		<methods>
+			<method>
+				<name>
+					AudioClip getAudioClip(URL url)
+				</name>
+				<description>
+					Creates an audio clip.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Image getImage(URL url)
+				</name>
+				<description>
+					Returns an Image object that can then be painted on the screen. The url argument that is passed as an argument must specify an absolute URL. This method always returns immediately, whether or not the image exists. When the applet attempts to draw the image on the screen, the data will be loaded. The graphics primitives that draw the image will incrementally paint on the screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Applet getApplet(String name)
+				</name>
+				<description>
+					Finds and returns the applet in the document represented by this applet context with the given name. The name can be set in the HTML tag by setting the name attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Enumeration<Applet> getApplets()
+				</name>
+				<description>
+					Finds all the applets in the document represented by this applet context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void showDocument(URL url)
+				</name>
+				<description>
+					Requests that the browser or applet viewer show the Web page indicated by the url argument. The browser or applet viewer determines which window or frame to display the Web page. This method may be ignored by applet contexts that are not browsers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void showDocument(URL url,                  String target)
+				</name>
+				<description>
+					Requests that the browser or applet viewer show the Web page indicated by the url argument. The target argument indicates in which HTML frame the document is to be displayed. The target argument is interpreted as follows: Target Argument Description "_self" Show in the window and frame that contain the applet. "_parent" Show in the applet's parent frame. If the applet's frame has no parent frame, acts the same as "_self". "_top" Show in the top-level frame of the applet's window. If the applet's frame is the top-level frame, acts the same as "_self". "_blank" Show in a new, unnamed top-level window. name Show in the frame or window named name. If a target named name does not already exist, a new top-level window with the specified name is created, and the document is shown there. An applet viewer or browser is free to ignore showDocument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void showStatus(String status)
+				</name>
+				<description>
+					Requests that the argument string be displayed in the "status window". Many browsers and applet viewers provide such a window, where the application can inform users of its current state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setStream(String key,               InputStream stream)                 throws IOException
+				</name>
+				<description>
+					Associates the specified stream with the specified key in this applet context. If the applet context previously contained a mapping for this key, the old value is replaced. For security reasons, mapping of streams and keys exists for each codebase. In other words, applet from one codebase cannot access the streams created by an applet from a different codebase
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream getStream(String key)
+				</name>
+				<description>
+					Returns the stream to which specified key is associated within this applet context. Returns null if the applet context contains no stream for this key. For security reasons, mapping of streams and keys exists for each codebase. In other words, applet from one codebase cannot access the streams created by an applet from a different codebase
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator<String> getStreamKeys()
+				</name>
+				<description>
+					Finds all the keys of the streams in this applet context. For security reasons, mapping of streams and keys exists for each codebase. In other words, applet from one codebase cannot access the streams created by an applet from a different codebase
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.crypto.spec
+	</package>
+	<type>
+		<name>
+			public class OAEPParameterSpec  extends Object  implements AlgorithmParameterSpec
+		</name>
+		<description>
+			This class specifies the set of parameters used with OAEP Padding, as defined in the PKCS #1 standard. Its ASN.1 definition in PKCS#1 standard is described below:    RSAES-OAEP-params ::= SEQUENCE {     hashAlgorithm      [0] OAEP-PSSDigestAlgorithms     DEFAULT sha1,     maskGenAlgorithm   [1] PKCS1MGFAlgorithms  DEFAULT mgf1SHA1,     pSourceAlgorithm   [2] PKCS1PSourceAlgorithms  DEFAULT pSpecifiedEmpty   }   where    OAEP-PSSDigestAlgorithms    ALGORITHM-IDENTIFIER ::= {     { OID id-sha1 PARAMETERS NULL   }|     { OID id-sha256 PARAMETERS NULL }|     { OID id-sha384 PARAMETERS NULL }|     { OID id-sha512 PARAMETERS NULL },     ...  -- Allows for future expansion --   }   PKCS1MGFAlgorithms    ALGORITHM-IDENTIFIER ::= {     { OID id-mgf1 PARAMETERS OAEP-PSSDigestAlgorithms },     ...  -- Allows for future expansion --   }   PKCS1PSourceAlgorithms    ALGORITHM-IDENTIFIER ::= {     { OID id-pSpecified PARAMETERS OCTET STRING },     ...  -- Allows for future expansion --   }   Note: the OAEPParameterSpec.DEFAULT uses the following: message digest -- "SHA-1" mask generation function (mgf) -- "MGF1" parameters for mgf -- MGF1ParameterSpec.SHA1 source of encoding input -- PSource.PSpecified.DEFAULT
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final OAEPParameterSpec DEFAULT
+				</name>
+				<description>
+					The OAEP parameter set with all default values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OAEPParameterSpec(String mdName,                   String mgfName,                   AlgorithmParameterSpec mgfSpec,                   PSource pSrc)
+				</name>
+				<description>
+					Constructs a parameter set for OAEP padding as defined in the PKCS #1 standard using the specified message digest algorithm mdName, mask generation function algorithm mgfName, parameters for the mask generation function mgfSpec, and source of the encoding input P pSrc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDigestAlgorithm()
+				</name>
+				<description>
+					Returns the message digest algorithm name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMGFAlgorithm()
+				</name>
+				<description>
+					Returns the mask generation function algorithm name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AlgorithmParameterSpec getMGFParameters()
+				</name>
+				<description>
+					Returns the parameters for the mask generation function.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PSource getPSource()
+				</name>
+				<description>
+					Returns the source of encoding input P.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

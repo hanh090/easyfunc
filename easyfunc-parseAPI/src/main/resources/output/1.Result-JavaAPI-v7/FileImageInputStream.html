@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.imageio.stream
+	</package>
+	<type>
+		<name>
+			public class FileImageInputStream  extends ImageInputStreamImpl
+		</name>
+		<description>
+			An implementation of ImageInputStream that gets its input from a File or RandomAccessFile. The file contents are assumed to be stable during the lifetime of the object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FileImageInputStream(File f)                       throws FileNotFoundException,                              IOException
+				</name>
+				<description>
+					Constructs a FileImageInputStream that will read from a given File. The file contents must not change between the time this object is constructed and the time of the last call to a read method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileImageInputStream(RandomAccessFile raf)
+				</name>
+				<description>
+					Constructs a FileImageInputStream that will read from a given RandomAccessFile. The file contents must not change between the time this object is constructed and the time of the last call to a read method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Description copied from class: ImageInputStreamImpl Reads a single byte from the stream and returns it as an int between 0 and 255. If EOF is reached, -1 is returned. Subclasses must provide an implementation for this method. The subclass implementation should update the stream position before exiting. The bit offset within the stream must be reset to zero before the read occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Description copied from class: ImageInputStreamImpl Reads up to len bytes from the stream, and stores them into b starting at index off. If no bytes can be read because the end of the stream has been reached, -1 is returned. The bit offset within the stream must be reset to zero before the read occurs. Subclasses must provide an implementation for this method. The subclass implementation should update the stream position before exiting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long length()
+				</name>
+				<description>
+					Returns the length of the underlying file, or -1 if it is unknown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void seek(long pos)            throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageInputStream Sets the current stream position to the desired location. The next read will occur at this location. The bit offset is set to 0. An IndexOutOfBoundsException will be thrown if pos is smaller than the flushed position (as returned by getflushedPosition). It is legal to seek past the end of the file; an EOFException will be thrown only if a read is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageInputStream Closes the stream. Attempts to access a stream that has been closed may result in IOExceptions or incorrect behavior. Calling this method may allow classes implementing this interface to release resources associated with the stream such as memory, disk space, or file descriptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void finalize()                   throws Throwable
+				</name>
+				<description>
+					Finalizes this object prior to garbage collection. The close method is called to close any open input source. This method should not be called from application code.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

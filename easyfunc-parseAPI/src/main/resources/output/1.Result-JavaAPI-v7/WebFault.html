@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.ws
+	</package>
+	<type>
+		<name>
+			@Target(value=TYPE)  @Retention(value=RUNTIME)  @Documented  public @interface WebFault
+		</name>
+		<description>
+			Used to annotate service specific exception classes to customize to the local and namespace name of the fault element and the name of the fault bean.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String name
+				</name>
+				<description>
+					Element's local name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String targetNamespace
+				</name>
+				<description>
+					Element's namespace name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String faultBean
+				</name>
+				<description>
+					Fault bean name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String messageName
+				</name>
+				<description>
+					wsdl:Message's name. Default name is the exception's class name.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

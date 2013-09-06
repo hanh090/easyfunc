@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class DefaultFormatter  extends JFormattedTextField.AbstractFormatter  implements Cloneable, Serializable
+		</name>
+		<description>
+			DefaultFormatter formats aribtrary objects. Formatting is done by invoking the toString method. In order to convert the value back to a String, your class must provide a constructor that takes a String argument. If no single argument constructor that takes a String is found, the returned value will be the String passed into stringToValue. Instances of DefaultFormatter can not be used in multiple instances of JFormattedTextField. To obtain a copy of an already configured DefaultFormatter, use the clone method. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DefaultFormatter()
+				</name>
+				<description>
+					Creates a DefaultFormatter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void install(JFormattedTextField ftf)
+				</name>
+				<description>
+					Installs the DefaultFormatter onto a particular JFormattedTextField. This will invoke valueToString to convert the current value from the JFormattedTextField to a String. This will then install the Actions from getActions, the DocumentFilter returned from getDocumentFilter and the NavigationFilter returned from getNavigationFilter onto the JFormattedTextField. Subclasses will typically only need to override this if they wish to install additional listeners on the JFormattedTextField. If there is a ParseException in converting the current value to a String, this will set the text to an empty String, and mark the JFormattedTextField as being in an invalid state. While this is a public method, this is typically only useful for subclassers of JFormattedTextField. JFormattedTextField will invoke this method at the appropriate times when the value changes, or its internal state changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCommitsOnValidEdit(boolean commit)
+				</name>
+				<description>
+					Sets when edits are published back to the JFormattedTextField. If true, commitEdit is invoked after every valid edit (any time the text is edited). On the other hand, if this is false than the DefaultFormatter does not publish edits back to the JFormattedTextField. As such, the only time the value of the JFormattedTextField will change is when commitEdit is invoked on JFormattedTextField, typically when enter is pressed or focus leaves the JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getCommitsOnValidEdit()
+				</name>
+				<description>
+					Returns when edits are published back to the JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOverwriteMode(boolean overwriteMode)
+				</name>
+				<description>
+					Configures the behavior when inserting characters. If overwriteMode is true (the default), new characters overwrite existing characters in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getOverwriteMode()
+				</name>
+				<description>
+					Returns the behavior when inserting characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAllowsInvalid(boolean allowsInvalid)
+				</name>
+				<description>
+					Sets whether or not the value being edited is allowed to be invalid for a length of time (that is, stringToValue throws a ParseException). It is often convenient to allow the user to temporarily input an invalid value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getAllowsInvalid()
+				</name>
+				<description>
+					Returns whether or not the value being edited is allowed to be invalid for a length of time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValueClass(Class<?> valueClass)
+				</name>
+				<description>
+					Sets that class that is used to create new Objects. If the passed in class does not have a single argument constructor that takes a String, String values will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getValueClass()
+				</name>
+				<description>
+					Returns that class that is used to create new Objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object stringToValue(String string)                       throws ParseException
+				</name>
+				<description>
+					Converts the passed in String into an instance of getValueClass by way of the constructor that takes a String argument. If getValueClass returns null, the Class of the current value in the JFormattedTextField will be used. If this is null, a String will be returned. If the constructor thows an exception, a ParseException will be thrown. If there is no single argument String constructor, string will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String valueToString(Object value)                       throws ParseException
+				</name>
+				<description>
+					Converts the passed in Object into a String by way of the toString method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DocumentFilter getDocumentFilter()
+				</name>
+				<description>
+					Returns the DocumentFilter used to restrict the characters that can be input into the JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected NavigationFilter getNavigationFilter()
+				</name>
+				<description>
+					Returns the NavigationFilter used to restrict where the cursor can be placed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()               throws CloneNotSupportedException
+				</name>
+				<description>
+					Creates a copy of the DefaultFormatter.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

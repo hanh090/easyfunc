@@ -1,0 +1,342 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class BoxView  extends CompositeView
+		</name>
+		<description>
+			A view that arranges its children into a box shape by tiling its children along an axis. The box is somewhat like that found in TeX where there is alignment of the children, flexibility of the children is considered, etc. This is a building block that might be useful to represent things like a collection of lines, paragraphs, lists, columns, pages, etc. The axis along which the children are tiled is considered the major axis. The orthoginal axis is the minor axis. Layout for each axis is handled separately by the methods layoutMajorAxis and layoutMinorAxis. Subclasses can change the layout algorithm by reimplementing these methods. These methods will be called as necessary depending upon whether or not there is cached layout information and the cache is considered valid. These methods are typically called if the given size along the axis changes, or if layoutChanged is called to force an updated layout. The layoutChanged method invalidates cached layout information, if there is any. The requirements published to the parent view are calculated by the methods calculateMajorAxisRequirements and calculateMinorAxisRequirements. If the layout algorithm is changed, these methods will likely need to be reimplemented.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BoxView(Element elem,         int axis)
+				</name>
+				<description>
+					Constructs a BoxView.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAxis()
+				</name>
+				<description>
+					Fetches the tile axis property. This is the axis along which the child views are tiled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAxis(int axis)
+				</name>
+				<description>
+					Sets the tile axis property. This is the axis along which the child views are tiled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void layoutChanged(int axis)
+				</name>
+				<description>
+					Invalidates the layout along an axis. This happens automatically if the preferences have changed for any of the child views. In some cases the layout may need to be recalculated when the preferences have not changed. The layout can be marked as invalid by calling this method. The layout will be updated the next time the setSize method is called on this view (typically in paint).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isLayoutValid(int axis)
+				</name>
+				<description>
+					Determines if the layout is valid along the given axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintChild(Graphics g,                Rectangle alloc,                int index)
+				</name>
+				<description>
+					Paints a child. By default that is all it does, but a subclass can use this to paint things relative to the child.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replace(int index,             int length,             View[] elems)
+				</name>
+				<description>
+					Invalidates the layout and resizes the cache of requests/allocations. The child allocations can still be accessed for the old layout, but the new children will have an offset and span of 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void forwardUpdate(DocumentEvent.ElementChange ec,                   DocumentEvent e,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Forwards the given DocumentEvent to the child views that need to be notified of the change to the model. If a child changed its requirements and the allocation was valid prior to forwarding the portion of the box from the starting child to the end of the box will be repainted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preferenceChanged(View child,                       boolean width,                       boolean height)
+				</name>
+				<description>
+					This is called by a child to indicate its preferred span has changed. This is implemented to throw away cached layout information so that new calculations will be done the next time the children need an allocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getResizeWeight(int axis)
+				</name>
+				<description>
+					Gets the resize weight. A value of 0 or less is not resizable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(float width,             float height)
+				</name>
+				<description>
+					Sets the size of the view. This should cause layout of the view if the view caches any layout information. This is implemented to call the layout method with the sizes inside of the insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape allocation)
+				</name>
+				<description>
+					Renders the BoxView using the given rendering surface and area on that surface. Only the children that intersect the clip bounds of the given Graphics will be rendered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getChildAllocation(int index,                         Shape a)
+				</name>
+				<description>
+					Fetches the allocation for the given child view. This enables finding out where various views are located. This is implemented to return null if the layout is invalid, otherwise the superclass behavior is executed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. This makes sure the allocation is valid before calling the superclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(float x,                float y,                Shape a,                Position.Bias[] bias)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAlignment(int axis)
+				</name>
+				<description>
+					Determines the desired alignment for this view along an axis. This is implemented to give the total alignment needed to position the children with the alignment points lined up along the axis orthoginal to the axis that is being tiled. The axis being tiled will request to be centered (i.e. 0.5f).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinimumSpan(int axis)
+				</name>
+				<description>
+					Determines the minimum span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMaximumSpan(int axis)
+				</name>
+				<description>
+					Determines the maximum span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isAllocationValid()
+				</name>
+				<description>
+					Are the allocations for the children still valid?
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isBefore(int x,                 int y,                 Rectangle innerAlloc)
+				</name>
+				<description>
+					Determines if a point falls before an allocated region.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isAfter(int x,                int y,                Rectangle innerAlloc)
+				</name>
+				<description>
+					Determines if a point falls after an allocated region.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View getViewAtPoint(int x,                    int y,                    Rectangle alloc)
+				</name>
+				<description>
+					Fetches the child view at the given coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void childAllocation(int index,                     Rectangle alloc)
+				</name>
+				<description>
+					Allocates a region for a child view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layout(int width,            int height)
+				</name>
+				<description>
+					Perform layout on the box
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getWidth()
+				</name>
+				<description>
+					Returns the current width of the box. This is the width that it was last allocated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHeight()
+				</name>
+				<description>
+					Returns the current height of the box. This is the height that it was last allocated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutMajorAxis(int targetSpan,                     int axis,                     int[] offsets,                     int[] spans)
+				</name>
+				<description>
+					Performs layout for the major axis of the box (i.e. the axis that it represents). The results of the layout (the offset and span for each children) are placed in the given arrays which represent the allocations to the children along the major axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutMinorAxis(int targetSpan,                     int axis,                     int[] offsets,                     int[] spans)
+				</name>
+				<description>
+					Performs layout for the minor axis of the box (i.e. the axis orthoginal to the axis that it represents). The results of the layout (the offset and span for each children) are placed in the given arrays which represent the allocations to the children along the minor axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMajorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculates the size requirements for the major axis axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMinorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculates the size requirements for the minor axis axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void baselineLayout(int targetSpan,                    int axis,                    int[] offsets,                    int[] spans)
+				</name>
+				<description>
+					Computes the location and extent of each child view in this BoxView given the targetSpan, which is the width (or height) of the region we have to work with.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements baselineRequirements(int axis,                                      SizeRequirements r)
+				</name>
+				<description>
+					Calculates the size requirements for this BoxView by examining the size of each child view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getOffset(int axis,              int childIndex)
+				</name>
+				<description>
+					Fetches the offset of a particular child's current layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getSpan(int axis,            int childIndex)
+				</name>
+				<description>
+					Fetches the span of a particular childs current layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean flipEastAndWestAtEnds(int position,                              Position.Bias bias)
+				</name>
+				<description>
+					Determines in which direction the next view lays. Consider the View at index n. Typically the Views are layed out from left to right, so that the View to the EAST will be at index n + 1, and the View to the WEST will be at index n - 1. In certain situations, such as with bidirectional text, it is possible that the View to EAST is not at index n + 1, but rather at index n - 1, or that the View to the WEST is not at index n - 1, but index n + 1. In this case this method would return true, indicating the Views are layed out in descending order. Otherwise the method would return false indicating the Views are layed out in ascending order. If the receiver is laying its Views along the Y_AXIS, this will will return the value from invoking the same method on the View responsible for rendering position and bias. Otherwise this will return false.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

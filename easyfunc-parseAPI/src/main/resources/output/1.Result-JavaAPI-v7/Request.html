@@ -1,0 +1,225 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public abstract class Request  extends Object
+		</name>
+		<description>
+			An object containing the information necessary for invoking a method. This class is the cornerstone of the ORB Dynamic Invocation Interface (DII), which allows dynamic creation and invocation of requests. A server cannot tell the difference between a client invocation using a client stub and a request using the DII. A Request object consists of: the name of the operation to be invoked an NVList containing arguments for the operation. Each item in the list is a NamedValue object, which has three parts: the name of the argument the value of the argument (as an Any object) the argument mode flag indicating whether the argument is for input, output, or both Request objects may also contain additional information, depending on how an operation was defined in the original IDL interface definition. For example, where appropriate, they may contain a NamedValue object to hold the return value or exception, a context, a list of possible exceptions, and a list of context strings that need to be resolved. New Request objects are created using one of the create_request methods in the Object class. In other words, a create_request method is performed on the object which is to be invoked.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Request()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object target()
+				</name>
+				<description>
+					Retrieves the the target object reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String operation()
+				</name>
+				<description>
+					Retrieves the name of the method to be invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract NVList arguments()
+				</name>
+				<description>
+					Retrieves the NVList object containing the arguments to the method being invoked. The elements in the list are NamedValue objects, with each one describing an argument to the method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract NamedValue result()
+				</name>
+				<description>
+					Retrieves the NamedValue object containing the return value for the method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Environment env()
+				</name>
+				<description>
+					Retrieves the Environment object for this request. It contains the exception that the method being invoked has thrown (after the invocation returns).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ExceptionList exceptions()
+				</name>
+				<description>
+					Retrieves the ExceptionList object for this request. This list contains TypeCode objects describing the exceptions that may be thrown by the method being invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ContextList contexts()
+				</name>
+				<description>
+					Retrieves the ContextList object for this request. This list contains context Strings that need to be resolved and sent with the invocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Context ctx()
+				</name>
+				<description>
+					Retrieves the Context object for this request. This is a list of properties giving information about the client, the environment, or the circumstances of this request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void ctx(Context c)
+				</name>
+				<description>
+					Sets this request's Context object to the one given.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any add_in_arg()
+				</name>
+				<description>
+					Creates an input argument and adds it to this Request object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any add_named_in_arg(String name)
+				</name>
+				<description>
+					Creates an input argument with the given name and adds it to this Request object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any add_inout_arg()
+				</name>
+				<description>
+					Adds an input/output argument to this Request object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any add_named_inout_arg(String name)
+				</name>
+				<description>
+					Adds an input/output argument with the given name to this Request object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any add_out_arg()
+				</name>
+				<description>
+					Adds an output argument to this Request object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any add_named_out_arg(String name)
+				</name>
+				<description>
+					Adds an output argument with the given name to this Request object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void set_return_type(TypeCode tc)
+				</name>
+				<description>
+					Sets the typecode for the return value of the method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any return_value()
+				</name>
+				<description>
+					Returns the Any object that contains the value for the result of the method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void invoke()
+				</name>
+				<description>
+					Makes a synchronous invocation using the information in the Request object. Exception information is placed into the Request object's environment object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void send_oneway()
+				</name>
+				<description>
+					Makes a oneway invocation on the request. In other words, it does not expect or wait for a response. Note that this can be used even if the operation was not declared as oneway in the IDL declaration. No response or exception information is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void send_deferred()
+				</name>
+				<description>
+					Makes an asynchronous invocation on the request. In other words, it does not wait for a response before it returns to the user. The user can then later use the methods poll_response and get_response to get the result or exception information for the invocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean poll_response()
+				</name>
+				<description>
+					Allows the user to determine whether a response has been received for the invocation triggered earlier with the send_deferred method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void get_response()                             throws WrongTransaction
+				</name>
+				<description>
+					Allows the user to access the response for the invocation triggered earlier with the send_deferred method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public static final class TransferHandler.TransferSupport  extends Object
+		</name>
+		<description>
+			This class encapsulates all relevant details of a clipboard or drag and drop transfer, and also allows for customizing aspects of the drag and drop experience. The main purpose of this class is to provide the information needed by a developer to determine the suitability of a transfer or to import the data contained within. But it also doubles as a controller for customizing properties during drag and drop, such as whether or not to show the drop location, and which drop action to use. Developers typically need not create instances of this class. Instead, they are something provided by the DnD implementation to certain methods in TransferHandler.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TransferHandler.TransferSupport(Component component,                                 Transferable transferable)
+				</name>
+				<description>
+					Create a TransferSupport with isDrop() false for the given component and Transferable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDrop()
+				</name>
+				<description>
+					Returns whether or not this TransferSupport represents a drop operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getComponent()
+				</name>
+				<description>
+					Returns the target component of this transfer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TransferHandler.DropLocation getDropLocation()
+				</name>
+				<description>
+					Returns the current (non-null) drop location for the component, when this TransferSupport represents a drop. Note: For components with built-in drop support, this location will be a subclass of DropLocation of the same type returned by that component's getDropLocation method. This method is only for use with drag and drop transfers. Calling it when isDrop() is false results in an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setShowDropLocation(boolean showDropLocation)
+				</name>
+				<description>
+					Sets whether or not the drop location should be visually indicated for the transfer - which must represent a drop. This is applicable to those components that automatically show the drop location when appropriate during a drag and drop operation). By default, the drop location is shown only when the TransferHandler has said it can accept the import represented by this TransferSupport. With this method you can force the drop location to always be shown, or always not be shown. This method is only for use with drag and drop transfers. Calling it when isDrop() is false results in an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDropAction(int dropAction)
+				</name>
+				<description>
+					Sets the drop action for the transfer - which must represent a drop - to the given action, instead of the default user drop action. The action must be supported by the source's drop actions, and must be one of COPY, MOVE or LINK. This method is only for use with drag and drop transfers. Calling it when isDrop() is false results in an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDropAction()
+				</name>
+				<description>
+					Returns the action chosen for the drop, when this TransferSupport represents a drop. Unless explicitly chosen by way of setDropAction, this returns the user drop action provided by getUserDropAction. You may wish to query this in TransferHandler's importData method to customize processing based on the action. This method is only for use with drag and drop transfers. Calling it when isDrop() is false results in an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getUserDropAction()
+				</name>
+				<description>
+					Returns the user drop action for the drop, when this TransferSupport represents a drop. The user drop action is chosen for a drop as described in the documentation for DropTargetDragEvent and DropTargetDropEvent. A different action may be chosen as the drop action by way of the setDropAction method. You may wish to query this in TransferHandler's canImport method when determining the suitability of a drop or when deciding on a drop action to explicitly choose. This method is only for use with drag and drop transfers. Calling it when isDrop() is false results in an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSourceDropActions()
+				</name>
+				<description>
+					Returns the drag source's supported drop actions, when this TransferSupport represents a drop. The source actions represent the set of actions supported by the source of this transfer, and are represented as some bitwise-OR combination of COPY, MOVE and LINK. You may wish to query this in TransferHandler's canImport method when determining the suitability of a drop or when deciding on a drop action to explicitly choose. To determine if a particular action is supported by the source, bitwise-AND the action with the source drop actions, and then compare the result against the original action. For example:    boolean copySupported = (COPY & getSourceDropActions()) == COPY;   This method is only for use with drag and drop transfers. Calling it when isDrop() is false results in an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DataFlavor[] getDataFlavors()
+				</name>
+				<description>
+					Returns the data flavors for this transfer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDataFlavorSupported(DataFlavor df)
+				</name>
+				<description>
+					Returns whether or not the given data flavor is supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Transferable getTransferable()
+				</name>
+				<description>
+					Returns the Transferable associated with this transfer. Note: Unless it is necessary to fetch the Transferable directly, use one of the other methods on this class to inquire about the transfer. This may perform better than fetching the Transferable and asking it directly.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

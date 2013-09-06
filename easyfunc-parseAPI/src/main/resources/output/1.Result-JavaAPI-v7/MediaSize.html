@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.print.attribute.standard
+	</package>
+	<type>
+		<name>
+			public class MediaSize  extends Size2DSyntax  implements Attribute
+		</name>
+		<description>
+			Class MediaSize is a two-dimensional size valued printing attribute class that indicates the dimensions of the medium in a portrait orientation, with the X dimension running along the bottom edge and the Y dimension running along the left edge. Thus, the Y dimension must be greater than or equal to the X dimension. Class MediaSize declares many standard media size values, organized into nested classes for ISO, JIS, North American, engineering, and other media. MediaSize is not yet used to specify media. Its current role is as a mapping for named media (see MediaSizeName). Clients can use the mapping method MediaSize.getMediaSizeForName(MediaSizeName) to find the physical dimensions of the MediaSizeName instances enumerated in this API. This is useful for clients which need this information to format & paginate printing.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MediaSize(float x,           float y,           int units)
+				</name>
+				<description>
+					Construct a new media size attribute from the given floating-point values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MediaSize(int x,           int y,           int units)
+				</name>
+				<description>
+					Construct a new media size attribute from the given integer values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MediaSize(float x,           float y,           int units,           MediaSizeName media)
+				</name>
+				<description>
+					Construct a new media size attribute from the given floating-point values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MediaSize(int x,           int y,           int units,           MediaSizeName media)
+				</name>
+				<description>
+					Construct a new media size attribute from the given integer values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MediaSizeName getMediaSizeName()
+				</name>
+				<description>
+					Get the media name, if any, for this size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MediaSize getMediaSizeForName(MediaSizeName media)
+				</name>
+				<description>
+					Get the MediaSize for the specified named media.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MediaSizeName findMedia(float x,                        float y,                        int units)
+				</name>
+				<description>
+					The specified dimensions are used to locate a matching MediaSize instance from amongst all the standard MediaSize instances. If there is no exact match, the closest match is used. The MediaSize is in turn used to locate the MediaSizeName object. This method may return null if the closest matching MediaSize has no corresponding Media instance. This method is useful for clients which have only dimensions and want to find a Media which corresponds to the dimensions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object object)
+				</name>
+				<description>
+					Returns whether this media size attribute is equivalent to the passed in object. To be equivalent, all of the following conditions must be true: object is not null. object is an instance of class MediaSize. This media size attribute's X dimension is equal to object's X dimension. This media size attribute's Y dimension is equal to object's Y dimension.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Class<? extends Attribute> getCategory()
+				</name>
+				<description>
+					Get the printing attribute class which is to be used as the "category" for this printing attribute value. For class MediaSize and any vendor-defined subclasses, the category is class MediaSize itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getName()
+				</name>
+				<description>
+					Get the name of the category of which this attribute value is an instance. For class MediaSize and any vendor-defined subclasses, the category name is "media-size".
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

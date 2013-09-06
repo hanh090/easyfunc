@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.sound.sampled.spi
+	</package>
+	<type>
+		<name>
+			public abstract class MixerProvider  extends Object
+		</name>
+		<description>
+			A provider or factory for a particular mixer type. This mechanism allows the implementation to determine how resources are managed in creation / management of a mixer.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MixerProvider()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMixerSupported(Mixer.Info info)
+				</name>
+				<description>
+					Indicates whether the mixer provider supports the mixer represented by the specified mixer info object. The full set of mixer info objects that represent the mixers supported by this MixerProvider may be obtained through the getMixerInfo method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Mixer.Info[] getMixerInfo()
+				</name>
+				<description>
+					Obtains the set of info objects representing the mixer or mixers provided by this MixerProvider. The isMixerSupported method returns true for all the info objects returned by this method. The corresponding mixer instances for the info objects are returned by the getMixer method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Mixer getMixer(Mixer.Info info)
+				</name>
+				<description>
+					Obtains an instance of the mixer represented by the info object. The full set of the mixer info objects that represent the mixers supported by this MixerProvider may be obtained through the getMixerInfo method. Use the isMixerSupported method to test whether this MixerProvider supports a particular mixer.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

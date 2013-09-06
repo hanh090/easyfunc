@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public abstract class SecureRandomSpi  extends Object  implements Serializable
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the SecureRandom class. All the abstract methods in this class must be implemented by each service provider who wishes to supply the implementation of a cryptographically strong pseudo-random number generator.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SecureRandomSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineSetSeed(byte[] seed)
+				</name>
+				<description>
+					Reseeds this random object. The given seed supplements, rather than replaces, the existing seed. Thus, repeated calls are guaranteed never to reduce randomness.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineNextBytes(byte[] bytes)
+				</name>
+				<description>
+					Generates a user-specified number of random bytes. If a call to engineSetSeed had not occurred previously, the first call to this method forces this SecureRandom implementation to seed itself. This self-seeding will not occur if engineSetSeed was previously called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract byte[] engineGenerateSeed(int numBytes)
+				</name>
+				<description>
+					Returns the given number of seed bytes. This call may be used to seed other random number generators.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

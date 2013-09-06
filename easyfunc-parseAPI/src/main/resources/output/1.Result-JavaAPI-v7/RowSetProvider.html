@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.sql.rowset
+	</package>
+	<type>
+		<name>
+			public class RowSetProvider  extends Object
+		</name>
+		<description>
+			A factory API that enables applications to obtain a RowSetFactory implementation that can be used to create different types of RowSet implementations. Example:    RowSetFactory aFactory = RowSetProvider.newFactory();   CachedRowSet crs = aFactory.createCachedRowSet();   ...   RowSetFactory rsf = RowSetProvider.newFactory("com.sun.rowset.RowSetFactoryImpl", null);   WebRowSet wrs = rsf.createWebRowSet();   Tracing of this class may be enabled by setting the System property javax.sql.rowset.RowSetFactory.debug to any value but false.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected RowSetProvider()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static RowSetFactory newFactory()                                  throws SQLException
+				</name>
+				<description>
+					Creates a new instance of a RowSetFactory implementation. This method uses the following look up order to determine the RowSetFactory implementation class to load: The System property javax.sql.rowset.RowSetFactory. For example: -Djavax.sql.rowset.RowSetFactory=com.sun.rowset.RowSetFactoryImpl The ServiceLoader API. The ServiceLoader API will look for a class name in the file META-INF/services/javax.sql.rowset.RowSetFactory in jars available to the runtime. For example, to have the the RowSetFactory implementation com.sun.rowset.RowSetFactoryImpl loaded, the entry in META-INF/services/javax.sql.rowset.RowSetFactory would be: com.sun.rowset.RowSetFactoryImpl Platform default RowSetFactory instance. Once an application has obtained a reference to a RowSetFactory, it can use the factory to obtain RowSet instances.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static RowSetFactory newFactory(String factoryClassName,                         ClassLoader cl)                                  throws SQLException
+				</name>
+				<description>
+					Creates a new instance of a RowSetFactory from the specified factory class name. This function is useful when there are multiple providers in the classpath. It gives more control to the application as it can specify which provider should be loaded. Once an application has obtained a reference to a RowSetFactory it can use the factory to obtain RowSet instances.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

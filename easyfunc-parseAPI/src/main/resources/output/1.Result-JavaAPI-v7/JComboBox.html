@@ -1,0 +1,765 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JComboBox<E>  extends JComponent  implements ItemSelectable, ListDataListener, ActionListener, Accessible
+		</name>
+		<description>
+			A component that combines a button or editable field and a drop-down list. The user can select a value from the drop-down list, which appears at the user's request. If you make the combo box editable, then the combo box includes an editable field into which the user can type a value. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder. See How to Use Combo Boxes in The Java Tutorial for further information.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ComboBoxModel<E> dataModel
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ListCellRenderer<? super E> renderer
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ComboBoxEditor editor
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int maximumRowCount
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isEditable
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JComboBox.KeySelectionManager keySelectionManager
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String actionCommand
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean lightWeightPopupEnabled
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override. Use the accessor methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object selectedItemReminder
+				</name>
+				<description>
+					This protected field is implementation specific. Do not access directly or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JComboBox(ComboBoxModel<E> aModel)
+				</name>
+				<description>
+					Creates a JComboBox that takes its items from an existing ComboBoxModel. Since the ComboBoxModel is provided, a combo box created using this constructor does not create a default combo box model and may impact how the insert, remove and add methods behave.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JComboBox(E[] items)
+				</name>
+				<description>
+					Creates a JComboBox that contains the elements in the specified array. By default the first item in the array (and therefore the data model) becomes selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JComboBox(Vector<E> items)
+				</name>
+				<description>
+					Creates a JComboBox that contains the elements in the specified Vector. By default the first item in the vector (and therefore the data model) becomes selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JComboBox()
+				</name>
+				<description>
+					Creates a JComboBox with a default data model. The default data model is an empty list of objects. Use addItem to add items. By default the first item in the data model becomes selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installAncestorListener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(ComboBoxUI ui)
+				</name>
+				<description>
+					Sets the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the UI property to a value from the current look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the L&F class that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ComboBoxUI getUI()
+				</name>
+				<description>
+					Returns the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(ComboBoxModel<E> aModel)
+				</name>
+				<description>
+					Sets the data model that the JComboBox uses to obtain the list of items.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ComboBoxModel<E> getModel()
+				</name>
+				<description>
+					Returns the data model currently used by the JComboBox.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLightWeightPopupEnabled(boolean aFlag)
+				</name>
+				<description>
+					Sets the lightWeightPopupEnabled property, which provides a hint as to whether or not a lightweight Component should be used to contain the JComboBox, versus a heavyweight Component such as a Panel or a Window. The decision of lightweight versus heavyweight is ultimately up to the JComboBox. Lightweight windows are more efficient than heavyweight windows, but lightweight and heavyweight components do not mix well in a GUI. If your application mixes lightweight and heavyweight components, you should disable lightweight popups. The default value for the lightWeightPopupEnabled property is true, unless otherwise specified by the look and feel. Some look and feels always use heavyweight popups, no matter what the value of this property. See the article Mixing Heavy and Light Components on The Swing Connection This method fires a property changed event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLightWeightPopupEnabled()
+				</name>
+				<description>
+					Gets the value of the lightWeightPopupEnabled property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEditable(boolean aFlag)
+				</name>
+				<description>
+					Determines whether the JComboBox field is editable. An editable JComboBox allows the user to type into the field or selected an item from the list to initialize the field, after which it can be edited. (The editing affects only the field, the list item remains intact.) A non editable JComboBox displays the selected item in the field, but the selection cannot be modified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEditable()
+				</name>
+				<description>
+					Returns true if the JComboBox is editable. By default, a combo box is not editable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaximumRowCount(int count)
+				</name>
+				<description>
+					Sets the maximum number of rows the JComboBox displays. If the number of objects in the model is greater than count, the combo box uses a scrollbar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaximumRowCount()
+				</name>
+				<description>
+					Returns the maximum number of items the combo box can display without a scrollbar
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRenderer(ListCellRenderer<? super E> aRenderer)
+				</name>
+				<description>
+					Sets the renderer that paints the list items and the item selected from the list in the JComboBox field. The renderer is used if the JComboBox is not editable. If it is editable, the editor is used to render and edit the selected item. The default renderer displays a string or an icon. Other renderers can handle graphic images and composite items. To display the selected item, aRenderer.getListCellRendererComponent is called, passing the list object and an index of -1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListCellRenderer<? super E> getRenderer()
+				</name>
+				<description>
+					Returns the renderer used to display the selected item in the JComboBox field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEditor(ComboBoxEditor anEditor)
+				</name>
+				<description>
+					Sets the editor used to paint and edit the selected item in the JComboBox field. The editor is used only if the receiving JComboBox is editable. If not editable, the combo box uses the renderer to paint the selected item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ComboBoxEditor getEditor()
+				</name>
+				<description>
+					Returns the editor used to paint and edit the selected item in the JComboBox field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedItem(Object anObject)
+				</name>
+				<description>
+					Sets the selected item in the combo box display area to the object in the argument. If anObject is in the list, the display area shows anObject selected. If anObject is not in the list and the combo box is uneditable, it will not change the current selection. For editable combo boxes, the selection will change to anObject. If this constitutes a change in the selected item, ItemListeners added to the combo box will be notified with one or two ItemEvents. If there is a current selected item, an ItemEvent will be fired and the state change will be ItemEvent.DESELECTED. If anObject is in the list and is not currently selected then an ItemEvent will be fired and the state change will be ItemEvent.SELECTED. ActionListeners added to the combo box will be notified with an ActionEvent when this method is called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getSelectedItem()
+				</name>
+				<description>
+					Returns the current selected item. If the combo box is editable, then this value may not have been added to the combo box with addItem, insertItemAt or the data constructors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedIndex(int anIndex)
+				</name>
+				<description>
+					Selects the item at index anIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectedIndex()
+				</name>
+				<description>
+					Returns the first item in the list that matches the given item. The result is not always defined if the JComboBox allows selected items that are not in the list. Returns -1 if there is no selected item or if the user specified an item which is not in the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E getPrototypeDisplayValue()
+				</name>
+				<description>
+					Returns the "prototypical display" value - an Object used for the calculation of the display height and width.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrototypeDisplayValue(E prototypeDisplayValue)
+				</name>
+				<description>
+					Sets the prototype display value used to calculate the size of the display for the UI portion. If a prototype display value is specified, the preferred size of the combo box is calculated by configuring the renderer with the prototype display value and obtaining its preferred size. Specifying the preferred display value is often useful when the combo box will be displaying large amounts of data. If no prototype display value has been specified, the renderer must be configured for each value from the model and its preferred size obtained, which can be relatively expensive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addItem(E item)
+				</name>
+				<description>
+					Adds an item to the item list. This method works only if the JComboBox uses a mutable data model. Warning: Focus and keyboard navigation problems may arise if you add duplicate String objects. A workaround is to add new objects instead of String objects and make sure that the toString() method is defined. For example:      comboBox.addItem(makeObj("Item 1"));     comboBox.addItem(makeObj("Item 1"));     ...     private Object makeObj(final String item)  {       return new Object() { public String toString() { return item; } };     }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertItemAt(E item,                  int index)
+				</name>
+				<description>
+					Inserts an item into the item list at a given index. This method works only if the JComboBox uses a mutable data model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeItem(Object anObject)
+				</name>
+				<description>
+					Removes an item from the item list. This method works only if the JComboBox uses a mutable data model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeItemAt(int anIndex)
+				</name>
+				<description>
+					Removes the item at anIndex This method works only if the JComboBox uses a mutable data model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAllItems()
+				</name>
+				<description>
+					Removes all items from the item list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void showPopup()
+				</name>
+				<description>
+					Causes the combo box to display its popup window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void hidePopup()
+				</name>
+				<description>
+					Causes the combo box to close its popup window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPopupVisible(boolean v)
+				</name>
+				<description>
+					Sets the visibility of the popup.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPopupVisible()
+				</name>
+				<description>
+					Determines the visibility of the popup.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addItemListener(ItemListener aListener)
+				</name>
+				<description>
+					Adds an ItemListener. aListener will receive one or two ItemEvents when the selected item changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeItemListener(ItemListener aListener)
+				</name>
+				<description>
+					Removes an ItemListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ItemListener[] getItemListeners()
+				</name>
+				<description>
+					Returns an array of all the ItemListeners added to this JComboBox with addItemListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addActionListener(ActionListener l)
+				</name>
+				<description>
+					Adds an ActionListener. The ActionListener will receive an ActionEvent when a selection has been made. If the combo box is editable, then an ActionEvent will be fired when editing has stopped.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeActionListener(ActionListener l)
+				</name>
+				<description>
+					Removes an ActionListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActionListener[] getActionListeners()
+				</name>
+				<description>
+					Returns an array of all the ActionListeners added to this JComboBox with addActionListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPopupMenuListener(PopupMenuListener l)
+				</name>
+				<description>
+					Adds a PopupMenu listener which will listen to notification messages from the popup portion of the combo box. For all standard look and feels shipped with Java, the popup list portion of combo box is implemented as a JPopupMenu. A custom look and feel may not implement it this way and will therefore not receive the notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removePopupMenuListener(PopupMenuListener l)
+				</name>
+				<description>
+					Removes a PopupMenuListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PopupMenuListener[] getPopupMenuListeners()
+				</name>
+				<description>
+					Returns an array of all the PopupMenuListeners added to this JComboBox with addPopupMenuListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePopupMenuWillBecomeVisible()
+				</name>
+				<description>
+					Notifies PopupMenuListeners that the popup portion of the combo box will become visible. This method is public but should not be called by anything other than the UI delegate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePopupMenuWillBecomeInvisible()
+				</name>
+				<description>
+					Notifies PopupMenuListeners that the popup portion of the combo box has become invisible. This method is public but should not be called by anything other than the UI delegate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePopupMenuCanceled()
+				</name>
+				<description>
+					Notifies PopupMenuListeners that the popup portion of the combo box has been canceled. This method is public but should not be called by anything other than the UI delegate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setActionCommand(String aCommand)
+				</name>
+				<description>
+					Sets the action command that should be included in the event sent to action listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getActionCommand()
+				</name>
+				<description>
+					Returns the action command that is included in the event sent to action listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAction(Action a)
+				</name>
+				<description>
+					Sets the Action for the ActionEvent source. The new Action replaces any previously set Action but does not affect ActionListeners independently added with addActionListener. If the Action is already a registered ActionListener for the ActionEvent source, it is not re-registered. Setting the Action results in immediately changing all the properties described in Swing Components Supporting Action. Subsequently, the combobox's properties are automatically updated as the Action's properties change. This method uses three other methods to set and help track the Action's property values. It uses the configurePropertiesFromAction method to immediately change the combobox's properties. To track changes in the Action's property values, this method registers the PropertyChangeListener returned by createActionPropertyChangeListener. The default PropertyChangeListener invokes the actionPropertyChanged method when a property in the Action changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Action getAction()
+				</name>
+				<description>
+					Returns the currently set Action for this ActionEvent source, or null if no Action is set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void configurePropertiesFromAction(Action a)
+				</name>
+				<description>
+					Sets the properties on this combobox to match those in the specified Action. Refer to Swing Components Supporting Action for more details as to which properties this sets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createActionPropertyChangeListener(Action a)
+				</name>
+				<description>
+					Creates and returns a PropertyChangeListener that is responsible for listening for changes from the specified Action and updating the appropriate properties. Warning: If you subclass this do not create an anonymous inner class. If you do the lifetime of the combobox will be tied to that of the Action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void actionPropertyChanged(Action action,                           String propertyName)
+				</name>
+				<description>
+					Updates the combobox's state in response to property changes in associated action. This method is invoked from the PropertyChangeListener returned from createActionPropertyChangeListener. Subclasses do not normally need to invoke this. Subclasses that support additional Action properties should override this and configurePropertiesFromAction. Refer to the table at Swing Components Supporting Action for a list of the properties this method sets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireItemStateChanged(ItemEvent e)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireActionEvent()
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectedItemChanged()
+				</name>
+				<description>
+					This protected method is implementation specific. Do not access directly or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getSelectedObjects()
+				</name>
+				<description>
+					Returns an array containing the selected item. This method is implemented for compatibility with ItemSelectable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void actionPerformed(ActionEvent e)
+				</name>
+				<description>
+					This method is public as an implementation side effect. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void contentsChanged(ListDataEvent e)
+				</name>
+				<description>
+					This method is public as an implementation side effect. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void intervalAdded(ListDataEvent e)
+				</name>
+				<description>
+					This method is public as an implementation side effect. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void intervalRemoved(ListDataEvent e)
+				</name>
+				<description>
+					This method is public as an implementation side effect. do not call or override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean selectWithKeyChar(char keyChar)
+				</name>
+				<description>
+					Selects the list item that corresponds to the specified keyboard character and returns true, if there is an item corresponding to that character. Otherwise, returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEnabled(boolean b)
+				</name>
+				<description>
+					Enables the combo box so that items can be selected. When the combo box is disabled, items cannot be selected and values cannot be typed into its field (if it is editable).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void configureEditor(ComboBoxEditor anEditor,                     Object anItem)
+				</name>
+				<description>
+					Initializes the editor with the specified item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void processKeyEvent(KeyEvent e)
+				</name>
+				<description>
+					Handles KeyEvents, looking for the Tab key. If the Tab key is found, the popup window is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setKeySelectionManager(JComboBox.KeySelectionManager aManager)
+				</name>
+				<description>
+					Sets the object that translates a keyboard character into a list selection. Typically, the first selection with a matching first character becomes the selected item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JComboBox.KeySelectionManager getKeySelectionManager()
+				</name>
+				<description>
+					Returns the list's key-selection manager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getItemCount()
+				</name>
+				<description>
+					Returns the number of items in the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E getItemAt(int index)
+				</name>
+				<description>
+					Returns the list item at the specified index. If index is out of range (less than zero or greater than or equal to size) it will return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JComboBox.KeySelectionManager createDefaultKeySelectionManager()
+				</name>
+				<description>
+					Returns an instance of the default key-selection manager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JComboBox. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JComboBox. For combo boxes, the AccessibleContext takes the form of an AccessibleJComboBox. A new AccessibleJComboBox instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.xml.transform
+	</package>
+	<type>
+		<name>
+			public abstract class TransformerFactory  extends Object
+		</name>
+		<description>
+			A TransformerFactory instance can be used to create Transformer and Templates objects. The system property that determines which Factory implementation to create is named "javax.xml.transform.TransformerFactory". This property names a concrete subclass of the TransformerFactory abstract class. If the property is not defined, a platform default is be used.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected TransformerFactory()
+				</name>
+				<description>
+					Default constructor is protected on purpose.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TransformerFactory newInstance()                                        throws TransformerFactoryConfigurationError
+				</name>
+				<description>
+					Obtain a new instance of a TransformerFactory. This static method creates a new factory instance This method uses the following ordered lookup procedure to determine the TransformerFactory implementation class to load: Use the javax.xml.transform.TransformerFactory system property. Use the properties file "lib/jaxp.properties" in the JRE directory. This configuration file is in standard java.util.Properties format and contains the fully qualified name of the implementation class with the key being the system property defined above. The jaxp.properties file is read only once by the JAXP implementation and it's values are then cached for future use. If the file does not exist when the first attempt is made to read from it, no further attempts are made to check for its existence. It is not possible to change the value of any property in jaxp.properties after it has been read for the first time. Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API will look for a classname in the file META-INF/services/javax.xml.transform.TransformerFactory in jars available to the runtime. Platform default TransformerFactory instance. Once an application has obtained a reference to a TransformerFactory it can use the factory to configure and obtain transformer instances.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TransformerFactory newInstance(String factoryClassName,                               ClassLoader classLoader)                                        throws TransformerFactoryConfigurationError
+				</name>
+				<description>
+					Obtain a new instance of a TransformerFactory from factory class name. This function is useful when there are multiple providers in the classpath. It gives more control to the application as it can specify which provider should be loaded. Once an application has obtained a reference to a TransformerFactory it can use the factory to configure and obtain transformer instances. Tip for Trouble-shooting Setting the jaxp.debug system property will cause this method to print a lot of debug messages to System.err about what it is doing and where it is looking at. If you have problems try:    java -Djaxp.debug=1 YourProgram ....
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Transformer newTransformer(Source source)                                      throws TransformerConfigurationException
+				</name>
+				<description>
+					Process the Source into a Transformer Object. The Source is an XSLT document that conforms to XSL Transformations (XSLT) Version 1.0. Care must be taken not to use this Transformer in multiple Threads running concurrently. Different TransformerFactories can be used concurrently by different Threads.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Transformer newTransformer()                                      throws TransformerConfigurationException
+				</name>
+				<description>
+					Create a new Transformer that performs a copy of the Source to the Result. i.e. the "identity transform".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Templates newTemplates(Source source)                                  throws TransformerConfigurationException
+				</name>
+				<description>
+					Process the Source into a Templates object, which is a a compiled representation of the source. This Templates object may then be used concurrently across multiple threads. Creating a Templates object allows the TransformerFactory to do detailed performance optimization of transformation instructions, without penalizing runtime transformation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Source getAssociatedStylesheet(Source source,                               String media,                               String title,                               String charset)                                          throws TransformerConfigurationException
+				</name>
+				<description>
+					Get the stylesheet specification(s) associated with the XML Source document via the xml-stylesheet processing instruction that match the given criteria. Note that it is possible to return several stylesheets, in which case they are applied as if they were a list of imports or cascades in a single stylesheet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setURIResolver(URIResolver resolver)
+				</name>
+				<description>
+					Set an object that is used by default during the transformation to resolve URIs used in document(), xsl:import, or xsl:include.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract URIResolver getURIResolver()
+				</name>
+				<description>
+					Get the object that is used by default during the transformation to resolve URIs used in document(), xsl:import, or xsl:include.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setFeature(String name,                boolean value)                           throws TransformerConfigurationException
+				</name>
+				<description>
+					Set a feature for this TransformerFactory and Transformers or Templates created by this factory. Feature names are fully qualified URIs. Implementations may define their own features. An TransformerConfigurationException is thrown if this TransformerFactory or the Transformers or Templates it creates cannot support the feature. It is possible for an TransformerFactory to expose a feature value but be unable to change its state. All implementations are required to support the XMLConstants.FEATURE_SECURE_PROCESSING feature. When the feature is: true: the implementation will limit XML processing to conform to implementation limits and behave in a secure fashion as defined by the implementation. Examples include resolving user defined style sheets and functions. If XML processing is limited for security reasons, it will be reported via a call to the registered ErrorListener.fatalError(TransformerException exception). See setErrorListener(ErrorListener listener). false: the implementation will processing XML according to the XML specifications without regard to possible implementation limits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean getFeature(String name)
+				</name>
+				<description>
+					Look up the value of a feature. Feature names are fully qualified URIs. Implementations may define their own features. false is returned if this TransformerFactory or the Transformers or Templates it creates cannot support the feature. It is possible for an TransformerFactory to expose a feature value but be unable to change its state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setAttribute(String name,                  Object value)
+				</name>
+				<description>
+					Allows the user to set specific attributes on the underlying implementation. An attribute in this context is defined to be an option that the implementation provides. An IllegalArgumentException is thrown if the underlying implementation doesn't recognize the attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getAttribute(String name)
+				</name>
+				<description>
+					Allows the user to retrieve specific attributes on the underlying implementation. An IllegalArgumentException is thrown if the underlying implementation doesn't recognize the attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setErrorListener(ErrorListener listener)
+				</name>
+				<description>
+					Set the error event listener for the TransformerFactory, which is used for the processing of transformation instructions, and not for the transformation itself. An IllegalArgumentException is thrown if the ErrorListener listener is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ErrorListener getErrorListener()
+				</name>
+				<description>
+					Get the error event handler for the TransformerFactory.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,189 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public abstract class X509CRL  extends CRL  implements X509Extension
+		</name>
+		<description>
+			Abstract class for an X.509 Certificate Revocation List (CRL). A CRL is a time-stamped list identifying revoked certificates. It is signed by a Certificate Authority (CA) and made freely available in a public repository. Each revoked certificate is identified in a CRL by its certificate serial number. When a certificate-using system uses a certificate (e.g., for verifying a remote user's digital signature), that system not only checks the certificate signature and validity but also acquires a suitably- recent CRL and checks that the certificate serial number is not on that CRL. The meaning of "suitably-recent" may vary with local policy, but it usually means the most recently-issued CRL. A CA issues a new CRL on a regular periodic basis (e.g., hourly, daily, or weekly). Entries are added to CRLs as revocations occur, and an entry may be removed when the certificate expiration date is reached. The X.509 v2 CRL format is described below in ASN.1:    CertificateList  ::=  SEQUENCE  {       tbsCertList          TBSCertList,       signatureAlgorithm   AlgorithmIdentifier,       signature            BIT STRING  }   More information can be found in RFC 3280: Internet X.509 Public Key Infrastructure Certificate and CRL Profile. The ASN.1 definition of tbsCertList is:    TBSCertList  ::=  SEQUENCE  {       version                 Version OPTIONAL,                               -- if present, must be v2       signature               AlgorithmIdentifier,       issuer                  Name,       thisUpdate              ChoiceOfTime,       nextUpdate              ChoiceOfTime OPTIONAL,       revokedCertificates     SEQUENCE OF SEQUENCE  {           userCertificate         CertificateSerialNumber,           revocationDate          ChoiceOfTime,           crlEntryExtensions      Extensions OPTIONAL                                   -- if present, must be v2           }  OPTIONAL,       crlExtensions           [0]  EXPLICIT Extensions OPTIONAL                                    -- if present, must be v2       }   CRLs are instantiated using a certificate factory. The following is an example of how to instantiate an X.509 CRL:    InputStream inStream = null;   try {       inStream = new FileInputStream("fileName-of-crl");       CertificateFactory cf = CertificateFactory.getInstance("X.509");       X509CRL crl = (X509CRL)cf.generateCRL(inStream);   } finally {       if (inStream != null) {           inStream.close();       }   }
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected X509CRL()
+				</name>
+				<description>
+					Constructor for X.509 CRLs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object other)
+				</name>
+				<description>
+					Compares this CRL for equality with the given object. If the other object is an instanceof X509CRL, then its encoded form is retrieved and compared with the encoded form of this CRL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode value for this CRL from its encoded form.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract byte[] getEncoded()                             throws CRLException
+				</name>
+				<description>
+					Returns the ASN.1 DER-encoded form of this CRL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void verify(PublicKey key)                       throws CRLException,                              NoSuchAlgorithmException,                              InvalidKeyException,                              NoSuchProviderException,                              SignatureException
+				</name>
+				<description>
+					Verifies that this CRL was signed using the private key that corresponds to the given public key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void verify(PublicKey key,            String sigProvider)                       throws CRLException,                              NoSuchAlgorithmException,                              InvalidKeyException,                              NoSuchProviderException,                              SignatureException
+				</name>
+				<description>
+					Verifies that this CRL was signed using the private key that corresponds to the given public key. This method uses the signature verification engine supplied by the given provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getVersion()
+				</name>
+				<description>
+					Gets the version (version number) value from the CRL. The ASN.1 definition for this is:    version    Version OPTIONAL,               -- if present, must be v2    Version  ::=  INTEGER  {  v1(0), v2(1), v3(2)  }               -- v3 does not apply to CRLs but appears for consistency               -- with definition of Version for certs
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Principal getIssuerDN()
+				</name>
+				<description>
+					Denigrated, replaced by getIssuerX500Principal(). This method returns the issuer as an implementation specific Principal object, which should not be relied upon by portable code. Gets the issuer (issuer distinguished name) value from the CRL. The issuer name identifies the entity that signed (and issued) the CRL. The issuer name field contains an X.500 distinguished name (DN). The ASN.1 definition for this is:    issuer    Name     Name ::= CHOICE { RDNSequence }   RDNSequence ::= SEQUENCE OF RelativeDistinguishedName   RelativeDistinguishedName ::=       SET OF AttributeValueAssertion     AttributeValueAssertion ::= SEQUENCE {                                 AttributeType,                                 AttributeValue }   AttributeType ::= OBJECT IDENTIFIER   AttributeValue ::= ANY   The Name describes a hierarchical name composed of attributes, such as country name, and corresponding values, such as US. The type of the AttributeValue component is determined by the AttributeType; in general it will be a directoryString. A directoryString is usually one of PrintableString, TeletexString or UniversalString.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public X500Principal getIssuerX500Principal()
+				</name>
+				<description>
+					Returns the issuer (issuer distinguished name) value from the CRL as an X500Principal. It is recommended that subclasses override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Date getThisUpdate()
+				</name>
+				<description>
+					Gets the thisUpdate date from the CRL. The ASN.1 definition for this is:    thisUpdate   ChoiceOfTime   ChoiceOfTime ::= CHOICE {       utcTime        UTCTime,       generalTime    GeneralizedTime }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Date getNextUpdate()
+				</name>
+				<description>
+					Gets the nextUpdate date from the CRL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract X509CRLEntry getRevokedCertificate(BigInteger serialNumber)
+				</name>
+				<description>
+					Gets the CRL entry, if any, with the given certificate serialNumber.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public X509CRLEntry getRevokedCertificate(X509Certificate certificate)
+				</name>
+				<description>
+					Get the CRL entry, if any, for the given certificate. This method can be used to lookup CRL entries in indirect CRLs, that means CRLs that contain entries from issuers other than the CRL issuer. The default implementation will only return entries for certificates issued by the CRL issuer. Subclasses that wish to support indirect CRLs should override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Set<? extends X509CRLEntry> getRevokedCertificates()
+				</name>
+				<description>
+					Gets all the entries from this CRL. This returns a Set of X509CRLEntry objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract byte[] getTBSCertList()                                 throws CRLException
+				</name>
+				<description>
+					Gets the DER-encoded CRL information, the tbsCertList from this CRL. This can be used to verify the signature independently.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract byte[] getSignature()
+				</name>
+				<description>
+					Gets the signature value (the raw signature bits) from the CRL. The ASN.1 definition for this is:    signature     BIT STRING
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getSigAlgName()
+				</name>
+				<description>
+					Gets the signature algorithm name for the CRL signature algorithm. An example is the string "SHA256withRSA". The ASN.1 definition for this is:    signatureAlgorithm   AlgorithmIdentifier    AlgorithmIdentifier  ::=  SEQUENCE  {       algorithm               OBJECT IDENTIFIER,       parameters              ANY DEFINED BY algorithm OPTIONAL  }                               -- contains a value of the type                               -- registered for use with the                               -- algorithm object identifier value   The algorithm name is determined from the algorithm OID string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getSigAlgOID()
+				</name>
+				<description>
+					Gets the signature algorithm OID string from the CRL. An OID is represented by a set of nonnegative whole numbers separated by periods. For example, the string "1.2.840.10040.4.3" identifies the SHA-1 with DSA signature algorithm defined in RFC 3279: Algorithms and Identifiers for the Internet X.509 Public Key Infrastructure Certificate and CRL Profile. See getSigAlgName for relevant ASN.1 definitions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract byte[] getSigAlgParams()
+				</name>
+				<description>
+					Gets the DER-encoded signature algorithm parameters from this CRL's signature algorithm. In most cases, the signature algorithm parameters are null; the parameters are usually supplied with the public key. If access to individual parameter values is needed then use AlgorithmParameters and instantiate with the name returned by getSigAlgName. See getSigAlgName for relevant ASN.1 definitions.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

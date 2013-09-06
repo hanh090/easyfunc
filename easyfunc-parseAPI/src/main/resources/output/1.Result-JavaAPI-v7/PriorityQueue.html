@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public class PriorityQueue<E>  extends AbstractQueue<E>  implements Serializable
+		</name>
+		<description>
+			An unbounded priority queue based on a priority heap. The elements of the priority queue are ordered according to their natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used. A priority queue does not permit null elements. A priority queue relying on natural ordering also does not permit insertion of non-comparable objects (doing so may result in ClassCastException). The head of this queue is the least element with respect to the specified ordering. If multiple elements are tied for least value, the head is one of those elements -- ties are broken arbitrarily. The queue retrieval operations poll, remove, peek, and element access the element at the head of the queue. A priority queue is unbounded, but has an internal capacity governing the size of an array used to store the elements on the queue. It is always at least as large as the queue size. As elements are added to a priority queue, its capacity grows automatically. The details of the growth policy are not specified. This class and its iterator implement all of the optional methods of the Collection and Iterator interfaces. The Iterator provided in method iterator() is not guaranteed to traverse the elements of the priority queue in any particular order. If you need ordered traversal, consider using Arrays.sort(pq.toArray()). Note that this implementation is not synchronized. Multiple threads should not access a PriorityQueue instance concurrently if any of the threads modifies the queue. Instead, use the thread-safe PriorityBlockingQueue class. Implementation note: this implementation provides O(log(n)) time for the enqueing and dequeing methods (offer, poll, remove() and add); linear time for the remove(Object) and contains(Object) methods; and constant time for the retrieval methods (peek, element, and size). This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PriorityQueue()
+				</name>
+				<description>
+					Creates a PriorityQueue with the default initial capacity (11) that orders its elements according to their natural ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityQueue(int initialCapacity)
+				</name>
+				<description>
+					Creates a PriorityQueue with the specified initial capacity that orders its elements according to their natural ordering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityQueue(int initialCapacity,               Comparator<? super E> comparator)
+				</name>
+				<description>
+					Creates a PriorityQueue with the specified initial capacity that orders its elements according to the specified comparator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityQueue(Collection<? extends E> c)
+				</name>
+				<description>
+					Creates a PriorityQueue containing the elements in the specified collection. If the specified collection is an instance of a SortedSet or is another PriorityQueue, this priority queue will be ordered according to the same ordering. Otherwise, this priority queue will be ordered according to the natural ordering of its elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityQueue(PriorityQueue<? extends E> c)
+				</name>
+				<description>
+					Creates a PriorityQueue containing the elements in the specified priority queue. This priority queue will be ordered according to the same ordering as the given priority queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PriorityQueue(SortedSet<? extends E> c)
+				</name>
+				<description>
+					Creates a PriorityQueue containing the elements in the specified sorted set. This priority queue will be ordered according to the same ordering as the given sorted set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(E e)
+				</name>
+				<description>
+					Inserts the specified element into this priority queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean offer(E e)
+				</name>
+				<description>
+					Inserts the specified element into this priority queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E peek()
+				</name>
+				<description>
+					Description copied from interface: Queue Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object o)
+				</name>
+				<description>
+					Removes a single instance of the specified element from this queue, if it is present. More formally, removes an element e such that o.equals(e), if this queue contains one or more such elements. Returns true if and only if this queue contained the specified element (or equivalently, if this queue changed as a result of the call).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object o)
+				</name>
+				<description>
+					Returns true if this queue contains the specified element. More formally, returns true if and only if this queue contains at least one element e such that o.equals(e).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] toArray()
+				</name>
+				<description>
+					Returns an array containing all of the elements in this queue. The elements are in no particular order. The returned array will be "safe" in that no references to it are maintained by this queue. (In other words, this method must allocate a new array). The caller is thus free to modify the returned array. This method acts as bridge between array-based and collection-based APIs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T[] toArray(T[] a)
+				</name>
+				<description>
+					Returns an array containing all of the elements in this queue; the runtime type of the returned array is that of the specified array. The returned array elements are in no particular order. If the queue fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this queue. If the queue fits in the specified array with room to spare (i.e., the array has more elements than the queue), the element in the array immediately following the end of the collection is set to null. Like the toArray() method, this method acts as bridge between array-based and collection-based APIs. Further, this method allows precise control over the runtime type of the output array, and may, under certain circumstances, be used to save allocation costs. Suppose x is a queue known to contain only strings. The following code can be used to dump the queue into a newly allocated array of String:        String[] y = x.toArray(new String[0]); Note that toArray(new Object[0]) is identical in function to toArray().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this queue. The iterator does not return the elements in any particular order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Description copied from interface: Collection Returns the number of elements in this collection. If this collection contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all of the elements from this priority queue. The queue will be empty after this call returns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E poll()
+				</name>
+				<description>
+					Description copied from interface: Queue Retrieves and removes the head of this queue, or returns null if this queue is empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparator<? super E> comparator()
+				</name>
+				<description>
+					Returns the comparator used to order the elements in this queue, or null if this queue is sorted according to the natural ordering of its elements.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

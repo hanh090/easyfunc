@@ -1,0 +1,315 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class StyleContext  extends Object  implements Serializable, AbstractDocument.AttributeContext
+		</name>
+		<description>
+			A pool of styles and their associated resources. This class determines the lifetime of a group of resources by being a container that holds caches for various resources such as font and color that get reused by the various style definitions. This can be shared by multiple documents if desired to maximize the sharing of related resources. This class also provides efficient support for small sets of attributes and compresses them by sharing across uses and taking advantage of their immutable nature. Since many styles are replicated, the potential for sharing is significant, and copies can be extremely cheap. Larger sets reduce the possibility of sharing, and therefore revert automatically to a less space-efficient implementation. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String DEFAULT_STYLE
+				</name>
+				<description>
+					The name given to the default logical style attached to paragraphs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyleContext()
+				</name>
+				<description>
+					Creates a new StyleContext object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final StyleContext getDefaultStyleContext()
+				</name>
+				<description>
+					Returns default AttributeContext shared by all documents that don't bother to define/supply their own context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style addStyle(String nm,               Style parent)
+				</name>
+				<description>
+					Adds a new style into the style hierarchy. Style attributes resolve from bottom up so an attribute specified in a child will override an attribute specified in the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeStyle(String nm)
+				</name>
+				<description>
+					Removes a named style previously added to the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style getStyle(String nm)
+				</name>
+				<description>
+					Fetches a named style previously added to the document
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<?> getStyleNames()
+				</name>
+				<description>
+					Fetches the names of the styles defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Adds a listener to track when styles are added or removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Removes a listener that was tracking styles being added or removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ChangeListener[] getChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the ChangeListeners added to this StyleContext with addChangeListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont(AttributeSet attr)
+				</name>
+				<description>
+					Gets the font from an attribute set. This is implemented to try and fetch a cached font for the given AttributeSet, and if that fails the font features are resolved and the font is fetched from the low-level font cache.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getForeground(AttributeSet attr)
+				</name>
+				<description>
+					Takes a set of attributes and turn it into a foreground color specification. This might be used to specify things like brighter, more hue, etc. By default it simply returns the value specified by the StyleConstants.Foreground attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackground(AttributeSet attr)
+				</name>
+				<description>
+					Takes a set of attributes and turn it into a background color specification. This might be used to specify things like brighter, more hue, etc. By default it simply returns the value specified by the StyleConstants.Background attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont(String family,             int style,             int size)
+				</name>
+				<description>
+					Gets a new font. This returns a Font from a cache if a cached font exists. If not, a Font is added to the cache. This is basically a low-level cache for 1.1 font features.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FontMetrics getFontMetrics(Font f)
+				</name>
+				<description>
+					Returns font metrics for a font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet addAttribute(AttributeSet old,                          Object name,                          Object value)
+				</name>
+				<description>
+					Adds an attribute to the given set, and returns the new representative set. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet addAttributes(AttributeSet old,                           AttributeSet attr)
+				</name>
+				<description>
+					Adds a set of attributes to the element. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet removeAttribute(AttributeSet old,                             Object name)
+				</name>
+				<description>
+					Removes an attribute from the set. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet removeAttributes(AttributeSet old,                              Enumeration<?> names)
+				</name>
+				<description>
+					Removes a set of attributes for the element. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet removeAttributes(AttributeSet old,                              AttributeSet attrs)
+				</name>
+				<description>
+					Removes a set of attributes for the element. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getEmptySet()
+				</name>
+				<description>
+					Fetches an empty AttributeSet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reclaim(AttributeSet a)
+				</name>
+				<description>
+					Returns a set no longer needed by the MutableAttributeSet implmentation. This is useful for operation under 1.1 where there are no weak references. This would typically be called by the finalize method of the MutableAttributeSet implementation. This method is thread safe, although most Swing methods are not. Please see How to Use Threads for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getCompressionThreshold()
+				</name>
+				<description>
+					Returns the maximum number of key/value pairs to try and compress into unique/immutable sets. Any sets above this limit will use hashtables and be a MutableAttributeSet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StyleContext.SmallAttributeSet createSmallAttributeSet(AttributeSet a)
+				</name>
+				<description>
+					Create a compact set of attributes that might be shared. This is a hook for subclasses that want to alter the behavior of SmallAttributeSet. This can be reimplemented to return an AttributeSet that provides some sort of attribute conversion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MutableAttributeSet createLargeAttributeSet(AttributeSet a)
+				</name>
+				<description>
+					Create a large set of attributes that should trade off space for time. This set will not be shared. This is a hook for subclasses that want to alter the behavior of the larger attribute storage format (which is SimpleAttributeSet by default). This can be reimplemented to return a MutableAttributeSet that provides some sort of attribute conversion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Converts a StyleContext to a String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeAttributes(ObjectOutputStream out,                     AttributeSet a)                       throws IOException
+				</name>
+				<description>
+					Context-specific handling of writing out attributes
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void readAttributes(ObjectInputStream in,                    MutableAttributeSet a)                      throws ClassNotFoundException,                             IOException
+				</name>
+				<description>
+					Context-specific handling of reading in attributes
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void writeAttributeSet(ObjectOutputStream out,                       AttributeSet a)                                throws IOException
+				</name>
+				<description>
+					Writes a set of attributes to the given object stream for the purpose of serialization. This will take special care to deal with static attribute keys that have been registered wit the registerStaticAttributeKey method. Any attribute key not regsitered as a static key will be serialized directly. All values are expected to be serializable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void readAttributeSet(ObjectInputStream in,                      MutableAttributeSet a)                               throws ClassNotFoundException,                                      IOException
+				</name>
+				<description>
+					Reads a set of attributes from the given object input stream that have been previously written out with writeAttributeSet. This will try to restore keys that were static objects to the static objects in the current virtual machine considering only those keys that have been registered with the registerStaticAttributeKey method. The attributes retrieved from the stream will be placed into the given mutable set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void registerStaticAttributeKey(Object key)
+				</name>
+				<description>
+					Registers an object as a static object that is being used as a key in attribute sets. This allows the key to be treated specially for serialization. For operation under a 1.1 virtual machine, this uses the value returned by toString concatenated to the classname. The value returned by toString should not have the class reference in it (ie it should be reimplemented from the definition in Object) in order to be the same when recomputed later.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object getStaticAttribute(Object key)
+				</name>
+				<description>
+					Returns the object previously registered with registerStaticAttributeKey.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object getStaticAttributeKey(Object key)
+				</name>
+				<description>
+					Returns the String that key will be registered with
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public class MinimalHTMLWriter  extends AbstractWriter
+		</name>
+		<description>
+			MinimalHTMLWriter is a fallback writer used by the HTMLEditorKit to write out HTML for a document that is a not produced by the EditorKit. The format for the document is:    <html>     <head>       <style>          <!-- list of named styles           p.normal {              font-family: SansSerif;              margin-height: 0;              font-size: 14           }          -->        </style>     </head>     <body>      <p style=normal>          Bold, italic, and underline attributes          of the run are emitted as HTML tags.          The remaining attributes are emitted as          part of the style attribute of a <span> tag.          The syntax is similar to inline styles.      </p>     </body>   </html>
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MinimalHTMLWriter(Writer w,                   StyledDocument doc)
+				</name>
+				<description>
+					Creates a new MinimalHTMLWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MinimalHTMLWriter(Writer w,                   StyledDocument doc,                   int pos,                   int len)
+				</name>
+				<description>
+					Creates a new MinimalHTMLWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write()             throws IOException,                    BadLocationException
+				</name>
+				<description>
+					Generates HTML output from a StyledDocument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeAttributes(AttributeSet attr)                          throws IOException
+				</name>
+				<description>
+					Writes out all the attributes for the following types: StyleConstants.ParagraphConstants, StyleConstants.CharacterConstants, StyleConstants.FontConstants, StyleConstants.ColorConstants. The attribute name and value are separated by a colon. Each pair is separated by a semicolon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void text(Element elem)               throws IOException,                      BadLocationException
+				</name>
+				<description>
+					Writes out text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeStartTag(String tag)                        throws IOException
+				</name>
+				<description>
+					Writes out a start tag appropriately indented. Also increments the indent level.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeEndTag(String endTag)                      throws IOException
+				</name>
+				<description>
+					Writes out an end tag appropriately indented. Also decrements the indent level.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeHeader()                      throws IOException
+				</name>
+				<description>
+					Writes out the <head> and <style> tags, and then invokes writeStyles() to write out all the named styles as the content of the <style> tag. The content is surrounded by valid HTML comment markers to ensure that the document is viewable in applications/browsers that do not support the tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeStyles()                      throws IOException
+				</name>
+				<description>
+					Writes out all the named styles as the content of the <style> tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeBody()                    throws IOException,                           BadLocationException
+				</name>
+				<description>
+					Iterates over the elements in the document and processes elements based on whether they are branch elements or leaf elements. This method specially handles leaf elements that are text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeEndParagraph()                            throws IOException
+				</name>
+				<description>
+					Emits an end tag for a <p> tag. Before writing out the tag, this method ensures that all other tags that have been opened are appropriately closed off.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeStartParagraph(Element elem)                              throws IOException
+				</name>
+				<description>
+					Emits the start tag for a paragraph. If the paragraph has a named style associated with it, then this method also generates a class attribute for the <p> tag and sets its value to be the name of the style.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeLeaf(Element elem)                    throws IOException
+				</name>
+				<description>
+					Responsible for writing out other non-text leaf elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeImage(Element elem)                     throws IOException
+				</name>
+				<description>
+					Responsible for handling Icon Elements; deliberately unimplemented. How to implement this method is an issue of policy. For example, if you're generating an <img> tag, how should you represent the src attribute (the location of the image)? In certain cases it could be a URL, in others it could be read from a stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeComponent(Element elem)                         throws IOException
+				</name>
+				<description>
+					Responsible for handling Component Elements; deliberately unimplemented. How this method is implemented is a matter of policy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isText(Element elem)
+				</name>
+				<description>
+					Returns true if the element is a text element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeContent(Element elem,                  boolean needsIndenting)                       throws IOException,                              BadLocationException
+				</name>
+				<description>
+					Writes out the attribute set in an HTML-compliant manner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeHTMLTags(AttributeSet attr)                        throws IOException
+				</name>
+				<description>
+					Generates bold <b>, italic <i>, and <u> tags for the text based on its attribute settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeNonHTMLAttributes(AttributeSet attr)                                 throws IOException
+				</name>
+				<description>
+					Writes out the remaining character-level attributes (attributes other than bold, italic, and underline) in an HTML-compliant way. Given that attributes such as font family and font size have no direct mapping to HTML tags, a <span> tag is generated and its style attribute is set to contain the list of remaining attributes just like inline styles.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean inFontTag()
+				</name>
+				<description>
+					Returns true if we are currently in a <font> tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void endFontTag()                     throws IOException
+				</name>
+				<description>
+					This is no longer used, instead <span> will be written out. Writes out an end tag for the <font> tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void startFontTag(String style)                       throws IOException
+				</name>
+				<description>
+					This is no longer used, instead <span> will be written out. Writes out a start tag for the <font> tag. Because font tags cannot be nested, this method closes out any enclosing font tag before writing out a new start tag.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

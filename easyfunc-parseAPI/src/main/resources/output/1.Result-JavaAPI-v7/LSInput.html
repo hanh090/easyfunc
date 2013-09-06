@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		org.w3c.dom.ls
+	</package>
+	<type>
+		<name>
+			public interface LSInput
+		</name>
+		<description>
+			This interface represents an input source for data. This interface allows an application to encapsulate information about an input source in a single object, which may include a public identifier, a system identifier, a byte stream (possibly with a specified encoding), a base URI, and/or a character stream. The exact definitions of a byte stream and a character stream are binding dependent. The application is expected to provide objects that implement this interface whenever such objects are needed. The application can either provide its own objects that implement this interface, or it can use the generic factory method DOMImplementationLS.createLSInput() to create objects that implement this interface. The LSParser will use the LSInput object to determine how to read data. The LSParser will look at the different inputs specified in the LSInput in the following order to know which one to read from, the first one that is not null and not an empty string will be used: LSInput.characterStream LSInput.byteStream LSInput.stringData LSInput.systemId LSInput.publicId If all inputs are null, the LSParser will report a DOMError with its DOMError.type set to "no-input-specified" and its DOMError.severity set to DOMError.SEVERITY_FATAL_ERROR. LSInput objects belong to the application. The DOM implementation will never modify them (though it may make copies and modify the copies, if necessary). See also the Document Object Model (DOM) Level 3 Load and Save Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Reader getCharacterStream()
+				</name>
+				<description>
+					An attribute of a language and binding dependent type that represents a stream of 16-bit units. The application must encode the stream using UTF-16 (defined in [Unicode] and in [ISO/IEC 10646]). It is not a requirement to have an XML declaration when using character streams. If an XML declaration is present, the value of the encoding attribute will be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setCharacterStream(Reader characterStream)
+				</name>
+				<description>
+					An attribute of a language and binding dependent type that represents a stream of 16-bit units. The application must encode the stream using UTF-16 (defined in [Unicode] and in [ISO/IEC 10646]). It is not a requirement to have an XML declaration when using character streams. If an XML declaration is present, the value of the encoding attribute will be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream getByteStream()
+				</name>
+				<description>
+					An attribute of a language and binding dependent type that represents a stream of bytes. If the application knows the character encoding of the byte stream, it should set the encoding attribute. Setting the encoding in this way will override any encoding specified in an XML declaration in the data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setByteStream(InputStream byteStream)
+				</name>
+				<description>
+					An attribute of a language and binding dependent type that represents a stream of bytes. If the application knows the character encoding of the byte stream, it should set the encoding attribute. Setting the encoding in this way will override any encoding specified in an XML declaration in the data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getStringData()
+				</name>
+				<description>
+					String data to parse. If provided, this will always be treated as a sequence of 16-bit units (UTF-16 encoded characters). It is not a requirement to have an XML declaration when using stringData. If an XML declaration is present, the value of the encoding attribute will be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setStringData(String stringData)
+				</name>
+				<description>
+					String data to parse. If provided, this will always be treated as a sequence of 16-bit units (UTF-16 encoded characters). It is not a requirement to have an XML declaration when using stringData. If an XML declaration is present, the value of the encoding attribute will be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getSystemId()
+				</name>
+				<description>
+					The system identifier, a URI reference [IETF RFC 2396], for this input source. The system identifier is optional if there is a byte stream, a character stream, or string data. It is still useful to provide one, since the application will use it to resolve any relative URIs and can include it in error messages and warnings. (The LSParser will only attempt to fetch the resource identified by the URI reference if there is no other input available in the input source.) If the application knows the character encoding of the object pointed to by the system identifier, it can set the encoding using the encoding attribute. If the specified system ID is a relative URI reference (see section 5 in [IETF RFC 2396]), the DOM implementation will attempt to resolve the relative URI with the baseURI as the base, if that fails, the behavior is implementation dependent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setSystemId(String systemId)
+				</name>
+				<description>
+					The system identifier, a URI reference [IETF RFC 2396], for this input source. The system identifier is optional if there is a byte stream, a character stream, or string data. It is still useful to provide one, since the application will use it to resolve any relative URIs and can include it in error messages and warnings. (The LSParser will only attempt to fetch the resource identified by the URI reference if there is no other input available in the input source.) If the application knows the character encoding of the object pointed to by the system identifier, it can set the encoding using the encoding attribute. If the specified system ID is a relative URI reference (see section 5 in [IETF RFC 2396]), the DOM implementation will attempt to resolve the relative URI with the baseURI as the base, if that fails, the behavior is implementation dependent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getPublicId()
+				</name>
+				<description>
+					The public identifier for this input source. This may be mapped to an input source using an implementation dependent mechanism (such as catalogues or other mappings). The public identifier, if specified, may also be reported as part of the location information when errors are reported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setPublicId(String publicId)
+				</name>
+				<description>
+					The public identifier for this input source. This may be mapped to an input source using an implementation dependent mechanism (such as catalogues or other mappings). The public identifier, if specified, may also be reported as part of the location information when errors are reported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getBaseURI()
+				</name>
+				<description>
+					The base URI to be used (see section 5.1.4 in [IETF RFC 2396]) for resolving a relative systemId to an absolute URI. If, when used, the base URI is itself a relative URI, an empty string, or null, the behavior is implementation dependent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setBaseURI(String baseURI)
+				</name>
+				<description>
+					The base URI to be used (see section 5.1.4 in [IETF RFC 2396]) for resolving a relative systemId to an absolute URI. If, when used, the base URI is itself a relative URI, an empty string, or null, the behavior is implementation dependent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getEncoding()
+				</name>
+				<description>
+					The character encoding, if known. The encoding must be a string acceptable for an XML encoding declaration ([XML 1.0] section 4.3.3 "Character Encoding in Entities"). This attribute has no effect when the application provides a character stream or string data. For other sources of input, an encoding specified by means of this attribute will override any encoding specified in the XML declaration or the Text declaration, or an encoding obtained from a higher level protocol, such as HTTP [IETF RFC 2616].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setEncoding(String encoding)
+				</name>
+				<description>
+					The character encoding, if known. The encoding must be a string acceptable for an XML encoding declaration ([XML 1.0] section 4.3.3 "Character Encoding in Entities"). This attribute has no effect when the application provides a character stream or string data. For other sources of input, an encoding specified by means of this attribute will override any encoding specified in the XML declaration or the Text declaration, or an encoding obtained from a higher level protocol, such as HTTP [IETF RFC 2616].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean getCertifiedText()
+				</name>
+				<description>
+					If set to true, assume that the input is certified (see section 2.13 in [XML 1.1]) when parsing [XML 1.1].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setCertifiedText(boolean certifiedText)
+				</name>
+				<description>
+					If set to true, assume that the input is certified (see section 2.13 in [XML 1.1]) when parsing [XML 1.1].
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

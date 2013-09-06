@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.sound.sampled
+	</package>
+	<type>
+		<name>
+			public interface Mixer  extends Line
+		</name>
+		<description>
+			A mixer is an audio device with one or more lines. It need not be designed for mixing audio signals. A mixer that actually mixes audio has multiple input (source) lines and at least one output (target) line. The former are often instances of classes that implement SourceDataLine, and the latter, TargetDataLine. Port objects, too, are either source lines or target lines. A mixer can accept prerecorded, loopable sound as input, by having some of its source lines be instances of objects that implement the Clip interface. Through methods of the Line interface, which Mixer extends, a mixer might provide a set of controls that are global to the mixer. For example, the mixer can have a master gain control. These global controls are distinct from the controls belonging to each of the mixer's individual lines. Some mixers, especially those with internal digital mixing capabilities, may provide additional capabilities by implementing the DataLine interface. A mixer can support synchronization of its lines. When one line in a synchronized group is started or stopped, the other lines in the group automatically start or stop simultaneously with the explicitly affected one.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Mixer.Info getMixerInfo()
+				</name>
+				<description>
+					Obtains information about this mixer, including the product's name, version, vendor, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Line.Info[] getSourceLineInfo()
+				</name>
+				<description>
+					Obtains information about the set of source lines supported by this mixer. Some source lines may only be available when this mixer is open.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Line.Info[] getTargetLineInfo()
+				</name>
+				<description>
+					Obtains information about the set of target lines supported by this mixer. Some target lines may only be available when this mixer is open.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Line.Info[] getSourceLineInfo(Line.Info info)
+				</name>
+				<description>
+					Obtains information about source lines of a particular type supported by the mixer. Some source lines may only be available when this mixer is open.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Line.Info[] getTargetLineInfo(Line.Info info)
+				</name>
+				<description>
+					Obtains information about target lines of a particular type supported by the mixer. Some target lines may only be available when this mixer is open.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isLineSupported(Line.Info info)
+				</name>
+				<description>
+					Indicates whether the mixer supports a line (or lines) that match the specified Line.Info object. Some lines may only be supported when this mixer is open.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Line getLine(Line.Info info)               throws LineUnavailableException
+				</name>
+				<description>
+					Obtains a line that is available for use and that matches the description in the specified Line.Info object. If a DataLine is requested, and info is an instance of DataLine.Info specifying at least one fully qualified audio format, the last one will be used as the default format of the returned DataLine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMaxLines(Line.Info info)
+				</name>
+				<description>
+					Obtains the approximate maximum number of lines of the requested type that can be open simultaneously on the mixer. Certain types of mixers do not have a hard bound and may allow opening more lines. Since certain lines are a shared resource, a mixer may not be able to open the maximum number of lines if another process has opened lines of this mixer. The requested type is any line that matches the description in the provided Line.Info object. For example, if the info object represents a speaker port, and the mixer supports exactly one speaker port, this method should return 1. If the info object represents a source data line and the mixer supports the use of 32 source data lines simultaneously, the return value should be 32. If there is no limit, this function returns AudioSystem.NOT_SPECIFIED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Line[] getSourceLines()
+				</name>
+				<description>
+					Obtains the set of all source lines currently open to this mixer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Line[] getTargetLines()
+				</name>
+				<description>
+					Obtains the set of all target lines currently open from this mixer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void synchronize(Line[] lines,                 boolean maintainSync)
+				</name>
+				<description>
+					Synchronizes two or more lines. Any subsequent command that starts or stops audio playback or capture for one of these lines will exert the same effect on the other lines in the group, so that they start or stop playing or capturing data simultaneously.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unsynchronize(Line[] lines)
+				</name>
+				<description>
+					Releases synchronization for the specified lines. The array must be identical to one for which synchronization has already been established; otherwise an exception may be thrown. However, null may be specified, in which case all currently synchronized lines that belong to this mixer are unsynchronized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSynchronizationSupported(Line[] lines,                                   boolean maintainSync)
+				</name>
+				<description>
+					Reports whether this mixer supports synchronization of the specified set of lines.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

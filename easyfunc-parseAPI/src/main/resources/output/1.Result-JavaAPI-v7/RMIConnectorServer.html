@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.management.remote.rmi
+	</package>
+	<type>
+		<name>
+			public class RMIConnectorServer  extends JMXConnectorServer
+		</name>
+		<description>
+			A JMX API connector server that creates RMI-based connections from remote clients. Usually, such connector servers are made using JMXConnectorServerFactory. However, specialized applications can use this class directly, for example with an RMIServerImpl object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String JNDI_REBIND_ATTRIBUTE
+				</name>
+				<description>
+					Name of the attribute that specifies whether the RMIServer stub that represents an RMI connector server should override an existing stub at the same address. The value associated with this attribute, if any, should be a string that is equal, ignoring case, to "true" or "false". The default value is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE
+				</name>
+				<description>
+					Name of the attribute that specifies the RMIClientSocketFactory for the RMI objects created in conjunction with this connector. The value associated with this attribute must be of type RMIClientSocketFactory and can only be specified in the Map argument supplied when creating a connector server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE
+				</name>
+				<description>
+					Name of the attribute that specifies the RMIServerSocketFactory for the RMI objects created in conjunction with this connector. The value associated with this attribute must be of type RMIServerSocketFactory and can only be specified in the Map argument supplied when creating a connector server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RMIConnectorServer(JMXServiceURL url,                    Map<String,?> environment)                     throws IOException
+				</name>
+				<description>
+					Makes an RMIConnectorServer. This is equivalent to calling RMIConnectorServer(directoryURL,environment,null,null)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RMIConnectorServer(JMXServiceURL url,                    Map<String,?> environment,                    MBeanServer mbeanServer)                     throws IOException
+				</name>
+				<description>
+					Makes an RMIConnectorServer for the given MBean server. This is equivalent to calling RMIConnectorServer(directoryURL,environment,null,mbeanServer)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RMIConnectorServer(JMXServiceURL url,                    Map<String,?> environment,                    RMIServerImpl rmiServerImpl,                    MBeanServer mbeanServer)                     throws IOException
+				</name>
+				<description>
+					Makes an RMIConnectorServer for the given MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXConnector toJMXConnector(Map<String,?> env)                              throws IOException
+				</name>
+				<description>
+					Returns a client stub for this connector server. A client stub is a serializable object whose connect method can be used to make one new connection to this connector server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void start()             throws IOException
+				</name>
+				<description>
+					Activates the connector server, that is starts listening for client connections. Calling this method when the connector server is already active has no effect. Calling this method when the connector server has been stopped will generate an IOException. The behavior of this method when called for the first time depends on the parameters that were supplied at construction, as described below. First, an object of a subclass of RMIServerImpl is required, to export the connector server through RMI: If an RMIServerImpl was supplied to the constructor, it is used. Otherwise, if the protocol part of the JMXServiceURL supplied to the constructor was iiop, an object of type RMIIIOPServerImpl is created. Otherwise, if the JMXServiceURL was null, or its protocol part was rmi, an object of type RMIJRMPServerImpl is created. Otherwise, the implementation can create an implementation-specific RMIServerImpl or it can throw MalformedURLException. If the given address includes a JNDI directory URL as specified in the package documentation for javax.management.remote.rmi, then this RMIConnectorServer will bootstrap by binding the RMIServerImpl to the given address. If the URL path part of the JMXServiceURL was empty or a single slash (/), then the RMI object will not be bound to a directory. Instead, a reference to it will be encoded in the URL path of the RMIConnectorServer address (returned by getAddress()). The encodings for rmi and iiop are described in the package documentation for javax.management.remote.rmi. The behavior when the URL path is neither empty nor a JNDI directory URL, or when the protocol is neither rmi nor iiop, is implementation defined, and may include throwing MalformedURLException when the connector server is created or when it is started.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void stop()            throws IOException
+				</name>
+				<description>
+					Deactivates the connector server, that is, stops listening for client connections. Calling this method will also close all client connections that were made by this server. After this method returns, whether normally or with an exception, the connector server will not create any new client connections. Once a connector server has been stopped, it cannot be started again. Calling this method when the connector server has already been stopped has no effect. Calling this method when the connector server has not yet been started will disable the connector server object permanently. If closing a client connection produces an exception, that exception is not thrown from this method. A JMXConnectionNotification is emitted from this MBean with the connection ID of the connection that could not be closed. Closing a connector server is a potentially slow operation. For example, if a client machine with an open connection has crashed, the close operation might have to wait for a network protocol timeout. Callers that do not want to block in a close operation should do it in a separate thread. This method calls the method close on the connector server's RMIServerImpl object. If the RMIServerImpl was bound to a JNDI directory by the start method, it is unbound from the directory by this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isActive()
+				</name>
+				<description>
+					Description copied from interface: JMXConnectorServerMBean Determines whether the connector server is active. A connector server starts being active when its start method returns successfully and remains active until either its stop method is called or the connector server fails.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXServiceURL getAddress()
+				</name>
+				<description>
+					Description copied from interface: JMXConnectorServerMBean The address of this connector server. The address returned may not be the exact original JMXServiceURL that was supplied when creating the connector server, since the original address may not always be complete. For example the port number may be dynamically allocated when starting the connector server. Instead the address returned is the actual JMXServiceURL of the JMXConnectorServer. This is the address that clients supply to JMXConnectorFactory.connect(JMXServiceURL). Note that the address returned may be null if the JMXConnectorServer is not yet active.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<String,?> getAttributes()
+				</name>
+				<description>
+					Description copied from interface: JMXConnectorServerMBean The attributes for this connector server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMBeanServerForwarder(MBeanServerForwarder mbsf)
+				</name>
+				<description>
+					Description copied from interface: JMXConnectorServerMBean Inserts an object that intercepts requests for the MBean server that arrive through this connector server. This object will be supplied as the MBeanServer for any new connection created by this connector server. Existing connections are unaffected. This method can be called more than once with different MBeanServerForwarder objects. The result is a chain of forwarders. The last forwarder added is the first in the chain. In more detail: If this connector server is already associated with an MBeanServer object, then that object is given to mbsf.setMBeanServer. If doing so produces an exception, this method throws the same exception without any other effect. If this connector is not already associated with an MBeanServer object, or if the mbsf.setMBeanServer call just mentioned succeeds, then mbsf becomes this connector server's MBeanServer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void connectionOpened(String connectionId,                      String message,                      Object userData)
+				</name>
+				<description>
+					Description copied from class: JMXConnectorServer Called by a subclass when a new client connection is opened. Adds connectionId to the list returned by JMXConnectorServer.getConnectionIds(), then emits a JMXConnectionNotification with type JMXConnectionNotification.OPENED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void connectionClosed(String connectionId,                      String message,                      Object userData)
+				</name>
+				<description>
+					Description copied from class: JMXConnectorServer Called by a subclass when a client connection is closed normally. Removes connectionId from the list returned by JMXConnectorServer.getConnectionIds(), then emits a JMXConnectionNotification with type JMXConnectionNotification.CLOSED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void connectionFailed(String connectionId,                      String message,                      Object userData)
+				</name>
+				<description>
+					Description copied from class: JMXConnectorServer Called by a subclass when a client connection fails. Removes connectionId from the list returned by JMXConnectorServer.getConnectionIds(), then emits a JMXConnectionNotification with type JMXConnectionNotification.FAILED.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

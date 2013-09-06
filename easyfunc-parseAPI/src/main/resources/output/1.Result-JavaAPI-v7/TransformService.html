@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig
+	</package>
+	<type>
+		<name>
+			public abstract class TransformService  extends Object  implements Transform
+		</name>
+		<description>
+			A Service Provider Interface for transform and canonicalization algorithms. Each instance of TransformService supports a specific transform or canonicalization algorithm and XML mechanism type. To create a TransformService, call one of the static getInstance methods, passing in the algorithm URI and XML mechanism type desired, for example: TransformService ts = TransformService.getInstance(Transform.XPATH2, "DOM"); TransformService implementations are registered and loaded using the Provider mechanism. Each TransformService service provider implementation should include a MechanismType service attribute that identifies the XML mechanism type that it supports. If the attribute is not specified, "DOM" is assumed. For example, a service provider that supports the XPath Filter 2 Transform and DOM mechanism would be specified in the Provider subclass as:        put("TransformService." + Transform.XPATH2,           "org.example.XPath2TransformService");       put("TransformService." + Transform.XPATH2 + " MechanismType", "DOM");   TransformService implementations that support the DOM mechanism type must abide by the DOM interoperability requirements defined in the DOM Mechanism Requirements section of the API overview. See the Service Providers section of the API overview for a list of standard mechanism types. Once a TransformService has been created, it can be used to process Transform or CanonicalizationMethod objects. If the Transform or CanonicalizationMethod exists in XML form (for example, when validating an existing XMLSignature), the init(XMLStructure, XMLCryptoContext) method must be first called to initialize the transform and provide document context (even if there are no parameters). Alternatively, if the Transform or CanonicalizationMethod is being created from scratch, the init(TransformParameterSpec) method is called to initialize the transform with parameters and the marshalParams method is called to marshal the parameters to XML and provide the transform with document context. Finally, the transform method is called to perform the transformation. Concurrent Access The static methods of this class are guaranteed to be thread-safe. Multiple threads may concurrently invoke the static methods defined in this class with no ill effects. However, this is not true for the non-static methods defined by this class. Unless otherwise documented by a specific provider, threads that need to access a single TransformService instance concurrently should synchronize amongst themselves and provide the necessary locking. Multiple threads each manipulating a different TransformService instance need not synchronize.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected TransformService()
+				</name>
+				<description>
+					Default constructor, for invocation by subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TransformService getInstance(String algorithm,                             String mechanismType)                                      throws NoSuchAlgorithmException
+				</name>
+				<description>
+					Returns a TransformService that supports the specified algorithm URI (ex: Transform.XPATH2) and mechanism type (ex: DOM). This method uses the standard JCA provider lookup mechanism to locate and instantiate a TransformService implementation of the desired algorithm and MechanismType service attribute. It traverses the list of registered security Providers, starting with the most preferred Provider. A new TransformService object from the first Provider that supports the specified algorithm and mechanism type is returned. Note that the list of registered providers may be retrieved via the Security.getProviders() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TransformService getInstance(String algorithm,                             String mechanismType,                             Provider provider)                                      throws NoSuchAlgorithmException
+				</name>
+				<description>
+					Returns a TransformService that supports the specified algorithm URI (ex: Transform.XPATH2) and mechanism type (ex: DOM) as supplied by the specified provider. Note that the specified Provider object does not have to be registered in the provider list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TransformService getInstance(String algorithm,                             String mechanismType,                             String provider)                                      throws NoSuchAlgorithmException,                                             NoSuchProviderException
+				</name>
+				<description>
+					Returns a TransformService that supports the specified algorithm URI (ex: Transform.XPATH2) and mechanism type (ex: DOM) as supplied by the specified provider. The specified provider must be registered in the security provider list. Note that the list of registered providers may be retrieved via the Security.getProviders() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getMechanismType()
+				</name>
+				<description>
+					Returns the mechanism type supported by this TransformService.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getAlgorithm()
+				</name>
+				<description>
+					Returns the URI of the algorithm supported by this TransformService.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Provider getProvider()
+				</name>
+				<description>
+					Returns the provider of this TransformService.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void init(TransformParameterSpec params)                     throws InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Initializes this TransformService with the specified parameters. If the parameters exist in XML form, the init(XMLStructure, XMLCryptoContext) method should be used to initialize the TransformService.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void marshalParams(XMLStructure parent,                   XMLCryptoContext context)                              throws MarshalException
+				</name>
+				<description>
+					Marshals the algorithm-specific parameters. If there are no parameters to be marshalled, this method returns without throwing an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void init(XMLStructure parent,          XMLCryptoContext context)                     throws InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Initializes this TransformService with the specified parameters and document context.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

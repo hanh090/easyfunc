@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract static class DocumentFilter.FilterBypass  extends Object
+		</name>
+		<description>
+			Used as a way to circumvent calling back into the Document to change it. Document implementations that wish to support a DocumentFilter must provide an implementation that will not callback into the DocumentFilter when the following methods are invoked from the DocumentFilter.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DocumentFilter.FilterBypass()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Document getDocument()
+				</name>
+				<description>
+					Returns the Document the mutation is occuring on.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void remove(int offset,            int length)                       throws BadLocationException
+				</name>
+				<description>
+					Removes the specified region of text, bypassing the DocumentFilter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insertString(int offset,                  String string,                  AttributeSet attr)                             throws BadLocationException
+				</name>
+				<description>
+					Inserts the specified text, bypassing the DocumentFilter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void replace(int offset,             int length,             String string,             AttributeSet attrs)                        throws BadLocationException
+				</name>
+				<description>
+					Deletes the region of text from offset to offset + length, and replaces it with text.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

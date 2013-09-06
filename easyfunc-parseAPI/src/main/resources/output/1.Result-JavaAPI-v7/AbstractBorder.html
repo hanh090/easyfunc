@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.swing.border
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractBorder  extends Object  implements Border, Serializable
+		</name>
+		<description>
+			A class that implements an empty border with no size. This provides a convenient base class from which other border classes can be easily derived. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AbstractBorder()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintBorder(Component c,                 Graphics g,                 int x,                 int y,                 int width,                 int height)
+				</name>
+				<description>
+					This default implementation does no painting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getBorderInsets(Component c)
+				</name>
+				<description>
+					This default implementation returns a new Insets object that is initialized by the getBorderInsets(Component,Insets) method. By default the top, left, bottom, and right fields are set to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getBorderInsets(Component c,                       Insets insets)
+				</name>
+				<description>
+					Reinitializes the insets parameter with this Border's current Insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isBorderOpaque()
+				</name>
+				<description>
+					This default implementation returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getInteriorRectangle(Component c,                               int x,                               int y,                               int width,                               int height)
+				</name>
+				<description>
+					This convenience method calls the static method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Rectangle getInteriorRectangle(Component c,                               Border b,                               int x,                               int y,                               int width,                               int height)
+				</name>
+				<description>
+					Returns a rectangle using the arguments minus the insets of the border. This is useful for determining the area that components should draw in that will not intersect the border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBaseline(Component c,                int width,                int height)
+				</name>
+				<description>
+					Returns the baseline. A return value less than 0 indicates the border does not have a reasonable baseline. The default implementation returns -1. Subclasses that support baseline should override appropriately. If a value >= 0 is returned, then the component has a valid baseline for any size >= the minimum size and getBaselineResizeBehavior can be used to determine how the baseline changes with size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component.BaselineResizeBehavior getBaselineResizeBehavior(Component c)
+				</name>
+				<description>
+					Returns an enum indicating how the baseline of a component changes as the size changes. This method is primarily meant for layout managers and GUI builders. The default implementation returns BaselineResizeBehavior.OTHER, subclasses that support baseline should override appropriately. Subclasses should never return null; if the baseline can not be calculated return BaselineResizeBehavior.OTHER. Callers should first ask for the baseline using getBaseline and if a value >= 0 is returned use this method. It is acceptable for this method to return a value other than BaselineResizeBehavior.OTHER even if getBaseline returns a value less than 0.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

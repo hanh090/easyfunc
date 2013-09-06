@@ -1,0 +1,495 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public abstract class Any  extends Object  implements IDLEntity
+		</name>
+		<description>
+			Serves as a container for any data that can be described in IDL or for any IDL primitive type. An Any object is used as a component of a NamedValue object, which provides information about arguments or return values in requests, and which is used to define name/value pairs in Context objects. An Any object consists of two parts: a data value a TypeCode object describing the type of the data value contained in the Any object. For example, a TypeCode object for an array contains a field for the length of the array and a field for the type of elements in the array. (Note that in this case, the second field of the TypeCode object is itself a TypeCode object.) A large part of the Any class consists of pairs of methods for inserting values into and extracting values from an Any object. For a given primitive type X, these methods are: void insert_X(X x) This method allows the insertion of an instance x of primitive type X into the value field of the Any object. Note that the method insert_X also resets the Any object's type field if necessary. X extract_X() This method allows the extraction of an instance of type X from the Any object. This method throws the exception BAD_OPERATION under two conditions: the type of the element contained in the Any object is not X the method extract_X is called before the value field of the Any object has been set There are distinct method pairs for each primitive IDL data type (insert_long and extract_long, insert_string and extract_string, and so on). The class Any also has methods for getting and setting the type code, for testing two Any objects for equality, and for reading an Any object from a stream or writing it to a stream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Any()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean equal(Any a)
+				</name>
+				<description>
+					Checks for equality between this Any object and the given Any object. Two Any objects are equal if both their values and type codes are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract TypeCode type()
+				</name>
+				<description>
+					Returns type information for the element contained in this Any object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void type(TypeCode t)
+				</name>
+				<description>
+					Sets this Any object's type field to the given TypeCode object and clears its value. Note that using this method to set the type code wipes out the value if there is one. The method is provided primarily so that the type may be set properly for IDL out parameters. Generally, setting the type is done by the insert_X methods, which will set the type to X if it is not already set to X.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void read_value(InputStream is,                TypeCode t)                           throws MARSHAL
+				</name>
+				<description>
+					Reads off (unmarshals) the value of an Any object from the given input stream using the given typecode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void write_value(OutputStream os)
+				</name>
+				<description>
+					Writes out the value of this Any object to the given output stream. If both typecode and value need to be written, use create_output_stream() to create an OutputStream, then use write_any on the OutputStream. If this method is called on an Any object that has not had a value inserted into its value field, it will throw the exception java.lang.NullPointerException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract OutputStream create_output_stream()
+				</name>
+				<description>
+					Creates an output stream into which this Any object's value can be marshalled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract InputStream create_input_stream()
+				</name>
+				<description>
+					Creates an input stream from which this Any object's value can be unmarshalled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract short extract_short()                               throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the short in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_short(short s)
+				</name>
+				<description>
+					Inserts the given short into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int extract_long()                            throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the int in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_long(int l)
+				</name>
+				<description>
+					Inserts the given int into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract long extract_longlong()                                 throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the long in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_longlong(long l)
+				</name>
+				<description>
+					Inserts the given long into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract short extract_ushort()                                throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the short in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_ushort(short s)
+				</name>
+				<description>
+					Inserts the given short into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int extract_ulong()                             throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the int in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_ulong(int l)
+				</name>
+				<description>
+					Inserts the given int into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract long extract_ulonglong()                                  throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the long in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_ulonglong(long l)
+				</name>
+				<description>
+					Inserts the given long into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float extract_float()                               throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the float in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_float(float f)
+				</name>
+				<description>
+					Inserts the given float into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double extract_double()                                 throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the double in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_double(double d)
+				</name>
+				<description>
+					Inserts the given double into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean extract_boolean()                                   throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the boolean in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_boolean(boolean b)
+				</name>
+				<description>
+					Inserts the given boolean into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract char extract_char()                             throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the char in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_char(char c)                            throws DATA_CONVERSION
+				</name>
+				<description>
+					Inserts the given char into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract char extract_wchar()                              throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the char in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_wchar(char c)
+				</name>
+				<description>
+					Inserts the given char into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract byte extract_octet()                              throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the byte in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_octet(byte b)
+				</name>
+				<description>
+					Inserts the given byte into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Any extract_any()                           throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the Any object in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_any(Any a)
+				</name>
+				<description>
+					Inserts the given Any object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object extract_Object()                                 throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the org.omg.CORBA.Object in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_Object(Object o)
+				</name>
+				<description>
+					Inserts the given org.omg.CORBA.Object object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Serializable extract_Value()                                      throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the java.io.Serializable object in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_Value(Serializable v)
+				</name>
+				<description>
+					Inserts the given java.io.Serializable object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_Value(Serializable v,                  TypeCode t)                             throws MARSHAL
+				</name>
+				<description>
+					Inserts the given java.io.Serializable object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_Object(Object o,                   TypeCode t)                              throws BAD_PARAM
+				</name>
+				<description>
+					Inserts the given org.omg.CORBA.Object object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String extract_string()                                 throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the String object in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_string(String s)                              throws DATA_CONVERSION,                                     MARSHAL
+				</name>
+				<description>
+					Inserts the given String object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String extract_wstring()                                  throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the String object in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_wstring(String s)                               throws MARSHAL
+				</name>
+				<description>
+					Inserts the given String object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract TypeCode extract_TypeCode()                                     throws BAD_OPERATION
+				</name>
+				<description>
+					Extracts the TypeCode object in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void insert_TypeCode(TypeCode t)
+				</name>
+				<description>
+					Inserts the given TypeCode object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Principal extract_Principal()                              throws BAD_OPERATION
+				</name>
+				<description>
+					Deprecated. Deprecated by CORBA 2.2. Extracts the Principal object in this Any object's value field. Note that the class Principal has been deprecated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void insert_Principal(Principal p)
+				</name>
+				<description>
+					Deprecated. Deprecated by CORBA 2.2. Inserts the given Principal object into this Any object's value field. Note that the class Principal has been deprecated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Streamable extract_Streamable()                                throws BAD_INV_ORDER
+				</name>
+				<description>
+					Extracts a Streamable from this Any object's value field. This method allows the extraction of non-primitive IDL types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert_Streamable(Streamable s)
+				</name>
+				<description>
+					Inserts the given Streamable object into this Any object's value field. This method allows the insertion of non-primitive IDL types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigDecimal extract_fixed()
+				</name>
+				<description>
+					Extracts the java.math.BigDecimal object in this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert_fixed(BigDecimal value)
+				</name>
+				<description>
+					Throws an org.omg.CORBA.NO_IMPLEMENT exception. Inserts the given java.math.BigDecimal object into this Any object's value field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert_fixed(BigDecimal value,                  TypeCode type)                    throws BAD_INV_ORDER
+				</name>
+				<description>
+					Throws an org.omg.CORBA.NO_IMPLEMENT exception. Inserts the given java.math.BigDecimal object into this Any object's value field.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

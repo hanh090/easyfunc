@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.security.acl
+	</package>
+	<type>
+		<name>
+			public interface Group  extends Principal
+		</name>
+		<description>
+			This interface is used to represent a group of principals. (A principal represents an entity such as an individual user or a company). Note that Group extends Principal. Thus, either a Principal or a Group can be passed as an argument to methods containing a Principal parameter. For example, you can add either a Principal or a Group to a Group object by calling the object's addMember method, passing it the Principal or Group.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean addMember(Principal user)
+				</name>
+				<description>
+					Adds the specified member to the group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean removeMember(Principal user)
+				</name>
+				<description>
+					Removes the specified member from the group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isMember(Principal member)
+				</name>
+				<description>
+					Returns true if the passed principal is a member of the group. This method does a recursive search, so if a principal belongs to a group which is a member of this group, true is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Enumeration<? extends Principal> members()
+				</name>
+				<description>
+					Returns an enumeration of the members in the group. The returned objects can be instances of either Principal or Group (which is a subclass of Principal).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

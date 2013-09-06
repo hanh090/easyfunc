@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.lang.invoke
+	</package>
+	<type>
+		<name>
+			public class VolatileCallSite  extends CallSite
+		</name>
+		<description>
+			A VolatileCallSite is a CallSite whose target acts like a volatile variable. An invokedynamic instruction linked to a VolatileCallSite sees updates to its call site target immediately, even if the update occurs in another thread. There may be a performance penalty for such tight coupling between threads. Unlike MutableCallSite, there is no syncAll operation on volatile call sites, since every write to a volatile variable is implicitly synchronized with reader threads. In other respects, a VolatileCallSite is interchangeable with MutableCallSite.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public VolatileCallSite(MethodType type)
+				</name>
+				<description>
+					Creates a call site with a volatile binding to its target. The initial target is set to a method handle of the given type which will throw an IllegalStateException if called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public VolatileCallSite(MethodHandle target)
+				</name>
+				<description>
+					Creates a call site with a volatile binding to its target. The target is set to the given value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final MethodHandle getTarget()
+				</name>
+				<description>
+					Returns the target method of the call site, which behaves like a volatile field of the VolatileCallSite. The interactions of getTarget with memory are the same as of a read from a volatile field. In particular, the current thread is required to issue a fresh read of the target from memory, and must not fail to see a recent update to the target by another thread.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTarget(MethodHandle newTarget)
+				</name>
+				<description>
+					Updates the target method of this call site, as a volatile variable. The type of the new target must agree with the type of the old target. The interactions with memory are the same as of a write to a volatile field. In particular, any threads is guaranteed to see the updated target the next time it calls getTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final MethodHandle dynamicInvoker()
+				</name>
+				<description>
+					Produces a method handle equivalent to an invokedynamic instruction which has been linked to this call site. This method is equivalent to the following code:    MethodHandle getTarget, invoker, result;   getTarget = MethodHandles.publicLookup().bind(this, "getTarget", MethodType.methodType(MethodHandle.class));   invoker = MethodHandles.exactInvoker(this.type());   result = MethodHandles.foldArguments(invoker, getTarget)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

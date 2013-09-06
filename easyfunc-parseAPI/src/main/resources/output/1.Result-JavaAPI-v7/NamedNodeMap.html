@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		org.w3c.dom
+	</package>
+	<type>
+		<name>
+			public interface NamedNodeMap
+		</name>
+		<description>
+			Objects implementing the NamedNodeMap interface are used to represent collections of nodes that can be accessed by name. Note that NamedNodeMap does not inherit from NodeList; NamedNodeMaps are not maintained in any particular order. Objects contained in an object implementing NamedNodeMap may also be accessed by an ordinal index, but this is simply to allow convenient enumeration of the contents of a NamedNodeMap, and does not imply that the DOM specifies an order to these Nodes. NamedNodeMap objects in the DOM are live. See also the Document Object Model (DOM) Level 3 Core Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Node getNamedItem(String name)
+				</name>
+				<description>
+					Retrieves a node specified by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Node setNamedItem(Node arg)                    throws DOMException
+				</name>
+				<description>
+					Adds a node using its nodeName attribute. If a node with that name is already present in this map, it is replaced by the new one. Replacing a node by itself has no effect. As the nodeName attribute is used to derive the name which the node must be stored under, multiple nodes of certain types (those that have a "special" string value) cannot be stored as the names would clash. This is seen as preferable to allowing nodes to be aliased.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Node removeNamedItem(String name)                       throws DOMException
+				</name>
+				<description>
+					Removes a node specified by name. When this map contains the attributes attached to an element, if the removed attribute is known to have a default value, an attribute immediately appears containing the default value as well as the corresponding namespace URI, local name, and prefix when applicable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Node item(int index)
+				</name>
+				<description>
+					Returns the indexth item in the map. If index is greater than or equal to the number of nodes in this map, this returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getLength()
+				</name>
+				<description>
+					The number of nodes in this map. The range of valid child node indices is 0 to length-1 inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Node getNamedItemNS(String namespaceURI,                    String localName)                      throws DOMException
+				</name>
+				<description>
+					Retrieves a node specified by local name and namespace URI. Per [XML Namespaces] , applications must use the value null as the namespaceURI parameter for methods if they wish to have no namespace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Node setNamedItemNS(Node arg)                      throws DOMException
+				</name>
+				<description>
+					Adds a node using its namespaceURI and localName. If a node with that namespace URI and that local name is already present in this map, it is replaced by the new one. Replacing a node by itself has no effect. Per [XML Namespaces] , applications must use the value null as the namespaceURI parameter for methods if they wish to have no namespace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Node removeNamedItemNS(String namespaceURI,                       String localName)                         throws DOMException
+				</name>
+				<description>
+					Removes a node specified by local name and namespace URI. A removed attribute may be known to have a default value when this map contains the attributes attached to an element, as returned by the attributes attribute of the Node interface. If so, an attribute immediately appears containing the default value as well as the corresponding namespace URI, local name, and prefix when applicable. Per [XML Namespaces] , applications must use the value null as the namespaceURI parameter for methods if they wish to have no namespace.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

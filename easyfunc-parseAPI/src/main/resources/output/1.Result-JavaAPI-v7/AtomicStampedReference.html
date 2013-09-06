@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.util.concurrent.atomic
+	</package>
+	<type>
+		<name>
+			public class AtomicStampedReference<V>  extends Object
+		</name>
+		<description>
+			An AtomicStampedReference maintains an object reference along with an integer "stamp", that can be updated atomically. Implementation note: This implementation maintains stamped references by creating internal objects representing "boxed" [reference, integer] pairs.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AtomicStampedReference(V initialRef,                        int initialStamp)
+				</name>
+				<description>
+					Creates a new AtomicStampedReference with the given initial values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V getReference()
+				</name>
+				<description>
+					Returns the current value of the reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getStamp()
+				</name>
+				<description>
+					Returns the current value of the stamp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V get(int[] stampHolder)
+				</name>
+				<description>
+					Returns the current values of both the reference and the stamp. Typical usage is int[1] holder; ref = v.get(holder); .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean weakCompareAndSet(V expectedReference,                          V newReference,                          int expectedStamp,                          int newStamp)
+				</name>
+				<description>
+					Atomically sets the value of both the reference and stamp to the given update values if the current reference is == to the expected reference and the current stamp is equal to the expected stamp. May fail spuriously and does not provide ordering guarantees, so is only rarely an appropriate alternative to compareAndSet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean compareAndSet(V expectedReference,                      V newReference,                      int expectedStamp,                      int newStamp)
+				</name>
+				<description>
+					Atomically sets the value of both the reference and stamp to the given update values if the current reference is == to the expected reference and the current stamp is equal to the expected stamp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set(V newReference,         int newStamp)
+				</name>
+				<description>
+					Unconditionally sets the value of both the reference and stamp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean attemptStamp(V expectedReference,                     int newStamp)
+				</name>
+				<description>
+					Atomically sets the value of the stamp to the given update value if the current reference is == to the expected reference. Any given invocation of this operation may fail (return false) spuriously, but repeated invocation when the current value holds the expected value and no other thread is also attempting to set the value will eventually succeed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

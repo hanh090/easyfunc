@@ -1,0 +1,261 @@
+<javaelement>
+	<package>
+		javax.xml.datatype
+	</package>
+	<type>
+		<name>
+			public abstract class Duration  extends Object
+		</name>
+		<description>
+			Immutable representation of a time span as defined in the W3C XML Schema 1.0 specification. A Duration object represents a period of Gregorian time, which consists of six fields (years, months, days, hours, minutes, and seconds) plus a sign (+/-) field. The first five fields have non-negative (>=0) integers or null (which represents that the field is not set), and the seconds field has a non-negative decimal or null. A negative sign indicates a negative duration. This class provides a number of methods that make it easy to use for the duration datatype of XML Schema 1.0 with the errata. Order relationship Duration objects only have partial order, where two values A and B maybe either: A<B (A is shorter than B) A>B (A is longer than B) A==B (A and B are of the same duration) A<>B (Comparison between A and B is indeterminate) For example, 30 days cannot be meaningfully compared to one month. The compare(Duration duration) method implements this relationship. See the isLongerThan(Duration) method for details about the order relationship among Duration objects. Operations over Duration This class provides a set of basic arithmetic operations, such as addition, subtraction and multiplication. Because durations don't have total order, an operation could fail for some combinations of operations. For example, you cannot subtract 15 days from 1 month. See the javadoc of those methods for detailed conditions where this could happen. Also, division of a duration by a number is not provided because the Duration class can only deal with finite precision decimal numbers. For example, one cannot represent 1 sec divided by 3. However, you could substitute a division by 3 with multiplying by numbers such as 0.3 or 0.333. Range of allowed values Because some operations of Duration rely on Calendar even though Duration can hold very large or very small values, some of the methods may not work correctly on such Durations. The impacted methods document their dependency on Calendar.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Duration()
+				</name>
+				<description>
+					Default no-arg constructor. Note: Always use the DatatypeFactory to construct an instance of Duration. The constructor on this class cannot be guaranteed to produce an object with a consistent state and may be removed in the future.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public QName getXMLSchemaType()
+				</name>
+				<description>
+					Return the name of the XML Schema date/time type that this instance maps to. Type is computed based on fields that are set, i.e. isSet(DatatypeConstants.Field field) == true. Required fields for XML Schema 1.0 Date/Time Datatypes. (timezone is optional for all date/time datatypes) Datatype year month day hour minute second DatatypeConstants.DURATION X X X X X X DatatypeConstants.DURATION_DAYTIME X X X X DatatypeConstants.DURATION_YEARMONTH X X
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getSign()
+				</name>
+				<description>
+					Returns the sign of this duration in -1,0, or 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getYears()
+				</name>
+				<description>
+					Get the years value of this Duration as an int or 0 if not present. getYears() is a convenience method for getField(DatatypeConstants.YEARS). As the return value is an int, an incorrect value will be returned for Durations with years that go beyond the range of an int. Use getField(DatatypeConstants.YEARS) to avoid possible loss of precision.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMonths()
+				</name>
+				<description>
+					Obtains the value of the MONTHS field as an integer value, or 0 if not present. This method works just like getYears() except that this method works on the MONTHS field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDays()
+				</name>
+				<description>
+					Obtains the value of the DAYS field as an integer value, or 0 if not present. This method works just like getYears() except that this method works on the DAYS field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHours()
+				</name>
+				<description>
+					Obtains the value of the HOURS field as an integer value, or 0 if not present. This method works just like getYears() except that this method works on the HOURS field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinutes()
+				</name>
+				<description>
+					Obtains the value of the MINUTES field as an integer value, or 0 if not present. This method works just like getYears() except that this method works on the MINUTES field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSeconds()
+				</name>
+				<description>
+					Obtains the value of the SECONDS field as an integer value, or 0 if not present. This method works just like getYears() except that this method works on the SECONDS field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getTimeInMillis(Calendar startInstant)
+				</name>
+				<description>
+					Returns the length of the duration in milli-seconds. If the seconds field carries more digits than milli-second order, those will be simply discarded (or in other words, rounded to zero.) For example, for any Calendar value x,    new Duration("PT10.00099S").getTimeInMills(x) == 10000.   new Duration("-PT10.00099S").getTimeInMills(x) == -10000.   Note that this method uses the addTo(Calendar) method, which may work incorrectly with Duration objects with very large values in its fields. See the addTo(Calendar) method for details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getTimeInMillis(Date startInstant)
+				</name>
+				<description>
+					Returns the length of the duration in milli-seconds. If the seconds field carries more digits than milli-second order, those will be simply discarded (or in other words, rounded to zero.) For example, for any Date value x,    new Duration("PT10.00099S").getTimeInMills(x) == 10000.   new Duration("-PT10.00099S").getTimeInMills(x) == -10000.   Note that this method uses the addTo(Date) method, which may work incorrectly with Duration objects with very large values in its fields. See the addTo(Date) method for details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Number getField(DatatypeConstants.Field field)
+				</name>
+				<description>
+					Gets the value of a field. Fields of a duration object may contain arbitrary large value. Therefore this method is designed to return a Number object. In case of YEARS, MONTHS, DAYS, HOURS, and MINUTES, the returned number will be a non-negative integer. In case of seconds, the returned number may be a non-negative decimal value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isSet(DatatypeConstants.Field field)
+				</name>
+				<description>
+					Checks if a field is set. A field of a duration object may or may not be present. This method can be used to test if a field is present.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Duration add(Duration rhs)
+				</name>
+				<description>
+					Computes a new duration whose value is this+rhs. For example,    "1 day" + "-3 days" = "-2 days"   "1 year" + "1 day" = "1 year and 1 day"   "-(1 hour,50 minutes)" + "-20 minutes" = "-(1 hours,70 minutes)"   "15 hours" + "-3 days" = "-(2 days,9 hours)"   "1 year" + "-1 day" = IllegalStateException   Since there's no way to meaningfully subtract 1 day from 1 month, there are cases where the operation fails in IllegalStateException. Formally, the computation is defined as follows. Firstly, we can assume that two Durations to be added are both positive without losing generality (i.e., (-X)+Y=Y-X, X+(-Y)=X-Y, (-X)+(-Y)=-(X+Y)) Addition of two positive Durations are simply defined as field by field addition where missing fields are treated as 0. A field of the resulting Duration will be unset if and only if respective fields of two input Durations are unset. Note that lhs.add(rhs) will be always successful if lhs.signum()*rhs.signum()!=-1 or both of them are normalized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void addTo(Calendar calendar)
+				</name>
+				<description>
+					Adds this duration to a Calendar object. Calls Calendar.add(int,int) in the order of YEARS, MONTHS, DAYS, HOURS, MINUTES, SECONDS, and MILLISECONDS if those fields are present. Because the Calendar class uses int to hold values, there are cases where this method won't work correctly (for example if values of fields exceed the range of int.) Also, since this duration class is a Gregorian duration, this method will not work correctly if the given Calendar object is based on some other calendar systems. Any fractional parts of this Duration object beyond milliseconds will be simply ignored. For example, if this duration is "P1.23456S", then 1 is added to SECONDS, 234 is added to MILLISECONDS, and the rest will be unused. Note that because Calendar.add(int, int) is using int, Duration with values beyond the range of int in its fields will cause overflow/underflow to the given Calendar. XMLGregorianCalendar.add(Duration) provides the same basic operation as this method while avoiding the overflow/underflow issues.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTo(Date date)
+				</name>
+				<description>
+					Adds this duration to a Date object. The given date is first converted into a GregorianCalendar, then the duration is added exactly like the addTo(Calendar) method. The updated time instant is then converted back into a Date object and used to update the given Date object. This somewhat redundant computation is necessary to unambiguously determine the duration of months and years.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Duration subtract(Duration rhs)
+				</name>
+				<description>
+					Computes a new duration whose value is this-rhs. For example:    "1 day" - "-3 days" = "4 days"   "1 year" - "1 day" = IllegalStateException   "-(1 hour,50 minutes)" - "-20 minutes" = "-(1hours,30 minutes)"   "15 hours" - "-3 days" = "3 days and 15 hours"   "1 year" - "-1 day" = "1 year and 1 day"   Since there's no way to meaningfully subtract 1 day from 1 month, there are cases where the operation fails in IllegalStateException. Formally the computation is defined as follows. First, we can assume that two Durations are both positive without losing generality. (i.e., (-X)-Y=-(X+Y), X-(-Y)=X+Y, (-X)-(-Y)=-(X-Y)) Then two durations are subtracted field by field. If the sign of any non-zero field F is different from the sign of the most significant field, 1 (if F is negative) or -1 (otherwise) will be borrowed from the next bigger unit of F. This process is repeated until all the non-zero fields have the same sign. If a borrow occurs in the days field (in other words, if the computation needs to borrow 1 or -1 month to compensate days), then the computation fails by throwing an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Duration multiply(int factor)
+				</name>
+				<description>
+					Computes a new duration whose value is factor times longer than the value of this duration. This method is provided for the convenience. It is functionally equivalent to the following code:    multiply(new BigDecimal(String.valueOf(factor)))
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Duration multiply(BigDecimal factor)
+				</name>
+				<description>
+					Computes a new duration whose value is factor times longer than the value of this duration. For example,    "P1M" (1 month) * "12" = "P12M" (12 months)   "PT1M" (1 min) * "0.3" = "PT18S" (18 seconds)   "P1M" (1 month) * "1.5" = IllegalStateException   Since the Duration class is immutable, this method doesn't change the value of this object. It simply computes a new Duration object and returns it. The operation will be performed field by field with the precision of BigDecimal. Since all the fields except seconds are restricted to hold integers, any fraction produced by the computation will be carried down toward the next lower unit. For example, if you multiply "P1D" (1 day) with "0.5", then it will be 0.5 day, which will be carried down to "PT12H" (12 hours). When fractions of month cannot be meaningfully carried down to days, or year to months, this will cause an IllegalStateException to be thrown. For example if you multiple one month by 0.5. To avoid IllegalStateException, use the normalizeWith(Calendar) method to remove the years and months fields.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Duration negate()
+				</name>
+				<description>
+					Returns a new Duration object whose value is -this. Since the Duration class is immutable, this method doesn't change the value of this object. It simply computes a new Duration object and returns it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Duration normalizeWith(Calendar startTimeInstant)
+				</name>
+				<description>
+					Converts the years and months fields into the days field by using a specific time instant as the reference point. For example, duration of one month normalizes to 31 days given the start time instance "July 8th 2003, 17:40:32". Formally, the computation is done as follows: the given Calendar object is cloned the years, months and days fields will be added to the Calendar object by using the Calendar.add(int,int) method the difference between the two Calendars in computed in milliseconds and converted to days, if a remainder occurs due to Daylight Savings Time, it is discarded the computed days, along with the hours, minutes and seconds fields of this duration object is used to construct a new Duration object. Note that since the Calendar class uses int to hold the value of year and month, this method may produce an unexpected result if this duration object holds a very large value in the years or months fields.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int compare(Duration duration)
+				</name>
+				<description>
+					Partial order relation comparison with this Duration instance. Comparison result must be in accordance with W3C XML Schema 1.0 Part 2, Section 3.2.7.6.2, Order relation on duration. Return: DatatypeConstants.LESSER if this Duration is shorter than duration parameter DatatypeConstants.EQUAL if this Duration is equal to duration parameter DatatypeConstants.GREATER if this Duration is longer than duration parameter DatatypeConstants.INDETERMINATE if a conclusive partial order relation cannot be determined
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLongerThan(Duration duration)
+				</name>
+				<description>
+					Checks if this duration object is strictly longer than another Duration object. Duration X is "longer" than Y if and only if X>Y as defined in the section 3.2.6.2 of the XML Schema 1.0 specification. For example, "P1D" (one day) > "PT12H" (12 hours) and "P2Y" (two years) > "P23M" (23 months).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isShorterThan(Duration duration)
+				</name>
+				<description>
+					Checks if this duration object is strictly shorter than another Duration object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object duration)
+				</name>
+				<description>
+					Checks if this duration object has the same duration as another Duration object. For example, "P1D" (1 day) is equal to "PT24H" (24 hours). Duration X is equal to Y if and only if time instant t+X and t+Y are the same for all the test time instants specified in the section 3.2.6.2 of the XML Schema 1.0 specification. Note that there are cases where two Durations are "incomparable" to each other, like one month and 30 days. For example,    !new Duration("P1M").isShorterThan(new Duration("P30D"))   !new Duration("P1M").isLongerThan(new Duration("P30D"))   !new Duration("P1M").equals(new Duration("P30D"))
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int hashCode()
+				</name>
+				<description>
+					Returns a hash code consistent with the definition of the equals method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a String representation of this Duration Object. The result is formatted according to the XML Schema 1.0 spec and can be always parsed back later into the equivalent Duration Object by DatatypeFactory.newDuration(String lexicalRepresentation). Formally, the following holds for any Duration Object x:    new Duration(x.toString()).equals(x)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

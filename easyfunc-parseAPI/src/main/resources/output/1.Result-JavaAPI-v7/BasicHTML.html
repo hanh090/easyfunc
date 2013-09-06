@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public class BasicHTML  extends Object
+		</name>
+		<description>
+			Support for providing html views for the swing components. This translates a simple html string to a javax.swing.text.View implementation that can render the html and provide the necessary layout semantics.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String propertyKey
+				</name>
+				<description>
+					Key to use for the html renderer when stored as a client property of a JComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String documentBaseKey
+				</name>
+				<description>
+					Key stored as a client property to indicate the base that relative references are resolved against. For example, lets say you keep your images in the directory resources relative to the code path, you would use the following the set the base:      jComponent.putClientProperty(documentBaseKey,                                  xxx.class.getResource("resources/"));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicHTML()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static View createHTMLView(JComponent c,                    String html)
+				</name>
+				<description>
+					Create an html renderer for the given component and string of html.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int getHTMLBaseline(View view,                    int w,                    int h)
+				</name>
+				<description>
+					Returns the baseline for the html renderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isHTMLString(String s)
+				</name>
+				<description>
+					Check the given string to see if it should trigger the html rendering logic in a non-text component that supports html rendering.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void updateRenderer(JComponent c,                    String text)
+				</name>
+				<description>
+					Stash the HTML render for the given text into the client properties of the given JComponent. If the given text is NOT HTML the property will be cleared of any renderer. This method is useful for ComponentUI implementations that are static (i.e. shared) and get their state entirely from the JComponent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

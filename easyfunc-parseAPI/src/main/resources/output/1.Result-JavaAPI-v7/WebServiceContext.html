@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.xml.ws
+	</package>
+	<type>
+		<name>
+			public interface WebServiceContext
+		</name>
+		<description>
+			A WebServiceContext makes it possible for a web service endpoint implementation class to access message context and security information relative to a request being served. Typically a WebServiceContext is injected into an endpoint implementation class using the Resource annotation.
+		</description>
+		<methods>
+			<method>
+				<name>
+					MessageContext getMessageContext()
+				</name>
+				<description>
+					Returns the MessageContext for the request being served at the time this method is called. Only properties with APPLICATION scope will be visible to the application.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Principal getUserPrincipal()
+				</name>
+				<description>
+					Returns the Principal that identifies the sender of the request currently being serviced. If the sender has not been authenticated, the method returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isUserInRole(String role)
+				</name>
+				<description>
+					Returns a boolean indicating whether the authenticated user is included in the specified logical role. If the user has not been authenticated, the method returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					EndpointReference getEndpointReference(Element... referenceParameters)
+				</name>
+				<description>
+					Returns the EndpointReference for this endpoint. If the Binding for this bindingProvider is either SOAP1.1/HTTP or SOAP1.2/HTTP, then a W3CEndpointReference MUST be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					<T extends EndpointReference> T getEndpointReference(Class<T> clazz,                                                     Element... referenceParameters)
+				</name>
+				<description>
+					Returns the EndpointReference associated with this endpoint.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

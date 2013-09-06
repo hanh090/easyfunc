@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface IORInfoOperations
+		</name>
+		<description>
+			Provides the server-side ORB service with access to the applicable policies during IOR construction and the ability to add components. The ORB passes an instance of its implementation of this interface as a parameter to IORInterceptor.establish_components.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Policy get_effective_policy(int type)
+				</name>
+				<description>
+					Allows an ORB service implementation to determine what server side policy of a particular type is in effect for an IOR being constructed. When the IOR being constructed is for an object implemented using a POA, all Policy objects passed to the PortableServer.POA.create_POA call that created that POA are accessable via get_effective_policy. If a policy for the given type is not known to the ORB, then this operation will throw INV_POLICY with a standard minor code of 2.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void add_ior_component(TaggedComponent tagged_component)
+				</name>
+				<description>
+					A portable ORB service implementation calls add_ior_component from its implementation of establish_components to add a tagged component to the set which will be included when constructing IORs. The components in this set will be included in all profiles. Any number of components may exist with the same component ID.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void add_ior_component_to_profile(TaggedComponent tagged_component,                                  int profile_id)
+				</name>
+				<description>
+					A portable ORB service implementation calls add_ior_component_to_profile from its implementation of establish_components to add a tagged component to the set which will be included when constructing IORs. The components in this set will be included in the specified profile. Any number of components may exist with the same component ID.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int manager_id()
+				</name>
+				<description>
+					Return the adapter manager id of the object adapter that was just created and is running IOR interceptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short state()
+				</name>
+				<description>
+					Return the adapter state of the object adapter that was just created and is running IOR interceptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectReferenceTemplate adapter_template()
+				</name>
+				<description>
+					Return the object reference template of the object adapter that was just created and is running IOR interceptors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectReferenceFactory current_factory()
+				</name>
+				<description>
+					On read, returns the current factory that will be used to create object references for the object adapter that was just created and is running IOR interceptors. By default, this factory is the same as the value of the adapter_template attribute. The current_factory may also be set to another object reference template inside an IORInterceptor_3_0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void current_factory(ObjectReferenceFactory newCurrent_factory)
+				</name>
+				<description>
+					On read, returns the current factory that will be used to create object references for the object adapter that was just created and is running IOR interceptors. By default, this factory is the same as the value of the adapter_template attribute. The current_factory may also be set to another object reference template inside an IORInterceptor_3_0.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

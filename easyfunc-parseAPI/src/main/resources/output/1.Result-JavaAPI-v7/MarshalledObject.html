@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.rmi
+	</package>
+	<type>
+		<name>
+			public final class MarshalledObject<T>  extends Object  implements Serializable
+		</name>
+		<description>
+			A MarshalledObject contains a byte stream with the serialized representation of an object given to its constructor. The get method returns a new copy of the original object, as deserialized from the contained byte stream. The contained object is serialized and deserialized with the same serialization semantics used for marshaling and unmarshaling parameters and return values of RMI calls: When the serialized form is created: classes are annotated with a codebase URL from where the class can be loaded (if available), and any remote object in the MarshalledObject is represented by a serialized instance of its stub. When copy of the object is retrieved (via the get method), if the class is not available locally, it will be loaded from the appropriate location (specified the URL annotated with the class descriptor when the class was serialized. MarshalledObject facilitates passing objects in RMI calls that are not automatically deserialized immediately by the remote peer.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MarshalledObject(T obj)                   throws IOException
+				</name>
+				<description>
+					Creates a new MarshalledObject that contains the serialized representation of the current state of the supplied object. The object is serialized with the semantics used for marshaling parameters for RMI calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public T get()        throws IOException,               ClassNotFoundException
+				</name>
+				<description>
+					Returns a new copy of the contained marshalledobject. The internal representation is deserialized with the semantics used for unmarshaling paramters for RMI calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Return a hash code for this MarshalledObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this MarshalledObject to another object. Returns true if and only if the argument refers to a MarshalledObject that contains exactly the same serialized representation of an object as this one does. The comparison ignores any class codebase annotation, meaning that two objects are equivalent if they have the same serialized representation except for the codebase of each class in the serialized representation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

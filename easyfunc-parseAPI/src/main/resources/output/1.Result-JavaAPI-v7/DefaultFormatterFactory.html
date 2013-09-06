@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class DefaultFormatterFactory  extends JFormattedTextField.AbstractFormatterFactory  implements Serializable
+		</name>
+		<description>
+			An implementation of JFormattedTextField.AbstractFormatterFactory. DefaultFormatterFactory allows specifying a number of different JFormattedTextField.AbstractFormatters that are to be used. The most important one is the default one (setDefaultFormatter). The default formatter will be used if a more specific formatter could not be found. The following process is used to determine the appropriate formatter to use. Is the passed in value null? Use the null formatter. Does the JFormattedTextField have focus? Use the edit formatter. Otherwise, use the display formatter. If a non-null AbstractFormatter has not been found, use the default formatter. The following code shows how to configure a JFormattedTextField with two JFormattedTextField.AbstractFormatters, one for display and one for editing.    JFormattedTextField.AbstractFormatter editFormatter = ...;   JFormattedTextField.AbstractFormatter displayFormatter = ...;   DefaultFormatterFactory factory = new DefaultFormatterFactory(                   displayFormatter, displayFormatter, editFormatter);   JFormattedTextField tf = new JFormattedTextField(factory);   Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DefaultFormatterFactory()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat)
+				</name>
+				<description>
+					Creates a DefaultFormatterFactory with the specified JFormattedTextField.AbstractFormatter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat,                         JFormattedTextField.AbstractFormatter displayFormat)
+				</name>
+				<description>
+					Creates a DefaultFormatterFactory with the specified JFormattedTextField.AbstractFormatters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat,                         JFormattedTextField.AbstractFormatter displayFormat,                         JFormattedTextField.AbstractFormatter editFormat)
+				</name>
+				<description>
+					Creates a DefaultFormatterFactory with the specified JFormattedTextField.AbstractFormatters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultFormatterFactory(JFormattedTextField.AbstractFormatter defaultFormat,                         JFormattedTextField.AbstractFormatter displayFormat,                         JFormattedTextField.AbstractFormatter editFormat,                         JFormattedTextField.AbstractFormatter nullFormat)
+				</name>
+				<description>
+					Creates a DefaultFormatterFactory with the specified JFormattedTextField.AbstractFormatters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultFormatter(JFormattedTextField.AbstractFormatter atf)
+				</name>
+				<description>
+					Sets the JFormattedTextField.AbstractFormatter to use as a last resort, eg in case a display, edit or null JFormattedTextField.AbstractFormatter has not been specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFormattedTextField.AbstractFormatter getDefaultFormatter()
+				</name>
+				<description>
+					Returns the JFormattedTextField.AbstractFormatter to use as a last resort, eg in case a display, edit or null JFormattedTextField.AbstractFormatter has not been specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDisplayFormatter(JFormattedTextField.AbstractFormatter atf)
+				</name>
+				<description>
+					Sets the JFormattedTextField.AbstractFormatter to use if the JFormattedTextField is not being edited and either the value is not-null, or the value is null and a null formatter has has not been specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFormattedTextField.AbstractFormatter getDisplayFormatter()
+				</name>
+				<description>
+					Returns the JFormattedTextField.AbstractFormatter to use if the JFormattedTextField is not being edited and either the value is not-null, or the value is null and a null formatter has has not been specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEditFormatter(JFormattedTextField.AbstractFormatter atf)
+				</name>
+				<description>
+					Sets the JFormattedTextField.AbstractFormatter to use if the JFormattedTextField is being edited and either the value is not-null, or the value is null and a null formatter has has not been specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFormattedTextField.AbstractFormatter getEditFormatter()
+				</name>
+				<description>
+					Returns the JFormattedTextField.AbstractFormatter to use if the JFormattedTextField is being edited and either the value is not-null, or the value is null and a null formatter has has not been specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNullFormatter(JFormattedTextField.AbstractFormatter atf)
+				</name>
+				<description>
+					Sets the formatter to use if the value of the JFormattedTextField is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFormattedTextField.AbstractFormatter getNullFormatter()
+				</name>
+				<description>
+					Returns the formatter to use if the value is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField source)
+				</name>
+				<description>
+					Returns either the default formatter, display formatter, editor formatter or null formatter based on the state of the JFormattedTextField.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

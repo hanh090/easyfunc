@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.lang.model.util
+	</package>
+	<type>
+		<name>
+			@SupportedSourceVersion(value=RELEASE_6)  public class SimpleTypeVisitor6<R,P>  extends AbstractTypeVisitor6<R,P>
+		</name>
+		<description>
+			A simple visitor of types with default behavior appropriate for the RELEASE_6 source version. Visit methods corresponding to RELEASE_6 language constructs call defaultAction, passing their arguments to defaultAction's corresponding parameters. For constructs introduced in RELEASE_7 and later, visitUnknown is called instead. Methods in this class may be overridden subject to their general contract. Note that annotating methods in concrete subclasses with @Override will help ensure that methods are overridden as intended. WARNING: The TypeVisitor interface implemented by this class may have methods added to it in the future to accommodate new, currently unknown, language structures added to future versions of the Java™ programming language. Therefore, methods whose names begin with "visit" may be added to this class in the future; to avoid incompatibilities, classes which extend this class should not declare any instance methods with names beginning with "visit". When such a new visit method is added, the default implementation in this class will be to call the visitUnknown method. A new simple type visitor class will also be introduced to correspond to the new language level; this visitor will have different default behavior for the visit method in question. When the new visitor is introduced, all or portions of this visitor may be deprecated.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final R DEFAULT_VALUE
+				</name>
+				<description>
+					Default value to be returned; defaultAction returns this value unless the method is overridden.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SimpleTypeVisitor6()
+				</name>
+				<description>
+					Constructor for concrete subclasses; uses null for the default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SimpleTypeVisitor6(R defaultValue)
+				</name>
+				<description>
+					Constructor for concrete subclasses; uses the argument for the default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected R defaultAction(TypeMirror e,                P p)
+				</name>
+				<description>
+					The default action for visit methods. The implementation in this class just returns DEFAULT_VALUE; subclasses will commonly override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitPrimitive(PrimitiveType t,                 P p)
+				</name>
+				<description>
+					Visits a primitive type. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitNull(NullType t,            P p)
+				</name>
+				<description>
+					Visits the null type. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitArray(ArrayType t,             P p)
+				</name>
+				<description>
+					Visits an array type. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitDeclared(DeclaredType t,                P p)
+				</name>
+				<description>
+					Visits a declared type. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitError(ErrorType t,             P p)
+				</name>
+				<description>
+					Visits an error type. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitTypeVariable(TypeVariable t,                    P p)
+				</name>
+				<description>
+					Visits a type variable. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitWildcard(WildcardType t,                P p)
+				</name>
+				<description>
+					Visits a wildcard type. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitExecutable(ExecutableType t,                  P p)
+				</name>
+				<description>
+					Visits an executable type. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitNoType(NoType t,              P p)
+				</name>
+				<description>
+					Visits a NoType instance. This implementation calls defaultAction.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

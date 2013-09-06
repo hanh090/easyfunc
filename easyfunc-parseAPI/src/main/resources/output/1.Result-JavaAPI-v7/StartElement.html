@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.xml.stream.events
+	</package>
+	<type>
+		<name>
+			public interface StartElement  extends XMLEvent
+		</name>
+		<description>
+			The StartElement interface provides access to information about start elements. A StartElement is reported for each Start Tag in the document.
+		</description>
+		<methods>
+			<method>
+				<name>
+					QName getName()
+				</name>
+				<description>
+					Get the name of this event
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator getAttributes()
+				</name>
+				<description>
+					Returns an Iterator of non-namespace declared attributes declared on this START_ELEMENT, returns an empty iterator if there are no attributes. The iterator must contain only implementations of the javax.xml.stream.Attribute interface. Attributes are fundamentally unordered and may not be reported in any order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator getNamespaces()
+				</name>
+				<description>
+					Returns an Iterator of namespaces declared on this element. This Iterator does not contain previously declared namespaces unless they appear on the current START_ELEMENT. Therefore this list may contain redeclared namespaces and duplicate namespace declarations. Use the getNamespaceContext() method to get the current context of namespace declarations. The iterator must contain only implementations of the javax.xml.stream.Namespace interface. A Namespace isA Attribute. One can iterate over a list of namespaces as a list of attributes. However this method returns only the list of namespaces declared on this START_ELEMENT and does not include the attributes declared on this START_ELEMENT. Returns an empty iterator if there are no namespaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Attribute getAttributeByName(QName name)
+				</name>
+				<description>
+					Returns the attribute referred to by this name
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NamespaceContext getNamespaceContext()
+				</name>
+				<description>
+					Gets a read-only namespace context. If no context is available this method will return an empty namespace context. The NamespaceContext contains information about all namespaces in scope for this StartElement.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getNamespaceURI(String prefix)
+				</name>
+				<description>
+					Gets the value that the prefix is bound to in the context of this element. Returns null if the prefix is not bound in this context
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

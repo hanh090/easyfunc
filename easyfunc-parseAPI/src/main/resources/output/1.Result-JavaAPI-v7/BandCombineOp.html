@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class BandCombineOp  extends Object  implements RasterOp
+		</name>
+		<description>
+			This class performs an arbitrary linear combination of the bands in a Raster, using a specified matrix. The width of the matrix must be equal to the number of bands in the source Raster, optionally plus one. If there is one more column in the matrix than the number of bands, there is an implied 1 at the end of the vector of band samples representing a pixel. The height of the matrix must be equal to the number of bands in the destination. For example, a 3-banded Raster might have the following transformation applied to each pixel in order to invert the second band of the Raster.      [ 1.0   0.0   0.0    0.0  ]     [ b1 ]     [ 0.0  -1.0   0.0  255.0  ]  x  [ b2 ]     [ 0.0   0.0   1.0    0.0  ]     [ b3 ]                                     [ 1 ]   Note that the source and destination can be the same object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BandCombineOp(float[][] matrix,               RenderingHints hints)
+				</name>
+				<description>
+					Constructs a BandCombineOp with the specified matrix. The width of the matrix must be equal to the number of bands in the source Raster, optionally plus one. If there is one more column in the matrix than the number of bands, there is an implied 1 at the end of the vector of band samples representing a pixel. The height of the matrix must be equal to the number of bands in the destination. The first subscript is the row index and the second is the column index. This operation uses none of the currently defined rendering hints; the RenderingHints argument can be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final float[][] getMatrix()
+				</name>
+				<description>
+					Returns a copy of the linear combination matrix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster filter(Raster src,                      WritableRaster dst)
+				</name>
+				<description>
+					Transforms the Raster using the matrix specified in the constructor. An IllegalArgumentException may be thrown if the number of bands in the source or destination is incompatible with the matrix. See the class comments for more details. If the destination is null, it will be created with a number of bands equalling the number of rows in the matrix. No exception is thrown if the operation causes a data overflow.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Rectangle2D getBounds2D(Raster src)
+				</name>
+				<description>
+					Returns the bounding box of the transformed destination. Since this is not a geometric operation, the bounding box is the same for the source and destination. An IllegalArgumentException may be thrown if the number of bands in the source is incompatible with the matrix. See the class comments for more details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createCompatibleDestRaster(Raster src)
+				</name>
+				<description>
+					Creates a zeroed destination Raster with the correct size and number of bands. An IllegalArgumentException may be thrown if the number of bands in the source is incompatible with the matrix. See the class comments for more details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Point2D getPoint2D(Point2D srcPt,                   Point2D dstPt)
+				</name>
+				<description>
+					Returns the location of the corresponding destination point given a point in the source Raster. If dstPt is specified, it is used to hold the return value. Since this is not a geometric operation, the point returned is the same as the specified srcPt.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final RenderingHints getRenderingHints()
+				</name>
+				<description>
+					Returns the rendering hints for this operation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

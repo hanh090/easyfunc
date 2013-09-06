@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class AttributeChangeNotificationFilter  extends Object  implements NotificationFilter
+		</name>
+		<description>
+			This class implements of the NotificationFilter interface for the attribute change notification. The filtering is performed on the name of the observed attribute. It manages a list of enabled attribute names. A method allows users to enable/disable as many attribute names as required.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AttributeChangeNotificationFilter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNotificationEnabled(Notification notification)
+				</name>
+				<description>
+					Invoked before sending the specified notification to the listener. This filter compares the attribute name of the specified attribute change notification with each enabled attribute name. If the attribute name equals one of the enabled attribute names, the notification must be sent to the listener and this method returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void enableAttribute(String name)                       throws IllegalArgumentException
+				</name>
+				<description>
+					Enables all the attribute change notifications the attribute name of which equals the specified name to be sent to the listener. If the specified name is already in the list of enabled attribute names, this method has no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void disableAttribute(String name)
+				</name>
+				<description>
+					Disables all the attribute change notifications the attribute name of which equals the specified attribute name to be sent to the listener. If the specified name is not in the list of enabled attribute names, this method has no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void disableAllAttributes()
+				</name>
+				<description>
+					Disables all the attribute names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<String> getEnabledAttributes()
+				</name>
+				<description>
+					Gets all the enabled attribute names for this filter.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

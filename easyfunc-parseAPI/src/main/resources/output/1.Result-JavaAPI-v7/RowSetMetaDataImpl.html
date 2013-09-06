@@ -1,0 +1,387 @@
+<javaelement>
+	<package>
+		javax.sql.rowset
+	</package>
+	<type>
+		<name>
+			public class RowSetMetaDataImpl  extends Object  implements RowSetMetaData, Serializable
+		</name>
+		<description>
+			Provides implementations for the methods that set and get metadata information about a RowSet object's columns. A RowSetMetaDataImpl object keeps track of the number of columns in the rowset and maintains an internal array of column attributes for each column. A RowSet object creates a RowSetMetaDataImpl object internally in order to set and retrieve information about its columns. NOTE: All metadata in a RowSetMetaDataImpl object should be considered as unavailable until the RowSet object that it describes is populated. Therefore, any RowSetMetaDataImpl method that retrieves information is defined as having unspecified behavior when it is called before the RowSet object contains data.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RowSetMetaDataImpl()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnCount(int columnCount)                      throws SQLException
+				</name>
+				<description>
+					Sets to the given number the number of columns in the RowSet object for which this RowSetMetaDataImpl object was created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAutoIncrement(int columnIndex,                      boolean property)                        throws SQLException
+				</name>
+				<description>
+					Sets whether the designated column is automatically numbered, thus read-only, to the given boolean value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCaseSensitive(int columnIndex,                      boolean property)                        throws SQLException
+				</name>
+				<description>
+					Sets whether the name of the designated column is case sensitive to the given boolean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSearchable(int columnIndex,                   boolean property)                     throws SQLException
+				</name>
+				<description>
+					Sets whether a value stored in the designated column can be used in a WHERE clause to the given boolean value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCurrency(int columnIndex,                 boolean property)                   throws SQLException
+				</name>
+				<description>
+					Sets whether a value stored in the designated column is a cash value to the given boolean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNullable(int columnIndex,                 int property)                   throws SQLException
+				</name>
+				<description>
+					Sets whether a value stored in the designated column can be set to NULL to the given constant from the interface ResultSetMetaData.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSigned(int columnIndex,               boolean property)                 throws SQLException
+				</name>
+				<description>
+					Sets whether a value stored in the designated column is a signed number to the given boolean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnDisplaySize(int columnIndex,                          int size)                            throws SQLException
+				</name>
+				<description>
+					Sets the normal maximum number of chars in the designated column to the given number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnLabel(int columnIndex,                    String label)                      throws SQLException
+				</name>
+				<description>
+					Sets the suggested column label for use in printouts and displays, if any, to label. If label is null, the column label is set to an empty string ("").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnName(int columnIndex,                   String columnName)                     throws SQLException
+				</name>
+				<description>
+					Sets the column name of the designated column to the given name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSchemaName(int columnIndex,                   String schemaName)                     throws SQLException
+				</name>
+				<description>
+					Sets the designated column's table's schema name, if any, to schemaName. If schemaName is null, the schema name is set to an empty string ("").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrecision(int columnIndex,                  int precision)                    throws SQLException
+				</name>
+				<description>
+					Sets the total number of decimal digits in a value stored in the designated column to the given number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setScale(int columnIndex,              int scale)                throws SQLException
+				</name>
+				<description>
+					Sets the number of digits to the right of the decimal point in a value stored in the designated column to the given number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTableName(int columnIndex,                  String tableName)                    throws SQLException
+				</name>
+				<description>
+					Sets the name of the table from which the designated column was derived to the given table name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCatalogName(int columnIndex,                    String catalogName)                      throws SQLException
+				</name>
+				<description>
+					Sets the catalog name of the table from which the designated column was derived to catalogName. If catalogName is null, the catalog name is set to an empty string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnType(int columnIndex,                   int SQLType)                     throws SQLException
+				</name>
+				<description>
+					Sets the SQL type code for values stored in the designated column to the given type code from the class java.sql.Types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnTypeName(int columnIndex,                       String typeName)                         throws SQLException
+				</name>
+				<description>
+					Sets the type name used by the data source for values stored in the designated column to the given type name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getColumnCount()                     throws SQLException
+				</name>
+				<description>
+					Retrieves the number of columns in the RowSet object for which this RowSetMetaDataImpl object was created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAutoIncrement(int columnIndex)                          throws SQLException
+				</name>
+				<description>
+					Retrieves whether a value stored in the designated column is automatically numbered, and thus readonly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCaseSensitive(int columnIndex)                          throws SQLException
+				</name>
+				<description>
+					Indicates whether the case of the designated column's name matters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSearchable(int columnIndex)                       throws SQLException
+				</name>
+				<description>
+					Indicates whether a value stored in the designated column can be used in a WHERE clause.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCurrency(int columnIndex)                     throws SQLException
+				</name>
+				<description>
+					Indicates whether a value stored in the designated column is a cash value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int isNullable(int columnIndex)                 throws SQLException
+				</name>
+				<description>
+					Retrieves a constant indicating whether it is possible to store a NULL value in the designated column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSigned(int columnIndex)                   throws SQLException
+				</name>
+				<description>
+					Indicates whether a value stored in the designated column is a signed number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getColumnDisplaySize(int columnIndex)                           throws SQLException
+				</name>
+				<description>
+					Retrieves the normal maximum width in chars of the designated column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getColumnLabel(int columnIndex)                        throws SQLException
+				</name>
+				<description>
+					Retrieves the the suggested column title for the designated column for use in printouts and displays.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getColumnName(int columnIndex)                       throws SQLException
+				</name>
+				<description>
+					Retrieves the name of the designated column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSchemaName(int columnIndex)                       throws SQLException
+				</name>
+				<description>
+					Retrieves the schema name of the table from which the value in the designated column was derived.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getPrecision(int columnIndex)                   throws SQLException
+				</name>
+				<description>
+					Retrieves the total number of digits for values stored in the designated column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScale(int columnIndex)               throws SQLException
+				</name>
+				<description>
+					Retrieves the number of digits to the right of the decimal point for values stored in the designated column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTableName(int columnIndex)                      throws SQLException
+				</name>
+				<description>
+					Retrieves the name of the table from which the value in the designated column was derived.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getCatalogName(int columnIndex)                        throws SQLException
+				</name>
+				<description>
+					Retrieves the catalog name of the table from which the value in the designated column was derived.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getColumnType(int columnIndex)                    throws SQLException
+				</name>
+				<description>
+					Retrieves the type code (one of the java.sql.Types constants) for the SQL type of the value stored in the designated column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getColumnTypeName(int columnIndex)                           throws SQLException
+				</name>
+				<description>
+					Retrieves the DBMS-specific type name for values stored in the designated column.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isReadOnly(int columnIndex)                     throws SQLException
+				</name>
+				<description>
+					Indicates whether the designated column is definitely not writable, thus readonly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isWritable(int columnIndex)                     throws SQLException
+				</name>
+				<description>
+					Indicates whether it is possible for a write operation on the designated column to succeed. A return value of true means that a write operation may or may not succeed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDefinitelyWritable(int columnIndex)                               throws SQLException
+				</name>
+				<description>
+					Indicates whether a write operation on the designated column will definitely succeed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getColumnClassName(int columnIndex)                            throws SQLException
+				</name>
+				<description>
+					Retrieves the fully-qualified name of the class in the Java programming language to which a value in the designated column will be mapped. For example, if the value is an int, the class name returned by this method will be java.lang.Integer. If the value in the designated column has a custom mapping, this method returns the name of the class that implements SQLData. When the method ResultSet.getObject is called to retrieve a value from the designated column, it will create an instance of this class or one of its subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T unwrap(Class<T> iface)           throws SQLException
+				</name>
+				<description>
+					Returns an object that implements the given interface to allow access to non-standard methods, or standard methods not exposed by the proxy. The result may be either the object found to implement the interface or a proxy for that object. If the receiver implements the interface then that is the object. If the receiver is a wrapper and the wrapped object implements the interface then that is the object. Otherwise the object is the result of calling unwrap recursively on the wrapped object. If the receiver is not a wrapper and does not implement the interface, then an SQLException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isWrapperFor(Class<?> interfaces)                       throws SQLException
+				</name>
+				<description>
+					Returns true if this either implements the interface argument or is directly or indirectly a wrapper for an object that does. Returns false otherwise. If this implements the interface then return true, else if this is a wrapper then return the result of recursively calling isWrapperFor on the wrapped object. If this does not implement the interface and is not a wrapper, return false. This method should be implemented as a low-cost operation compared to unwrap so that callers can use this method to avoid expensive unwrap calls that may fail. If this method returns true then calling unwrap with the same argument should succeed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

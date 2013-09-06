@@ -1,0 +1,342 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class ForkJoinPool  extends AbstractExecutorService
+		</name>
+		<description>
+			An ExecutorService for running ForkJoinTasks. A ForkJoinPool provides the entry point for submissions from non-ForkJoinTask clients, as well as management and monitoring operations. A ForkJoinPool differs from other kinds of ExecutorService mainly by virtue of employing work-stealing: all threads in the pool attempt to find and execute subtasks created by other active tasks (eventually blocking waiting for work if none exist). This enables efficient processing when most tasks spawn other subtasks (as do most ForkJoinTasks). When setting asyncMode to true in constructors, ForkJoinPools may also be appropriate for use with event-style tasks that are never joined. A ForkJoinPool is constructed with a given target parallelism level; by default, equal to the number of available processors. The pool attempts to maintain enough active (or available) threads by dynamically adding, suspending, or resuming internal worker threads, even if some tasks are stalled waiting to join others. However, no such adjustments are guaranteed in the face of blocked IO or other unmanaged synchronization. The nested ForkJoinPool.ManagedBlocker interface enables extension of the kinds of synchronization accommodated. In addition to execution and lifecycle control methods, this class provides status check methods (for example getStealCount()) that are intended to aid in developing, tuning, and monitoring fork/join applications. Also, method toString() returns indications of pool state in a convenient form for informal monitoring. As is the case with other ExecutorServices, there are three main task execution methods summarized in the following table. These are designed to be used by clients not already engaged in fork/join computations in the current pool. The main forms of these methods accept instances of ForkJoinTask, but overloaded forms also allow mixed execution of plain Runnable- or Callable- based activities as well. However, tasks that are already executing in a pool should normally NOT use these pool execution methods, but instead use the within-computation forms listed in the table. Call from non-fork/join clients Call from within fork/join computations Arrange async execution execute(ForkJoinTask) ForkJoinTask.fork() Await and obtain result invoke(ForkJoinTask) ForkJoinTask.invoke() Arrange exec and obtain Future submit(ForkJoinTask) ForkJoinTask.fork() (ForkJoinTasks are Futures) Sample Usage. Normally a single ForkJoinPool is used for all parallel task execution in a program or subsystem. Otherwise, use would not usually outweigh the construction and bookkeeping overhead of creating a large set of threads. For example, a common pool could be used for the SortTasks illustrated in RecursiveAction. Because ForkJoinPool uses threads in daemon mode, there is typically no need to explicitly shutdown such a pool upon program exit.    static final ForkJoinPool mainPool = new ForkJoinPool();   ...   public void sort(long[] array) {     mainPool.invoke(new SortTask(array, 0, array.length));   }   Implementation notes: This implementation restricts the maximum number of running threads to 32767. Attempts to create pools with greater than the maximum number result in IllegalArgumentException. This implementation rejects submitted tasks (that is, by throwing RejectedExecutionException) only when the pool is shut down or internal resources have been exhausted.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final ForkJoinPool.ForkJoinWorkerThreadFactory defaultForkJoinWorkerThreadFactory
+				</name>
+				<description>
+					Creates a new ForkJoinWorkerThread. This factory is used unless overridden in ForkJoinPool constructors.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ForkJoinPool()
+				</name>
+				<description>
+					Creates a ForkJoinPool with parallelism equal to Runtime.availableProcessors(), using the default thread factory, no UncaughtExceptionHandler, and non-async LIFO processing mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ForkJoinPool(int parallelism)
+				</name>
+				<description>
+					Creates a ForkJoinPool with the indicated parallelism level, the default thread factory, no UncaughtExceptionHandler, and non-async LIFO processing mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ForkJoinPool(int parallelism,              ForkJoinPool.ForkJoinWorkerThreadFactory factory,              Thread.UncaughtExceptionHandler handler,              boolean asyncMode)
+				</name>
+				<description>
+					Creates a ForkJoinPool with the given parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T invoke(ForkJoinTask<T> task)
+				</name>
+				<description>
+					Performs the given task, returning its result upon completion. If the computation encounters an unchecked Exception or Error, it is rethrown as the outcome of this invocation. Rethrown exceptions behave in the same way as regular exceptions, but, when possible, contain stack traces (as displayed for example using ex.printStackTrace()) of both the current thread as well as the thread actually encountering the exception; minimally only the latter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void execute(ForkJoinTask<?> task)
+				</name>
+				<description>
+					Arranges for (asynchronous) execution of the given task.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void execute(Runnable task)
+				</name>
+				<description>
+					Description copied from interface: Executor Executes the given command at some time in the future. The command may execute in a new thread, in a pooled thread, or in the calling thread, at the discretion of the Executor implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> ForkJoinTask<T> submit(ForkJoinTask<T> task)
+				</name>
+				<description>
+					Submits a ForkJoinTask for execution.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> ForkJoinTask<T> submit(Callable<T> task)
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Submits a value-returning task for execution and returns a Future representing the pending results of the task. The Future's get method will return the task's result upon successful completion. If you would like to immediately block waiting for a task, you can use constructions of the form result = exec.submit(aCallable).get(); Note: The Executors class includes a set of methods that can convert some other common closure-like objects, for example, PrivilegedAction to Callable form so they can be submitted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> ForkJoinTask<T> submit(Runnable task,                           T result)
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Submits a Runnable task for execution and returns a Future representing that task. The Future's get method will return the given result upon successful completion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ForkJoinTask<?> submit(Runnable task)
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Submits a Runnable task for execution and returns a Future representing that task. The Future's get method will return null upon successful completion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
+				</name>
+				<description>
+					Description copied from interface: ExecutorService Executes the given tasks, returning a list of Futures holding their status and results when all complete. Future.isDone() is true for each element of the returned list. Note that a completed task could have terminated either normally or by throwing an exception. The results of this method are undefined if the given collection is modified while this operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ForkJoinPool.ForkJoinWorkerThreadFactory getFactory()
+				</name>
+				<description>
+					Returns the factory used for constructing new workers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Thread.UncaughtExceptionHandler getUncaughtExceptionHandler()
+				</name>
+				<description>
+					Returns the handler for internal worker threads that terminate due to unrecoverable errors encountered while executing tasks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getParallelism()
+				</name>
+				<description>
+					Returns the targeted parallelism level of this pool.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getPoolSize()
+				</name>
+				<description>
+					Returns the number of worker threads that have started but not yet terminated. The result returned by this method may differ from getParallelism() when threads are created to maintain parallelism when others are cooperatively blocked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getAsyncMode()
+				</name>
+				<description>
+					Returns true if this pool uses local first-in-first-out scheduling mode for forked tasks that are never joined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRunningThreadCount()
+				</name>
+				<description>
+					Returns an estimate of the number of worker threads that are not blocked waiting to join tasks or for other managed synchronization. This method may overestimate the number of running threads.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getActiveThreadCount()
+				</name>
+				<description>
+					Returns an estimate of the number of threads that are currently stealing or executing tasks. This method may overestimate the number of active threads.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isQuiescent()
+				</name>
+				<description>
+					Returns true if all worker threads are currently idle. An idle worker is one that cannot obtain a task to execute because none are available to steal from other threads, and there are no pending submissions to the pool. This method is conservative; it might not return true immediately upon idleness of all threads, but will eventually become true if threads remain inactive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getStealCount()
+				</name>
+				<description>
+					Returns an estimate of the total number of tasks stolen from one thread's work queue by another. The reported value underestimates the actual total number of steals when the pool is not quiescent. This value may be useful for monitoring and tuning fork/join programs: in general, steal counts should be high enough to keep threads busy, but low enough to avoid overhead and contention across threads.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getQueuedTaskCount()
+				</name>
+				<description>
+					Returns an estimate of the total number of tasks currently held in queues by worker threads (but not including tasks submitted to the pool that have not begun executing). This value is only an approximation, obtained by iterating across all threads in the pool. This method may be useful for tuning task granularities.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getQueuedSubmissionCount()
+				</name>
+				<description>
+					Returns an estimate of the number of tasks submitted to this pool that have not yet begun executing. This method may take time proportional to the number of submissions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasQueuedSubmissions()
+				</name>
+				<description>
+					Returns true if there are any tasks submitted to this pool that have not yet begun executing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ForkJoinTask<?> pollSubmission()
+				</name>
+				<description>
+					Removes and returns the next unexecuted submission if one is available. This method may be useful in extensions to this class that re-assign work in systems with multiple pools.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int drainTasksTo(Collection<? super ForkJoinTask<?>> c)
+				</name>
+				<description>
+					Removes all available unexecuted submitted and forked tasks from scheduling queues and adds them to the given collection, without altering their execution status. These may include artificially generated or wrapped tasks. This method is designed to be invoked only when the pool is known to be quiescent. Invocations at other times may not remove all tasks. A failure encountered while attempting to add elements to collection c may result in elements being in neither, either or both collections when the associated exception is thrown. The behavior of this operation is undefined if the specified collection is modified while the operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string identifying this pool, as well as its state, including indications of run state, parallelism level, and worker and task counts.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void shutdown()
+				</name>
+				<description>
+					Initiates an orderly shutdown in which previously submitted tasks are executed, but no new tasks will be accepted. Invocation has no additional effect if already shut down. Tasks that are in the process of being submitted concurrently during the course of this method may or may not be rejected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<Runnable> shutdownNow()
+				</name>
+				<description>
+					Attempts to cancel and/or stop all tasks, and reject all subsequently submitted tasks. Tasks that are in the process of being submitted or executed concurrently during the course of this method may or may not be rejected. This method cancels both existing and unexecuted tasks, in order to permit termination in the presence of task dependencies. So the method always returns an empty list (unlike the case for some other Executors).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isTerminated()
+				</name>
+				<description>
+					Returns true if all tasks have completed following shut down.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isTerminating()
+				</name>
+				<description>
+					Returns true if the process of termination has commenced but not yet completed. This method may be useful for debugging. A return of true reported a sufficient period after shutdown may indicate that submitted tasks have ignored or suppressed interruption, or are waiting for IO, causing this executor not to properly terminate. (See the advisory notes for class ForkJoinTask stating that tasks should not normally entail blocking operations. But if they do, they must abort them on interrupt.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isShutdown()
+				</name>
+				<description>
+					Returns true if this pool has been shut down.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean awaitTermination(long timeout,                         TimeUnit unit)                           throws InterruptedException
+				</name>
+				<description>
+					Blocks until all tasks have completed execution after a shutdown request, or the timeout occurs, or the current thread is interrupted, whichever happens first.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void managedBlock(ForkJoinPool.ManagedBlocker blocker)                           throws InterruptedException
+				</name>
+				<description>
+					Blocks in accord with the given blocker. If the current thread is a ForkJoinWorkerThread, this method possibly arranges for a spare thread to be activated if necessary to ensure sufficient parallelism while the current thread is blocked. If the caller is not a ForkJoinTask, this method is behaviorally equivalent to  while (!blocker.isReleasable())     if (blocker.block())       return;   If the caller is a ForkJoinTask, then the pool may first be expanded to ensure parallelism, and later adjusted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected <T> RunnableFuture<T> newTaskFor(Runnable runnable,                                 T value)
+				</name>
+				<description>
+					Description copied from class: AbstractExecutorService Returns a RunnableFuture for the given runnable and default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable)
+				</name>
+				<description>
+					Description copied from class: AbstractExecutorService Returns a RunnableFuture for the given callable task.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

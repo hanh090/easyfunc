@@ -1,0 +1,315 @@
+<javaelement>
+	<package>
+		java.awt.font
+	</package>
+	<type>
+		<name>
+			public abstract class GlyphVector  extends Object  implements Cloneable
+		</name>
+		<description>
+			A GlyphVector object is a collection of glyphs containing geometric information for the placement of each glyph in a transformed coordinate space which corresponds to the device on which the GlyphVector is ultimately displayed. The GlyphVector does not attempt any interpretation of the sequence of glyphs it contains. Relationships between adjacent glyphs in sequence are solely used to determine the placement of the glyphs in the visual coordinate space. Instances of GlyphVector are created by a Font. In a text processing application that can cache intermediate representations of text, creation and subsequent caching of a GlyphVector for use during rendering is the fastest method to present the visual representation of characters to a user. A GlyphVector is associated with exactly one Font, and can provide data useful only in relation to this Font. In addition, metrics obtained from a GlyphVector are not generally geometrically scaleable since the pixelization and spacing are dependent on grid-fitting algorithms within a Font. To facilitate accurate measurement of a GlyphVector and its component glyphs, you must specify a scaling transform, anti-alias mode, and fractional metrics mode when creating the GlyphVector. These characteristics can be derived from the destination device. For each glyph in the GlyphVector, you can obtain: the position of the glyph the transform associated with the glyph the metrics of the glyph in the context of the GlyphVector. The metrics of the glyph may be different under different transforms, application specified rendering hints, and the specific instance of the glyph within the GlyphVector. Altering the data used to create the GlyphVector does not alter the state of the GlyphVector. Methods are provided to adjust the positions of the glyphs within the GlyphVector. These methods are most appropriate for applications that are performing justification operations for the presentation of the glyphs. Methods are provided to transform individual glyphs within the GlyphVector. These methods are primarily useful for special effects. Methods are provided to return both the visual, logical, and pixel bounds of the entire GlyphVector or of individual glyphs within the GlyphVector. Methods are provided to return a Shape for the GlyphVector, and for individual glyphs within the GlyphVector.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int FLAG_HAS_TRANSFORMS
+				</name>
+				<description>
+					A flag used with getLayoutFlags that indicates that this GlyphVector has per-glyph transforms.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FLAG_HAS_POSITION_ADJUSTMENTS
+				</name>
+				<description>
+					A flag used with getLayoutFlags that indicates that this GlyphVector has position adjustments. When this is true, the glyph positions don't match the accumulated default advances of the glyphs (for example, if kerning has been done).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FLAG_RUN_RTL
+				</name>
+				<description>
+					A flag used with getLayoutFlags that indicates that this GlyphVector has a right-to-left run direction. This refers to the glyph-to-char mapping and does not imply that the visual locations of the glyphs are necessarily in this order, although generally they will be.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FLAG_COMPLEX_GLYPHS
+				</name>
+				<description>
+					A flag used with getLayoutFlags that indicates that this GlyphVector has a complex glyph-to-char mapping (one that does not map glyphs to chars one-to-one in strictly ascending or descending order matching the run direction).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FLAG_MASK
+				</name>
+				<description>
+					A mask for supported flags from getLayoutFlags. Only bits covered by the mask should be tested.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GlyphVector()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Font getFont()
+				</name>
+				<description>
+					Returns the Font associated with this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FontRenderContext getFontRenderContext()
+				</name>
+				<description>
+					Returns the FontRenderContext associated with this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void performDefaultLayout()
+				</name>
+				<description>
+					Assigns default positions to each glyph in this GlyphVector. This can destroy information generated during initial layout of this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getNumGlyphs()
+				</name>
+				<description>
+					Returns the number of glyphs in this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getGlyphCode(int glyphIndex)
+				</name>
+				<description>
+					Returns the glyphcode of the specified glyph. This return value is meaningless to anything other than the Font object that created this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int[] getGlyphCodes(int beginGlyphIndex,                    int numEntries,                    int[] codeReturn)
+				</name>
+				<description>
+					Returns an array of glyphcodes for the specified glyphs. The contents of this return value are meaningless to anything other than the Font used to create this GlyphVector. This method is used for convenience and performance when processing glyphcodes. If no array is passed in, a new array is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getGlyphCharIndex(int glyphIndex)
+				</name>
+				<description>
+					Returns the character index of the specified glyph. The character index is the index of the first logical character represented by the glyph. The default implementation assumes a one-to-one, left-to-right mapping of glyphs to characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getGlyphCharIndices(int beginGlyphIndex,                          int numEntries,                          int[] codeReturn)
+				</name>
+				<description>
+					Returns the character indices of the specified glyphs. The character index is the index of the first logical character represented by the glyph. Indices are returned in glyph order. The default implementation invokes getGlyphCharIndex for each glyph, and subclassers will probably want to override this implementation for performance reasons. Use this method for convenience and performance in processing of glyphcodes. If no array is passed in, a new array is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Rectangle2D getLogicalBounds()
+				</name>
+				<description>
+					Returns the logical bounds of this GlyphVector. This method is used when positioning this GlyphVector in relation to visually adjacent GlyphVector objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Rectangle2D getVisualBounds()
+				</name>
+				<description>
+					Returns the visual bounds of this GlyphVector The visual bounds is the bounding box of the outline of this GlyphVector. Because of rasterization and alignment of pixels, it is possible that this box does not enclose all pixels affected by rendering this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getPixelBounds(FontRenderContext renderFRC,                         float x,                         float y)
+				</name>
+				<description>
+					Returns the pixel bounds of this GlyphVector when rendered in a graphics with the given FontRenderContext at the given location. The renderFRC need not be the same as the FontRenderContext of this GlyphVector, and can be null. If it is null, the FontRenderContext of this GlyphVector is used. The default implementation returns the visual bounds, offset to x, y and rounded out to the next integer value (i.e. returns an integer rectangle which encloses the visual bounds) and ignores the FRC. Subclassers should override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Shape getOutline()
+				</name>
+				<description>
+					Returns a Shape whose interior corresponds to the visual representation of this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Shape getOutline(float x,                 float y)
+				</name>
+				<description>
+					Returns a Shape whose interior corresponds to the visual representation of this GlyphVector when rendered at x, y.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Shape getGlyphOutline(int glyphIndex)
+				</name>
+				<description>
+					Returns a Shape whose interior corresponds to the visual representation of the specified glyph within this GlyphVector. The outline returned by this method is positioned around the origin of each individual glyph.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getGlyphOutline(int glyphIndex,                      float x,                      float y)
+				</name>
+				<description>
+					Returns a Shape whose interior corresponds to the visual representation of the specified glyph within this GlyphVector, offset to x, y. The outline returned by this method is positioned around the origin of each individual glyph.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Point2D getGlyphPosition(int glyphIndex)
+				</name>
+				<description>
+					Returns the position of the specified glyph relative to the origin of this GlyphVector. If glyphIndex equals the number of of glyphs in this GlyphVector, this method returns the position after the last glyph. This position is used to define the advance of the entire GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setGlyphPosition(int glyphIndex,                      Point2D newPos)
+				</name>
+				<description>
+					Sets the position of the specified glyph within this GlyphVector. If glyphIndex equals the number of of glyphs in this GlyphVector, this method sets the position after the last glyph. This position is used to define the advance of the entire GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AffineTransform getGlyphTransform(int glyphIndex)
+				</name>
+				<description>
+					Returns the transform of the specified glyph within this GlyphVector. The transform is relative to the glyph position. If no special transform has been applied, null can be returned. A null return indicates an identity transform.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setGlyphTransform(int glyphIndex,                       AffineTransform newTX)
+				</name>
+				<description>
+					Sets the transform of the specified glyph within this GlyphVector. The transform is relative to the glyph position. A null argument for newTX indicates that no special transform is applied for the specified glyph. This method can be used to rotate, mirror, translate and scale the glyph. Adding a transform can result in signifant performance changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLayoutFlags()
+				</name>
+				<description>
+					Returns flags describing the global state of the GlyphVector. Flags not described below are reserved. The default implementation returns 0 (meaning false) for the position adjustments, transforms, rtl, and complex flags. Subclassers should override this method, and make sure it correctly describes the GlyphVector and corresponds to the results of related calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float[] getGlyphPositions(int beginGlyphIndex,                          int numEntries,                          float[] positionReturn)
+				</name>
+				<description>
+					Returns an array of glyph positions for the specified glyphs. This method is used for convenience and performance when processing glyph positions. If no array is passed in, a new array is created. Even numbered array entries beginning with position zero are the X coordinates of the glyph numbered beginGlyphIndex + position/2. Odd numbered array entries beginning with position one are the Y coordinates of the glyph numbered beginGlyphIndex + (position-1)/2. If beginGlyphIndex equals the number of of glyphs in this GlyphVector, this method gets the position after the last glyph and this position is used to define the advance of the entire GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Shape getGlyphLogicalBounds(int glyphIndex)
+				</name>
+				<description>
+					Returns the logical bounds of the specified glyph within this GlyphVector. These logical bounds have a total of four edges, with two edges parallel to the baseline under the glyph's transform and the other two edges are shared with adjacent glyphs if they are present. This method is useful for hit-testing of the specified glyph, positioning of a caret at the leading or trailing edge of a glyph, and for drawing a highlight region around the specified glyph.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Shape getGlyphVisualBounds(int glyphIndex)
+				</name>
+				<description>
+					Returns the visual bounds of the specified glyph within the GlyphVector. The bounds returned by this method is positioned around the origin of each individual glyph.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getGlyphPixelBounds(int index,                              FontRenderContext renderFRC,                              float x,                              float y)
+				</name>
+				<description>
+					Returns the pixel bounds of the glyph at index when this GlyphVector is rendered in a Graphics with the given FontRenderContext at the given location. The renderFRC need not be the same as the FontRenderContext of this GlyphVector, and can be null. If it is null, the FontRenderContext of this GlyphVector is used. The default implementation returns the visual bounds of the glyph, offset to x, y and rounded out to the next integer value, and ignores the FRC. Subclassers should override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GlyphMetrics getGlyphMetrics(int glyphIndex)
+				</name>
+				<description>
+					Returns the metrics of the glyph at the specified index into this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract GlyphJustificationInfo getGlyphJustificationInfo(int glyphIndex)
+				</name>
+				<description>
+					Returns the justification information for the glyph at the specified index into this GlyphVector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean equals(GlyphVector set)
+				</name>
+				<description>
+					Tests if the specified GlyphVector exactly equals this GlyphVector.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

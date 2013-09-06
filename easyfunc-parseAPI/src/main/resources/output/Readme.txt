@@ -1,0 +1,1 @@
+This folder use for store result of parse from API

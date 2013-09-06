@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.security.sasl
+	</package>
+	<type>
+		<name>
+			public class SaslException  extends IOException
+		</name>
+		<description>
+			This class represents an error that has occurred when using SASL.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SaslException()
+				</name>
+				<description>
+					Constructs a new instance of SaslException. The root exception and the detailed message are null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SaslException(String detail)
+				</name>
+				<description>
+					Constructs a new instance of SaslException with a detailed message. The root exception is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SaslException(String detail,               Throwable ex)
+				</name>
+				<description>
+					Constructs a new instance of SaslException with a detailed message and a root exception. For example, a SaslException might result from a problem with the callback handler, which might throw a NoSuchCallbackException if it does not support the requested callback, or throw an IOException if it had problems obtaining data for the callback. The SaslException's root exception would be then be the exception thrown by the callback handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Throwable getCause()
+				</name>
+				<description>
+					Description copied from class: Throwable Returns the cause of this throwable or null if the cause is nonexistent or unknown. (The cause is the throwable that caused this throwable to get thrown.) This implementation returns the cause that was supplied via one of the constructors requiring a Throwable, or that was set after creation with the Throwable.initCause(Throwable) method. While it is typically unnecessary to override this method, a subclass can override it to return a cause set by some other means. This is appropriate for a "legacy chained throwable" that predates the addition of chained exceptions to Throwable. Note that it is not necessary to override any of the PrintStackTrace methods, all of which invoke the getCause method to determine the cause of a throwable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Throwable initCause(Throwable cause)
+				</name>
+				<description>
+					Description copied from class: Throwable Initializes the cause of this throwable to the specified value. (The cause is the throwable that caused this throwable to get thrown.) This method can be called at most once. It is generally called from within the constructor, or immediately after creating the throwable. If this throwable was created with Throwable.Throwable(Throwable) or Throwable.Throwable(String,Throwable), this method cannot be called even once. An example of using this method on a legacy throwable type without other support for setting the cause is:    try {       lowLevelOp();   } catch (LowLevelException le) {       throw (HighLevelException)             new HighLevelException().initCause(le); // Legacy constructor   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the string representation of this exception. The string representation contains this exception's class name, its detailed messsage, and if it has a root exception, the string representation of the root exception. This string representation is meant for debugging and not meant to be interpreted programmatically.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

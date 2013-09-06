@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		org.omg.DynamicAny
+	</package>
+	<type>
+		<name>
+			public interface DynAnyFactoryOperations
+		</name>
+		<description>
+			DynAny objects can be created by invoking operations on the DynAnyFactory object. Generally there are only two ways to create a DynAny object: invoking an operation on an existing DynAny object invoking an operation on a DynAnyFactory object A constructed DynAny object supports operations that enable the creation of new DynAny objects encapsulating access to the value of some constituent. DynAny objects also support the copy operation for creating new DynAny objects. A reference to the DynAnyFactory object is obtained by calling ORB.resolve_initial_references() with the identifier parameter set to the string constant "DynAnyFactory". Dynamic interpretation of an any usually involves creating a DynAny object using create_dyn_any() as the first step. Depending on the type of the any, the resulting DynAny object reference can be narrowed to a DynFixed, DynStruct, DynSequence, DynArray, DynUnion, DynEnum, or DynValue object reference. Dynamic creation of an any involves creating a DynAny object using create_dyn_any_from_type_code(), passing the TypeCode associated with the value to be created. The returned reference is narrowed to one of the complex types, such as DynStruct, if appropriate. Then, the value can be initialized by means of invoking operations on the resulting object. Finally, the to_any operation can be invoked to create an any value from the constructed DynAny.
+		</description>
+		<methods>
+			<method>
+				<name>
+					DynAny create_dyn_any(Any value)                        throws InconsistentTypeCode
+				</name>
+				<description>
+					Creates a new DynAny object from an any value. A copy of the TypeCode associated with the any value is assigned to the resulting DynAny object. The value associated with the DynAny object is a copy of the value in the original any. The current position of the created DynAny is set to zero if the passed value has components, to -1 otherwise
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DynAny create_dyn_any_from_type_code(TypeCode type)                                       throws InconsistentTypeCode
+				</name>
+				<description>
+					Creates a DynAny from a TypeCode. Depending on the TypeCode, the created object may be of type DynAny, or one of its derived types, such as DynStruct. The returned reference can be narrowed to the derived type. In all cases, a DynAny constructed from a TypeCode has an initial default value. The default values of basic types are: false for boolean zero for numeric types zero for types octet, char, and wchar the empty string for string and wstring null for object references a type code with a TCKind value of tk_null for type codes for any values, an any containing a type code with a TCKind value of tk_null type and no value For complex types, creation of the corresponding DynAny assigns a default value as follows: For DynSequence it sets the current position to -1 and creates an empty sequence. For DynEnum it sets the current position to -1 and sets the value of the enumerator to the first enumerator value indicated by the TypeCode. For DynFixed it sets the current position to -1 and sets the value zero. For DynStruct it sets the current position to -1 for empty exceptions and to zero for all other TypeCodes. The members (if any) are (recursively) initialized to their default values. For DynArray sets the current position to zero and (recursively) initializes elements to their default value. For DynUnion sets the current position to zero. The discriminator value is set to a value consistent with the first named member of the union. That member is activated and (recursively) initialized to its default value. For DynValue and DynValueBox it initializes to a null value.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

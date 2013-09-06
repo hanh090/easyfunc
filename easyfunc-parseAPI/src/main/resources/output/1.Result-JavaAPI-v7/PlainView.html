@@ -1,0 +1,198 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class PlainView  extends View  implements TabExpander
+		</name>
+		<description>
+			Implements View interface for a simple multi-line text view that has text in one font and color. The view represents each child element as a line of text.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected FontMetrics metrics
+				</name>
+				<description>
+					Font metrics for the current font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PlainView(Element elem)
+				</name>
+				<description>
+					Constructs a new PlainView wrapped on an element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getTabSize()
+				</name>
+				<description>
+					Returns the tab size set for the document, defaulting to 8.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void drawLine(int lineIndex,              Graphics g,              int x,              int y)
+				</name>
+				<description>
+					Renders a line of text, suppressing whitespace at the end and expanding any tabs. This is implemented to make calls to the methods drawUnselectedText and drawSelectedText so that the way selected and unselected text are rendered can be customized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int drawUnselectedText(Graphics g,                       int x,                       int y,                       int p0,                       int p1)                            throws BadLocationException
+				</name>
+				<description>
+					Renders the given range in the model as normal unselected text. Uses the foreground or disabled color to render the text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int drawSelectedText(Graphics g,                     int x,                     int y,                     int p0,                     int p1)                          throws BadLocationException
+				</name>
+				<description>
+					Renders the given range in the model as selected text. This is implemented to render the text in the color specified in the hosting component. It assumes the highlighter will render the selected background.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Segment getLineBuffer()
+				</name>
+				<description>
+					Gives access to a buffer that can be used to fetch text from the associated document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateMetrics()
+				</name>
+				<description>
+					Checks to see if the font metrics and longest line are up-to-date.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape a)
+				</name>
+				<description>
+					Renders using the given rendering surface and area on that surface. The view may need to do layout and create child views to enable itself to render into the given allocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(float fx,                float fy,                Shape a,                Position.Bias[] bias)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was inserted into the document in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was removed from the document in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent changes,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Gives notification from the document that attributes were changed in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(float width,             float height)
+				</name>
+				<description>
+					Sets the size of the view. This should cause layout of the view along the given axis, if it has any layout duties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float nextTabStop(float x,                  int tabOffset)
+				</name>
+				<description>
+					Returns the next tab stop position after a given reference position. This implementation does not support things like centering so it ignores the tabOffset argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateDamage(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Repaint the region of change covered by the given document event. Damages the line that begins the range to cover the case when the insert/remove is only on one line. If lines are added or removed, damages the whole view. The longest line is checked to see if it has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void damageLineRange(int line0,                     int line1,                     Shape a,                     Component host)
+				</name>
+				<description>
+					Repaint the given line range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle lineToRect(Shape a,                     int line)
+				</name>
+				<description>
+					Determine the rectangle that represents the given line.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

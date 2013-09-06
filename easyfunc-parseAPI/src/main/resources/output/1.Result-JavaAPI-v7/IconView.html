@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class IconView  extends View
+		</name>
+		<description>
+			Icon decorator that implements the view interface. The entire element is used to represent the icon. This acts as a gateway from the display-only View implementations to interactive lightweight icons (that is, it allows icons to be embedded into the View hierarchy. The parent of the icon is the container that is handed out by the associated view factory.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public IconView(Element elem)
+				</name>
+				<description>
+					Creates a new icon view that represents an element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape a)
+				</name>
+				<description>
+					Paints the icon. The real paint behavior occurs naturally from the association that the icon has with its parent container (the same container hosting this view), so this simply allows us to position the icon properly relative to the view. Since the coordinate system for the view is simply the parent containers, positioning the child icon is easy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAlignment(int axis)
+				</name>
+				<description>
+					Determines the desired alignment for this view along an axis. This is implemented to give the alignment to the bottom of the icon along the y axis, and the default along the x axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(float x,                float y,                Shape a,                Position.Bias[] bias)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

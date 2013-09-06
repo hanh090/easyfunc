@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.lang.management
+	</package>
+	<type>
+		<name>
+			public class MonitorInfo  extends LockInfo
+		</name>
+		<description>
+			Information about an object monitor lock. An object monitor is locked when entering a synchronization block or method on that object. MXBean Mapping MonitorInfo is mapped to a CompositeData with attributes as specified in the from method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MonitorInfo(String className,             int identityHashCode,             int stackDepth,             StackTraceElement stackFrame)
+				</name>
+				<description>
+					Construct a MonitorInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLockedStackDepth()
+				</name>
+				<description>
+					Returns the depth in the stack trace where the object monitor was locked. The depth is the index to the StackTraceElement array returned in the ThreadInfo.getStackTrace() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StackTraceElement getLockedStackFrame()
+				</name>
+				<description>
+					Returns the stack frame that locked the object monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MonitorInfo from(CompositeData cd)
+				</name>
+				<description>
+					Returns a MonitorInfo object represented by the given CompositeData. The given CompositeData must contain the following attributes as well as the attributes specified in the mapped type for the LockInfo class: Attribute Name Type lockedStackFrame CompositeData as specified in the stackTrace attribute defined in the ThreadInfo.from method. lockedStackDepth java.lang.Integer
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

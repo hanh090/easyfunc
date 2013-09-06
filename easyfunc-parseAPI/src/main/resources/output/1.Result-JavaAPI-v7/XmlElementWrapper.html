@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.bind.annotation
+	</package>
+	<type>
+		<name>
+			@Retention(value=RUNTIME)  @Target(value={FIELD,METHOD})  public @interface XmlElementWrapper
+		</name>
+		<description>
+			Generates a wrapper element around XML representation. This is primarily intended to be used to produce a wrapper XML element around collections. The annotation therefore supports two forms of serialization shown below.       //Example: code fragment        int[] names;        // XML Serialization Form 1 (Unwrapped collection)      <names> ... </names>      <names> ... </names>        // XML Serialization Form 2 ( Wrapped collection )      <wrapperElement>         <names> value-of-item </names>         <names> value-of-item </names>         ....      </wrapperElement>   The two serialized XML forms allow a null collection to be represented either by absence or presence of an element with a nillable attribute. Usage The @XmlElementWrapper annotation can be used with the following program elements: JavaBean property non static, non transient field The usage is subject to the following constraints: The property must be a collection property This annotation can be used with the following annotations: XmlElement, XmlElements, XmlElementRef, XmlElementRefs, XmlJavaTypeAdapter. See "Package Specification" in javax.xml.bind.package javadoc for additional common information.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String name
+				</name>
+				<description>
+					Name of the XML wrapper element. By default, the XML wrapper element name is derived from the JavaBean property name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String namespace
+				</name>
+				<description>
+					XML target namespace of the XML wrapper element. If the value is "##default", then the namespace is determined as follows: If the enclosing package has XmlSchema annotation, and its elementFormDefault is QUALIFIED, then the namespace of the enclosing class. Otherwise "" (which produces unqualified element in the default namespace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean nillable
+				</name>
+				<description>
+					If true, the absence of the collection is represented by using xsi:nil='true'. Otherwise, it is represented by the absence of the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean required
+				</name>
+				<description>
+					Customize the wrapper element declaration to be required. If required() is true, then the corresponding generated XML schema element declaration will have minOccurs="1", to indicate that the wrapper element is always expected. Note that this only affects the schema generation, and not the unmarshalling or marshalling capability. This is simply a mechanism to let users express their application constraints better.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

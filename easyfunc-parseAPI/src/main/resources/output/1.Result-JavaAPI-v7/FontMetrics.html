@@ -1,0 +1,279 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public abstract class FontMetrics  extends Object  implements Serializable
+		</name>
+		<description>
+			The FontMetrics class defines a font metrics object, which encapsulates information about the rendering of a particular font on a particular screen. Note to subclassers: Since many of these methods form closed, mutually recursive loops, you must take care that you implement at least one of the methods in each such loop to prevent infinite recursion when your subclass is used. In particular, the following is the minimal suggested set of methods to override in order to ensure correctness and prevent infinite recursion (though other subsets are equally feasible): getAscent() getLeading() getMaxAdvance() charWidth(char) charsWidth(char[], int, int) Note that the implementations of these methods are inefficient, so they are usually overridden with more efficient toolkit-specific implementations. When an application asks to place a character at the position (x, y), the character is placed so that its reference point (shown as the dot in the accompanying image) is put at that position. The reference point specifies a horizontal line called the baseline of the character. In normal printing, the baselines of characters should align. In addition, every character in a font has an ascent, a descent, and an advance width. The ascent is the amount by which the character ascends above the baseline. The descent is the amount by which the character descends below the baseline. The advance width indicates the position at which AWT should place the next character. An array of characters or a string can also have an ascent, a descent, and an advance width. The ascent of the array is the maximum ascent of any character in the array. The descent is the maximum descent of any character in the array. The advance width is the sum of the advance widths of each of the characters in the character array. The advance of a String is the distance along the baseline of the String. This distance is the width that should be used for centering or right-aligning the String. Note that the advance of a String is not necessarily the sum of the advances of its characters measured in isolation because the width of a character can vary depending on its context. For example, in Arabic text, the shape of a character can change in order to connect to other characters. Also, in some scripts, certain character sequences can be represented by a single shape, called a ligature. Measuring characters individually does not account for these transformations. Font metrics are baseline-relative, meaning that they are generally independent of the rotation applied to the font (modulo possible grid hinting effects). See Font.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Font font
+				</name>
+				<description>
+					The actual Font from which the font metrics are created. This cannot be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FontMetrics(Font font)
+				</name>
+				<description>
+					Creates a new FontMetrics object for finding out height and width information about the specified Font and specific character glyphs in that Font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont()
+				</name>
+				<description>
+					Gets the Font described by this FontMetrics object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FontRenderContext getFontRenderContext()
+				</name>
+				<description>
+					Gets the FontRenderContext used by this FontMetrics object to measure text. Note that methods in this class which take a Graphics parameter measure text using the FontRenderContext of that Graphics object, and not this FontRenderContext
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLeading()
+				</name>
+				<description>
+					Determines the standard leading of the Font described by this FontMetrics object. The standard leading, or interline spacing, is the logical amount of space to be reserved between the descent of one line of text and the ascent of the next line. The height metric is calculated to include this extra space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAscent()
+				</name>
+				<description>
+					Determines the font ascent of the Font described by this FontMetrics object. The font ascent is the distance from the font's baseline to the top of most alphanumeric characters. Some characters in the Font might extend above the font ascent line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDescent()
+				</name>
+				<description>
+					Determines the font descent of the Font described by this FontMetrics object. The font descent is the distance from the font's baseline to the bottom of most alphanumeric characters with descenders. Some characters in the Font might extend below the font descent line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHeight()
+				</name>
+				<description>
+					Gets the standard height of a line of text in this font. This is the distance between the baseline of adjacent lines of text. It is the sum of the leading + ascent + descent. Due to rounding this may not be the same as getAscent() + getDescent() + getLeading(). There is no guarantee that lines of text spaced at this distance are disjoint; such lines may overlap if some characters overshoot either the standard ascent or the standard descent metric.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxAscent()
+				</name>
+				<description>
+					Determines the maximum ascent of the Font described by this FontMetrics object. No character extends further above the font's baseline than this height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxDescent()
+				</name>
+				<description>
+					Determines the maximum descent of the Font described by this FontMetrics object. No character extends further below the font's baseline than this height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public int getMaxDecent()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1.1, replaced by getMaxDescent(). For backward compatibility only.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxAdvance()
+				</name>
+				<description>
+					Gets the maximum advance width of any character in this Font. The advance is the distance from the leftmost point to the rightmost point on the string's baseline. The advance of a String is not necessarily the sum of the advances of its characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int charWidth(int codePoint)
+				</name>
+				<description>
+					Returns the advance width of the specified character in this Font. The advance is the distance from the leftmost point to the rightmost point on the character's baseline. Note that the advance of a String is not necessarily the sum of the advances of its characters. This method doesn't validate the specified character to be a valid Unicode code point. The caller must validate the character value using Character.isValidCodePoint if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int charWidth(char ch)
+				</name>
+				<description>
+					Returns the advance width of the specified character in this Font. The advance is the distance from the leftmost point to the rightmost point on the character's baseline. Note that the advance of a String is not necessarily the sum of the advances of its characters. Note: This method cannot handle supplementary characters. To support all Unicode characters, including supplementary characters, use the charWidth(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int stringWidth(String str)
+				</name>
+				<description>
+					Returns the total advance width for showing the specified String in this Font. The advance is the distance from the leftmost point to the rightmost point on the string's baseline. Note that the advance of a String is not necessarily the sum of the advances of its characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int charsWidth(char[] data,               int off,               int len)
+				</name>
+				<description>
+					Returns the total advance width for showing the specified array of characters in this Font. The advance is the distance from the leftmost point to the rightmost point on the string's baseline. The advance of a String is not necessarily the sum of the advances of its characters. This is equivalent to measuring a String of the characters in the specified range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int bytesWidth(byte[] data,               int off,               int len)
+				</name>
+				<description>
+					Returns the total advance width for showing the specified array of bytes in this Font. The advance is the distance from the leftmost point to the rightmost point on the string's baseline. The advance of a String is not necessarily the sum of the advances of its characters. This is equivalent to measuring a String of the characters in the specified range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getWidths()
+				</name>
+				<description>
+					Gets the advance widths of the first 256 characters in the Font. The advance is the distance from the leftmost point to the rightmost point on the character's baseline. Note that the advance of a String is not necessarily the sum of the advances of its characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasUniformLineMetrics()
+				</name>
+				<description>
+					Checks to see if the Font has uniform line metrics. A composite font may consist of several different fonts to cover various character sets. In such cases, the FontLineMetrics objects are not uniform. Different fonts may have a different ascent, descent, metrics and so on. This information is sometimes necessary for line measuring and line breaking.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LineMetrics getLineMetrics(String str,                           Graphics context)
+				</name>
+				<description>
+					Returns the LineMetrics object for the specified String in the specified Graphics context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LineMetrics getLineMetrics(String str,                           int beginIndex,                           int limit,                           Graphics context)
+				</name>
+				<description>
+					Returns the LineMetrics object for the specified String in the specified Graphics context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LineMetrics getLineMetrics(char[] chars,                           int beginIndex,                           int limit,                           Graphics context)
+				</name>
+				<description>
+					Returns the LineMetrics object for the specified character array in the specified Graphics context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LineMetrics getLineMetrics(CharacterIterator ci,                           int beginIndex,                           int limit,                           Graphics context)
+				</name>
+				<description>
+					Returns the LineMetrics object for the specified CharacterIterator in the specified Graphics context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getStringBounds(String str,                            Graphics context)
+				</name>
+				<description>
+					Returns the bounds of the specified String in the specified Graphics context. The bounds is used to layout the String. Note: The returned bounds is in baseline-relative coordinates (see class notes).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getStringBounds(String str,                            int beginIndex,                            int limit,                            Graphics context)
+				</name>
+				<description>
+					Returns the bounds of the specified String in the specified Graphics context. The bounds is used to layout the String. Note: The returned bounds is in baseline-relative coordinates (see class notes).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getStringBounds(char[] chars,                            int beginIndex,                            int limit,                            Graphics context)
+				</name>
+				<description>
+					Returns the bounds of the specified array of characters in the specified Graphics context. The bounds is used to layout the String created with the specified array of characters, beginIndex and limit. Note: The returned bounds is in baseline-relative coordinates (see class notes).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getStringBounds(CharacterIterator ci,                            int beginIndex,                            int limit,                            Graphics context)
+				</name>
+				<description>
+					Returns the bounds of the characters indexed in the specified CharacterIterator in the specified Graphics context. Note: The returned bounds is in baseline-relative coordinates (see class notes).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getMaxCharBounds(Graphics context)
+				</name>
+				<description>
+					Returns the bounds for the character with the maximum bounds in the specified Graphics context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a representation of this FontMetrics object's values as a String.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

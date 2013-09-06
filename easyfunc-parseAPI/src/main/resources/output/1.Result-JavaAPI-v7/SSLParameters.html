@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public class SSLParameters  extends Object
+		</name>
+		<description>
+			Encapsulates parameters for an SSL/TLS connection. The parameters are the list of ciphersuites to be accepted in an SSL/TLS handshake, the list of protocols to be allowed, the endpoint identification algorithm during SSL/TLS handshaking, the algorithm constraints and whether SSL/TLS servers should request or require client authentication. SSLParameters can be created via the constructors in this class. Objects can also be obtained using the getSSLParameters() methods in SSLSocket and SSLServerSocket and SSLEngine or the getDefaultSSLParameters() and getSupportedSSLParameters() methods in SSLContext. SSLParameters can be applied to a connection via the methods SSLSocket.setSSLParameters() and SSLServerSocket.setSSLParameters() and SSLEngine.getSSLParameters().
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SSLParameters()
+				</name>
+				<description>
+					Constructs SSLParameters. The cipherSuites and protocols values are set to null, wantClientAuth and needClientAuth are set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SSLParameters(String[] cipherSuites)
+				</name>
+				<description>
+					Constructs SSLParameters from the specified array of ciphersuites. Calling this constructor is equivalent to calling the no-args constructor followed by setCipherSuites(cipherSuites);.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SSLParameters(String[] cipherSuites,               String[] protocols)
+				</name>
+				<description>
+					Constructs SSLParameters from the specified array of ciphersuites and protocols. Calling this constructor is equivalent to calling the no-args constructor followed by setCipherSuites(cipherSuites); setProtocols(protocols);.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getCipherSuites()
+				</name>
+				<description>
+					Returns a copy of the array of ciphersuites or null if none have been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCipherSuites(String[] cipherSuites)
+				</name>
+				<description>
+					Sets the array of ciphersuites.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getProtocols()
+				</name>
+				<description>
+					Returns a copy of the array of protocols or null if none have been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProtocols(String[] protocols)
+				</name>
+				<description>
+					Sets the array of protocols.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getWantClientAuth()
+				</name>
+				<description>
+					Returns whether client authentication should be requested.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setWantClientAuth(boolean wantClientAuth)
+				</name>
+				<description>
+					Sets whether client authentication should be requested. Calling this method clears the needClientAuth flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getNeedClientAuth()
+				</name>
+				<description>
+					Returns whether client authentication should be required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNeedClientAuth(boolean needClientAuth)
+				</name>
+				<description>
+					Sets whether client authentication should be required. Calling this method clears the wantClientAuth flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AlgorithmConstraints getAlgorithmConstraints()
+				</name>
+				<description>
+					Returns the cryptographic algorithm constraints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAlgorithmConstraints(AlgorithmConstraints constraints)
+				</name>
+				<description>
+					Sets the cryptographic algorithm constraints, which will be used in addition to any configured by the runtime environment. If the constraints parameter is non-null, every cryptographic algorithm, key and algorithm parameters used in the SSL/TLS handshake must be permitted by the constraints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getEndpointIdentificationAlgorithm()
+				</name>
+				<description>
+					Gets the endpoint identification algorithm.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEndpointIdentificationAlgorithm(String algorithm)
+				</name>
+				<description>
+					Sets the endpoint identification algorithm. If the algorithm parameter is non-null or non-empty, the endpoint identification/verification procedures must be handled during SSL/TLS handshaking. This is to prevent man-in-the-middle attacks.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

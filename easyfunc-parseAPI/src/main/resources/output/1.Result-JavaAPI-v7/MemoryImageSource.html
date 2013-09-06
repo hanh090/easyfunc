@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class MemoryImageSource  extends Object  implements ImageProducer
+		</name>
+		<description>
+			This class is an implementation of the ImageProducer interface which uses an array to produce pixel values for an Image. Here is an example which calculates a 100x100 image representing a fade from black to blue along the X axis and a fade from black to red along the Y axis:           int w = 100;        int h = 100;        int pix[] = new int[w * h];        int index = 0;        for (int y = 0; y < h; y++) {            int red = (y * 255) / (h - 1);            for (int x = 0; x < w; x++) {                int blue = (x * 255) / (w - 1);                pix[index++] = (255 << 24) | (red << 16) | blue;            }        }        Image img = createImage(new MemoryImageSource(w, h, pix, 0, w));     The MemoryImageSource is also capable of managing a memory image which varies over time to allow animation or custom rendering. Here is an example showing how to set up the animation source and signal changes in the data (adapted from the MemoryAnimationSourceDemo by Garth Dickie):           int pixels[];        MemoryImageSource source;          public void init() {            int width = 50;            int height = 50;            int size = width * height;            pixels = new int[size];              int value = getBackground().getRGB();            for (int i = 0; i < size; i++) {                pixels[i] = value;            }              source = new MemoryImageSource(width, height, pixels, 0, width);            source.setAnimated(true);            image = createImage(source);        }          public void run() {            Thread me = Thread.currentThread( );            me.setPriority(Thread.MIN_PRIORITY);              while (true) {                try {                    Thread.sleep(10);                } catch( InterruptedException e ) {                    return;                }                  // Modify the values in the pixels array at (x, y, w, h)                  // Send the new data to the interested ImageConsumers                source.newPixels(x, y, w, h);            }        }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MemoryImageSource(int w,                   int h,                   ColorModel cm,                   byte[] pix,                   int off,                   int scan)
+				</name>
+				<description>
+					Constructs an ImageProducer object which uses an array of bytes to produce data for an Image object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MemoryImageSource(int w,                   int h,                   ColorModel cm,                   byte[] pix,                   int off,                   int scan,                   Hashtable<?,?> props)
+				</name>
+				<description>
+					Constructs an ImageProducer object which uses an array of bytes to produce data for an Image object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MemoryImageSource(int w,                   int h,                   ColorModel cm,                   int[] pix,                   int off,                   int scan)
+				</name>
+				<description>
+					Constructs an ImageProducer object which uses an array of integers to produce data for an Image object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MemoryImageSource(int w,                   int h,                   ColorModel cm,                   int[] pix,                   int off,                   int scan,                   Hashtable<?,?> props)
+				</name>
+				<description>
+					Constructs an ImageProducer object which uses an array of integers to produce data for an Image object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MemoryImageSource(int w,                   int h,                   int[] pix,                   int off,                   int scan)
+				</name>
+				<description>
+					Constructs an ImageProducer object which uses an array of integers in the default RGB ColorModel to produce data for an Image object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MemoryImageSource(int w,                   int h,                   int[] pix,                   int off,                   int scan,                   Hashtable<?,?> props)
+				</name>
+				<description>
+					Constructs an ImageProducer object which uses an array of integers in the default RGB ColorModel to produce data for an Image object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addConsumer(ImageConsumer ic)
+				</name>
+				<description>
+					Adds an ImageConsumer to the list of consumers interested in data for this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isConsumer(ImageConsumer ic)
+				</name>
+				<description>
+					Determines if an ImageConsumer is on the list of consumers currently interested in data for this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeConsumer(ImageConsumer ic)
+				</name>
+				<description>
+					Removes an ImageConsumer from the list of consumers interested in data for this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startProduction(ImageConsumer ic)
+				</name>
+				<description>
+					Adds an ImageConsumer to the list of consumers interested in data for this image and immediately starts delivery of the image data through the ImageConsumer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void requestTopDownLeftRightResend(ImageConsumer ic)
+				</name>
+				<description>
+					Requests that a given ImageConsumer have the image data delivered one more time in top-down, left-right order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAnimated(boolean animated)
+				</name>
+				<description>
+					Changes this memory image into a multi-frame animation or a single-frame static image depending on the animated parameter. This method should be called immediately after the MemoryImageSource is constructed and before an image is created with it to ensure that all ImageConsumers will receive the correct multi-frame data. If an ImageConsumer is added to this ImageProducer before this flag is set then that ImageConsumer will see only a snapshot of the pixel data that was available when it connected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFullBufferUpdates(boolean fullbuffers)
+				</name>
+				<description>
+					Specifies whether this animated memory image should always be updated by sending the complete buffer of pixels whenever there is a change. This flag is ignored if the animation flag is not turned on through the setAnimated() method. This method should be called immediately after the MemoryImageSource is constructed and before an image is created with it to ensure that all ImageConsumers will receive the correct pixel delivery hints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void newPixels()
+				</name>
+				<description>
+					Sends a whole new buffer of pixels to any ImageConsumers that are currently interested in the data for this image and notify them that an animation frame is complete. This method only has effect if the animation flag has been turned on through the setAnimated() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void newPixels(int x,               int y,               int w,               int h)
+				</name>
+				<description>
+					Sends a rectangular region of the buffer of pixels to any ImageConsumers that are currently interested in the data for this image and notify them that an animation frame is complete. This method only has effect if the animation flag has been turned on through the setAnimated() method. If the full buffer update flag was turned on with the setFullBufferUpdates() method then the rectangle parameters will be ignored and the entire buffer will always be sent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void newPixels(int x,               int y,               int w,               int h,               boolean framenotify)
+				</name>
+				<description>
+					Sends a rectangular region of the buffer of pixels to any ImageConsumers that are currently interested in the data for this image. If the framenotify parameter is true then the consumers are also notified that an animation frame is complete. This method only has effect if the animation flag has been turned on through the setAnimated() method. If the full buffer update flag was turned on with the setFullBufferUpdates() method then the rectangle parameters will be ignored and the entire buffer will always be sent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void newPixels(byte[] newpix,               ColorModel newmodel,               int offset,               int scansize)
+				</name>
+				<description>
+					Changes to a new byte array to hold the pixels for this image. If the animation flag has been turned on through the setAnimated() method, then the new pixels will be immediately delivered to any ImageConsumers that are currently interested in the data for this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void newPixels(int[] newpix,               ColorModel newmodel,               int offset,               int scansize)
+				</name>
+				<description>
+					Changes to a new int array to hold the pixels for this image. If the animation flag has been turned on through the setAnimated() method, then the new pixels will be immediately delivered to any ImageConsumers that are currently interested in the data for this image.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

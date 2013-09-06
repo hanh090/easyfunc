@@ -1,0 +1,189 @@
+<javaelement>
+	<package>
+		javax.lang.model.util
+	</package>
+	<type>
+		<name>
+			public interface Types
+		</name>
+		<description>
+			Utility methods for operating on types. Compatibility Note: Methods may be added to this interface in future releases of the platform.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Element asElement(TypeMirror t)
+				</name>
+				<description>
+					Returns the element corresponding to a type. The type may be a DeclaredType or TypeVariable. Returns null if the type is not one with a corresponding element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSameType(TypeMirror t1,                   TypeMirror t2)
+				</name>
+				<description>
+					Tests whether two TypeMirror objects represent the same type. Caveat: if either of the arguments to this method represents a wildcard, this method will return false. As a consequence, a wildcard is not the same type as itself. This might be surprising at first, but makes sense once you consider that an example like this must be rejected by the compiler:      List<?> list = new ArrayList<Object>();     list.add(list.get(0));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSubtype(TypeMirror t1,                  TypeMirror t2)
+				</name>
+				<description>
+					Tests whether one type is a subtype of another. Any type is considered to be a subtype of itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isAssignable(TypeMirror t1,                     TypeMirror t2)
+				</name>
+				<description>
+					Tests whether one type is assignable to another.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean contains(TypeMirror t1,                 TypeMirror t2)
+				</name>
+				<description>
+					Tests whether one type argument contains another.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSubsignature(ExecutableType m1,                       ExecutableType m2)
+				</name>
+				<description>
+					Tests whether the signature of one method is a subsignature of another.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<? extends TypeMirror> directSupertypes(TypeMirror t)
+				</name>
+				<description>
+					Returns the direct supertypes of a type. The interface types, if any, will appear last in the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeMirror erasure(TypeMirror t)
+				</name>
+				<description>
+					Returns the erasure of a type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeElement boxedClass(PrimitiveType p)
+				</name>
+				<description>
+					Returns the class of a boxed value of a given primitive type. That is, boxing conversion is applied.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					PrimitiveType unboxedType(TypeMirror t)
+				</name>
+				<description>
+					Returns the type (a primitive type) of unboxed values of a given type. That is, unboxing conversion is applied.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeMirror capture(TypeMirror t)
+				</name>
+				<description>
+					Applies capture conversion to a type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					PrimitiveType getPrimitiveType(TypeKind kind)
+				</name>
+				<description>
+					Returns a primitive type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NullType getNullType()
+				</name>
+				<description>
+					Returns the null type. This is the type of null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NoType getNoType(TypeKind kind)
+				</name>
+				<description>
+					Returns a pseudo-type used where no actual type is appropriate. The kind of type to return may be either VOID or NONE. For packages, use Elements.getPackageElement(CharSequence).asType() instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ArrayType getArrayType(TypeMirror componentType)
+				</name>
+				<description>
+					Returns an array type with the specified component type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					WildcardType getWildcardType(TypeMirror extendsBound,                             TypeMirror superBound)
+				</name>
+				<description>
+					Returns a new wildcard type argument. Either of the wildcard's bounds may be specified, or neither, but not both.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DeclaredType getDeclaredType(TypeElement typeElem,                             TypeMirror... typeArgs)
+				</name>
+				<description>
+					Returns the type corresponding to a type element and actual type arguments. Given the type element for Set and the type mirror for String, for example, this method may be used to get the parameterized type Set<String>. The number of type arguments must either equal the number of the type element's formal type parameters, or must be zero. If zero, and if the type element is generic, then the type element's raw type is returned. If a parameterized type is being returned, its type element must not be contained within a generic outer class. The parameterized type Outer<String>.Inner<Number>, for example, may be constructed by first using this method to get the type Outer<String>, and then invoking getDeclaredType(DeclaredType, TypeElement, TypeMirror...).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DeclaredType getDeclaredType(DeclaredType containing,                             TypeElement typeElem,                             TypeMirror... typeArgs)
+				</name>
+				<description>
+					Returns the type corresponding to a type element and actual type arguments, given a containing type of which it is a member. The parameterized type Outer<String>.Inner<Number>, for example, may be constructed by first using getDeclaredType(TypeElement, TypeMirror...) to get the type Outer<String>, and then invoking this method. If the containing type is a parameterized type, the number of type arguments must equal the number of typeElem's formal type parameters. If it is not parameterized or if it is null, this method is equivalent to getDeclaredType(typeElem, typeArgs).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeMirror asMemberOf(DeclaredType containing,                      Element element)
+				</name>
+				<description>
+					Returns the type of an element when that element is viewed as a member of, or otherwise directly contained by, a given type. For example, when viewed as a member of the parameterized type Set<String>, the Set.add method is an ExecutableType whose parameter is of type String.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

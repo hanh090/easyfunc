@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public class DigestOutputStream  extends FilterOutputStream
+		</name>
+		<description>
+			A transparent stream that updates the associated message digest using the bits going through the stream. To complete the message digest computation, call one of the digest methods on the associated message digest after your calls to one of this digest ouput stream's write methods. It is possible to turn this stream on or off (see on). When it is on, a call to one of the write methods results in an update on the message digest. But when it is off, the message digest is not updated. The default is for the stream to be on.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected MessageDigest digest
+				</name>
+				<description>
+					The message digest associated with this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DigestOutputStream(OutputStream stream,                    MessageDigest digest)
+				</name>
+				<description>
+					Creates a digest output stream, using the specified output stream and message digest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MessageDigest getMessageDigest()
+				</name>
+				<description>
+					Returns the message digest associated with this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMessageDigest(MessageDigest digest)
+				</name>
+				<description>
+					Associates the specified message digest with this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(int b)             throws IOException
+				</name>
+				<description>
+					Updates the message digest (if the digest function is on) using the specified byte, and in any case writes the byte to the output stream. That is, if the digest function is on (see on), this method calls update on the message digest associated with this stream, passing it the byte b. This method then writes the byte to the output stream, blocking until the byte is actually written.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(byte[] b,           int off,           int len)             throws IOException
+				</name>
+				<description>
+					Updates the message digest (if the digest function is on) using the specified subarray, and in any case writes the subarray to the output stream. That is, if the digest function is on (see on), this method calls update on the message digest associated with this stream, passing it the subarray specifications. This method then writes the subarray bytes to the output stream, blocking until the bytes are actually written.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void on(boolean on)
+				</name>
+				<description>
+					Turns the digest function on or off. The default is on. When it is on, a call to one of the write methods results in an update on the message digest. But when it is off, the message digest is not updated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Prints a string representation of this digest output stream and its associated message digest object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

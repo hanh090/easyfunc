@@ -1,0 +1,513 @@
+<javaelement>
+	<package>
+		java.nio.file
+	</package>
+	<type>
+		<name>
+			public final class Files  extends Object
+		</name>
+		<description>
+			This class consists exclusively of static methods that operate on files, directories, or other types of files. In most cases, the methods defined here will delegate to the associated file system provider to perform the file operations.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static InputStream newInputStream(Path path,                           OpenOption... options)                                    throws IOException
+				</name>
+				<description>
+					Opens a file, returning an input stream to read from the file. The stream will not be buffered, and is not required to support the mark or reset methods. The stream will be safe for access by multiple concurrent threads. Reading commences at the beginning of the file. Whether the returned stream is asynchronously closeable and/or interruptible is highly file system provider specific and therefore not specified. The options parameter determines how the file is opened. If no options are present then it is equivalent to opening the file with the READ option. In addition to the READ option, an implementation may also support additional implementation specific options.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static OutputStream newOutputStream(Path path,                             OpenOption... options)                                      throws IOException
+				</name>
+				<description>
+					Opens or creates a file, returning an output stream that may be used to write bytes to the file. The resulting stream will not be buffered. The stream will be safe for access by multiple concurrent threads. Whether the returned stream is asynchronously closeable and/or interruptible is highly file system provider specific and therefore not specified. This method opens or creates a file in exactly the manner specified by the newByteChannel method with the exception that the READ option may not be present in the array of options. If no options are present then this method works as if the CREATE, TRUNCATE_EXISTING, and WRITE options are present. In other words, it opens the file for writing, creating the file if it doesn't exist, or initially truncating an existing regular-file to a size of 0 if it exists. Usage Examples:        Path path = ...         // truncate and overwrite an existing file, or create the file if       // it doesn't initially exist       OutputStream out = Files.newOutputStream(path);         // append to an existing file, fail if the file does not exist       out = Files.newOutputStream(path, APPEND);         // append to an existing file, create file if it doesn't initially exist       out = Files.newOutputStream(path, CREATE, APPEND);         // always create new file, failing if it already exists       out = Files.newOutputStream(path, CREATE_NEW);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SeekableByteChannel newByteChannel(Path path,                                   Set<? extends OpenOption> options,                                   FileAttribute<?>... attrs)                                            throws IOException
+				</name>
+				<description>
+					Opens or creates a file, returning a seekable byte channel to access the file. The options parameter determines how the file is opened. The READ and WRITE options determine if the file should be opened for reading and/or writing. If neither option (or the APPEND option) is present then the file is opened for reading. By default reading or writing commence at the beginning of the file. In the addition to READ and WRITE, the following options may be present: Option Description APPEND If this option is present then the file is opened for writing and each invocation of the channel's write method first advances the position to the end of the file and then writes the requested data. Whether the advancement of the position and the writing of the data are done in a single atomic operation is system-dependent and therefore unspecified. This option may not be used in conjunction with the READ or TRUNCATE_EXISTING options. TRUNCATE_EXISTING If this option is present then the existing file is truncated to a size of 0 bytes. This option is ignored when the file is opened only for reading. CREATE_NEW If this option is present then a new file is created, failing if the file already exists or is a symbolic link. When creating a file the check for the existence of the file and the creation of the file if it does not exist is atomic with respect to other file system operations. This option is ignored when the file is opened only for reading. CREATE If this option is present then an existing file is opened if it exists, otherwise a new file is created. This option is ignored if the CREATE_NEW option is also present or the file is opened only for reading. DELETE_ON_CLOSE When this option is present then the implementation makes a best effort attempt to delete the file when closed by the close method. If the close method is not invoked then a best effort attempt is made to delete the file when the Java virtual machine terminates. SPARSE When creating a new file this option is a hint that the new file will be sparse. This option is ignored when not creating a new file. SYNC Requires that every update to the file's content or metadata be written synchronously to the underlying storage device. (see Synchronized I/O file integrity). DSYNC Requires that every update to the file's content be written synchronously to the underlying storage device. (see Synchronized I/O file integrity). An implementation may also support additional implementation specific options. The attrs parameter is optional file-attributes to set atomically when a new file is created. In the case of the default provider, the returned seekable byte channel is a FileChannel. Usage Examples:        Path path = ...         // open file for reading       ReadableByteChannel rbc = Files.newByteChannel(path, EnumSet.of(READ)));         // open file for writing to the end of an existing file, creating       // the file if it doesn't already exist       WritableByteChannel wbc = Files.newByteChannel(path, EnumSet.of(CREATE,APPEND));         // create file with initial permissions, opening it for both reading and writing       FileAttribute<<SetPosixFilePermission>> perms = ...       SeekableByteChannel sbc = Files.newByteChannel(path, EnumSet.of(CREATE_NEW,READ,WRITE), perms);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SeekableByteChannel newByteChannel(Path path,                                   OpenOption... options)                                            throws IOException
+				</name>
+				<description>
+					Opens or creates a file, returning a seekable byte channel to access the file. This method opens or creates a file in exactly the manner specified by the newByteChannel method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DirectoryStream<Path> newDirectoryStream(Path dir)                                                  throws IOException
+				</name>
+				<description>
+					Opens a directory, returning a DirectoryStream to iterate over all entries in the directory. The elements returned by the directory stream's iterator are of type Path, each one representing an entry in the directory. The Path objects are obtained as if by resolving the name of the directory entry against dir. When not using the try-with-resources construct, then directory stream's close method should be invoked after iteration is completed so as to free any resources held for the open directory. When an implementation supports operations on entries in the directory that execute in a race-free manner then the returned directory stream is a SecureDirectoryStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DirectoryStream<Path> newDirectoryStream(Path dir,                                         String glob)                                                  throws IOException
+				</name>
+				<description>
+					Opens a directory, returning a DirectoryStream to iterate over the entries in the directory. The elements returned by the directory stream's iterator are of type Path, each one representing an entry in the directory. The Path objects are obtained as if by resolving the name of the directory entry against dir. The entries returned by the iterator are filtered by matching the String representation of their file names against the given globbing pattern. For example, suppose we want to iterate over the files ending with ".java" in a directory:        Path dir = ...       try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) {           :       }   The globbing pattern is specified by the getPathMatcher method. When not using the try-with-resources construct, then directory stream's close method should be invoked after iteration is completed so as to free any resources held for the open directory. When an implementation supports operations on entries in the directory that execute in a race-free manner then the returned directory stream is a SecureDirectoryStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DirectoryStream<Path> newDirectoryStream(Path dir,                                         DirectoryStream.Filter<? super Path> filter)                                                  throws IOException
+				</name>
+				<description>
+					Opens a directory, returning a DirectoryStream to iterate over the entries in the directory. The elements returned by the directory stream's iterator are of type Path, each one representing an entry in the directory. The Path objects are obtained as if by resolving the name of the directory entry against dir. The entries returned by the iterator are filtered by the given filter. When not using the try-with-resources construct, then directory stream's close method should be invoked after iteration is completed so as to free any resources held for the open directory. Where the filter terminates due to an uncaught error or runtime exception then it is propagated to the hasNext or next method. Where an IOException is thrown, it results in the hasNext or next method throwing a DirectoryIteratorException with the IOException as the cause. When an implementation supports operations on entries in the directory that execute in a race-free manner then the returned directory stream is a SecureDirectoryStream. Usage Example: Suppose we want to iterate over the files in a directory that are larger than 8K.        DirectoryStream.Filter<Path> filter = new DirectoryStream.Filter<Path>() {           public boolean accept(Path file) throws IOException {               return (Files.size(file) > 8192L);           }       };       Path dir = ...       try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, filter)) {           :       }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createFile(Path path,                FileAttribute<?>... attrs)                         throws IOException
+				</name>
+				<description>
+					Creates a new and empty file, failing if the file already exists. The check for the existence of the file and the creation of the new file if it does not exist are a single operation that is atomic with respect to all other filesystem activities that might affect the directory. The attrs parameter is optional file-attributes to set atomically when creating the file. Each attribute is identified by its name. If more than one attribute of the same name is included in the array then all but the last occurrence is ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createDirectory(Path dir,                     FileAttribute<?>... attrs)                              throws IOException
+				</name>
+				<description>
+					Creates a new directory. The check for the existence of the file and the creation of the directory if it does not exist are a single operation that is atomic with respect to all other filesystem activities that might affect the directory. The createDirectories method should be used where it is required to create all nonexistent parent directories first. The attrs parameter is optional file-attributes to set atomically when creating the directory. Each attribute is identified by its name. If more than one attribute of the same name is included in the array then all but the last occurrence is ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createDirectories(Path dir,                       FileAttribute<?>... attrs)                                throws IOException
+				</name>
+				<description>
+					Creates a directory by creating all nonexistent parent directories first. Unlike the createDirectory method, an exception is not thrown if the directory could not be created because it already exists. The attrs parameter is optional file-attributes to set atomically when creating the nonexistent directories. Each file attribute is identified by its name. If more than one attribute of the same name is included in the array then all but the last occurrence is ignored. If this method fails, then it may do so after creating some, but not all, of the parent directories.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createTempFile(Path dir,                    String prefix,                    String suffix,                    FileAttribute<?>... attrs)                             throws IOException
+				</name>
+				<description>
+					Creates a new empty file in the specified directory, using the given prefix and suffix strings to generate its name. The resulting Path is associated with the same FileSystem as the given directory. The details as to how the name of the file is constructed is implementation dependent and therefore not specified. Where possible the prefix and suffix are used to construct candidate names in the same manner as the File.createTempFile(String,String,File) method. As with the File.createTempFile methods, this method is only part of a temporary-file facility. Where used as a work files, the resulting file may be opened using the DELETE_ON_CLOSE option so that the file is deleted when the appropriate close method is invoked. Alternatively, a shutdown-hook, or the File.deleteOnExit() mechanism may be used to delete the file automatically. The attrs parameter is optional file-attributes to set atomically when creating the file. Each attribute is identified by its name. If more than one attribute of the same name is included in the array then all but the last occurrence is ignored. When no file attributes are specified, then the resulting file may have more restrictive access permissions to files created by the File.createTempFile(String,String,File) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createTempFile(String prefix,                    String suffix,                    FileAttribute<?>... attrs)                             throws IOException
+				</name>
+				<description>
+					Creates an empty file in the default temporary-file directory, using the given prefix and suffix to generate its name. The resulting Path is associated with the default FileSystem. This method works in exactly the manner specified by the createTempFile(Path,String,String,FileAttribute[]) method for the case that the dir parameter is the temporary-file directory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createTempDirectory(Path dir,                         String prefix,                         FileAttribute<?>... attrs)                                  throws IOException
+				</name>
+				<description>
+					Creates a new directory in the specified directory, using the given prefix to generate its name. The resulting Path is associated with the same FileSystem as the given directory. The details as to how the name of the directory is constructed is implementation dependent and therefore not specified. Where possible the prefix is used to construct candidate names. As with the createTempFile methods, this method is only part of a temporary-file facility. A shutdown-hook, or the File.deleteOnExit() mechanism may be used to delete the directory automatically. The attrs parameter is optional file-attributes to set atomically when creating the directory. Each attribute is identified by its name. If more than one attribute of the same name is included in the array then all but the last occurrence is ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createTempDirectory(String prefix,                         FileAttribute<?>... attrs)                                  throws IOException
+				</name>
+				<description>
+					Creates a new directory in the default temporary-file directory, using the given prefix to generate its name. The resulting Path is associated with the default FileSystem. This method works in exactly the manner specified by createTempDirectory(Path,String,FileAttribute[]) method for the case that the dir parameter is the temporary-file directory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createSymbolicLink(Path link,                        Path target,                        FileAttribute<?>... attrs)                                 throws IOException
+				</name>
+				<description>
+					Creates a symbolic link to a target (optional operation). The target parameter is the target of the link. It may be an absolute or relative path and may not exist. When the target is a relative path then file system operations on the resulting link are relative to the path of the link. The attrs parameter is optional attributes to set atomically when creating the link. Each attribute is identified by its name. If more than one attribute of the same name is included in the array then all but the last occurrence is ignored. Where symbolic links are supported, but the underlying FileStore does not support symbolic links, then this may fail with an IOException. Additionally, some operating systems may require that the Java virtual machine be started with implementation specific privileges to create symbolic links, in which case this method may throw IOException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path createLink(Path link,                Path existing)                         throws IOException
+				</name>
+				<description>
+					Creates a new link (directory entry) for an existing file (optional operation). The link parameter locates the directory entry to create. The existing parameter is the path to an existing file. This method creates a new directory entry for the file so that it can be accessed using link as the path. On some file systems this is known as creating a "hard link". Whether the file attributes are maintained for the file or for each directory entry is file system specific and therefore not specified. Typically, a file system requires that all links (directory entries) for a file be on the same file system. Furthermore, on some platforms, the Java virtual machine may require to be started with implementation specific privileges to create hard links or to create links to directories.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void delete(Path path)                     throws IOException
+				</name>
+				<description>
+					Deletes a file. An implementation may require to examine the file to determine if the file is a directory. Consequently this method may not be atomic with respect to other file system operations. If the file is a symbolic link then the symbolic link itself, not the final target of the link, is deleted. If the file is a directory then the directory must be empty. In some implementations a directory has entries for special files or links that are created when the directory is created. In such implementations a directory is considered empty when only the special entries exist. This method can be used with the walkFileTree method to delete a directory and all entries in the directory, or an entire file-tree where required. On some operating systems it may not be possible to remove a file when it is open and in use by this Java virtual machine or other programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean deleteIfExists(Path path)                                throws IOException
+				</name>
+				<description>
+					Deletes a file if it exists. As with the delete(Path) method, an implementation may need to examine the file to determine if the file is a directory. Consequently this method may not be atomic with respect to other file system operations. If the file is a symbolic link, then the symbolic link itself, not the final target of the link, is deleted. If the file is a directory then the directory must be empty. In some implementations a directory has entries for special files or links that are created when the directory is created. In such implementations a directory is considered empty when only the special entries exist. On some operating systems it may not be possible to remove a file when it is open and in use by this Java virtual machine or other programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path copy(Path source,          Path target,          CopyOption... options)                   throws IOException
+				</name>
+				<description>
+					Copy a file to a target file. This method copies a file to the target file with the options parameter specifying how the copy is performed. By default, the copy fails if the target file already exists or is a symbolic link, except if the source and target are the same file, in which case the method completes without copying the file. File attributes are not required to be copied to the target file. If symbolic links are supported, and the file is a symbolic link, then the final target of the link is copied. If the file is a directory then it creates an empty directory in the target location (entries in the directory are not copied). This method can be used with the walkFileTree method to copy a directory and all entries in the directory, or an entire file-tree where required. The options parameter may include any of the following: Option Description REPLACE_EXISTING If the target file exists, then the target file is replaced if it is not a non-empty directory. If the target file exists and is a symbolic link, then the symbolic link itself, not the target of the link, is replaced. COPY_ATTRIBUTES Attempts to copy the file attributes associated with this file to the target file. The exact file attributes that are copied is platform and file system dependent and therefore unspecified. Minimally, the last-modified-time is copied to the target file if supported by both the source and target file store. Copying of file timestamps may result in precision loss. NOFOLLOW_LINKS Symbolic links are not followed. If the file is a symbolic link, then the symbolic link itself, not the target of the link, is copied. It is implementation specific if file attributes can be copied to the new link. In other words, the COPY_ATTRIBUTES option may be ignored when copying a symbolic link. An implementation of this interface may support additional implementation specific options. Copying a file is not an atomic operation. If an IOException is thrown then it possible that the target file is incomplete or some of its file attributes have not been copied from the source file. When the REPLACE_EXISTING option is specified and the target file exists, then the target file is replaced. The check for the existence of the file and the creation of the new file may not be atomic with respect to other file system activities. Usage Example: Suppose we want to copy a file into a directory, giving it the same file name as the source file:        Path source = ...       Path newdir = ...       Files.copy(source, newdir.resolve(source.getFileName());
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path move(Path source,          Path target,          CopyOption... options)                   throws IOException
+				</name>
+				<description>
+					Move or rename a file to a target file. By default, this method attempts to move the file to the target file, failing if the target file exists except if the source and target are the same file, in which case this method has no effect. If the file is a symbolic link then the symbolic link itself, not the target of the link, is moved. This method may be invoked to move an empty directory. In some implementations a directory has entries for special files or links that are created when the directory is created. In such implementations a directory is considered empty when only the special entries exist. When invoked to move a directory that is not empty then the directory is moved if it does not require moving the entries in the directory. For example, renaming a directory on the same FileStore will usually not require moving the entries in the directory. When moving a directory requires that its entries be moved then this method fails (by throwing an IOException). To move a file tree may involve copying rather than moving directories and this can be done using the copy method in conjunction with the Files.walkFileTree utility method. The options parameter may include any of the following: Option Description REPLACE_EXISTING If the target file exists, then the target file is replaced if it is not a non-empty directory. If the target file exists and is a symbolic link, then the symbolic link itself, not the target of the link, is replaced. ATOMIC_MOVE The move is performed as an atomic file system operation and all other options are ignored. If the target file exists then it is implementation specific if the existing file is replaced or this method fails by throwing an IOException. If the move cannot be performed as an atomic file system operation then AtomicMoveNotSupportedException is thrown. This can arise, for example, when the target location is on a different FileStore and would require that the file be copied, or target location is associated with a different provider to this object. An implementation of this interface may support additional implementation specific options. Where the move requires that the file be copied then the last-modified-time is copied to the new file. An implementation may also attempt to copy other file attributes but is not required to fail if the file attributes cannot be copied. When the move is performed as a non-atomic operation, and a IOException is thrown, then the state of the files is not defined. The original file and the target file may both exist, the target file may be incomplete or some of its file attributes may not been copied from the original file. Usage Examples: Suppose we want to rename a file to "newname", keeping the file in the same directory:        Path source = ...       Files.move(source, source.resolveSibling("newname"));   Alternatively, suppose we want to move a file to new directory, keeping the same file name, and replacing any existing file of that name in the directory:        Path source = ...       Path newdir = ...       Files.move(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path readSymbolicLink(Path link)                               throws IOException
+				</name>
+				<description>
+					Reads the target of a symbolic link (optional operation). If the file system supports symbolic links then this method is used to read the target of the link, failing if the file is not a symbolic link. The target of the link need not exist. The returned Path object will be associated with the same file system as link.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FileStore getFileStore(Path path)                                throws IOException
+				</name>
+				<description>
+					Returns the FileStore representing the file store where a file is located. Once a reference to the FileStore is obtained it is implementation specific if operations on the returned FileStore, or FileStoreAttributeView objects obtained from it, continue to depend on the existence of the file. In particular the behavior is not defined for the case that the file is deleted or moved to a different file store.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isSameFile(Path path,                   Path path2)                            throws IOException
+				</name>
+				<description>
+					Tests if two paths locate the same file. If both Path objects are equal then this method returns true without checking if the file exists. If the two Path objects are associated with different providers then this method returns false. Otherwise, this method checks if both Path objects locate the same file, and depending on the implementation, may require to open or access both files. If the file system and files remain static, then this method implements an equivalence relation for non-null Paths. It is reflexive: for Path f, isSameFile(f,f) should return true. It is symmetric: for two Paths f and g, isSameFile(f,g) will equal isSameFile(g,f). It is transitive: for three Paths f, g, and h, if isSameFile(f,g) returns true and isSameFile(g,h) returns true, then isSameFile(g,h) will return return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isHidden(Path path)                          throws IOException
+				</name>
+				<description>
+					Tells whether or not a file is considered hidden. The exact definition of hidden is platform or provider dependent. On UNIX for example a file is considered to be hidden if its name begins with a period character ('.'). On Windows a file is considered hidden if it isn't a directory and the DOS hidden attribute is set. Depending on the implementation this method may require to access the file system to determine if the file is considered hidden.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String probeContentType(Path path)                                 throws IOException
+				</name>
+				<description>
+					Probes the content type of a file. This method uses the installed FileTypeDetector implementations to probe the given file to determine its content type. Each file type detector's probeContentType is invoked, in turn, to probe the file type. If the file is recognized then the content type is returned. If the file is not recognized by any of the installed file type detectors then a system-default file type detector is invoked to guess the content type. A given invocation of the Java virtual machine maintains a system-wide list of file type detectors. Installed file type detectors are loaded using the service-provider loading facility defined by the ServiceLoader class. Installed file type detectors are loaded using the system class loader. If the system class loader cannot be found then the extension class loader is used; If the extension class loader cannot be found then the bootstrap class loader is used. File type detectors are typically installed by placing them in a JAR file on the application class path or in the extension directory, the JAR file contains a provider-configuration file named java.nio.file.spi.FileTypeDetector in the resource directory META-INF/services, and the file lists one or more fully-qualified names of concrete subclass of FileTypeDetector that have a zero argument constructor. If the process of locating or instantiating the installed file type detectors fails then an unspecified error is thrown. The ordering that installed providers are located is implementation specific. The return value of this method is the string form of the value of a Multipurpose Internet Mail Extension (MIME) content type as defined by RFC 2045: Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies. The string is guaranteed to be parsable according to the grammar in the RFC.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <V extends FileAttributeView> V getFileAttributeView(Path path,                                                     Class<V> type,                                                     LinkOption... options)
+				</name>
+				<description>
+					Returns a file attribute view of a given type. A file attribute view provides a read-only or updatable view of a set of file attributes. This method is intended to be used where the file attribute view defines type-safe methods to read or update the file attributes. The type parameter is the type of the attribute view required and the method returns an instance of that type if supported. The BasicFileAttributeView type supports access to the basic attributes of a file. Invoking this method to select a file attribute view of that type will always return an instance of that class. The options array may be used to indicate how symbolic links are handled by the resulting file attribute view for the case that the file is a symbolic link. By default, symbolic links are followed. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. This option is ignored by implementations that do not support symbolic links. Usage Example: Suppose we want read or set a file's ACL, if supported:        Path path = ...       AclFileAttributeView view = Files.getFileAttributeView(path, AclFileAttributeView.class);       if (view != null) {           List<AclEntry> acl = view.getAcl();           :       }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <A extends BasicFileAttributes> A readAttributes(Path path,                                                 Class<A> type,                                                 LinkOption... options)                                                      throws IOException
+				</name>
+				<description>
+					Reads a file's attributes as a bulk operation. The type parameter is the type of the attributes required and this method returns an instance of that type if supported. All implementations support a basic set of file attributes and so invoking this method with a type parameter of BasicFileAttributes.class will not throw UnsupportedOperationException. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is read. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. It is implementation specific if all file attributes are read as an atomic operation with respect to other file system operations. Usage Example: Suppose we want to read a file's attributes in bulk:       Path path = ...      BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);   Alternatively, suppose we want to read file's POSIX attributes without following symbolic links:       PosixFileAttributes attrs = Files.readAttributes(path, PosixFileAttributes.class, NOFOLLOW_LINKS);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path setAttribute(Path path,                  String attribute,                  Object value,                  LinkOption... options)                           throws IOException
+				</name>
+				<description>
+					Sets the value of a file attribute. The attribute parameter identifies the attribute to be set and takes the form: [view-name:]attribute-name where square brackets [...] delineate an optional component and the character ':' stands for itself. view-name is the name of a FileAttributeView that identifies a set of file attributes. If not specified then it defaults to "basic", the name of the file attribute view that identifies the basic set of file attributes common to many file systems. attribute-name is the name of the attribute within the set. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is set. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. Usage Example: Suppose we want to set the DOS "hidden" attribute:       Path path = ...      Files.setAttribute(path, "dos:hidden", true);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object getAttribute(Path path,                    String attribute,                    LinkOption... options)                             throws IOException
+				</name>
+				<description>
+					Reads the value of a file attribute. The attribute parameter identifies the attribute to be read and takes the form: [view-name:]attribute-name where square brackets [...] delineate an optional component and the character ':' stands for itself. view-name is the name of a FileAttributeView that identifies a set of file attributes. If not specified then it defaults to "basic", the name of the file attribute view that identifies the basic set of file attributes common to many file systems. attribute-name is the name of the attribute. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is read. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. Usage Example: Suppose we require the user ID of the file owner on a system that supports a "unix" view:       Path path = ...      int uid = (Integer)Files.getAttribute(path, "unix:uid");
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Map<String,Object> readAttributes(Path path,                                  String attributes,                                  LinkOption... options)                                           throws IOException
+				</name>
+				<description>
+					Reads a set of file attributes as a bulk operation. The attributes parameter identifies the attributes to be read and takes the form: [view-name:]attribute-list where square brackets [...] delineate an optional component and the character ':' stands for itself. view-name is the name of a FileAttributeView that identifies a set of file attributes. If not specified then it defaults to "basic", the name of the file attribute view that identifies the basic set of file attributes common to many file systems. The attribute-list component is a comma separated list of zero or more names of attributes to read. If the list contains the value "*" then all attributes are read. Attributes that are not supported are ignored and will not be present in the returned map. It is implementation specific if all attributes are read as an atomic operation with respect to other file system operations. The following examples demonstrate possible values for the attributes parameter: "*" Read all basic-file-attributes. "size,lastModifiedTime,lastAccessTime" Reads the file size, last modified time, and last access time attributes. "posix:*" Read all POSIX-file-attributes. "posix:permissions,owner,size" Reads the POSX file permissions, owner, and file size. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is read. If the option NOFOLLOW_LINKS is present then symbolic links are not followed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Set<PosixFilePermission> getPosixFilePermissions(Path path,                                                 LinkOption... options)                                                          throws IOException
+				</name>
+				<description>
+					Returns a file's POSIX file permissions. The path parameter is associated with a FileSystem that supports the PosixFileAttributeView. This attribute view provides access to file attributes commonly associated with files on file systems used by operating systems that implement the Portable Operating System Interface (POSIX) family of standards. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is read. If the option NOFOLLOW_LINKS is present then symbolic links are not followed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path setPosixFilePermissions(Path path,                             Set<PosixFilePermission> perms)                                      throws IOException
+				</name>
+				<description>
+					Sets a file's POSIX permissions. The path parameter is associated with a FileSystem that supports the PosixFileAttributeView. This attribute view provides access to file attributes commonly associated with files on file systems used by operating systems that implement the Portable Operating System Interface (POSIX) family of standards.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static UserPrincipal getOwner(Path path,                       LinkOption... options)                                throws IOException
+				</name>
+				<description>
+					Returns the owner of a file. The path parameter is associated with a file system that supports FileOwnerAttributeView. This file attribute view provides access to a file attribute that is the owner of the file.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path setOwner(Path path,              UserPrincipal owner)                       throws IOException
+				</name>
+				<description>
+					Updates the file owner. The path parameter is associated with a file system that supports FileOwnerAttributeView. This file attribute view provides access to a file attribute that is the owner of the file. Usage Example: Suppose we want to make "joe" the owner of a file:        Path path = ...       UserPrincipalLookupService lookupService =           provider(path).getUserPrincipalLookupService();       UserPrincipal joe = lookupService.lookupPrincipalByName("joe");       Files.setOwner(path, joe);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isSymbolicLink(Path path)
+				</name>
+				<description>
+					Tests whether a file is a symbolic link. Where is it required to distinguish an I/O exception from the case that the file is not a symbolic link then the file attributes can be read with the readAttributes method and the file type tested with the BasicFileAttributes.isSymbolicLink() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isDirectory(Path path,                    LinkOption... options)
+				</name>
+				<description>
+					Tests whether a file is a directory. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is read. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. Where is it required to distinguish an I/O exception from the case that the file is not a directory then the file attributes can be read with the readAttributes method and the file type tested with the BasicFileAttributes.isDirectory() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isRegularFile(Path path,                      LinkOption... options)
+				</name>
+				<description>
+					Tests whether a file is a regular file with opaque content. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is read. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. Where is it required to distinguish an I/O exception from the case that the file is not a regular file then the file attributes can be read with the readAttributes method and the file type tested with the BasicFileAttributes.isRegularFile() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FileTime getLastModifiedTime(Path path,                             LinkOption... options)                                      throws IOException
+				</name>
+				<description>
+					Returns a file's last modified time. The options array may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed and the file attribute of the final target of the link is read. If the option NOFOLLOW_LINKS is present then symbolic links are not followed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path setLastModifiedTime(Path path,                         FileTime time)                                  throws IOException
+				</name>
+				<description>
+					Updates a file's last modified time attribute. The file time is converted to the epoch and precision supported by the file system. Converting from finer to coarser granularities result in precision loss. The behavior of this method when attempting to set the last modified time when it is not supported by the file system or is outside the range supported by the underlying file store is not defined. It may or not fail by throwing an IOException. Usage Example: Suppose we want to set the last modified time to the current time:       Path path = ...      FileTime now = FileTime.fromMillis(System.currentTimeMillis());      Files.setLastModifiedTime(path, now);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static long size(Path path)                   throws IOException
+				</name>
+				<description>
+					Returns the size of a file (in bytes). The size may differ from the actual size on the file system due to compression, support for sparse files, or other reasons. The size of files that are not regular files is implementation specific and therefore unspecified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean exists(Path path,               LinkOption... options)
+				</name>
+				<description>
+					Tests whether a file exists. The options parameter may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. Note that the result of this method is immediately outdated. If this method indicates the file exists then there is no guarantee that a subsequence access will succeed. Care should be taken when using this method in security sensitive applications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean notExists(Path path,                  LinkOption... options)
+				</name>
+				<description>
+					Tests whether the file located by this path does not exist. This method is intended for cases where it is required to take action when it can be confirmed that a file does not exist. The options parameter may be used to indicate how symbolic links are handled for the case that the file is a symbolic link. By default, symbolic links are followed. If the option NOFOLLOW_LINKS is present then symbolic links are not followed. Note that this method is not the complement of the exists method. Where it is not possible to determine if a file exists or not then both methods return false. As with the exists method, the result of this method is immediately outdated. If this method indicates the file does exist then there is no guarantee that a subsequence attempt to create the file will succeed. Care should be taken when using this method in security sensitive applications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isReadable(Path path)
+				</name>
+				<description>
+					Tests whether a file is readable. This method checks that a file exists and that this Java virtual machine has appropriate privileges that would allow it open the file for reading. Depending on the implementation, this method may require to read file permissions, access control lists, or other file attributes in order to check the effective access to the file. Consequently, this method may not be atomic with respect to other file system operations. Note that the result of this method is immediately outdated, there is no guarantee that a subsequent attempt to open the file for reading will succeed (or even that it will access the same file). Care should be taken when using this method in security sensitive applications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isWritable(Path path)
+				</name>
+				<description>
+					Tests whether a file is writable. This method checks that a file exists and that this Java virtual machine has appropriate privileges that would allow it open the file for writing. Depending on the implementation, this method may require to read file permissions, access control lists, or other file attributes in order to check the effective access to the file. Consequently, this method may not be atomic with respect to other file system operations. Note that result of this method is immediately outdated, there is no guarantee that a subsequent attempt to open the file for writing will succeed (or even that it will access the same file). Care should be taken when using this method in security sensitive applications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isExecutable(Path path)
+				</name>
+				<description>
+					Tests whether a file is executable. This method checks that a file exists and that this Java virtual machine has appropriate privileges to execute the file. The semantics may differ when checking access to a directory. For example, on UNIX systems, checking for execute access checks that the Java virtual machine has permission to search the directory in order to access file or subdirectories. Depending on the implementation, this method may require to read file permissions, access control lists, or other file attributes in order to check the effective access to the file. Consequently, this method may not be atomic with respect to other file system operations. Note that the result of this method is immediately outdated, there is no guarantee that a subsequent attempt to execute the file will succeed (or even that it will access the same file). Care should be taken when using this method in security sensitive applications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path walkFileTree(Path start,                  Set<FileVisitOption> options,                  int maxDepth,                  FileVisitor<? super Path> visitor)                           throws IOException
+				</name>
+				<description>
+					Walks a file tree. This method walks a file tree rooted at a given starting file. The file tree traversal is depth-first with the given FileVisitor invoked for each file encountered. File tree traversal completes when all accessible files in the tree have been visited, or a visit method returns a result of TERMINATE. Where a visit method terminates due an IOException, an uncaught error, or runtime exception, then the traversal is terminated and the error or exception is propagated to the caller of this method. For each file encountered this method attempts to read its BasicFileAttributes. If the file is not a directory then the visitFile method is invoked with the file attributes. If the file attributes cannot be read, due to an I/O exception, then the visitFileFailed method is invoked with the I/O exception. Where the file is a directory, and the directory could not be opened, then the visitFileFailed method is invoked with the I/O exception, after which, the file tree walk continues, by default, at the next sibling of the directory. Where the directory is opened successfully, then the entries in the directory, and their descendants are visited. When all entries have been visited, or an I/O error occurs during iteration of the directory, then the directory is closed and the visitor's postVisitDirectory method is invoked. The file tree walk then continues, by default, at the next sibling of the directory. By default, symbolic links are not automatically followed by this method. If the options parameter contains the FOLLOW_LINKS option then symbolic links are followed. When following links, and the attributes of the target cannot be read, then this method attempts to get the BasicFileAttributes of the link. If they can be read then the visitFile method is invoked with the attributes of the link (otherwise the visitFileFailed method is invoked as specified above). If the options parameter contains the FOLLOW_LINKS option then this method keeps track of directories visited so that cycles can be detected. A cycle arises when there is an entry in a directory that is an ancestor of the directory. Cycle detection is done by recording the file-key of directories, or if file keys are not available, by invoking the isSameFile method to test if a directory is the same file as an ancestor. When a cycle is detected it is treated as an I/O error, and the visitFileFailed method is invoked with an instance of FileSystemLoopException. The maxDepth parameter is the maximum number of levels of directories to visit. A value of 0 means that only the starting file is visited, unless denied by the security manager. A value of MAX_VALUE may be used to indicate that all levels should be visited. The visitFile method is invoked for all files, including directories, encountered at maxDepth, unless the basic file attributes cannot be read, in which case the visitFileFailed method is invoked. If a visitor returns a result of null then NullPointerException is thrown. When a security manager is installed and it denies access to a file (or directory), then it is ignored and the visitor is not invoked for that file (or directory).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path walkFileTree(Path start,                  FileVisitor<? super Path> visitor)                           throws IOException
+				</name>
+				<description>
+					Walks a file tree. This method works as if invoking it were equivalent to evaluating the expression:    walkFileTree(start, EnumSet.noneOf(FileVisitOption.class), Integer.MAX_VALUE, visitor)   In other words, it does not follow symbolic links, and visits all levels of the file tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BufferedReader newBufferedReader(Path path,                                 Charset cs)                                          throws IOException
+				</name>
+				<description>
+					Opens a file for reading, returning a BufferedReader that may be used to read text from the file in an efficient manner. Bytes from the file are decoded into characters using the specified charset. Reading commences at the beginning of the file. The Reader methods that read from the file throw IOException if a malformed or unmappable byte sequence is read.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BufferedWriter newBufferedWriter(Path path,                                 Charset cs,                                 OpenOption... options)                                          throws IOException
+				</name>
+				<description>
+					Opens or creates a file for writing, returning a BufferedWriter that may be used to write text to the file in an efficient manner. The options parameter specifies how the the file is created or opened. If no options are present then this method works as if the CREATE, TRUNCATE_EXISTING, and WRITE options are present. In other words, it opens the file for writing, creating the file if it doesn't exist, or initially truncating an existing regular-file to a size of 0 if it exists. The Writer methods to write text throw IOException if the text cannot be encoded using the specified charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static long copy(InputStream in,          Path target,          CopyOption... options)                   throws IOException
+				</name>
+				<description>
+					Copies all bytes from an input stream to a file. On return, the input stream will be at end of stream. By default, the copy fails if the target file already exists or is a symbolic link. If the REPLACE_EXISTING option is specified, and the target file already exists, then it is replaced if it is not a non-empty directory. If the target file exists and is a symbolic link, then the symbolic link is replaced. In this release, the REPLACE_EXISTING option is the only option required to be supported by this method. Additional options may be supported in future releases. If an I/O error occurs reading from the input stream or writing to the file, then it may do so after the target file has been created and after some bytes have been read or written. Consequently the input stream may not be at end of stream and may be in an inconsistent state. It is strongly recommended that the input stream be promptly closed if an I/O error occurs. This method may block indefinitely reading from the input stream (or writing to the file). The behavior for the case that the input stream is asynchronously closed or the thread interrupted during the copy is highly input stream and file system provider specific and therefore not specified. Usage example: Suppose we want to capture a web page and save it to a file:        Path path = ...       URI u = URI.create("http://java.sun.com/");       try (InputStream in = u.toURL().openStream()) {           Files.copy(in, path);       }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static long copy(Path source,          OutputStream out)                   throws IOException
+				</name>
+				<description>
+					Copies all bytes from a file to an output stream. If an I/O error occurs reading from the file or writing to the output stream, then it may do so after some bytes have been read or written. Consequently the output stream may be in an inconsistent state. It is strongly recommended that the output stream be promptly closed if an I/O error occurs. This method may block indefinitely writing to the output stream (or reading from the file). The behavior for the case that the output stream is asynchronously closed or the thread interrupted during the copy is highly output stream and file system provider specific and therefore not specified. Note that if the given output stream is Flushable then its flush method may need to invoked after this method completes so as to flush any buffered output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static byte[] readAllBytes(Path path)                             throws IOException
+				</name>
+				<description>
+					Read all the bytes from a file. The method ensures that the file is closed when all bytes have been read or an I/O error, or other runtime exception, is thrown. Note that this method is intended for simple cases where it is convenient to read all bytes into a byte array. It is not intended for reading in large files.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static List<String> readAllLines(Path path,                          Charset cs)                                   throws IOException
+				</name>
+				<description>
+					Read all lines from a file. This method ensures that the file is closed when all bytes have been read or an I/O error, or other runtime exception, is thrown. Bytes from the file are decoded into characters using the specified charset. This method recognizes the following as line terminators: \u000D followed by \u000A, CARRIAGE RETURN followed by LINE FEED \u000A, LINE FEED \u000D, CARRIAGE RETURN Additional Unicode line terminators may be recognized in future releases. Note that this method is intended for simple cases where it is convenient to read all lines in a single operation. It is not intended for reading in large files.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path write(Path path,           byte[] bytes,           OpenOption... options)                    throws IOException
+				</name>
+				<description>
+					Writes bytes to a file. The options parameter specifies how the the file is created or opened. If no options are present then this method works as if the CREATE, TRUNCATE_EXISTING, and WRITE options are present. In other words, it opens the file for writing, creating the file if it doesn't exist, or initially truncating an existing regular-file to a size of 0. All bytes in the byte array are written to the file. The method ensures that the file is closed when all bytes have been written (or an I/O error or other runtime exception is thrown). If an I/O error occurs then it may do so after the file has created or truncated, or after some bytes have been written to the file. Usage example: By default the method creates a new file or overwrites an existing file. Suppose you instead want to append bytes to an existing file:        Path path = ...       byte[] bytes = ...       Files.write(path, bytes, StandardOpenOption.APPEND);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Path write(Path path,           Iterable<? extends CharSequence> lines,           Charset cs,           OpenOption... options)                    throws IOException
+				</name>
+				<description>
+					Write lines of text to a file. Each line is a char sequence and is written to the file in sequence with each line terminated by the platform's line separator, as defined by the system property line.separator. Characters are encoded into bytes using the specified charset. The options parameter specifies how the the file is created or opened. If no options are present then this method works as if the CREATE, TRUNCATE_EXISTING, and WRITE options are present. In other words, it opens the file for writing, creating the file if it doesn't exist, or initially truncating an existing regular-file to a size of 0. The method ensures that the file is closed when all lines have been written (or an I/O error or other runtime exception is thrown). If an I/O error occurs then it may do so after the file has created or truncated, or after some bytes have been written to the file.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

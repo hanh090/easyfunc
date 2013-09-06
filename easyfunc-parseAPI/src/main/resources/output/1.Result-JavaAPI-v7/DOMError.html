@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		org.w3c.dom
+	</package>
+	<type>
+		<name>
+			public interface DOMError
+		</name>
+		<description>
+			DOMError is an interface that describes an error. See also the Document Object Model (DOM) Level 3 Core Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final short SEVERITY_WARNING
+				</name>
+				<description>
+					The severity of the error described by the DOMError is warning. A SEVERITY_WARNING will not cause the processing to stop, unless DOMErrorHandler.handleError() returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short SEVERITY_ERROR
+				</name>
+				<description>
+					The severity of the error described by the DOMError is error. A SEVERITY_ERROR may not cause the processing to stop if the error can be recovered, unless DOMErrorHandler.handleError() returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short SEVERITY_FATAL_ERROR
+				</name>
+				<description>
+					The severity of the error described by the DOMError is fatal error. A SEVERITY_FATAL_ERROR will cause the normal processing to stop. The return value of DOMErrorHandler.handleError() is ignored unless the implementation chooses to continue, in which case the behavior becomes undefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short getSeverity()
+				</name>
+				<description>
+					The severity of the error, either SEVERITY_WARNING, SEVERITY_ERROR, or SEVERITY_FATAL_ERROR.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getMessage()
+				</name>
+				<description>
+					An implementation specific string describing the error that occurred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getType()
+				</name>
+				<description>
+					A DOMString indicating which related data is expected in relatedData. Users should refer to the specification of the error in order to find its DOMString type and relatedData definitions if any. Note: As an example, Document.normalizeDocument() does generate warnings when the "split-cdata-sections" parameter is in use. Therefore, the method generates a SEVERITY_WARNING with type "cdata-sections-splitted" and the first CDATASection node in document order resulting from the split is returned by the relatedData attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getRelatedException()
+				</name>
+				<description>
+					The related platform dependent exception if any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getRelatedData()
+				</name>
+				<description>
+					The related DOMError.type dependent data if any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DOMLocator getLocation()
+				</name>
+				<description>
+					The location of the error.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

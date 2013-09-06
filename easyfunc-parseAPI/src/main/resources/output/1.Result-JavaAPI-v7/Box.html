@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class Box  extends JComponent  implements Accessible
+		</name>
+		<description>
+			A lightweight container that uses a BoxLayout object as its layout manager. Box provides several class methods that are useful for containers using BoxLayout -- even non-Box containers. The Box class can create several kinds of invisible components that affect layout: glue, struts, and rigid areas. If all the components your Box contains have a fixed size, you might want to use a glue component (returned by createGlue) to control the components' positions. If you need a fixed amount of space between two components, try using a strut (createHorizontalStrut or createVerticalStrut). If you need an invisible component that always takes up the same amount of space, get it by invoking createRigidArea. If you are implementing a BoxLayout you can find further information and examples in How to Use BoxLayout, a section in The Java Tutorial. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Box(int axis)
+				</name>
+				<description>
+					Creates a Box that displays its components along the the specified axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Box createHorizontalBox()
+				</name>
+				<description>
+					Creates a Box that displays its components from left to right. If you want a Box that respects the component orientation you should create the Box using the constructor and pass in BoxLayout.LINE_AXIS, eg:      Box lineBox = new Box(BoxLayout.LINE_AXIS);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Box createVerticalBox()
+				</name>
+				<description>
+					Creates a Box that displays its components from top to bottom. If you want a Box that respects the component orientation you should create the Box using the constructor and pass in BoxLayout.PAGE_AXIS, eg:      Box lineBox = new Box(BoxLayout.PAGE_AXIS);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Component createRigidArea(Dimension d)
+				</name>
+				<description>
+					Creates an invisible component that's always the specified size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Component createHorizontalStrut(int width)
+				</name>
+				<description>
+					Creates an invisible, fixed-width component. In a horizontal box, you typically use this method to force a certain amount of space between two components. In a vertical box, you might use this method to force the box to be at least the specified width. The invisible component has no height unless excess space is available, in which case it takes its share of available space, just like any other component that has no maximum height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Component createVerticalStrut(int height)
+				</name>
+				<description>
+					Creates an invisible, fixed-height component. In a vertical box, you typically use this method to force a certain amount of space between two components. In a horizontal box, you might use this method to force the box to be at least the specified height. The invisible component has no width unless excess space is available, in which case it takes its share of available space, just like any other component that has no maximum width.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Component createGlue()
+				</name>
+				<description>
+					Creates an invisible "glue" component that can be useful in a Box whose visible components have a maximum width (for a horizontal box) or height (for a vertical box). You can think of the glue component as being a gooey substance that expands as much as necessary to fill the space between its neighboring components. For example, suppose you have a horizontal box that contains two fixed-size components. If the box gets extra space, the fixed-size components won't become larger, so where does the extra space go? Without glue, the extra space goes to the right of the second component. If you put glue between the fixed-size components, then the extra space goes there. If you put glue before the first fixed-size component, the extra space goes there, and the fixed-size components are shoved against the right edge of the box. If you put glue before the first fixed-size component and after the second fixed-size component, the fixed-size components are centered in the box. To use glue, call Box.createGlue and add the returned component to a container. The glue component has no minimum or preferred size, so it takes no space unless excess space is available. If excess space is available, then the glue component takes its share of available horizontal or vertical space, just like any other component that has no maximum width or height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Component createHorizontalGlue()
+				</name>
+				<description>
+					Creates a horizontal glue component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Component createVerticalGlue()
+				</name>
+				<description>
+					Creates a vertical glue component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayout(LayoutManager l)
+				</name>
+				<description>
+					Throws an AWTError, since a Box can use only a BoxLayout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintComponent(Graphics g)
+				</name>
+				<description>
+					Paints this Box. If this Box has a UI this method invokes super's implementation, otherwise if this Box is opaque the Graphics is filled using the background.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this Box. For boxes, the AccessibleContext takes the form of an AccessibleBox. A new AccessibleAWTBox instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

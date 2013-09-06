@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public class InterfaceAddress  extends Object
+		</name>
+		<description>
+			This class represents a Network Interface address. In short it's an IP address, a subnet mask and a broadcast address when the address is an IPv4 one. An IP address and a network prefix length in the case of IPv6 address.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public InetAddress getAddress()
+				</name>
+				<description>
+					Returns an InetAddress for this address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InetAddress getBroadcast()
+				</name>
+				<description>
+					Returns an InetAddress for the brodcast address for this InterfaceAddress. Only IPv4 networks have broadcast address therefore, in the case of an IPv6 network, null will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public short getNetworkPrefixLength()
+				</name>
+				<description>
+					Returns the network prefix length for this address. This is also known as the subnet mask in the context of IPv4 addresses. Typical IPv4 values would be 8 (255.0.0.0), 16 (255.255.0.0) or 24 (255.255.255.0). Typical IPv6 values would be 128 (::1/128) or 10 (fe80::203:baff:fe27:1243/10)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this object against the specified object. The result is true if and only if the argument is not null and it represents the same interface address as this object. Two instances of InterfaceAddress represent the same address if the InetAddress, the prefix length and the broadcast are the same for both.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this Interface address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Converts this Interface address to a String. The string returned is of the form: InetAddress / prefix length [ broadcast address ].
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

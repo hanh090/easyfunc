@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.lang.annotation
+	</package>
+	<type>
+		<name>
+			public class IncompleteAnnotationException  extends RuntimeException
+		</name>
+		<description>
+			Thrown to indicate that a program has attempted to access an element of an annotation type that was added to the annotation type definition after the annotation was compiled (or serialized). This exception will not be thrown if the new element has a default value. This exception can be thrown by the API used to read annotations reflectively.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public IncompleteAnnotationException(Class<? extends Annotation> annotationType,                               String elementName)
+				</name>
+				<description>
+					Constructs an IncompleteAnnotationException to indicate that the named element was missing from the specified annotation type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<? extends Annotation> annotationType()
+				</name>
+				<description>
+					Returns the Class object for the annotation type with the missing element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String elementName()
+				</name>
+				<description>
+					Returns the name of the missing element.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

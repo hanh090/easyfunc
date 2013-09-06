@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface ServerRequestInterceptorOperations  extends InterceptorOperations
+		</name>
+		<description>
+			Server-side request interceptor. A request Interceptor is designed to intercept the flow of a request/reply sequence through the ORB at specific points so that services can query the request information and manipulate the service contexts which are propagated between clients and servers. The primary use of request Interceptors is to enable ORB services to transfer context information between clients and servers. There are two types of request Interceptors: client-side and server-side. To write a server-side Interceptor, implement the ServerRequestInterceptor interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void receive_request_service_contexts(ServerRequestInfo ri)                                        throws ForwardRequest
+				</name>
+				<description>
+					Allows the interceptor to process service context information. At this interception point, Interceptors must get their service context information from the incoming request transfer it to PortableInterceptor.Current's slots. This interception point is called before the servant manager is called. Operation parameters are not yet available at this point. This interception point may or may not execute in the same thread as the target invocation. This interception point may throw a system exception. If it does, no other Interceptors' receive_request_service_contexts operations are called. Those Interceptors on the Flow Stack are popped and their send_exception interception points are called. This interception point may also throw a ForwardRequest exception. If an Interceptor throws this exception, no other Interceptors' receive_request_service_contexts operations are called. Those Interceptors on the Flow Stack are popped and their send_other interception points are called. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_NO.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void receive_request(ServerRequestInfo ri)                       throws ForwardRequest
+				</name>
+				<description>
+					Allows an Interceptor to query request information after all the information, including operation parameters, are available. This interception point shall execute in the same thread as the target invocation. In the DSI model, since the parameters are first available when the user code calls arguments, receive_request is called from within arguments. It is possible that arguments is not called in the DSI model. The target may call set_exception before calling arguments. The ORB shall guarantee that receive_request is called once, either through arguments or through set_exception. If it is called through set_exception, requesting the arguments will result in NO_RESOURCES being thrown with a standard minor code of 1. This interception point may throw a system exception. If it does, no other Interceptors' receive_request operations are called. Those Interceptors on the Flow Stack are popped and their send_exception interception points are called. This interception point may also throw a ForwardRequest exception. If an Interceptor throws this exception, no other Interceptors' receive_request operations are called. Those Interceptors on the Flow Stack are popped and their send_other interception points are called. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_NO.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void send_reply(ServerRequestInfo ri)
+				</name>
+				<description>
+					Allows an Interceptor to query reply information and modify the reply service context after the target operation has been invoked and before the reply is returned to the client. This interception point shall execute in the same thread as the target invocation. This interception point may throw a system exception. If it does, no other Interceptors' send_reply operations are called. The remaining Interceptors in the Flow Stack shall have their send_exception interception point called. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_YES.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void send_exception(ServerRequestInfo ri)                      throws ForwardRequest
+				</name>
+				<description>
+					Allows an Interceptor to query the exception information and modify the reply service context before the exception is thrown to the client. When an exception occurs, this interception point is called. This interception point shall execute in the same thread as the target invocation. This interception point may throw a system exception. This has the effect of changing the exception which successive Interceptors popped from the Flow Stack receive on their calls to send_exception. The exception thrown to the client will be the last exception thrown by an Interceptor, or the original exception if no Interceptor changes the exception. This interception point may also throw a ForwardRequest exception. If an Interceptor throws this exception, no other Interceptors' send_exception operations are called. The remaining Interceptors in the Flow Stack shall have their send_other interception points called. If the completion_status of the exception is not COMPLETED_NO, then it is inappropriate for this interception point to throw a ForwardRequest exception. The request's at-most-once semantics would be lost. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. If the original exception is a system exception, the completion_status of the new exception shall be the same as on the original. If the original exception is a user exception, then the completion_status of the new exception shall be COMPLETED_YES.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void send_other(ServerRequestInfo ri)                  throws ForwardRequest
+				</name>
+				<description>
+					Allows an Interceptor to query the information available when a request results in something other than a normal reply or an exception. For example, a request could result in a retry (e.g., a GIOP Reply with a LOCATION_FORWARD status was received). This interception point shall execute in the same thread as the target invocation. This interception point may throw a system exception. If it does, no other Interceptors' send_other operations are called. The remaining Interceptors in the Flow Stack shall have their send_exception interception points called. This interception point may also throw a ForwardRequest exception. If an Interceptor throws this exception, successive Interceptors' send_other operations are called with the new information provided by the ForwardRequest exception. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_NO.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

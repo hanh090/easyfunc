@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public abstract class CertPathBuilderSpi  extends Object
+		</name>
+		<description>
+			The Service Provider Interface (SPI) for the CertPathBuilder class. All CertPathBuilder implementations must include a class (the SPI class) that extends this class (CertPathBuilderSpi) and implements all of its methods. In general, instances of this class should only be accessed through the CertPathBuilder class. For details, see the Java Cryptography Architecture. Concurrent Access Instances of this class need not be protected against concurrent access from multiple threads. Threads that need to access a single CertPathBuilderSpi instance concurrently should synchronize amongst themselves and provide the necessary locking before calling the wrapping CertPathBuilder object. However, implementations of CertPathBuilderSpi may still encounter concurrency issues, since multiple threads each manipulating a different CertPathBuilderSpi instance need not synchronize.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CertPathBuilderSpi()
+				</name>
+				<description>
+					The default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract CertPathBuilderResult engineBuild(CertPathParameters params)                                             throws CertPathBuilderException,                                                    InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Attempts to build a certification path using the specified algorithm parameter set.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

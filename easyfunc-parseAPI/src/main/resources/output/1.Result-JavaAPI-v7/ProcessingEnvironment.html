@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.annotation.processing
+	</package>
+	<type>
+		<name>
+			public interface ProcessingEnvironment
+		</name>
+		<description>
+			An annotation processing tool framework will provide an annotation processor with an object implementing this interface so the processor can use facilities provided by the framework to write new files, report error messages, and find other utilities. Third parties may wish to provide value-add wrappers around the facility objects from this interface, for example a Filer extension that allows multiple processors to coordinate writing out a single source file. To enable this, for processors running in a context where their side effects via the API could be visible to each other, the tool infrastructure must provide corresponding facility objects that are .equals, Filers that are .equals, and so on. In addition, the tool invocation must be able to be configured such that from the perspective of the running annotation processors, at least the chosen subset of helper classes are viewed as being loaded by the same class loader. (Since the facility objects manage shared state, the implementation of a wrapper class must know whether or not the same base facility object has been wrapped before.)
+		</description>
+		<methods>
+			<method>
+				<name>
+					Map<String,String> getOptions()
+				</name>
+				<description>
+					Returns the processor-specific options passed to the annotation processing tool. Options are returned in the form of a map from option name to option value. For an option with no value, the corresponding value in the map is null. See documentation of the particular tool infrastructure being used for details on how to pass in processor-specific options. For example, a command-line implementation may distinguish processor-specific options by prefixing them with a known string like "-A"; other tool implementations may follow different conventions or provide alternative mechanisms. A given implementation may also provide implementation-specific ways of finding options passed to the tool in addition to the processor-specific options.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Messager getMessager()
+				</name>
+				<description>
+					Returns the messager used to report errors, warnings, and other notices.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Filer getFiler()
+				</name>
+				<description>
+					Returns the filer used to create new source, class, or auxiliary files.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Elements getElementUtils()
+				</name>
+				<description>
+					Returns an implementation of some utility methods for operating on elements
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Types getTypeUtils()
+				</name>
+				<description>
+					Returns an implementation of some utility methods for operating on types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SourceVersion getSourceVersion()
+				</name>
+				<description>
+					Returns the source version that any generated source and class files should conform to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Locale getLocale()
+				</name>
+				<description>
+					Returns the current locale or null if no locale is in effect. The locale can be be used to provide localized messages.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

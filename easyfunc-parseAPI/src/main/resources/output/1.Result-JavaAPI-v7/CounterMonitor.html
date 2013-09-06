@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		javax.management.monitor
+	</package>
+	<type>
+		<name>
+			public class CounterMonitor  extends Monitor  implements CounterMonitorMBean
+		</name>
+		<description>
+			Defines a monitor MBean designed to observe the values of a counter attribute. A counter monitor sends a threshold notification when the value of the counter reaches or exceeds a threshold known as the comparison level. The notify flag must be set to true. In addition, an offset mechanism enables particular counting intervals to be detected. If the offset value is not zero, whenever the threshold is triggered by the counter value reaching a comparison level, that comparison level is incremented by the offset value. This is regarded as taking place instantaneously, that is, before the count is incremented. Thus, for each level, the threshold triggers an event notification every time the count increases by an interval equal to the offset value. If the counter can wrap around its maximum value, the modulus needs to be specified. The modulus is the value at which the counter is reset to zero. If the counter difference mode is used, the value of the derived gauge is calculated as the difference between the observed counter values for two successive observations. If this difference is negative, the value of the derived gauge is incremented by the value of the modulus. The derived gauge value (V[t]) is calculated using the following method: if (counter[t] - counter[t-GP]) is positive then V[t] = counter[t] - counter[t-GP] if (counter[t] - counter[t-GP]) is negative then V[t] = counter[t] - counter[t-GP] + MODULUS This implementation of the counter monitor requires the observed attribute to be of the type integer (Byte, Integer, Short, Long).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CounterMonitor()
+				</name>
+				<description>
+					Default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void start()
+				</name>
+				<description>
+					Starts the counter monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void stop()
+				</name>
+				<description>
+					Stops the counter monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Number getDerivedGauge(ObjectName object)
+				</name>
+				<description>
+					Gets the derived gauge of the specified object, if this object is contained in the set of observed MBeans, or null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getDerivedGaugeTimeStamp(ObjectName object)
+				</name>
+				<description>
+					Gets the derived gauge timestamp of the specified object, if this object is contained in the set of observed MBeans, or 0 otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Number getThreshold(ObjectName object)
+				</name>
+				<description>
+					Gets the current threshold value of the specified object, if this object is contained in the set of observed MBeans, or null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Number getInitThreshold()
+				</name>
+				<description>
+					Gets the initial threshold value common to all observed objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInitThreshold(Number value)                        throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the initial threshold value common to all observed objects. The current threshold of every object in the set of observed MBeans is updated consequently.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Number getDerivedGauge()
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by getDerivedGauge(ObjectName) Returns the derived gauge of the first object in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public long getDerivedGaugeTimeStamp()
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by getDerivedGaugeTimeStamp(ObjectName) Gets the derived gauge timestamp of the first object in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Number getThreshold()
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by getThreshold(ObjectName) Gets the threshold value of the first object in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setThreshold(Number value)                    throws IllegalArgumentException
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by setInitThreshold(java.lang.Number) Sets the initial threshold value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Number getOffset()
+				</name>
+				<description>
+					Gets the offset value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOffset(Number value)                 throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the offset value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Number getModulus()
+				</name>
+				<description>
+					Gets the modulus value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModulus(Number value)                  throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the modulus value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getNotify()
+				</name>
+				<description>
+					Gets the notification's on/off switch value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNotify(boolean value)
+				</name>
+				<description>
+					Sets the notification's on/off switch value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getDifferenceMode()
+				</name>
+				<description>
+					Gets the difference mode flag value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDifferenceMode(boolean value)
+				</name>
+				<description>
+					Sets the difference mode flag value common to all observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanNotificationInfo[] getNotificationInfo()
+				</name>
+				<description>
+					Returns a NotificationInfo object containing the name of the Java class of the notification and the notification types sent by the counter monitor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

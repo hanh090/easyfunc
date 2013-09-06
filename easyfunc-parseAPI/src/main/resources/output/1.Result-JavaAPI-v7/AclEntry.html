@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.security.acl
+	</package>
+	<type>
+		<name>
+			public interface AclEntry  extends Cloneable
+		</name>
+		<description>
+			This is the interface used for representing one entry in an Access Control List (ACL). An ACL can be thought of as a data structure with multiple ACL entry objects. Each ACL entry object contains a set of permissions associated with a particular principal. (A principal represents an entity such as an individual user or a group). Additionally, each ACL entry is specified as being either positive or negative. If positive, the permissions are to be granted to the associated principal. If negative, the permissions are to be denied. Each principal can have at most one positive ACL entry and one negative entry; that is, multiple positive or negative ACL entries are not allowed for any principal. Note: ACL entries are by default positive. An entry becomes a negative entry only if the setNegativePermissions method is called on it.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean setPrincipal(Principal user)
+				</name>
+				<description>
+					Specifies the principal for which permissions are granted or denied by this ACL entry. If a principal was already set for this ACL entry, false is returned, otherwise true is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Principal getPrincipal()
+				</name>
+				<description>
+					Returns the principal for which permissions are granted or denied by this ACL entry. Returns null if there is no principal set for this entry yet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setNegativePermissions()
+				</name>
+				<description>
+					Sets this ACL entry to be a negative one. That is, the associated principal (e.g., a user or a group) will be denied the permission set specified in the entry. Note: ACL entries are by default positive. An entry becomes a negative entry only if this setNegativePermissions method is called on it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isNegative()
+				</name>
+				<description>
+					Returns true if this is a negative ACL entry (one denying the associated principal the set of permissions in the entry), false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean addPermission(Permission permission)
+				</name>
+				<description>
+					Adds the specified permission to this ACL entry. Note: An entry can have multiple permissions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean removePermission(Permission permission)
+				</name>
+				<description>
+					Removes the specified permission from this ACL entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean checkPermission(Permission permission)
+				</name>
+				<description>
+					Checks if the specified permission is part of the permission set in this entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Enumeration<Permission> permissions()
+				</name>
+				<description>
+					Returns an enumeration of the permissions in this ACL entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String toString()
+				</name>
+				<description>
+					Returns a string representation of the contents of this ACL entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object clone()
+				</name>
+				<description>
+					Clones this ACL entry.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

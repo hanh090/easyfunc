@@ -1,0 +1,27 @@
+<javaelement>
+	<package>
+		org.w3c.dom.ls
+	</package>
+	<type>
+		<name>
+			public interface LSResourceResolver
+		</name>
+		<description>
+			LSResourceResolver provides a way for applications to redirect references to external resources. Applications needing to implement custom handling for external resources can implement this interface and register their implementation by setting the "resource-resolver" parameter of DOMConfiguration objects attached to LSParser and LSSerializer. It can also be register on DOMConfiguration objects attached to Document if the "LS" feature is supported. The LSParser will then allow the application to intercept any external entities, including the external DTD subset and external parameter entities, before including them. The top-level document entity is never passed to the resolveResource method. Many DOM applications will not need to implement this interface, but it will be especially useful for applications that build XML documents from databases or other specialized input sources, or for applications that use URNs. Note: LSResourceResolver is based on the SAX2 [SAX] EntityResolver interface. See also the Document Object Model (DOM) Level 3 Load and Save Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					LSInput resolveResource(String type,                        String namespaceURI,                        String publicId,                        String systemId,                        String baseURI)
+				</name>
+				<description>
+					Allow the application to resolve external resources. The LSParser will call this method before opening any external resource, including the external DTD subset, external entities referenced within the DTD, and external entities referenced within the document element (however, the top-level document entity is not passed to this method). The application may then request that the LSParser resolve the external resource itself, that it use an alternative URI, or that it use an entirely different input source. Application writers can use this method to redirect external system identifiers to secure and/or local URI, to look up public identifiers in a catalogue, or to read an entity from a database or other input source (including, for example, a dialog box).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

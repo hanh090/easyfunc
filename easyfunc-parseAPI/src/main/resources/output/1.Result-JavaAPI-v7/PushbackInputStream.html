@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class PushbackInputStream  extends FilterInputStream
+		</name>
+		<description>
+			A PushbackInputStream adds functionality to another input stream, namely the ability to "push back" or "unread" one byte. This is useful in situations where it is convenient for a fragment of code to read an indefinite number of data bytes that are delimited by a particular byte value; after reading the terminating byte, the code fragment can "unread" it, so that the next read operation on the input stream will reread the byte that was pushed back. For example, bytes representing the characters constituting an identifier might be terminated by a byte representing an operator character; a method whose job is to read just an identifier can read until it sees the operator and then push the operator back to be re-read.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected byte[] buf
+				</name>
+				<description>
+					The pushback buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int pos
+				</name>
+				<description>
+					The position within the pushback buffer from which the next byte will be read. When the buffer is empty, pos is equal to buf.length; when the buffer is full, pos is equal to zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PushbackInputStream(InputStream in,                     int size)
+				</name>
+				<description>
+					Creates a PushbackInputStream with a pushback buffer of the specified size, and saves its argument, the input stream in, for later use. Initially, there is no pushed-back byte (the field pushBack is initialized to -1).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PushbackInputStream(InputStream in)
+				</name>
+				<description>
+					Creates a PushbackInputStream and saves its argument, the input stream in, for later use. Initially, there is no pushed-back byte (the field pushBack is initialized to -1).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads the next byte of data from this input stream. The value byte is returned as an int in the range 0 to 255. If no byte is available because the end of the stream has been reached, the value -1 is returned. This method blocks until input data is available, the end of the stream is detected, or an exception is thrown. This method returns the most recently pushed-back byte, if there is one, and otherwise calls the read method of its underlying input stream and returns whatever value that method returns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads up to len bytes of data from this input stream into an array of bytes. This method first reads any pushed-back bytes; after that, if fewer than len bytes have been read then it reads from the underlying input stream. If len is not zero, the method blocks until at least 1 byte of input is available; otherwise, no bytes are read and 0 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unread(int b)              throws IOException
+				</name>
+				<description>
+					Pushes back a byte by copying it to the front of the pushback buffer. After this method returns, the next byte to be read will have the value (byte)b.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unread(byte[] b,            int off,            int len)              throws IOException
+				</name>
+				<description>
+					Pushes back a portion of an array of bytes by copying it to the front of the pushback buffer. After this method returns, the next byte to be read will have the value b[off], the byte after that will have the value b[off+1], and so forth.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unread(byte[] b)              throws IOException
+				</name>
+				<description>
+					Pushes back an array of bytes by copying it to the front of the pushback buffer. After this method returns, the next byte to be read will have the value b[0], the byte after that will have the value b[1], and so forth.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()                throws IOException
+				</name>
+				<description>
+					Returns an estimate of the number of bytes that can be read (or skipped over) from this input stream without blocking by the next invocation of a method for this input stream. The next invocation might be the same thread or another thread. A single read or skip of this many bytes will not block, but may read or skip fewer bytes. The method returns the sum of the number of bytes that have been pushed back and the value returned by available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					Skips over and discards n bytes of data from this input stream. The skip method may, for a variety of reasons, end up skipping over some smaller number of bytes, possibly zero. If n is negative, no bytes are skipped. The skip method of PushbackInputStream first skips over the bytes in the pushback buffer, if any. It then calls the skip method of the underlying input stream if more bytes need to be skipped. The actual number of bytes skipped is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean markSupported()
+				</name>
+				<description>
+					Tests if this input stream supports the mark and reset methods, which it does not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mark(int readlimit)
+				</name>
+				<description>
+					Marks the current position in this input stream. The mark method of PushbackInputStream does nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()             throws IOException
+				</name>
+				<description>
+					Repositions this stream to the position at the time the mark method was last called on this input stream. The method reset for class PushbackInputStream does nothing except throw an IOException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this input stream and releases any system resources associated with the stream. Once the stream has been closed, further read(), unread(), available(), reset(), or skip() invocations will throw an IOException. Closing a previously closed stream has no effect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

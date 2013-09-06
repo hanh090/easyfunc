@@ -1,0 +1,477 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.metal
+	</package>
+	<type>
+		<name>
+			public abstract class MetalTheme  extends Object
+		</name>
+		<description>
+			MetalTheme provides the color palette and fonts used by the Java Look and Feel. MetalTheme is abstract, see DefaultMetalTheme and OceanTheme for concrete implementations. MetalLookAndFeel maintains the current theme that the the ComponentUI implementations for metal use. Refer to MetalLookAndFeel.setCurrentTheme(MetalTheme) for details on changing the current theme. MetalTheme provides a number of public methods for getting colors. These methods are implemented in terms of a handful of protected abstract methods. A subclass need only override the protected abstract methods (getPrimary1, getPrimary2, getPrimary3, getSecondary1, getSecondary2, and getSecondary3); although a subclass may override the other public methods for more control over the set of colors that are used. Concrete implementations of MetalTheme must return non-null values from all methods. While the behavior of returning null is not specified, returning null will result in incorrect behavior. It is strongly recommended that subclasses return completely opaque colors. To do otherwise may result in rendering problems, such as visual garbage.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MetalTheme()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getName()
+				</name>
+				<description>
+					Returns the name of this theme.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract ColorUIResource getPrimary1()
+				</name>
+				<description>
+					Returns the primary 1 color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract ColorUIResource getPrimary2()
+				</name>
+				<description>
+					Returns the primary 2 color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract ColorUIResource getPrimary3()
+				</name>
+				<description>
+					Returns the primary 3 color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract ColorUIResource getSecondary1()
+				</name>
+				<description>
+					Returns the secondary 1 color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract ColorUIResource getSecondary2()
+				</name>
+				<description>
+					Returns the secondary 2 color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract ColorUIResource getSecondary3()
+				</name>
+				<description>
+					Returns the secondary 3 color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FontUIResource getControlTextFont()
+				</name>
+				<description>
+					Returns the control text font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FontUIResource getSystemTextFont()
+				</name>
+				<description>
+					Returns the system text font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FontUIResource getUserTextFont()
+				</name>
+				<description>
+					Returns the user text font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FontUIResource getMenuTextFont()
+				</name>
+				<description>
+					Returns the menu text font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FontUIResource getWindowTitleFont()
+				</name>
+				<description>
+					Returns the window title font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FontUIResource getSubTextFont()
+				</name>
+				<description>
+					Returns the sub-text font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ColorUIResource getWhite()
+				</name>
+				<description>
+					Returns the white color. This returns opaque white (0xFFFFFFFF).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ColorUIResource getBlack()
+				</name>
+				<description>
+					Returns the black color. This returns opaque black (0xFF000000).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getFocusColor()
+				</name>
+				<description>
+					Returns the focus color. This returns the value of getPrimary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getDesktopColor()
+				</name>
+				<description>
+					Returns the desktop color. This returns the value of getPrimary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getControl()
+				</name>
+				<description>
+					Returns the control color. This returns the value of getSecondary3().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getControlShadow()
+				</name>
+				<description>
+					Returns the control shadow color. This returns the value of getSecondary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getControlDarkShadow()
+				</name>
+				<description>
+					Returns the control dark shadow color. This returns the value of getSecondary1().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getControlInfo()
+				</name>
+				<description>
+					Returns the control info color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getControlHighlight()
+				</name>
+				<description>
+					Returns the control highlight color. This returns the value of getWhite().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getControlDisabled()
+				</name>
+				<description>
+					Returns the control disabled color. This returns the value of getSecondary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getPrimaryControl()
+				</name>
+				<description>
+					Returns the primary control color. This returns the value of getPrimary3().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getPrimaryControlShadow()
+				</name>
+				<description>
+					Returns the primary control shadow color. This returns the value of getPrimary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getPrimaryControlDarkShadow()
+				</name>
+				<description>
+					Returns the primary control dark shadow color. This returns the value of getPrimary1().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getPrimaryControlInfo()
+				</name>
+				<description>
+					Returns the primary control info color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getPrimaryControlHighlight()
+				</name>
+				<description>
+					Returns the primary control highlight color. This returns the value of getWhite().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getSystemTextColor()
+				</name>
+				<description>
+					Returns the system text color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getControlTextColor()
+				</name>
+				<description>
+					Returns the control text color. This returns the value of getControlInfo().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getInactiveControlTextColor()
+				</name>
+				<description>
+					Returns the inactive control text color. This returns the value of getControlDisabled().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getInactiveSystemTextColor()
+				</name>
+				<description>
+					Returns the inactive system text color. This returns the value of getSecondary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getUserTextColor()
+				</name>
+				<description>
+					Returns the user text color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getTextHighlightColor()
+				</name>
+				<description>
+					Returns the text highlight color. This returns the value of getPrimary3().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getHighlightedTextColor()
+				</name>
+				<description>
+					Returns the highlighted text color. This returns the value of getControlTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getWindowBackground()
+				</name>
+				<description>
+					Returns the window background color. This returns the value of getWhite().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getWindowTitleBackground()
+				</name>
+				<description>
+					Returns the window title background color. This returns the value of getPrimary3().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getWindowTitleForeground()
+				</name>
+				<description>
+					Returns the window title foreground color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getWindowTitleInactiveBackground()
+				</name>
+				<description>
+					Returns the window title inactive background color. This returns the value of getSecondary3().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getWindowTitleInactiveForeground()
+				</name>
+				<description>
+					Returns the window title inactive foreground color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getMenuBackground()
+				</name>
+				<description>
+					Returns the menu background color. This returns the value of getSecondary3().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getMenuForeground()
+				</name>
+				<description>
+					Returns the menu foreground color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getMenuSelectedBackground()
+				</name>
+				<description>
+					Returns the menu selected background color. This returns the value of getPrimary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getMenuSelectedForeground()
+				</name>
+				<description>
+					Returns the menu selected foreground color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getMenuDisabledForeground()
+				</name>
+				<description>
+					Returns the menu disabled foreground color. This returns the value of getSecondary2().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getSeparatorBackground()
+				</name>
+				<description>
+					Returns the separator background color. This returns the value of getWhite().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getSeparatorForeground()
+				</name>
+				<description>
+					Returns the separator foreground color. This returns the value of getPrimary1().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getAcceleratorForeground()
+				</name>
+				<description>
+					Returns the accelerator foreground color. This returns the value of getPrimary1().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ColorUIResource getAcceleratorSelectedForeground()
+				</name>
+				<description>
+					Returns the accelerator selected foreground color. This returns the value of getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addCustomEntriesToTable(UIDefaults table)
+				</name>
+				<description>
+					Adds values specific to this theme to the defaults table. This method is invoked when the look and feel defaults are obtained from MetalLookAndFeel. This implementation does nothing; it is provided for subclasses that wish to customize the defaults table.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

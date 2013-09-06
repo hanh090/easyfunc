@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.crypto
+	</package>
+	<type>
+		<name>
+			public class CipherInputStream  extends FilterInputStream
+		</name>
+		<description>
+			A CipherInputStream is composed of an InputStream and a Cipher so that read() methods return data that are read in from the underlying InputStream but have been additionally processed by the Cipher. The Cipher must be fully initialized before being used by a CipherInputStream. For example, if the Cipher is initialized for decryption, the CipherInputStream will attempt to read in data and decrypt them, before returning the decrypted data. This class adheres strictly to the semantics, especially the failure semantics, of its ancestor classes java.io.FilterInputStream and java.io.InputStream. This class has exactly those methods specified in its ancestor classes, and overrides them all. Moreover, this class catches all exceptions that are not thrown by its ancestor classes. In particular, the skip method skips, and the available method counts only data that have been processed by the encapsulated Cipher. It is crucial for a programmer using this class not to use methods that are not defined or overriden in this class (such as a new method or constructor that is later added to one of the super classes), because the design and implementation of those methods are unlikely to have considered security impact with regard to CipherInputStream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CipherInputStream(InputStream is,                   Cipher c)
+				</name>
+				<description>
+					Constructs a CipherInputStream from an InputStream and a Cipher. Note: if the specified input stream or cipher is null, a NullPointerException may be thrown later when they are used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected CipherInputStream(InputStream is)
+				</name>
+				<description>
+					Constructs a CipherInputStream from an InputStream without specifying a Cipher. This has the effect of constructing a CipherInputStream using a NullCipher. Note: if the specified input stream is null, a NullPointerException may be thrown later when it is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads the next byte of data from this input stream. The value byte is returned as an int in the range 0 to 255. If no byte is available because the end of the stream has been reached, the value -1 is returned. This method blocks until input data is available, the end of the stream is detected, or an exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b)           throws IOException
+				</name>
+				<description>
+					Reads up to b.length bytes of data from this input stream into an array of bytes. The read method of InputStream calls the read method of three arguments with the arguments b, 0, and b.length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads up to len bytes of data from this input stream into an array of bytes. This method blocks until some input is available. If the first argument is null, up to len bytes are read and discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					Skips n bytes of input from the bytes that can be read from this input stream without blocking. Fewer bytes than requested might be skipped. The actual number of bytes skipped is equal to n or the result of a call to available, whichever is smaller. If n is less than zero, no bytes are skipped. The actual number of bytes skipped is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()                throws IOException
+				</name>
+				<description>
+					Returns the number of bytes that can be read from this input stream without blocking. The available method of InputStream returns 0. This method should be overridden by subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this input stream and releases any system resources associated with the stream. The close method of CipherInputStream calls the close method of its underlying input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean markSupported()
+				</name>
+				<description>
+					Tests if this input stream supports the mark and reset methods, which it does not.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

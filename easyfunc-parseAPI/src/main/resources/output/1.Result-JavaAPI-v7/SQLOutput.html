@@ -1,0 +1,261 @@
+<javaelement>
+	<package>
+		java.sql
+	</package>
+	<type>
+		<name>
+			public interface SQLOutput
+		</name>
+		<description>
+			The output stream for writing the attributes of a user-defined type back to the database. This interface, used only for custom mapping, is used by the driver, and its methods are never directly invoked by a programmer. When an object of a class implementing the interface SQLData is passed as an argument to an SQL statement, the JDBC driver calls the method SQLData.getSQLType to determine the kind of SQL datum being passed to the database. The driver then creates an instance of SQLOutput and passes it to the method SQLData.writeSQL. The method writeSQL in turn calls the appropriate SQLOutput writer methods writeBoolean, writeCharacterStream, and so on) to write data from the SQLData object to the SQLOutput output stream as the representation of an SQL user-defined type.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void writeString(String x)                   throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeBoolean(boolean x)                    throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a Java boolean. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeByte(byte x)                 throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a Java byte. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeShort(short x)                  throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a Java short. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeInt(int x)                throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a Java int. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeLong(long x)                 throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a Java long. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeFloat(float x)                  throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a Java float. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeDouble(double x)                   throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a Java double. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeBigDecimal(BigDecimal x)                       throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a java.math.BigDecimal object. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeBytes(byte[] x)                  throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as an array of bytes. Writes the next attribute to the stream as a String in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeDate(Date x)                 throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a java.sql.Date object. Writes the next attribute to the stream as a java.sql.Date object in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeTime(Time x)                 throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a java.sql.Time object. Writes the next attribute to the stream as a java.sql.Date object in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeTimestamp(Timestamp x)                      throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a java.sql.Timestamp object. Writes the next attribute to the stream as a java.sql.Date object in the Java programming language.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeCharacterStream(Reader x)                            throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a stream of Unicode characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeAsciiStream(InputStream x)                        throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a stream of ASCII characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeBinaryStream(InputStream x)                         throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a stream of uninterpreted bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeObject(SQLData x)                   throws SQLException
+				</name>
+				<description>
+					Writes to the stream the data contained in the given SQLData object. When the SQLData object is null, this method writes an SQL NULL to the stream. Otherwise, it calls the SQLData.writeSQL method of the given object, which writes the object's attributes to the stream. The implementation of the method SQLData.writeSQ calls the appropriate SQLOutput writer method(s) for writing each of the object's attributes in order. The attributes must be read from an SQLInput input stream and written to an SQLOutput output stream in the same order in which they were listed in the SQL definition of the user-defined type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeRef(Ref x)                throws SQLException
+				</name>
+				<description>
+					Writes an SQL REF value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeBlob(Blob x)                 throws SQLException
+				</name>
+				<description>
+					Writes an SQL BLOB value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeClob(Clob x)                 throws SQLException
+				</name>
+				<description>
+					Writes an SQL CLOB value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeStruct(Struct x)                   throws SQLException
+				</name>
+				<description>
+					Writes an SQL structured type value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeArray(Array x)                  throws SQLException
+				</name>
+				<description>
+					Writes an SQL ARRAY value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeURL(URL x)                throws SQLException
+				</name>
+				<description>
+					Writes a SQL DATALINK value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeNString(String x)                    throws SQLException
+				</name>
+				<description>
+					Writes the next attribute to the stream as a String in the Java programming language. The driver converts this to a SQL NCHAR or NVARCHAR or LONGNVARCHAR value (depending on the argument's size relative to the driver's limits on NVARCHAR values) when it sends it to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeNClob(NClob x)                  throws SQLException
+				</name>
+				<description>
+					Writes an SQL NCLOB value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeRowId(RowId x)                  throws SQLException
+				</name>
+				<description>
+					Writes an SQL ROWID value to the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeSQLXML(SQLXML x)                   throws SQLException
+				</name>
+				<description>
+					Writes an SQL XML value to the stream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

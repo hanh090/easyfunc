@@ -1,0 +1,738 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JList<E>  extends JComponent  implements Scrollable, Accessible
+		</name>
+		<description>
+			A component that displays a list of objects and allows the user to select one or more items. A separate model, ListModel, maintains the contents of the list. It's easy to display an array or Vector of objects, using the JList constructor that automatically builds a read-only ListModel instance for you:    // Create a JList that displays strings from an array     String[] data = {"one", "two", "three", "four"};   JList<String> myList = new JList<String>(data);     // Create a JList that displays the superclasses of JList.class, by   // creating it with a Vector populated with this data     Vector<Class<?>> superClasses = new Vector<Class<?>>();   Class<JList> rootClass = javax.swing.JList.class;   for(Class<?> cls = rootClass; cls != null; cls = cls.getSuperclass()) {       superClasses.addElement(cls);   }   JList<Class<?>> myList = new JList<Class<?>>(superClasses);     // The automatically created model is stored in JList's "model"   // property, which you can retrieve     ListModel<Class<?>> model = myList.getModel();   for(int i = 0; i < model.getSize(); i++) {       System.out.println(model.getElementAt(i));   }      A ListModel can be supplied directly to a JList by way of a constructor or the setModel method. The contents need not be static - the number of items, and the values of items can change over time. A correct ListModel implementation notifies the set of javax.swing.event.ListDataListeners that have been added to it, each time a change occurs. These changes are characterized by a javax.swing.event.ListDataEvent, which identifies the range of list indices that have been modified, added, or removed. JList's ListUI is responsible for keeping the visual representation up to date with changes, by listening to the model. Simple, dynamic-content, JList applications can use the DefaultListModel class to maintain list elements. This class implements the ListModel interface and also provides a java.util.Vector-like API. Applications that need a more custom ListModel implementation may instead wish to subclass AbstractListModel, which provides basic support for managing and notifying listeners. For example, a read-only implementation of AbstractListModel:    // This list model has about 2^16 elements.  Enjoy scrolling.     ListModel<String> bigData = new AbstractListModel<String>() {       public int getSize() { return Short.MAX_VALUE; }       public String getElementAt(int index) { return "Index " + index; }   };      The selection state of a JList is managed by another separate model, an instance of ListSelectionModel. JList is initialized with a selection model on construction, and also contains methods to query or set this selection model. Additionally, JList provides convenient methods for easily managing the selection. These methods, such as setSelectedIndex and getSelectedValue, are cover methods that take care of the details of interacting with the selection model. By default, JList's selection model is configured to allow any combination of items to be selected at a time; selection mode MULTIPLE_INTERVAL_SELECTION. The selection mode can be changed on the selection model directly, or via JList's cover method. Responsibility for updating the selection model in response to user gestures lies with the list's ListUI. A correct ListSelectionModel implementation notifies the set of javax.swing.event.ListSelectionListeners that have been added to it each time a change to the selection occurs. These changes are characterized by a javax.swing.event.ListSelectionEvent, which identifies the range of the selection change. The preferred way to listen for changes in list selection is to add ListSelectionListeners directly to the JList. JList then takes care of listening to the the selection model and notifying your listeners of change. Responsibility for listening to selection changes in order to keep the list's visual representation up to date lies with the list's ListUI. Painting of cells in a JList is handled by a delegate called a cell renderer, installed on the list as the cellRenderer property. The renderer provides a java.awt.Component that is used like a "rubber stamp" to paint the cells. Each time a cell needs to be painted, the list's ListUI asks the cell renderer for the component, moves it into place, and has it paint the contents of the cell by way of its paint method. A default cell renderer, which uses a JLabel component to render, is installed by the lists's ListUI. You can substitute your own renderer using code like this:    // Display an icon and a string for each object in the list. class MyCellRenderer extends JLabel implements ListCellRenderer<Object> { final static ImageIcon longIcon = new ImageIcon("long.gif"); final static ImageIcon shortIcon = new ImageIcon("short.gif"); // This is the only method defined by ListCellRenderer. // We just reconfigure the JLabel each time we're called. public Component getListCellRendererComponent( JList<?> list, // the list Object value, // value to display int index, // cell index boolean isSelected, // is the cell selected boolean cellHasFocus) // does the cell have focus { String s = value.toString(); setText(s); setIcon((s.length() > 10) ? longIcon : shortIcon); if (isSelected) { setBackground(list.getSelectionBackground()); setForeground(list.getSelectionForeground()); } else { setBackground(list.getBackground()); setForeground(list.getForeground()); } setEnabled(list.isEnabled()); setFont(list.getFont()); setOpaque(true); return this; } } myList.setCellRenderer(new MyCellRenderer());    Another job for the cell renderer is in helping to determine sizing information for the list. By default, the list's ListUI determines the size of cells by asking the cell renderer for its preferred size for each list item. This can be expensive for large lists of items. To avoid these calculations, you can set a fixedCellWidth and fixedCellHeight on the list, or have these values calculated automatically based on a single prototype value:    JList<String> bigDataList = new JList<String>(bigData); // We don't want the JList implementation to compute the width // or height of all of the list cells, so we give it a string // that's as big as we'll need for any cell. It uses this to // compute values for the fixedCellWidth and fixedCellHeight // properties. bigDataList.setPrototypeCellValue("Index 1234567890");    JList doesn't implement scrolling directly. To create a list that scrolls, make it the viewport view of a JScrollPane. For example:    JScrollPane scrollPane = new JScrollPane(myList);     // Or in two steps:   JScrollPane scrollPane = new JScrollPane();   scrollPane.getViewport().setView(myList);   JList doesn't provide any special handling of double or triple (or N) mouse clicks, but it's easy to add a MouseListener if you wish to take action on these events. Use the locationToIndex method to determine what cell was clicked. For example:    MouseListener mouseListener = new MouseAdapter() {       public void mouseClicked(MouseEvent e) {           if (e.getClickCount() == 2) {               int index = list.locationToIndex(e.getPoint());               System.out.println("Double clicked on Item " + index);            }       }   };   list.addMouseListener(mouseListener);   Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder. See How to Use Lists in The Java Tutorial for further documentation. Also see the article Advanced JList Programming in The Swing Connection.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int VERTICAL
+				</name>
+				<description>
+					Indicates a vertical layout of cells, in a single column; the default layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int VERTICAL_WRAP
+				</name>
+				<description>
+					Indicates a "newspaper style" layout with cells flowing vertically then horizontally.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int HORIZONTAL_WRAP
+				</name>
+				<description>
+					Indicates a "newspaper style" layout with cells flowing horizontally then vertically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JList(ListModel<E> dataModel)
+				</name>
+				<description>
+					Constructs a JList that displays elements from the specified, non-null, model. All JList constructors delegate to this one. This constructor registers the list with the ToolTipManager, allowing for tooltips to be provided by the cell renderers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JList(E[] listData)
+				</name>
+				<description>
+					Constructs a JList that displays the elements in the specified array. This constructor creates a read-only model for the given array, and then delegates to the constructor that takes a ListModel. Attempts to pass a null value to this method results in undefined behavior and, most likely, exceptions. The created model references the given array directly. Attempts to modify the array after constructing the list results in undefined behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JList(Vector<? extends E> listData)
+				</name>
+				<description>
+					Constructs a JList that displays the elements in the specified Vector. This constructor creates a read-only model for the given Vector, and then delegates to the constructor that takes a ListModel. Attempts to pass a null value to this method results in undefined behavior and, most likely, exceptions. The created model references the given Vector directly. Attempts to modify the Vector after constructing the list results in undefined behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JList()
+				</name>
+				<description>
+					Constructs a JList with an empty, read-only, model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListUI getUI()
+				</name>
+				<description>
+					Returns the ListUI, the look and feel object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(ListUI ui)
+				</name>
+				<description>
+					Sets the ListUI, the look and feel object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the ListUI property by setting it to the value provided by the current look and feel. If the current cell renderer was installed by the developer (rather than the look and feel itself), this also causes the cell renderer and its children to be updated, by calling SwingUtilities.updateComponentTreeUI on it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns "ListUI", the UIDefaults key used to look up the name of the javax.swing.plaf.ListUI class that defines the look and feel for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E getPrototypeCellValue()
+				</name>
+				<description>
+					Returns the "prototypical" cell value -- a value used to calculate a fixed width and height for cells. This can be null if there is no such value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrototypeCellValue(E prototypeCellValue)
+				</name>
+				<description>
+					Sets the prototypeCellValue property, and then (if the new value is non-null), computes the fixedCellWidth and fixedCellHeight properties by requesting the cell renderer component for the given value (and index 0) from the cell renderer, and using that component's preferred size. This method is useful when the list is too long to allow the ListUI to compute the width/height of each cell, and there is a single cell value that is known to occupy as much space as any of the others, a so-called prototype. While all three of the prototypeCellValue, fixedCellHeight, and fixedCellWidth properties may be modified by this method, PropertyChangeEvent notifications are only sent when the prototypeCellValue property changes. To see an example which sets this property, see the class description above. The default value of this property is null. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFixedCellWidth()
+				</name>
+				<description>
+					Returns the value of the fixedCellWidth property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFixedCellWidth(int width)
+				</name>
+				<description>
+					Sets a fixed value to be used for the width of every cell in the list. If width is -1, cell widths are computed in the ListUI by applying getPreferredSize to the cell renderer component for each list element. The default value of this property is -1. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFixedCellHeight()
+				</name>
+				<description>
+					Returns the value of the fixedCellHeight property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFixedCellHeight(int height)
+				</name>
+				<description>
+					Sets a fixed value to be used for the height of every cell in the list. If height is -1, cell heights are computed in the ListUI by applying getPreferredSize to the cell renderer component for each list element. The default value of this property is -1. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListCellRenderer<? super E> getCellRenderer()
+				</name>
+				<description>
+					Returns the object responsible for painting list items.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCellRenderer(ListCellRenderer<? super E> cellRenderer)
+				</name>
+				<description>
+					Sets the delegate that is used to paint each cell in the list. The job of a cell renderer is discussed in detail in the class level documentation. If the prototypeCellValue property is non-null, setting the cell renderer also causes the fixedCellWidth and fixedCellHeight properties to be re-calculated. Only one PropertyChangeEvent is generated however - for the cellRenderer property. The default value of this property is provided by the ListUI delegate, i.e. by the look and feel implementation. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getSelectionForeground()
+				</name>
+				<description>
+					Returns the color used to draw the foreground of selected items. DefaultListCellRenderer uses this color to draw the foreground of items in the selected state, as do the renderers installed by most ListUI implementations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionForeground(Color selectionForeground)
+				</name>
+				<description>
+					Sets the color used to draw the foreground of selected items, which cell renderers can use to render text and graphics. DefaultListCellRenderer uses this color to draw the foreground of items in the selected state, as do the renderers installed by most ListUI implementations. The default value of this property is defined by the look and feel implementation. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getSelectionBackground()
+				</name>
+				<description>
+					Returns the color used to draw the background of selected items. DefaultListCellRenderer uses this color to draw the background of items in the selected state, as do the renderers installed by most ListUI implementations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionBackground(Color selectionBackground)
+				</name>
+				<description>
+					Sets the color used to draw the background of selected items, which cell renderers can use fill selected cells. DefaultListCellRenderer uses this color to fill the background of items in the selected state, as do the renderers installed by most ListUI implementations. The default value of this property is defined by the look and feel implementation. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVisibleRowCount()
+				</name>
+				<description>
+					Returns the value of the visibleRowCount property. See the documentation for setVisibleRowCount(int) for details on how to interpret this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVisibleRowCount(int visibleRowCount)
+				</name>
+				<description>
+					Sets the visibleRowCount property, which has different meanings depending on the layout orientation: For a VERTICAL layout orientation, this sets the preferred number of rows to display without requiring scrolling; for other orientations, it affects the wrapping of cells. In VERTICAL orientation: Setting this property affects the return value of the getPreferredScrollableViewportSize() method, which is used to calculate the preferred size of an enclosing viewport. See that method's documentation for more details. In HORIZONTAL_WRAP and VERTICAL_WRAP orientations: This affects how cells are wrapped. See the documentation of setLayoutOrientation(int) for more details. The default value of this property is 8. Calling this method with a negative value results in the property being set to 0. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLayoutOrientation()
+				</name>
+				<description>
+					Returns the layout orientation property for the list: VERTICAL if the layout is a single column of cells, VERTICAL_WRAP if the layout is "newspaper style" with the content flowing vertically then horizontally, or HORIZONTAL_WRAP if the layout is "newspaper style" with the content flowing horizontally then vertically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayoutOrientation(int layoutOrientation)
+				</name>
+				<description>
+					Defines the way list cells are layed out. Consider a JList with five cells. Cells can be layed out in one of the following ways:    VERTICAL:          0                      1                      2                      3                      4     HORIZONTAL_WRAP:   0  1  2                      3  4     VERTICAL_WRAP:     0  3                      1  4                      2   A description of these layouts follows: Value Description VERTICAL Cells are layed out vertically in a single column. HORIZONTAL_WRAP Cells are layed out horizontally, wrapping to a new row as necessary. If the visibleRowCount property is less than or equal to zero, wrapping is determined by the width of the list; otherwise wrapping is done in such a way as to ensure visibleRowCount rows in the list. VERTICAL_WRAP Cells are layed out vertically, wrapping to a new column as necessary. If the visibleRowCount property is less than or equal to zero, wrapping is determined by the height of the list; otherwise wrapping is done at visibleRowCount rows. The default value of this property is VERTICAL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFirstVisibleIndex()
+				</name>
+				<description>
+					Returns the smallest list index that is currently visible. In a left-to-right componentOrientation, the first visible cell is found closest to the list's upper-left corner. In right-to-left orientation, it is found closest to the upper-right corner. If nothing is visible or the list is empty, -1 is returned. Note that the returned cell may only be partially visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLastVisibleIndex()
+				</name>
+				<description>
+					Returns the largest list index that is currently visible. If nothing is visible or the list is empty, -1 is returned. Note that the returned cell may only be partially visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void ensureIndexIsVisible(int index)
+				</name>
+				<description>
+					Scrolls the list within an enclosing viewport to make the specified cell completely visible. This calls scrollRectToVisible with the bounds of the specified cell. For this method to work, the JList must be within a JViewport. If the given index is outside the list's range of cells, this method results in nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDragEnabled(boolean b)
+				</name>
+				<description>
+					Turns on or off automatic drag handling. In order to enable automatic drag handling, this property should be set to true, and the list's TransferHandler needs to be non-null. The default value of the dragEnabled property is false. The job of honoring this property, and recognizing a user drag gesture, lies with the look and feel implementation, and in particular, the list's ListUI. When automatic drag handling is enabled, most look and feels (including those that subclass BasicLookAndFeel) begin a drag and drop operation whenever the user presses the mouse button over an item and then moves the mouse a few pixels. Setting this property to true can therefore have a subtle effect on how selections behave. If a look and feel is used that ignores this property, you can still begin a drag and drop operation by calling exportAsDrag on the list's TransferHandler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getDragEnabled()
+				</name>
+				<description>
+					Returns whether or not automatic drag handling is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setDropMode(DropMode dropMode)
+				</name>
+				<description>
+					Sets the drop mode for this component. For backward compatibility, the default for this property is DropMode.USE_SELECTION. Usage of one of the other modes is recommended, however, for an improved user experience. DropMode.ON, for instance, offers similar behavior of showing items as selected, but does so without affecting the actual selection in the list. JList supports the following drop modes: DropMode.USE_SELECTION DropMode.ON DropMode.INSERT DropMode.ON_OR_INSERT The drop mode is only meaningful if this component has a TransferHandler that accepts drops.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final DropMode getDropMode()
+				</name>
+				<description>
+					Returns the drop mode for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final JList.DropLocation getDropLocation()
+				</name>
+				<description>
+					Returns the location that this component should visually indicate as the drop location during a DnD operation over the component, or null if no location is to currently be shown. This method is not meant for querying the drop location from a TransferHandler, as the drop location is only set after the TransferHandler's canImport has returned and has allowed for the location to be shown. When this property changes, a property change event with name "dropLocation" is fired by the component. By default, responsibility for listening for changes to this property and indicating the drop location visually lies with the list's ListUI, which may paint it directly and/or install a cell renderer to do so. Developers wishing to implement custom drop location painting and/or replace the default cell renderer, may need to honor this property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNextMatch(String prefix,                 int startIndex,                 Position.Bias bias)
+				</name>
+				<description>
+					Returns the next list element whose toString value starts with the given prefix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(MouseEvent event)
+				</name>
+				<description>
+					Returns the tooltip text to be used for the given event. This overrides JComponent's getToolTipText to first check the cell renderer component for the cell over which the event occurred, returning its tooltip text, if any. This implementation allows you to specify tooltip text on the cell level, by using setToolTipText on your cell renderer component. Note: For JList to properly display the tooltips of its renderers in this manner, JList must be a registered component with the ToolTipManager. This registration is done automatically in the constructor. However, if at a later point JList is unregistered, by way of a call to setToolTipText(null), tips from the renderers will no longer display.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int locationToIndex(Point location)
+				</name>
+				<description>
+					Returns the cell index closest to the given location in the list's coordinate system. To determine if the cell actually contains the specified location, compare the point against the cell's bounds, as provided by getCellBounds. This method returns -1 if the model is empty This is a cover method that delegates to the method of the same name in the list's ListUI. It returns -1 if the list has no ListUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point indexToLocation(int index)
+				</name>
+				<description>
+					Returns the origin of the specified item in the list's coordinate system. This method returns null if the index isn't valid. This is a cover method that delegates to the method of the same name in the list's ListUI. It returns null if the list has no ListUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getCellBounds(int index0,                        int index1)
+				</name>
+				<description>
+					Returns the bounding rectangle, in the list's coordinate system, for the range of cells specified by the two indices. These indices can be supplied in any order. If the smaller index is outside the list's range of cells, this method returns null. If the smaller index is valid, but the larger index is outside the list's range, the bounds of just the first index is returned. Otherwise, the bounds of the valid range is returned. This is a cover method that delegates to the method of the same name in the list's ListUI. It returns null if the list has no ListUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListModel<E> getModel()
+				</name>
+				<description>
+					Returns the data model that holds the list of items displayed by the JList component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(ListModel<E> model)
+				</name>
+				<description>
+					Sets the model that represents the contents or "value" of the list, notifies property change listeners, and then clears the list's selection. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setListData(E[] listData)
+				</name>
+				<description>
+					Constructs a read-only ListModel from an array of items, and calls setModel with this model. Attempts to pass a null value to this method results in undefined behavior and, most likely, exceptions. The created model references the given array directly. Attempts to modify the array after invoking this method results in undefined behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setListData(Vector<? extends E> listData)
+				</name>
+				<description>
+					Constructs a read-only ListModel from a Vector and calls setModel with this model. Attempts to pass a null value to this method results in undefined behavior and, most likely, exceptions. The created model references the given Vector directly. Attempts to modify the Vector after invoking this method results in undefined behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ListSelectionModel createSelectionModel()
+				</name>
+				<description>
+					Returns an instance of DefaultListSelectionModel; called during construction to initialize the list's selection model property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListSelectionModel getSelectionModel()
+				</name>
+				<description>
+					Returns the current selection model. The selection model maintains the selection state of the list. See the class level documentation for more details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireSelectionValueChanged(int firstIndex,                               int lastIndex,                               boolean isAdjusting)
+				</name>
+				<description>
+					Notifies ListSelectionListeners added directly to the list of selection changes made to the selection model. JList listens for changes made to the selection in the selection model, and forwards notification to listeners added to the list directly, by calling this method. This method constructs a ListSelectionEvent with this list as the source, and the specified arguments, and sends it to the registered ListSelectionListeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addListSelectionListener(ListSelectionListener listener)
+				</name>
+				<description>
+					Adds a listener to the list, to be notified each time a change to the selection occurs; the preferred way of listening for selection state changes. JList takes care of listening for selection state changes in the selection model, and notifies the given listener of each change. ListSelectionEvents sent to the listener have a source property set to this list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeListSelectionListener(ListSelectionListener listener)
+				</name>
+				<description>
+					Removes a selection listener from the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ListSelectionListener[] getListSelectionListeners()
+				</name>
+				<description>
+					Returns an array of all the ListSelectionListeners added to this JList by way of addListSelectionListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionModel(ListSelectionModel selectionModel)
+				</name>
+				<description>
+					Sets the selectionModel for the list to a non-null ListSelectionModel implementation. The selection model handles the task of making single selections, selections of contiguous ranges, and non-contiguous selections. This is a JavaBeans bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionMode(int selectionMode)
+				</name>
+				<description>
+					Sets the selection mode for the list. This is a cover method that sets the selection mode directly on the selection model. The following list describes the accepted selection modes: ListSelectionModel.SINGLE_SELECTION - Only one list index can be selected at a time. In this mode, setSelectionInterval and addSelectionInterval are equivalent, both replacing the current selection with the index represented by the second argument (the "lead"). ListSelectionModel.SINGLE_INTERVAL_SELECTION - Only one contiguous interval can be selected at a time. In this mode, addSelectionInterval behaves like setSelectionInterval (replacing the current selection}, unless the given interval is immediately adjacent to or overlaps the existing selection, and can be used to grow the selection. ListSelectionModel.MULTIPLE_INTERVAL_SELECTION - In this mode, there's no restriction on what can be selected. This mode is the default.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectionMode()
+				</name>
+				<description>
+					Returns the current selection mode for the list. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAnchorSelectionIndex()
+				</name>
+				<description>
+					Returns the anchor selection index. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLeadSelectionIndex()
+				</name>
+				<description>
+					Returns the lead selection index. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinSelectionIndex()
+				</name>
+				<description>
+					Returns the smallest selected cell index, or -1 if the selection is empty. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxSelectionIndex()
+				</name>
+				<description>
+					Returns the largest selected cell index, or -1 if the selection is empty. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSelectedIndex(int index)
+				</name>
+				<description>
+					Returns true if the specified index is selected, else false. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSelectionEmpty()
+				</name>
+				<description>
+					Returns true if nothing is selected, else false. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clearSelection()
+				</name>
+				<description>
+					Clears the selection; after calling this method, isSelectionEmpty will return true. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionInterval(int anchor,                          int lead)
+				</name>
+				<description>
+					Selects the specified interval. Both anchor and lead indices are included. anchor doesn't have to be less than or equal to lead. This is a cover method that delegates to the method of the same name on the list's selection model. Refer to the documentation of the selection model class being used for details on how values less than 0 are handled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSelectionInterval(int anchor,                          int lead)
+				</name>
+				<description>
+					Sets the selection to be the union of the specified interval with current selection. Both the anchor and lead indices are included. anchor doesn't have to be less than or equal to lead. This is a cover method that delegates to the method of the same name on the list's selection model. Refer to the documentation of the selection model class being used for details on how values less than 0 are handled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeSelectionInterval(int index0,                             int index1)
+				</name>
+				<description>
+					Sets the selection to be the set difference of the specified interval and the current selection. Both the index0 and index1 indices are removed. index0 doesn't have to be less than or equal to index1. This is a cover method that delegates to the method of the same name on the list's selection model. Refer to the documentation of the selection model class being used for details on how values less than 0 are handled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValueIsAdjusting(boolean b)
+				</name>
+				<description>
+					Sets the selection model's valueIsAdjusting property. When true, upcoming changes to selection should be considered part of a single change. This property is used internally and developers typically need not call this method. For example, when the model is being updated in response to a user drag, the value of the property is set to true when the drag is initiated and set to false when the drag is finished. This allows listeners to update only when a change has been finalized, rather than handling all of the intermediate values. You may want to use this directly if making a series of changes that should be considered part of a single change. This is a cover method that delegates to the method of the same name on the list's selection model. See the documentation for ListSelectionModel.setValueIsAdjusting(boolean) for more details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getValueIsAdjusting()
+				</name>
+				<description>
+					Returns the value of the selection model's isAdjusting property. This is a cover method that delegates to the method of the same name on the list's selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSelectedIndices()
+				</name>
+				<description>
+					Returns an array of all of the selected indices, in increasing order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedIndex(int index)
+				</name>
+				<description>
+					Selects a single cell. Does nothing if the given index is greater than or equal to the model size. This is a convenience method that uses setSelectionInterval on the selection model. Refer to the documentation for the selection model class being used for details on how values less than 0 are handled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedIndices(int[] indices)
+				</name>
+				<description>
+					Changes the selection to be the set of indices specified by the given array. Indices greater than or equal to the model size are ignored. This is a convenience method that clears the selection and then uses addSelectionInterval on the selection model to add the indices. Refer to the documentation of the selection model class being used for details on how values less than 0 are handled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Object[] getSelectedValues()
+				</name>
+				<description>
+					Deprecated. As of JDK 1.7, replaced by getSelectedValuesList() Returns an array of all the selected values, in increasing order based on their indices in the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<E> getSelectedValuesList()
+				</name>
+				<description>
+					Returns a list of all the selected items, in increasing order based on their indices in the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectedIndex()
+				</name>
+				<description>
+					Returns the smallest selected cell index; the selection when only a single item is selected in the list. When multiple items are selected, it is simply the smallest selected index. Returns -1 if there is no selection. This method is a cover that delegates to getMinSelectionIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E getSelectedValue()
+				</name>
+				<description>
+					Returns the value for the smallest selected cell index; the selected value when only a single item is selected in the list. When multiple items are selected, it is simply the value for the smallest selected index. Returns null if there is no selection. This is a convenience method that simply returns the model value for getMinSelectionIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedValue(Object anObject,                      boolean shouldScroll)
+				</name>
+				<description>
+					Selects the specified object from the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredScrollableViewportSize()
+				</name>
+				<description>
+					Computes the size of viewport needed to display visibleRowCount rows. The value returned by this method depends on the layout orientation: VERTICAL: This is trivial if both fixedCellWidth and fixedCellHeight have been set (either explicitly or by specifying a prototype cell value). The width is simply the fixedCellWidth plus the list's horizontal insets. The height is the fixedCellHeight multiplied by the visibleRowCount, plus the list's vertical insets. If either fixedCellWidth or fixedCellHeight haven't been specified, heuristics are used. If the model is empty, the width is the fixedCellWidth, if greater than 0, or a hard-coded value of 256. The height is the fixedCellHeight multiplied by visibleRowCount, if fixedCellHeight is greater than 0, otherwise it is a hard-coded value of 16 multiplied by visibleRowCount. If the model isn't empty, the width is the preferred size's width, typically the width of the widest list element. The height is the fixedCellHeight multiplied by the visibleRowCount, plus the list's vertical insets. VERTICAL_WRAP or HORIZONTAL_WRAP: This method simply returns the value from getPreferredSize. The list's ListUI is expected to override getPreferredSize to return an appropriate value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableUnitIncrement(Rectangle visibleRect,                               int orientation,                               int direction)
+				</name>
+				<description>
+					Returns the distance to scroll to expose the next or previous row (for vertical scrolling) or column (for horizontal scrolling). For horizontal scrolling, if the layout orientation is VERTICAL, then the list's font size is returned (or 1 if the font is null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableBlockIncrement(Rectangle visibleRect,                                int orientation,                                int direction)
+				</name>
+				<description>
+					Returns the distance to scroll to expose the next or previous block. For vertical scrolling, the following rules are used: if scrolling down, returns the distance to scroll so that the last visible element becomes the first completely visible element if scrolling up, returns the distance to scroll so that the first visible element becomes the last completely visible element returns visibleRect.height if the list is empty For horizontal scrolling, when the layout orientation is either VERTICAL_WRAP or HORIZONTAL_WRAP: if scrolling right, returns the distance to scroll so that the last visible element becomes the first completely visible element if scrolling left, returns the distance to scroll so that the first visible element becomes the last completely visible element returns visibleRect.width if the list is empty For horizontal scrolling and VERTICAL orientation, returns visibleRect.width. Note that the value of visibleRect must be the equal to this.getVisibleRect().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportWidth()
+				</name>
+				<description>
+					Returns true if this JList is displayed in a JViewport and the viewport is wider than the list's preferred width, or if the layout orientation is HORIZONTAL_WRAP and visibleRowCount <= 0; otherwise returns false. If false, then don't track the viewport's width. This allows horizontal scrolling if the JViewport is itself embedded in a JScrollPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportHeight()
+				</name>
+				<description>
+					Returns true if this JList is displayed in a JViewport and the viewport is taller than the list's preferred height, or if the layout orientation is VERTICAL_WRAP and visibleRowCount <= 0; otherwise returns false. If false, then don't track the viewport's height. This allows vertical scrolling if the JViewport is itself embedded in a JScrollPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a String representation of this JList. This method is intended to be used only for debugging purposes, and the content and format of the returned String may vary between implementations. The returned String may be empty, but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JList. For JList, the AccessibleContext takes the form of an AccessibleJList. A new AccessibleJList instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

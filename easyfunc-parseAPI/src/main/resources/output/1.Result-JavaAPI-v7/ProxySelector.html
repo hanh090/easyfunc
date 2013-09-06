@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public abstract class ProxySelector  extends Object
+		</name>
+		<description>
+			Selects the proxy server to use, if any, when connecting to the network resource referenced by a URL. A proxy selector is a concrete sub-class of this class and is registered by invoking the setDefault method. The currently registered proxy selector can be retrieved by calling getDefault method. When a proxy selector is registered, for instance, a subclass of URLConnection class should call the select method for each URL request so that the proxy selector can decide if a direct, or proxied connection should be used. The select method returns an iterator over a collection with the preferred connection approach. If a connection cannot be established to a proxy (PROXY or SOCKS) servers then the caller should call the proxy selector's connectFailed method to notify the proxy selector that the proxy server is unavailable. The default proxy selector does enforce a set of System Properties related to proxy settings.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ProxySelector()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ProxySelector getDefault()
+				</name>
+				<description>
+					Gets the system-wide proxy selector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefault(ProxySelector ps)
+				</name>
+				<description>
+					Sets (or unsets) the system-wide proxy selector. Note: non-standard protocol handlers may ignore this setting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract List<Proxy> select(URI uri)
+				</name>
+				<description>
+					Selects all the applicable proxies based on the protocol to access the resource with and a destination address to access the resource at. The format of the URI is defined as follow: http URI for http connections https URI for https connections ftp URI for ftp connections socket://host:port for tcp client sockets connections
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void connectFailed(URI uri,                   SocketAddress sa,                   IOException ioe)
+				</name>
+				<description>
+					Called to indicate that a connection could not be established to a proxy/socks server. An implementation of this method can temporarily remove the proxies or reorder the sequence of proxies returned by select(URI), using the address and the IOException caught when trying to connect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

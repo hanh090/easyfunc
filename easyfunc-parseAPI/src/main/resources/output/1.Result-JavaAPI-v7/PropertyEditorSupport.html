@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public class PropertyEditorSupport  extends Object  implements PropertyEditor
+		</name>
+		<description>
+			This is a support class to help build property editors. It can be used either as a base class or as a delagatee.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PropertyEditorSupport()
+				</name>
+				<description>
+					Constructs a PropertyEditorSupport object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PropertyEditorSupport(Object source)
+				</name>
+				<description>
+					Constructs a PropertyEditorSupport object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getSource()
+				</name>
+				<description>
+					Returns the bean that is used as the source of events. If the source has not been explicitly set then this instance of PropertyEditorSupport is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSource(Object source)
+				</name>
+				<description>
+					Sets the source bean. The source bean is used as the source of events for the property changes. This source should be used for information purposes only and should not be modified by the PropertyEditor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValue(Object value)
+				</name>
+				<description>
+					Set (or change) the object that is to be edited.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getValue()
+				</name>
+				<description>
+					Gets the value of the property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPaintable()
+				</name>
+				<description>
+					Determines whether the class will honor the paintValue method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintValue(Graphics gfx,                Rectangle box)
+				</name>
+				<description>
+					Paint a representation of the value into a given area of screen real estate. Note that the propertyEditor is responsible for doing its own clipping so that it fits into the given rectangle. If the PropertyEditor doesn't honor paint requests (see isPaintable) this method should be a silent noop.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getJavaInitializationString()
+				</name>
+				<description>
+					This method is intended for use when generating Java code to set the value of the property. It should return a fragment of Java code that can be used to initialize a variable with the current property value. Example results are "2", "new Color(127,127,34)", "Color.orange", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAsText()
+				</name>
+				<description>
+					Gets the property value as a string suitable for presentation to a human to edit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAsText(String text)                 throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the property value by parsing a given String. May raise java.lang.IllegalArgumentException if either the String is badly formatted or if this kind of property can't be expressed as text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getTags()
+				</name>
+				<description>
+					If the property value must be one of a set of known tagged values, then this method should return an array of the tag values. This can be used to represent (for example) enum values. If a PropertyEditor supports tags, then it should support the use of setAsText with a tag value as a way of setting the value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getCustomEditor()
+				</name>
+				<description>
+					A PropertyEditor may chose to make available a full custom Component that edits its property value. It is the responsibility of the PropertyEditor to hook itself up to its editor Component itself and to report property value changes by firing a PropertyChange event. The higher-level code that calls getCustomEditor may either embed the Component in some larger property sheet, or it may put it in its own individual dialog, or ...
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean supportsCustomEditor()
+				</name>
+				<description>
+					Determines whether the propertyEditor can provide a custom editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Adds a listener for the value change. When the property editor changes its value it should fire a PropertyChangeEvent on all registered PropertyChangeListeners, specifying the null value for the property name. If the source property is set, it should be used as the source of the event. The same listener object may be added more than once, and will be called as many times as it is added. If listener is null, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removePropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Removes a listener for the value change. If the same listener was added more than once, it will be notified one less time after being removed. If listener is null, or was never added, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange()
+				</name>
+				<description>
+					Report that we have been modified to any interested listeners.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

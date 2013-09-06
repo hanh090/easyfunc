@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public class ForwardingJavaFileObject<F extends JavaFileObject>  extends ForwardingFileObject<F>  implements JavaFileObject
+		</name>
+		<description>
+			Forwards calls to a given file object. Subclasses of this class might override some of these methods and might also provide additional fields and methods.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ForwardingJavaFileObject(F fileObject)
+				</name>
+				<description>
+					Creates a new instance of ForwardingJavaFileObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JavaFileObject.Kind getKind()
+				</name>
+				<description>
+					Description copied from interface: JavaFileObject Gets the kind of this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNameCompatible(String simpleName,                         JavaFileObject.Kind kind)
+				</name>
+				<description>
+					Description copied from interface: JavaFileObject Checks if this file object is compatible with the specified simple name and kind. A simple name is a single identifier (not qualified) as defined in The Java™ Language Specification, section 6.2 "Names and Identifiers".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NestingKind getNestingKind()
+				</name>
+				<description>
+					Description copied from interface: JavaFileObject Provides a hint about the nesting level of the class represented by this file object. This method may return NestingKind.MEMBER to mean NestingKind.LOCAL or NestingKind.ANONYMOUS. If the nesting level is not known or this file object does not represent a class file this method returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Modifier getAccessLevel()
+				</name>
+				<description>
+					Description copied from interface: JavaFileObject Provides a hint about the access level of the class represented by this file object. If the access level is not known or if this file object does not represent a class file this method returns null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

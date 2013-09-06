@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.lang.model.element
+	</package>
+	<type>
+		<name>
+			public interface ExecutableElement  extends Element, Parameterizable
+		</name>
+		<description>
+			Represents a method, constructor, or initializer (static or instance) of a class or interface, including annotation type elements.
+		</description>
+		<methods>
+			<method>
+				<name>
+					List<? extends TypeParameterElement> getTypeParameters()
+				</name>
+				<description>
+					Returns the formal type parameters of this executable in declaration order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeMirror getReturnType()
+				</name>
+				<description>
+					Returns the return type of this executable. Returns a NoType with kind VOID if this executable is not a method, or is a method that does not return a value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<? extends VariableElement> getParameters()
+				</name>
+				<description>
+					Returns the formal parameters of this executable. They are returned in declaration order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isVarArgs()
+				</name>
+				<description>
+					Returns true if this method or constructor accepts a variable number of arguments and returns false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<? extends TypeMirror> getThrownTypes()
+				</name>
+				<description>
+					Returns the exceptions and other throwables listed in this method or constructor's throws clause in declaration order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AnnotationValue getDefaultValue()
+				</name>
+				<description>
+					Returns the default value if this executable is an annotation type element. Returns null if this method is not an annotation type element, or if it is an annotation type element with no default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name getSimpleName()
+				</name>
+				<description>
+					Returns the simple name of a constructor, method, or initializer. For a constructor, the name "<init>" is returned, for a static initializer, the name "<clinit>" is returned, and for an anonymous class or instance initializer, an empty name is returned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

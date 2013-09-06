@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		org.omg.CosNaming
+	</package>
+	<type>
+		<name>
+			public interface NamingContextExtOperations  extends NamingContextOperations
+		</name>
+		<description>
+			NamingContextExt is the extension of NamingContext which contains a set of name bindings in which each name is unique and is part of Interoperable Naming Service. Different names can be bound to an object in the same or different contexts at the same time. Using NamingContextExt, you can use URL-based names to bind and resolve. See CORBA COS Naming Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String to_string(NameComponent[] n)                   throws InvalidName
+				</name>
+				<description>
+					This operation creates a stringified name from the array of Name components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NameComponent[] to_name(String sn)                          throws InvalidName
+				</name>
+				<description>
+					This operation converts a Stringified Name into an equivalent array of Name Components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String to_url(String addr,              String sn)                throws InvalidAddress,                       InvalidName
+				</name>
+				<description>
+					This operation creates a URL based "iiopname://" format name from the Stringified Name of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object resolve_str(String sn)                     throws NotFound,                            CannotProceed,                            InvalidName
+				</name>
+				<description>
+					This operation resolves the Stringified name into the object reference.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

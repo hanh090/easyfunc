@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.xml.ws.soap
+	</package>
+	<type>
+		<name>
+			public final class MTOMFeature  extends WebServiceFeature
+		</name>
+		<description>
+			This feature represents the use of MTOM with a web service. This feature can be used during the creation of SEI proxy, and Dispatch instances on the client side and Endpoint instances on the server side. This feature cannot be used for Service instance creation on the client side. The following describes the affects of this feature with respect to being enabled or disabled: ENABLED: In this Mode, MTOM will be enabled. A receiver MUST accept both a non-optimized and an optimized message, and a sender MAY send an optimized message, or a non-optimized message. The heuristics used by a sender to determine whether to use optimization or not are implementation-specific. DISABLED: In this Mode, MTOM will be disabled The threshold property can be used to set the threshold value used to determine when binary data should be XOP encoded.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String ID
+				</name>
+				<description>
+					Constant value identifying the MTOMFeature
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int threshold
+				</name>
+				<description>
+					Property for MTOM threshold value. This property serves as a hint when MTOM is enabled, binary data above this size in bytes SHOULD be sent as attachment. The value of this property MUST always be >= 0. Default value is 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MTOMFeature()
+				</name>
+				<description>
+					Create an MTOMFeature. The instance created will be enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MTOMFeature(boolean enabled)
+				</name>
+				<description>
+					Creates an MTOMFeature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MTOMFeature(int threshold)
+				</name>
+				<description>
+					Creates an MTOMFeature. The instance created will be enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MTOMFeature(boolean enabled,             int threshold)
+				</name>
+				<description>
+					Creates an MTOMFeature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getID()
+				</name>
+				<description>
+					Get the unique identifier for this WebServiceFeature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getThreshold()
+				</name>
+				<description>
+					Gets the threshold value used to determine when binary data should be sent as an attachment.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

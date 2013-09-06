@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class TableView.TableRow  extends BoxView
+		</name>
+		<description>
+			View of a row in a row-centric table.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TableView.TableRow(Element elem)
+				</name>
+				<description>
+					Constructs a TableView for the given element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replace(int offset,             int length,             View[] views)
+				</name>
+				<description>
+					Change the child views. This is implemented to provide the superclass behavior and invalidate the grid so that rows and columns will be recalculated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutMajorAxis(int targetSpan,                     int axis,                     int[] offsets,                     int[] spans)
+				</name>
+				<description>
+					Perform layout for the major axis of the box (i.e. the axis that it represents). The results of the layout should be placed in the given arrays which represent the allocations to the children along the major axis. This is re-implemented to give each child the span of the column width for the table, and to give cells that span multiple columns the multi-column span.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layoutMinorAxis(int targetSpan,                     int axis,                     int[] offsets,                     int[] spans)
+				</name>
+				<description>
+					Perform layout for the minor axis of the box (i.e. the axis orthoginal to the axis that it represents). The results of the layout should be placed in the given arrays which represent the allocations to the children along the minor axis. This is called by the superclass whenever the layout needs to be updated along the minor axis. This is implemented to delegate to the superclass, then adjust the span for any cell that spans multiple rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getResizeWeight(int axis)
+				</name>
+				<description>
+					Determines the resizability of the view along the given axis. A value of 0 or less is not resizable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View getViewAtPosition(int pos,                       Rectangle a)
+				</name>
+				<description>
+					Fetches the child view that represents the given position in the model. This is implemented to walk through the children looking for a range that contains the given position. In this view the children do not necessarily have a one to one mapping with the child elements.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

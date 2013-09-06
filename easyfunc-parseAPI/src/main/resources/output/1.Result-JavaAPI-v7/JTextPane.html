@@ -1,0 +1,225 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JTextPane  extends JEditorPane
+		</name>
+		<description>
+			A text component that can be marked up with attributes that are represented graphically. You can find how-to information and examples of using text panes in Using Text Components, a section in The Java Tutorial. This component models paragraphs that are composed of runs of character level attributes. Each paragraph may have a logical style attached to it which contains the default attributes to use if not overridden by attributes set on the paragraph or character run. Components and images may be embedded in the flow of text. Newlines For a discussion on how newlines are handled, see DefaultEditorKit. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JTextPane()
+				</name>
+				<description>
+					Creates a new JTextPane. A new instance of StyledEditorKit is created and set, and the document model set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTextPane(StyledDocument doc)
+				</name>
+				<description>
+					Creates a new JTextPane, with a specified document model. A new instance of javax.swing.text.StyledEditorKit is created and set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the class ID for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDocument(Document doc)
+				</name>
+				<description>
+					Associates the editor with a text document. This must be a StyledDocument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setStyledDocument(StyledDocument doc)
+				</name>
+				<description>
+					Associates the editor with a text document. The currently registered factory is used to build a view for the document, which gets displayed by the editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StyledDocument getStyledDocument()
+				</name>
+				<description>
+					Fetches the model associated with the editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replaceSelection(String content)
+				</name>
+				<description>
+					Replaces the currently selected content with new content represented by the given string. If there is no selection this amounts to an insert of the given text. If there is no replacement text this amounts to a removal of the current selection. The replacement text will have the attributes currently defined for input at the point of insertion. If the document is not editable, beep and return.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertComponent(Component c)
+				</name>
+				<description>
+					Inserts a component into the document as a replacement for the currently selected content. If there is no selection the component is effectively inserted at the current position of the caret. This is represented in the associated document as an attribute of one character of content. The component given is the actual component used by the JTextPane. Since components cannot be a child of more than one container, this method should not be used in situations where the model is shared by text components. The component is placed relative to the text baseline according to the value returned by Component.getAlignmentY. For Swing components this value can be conveniently set using the method JComponent.setAlignmentY. For example, setting a value of 0.75 will cause 75 percent of the component to be above the baseline, and 25 percent of the component to be below the baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertIcon(Icon g)
+				</name>
+				<description>
+					Inserts an icon into the document as a replacement for the currently selected content. If there is no selection the icon is effectively inserted at the current position of the caret. This is represented in the associated document as an attribute of one character of content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style addStyle(String nm,               Style parent)
+				</name>
+				<description>
+					Adds a new style into the logical style hierarchy. Style attributes resolve from bottom up so an attribute specified in a child will override an attribute specified in the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeStyle(String nm)
+				</name>
+				<description>
+					Removes a named non-null style previously added to the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style getStyle(String nm)
+				</name>
+				<description>
+					Fetches a named non-null style previously added.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLogicalStyle(Style s)
+				</name>
+				<description>
+					Sets the logical style to use for the paragraph at the current caret position. If attributes aren't explicitly set for character and paragraph attributes they will resolve through the logical style assigned to the paragraph, which in term may resolve through some hierarchy completely independent of the element hierarchy in the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Style getLogicalStyle()
+				</name>
+				<description>
+					Fetches the logical style assigned to the paragraph represented by the current position of the caret, or null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getCharacterAttributes()
+				</name>
+				<description>
+					Fetches the character attributes in effect at the current location of the caret, or null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCharacterAttributes(AttributeSet attr,                            boolean replace)
+				</name>
+				<description>
+					Applies the given attributes to character content. If there is a selection, the attributes are applied to the selection range. If there is no selection, the attributes are applied to the input attribute set which defines the attributes for any new text that gets inserted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getParagraphAttributes()
+				</name>
+				<description>
+					Fetches the current paragraph attributes in effect at the location of the caret, or null if none.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParagraphAttributes(AttributeSet attr,                            boolean replace)
+				</name>
+				<description>
+					Applies the given attributes to paragraphs. If there is a selection, the attributes are applied to the paragraphs that intersect the selection. If there is no selection, the attributes are applied to the paragraph at the current caret position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MutableAttributeSet getInputAttributes()
+				</name>
+				<description>
+					Gets the input attributes for the pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final StyledEditorKit getStyledEditorKit()
+				</name>
+				<description>
+					Gets the editor kit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected EditorKit createDefaultEditorKit()
+				</name>
+				<description>
+					Creates the EditorKit to use by default. This is implemented to return javax.swing.text.StyledEditorKit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setEditorKit(EditorKit kit)
+				</name>
+				<description>
+					Sets the currently installed kit for handling content. This is the bound property that establishes the content type of the editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JTextPane. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

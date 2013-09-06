@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.imageio.spi
+	</package>
+	<type>
+		<name>
+			public abstract class ImageInputStreamSpi  extends IIOServiceProvider
+		</name>
+		<description>
+			The service provider interface (SPI) for ImageInputStreams. For more information on service provider interfaces, see the class comment for the IIORegistry class. This interface allows arbitrary objects to be "wrapped" by instances of ImageInputStream. For example, a particular ImageInputStreamSpi might allow a generic InputStream to be used as an input source; another might take input from a URL. By treating the creation of ImageInputStreams as a pluggable service, it becomes possible to handle future input sources without changing the API. Also, high-performance implementations of ImageInputStream (for example, native implementations for a particular platform) can be installed and used transparently by applications.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Class<?> inputClass
+				</name>
+				<description>
+					A Class object indicating the legal object type for use by the createInputStreamInstance method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ImageInputStreamSpi()
+				</name>
+				<description>
+					Constructs a blank ImageInputStreamSpi. It is up to the subclass to initialize instance variables and/or override method implementations in order to provide working versions of all methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageInputStreamSpi(String vendorName,                     String version,                     Class<?> inputClass)
+				</name>
+				<description>
+					Constructs an ImageInputStreamSpi with a given set of values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getInputClass()
+				</name>
+				<description>
+					Returns a Class object representing the class or interface type that must be implemented by an input source in order to be "wrapped" in an ImageInputStream via the createInputStreamInstance method. Typical return values might include InputStream.class or URL.class, but any class may be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canUseCacheFile()
+				</name>
+				<description>
+					Returns true if the ImageInputStream implementation associated with this service provider can optionally make use of a cache file for improved performance and/or memory footrprint. If false, the value of the useCache argument to createInputStreamInstance will be ignored. The default implementation returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean needsCacheFile()
+				</name>
+				<description>
+					Returns true if the ImageInputStream implementation associated with this service provider requires the use of a cache File. If true, the value of the useCache argument to createInputStreamInstance will be ignored. The default implementation returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ImageInputStream createInputStreamInstance(Object input,                                           boolean useCache,                                           File cacheDir)                                                      throws IOException
+				</name>
+				<description>
+					Returns an instance of the ImageInputStream implementation associated with this service provider. If the use of a cache file is optional, the useCache parameter will be consulted. Where a cache is required, or not applicable, the value of useCache will be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageInputStream createInputStreamInstance(Object input)                                             throws IOException
+				</name>
+				<description>
+					Returns an instance of the ImageInputStream implementation associated with this service provider. A cache file will be created in the system-dependent default temporary-file directory, if needed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

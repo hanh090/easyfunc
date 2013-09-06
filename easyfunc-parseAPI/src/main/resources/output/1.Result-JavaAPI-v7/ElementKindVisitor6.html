@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		javax.lang.model.util
+	</package>
+	<type>
+		<name>
+			@SupportedSourceVersion(value=RELEASE_6)  public class ElementKindVisitor6<R,P>  extends SimpleElementVisitor6<R,P>
+		</name>
+		<description>
+			A visitor of program elements based on their kind with default behavior appropriate for the RELEASE_6 source version. For elements XYZ that may have more than one kind, the visitXYZ methods in this class delegate to the visitXYZKind method corresponding to the first argument's kind. The visitXYZKind methods call defaultAction, passing their arguments to defaultAction's corresponding parameters. Methods in this class may be overridden subject to their general contract. Note that annotating methods in concrete subclasses with @Override will help ensure that methods are overridden as intended. WARNING: The ElementVisitor interface implemented by this class may have methods added to it or the ElementKind enum used in this case may have constants added to it in the future to accommodate new, currently unknown, language structures added to future versions of the Java™ programming language. Therefore, methods whose names begin with "visit" may be added to this class in the future; to avoid incompatibilities, classes which extend this class should not declare any instance methods with names beginning with "visit". When such a new visit method is added, the default implementation in this class will be to call the visitUnknown method. A new abstract element kind visitor class will also be introduced to correspond to the new language level; this visitor will have different default behavior for the visit method in question. When the new visitor is introduced, all or portions of this visitor may be deprecated.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ElementKindVisitor6()
+				</name>
+				<description>
+					Constructor for concrete subclasses; uses null for the default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ElementKindVisitor6(R defaultValue)
+				</name>
+				<description>
+					Constructor for concrete subclasses; uses the argument for the default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitPackage(PackageElement e,               P p)
+				</name>
+				<description>
+					Visits a package element. This implementation calls defaultAction. The element argument has kind PACKAGE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitType(TypeElement e,            P p)
+				</name>
+				<description>
+					Visits a type element, dispatching to the visit method for the specific kind of type, ANNOTATION_TYPE, CLASS, ENUM, or INTERFACE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitTypeAsAnnotationType(TypeElement e,                            P p)
+				</name>
+				<description>
+					Visits an ANNOTATION_TYPE type element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitTypeAsClass(TypeElement e,                   P p)
+				</name>
+				<description>
+					Visits a CLASS type element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitTypeAsEnum(TypeElement e,                  P p)
+				</name>
+				<description>
+					Visits an ENUM type element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitTypeAsInterface(TypeElement e,                       P p)
+				</name>
+				<description>
+					Visits an INTERFACE type element by calling defaultAction. .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariable(VariableElement e,                P p)
+				</name>
+				<description>
+					Visits a variable element, dispatching to the visit method for the specific kind of variable, ENUM_CONSTANT, EXCEPTION_PARAMETER, FIELD, LOCAL_VARIABLE, PARAMETER, or RESOURCE_VARIABLE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariableAsEnumConstant(VariableElement e,                              P p)
+				</name>
+				<description>
+					Visits an ENUM_CONSTANT variable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariableAsExceptionParameter(VariableElement e,                                    P p)
+				</name>
+				<description>
+					Visits an EXCEPTION_PARAMETER variable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariableAsField(VariableElement e,                       P p)
+				</name>
+				<description>
+					Visits a FIELD variable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariableAsLocalVariable(VariableElement e,                               P p)
+				</name>
+				<description>
+					Visits a LOCAL_VARIABLE variable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariableAsParameter(VariableElement e,                           P p)
+				</name>
+				<description>
+					Visits a PARAMETER variable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariableAsResourceVariable(VariableElement e,                                  P p)
+				</name>
+				<description>
+					Visits a RESOURCE_VARIABLE variable element by calling visitUnknown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitExecutable(ExecutableElement e,                  P p)
+				</name>
+				<description>
+					Visits an executable element, dispatching to the visit method for the specific kind of executable, CONSTRUCTOR, INSTANCE_INIT, METHOD, or STATIC_INIT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitExecutableAsConstructor(ExecutableElement e,                               P p)
+				</name>
+				<description>
+					Visits a CONSTRUCTOR executable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitExecutableAsInstanceInit(ExecutableElement e,                                P p)
+				</name>
+				<description>
+					Visits an INSTANCE_INIT executable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitExecutableAsMethod(ExecutableElement e,                          P p)
+				</name>
+				<description>
+					Visits a METHOD executable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitExecutableAsStaticInit(ExecutableElement e,                              P p)
+				</name>
+				<description>
+					Visits a STATIC_INIT executable element by calling defaultAction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitTypeParameter(TypeParameterElement e,                     P p)
+				</name>
+				<description>
+					Visits a type parameter element. This implementation calls defaultAction. The element argument has kind TYPE_PARAMETER.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

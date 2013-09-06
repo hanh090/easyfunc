@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dom
+	</package>
+	<type>
+		<name>
+			public class DOMCryptoContext  extends Object  implements XMLCryptoContext
+		</name>
+		<description>
+			This class provides a DOM-specific implementation of the XMLCryptoContext interface. It also includes additional methods that are specific to a DOM-based implementation for registering and retrieving elements that contain attributes of type ID.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected DOMCryptoContext()
+				</name>
+				<description>
+					Default constructor. (For invocation by subclass constructors).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNamespacePrefix(String namespaceURI,                          String defaultPrefix)
+				</name>
+				<description>
+					This implementation uses an internal HashMap to get the prefix that the specified URI maps to. It returns the defaultPrefix if it maps to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String putNamespacePrefix(String namespaceURI,                          String prefix)
+				</name>
+				<description>
+					This implementation uses an internal HashMap to map the URI to the specified prefix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDefaultNamespacePrefix()
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Returns the default namespace prefix. The default namespace prefix is the prefix for all namespace URIs not explicitly set by the putNamespacePrefix method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultNamespacePrefix(String defaultPrefix)
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Sets the default namespace prefix. This sets the namespace prefix for all namespace URIs not explicitly set by the putNamespacePrefix method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getBaseURI()
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Returns the base URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBaseURI(String baseURI)
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Sets the base URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URIDereferencer getURIDereferencer()
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Returns a URIDereferencer that is used to dereference URIReferences.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setURIDereferencer(URIDereferencer dereferencer)
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Sets a URIDereferencer that is used to dereference URIReferences. The specified URIDereferencer is used in place of an implementation's default URIDereferencer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)
+				</name>
+				<description>
+					This implementation uses an internal HashMap to get the object that the specified name maps to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object setProperty(String name,                   Object value)
+				</name>
+				<description>
+					This implementation uses an internal HashMap to map the name to the specified object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public KeySelector getKeySelector()
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Returns the key selector for finding a key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setKeySelector(KeySelector ks)
+				</name>
+				<description>
+					Description copied from interface: XMLCryptoContext Sets the key selector for finding a key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getElementById(String idValue)
+				</name>
+				<description>
+					Returns the Element with the specified ID attribute value. This implementation uses an internal HashMap to get the element that the specified attribute value maps to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIdAttributeNS(Element element,                      String namespaceURI,                      String localName)
+				</name>
+				<description>
+					Registers the element's attribute specified by the namespace URI and local name to be of type ID. The attribute must have a non-empty value. This implementation uses an internal HashMap to map the attribute's value to the specified element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator iterator()
+				</name>
+				<description>
+					Returns a read-only iterator over the set of Id/Element mappings of this DOMCryptoContext. Attempts to modify the set via the Iterator.remove() method throw an UnsupportedOperationException. The mappings are returned in no particular order. Each element in the iteration is represented as a Map.Entry. If the DOMCryptoContext is modified while an iteration is in progress, the results of the iteration are undefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get(Object key)
+				</name>
+				<description>
+					This implementation uses an internal HashMap to get the object that the specified key maps to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object put(Object key,           Object value)
+				</name>
+				<description>
+					This implementation uses an internal HashMap to map the key to the specified object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class LookupOp  extends Object  implements BufferedImageOp, RasterOp
+		</name>
+		<description>
+			This class implements a lookup operation from the source to the destination. The LookupTable object may contain a single array or multiple arrays, subject to the restrictions below. For Rasters, the lookup operates on bands. The number of lookup arrays may be one, in which case the same array is applied to all bands, or it must equal the number of Source Raster bands. For BufferedImages, the lookup operates on color and alpha components. The number of lookup arrays may be one, in which case the same array is applied to all color (but not alpha) components. Otherwise, the number of lookup arrays may equal the number of Source color components, in which case no lookup of the alpha component (if present) is performed. If neither of these cases apply, the number of lookup arrays must equal the number of Source color components plus alpha components, in which case lookup is performed for all color and alpha components. This allows non-uniform rescaling of multi-band BufferedImages. BufferedImage sources with premultiplied alpha data are treated in the same manner as non-premultiplied images for purposes of the lookup. That is, the lookup is done per band on the raw data of the BufferedImage source without regard to whether the data is premultiplied. If a color conversion is required to the destination ColorModel, the premultiplied state of both source and destination will be taken into account for this step. Images with an IndexColorModel cannot be used. If a RenderingHints object is specified in the constructor, the color rendering hint and the dithering hint may be used when color conversion is required. This class allows the Source to be the same as the Destination.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public LookupOp(LookupTable lookup,          RenderingHints hints)
+				</name>
+				<description>
+					Constructs a LookupOp object given the lookup table and a RenderingHints object, which might be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final LookupTable getTable()
+				</name>
+				<description>
+					Returns the LookupTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final BufferedImage filter(BufferedImage src,                     BufferedImage dst)
+				</name>
+				<description>
+					Performs a lookup operation on a BufferedImage. If the color model in the source image is not the same as that in the destination image, the pixels will be converted in the destination. If the destination image is null, a BufferedImage will be created with an appropriate ColorModel. An IllegalArgumentException might be thrown if the number of arrays in the LookupTable does not meet the restrictions stated in the class comment above, or if the source image has an IndexColorModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final WritableRaster filter(Raster src,                      WritableRaster dst)
+				</name>
+				<description>
+					Performs a lookup operation on a Raster. If the destination Raster is null, a new Raster will be created. The IllegalArgumentException might be thrown if the source Raster and the destination Raster do not have the same number of bands or if the number of arrays in the LookupTable does not meet the restrictions stated in the class comment above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Rectangle2D getBounds2D(BufferedImage src)
+				</name>
+				<description>
+					Returns the bounding box of the filtered destination image. Since this is not a geometric operation, the bounding box does not change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Rectangle2D getBounds2D(Raster src)
+				</name>
+				<description>
+					Returns the bounding box of the filtered destination Raster. Since this is not a geometric operation, the bounding box does not change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedImage createCompatibleDestImage(BufferedImage src,                                        ColorModel destCM)
+				</name>
+				<description>
+					Creates a zeroed destination image with the correct size and number of bands. If destCM is null, an appropriate ColorModel will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createCompatibleDestRaster(Raster src)
+				</name>
+				<description>
+					Creates a zeroed-destination Raster with the correct size and number of bands, given this source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Point2D getPoint2D(Point2D srcPt,                   Point2D dstPt)
+				</name>
+				<description>
+					Returns the location of the destination point given a point in the source. If dstPt is not null, it will be used to hold the return value. Since this is not a geometric operation, the srcPt will equal the dstPt.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final RenderingHints getRenderingHints()
+				</name>
+				<description>
+					Returns the rendering hints for this op.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

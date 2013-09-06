@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.script
+	</package>
+	<type>
+		<name>
+			public class ScriptEngineManager  extends Object
+		</name>
+		<description>
+			The ScriptEngineManager implements a discovery and instantiation mechanism for ScriptEngine classes and also maintains a collection of key/value pairs storing state shared by all engines created by the Manager. This class uses the service provider mechanism to enumerate all the implementations of ScriptEngineFactory. The ScriptEngineManager provides a method to return a list of all these factories as well as utility methods which look up factories on the basis of language name, file extension and mime type. The Bindings of key/value pairs, referred to as the "Global Scope" maintained by the manager is available to all instances of ScriptEngine created by the ScriptEngineManager. The values in the Bindings are generally exposed in all scripts.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ScriptEngineManager()
+				</name>
+				<description>
+					If the thread context ClassLoader can be accessed by the caller, then the effect of calling this constructor is the same as calling ScriptEngineManager(Thread.currentThread().getContextClassLoader()). Otherwise, the effect is the same as calling ScriptEngineManager(null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ScriptEngineManager(ClassLoader loader)
+				</name>
+				<description>
+					This constructor loads the implementations of ScriptEngineFactory visible to the given ClassLoader using the service provider mechanism. If loader is null, the script engine factories that are bundled with the platform and that are in the usual extension directories (installed extensions) are loaded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBindings(Bindings bindings)
+				</name>
+				<description>
+					setBindings stores the specified Bindings in the globalScope field. ScriptEngineManager sets this Bindings as global bindings for ScriptEngine objects created by it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Bindings getBindings()
+				</name>
+				<description>
+					getBindings returns the value of the globalScope field. ScriptEngineManager sets this Bindings as global bindings for ScriptEngine objects created by it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void put(String key,         Object value)
+				</name>
+				<description>
+					Sets the specified key/value pair in the Global Scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get(String key)
+				</name>
+				<description>
+					Gets the value for the specified key in the Global Scope
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ScriptEngine getEngineByName(String shortName)
+				</name>
+				<description>
+					Looks up and creates a ScriptEngine for a given name. The algorithm first searches for a ScriptEngineFactory that has been registered as a handler for the specified name using the registerEngineName method. If one is not found, it searches the set of ScriptEngineFactory instances stored by the constructor for one with the specified name. If a ScriptEngineFactory is found by either method, it is used to create instance of ScriptEngine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ScriptEngine getEngineByExtension(String extension)
+				</name>
+				<description>
+					Look up and create a ScriptEngine for a given extension. The algorithm used by getEngineByName is used except that the search starts by looking for a ScriptEngineFactory registered to handle the given extension using registerEngineExtension.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ScriptEngine getEngineByMimeType(String mimeType)
+				</name>
+				<description>
+					Look up and create a ScriptEngine for a given mime type. The algorithm used by getEngineByName is used except that the search starts by looking for a ScriptEngineFactory registered to handle the given mime type using registerEngineMimeType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<ScriptEngineFactory> getEngineFactories()
+				</name>
+				<description>
+					Returns a list whose elements are instances of all the ScriptEngineFactory classes found by the discovery mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void registerEngineName(String name,                        ScriptEngineFactory factory)
+				</name>
+				<description>
+					Registers a ScriptEngineFactory to handle a language name. Overrides any such association found using the Discovery mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void registerEngineMimeType(String type,                            ScriptEngineFactory factory)
+				</name>
+				<description>
+					Registers a ScriptEngineFactory to handle a mime type. Overrides any such association found using the Discovery mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void registerEngineExtension(String extension,                             ScriptEngineFactory factory)
+				</name>
+				<description>
+					Registers a ScriptEngineFactory to handle an extension. Overrides any such association found using the Discovery mechanism.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

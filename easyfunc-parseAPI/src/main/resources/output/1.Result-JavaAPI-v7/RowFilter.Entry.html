@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public abstract static class RowFilter.Entry<M,I>  extends Object
+		</name>
+		<description>
+			An Entry object is passed to instances of RowFilter, allowing the filter to get the value of the entry's data, and thus to determine whether the entry should be shown. An Entry object contains information about the model as well as methods for getting the underlying values from the model.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RowFilter.Entry()
+				</name>
+				<description>
+					Creates an Entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract M getModel()
+				</name>
+				<description>
+					Returns the underlying model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getValueCount()
+				</name>
+				<description>
+					Returns the number of values in the entry. For example, when used with a table this corresponds to the number of columns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getValue(int index)
+				</name>
+				<description>
+					Returns the value at the specified index. This may return null. When used with a table, index corresponds to the column number in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getStringValue(int index)
+				</name>
+				<description>
+					Returns the string value at the specified index. If filtering is being done based on String values this method is preferred to that of getValue as getValue(index).toString() may return a different result than getStringValue(index). This implementation calls getValue(index).toString() after checking for null. Subclasses that provide different string conversion should override this method if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract I getIdentifier()
+				</name>
+				<description>
+					Returns the identifer (in the model) of the entry. For a table this corresponds to the index of the row in the model, expressed as an Integer.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

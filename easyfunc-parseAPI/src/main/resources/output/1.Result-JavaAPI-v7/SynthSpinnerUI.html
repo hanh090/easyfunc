@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public class SynthSpinnerUI  extends BasicSpinnerUI  implements PropertyChangeListener, SynthUI
+		</name>
+		<description>
+			Provides the Synth L&F UI delegate for JSpinner.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SynthSpinnerUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent c)
+				</name>
+				<description>
+					Returns a new instance of SynthSpinnerUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners()
+				</name>
+				<description>
+					Description copied from class: BasicSpinnerUI Initializes PropertyChangeListener with a shared object that delegates interesting PropertyChangeEvents to protected methods. This method is called by installUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners()
+				</name>
+				<description>
+					Description copied from class: BasicSpinnerUI Removes the PropertyChangeListener added by installListeners. This method is called by uninstallUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults()
+				</name>
+				<description>
+					Initializes the JSpinner border, foreground, and background, properties based on the corresponding "Spinner.*" properties from defaults table. The JSpinners layout is set to the value returned by createLayout. This method is called by installUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults()
+				</name>
+				<description>
+					Sets the JSpinner's layout manager to null. This method is called by uninstallUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected LayoutManager createLayout()
+				</name>
+				<description>
+					Description copied from class: BasicSpinnerUI Creates a LayoutManager that manages the editor, nextButton, and previousButton children of the JSpinner. These three children must be added with a constraint that identifies their role: "Editor", "Next", and "Previous". The default layout manager can handle the absence of any of these children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component createPreviousButton()
+				</name>
+				<description>
+					Description copied from class: BasicSpinnerUI Creates a decrement button, i.e. component that replaces the spinner value with the object returned by spinner.getPreviousValue. By default the previousButton is a JButton. If the decrement button is not needed this method should return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component createNextButton()
+				</name>
+				<description>
+					Description copied from class: BasicSpinnerUI Creates an increment button, i.e. component that replaces the spinner value with the object returned by spinner.getNextValue. By default the nextButton is a JButton. If the increment button is not needed this method should return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JComponent createEditor()
+				</name>
+				<description>
+					This method is called by installUI to get the editor component of the JSpinner. By default it just returns JSpinner.getEditor(). Subclasses can override createEditor to return a component that contains the spinner's editor or null, if they're going to handle adding the editor to the JSpinner in an installUI override. Typically this method would be overridden to wrap the editor with a container with a custom border, since one can't assume that the editors border can be set directly. The replaceEditor method is called when the spinners editor is changed with JSpinner.setEditor. If you've overriden this method, then you'll probably want to override replaceEditor as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void replaceEditor(JComponent oldEditor,                   JComponent newEditor)
+				</name>
+				<description>
+					Called by the PropertyChangeListener when the JSpinner editor property changes. It's the responsibility of this method to remove the old editor and add the new one. By default this operation is just:    spinner.remove(oldEditor);   spinner.add(newEditor, "Editor");   The implementation of replaceEditor should be coordinated with the createEditor method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SynthContext getContext(JComponent c)
+				</name>
+				<description>
+					Description copied from interface: SynthUI Returns the Context for the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void update(Graphics g,            JComponent c)
+				</name>
+				<description>
+					Notifies this UI delegate to repaint the specified component. This method paints the component background, then calls the paint(SynthContext,Graphics) method. In general, this method does not need to be overridden by subclasses. All Look and Feel rendering code should reside in the paint method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           JComponent c)
+				</name>
+				<description>
+					Paints the specified component according to the Look and Feel. This method is not used by Synth Look and Feel. Painting is handled by the paint(SynthContext,Graphics) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paint(SynthContext context,           Graphics g)
+				</name>
+				<description>
+					Paints the specified component. This implementation does nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintBorder(SynthContext context,                 Graphics g,                 int x,                 int y,                 int w,                 int h)
+				</name>
+				<description>
+					Description copied from interface: SynthUI Paints the border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void propertyChange(PropertyChangeEvent e)
+				</name>
+				<description>
+					Description copied from interface: PropertyChangeListener This method gets called when a bound property is changed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

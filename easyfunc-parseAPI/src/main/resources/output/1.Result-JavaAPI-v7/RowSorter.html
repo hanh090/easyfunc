@@ -1,0 +1,189 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public abstract class RowSorter<M>  extends Object
+		</name>
+		<description>
+			RowSorter provides the basis for sorting and filtering. Beyond creating and installing a RowSorter, you very rarely need to interact with one directly. Refer to TableRowSorter for a concrete implementation of RowSorter for JTable. RowSorter's primary role is to provide a mapping between two coordinate systems: that of the view (for example a JTable) and that of the underlying data source, typically a model. The view invokes the following methods on the RowSorter: toggleSortOrder ? The view invokes this when the appropriate user gesture has occurred to trigger a sort. For example, the user clicked a column header in a table. One of the model change methods ? The view invokes a model change method when the underlying model has changed. There may be order dependencies in how the events are delivered, so a RowSorter should not update its mapping until one of these methods is invoked. Because the view makes extensive use of the convertRowIndexToModel, convertRowIndexToView and getViewRowCount methods, these methods need to be fast. RowSorter provides notification of changes by way of RowSorterListener. Two types of notification are sent: RowSorterEvent.Type.SORT_ORDER_CHANGED ? notifies listeners that the sort order has changed. This is typically followed by a notification that the sort has changed. RowSorterEvent.Type.SORTED ? notifies listeners that the mapping maintained by the RowSorter has changed in some way. RowSorter implementations typically don't have a one-to-one mapping with the underlying model, but they can. For example, if a database does the sorting, toggleSortOrder might call through to the database (on a background thread), and override the mapping methods to return the argument that is passed in. Concrete implementations of RowSorter need to reference a model such as TableModel or ListModel. The view classes, such as JTable and JList, will also have a reference to the model. To avoid ordering dependencies, RowSorter implementations should not install a listener on the model. Instead the view class will call into the RowSorter when the model changes. For example, if a row is updated in a TableModel JTable invokes rowsUpdated. When the model changes, the view may call into any of the following methods: modelStructureChanged, allRowsChanged, rowsInserted, rowsDeleted and rowsUpdated.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RowSorter()
+				</name>
+				<description>
+					Creates a RowSorter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract M getModel()
+				</name>
+				<description>
+					Returns the underlying model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void toggleSortOrder(int column)
+				</name>
+				<description>
+					Reverses the sort order of the specified column. It is up to subclasses to provide the exact behavior when invoked. Typically this will reverse the sort order from ascending to descending (or descending to ascending) if the specified column is already the primary sorted column; otherwise, makes the specified column the primary sorted column, with an ascending sort order. If the specified column is not sortable, this method has no effect. If this results in changing the sort order and sorting, the appropriate RowSorterListener notification will be sent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int convertRowIndexToModel(int index)
+				</name>
+				<description>
+					Returns the location of index in terms of the underlying model. That is, for the row index in the coordinates of the view this returns the row index in terms of the underlying model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int convertRowIndexToView(int index)
+				</name>
+				<description>
+					Returns the location of index in terms of the view. That is, for the row index in the coordinates of the underlying model this returns the row index in terms of the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setSortKeys(List<? extends RowSorter.SortKey> keys)
+				</name>
+				<description>
+					Sets the current sort keys.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract List<? extends RowSorter.SortKey> getSortKeys()
+				</name>
+				<description>
+					Returns the current sort keys. This must return a non-null List and may return an unmodifiable List. If you need to change the sort keys, make a copy of the returned List, mutate the copy and invoke setSortKeys with the new list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getViewRowCount()
+				</name>
+				<description>
+					Returns the number of rows in the view. If the contents have been filtered this might differ from the row count of the underlying model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getModelRowCount()
+				</name>
+				<description>
+					Returns the number of rows in the underlying model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void modelStructureChanged()
+				</name>
+				<description>
+					Invoked when the underlying model structure has completely changed. For example, if the number of columns in a TableModel changed, this method would be invoked. You normally do not call this method. This method is public to allow view classes to call it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void allRowsChanged()
+				</name>
+				<description>
+					Invoked when the contents of the underlying model have completely changed. The structure of the table is the same, only the contents have changed. This is typically sent when it is too expensive to characterize the change in terms of the other methods. You normally do not call this method. This method is public to allow view classes to call it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void rowsInserted(int firstRow,                  int endRow)
+				</name>
+				<description>
+					Invoked when rows have been inserted into the underlying model in the specified range (inclusive). The arguments give the indices of the effected range. The first argument is in terms of the model before the change, and must be less than or equal to the size of the model before the change. The second argument is in terms of the model after the change and must be less than the size of the model after the change. For example, if you have a 5-row model and add 3 items to the end of the model the indices are 5, 7. You normally do not call this method. This method is public to allow view classes to call it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void rowsDeleted(int firstRow,                 int endRow)
+				</name>
+				<description>
+					Invoked when rows have been deleted from the underlying model in the specified range (inclusive). The arguments give the indices of the effected range and are in terms of the model before the change. For example, if you have a 5-row model and delete 3 items from the end of the model the indices are 2, 4. You normally do not call this method. This method is public to allow view classes to call it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void rowsUpdated(int firstRow,                 int endRow)
+				</name>
+				<description>
+					Invoked when rows have been changed in the underlying model between the specified range (inclusive). You normally do not call this method. This method is public to allow view classes to call it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void rowsUpdated(int firstRow,                 int endRow,                 int column)
+				</name>
+				<description>
+					Invoked when the column in the rows have been updated in the underlying model between the specified range. You normally do not call this method. This method is public to allow view classes to call it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addRowSorterListener(RowSorterListener l)
+				</name>
+				<description>
+					Adds a RowSorterListener to receive notification about this RowSorter. If the same listener is added more than once it will receive multiple notifications. If l is null nothing is done.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeRowSorterListener(RowSorterListener l)
+				</name>
+				<description>
+					Removes a RowSorterListener. If l is null nothing is done.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireSortOrderChanged()
+				</name>
+				<description>
+					Notifies listener that the sort order has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireRowSorterChanged(int[] lastRowIndexToModel)
+				</name>
+				<description>
+					Notifies listener that the mapping has changed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

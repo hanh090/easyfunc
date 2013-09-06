@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			@Deprecated  public abstract class Identity  extends Object  implements Principal, Serializable
+		</name>
+		<description>
+			Deprecated.  This class is no longer used. Its functionality has been replaced by java.security.KeyStore, the java.security.cert package, and java.security.Principal. This class represents identities: real-world objects such as people, companies or organizations whose identities can be authenticated using their public keys. Identities may also be more abstract (or concrete) constructs, such as daemon threads or smart cards. All Identity objects have a name and a public key. Names are immutable. Identities may also be scoped. That is, if an Identity is specified to have a particular scope, then the name and public key of the Identity are unique within that scope. An Identity also has a set of certificates (all certifying its own public key). The Principal names specified in these certificates need not be the same, only the key. An Identity can be subclassed, to include postal and email addresses, telephone numbers, images of faces and logos, and so on.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Identity()
+				</name>
+				<description>
+					Deprecated.  Constructor for serialization only.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Identity(String name,          IdentityScope scope)           throws KeyManagementException
+				</name>
+				<description>
+					Deprecated.  Constructs an identity with the specified name and scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Identity(String name)
+				</name>
+				<description>
+					Deprecated.  Constructs an identity with the specified name and no scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getName()
+				</name>
+				<description>
+					Deprecated.  Returns this identity's name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final IdentityScope getScope()
+				</name>
+				<description>
+					Deprecated.  Returns this identity's scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PublicKey getPublicKey()
+				</name>
+				<description>
+					Deprecated.  Returns this identity's public key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPublicKey(PublicKey key)                    throws KeyManagementException
+				</name>
+				<description>
+					Deprecated.  Sets this identity's public key. The old key and all of this identity's certificates are removed by this operation. First, if there is a security manager, its checkSecurityAccess method is called with "setIdentityPublicKey" as its argument to see if it's ok to set the public key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInfo(String info)
+				</name>
+				<description>
+					Deprecated.  Specifies a general information string for this identity. First, if there is a security manager, its checkSecurityAccess method is called with "setIdentityInfo" as its argument to see if it's ok to specify the information string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getInfo()
+				</name>
+				<description>
+					Deprecated.  Returns general information previously specified for this identity.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addCertificate(Certificate certificate)                      throws KeyManagementException
+				</name>
+				<description>
+					Deprecated.  Adds a certificate for this identity. If the identity has a public key, the public key in the certificate must be the same, and if the identity does not have a public key, the identity's public key is set to be that specified in the certificate. First, if there is a security manager, its checkSecurityAccess method is called with "addIdentityCertificate" as its argument to see if it's ok to add a certificate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeCertificate(Certificate certificate)                         throws KeyManagementException
+				</name>
+				<description>
+					Deprecated.  Removes a certificate from this identity. First, if there is a security manager, its checkSecurityAccess method is called with "removeIdentityCertificate" as its argument to see if it's ok to remove a certificate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Certificate[] certificates()
+				</name>
+				<description>
+					Deprecated.  Returns a copy of all the certificates for this identity.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean equals(Object identity)
+				</name>
+				<description>
+					Deprecated.  Tests for equality between the specified object and this identity. This first tests to see if the entities actually refer to the same object, in which case it returns true. Next, it checks to see if the entities have the same name and the same scope. If they do, the method returns true. Otherwise, it calls identityEquals, which subclasses should override.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean identityEquals(Identity identity)
+				</name>
+				<description>
+					Deprecated.  Tests for equality between the specified identity and this identity. This method should be overriden by subclasses to test for equality. The default behavior is to return true if the names and public keys are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Deprecated.  Returns a short string describing this identity, telling its name and its scope (if any). First, if there is a security manager, its checkSecurityAccess method is called with "printIdentity" as its argument to see if it's ok to return the string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString(boolean detailed)
+				</name>
+				<description>
+					Deprecated.  Returns a string representation of this identity, with optionally more details than that provided by the toString method without any arguments. First, if there is a security manager, its checkSecurityAccess method is called with "printIdentity" as its argument to see if it's ok to return the string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Deprecated.  Returns a hashcode for this identity.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

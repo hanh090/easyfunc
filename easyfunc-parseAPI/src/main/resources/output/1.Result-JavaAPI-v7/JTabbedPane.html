@@ -1,0 +1,684 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JTabbedPane  extends JComponent  implements Serializable, Accessible, SwingConstants
+		</name>
+		<description>
+			A component that lets the user switch between a group of components by clicking on a tab with a given title and/or icon. For examples and information on using tabbed panes see How to Use Tabbed Panes, a section in The Java Tutorial. Tabs/components are added to a TabbedPane object by using the addTab and insertTab methods. A tab is represented by an index corresponding to the position it was added in, where the first tab has an index equal to 0 and the last tab has an index equal to the tab count minus 1. The TabbedPane uses a SingleSelectionModel to represent the set of tab indices and the currently selected index. If the tab count is greater than 0, then there will always be a selected index, which by default will be initialized to the first tab. If the tab count is 0, then the selected index will be -1. The tab title can be rendered by a Component. For example, the following produce similar results:    // In this case the look and feel renders the title for the tab.   tabbedPane.addTab("Tab", myComponent);   // In this case the custom component is responsible for rendering the   // title of the tab.   tabbedPane.addTab(null, myComponent);   tabbedPane.setTabComponentAt(0, new JLabel("Tab"));   The latter is typically used when you want a more complex user interaction that requires custom components on the tab. For example, you could provide a custom component that animates or one that has widgets for closing the tab. If you specify a component for a tab, the JTabbedPane will not render any text or icon you have specified for the tab. Note: Do not use setVisible directly on a tab component to make it visible, use setSelectedComponent or setSelectedIndex methods instead. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int WRAP_TAB_LAYOUT
+				</name>
+				<description>
+					The tab layout policy for wrapping tabs in multiple runs when all tabs will not fit within a single run.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int SCROLL_TAB_LAYOUT
+				</name>
+				<description>
+					Tab layout policy for providing a subset of available tabs when all the tabs will not fit within a single run. If all the tabs do not fit within a single run the look and feel will provide a way to navigate to hidden tabs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int tabPlacement
+				</name>
+				<description>
+					Where the tabs are placed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SingleSelectionModel model
+				</name>
+				<description>
+					The default selection model
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener changeListener
+				</name>
+				<description>
+					The changeListener is the listener we add to the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient ChangeEvent changeEvent
+				</name>
+				<description>
+					Only one ChangeEvent is needed per TabPane instance since the event's only (read-only) state is the source property. The source of events generated here is always "this".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTabbedPane()
+				</name>
+				<description>
+					Creates an empty TabbedPane with a default tab placement of JTabbedPane.TOP.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTabbedPane(int tabPlacement)
+				</name>
+				<description>
+					Creates an empty TabbedPane with the specified tab placement of either: JTabbedPane.TOP, JTabbedPane.BOTTOM, JTabbedPane.LEFT, or JTabbedPane.RIGHT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTabbedPane(int tabPlacement,             int tabLayoutPolicy)
+				</name>
+				<description>
+					Creates an empty TabbedPane with the specified tab placement and tab layout policy. Tab placement may be either: JTabbedPane.TOP, JTabbedPane.BOTTOM, JTabbedPane.LEFT, or JTabbedPane.RIGHT. Tab layout policy may be either: JTabbedPane.WRAP_TAB_LAYOUT or JTabbedPane.SCROLL_TAB_LAYOUT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TabbedPaneUI getUI()
+				</name>
+				<description>
+					Returns the UI object which implements the L&F for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(TabbedPaneUI ui)
+				</name>
+				<description>
+					Sets the UI object which implements the L&F for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the UI property to a value from the current look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the UI class that implements the L&F for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ChangeListener createChangeListener()
+				</name>
+				<description>
+					Subclasses that want to handle ChangeEvents differently can override this to return a subclass of ModelListener or another ChangeListener implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Adds a ChangeListener to this tabbedpane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeChangeListener(ChangeListener l)
+				</name>
+				<description>
+					Removes a ChangeListener from this tabbedpane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ChangeListener[] getChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the ChangeListeners added to this JTabbedPane with addChangeListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireStateChanged()
+				</name>
+				<description>
+					Sends a ChangeEvent, with this JTabbedPane as the source, to each registered listener. This method is called each time there is a change to either the selected index or the selected tab in the JTabbedPane. Usually, the selected index and selected tab change together. However, there are some cases, such as tab addition, where the selected index changes and the same tab remains selected. There are other cases, such as deleting the selected tab, where the index remains the same, but a new tab moves to that index. Events are fired for all of these cases.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SingleSelectionModel getModel()
+				</name>
+				<description>
+					Returns the model associated with this tabbedpane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(SingleSelectionModel model)
+				</name>
+				<description>
+					Sets the model to be used with this tabbedpane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTabPlacement()
+				</name>
+				<description>
+					Returns the placement of the tabs for this tabbedpane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTabPlacement(int tabPlacement)
+				</name>
+				<description>
+					Sets the tab placement for this tabbedpane. Possible values are: JTabbedPane.TOP JTabbedPane.BOTTOM JTabbedPane.LEFT JTabbedPane.RIGHT The default value, if not set, is SwingConstants.TOP.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTabLayoutPolicy()
+				</name>
+				<description>
+					Returns the policy used by the tabbedpane to layout the tabs when all the tabs will not fit within a single run.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTabLayoutPolicy(int tabLayoutPolicy)
+				</name>
+				<description>
+					Sets the policy which the tabbedpane will use in laying out the tabs when all the tabs will not fit within a single run. Possible values are: JTabbedPane.WRAP_TAB_LAYOUT JTabbedPane.SCROLL_TAB_LAYOUT The default value, if not set by the UI, is JTabbedPane.WRAP_TAB_LAYOUT. Some look and feels might only support a subset of the possible layout policies, in which case the value of this property may be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectedIndex()
+				</name>
+				<description>
+					Returns the currently selected index for this tabbedpane. Returns -1 if there is no currently selected tab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedIndex(int index)
+				</name>
+				<description>
+					Sets the selected index for this tabbedpane. The index must be a valid tab index or -1, which indicates that no tab should be selected (can also be used when there are no tabs in the tabbedpane). If a -1 value is specified when the tabbedpane contains one or more tabs, then the results will be implementation defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getSelectedComponent()
+				</name>
+				<description>
+					Returns the currently selected component for this tabbedpane. Returns null if there is no currently selected tab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedComponent(Component c)
+				</name>
+				<description>
+					Sets the selected component for this tabbedpane. This will automatically set the selectedIndex to the index corresponding to the specified component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertTab(String title,               Icon icon,               Component component,               String tip,               int index)
+				</name>
+				<description>
+					Inserts a new tab for the given component, at the given index, represented by the given title and/or icon, either of which may be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTab(String title,            Icon icon,            Component component,            String tip)
+				</name>
+				<description>
+					Adds a component and tip represented by a title and/or icon, either of which can be null. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTab(String title,            Icon icon,            Component component)
+				</name>
+				<description>
+					Adds a component represented by a title and/or icon, either of which can be null. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTab(String title,            Component component)
+				</name>
+				<description>
+					Adds a component represented by a title and no icon. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component add(Component component)
+				</name>
+				<description>
+					Adds a component with a tab title defaulting to the name of the component which is the result of calling component.getName. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component add(String title,              Component component)
+				</name>
+				<description>
+					Adds a component with the specified tab title. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component add(Component component,              int index)
+				</name>
+				<description>
+					Adds a component at the specified tab index with a tab title defaulting to the name of the component. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(Component component,         Object constraints)
+				</name>
+				<description>
+					Adds a component to the tabbed pane. If constraints is a String or an Icon, it will be used for the tab title, otherwise the component's name will be used as the tab title. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(Component component,         Object constraints,         int index)
+				</name>
+				<description>
+					Adds a component at the specified tab index. If constraints is a String or an Icon, it will be used for the tab title, otherwise the component's name will be used as the tab title. Cover method for insertTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeTabAt(int index)
+				</name>
+				<description>
+					Removes the tab at index. After the component associated with index is removed, its visibility is reset to true to ensure it will be visible if added to other containers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(Component component)
+				</name>
+				<description>
+					Removes the specified Component from the JTabbedPane. The method does nothing if the component is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(int index)
+				</name>
+				<description>
+					Removes the tab and component which corresponds to the specified index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAll()
+				</name>
+				<description>
+					Removes all the tabs and their corresponding components from the tabbedpane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTabCount()
+				</name>
+				<description>
+					Returns the number of tabs in this tabbedpane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTabRunCount()
+				</name>
+				<description>
+					Returns the number of tab runs currently used to display the tabs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTitleAt(int index)
+				</name>
+				<description>
+					Returns the tab title at index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getIconAt(int index)
+				</name>
+				<description>
+					Returns the tab icon at index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledIconAt(int index)
+				</name>
+				<description>
+					Returns the tab disabled icon at index. If the tab disabled icon doesn't exist at index this will forward the call to the look and feel to construct an appropriate disabled Icon from the corresponding enabled Icon. Some look and feels might not render the disabled Icon, in which case it won't be created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipTextAt(int index)
+				</name>
+				<description>
+					Returns the tab tooltip text at index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackgroundAt(int index)
+				</name>
+				<description>
+					Returns the tab background color at index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getForegroundAt(int index)
+				</name>
+				<description>
+					Returns the tab foreground color at index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEnabledAt(int index)
+				</name>
+				<description>
+					Returns whether or not the tab at index is currently enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getComponentAt(int index)
+				</name>
+				<description>
+					Returns the component at index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMnemonicAt(int tabIndex)
+				</name>
+				<description>
+					Returns the keyboard mnemonic for accessing the specified tab. The mnemonic is the key which when combined with the look and feel's mouseless modifier (usually Alt) will activate the specified tab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDisplayedMnemonicIndexAt(int tabIndex)
+				</name>
+				<description>
+					Returns the character, as an index, that the look and feel should provide decoration for as representing the mnemonic character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getBoundsAt(int index)
+				</name>
+				<description>
+					Returns the tab bounds at index. If the tab at this index is not currently visible in the UI, then returns null. If there is no UI set on this tabbedpane, then returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTitleAt(int index,                String title)
+				</name>
+				<description>
+					Sets the title at index to title which can be null. The title is not shown if a tab component for this tab was specified. An internal exception is raised if there is no tab at that index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIconAt(int index,               Icon icon)
+				</name>
+				<description>
+					Sets the icon at index to icon which can be null. This does not set disabled icon at icon. If the new Icon is different than the current Icon and disabled icon is not explicitly set, the LookAndFeel will be asked to generate a disabled Icon. To explicitly set disabled icon, use setDisableIconAt(). The icon is not shown if a tab component for this tab was specified. An internal exception is raised if there is no tab at that index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDisabledIconAt(int index,                       Icon disabledIcon)
+				</name>
+				<description>
+					Sets the disabled icon at index to icon which can be null. An internal exception is raised if there is no tab at that index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setToolTipTextAt(int index,                      String toolTipText)
+				</name>
+				<description>
+					Sets the tooltip text at index to toolTipText which can be null. An internal exception is raised if there is no tab at that index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBackgroundAt(int index,                     Color background)
+				</name>
+				<description>
+					Sets the background color at index to background which can be null, in which case the tab's background color will default to the background color of the tabbedpane. An internal exception is raised if there is no tab at that index. It is up to the look and feel to honor this property, some may choose to ignore it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setForegroundAt(int index,                     Color foreground)
+				</name>
+				<description>
+					Sets the foreground color at index to foreground which can be null, in which case the tab's foreground color will default to the foreground color of this tabbedpane. An internal exception is raised if there is no tab at that index. It is up to the look and feel to honor this property, some may choose to ignore it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEnabledAt(int index,                  boolean enabled)
+				</name>
+				<description>
+					Sets whether or not the tab at index is enabled. An internal exception is raised if there is no tab at that index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setComponentAt(int index,                    Component component)
+				</name>
+				<description>
+					Sets the component at index to component. An internal exception is raised if there is no tab at that index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDisplayedMnemonicIndexAt(int tabIndex,                                 int mnemonicIndex)
+				</name>
+				<description>
+					Provides a hint to the look and feel as to which character in the text should be decorated to represent the mnemonic. Not all look and feels may support this. A value of -1 indicates either there is no mnemonic for this tab, or you do not wish the mnemonic to be displayed for this tab. The value of this is updated as the properties relating to the mnemonic change (such as the mnemonic itself, the text...). You should only ever have to call this if you do not wish the default character to be underlined. For example, if the text at tab index 3 was 'Apple Price', with a mnemonic of 'p', and you wanted the 'P' to be decorated, as 'Apple Price', you would have to invoke setDisplayedMnemonicIndex(3, 6) after invoking setMnemonicAt(3, KeyEvent.VK_P). Note that it is the programmer's responsibility to ensure that each tab has a unique mnemonic or unpredictable results may occur.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMnemonicAt(int tabIndex,                   int mnemonic)
+				</name>
+				<description>
+					Sets the keyboard mnemonic for accessing the specified tab. The mnemonic is the key which when combined with the look and feel's mouseless modifier (usually Alt) will activate the specified tab. A mnemonic must correspond to a single key on the keyboard and should be specified using one of the VK_XXX keycodes defined in java.awt.event.KeyEvent or one of the extended keycodes obtained through java.awt.event.KeyEvent.getExtendedKeyCodeForChar. Mnemonics are case-insensitive, therefore a key event with the corresponding keycode would cause the button to be activated whether or not the Shift modifier was pressed. This will update the displayed mnemonic property for the specified tab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOfTab(String title)
+				</name>
+				<description>
+					Returns the first tab index with a given title, or -1 if no tab has this title.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOfTab(Icon icon)
+				</name>
+				<description>
+					Returns the first tab index with a given icon, or -1 if no tab has this icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOfComponent(Component component)
+				</name>
+				<description>
+					Returns the index of the tab for the specified component. Returns -1 if there is no tab for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexAtLocation(int x,                    int y)
+				</name>
+				<description>
+					Returns the tab index corresponding to the tab whose bounds intersect the specified location. Returns -1 if no tab intersects the location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(MouseEvent event)
+				</name>
+				<description>
+					Returns the tooltip text for the component determined by the mouse event location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JTabbedPane. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JTabbedPane. For tabbed panes, the AccessibleContext takes the form of an AccessibleJTabbedPane. A new AccessibleJTabbedPane instance is created if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTabComponentAt(int index,                       Component component)
+				</name>
+				<description>
+					Sets the component that is responsible for rendering the title for the specified tab. A null value means JTabbedPane will render the title and/or icon for the specified tab. A non-null value means the component will render the title and JTabbedPane will not render the title and/or icon. Note: The component must not be one that the developer has already added to the tabbed pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getTabComponentAt(int index)
+				</name>
+				<description>
+					Returns the tab component at index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int indexOfTabComponent(Component tabComponent)
+				</name>
+				<description>
+					Returns the index of the tab for the specified tab component. Returns -1 if there is no tab for this tab component.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

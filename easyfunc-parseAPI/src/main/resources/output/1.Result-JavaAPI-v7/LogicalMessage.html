@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.ws
+	</package>
+	<type>
+		<name>
+			public interface LogicalMessage
+		</name>
+		<description>
+			The LogicalMessage interface represents a protocol agnostic XML message and contains methods that provide access to the payload of the message.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Source getPayload()
+				</name>
+				<description>
+					Gets the message payload as an XML source, may be called multiple times on the same LogicalMessage instance, always returns a new Source that may be used to retrieve the entire message payload. If the returned Source is an instance of DOMSource, then modifications to the encapsulated DOM tree change the message payload in-place, there is no need to susequently call setPayload. Other types of Source provide only read access to the message payload.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setPayload(Source payload)
+				</name>
+				<description>
+					Sets the message payload
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getPayload(JAXBContext context)
+				</name>
+				<description>
+					Gets the message payload as a JAXB object. Note that there is no connection between the returned object and the message payload, changes to the payload require calling setPayload.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setPayload(Object payload,                JAXBContext context)
+				</name>
+				<description>
+					Sets the message payload
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

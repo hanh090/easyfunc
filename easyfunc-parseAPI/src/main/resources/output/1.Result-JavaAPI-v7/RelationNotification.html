@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.management.relation
+	</package>
+	<type>
+		<name>
+			public class RelationNotification  extends Notification
+		</name>
+		<description>
+			A notification of a change in the Relation Service. A RelationNotification notification is sent when a relation is created via the Relation Service, or an MBean is added as a relation in the Relation Service, or a role is updated in a relation, or a relation is removed from the Relation Service. The serialVersionUID of this class is -6871117877523310399L.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String RELATION_BASIC_CREATION
+				</name>
+				<description>
+					Type for the creation of an internal relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RELATION_MBEAN_CREATION
+				</name>
+				<description>
+					Type for the relation MBean added into the Relation Service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RELATION_BASIC_UPDATE
+				</name>
+				<description>
+					Type for an update of an internal relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RELATION_MBEAN_UPDATE
+				</name>
+				<description>
+					Type for the update of a relation MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RELATION_BASIC_REMOVAL
+				</name>
+				<description>
+					Type for the removal from the Relation Service of an internal relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String RELATION_MBEAN_REMOVAL
+				</name>
+				<description>
+					Type for the removal from the Relation Service of a relation MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RelationNotification(String notifType,                      Object sourceObj,                      long sequence,                      long timeStamp,                      String message,                      String id,                      String typeName,                      ObjectName objectName,                      List<ObjectName> unregMBeanList)                       throws IllegalArgumentException
+				</name>
+				<description>
+					Creates a notification for either a relation creation (RelationSupport object created internally in the Relation Service, or an MBean added as a relation) or for a relation removal from the Relation Service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RelationNotification(String notifType,                      Object sourceObj,                      long sequence,                      long timeStamp,                      String message,                      String id,                      String typeName,                      ObjectName objectName,                      String name,                      List<ObjectName> newValue,                      List<ObjectName> oldValue)                       throws IllegalArgumentException
+				</name>
+				<description>
+					Creates a notification for a role update in a relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRelationId()
+				</name>
+				<description>
+					Returns the relation identifier of created/removed/updated relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRelationTypeName()
+				</name>
+				<description>
+					Returns the relation type name of created/removed/updated relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName getObjectName()
+				</name>
+				<description>
+					Returns the ObjectName of the created/removed/updated relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<ObjectName> getMBeansToUnregister()
+				</name>
+				<description>
+					Returns the list of ObjectNames of MBeans expected to be unregistered due to a relation removal (only for relation removal).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRoleName()
+				</name>
+				<description>
+					Returns name of updated role of updated relation (only for role update).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<ObjectName> getOldRoleValue()
+				</name>
+				<description>
+					Returns old value of updated role (only for role update).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<ObjectName> getNewRoleValue()
+				</name>
+				<description>
+					Returns new value of updated role (only for role update).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

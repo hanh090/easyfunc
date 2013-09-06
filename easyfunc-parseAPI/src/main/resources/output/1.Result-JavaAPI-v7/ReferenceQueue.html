@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.lang.ref
+	</package>
+	<type>
+		<name>
+			public class ReferenceQueue<T>  extends Object
+		</name>
+		<description>
+			Reference queues, to which registered reference objects are appended by the garbage collector after the appropriate reachability changes are detected.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ReferenceQueue()
+				</name>
+				<description>
+					Constructs a new reference-object queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reference<? extends T> poll()
+				</name>
+				<description>
+					Polls this queue to see if a reference object is available. If one is available without further delay then it is removed from the queue and returned. Otherwise this method immediately returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reference<? extends T> remove(long timeout)                                throws IllegalArgumentException,                                       InterruptedException
+				</name>
+				<description>
+					Removes the next reference object in this queue, blocking until either one becomes available or the given timeout period expires. This method does not offer real-time guarantees: It schedules the timeout as if by invoking the Object.wait(long) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reference<? extends T> remove()                                throws InterruptedException
+				</name>
+				<description>
+					Removes the next reference object in this queue, blocking until one becomes available.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		javax.sound.midi
+	</package>
+	<type>
+		<name>
+			public class Sequence  extends Object
+		</name>
+		<description>
+			A Sequence is a data structure containing musical information (often an entire song or composition) that can be played back by a Sequencer object. Specifically, the Sequence contains timing information and one or more tracks. Each track consists of a series of MIDI events (such as note-ons, note-offs, program changes, and meta-events). The sequence's timing information specifies the type of unit that is used to time-stamp the events in the sequence. A Sequence can be created from a MIDI file by reading the file into an input stream and invoking one of the getSequence methods of MidiSystem. A sequence can also be built from scratch by adding new Tracks to an empty Sequence, and adding MidiEvent objects to these Tracks.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final float PPQ
+				</name>
+				<description>
+					The tempo-based timing type, for which the resolution is expressed in pulses (ticks) per quarter note.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final float SMPTE_24
+				</name>
+				<description>
+					The SMPTE-based timing type with 24 frames per second (resolution is expressed in ticks per frame).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final float SMPTE_25
+				</name>
+				<description>
+					The SMPTE-based timing type with 25 frames per second (resolution is expressed in ticks per frame).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final float SMPTE_30DROP
+				</name>
+				<description>
+					The SMPTE-based timing type with 29.97 frames per second (resolution is expressed in ticks per frame).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final float SMPTE_30
+				</name>
+				<description>
+					The SMPTE-based timing type with 30 frames per second (resolution is expressed in ticks per frame).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected float divisionType
+				</name>
+				<description>
+					The timing division type of the sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int resolution
+				</name>
+				<description>
+					The timing resolution of the sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Vector<Track> tracks
+				</name>
+				<description>
+					The MIDI tracks in this sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Sequence(float divisionType,          int resolution)           throws InvalidMidiDataException
+				</name>
+				<description>
+					Constructs a new MIDI sequence with the specified timing division type and timing resolution. The division type must be one of the recognized MIDI timing types. For tempo-based timing, divisionType is PPQ (pulses per quarter note) and the resolution is specified in ticks per beat. For SMTPE timing, divisionType specifies the number of frames per second and the resolution is specified in ticks per frame. The sequence will contain no initial tracks. Tracks may be added to or removed from the sequence using createTrack() and deleteTrack(javax.sound.midi.Track).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Sequence(float divisionType,          int resolution,          int numTracks)           throws InvalidMidiDataException
+				</name>
+				<description>
+					Constructs a new MIDI sequence with the specified timing division type, timing resolution, and number of tracks. The division type must be one of the recognized MIDI timing types. For tempo-based timing, divisionType is PPQ (pulses per quarter note) and the resolution is specified in ticks per beat. For SMTPE timing, divisionType specifies the number of frames per second and the resolution is specified in ticks per frame. The sequence will be initialized with the number of tracks specified by numTracks. These tracks are initially empty (i.e. they contain only the meta-event End of Track). The tracks may be retrieved for editing using the getTracks() method. Additional tracks may be added, or existing tracks removed, using createTrack() and deleteTrack(javax.sound.midi.Track).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getDivisionType()
+				</name>
+				<description>
+					Obtains the timing division type for this sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getResolution()
+				</name>
+				<description>
+					Obtains the timing resolution for this sequence. If the sequence's division type is PPQ, the resolution is specified in ticks per beat. For SMTPE timing, the resolution is specified in ticks per frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Track createTrack()
+				</name>
+				<description>
+					Creates a new, initially empty track as part of this sequence. The track initially contains the meta-event End of Track. The newly created track is returned. All tracks in the sequence may be retrieved using getTracks(). Tracks may be removed from the sequence using deleteTrack(javax.sound.midi.Track).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean deleteTrack(Track track)
+				</name>
+				<description>
+					Removes the specified track from the sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Track[] getTracks()
+				</name>
+				<description>
+					Obtains an array containing all the tracks in this sequence. If the sequence contains no tracks, an array of length 0 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getMicrosecondLength()
+				</name>
+				<description>
+					Obtains the duration of this sequence, expressed in microseconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getTickLength()
+				</name>
+				<description>
+					Obtains the duration of this sequence, expressed in MIDI ticks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Patch[] getPatchList()
+				</name>
+				<description>
+					Obtains a list of patches referenced in this sequence. This patch list may be used to load the required Instrument objects into a Synthesizer.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

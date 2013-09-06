@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.imageio.spi
+	</package>
+	<type>
+		<name>
+			public interface RegisterableService
+		</name>
+		<description>
+			An optional interface that may be provided by service provider objects that will be registered with a ServiceRegistry. If this interface is present, notification of registration and deregistration will be performed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void onRegistration(ServiceRegistry registry,                    Class<?> category)
+				</name>
+				<description>
+					Called when an object implementing this interface is added to the given category of the given registry. The object may already be registered under another category or categories.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void onDeregistration(ServiceRegistry registry,                      Class<?> category)
+				</name>
+				<description>
+					Called when an object implementing this interface is removed from the given category of the given registry. The object may still be registered under another category or categories.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.lang
+	</package>
+	<type>
+		<name>
+			public final class StackTraceElement  extends Object  implements Serializable
+		</name>
+		<description>
+			An element in a stack trace, as returned by Throwable.getStackTrace(). Each element represents a single stack frame. All stack frames except for the one at the top of the stack represent a method invocation. The frame at the top of the stack represents the execution point at which the stack trace was generated. Typically, this is the point at which the throwable corresponding to the stack trace was created.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StackTraceElement(String declaringClass,                   String methodName,                   String fileName,                   int lineNumber)
+				</name>
+				<description>
+					Creates a stack trace element representing the specified execution point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getFileName()
+				</name>
+				<description>
+					Returns the name of the source file containing the execution point represented by this stack trace element. Generally, this corresponds to the SourceFile attribute of the relevant class file (as per The Java Virtual Machine Specification, Section 4.7.7). In some systems, the name may refer to some source code unit other than a file, such as an entry in source repository.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineNumber()
+				</name>
+				<description>
+					Returns the line number of the source line containing the execution point represented by this stack trace element. Generally, this is derived from the LineNumberTable attribute of the relevant class file (as per The Java Virtual Machine Specification, Section 4.7.8).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getClassName()
+				</name>
+				<description>
+					Returns the fully qualified name of the class containing the execution point represented by this stack trace element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMethodName()
+				</name>
+				<description>
+					Returns the name of the method containing the execution point represented by this stack trace element. If the execution point is contained in an instance or class initializer, this method will return the appropriate special method name, <init> or <clinit>, as per Section 3.9 of The Java Virtual Machine Specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNativeMethod()
+				</name>
+				<description>
+					Returns true if the method containing the execution point represented by this stack trace element is a native method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this stack trace element. The format of this string depends on the implementation, but the following examples may be regarded as typical: "MyClass.mash(MyClass.java:9)" - Here, "MyClass" is the fully-qualified name of the class containing the execution point represented by this stack trace element, "mash" is the name of the method containing the execution point, "MyClass.java" is the source file containing the execution point, and "9" is the line number of the source line containing the execution point. "MyClass.mash(MyClass.java)" - As above, but the line number is unavailable. "MyClass.mash(Unknown Source)" - As above, but neither the file name nor the line number are available. "MyClass.mash(Native Method)" - As above, but neither the file name nor the line number are available, and the method containing the execution point is known to be a native method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Returns true if the specified object is another StackTraceElement instance representing the same execution point as this instance. Two stack trace elements a and b are equal if and only if:        equals(a.getFileName(), b.getFileName()) &&       a.getLineNumber() == b.getLineNumber()) &&       equals(a.getClassName(), b.getClassName()) &&       equals(a.getMethodName(), b.getMethodName())   where equals has the semantics of Objects.equals.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for this stack trace element.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

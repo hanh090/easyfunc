@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		org.xml.sax.helpers
+	</package>
+	<type>
+		<name>
+			public class ParserAdapter  extends Object  implements XMLReader, DocumentHandler
+		</name>
+		<description>
+			Adapt a SAX1 Parser as a SAX2 XMLReader. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. See http://www.saxproject.org for further information. This class wraps a SAX1 Parser and makes it act as a SAX2 XMLReader, with feature, property, and Namespace support. Note that it is not possible to report skippedEntity events, since SAX1 does not make that information available. This adapter does not test for duplicate Namespace-qualified attribute names.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ParserAdapter()                throws SAXException
+				</name>
+				<description>
+					Construct a new parser adapter. Use the "org.xml.sax.parser" property to locate the embedded SAX1 driver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ParserAdapter(Parser parser)
+				</name>
+				<description>
+					Construct a new parser adapter. Note that the embedded parser cannot be changed once the adapter is created; to embed a different parser, allocate a new ParserAdapter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFeature(String name,                boolean value)                  throws SAXNotRecognizedException,                         SAXNotSupportedException
+				</name>
+				<description>
+					Set a feature flag for the parser. The only features recognized are namespaces and namespace-prefixes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getFeature(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Check a parser feature flag. The only features recognized are namespaces and namespace-prefixes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProperty(String name,                 Object value)                   throws SAXNotRecognizedException,                          SAXNotSupportedException
+				</name>
+				<description>
+					Set a parser property. No properties are currently recognized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Get a parser property. No properties are currently recognized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEntityResolver(EntityResolver resolver)
+				</name>
+				<description>
+					Set the entity resolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EntityResolver getEntityResolver()
+				</name>
+				<description>
+					Return the current entity resolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDTDHandler(DTDHandler handler)
+				</name>
+				<description>
+					Set the DTD handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DTDHandler getDTDHandler()
+				</name>
+				<description>
+					Return the current DTD handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentHandler(ContentHandler handler)
+				</name>
+				<description>
+					Set the content handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ContentHandler getContentHandler()
+				</name>
+				<description>
+					Return the current content handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setErrorHandler(ErrorHandler handler)
+				</name>
+				<description>
+					Set the error handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ErrorHandler getErrorHandler()
+				</name>
+				<description>
+					Return the current error handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void parse(String systemId)             throws IOException,                    SAXException
+				</name>
+				<description>
+					Parse an XML document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void parse(InputSource input)             throws IOException,                    SAXException
+				</name>
+				<description>
+					Parse an XML document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDocumentLocator(Locator locator)
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 document locator event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startDocument()                     throws SAXException
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 start document event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endDocument()                   throws SAXException
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 end document event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startElement(String qName,                  AttributeList qAtts)                    throws SAXException
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 startElement event. If necessary, perform Namespace processing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endElement(String qName)                  throws SAXException
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 end element event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void characters(char[] ch,                int start,                int length)                  throws SAXException
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 characters event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void ignorableWhitespace(char[] ch,                         int start,                         int length)                           throws SAXException
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 ignorable whitespace event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void processingInstruction(String target,                           String data)                             throws SAXException
+				</name>
+				<description>
+					Adapter implementation method; do not call. Adapt a SAX1 processing instruction event.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

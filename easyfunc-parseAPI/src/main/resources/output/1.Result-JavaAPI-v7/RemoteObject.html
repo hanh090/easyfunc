@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.rmi.server
+	</package>
+	<type>
+		<name>
+			public abstract class RemoteObject  extends Object  implements Remote, Serializable
+		</name>
+		<description>
+			The RemoteObject class implements the java.lang.Object behavior for remote objects. RemoteObject provides the remote semantics of Object by implementing methods for hashCode, equals, and toString.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected transient RemoteRef ref
+				</name>
+				<description>
+					The object's remote reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected RemoteObject()
+				</name>
+				<description>
+					Creates a remote object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected RemoteObject(RemoteRef newref)
+				</name>
+				<description>
+					Creates a remote object, initialized with the specified remote reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RemoteRef getRef()
+				</name>
+				<description>
+					Returns the remote reference for the remote object. Note: The object returned from this method may be an instance of an implementation-specific class. The RemoteObject class ensures serialization portability of its instances' remote references through the behavior of its custom writeObject and readObject methods. An instance of RemoteRef should not be serialized outside of its RemoteObject wrapper instance or the result may be unportable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Remote toStub(Remote obj)                       throws NoSuchObjectException
+				</name>
+				<description>
+					Returns the stub for the remote object obj passed as a parameter. This operation is only valid after the object has been exported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for a remote object. Two remote object stubs that refer to the same remote object will have the same hash code (in order to support remote objects as keys in hash tables).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares two remote objects for equality. Returns a boolean that indicates whether this remote object is equivalent to the specified Object. This method is used when a remote object is stored in a hashtable. If the specified Object is not itself an instance of RemoteObject, then this method delegates by returning the result of invoking the equals method of its parameter with this remote object as the argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a String that represents the value of this remote object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

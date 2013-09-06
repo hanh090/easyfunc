@@ -1,0 +1,198 @@
+<javaelement>
+	<package>
+		java.nio.channels
+	</package>
+	<type>
+		<name>
+			public abstract class SocketChannel  extends AbstractSelectableChannel  implements ByteChannel, ScatteringByteChannel, GatheringByteChannel, NetworkChannel
+		</name>
+		<description>
+			A selectable channel for stream-oriented connecting sockets. A socket channel is created by invoking one of the open methods of this class. It is not possible to create a channel for an arbitrary, pre-existing socket. A newly-created socket channel is open but not yet connected. An attempt to invoke an I/O operation upon an unconnected channel will cause a NotYetConnectedException to be thrown. A socket channel can be connected by invoking its connect method; once connected, a socket channel remains connected until it is closed. Whether or not a socket channel is connected may be determined by invoking its isConnected method. Socket channels support non-blocking connection: A socket channel may be created and the process of establishing the link to the remote socket may be initiated via the connect method for later completion by the finishConnect method. Whether or not a connection operation is in progress may be determined by invoking the isConnectionPending method. Socket channels support asynchronous shutdown, which is similar to the asynchronous close operation specified in the Channel class. If the input side of a socket is shut down by one thread while another thread is blocked in a read operation on the socket's channel, then the read operation in the blocked thread will complete without reading any bytes and will return -1. If the output side of a socket is shut down by one thread while another thread is blocked in a write operation on the socket's channel, then the blocked thread will receive an AsynchronousCloseException. Socket options are configured using the setOption method. Socket channels support the following options: Option Name Description SO_SNDBUF The size of the socket send buffer SO_RCVBUF The size of the socket receive buffer SO_KEEPALIVE Keep connection alive SO_REUSEADDR Re-use address SO_LINGER Linger on close if data is present (when configured in blocking mode only) TCP_NODELAY Disable the Nagle algorithm Additional (implementation specific) options may also be supported. Socket channels are safe for use by multiple concurrent threads. They support concurrent reading and writing, though at most one thread may be reading and at most one thread may be writing at any given time. The connect and finishConnect methods are mutually synchronized against each other, and an attempt to initiate a read or write operation while an invocation of one of these methods is in progress will block until that invocation is complete.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected SocketChannel(SelectorProvider provider)
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SocketChannel open()                            throws IOException
+				</name>
+				<description>
+					Opens a socket channel. The new channel is created by invoking the openSocketChannel method of the system-wide default SelectorProvider object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SocketChannel open(SocketAddress remote)                            throws IOException
+				</name>
+				<description>
+					Opens a socket channel and connects it to a remote address. This convenience method works as if by invoking the open() method, invoking the connect method upon the resulting socket channel, passing it remote, and then returning that channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int validOps()
+				</name>
+				<description>
+					Returns an operation set identifying this channel's supported operations. Socket channels support connecting, reading, and writing, so this method returns (SelectionKey.OP_CONNECT | SelectionKey.OP_READ | SelectionKey.OP_WRITE).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SocketChannel bind(SocketAddress local)                              throws IOException
+				</name>
+				<description>
+					Description copied from interface: NetworkChannel Binds the channel's socket to a local address. This method is used to establish an association between the socket and a local address. Once an association is established then the socket remains bound until the channel is closed. If the local parameter has the value null then the socket will be bound to an address that is assigned automatically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <T> SocketChannel setOption(SocketOption<T> name,                            T value)                                   throws IOException
+				</name>
+				<description>
+					Description copied from interface: NetworkChannel Sets the value of a socket option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SocketChannel shutdownInput()                                       throws IOException
+				</name>
+				<description>
+					Shutdown the connection for reading without closing the channel. Once shutdown for reading then further reads on the channel will return -1, the end-of-stream indication. If the input side of the connection is already shutdown then invoking this method has no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SocketChannel shutdownOutput()                                        throws IOException
+				</name>
+				<description>
+					Shutdown the connection for writing without closing the channel. Once shutdown for writing then further attempts to write to the channel will throw ClosedChannelException. If the output side of the connection is already shutdown then invoking this method has no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Socket socket()
+				</name>
+				<description>
+					Retrieves a socket associated with this channel. The returned object will not declare any public methods that are not declared in the Socket class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isConnected()
+				</name>
+				<description>
+					Tells whether or not this channel's network socket is connected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isConnectionPending()
+				</name>
+				<description>
+					Tells whether or not a connection operation is in progress on this channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean connect(SocketAddress remote)                           throws IOException
+				</name>
+				<description>
+					Connects this channel's socket. If this channel is in non-blocking mode then an invocation of this method initiates a non-blocking connection operation. If the connection is established immediately, as can happen with a local connection, then this method returns true. Otherwise this method returns false and the connection operation must later be completed by invoking the finishConnect method. If this channel is in blocking mode then an invocation of this method will block until the connection is established or an I/O error occurs. This method performs exactly the same security checks as the Socket class. That is, if a security manager has been installed then this method verifies that its checkConnect method permits connecting to the address and port number of the given remote endpoint. This method may be invoked at any time. If a read or write operation upon this channel is invoked while an invocation of this method is in progress then that operation will first block until this invocation is complete. If a connection attempt is initiated but fails, that is, if an invocation of this method throws a checked exception, then the channel will be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean finishConnect()                                 throws IOException
+				</name>
+				<description>
+					Finishes the process of connecting a socket channel. A non-blocking connection operation is initiated by placing a socket channel in non-blocking mode and then invoking its connect method. Once the connection is established, or the attempt has failed, the socket channel will become connectable and this method may be invoked to complete the connection sequence. If the connection operation failed then invoking this method will cause an appropriate IOException to be thrown. If this channel is already connected then this method will not block and will immediately return true. If this channel is in non-blocking mode then this method will return false if the connection process is not yet complete. If this channel is in blocking mode then this method will block until the connection either completes or fails, and will always either return true or throw a checked exception describing the failure. This method may be invoked at any time. If a read or write operation upon this channel is invoked while an invocation of this method is in progress then that operation will first block until this invocation is complete. If a connection attempt fails, that is, if an invocation of this method throws a checked exception, then the channel will be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SocketAddress getRemoteAddress()                                          throws IOException
+				</name>
+				<description>
+					Returns the remote address to which this channel's socket is connected. Where the channel is bound and connected to an Internet Protocol socket address then the return value from this method is of type InetSocketAddress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int read(ByteBuffer dst)                    throws IOException
+				</name>
+				<description>
+					Description copied from interface: ReadableByteChannel Reads a sequence of bytes from this channel into the given buffer. An attempt is made to read up to r bytes from the channel, where r is the number of bytes remaining in the buffer, that is, dst.remaining(), at the moment this method is invoked. Suppose that a byte sequence of length n is read, where 0 <= n <= r. This byte sequence will be transferred into the buffer so that the first byte in the sequence is at index p and the last byte is at index p + n - 1, where p is the buffer's position at the moment this method is invoked. Upon return the buffer's position will be equal to p + n; its limit will not have changed. A read operation might not fill the buffer, and in fact it might not read any bytes at all. Whether or not it does so depends upon the nature and state of the channel. A socket channel in non-blocking mode, for example, cannot read any more bytes than are immediately available from the socket's input buffer; similarly, a file channel cannot read any more bytes than remain in the file. It is guaranteed, however, that if a channel is in blocking mode and there is at least one byte remaining in the buffer then this method will block until at least one byte is read. This method may be invoked at any time. If another thread has already initiated a read operation upon this channel, however, then an invocation of this method will block until the first operation is complete.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract long read(ByteBuffer[] dsts,          int offset,          int length)                     throws IOException
+				</name>
+				<description>
+					Description copied from interface: ScatteringByteChannel Reads a sequence of bytes from this channel into a subsequence of the given buffers. An invocation of this method attempts to read up to r bytes from this channel, where r is the total number of bytes remaining the specified subsequence of the given buffer array, that is,    dsts[offset].remaining()       + dsts[offset+1].remaining()       + ... + dsts[offset+length-1].remaining() at the moment that this method is invoked. Suppose that a byte sequence of length n is read, where 0 <= n <= r. Up to the first dsts[offset].remaining() bytes of this sequence are transferred into buffer dsts[offset], up to the next dsts[offset+1].remaining() bytes are transferred into buffer dsts[offset+1], and so forth, until the entire byte sequence is transferred into the given buffers. As many bytes as possible are transferred into each buffer, hence the final position of each updated buffer, except the last updated buffer, is guaranteed to be equal to that buffer's limit. This method may be invoked at any time. If another thread has already initiated a read operation upon this channel, however, then an invocation of this method will block until the first operation is complete.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final long read(ByteBuffer[] dsts)                  throws IOException
+				</name>
+				<description>
+					Description copied from interface: ScatteringByteChannel Reads a sequence of bytes from this channel into the given buffers. An invocation of this method of the form c.read(dsts) behaves in exactly the same manner as the invocation    c.read(dsts, 0, dsts.length);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int write(ByteBuffer src)                     throws IOException
+				</name>
+				<description>
+					Description copied from interface: WritableByteChannel Writes a sequence of bytes to this channel from the given buffer. An attempt is made to write up to r bytes to the channel, where r is the number of bytes remaining in the buffer, that is, src.remaining(), at the moment this method is invoked. Suppose that a byte sequence of length n is written, where 0 <= n <= r. This byte sequence will be transferred from the buffer starting at index p, where p is the buffer's position at the moment this method is invoked; the index of the last byte written will be p + n - 1. Upon return the buffer's position will be equal to p + n; its limit will not have changed. Unless otherwise specified, a write operation will return only after writing all of the r requested bytes. Some types of channels, depending upon their state, may write only some of the bytes or possibly none at all. A socket channel in non-blocking mode, for example, cannot write any more bytes than are free in the socket's output buffer. This method may be invoked at any time. If another thread has already initiated a write operation upon this channel, however, then an invocation of this method will block until the first operation is complete.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract long write(ByteBuffer[] srcs,           int offset,           int length)                      throws IOException
+				</name>
+				<description>
+					Description copied from interface: GatheringByteChannel Writes a sequence of bytes to this channel from a subsequence of the given buffers. An attempt is made to write up to r bytes to this channel, where r is the total number of bytes remaining in the specified subsequence of the given buffer array, that is,    srcs[offset].remaining()       + srcs[offset+1].remaining()       + ... + srcs[offset+length-1].remaining() at the moment that this method is invoked. Suppose that a byte sequence of length n is written, where 0 <= n <= r. Up to the first srcs[offset].remaining() bytes of this sequence are written from buffer srcs[offset], up to the next srcs[offset+1].remaining() bytes are written from buffer srcs[offset+1], and so forth, until the entire byte sequence is written. As many bytes as possible are written from each buffer, hence the final position of each updated buffer, except the last updated buffer, is guaranteed to be equal to that buffer's limit. Unless otherwise specified, a write operation will return only after writing all of the r requested bytes. Some types of channels, depending upon their state, may write only some of the bytes or possibly none at all. A socket channel in non-blocking mode, for example, cannot write any more bytes than are free in the socket's output buffer. This method may be invoked at any time. If another thread has already initiated a write operation upon this channel, however, then an invocation of this method will block until the first operation is complete.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final long write(ByteBuffer[] srcs)                   throws IOException
+				</name>
+				<description>
+					Description copied from interface: GatheringByteChannel Writes a sequence of bytes to this channel from the given buffers. An invocation of this method of the form c.write(srcs) behaves in exactly the same manner as the invocation    c.write(srcs, 0, srcs.length);
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

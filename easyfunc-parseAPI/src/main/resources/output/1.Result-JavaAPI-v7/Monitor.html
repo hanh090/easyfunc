@@ -1,0 +1,279 @@
+<javaelement>
+	<package>
+		javax.management.monitor
+	</package>
+	<type>
+		<name>
+			public abstract class Monitor  extends NotificationBroadcasterSupport  implements MonitorMBean, MBeanRegistration
+		</name>
+		<description>
+			Defines the part common to all monitor MBeans. A monitor MBean monitors values of an attribute common to a set of observed MBeans. The observed attribute is monitored at intervals specified by the granularity period. A gauge value (derived gauge) is derived from the values of the observed attribute.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected static final int capacityIncrement
+				</name>
+				<description>
+					The amount by which the capacity of the monitor arrays are automatically incremented when their size becomes greater than their capacity.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int elementCount
+				</name>
+				<description>
+					The number of valid components in the vector of observed objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected int alreadyNotified
+				</name>
+				<description>
+					Deprecated. equivalent to alreadyNotifieds[0]. Monitor errors that have already been notified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int[] alreadyNotifieds
+				</name>
+				<description>
+					Selected monitor errors that have already been notified. Each element in this array corresponds to an observed object in the vector. It contains a bit mask of the flags OBSERVED_OBJECT_ERROR_NOTIFIED etc, indicating whether the corresponding notification has already been sent for the MBean being monitored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MBeanServer server
+				</name>
+				<description>
+					Reference to the MBean server. This reference is null when the monitor MBean is not registered in an MBean server. This reference is initialized before the monitor MBean is registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int RESET_FLAGS_ALREADY_NOTIFIED
+				</name>
+				<description>
+					This flag is used to reset the alreadyNotifieds monitor attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int OBSERVED_OBJECT_ERROR_NOTIFIED
+				</name>
+				<description>
+					Flag denoting that a notification has occurred after changing the observed object. This flag is used to check that the new observed object is registered in the MBean server at the time of the first notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int OBSERVED_ATTRIBUTE_ERROR_NOTIFIED
+				</name>
+				<description>
+					Flag denoting that a notification has occurred after changing the observed attribute. This flag is used to check that the new observed attribute belongs to the observed object at the time of the first notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED
+				</name>
+				<description>
+					Flag denoting that a notification has occurred after changing the observed object or the observed attribute. This flag is used to check that the observed attribute type is correct (depending on the monitor in use) at the time of the first notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int RUNTIME_ERROR_NOTIFIED
+				</name>
+				<description>
+					Flag denoting that a notification has occurred after changing the observed object or the observed attribute. This flag is used to notify any exception (except the cases described above) when trying to get the value of the observed attribute at the time of the first notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected String dbgTag
+				</name>
+				<description>
+					Deprecated. No replacement. This field is retained for compatibility but should not be referenced.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Monitor()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName preRegister(MBeanServer server,                       ObjectName name)                         throws Exception
+				</name>
+				<description>
+					Allows the monitor MBean to perform any operations it needs before being registered in the MBean server. Initializes the reference to the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postRegister(Boolean registrationDone)
+				</name>
+				<description>
+					Allows the monitor MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. Not used in this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preDeregister()                     throws Exception
+				</name>
+				<description>
+					Allows the monitor MBean to perform any operations it needs before being unregistered by the MBean server. Stops the monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postDeregister()
+				</name>
+				<description>
+					Allows the monitor MBean to perform any operations needed after having been unregistered by the MBean server. Not used in this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void start()
+				</name>
+				<description>
+					Starts the monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void stop()
+				</name>
+				<description>
+					Stops the monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public ObjectName getObservedObject()
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by getObservedObjects() Returns the object name of the first object in the set of observed MBeans, or null if there is no such object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setObservedObject(ObjectName object)                         throws IllegalArgumentException
+				</name>
+				<description>
+					Deprecated. As of JMX 1.2, replaced by addObservedObject(javax.management.ObjectName) Removes all objects from the set of observed objects, and then adds the specified object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addObservedObject(ObjectName object)                         throws IllegalArgumentException
+				</name>
+				<description>
+					Adds the specified object in the set of observed MBeans, if this object is not already present.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeObservedObject(ObjectName object)
+				</name>
+				<description>
+					Removes the specified object from the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsObservedObject(ObjectName object)
+				</name>
+				<description>
+					Tests whether the specified object is in the set of observed MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName[] getObservedObjects()
+				</name>
+				<description>
+					Returns an array containing the objects being observed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getObservedAttribute()
+				</name>
+				<description>
+					Gets the attribute being observed. The observed attribute is not initialized by default (set to null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setObservedAttribute(String attribute)                            throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the attribute to observe. The observed attribute is not initialized by default (set to null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getGranularityPeriod()
+				</name>
+				<description>
+					Gets the granularity period (in milliseconds). The default value of the granularity period is 10 seconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setGranularityPeriod(long period)                            throws IllegalArgumentException
+				</name>
+				<description>
+					Sets the granularity period (in milliseconds). The default value of the granularity period is 10 seconds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isActive()
+				</name>
+				<description>
+					Tests whether the monitor MBean is active. A monitor MBean is marked active when the start method is called. It becomes inactive when the stop method is called.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.sql
+	</package>
+	<type>
+		<name>
+			public class SQLClientInfoException  extends SQLException
+		</name>
+		<description>
+			The subclass of SQLException is thrown when one or more client info properties could not be set on a Connection. In addition to the information provided by SQLException, a SQLClientInfoException provides a list of client info properties that were not set. Some databases do not allow multiple client info properties to be set atomically. For those databases, it is possible that some of the client info properties had been set even though the Connection.setClientInfo method threw an exception. An application can use the getFailedProperties method to retrieve a list of client info properties that were not set. The properties are identified by passing a Map<String,ClientInfoStatus> to the appropriate SQLClientInfoException constructor.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SQLClientInfoException()
+				</name>
+				<description>
+					Constructs a SQLClientInfoException Object. The reason, SQLState, and failedProperties list are initialized to null and the vendor code is initialized to 0. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(Map<String,ClientInfoStatus> failedProperties)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given failedProperties. The reason and SQLState are initialized to null and the vendor code is initialized to 0. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(Map<String,ClientInfoStatus> failedProperties,                        Throwable cause)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given cause and failedProperties. The reason is initialized to null if cause==null or to cause.toString() if cause!=null and the vendor code is initialized to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(String reason,                        Map<String,ClientInfoStatus> failedProperties)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given reason and failedProperties. The SQLState is initialized to null and the vendor code is initialized to 0. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(String reason,                        Map<String,ClientInfoStatus> failedProperties,                        Throwable cause)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given reason, cause and failedProperties. The SQLState is initialized to null and the vendor code is initialized to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(String reason,                        String SQLState,                        Map<String,ClientInfoStatus> failedProperties)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given reason, SQLState and failedProperties. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method. The vendor code is initialized to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(String reason,                        String SQLState,                        Map<String,ClientInfoStatus> failedProperties,                        Throwable cause)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given reason, SQLState, cause and failedProperties. The vendor code is initialized to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(String reason,                        String SQLState,                        int vendorCode,                        Map<String,ClientInfoStatus> failedProperties)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given reason, SQLState, vendorCode and failedProperties. The cause is not initialized, and may subsequently be initialized by a call to the Throwable.initCause(java.lang.Throwable) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLClientInfoException(String reason,                        String SQLState,                        int vendorCode,                        Map<String,ClientInfoStatus> failedProperties,                        Throwable cause)
+				</name>
+				<description>
+					Constructs a SQLClientInfoException object initialized with a given reason, SQLState, cause, vendorCode and failedProperties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<String,ClientInfoStatus> getFailedProperties()
+				</name>
+				<description>
+					Returns the list of client info properties that could not be set. The keys in the Map contain the names of the client info properties that could not be set and the values contain one of the reason codes defined in ClientInfoStatus
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.lang.model.util
+	</package>
+	<type>
+		<name>
+			@SupportedSourceVersion(value=RELEASE_6)  public abstract class AbstractElementVisitor6<R,P>  extends Object  implements ElementVisitor<R,P>
+		</name>
+		<description>
+			A skeletal visitor of program elements with default behavior appropriate for the RELEASE_6 source version. WARNING: The ElementVisitor interface implemented by this class may have methods added to it in the future to accommodate new, currently unknown, language structures added to future versions of the Java™ programming language. Therefore, methods whose names begin with "visit" may be added to this class in the future; to avoid incompatibilities, classes which extend this class should not declare any instance methods with names beginning with "visit". When such a new visit method is added, the default implementation in this class will be to call the visitUnknown method. A new abstract element visitor class will also be introduced to correspond to the new language level; this visitor will have different default behavior for the visit method in question. When the new visitor is introduced, all or portions of this visitor may be deprecated.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AbstractElementVisitor6()
+				</name>
+				<description>
+					Constructor for concrete subclasses to call.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final R visit(Element e,        P p)
+				</name>
+				<description>
+					Visits any program element as if by passing itself to that element's accept method. The invocation v.visit(elem) is equivalent to elem.accept(v, p).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final R visit(Element e)
+				</name>
+				<description>
+					Visits any program element as if by passing itself to that element's accept method and passing null for the additional parameter. The invocation v.visit(elem) is equivalent to elem.accept(v, null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitUnknown(Element e,               P p)
+				</name>
+				<description>
+					Visits an unknown kind of element. This can occur if the language evolves and new kinds of elements are added to the Element hierarchy. The default implementation of this method in AbstractElementVisitor6 will always throw UnknownElementException. This behavior is not required of a subclass.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

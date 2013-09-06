@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class ObjectStreamClass  extends Object  implements Serializable
+		</name>
+		<description>
+			Serialization's descriptor for classes. It contains the name and serialVersionUID of the class. The ObjectStreamClass for a specific class loaded in this Java VM can be found/created using the lookup method. The algorithm to compute the SerialVersionUID is described in Object Serialization Specification, Section 4.6, Stream Unique Identifiers.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final ObjectStreamField[] NO_FIELDS
+				</name>
+				<description>
+					serialPersistentFields value indicating no serializable fields
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ObjectStreamClass lookup(Class<?> cl)
+				</name>
+				<description>
+					Find the descriptor for a class that can be serialized. Creates an ObjectStreamClass instance if one does not exist yet for class. Null is returned if the specified class does not implement java.io.Serializable or java.io.Externalizable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ObjectStreamClass lookupAny(Class<?> cl)
+				</name>
+				<description>
+					Returns the descriptor for any class, regardless of whether it implements Serializable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Returns the name of the class described by this descriptor. This method returns the name of the class in the format that is used by the Class.getName() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getSerialVersionUID()
+				</name>
+				<description>
+					Return the serialVersionUID for this class. The serialVersionUID defines a set of classes all with the same name that have evolved from a common root class and agree to be serialized and deserialized using a common format. NonSerializable classes have a serialVersionUID of 0L.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> forClass()
+				</name>
+				<description>
+					Return the class in the local VM that this version is mapped to. Null is returned if there is no corresponding local class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectStreamField[] getFields()
+				</name>
+				<description>
+					Return an array of the fields of this serializable class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectStreamField getField(String name)
+				</name>
+				<description>
+					Get the field of this class by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Return a string describing this ObjectStreamClass.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

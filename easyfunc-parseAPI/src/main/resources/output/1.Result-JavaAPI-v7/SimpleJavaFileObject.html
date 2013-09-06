@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public class SimpleJavaFileObject  extends Object  implements JavaFileObject
+		</name>
+		<description>
+			Provides simple implementations for most methods in JavaFileObject. This class is designed to be subclassed and used as a basis for JavaFileObject implementations. Subclasses can override the implementation and specification of any method of this class as long as the general contract of JavaFileObject is obeyed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final URI uri
+				</name>
+				<description>
+					A URI for this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final JavaFileObject.Kind kind
+				</name>
+				<description>
+					The kind of this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SimpleJavaFileObject(URI uri,                      JavaFileObject.Kind kind)
+				</name>
+				<description>
+					Construct a SimpleJavaFileObject of the given kind and with the given URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URI toUri()
+				</name>
+				<description>
+					Description copied from interface: FileObject Returns a URI identifying this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets a user-friendly name for this file object. The exact value returned is not specified but implementations should take care to preserve names as given by the user. For example, if the user writes the filename "BobsApp\Test.java" on the command line, this method should return "BobsApp\Test.java" whereas the toUri method might return file:///C:/Documents%20and%20Settings/UncleBob/BobsApp/Test.java.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream openInputStream()                              throws IOException
+				</name>
+				<description>
+					This implementation always throws UnsupportedOperationException. Subclasses can change this behavior as long as the contract of FileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream openOutputStream()                                throws IOException
+				</name>
+				<description>
+					This implementation always throws UnsupportedOperationException. Subclasses can change this behavior as long as the contract of FileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reader openReader(boolean ignoreEncodingErrors)                    throws IOException
+				</name>
+				<description>
+					Wraps the result of getCharContent(boolean) in a Reader. Subclasses can change this behavior as long as the contract of FileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharSequence getCharContent(boolean ignoreEncodingErrors)                              throws IOException
+				</name>
+				<description>
+					This implementation always throws UnsupportedOperationException. Subclasses can change this behavior as long as the contract of FileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Writer openWriter()                    throws IOException
+				</name>
+				<description>
+					Wraps the result of openOutputStream in a Writer. Subclasses can change this behavior as long as the contract of FileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getLastModified()
+				</name>
+				<description>
+					This implementation returns 0L. Subclasses can change this behavior as long as the contract of FileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean delete()
+				</name>
+				<description>
+					This implementation does nothing. Subclasses can change this behavior as long as the contract of FileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JavaFileObject.Kind getKind()
+				</name>
+				<description>
+					Description copied from interface: JavaFileObject Gets the kind of this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNameCompatible(String simpleName,                         JavaFileObject.Kind kind)
+				</name>
+				<description>
+					This implementation compares the path of its URI to the given simple name. This method returns true if the given kind is equal to the kind of this object, and if the path is equal to simpleName + kind.extension or if it ends with "/" + simpleName + kind.extension. This method calls getKind() and toUri() and does not access the fields uri and kind directly. Subclasses can change this behavior as long as the contract of JavaFileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NestingKind getNestingKind()
+				</name>
+				<description>
+					This implementation returns null. Subclasses can change this behavior as long as the contract of JavaFileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Modifier getAccessLevel()
+				</name>
+				<description>
+					This implementation returns null. Subclasses can change this behavior as long as the contract of JavaFileObject is obeyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: Object Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method. The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:    getClass().getName() + '@' + Integer.toHexString(hashCode())
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

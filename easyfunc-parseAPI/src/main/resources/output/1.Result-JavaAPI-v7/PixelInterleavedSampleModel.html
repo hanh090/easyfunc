@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class PixelInterleavedSampleModel  extends ComponentSampleModel
+		</name>
+		<description>
+			This class represents image data which is stored in a pixel interleaved fashion and for which each sample of a pixel occupies one data element of the DataBuffer. It subclasses ComponentSampleModel but provides a more efficent implementation for accessing pixel interleaved image data than is provided by ComponentSampleModel. This class stores sample data for all bands in a single bank of the DataBuffer. Accessor methods are provided so that image data can be manipulated directly. Pixel stride is the number of data array elements between two samples for the same band on the same scanline. Scanline stride is the number of data array elements between a given sample and the corresponding sample in the same column of the next scanline. Band offsets denote the number of data array elements from the first data array element of the bank of the DataBuffer holding each band to the first sample of the band. The bands are numbered from 0 to N-1. Bank indices denote the correspondence between a bank of the data buffer and a band of image data. This class supports TYPE_BYTE, TYPE_USHORT, TYPE_SHORT, TYPE_INT, TYPE_FLOAT and TYPE_DOUBLE datatypes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PixelInterleavedSampleModel(int dataType,                             int w,                             int h,                             int pixelStride,                             int scanlineStride,                             int[] bandOffsets)
+				</name>
+				<description>
+					Constructs a PixelInterleavedSampleModel with the specified parameters. The number of bands will be given by the length of the bandOffsets array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel createCompatibleSampleModel(int w,                                        int h)
+				</name>
+				<description>
+					Creates a new PixelInterleavedSampleModel with the specified width and height. The new PixelInterleavedSampleModel will have the same number of bands, storage data type, and pixel stride as this PixelInterleavedSampleModel. The band offsets may be compressed such that the minimum of all of the band offsets is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SampleModel createSubsetSampleModel(int[] bands)
+				</name>
+				<description>
+					Creates a new PixelInterleavedSampleModel with a subset of the bands of this PixelInterleavedSampleModel. The new PixelInterleavedSampleModel can be used with any DataBuffer that the existing PixelInterleavedSampleModel can be used with. The new PixelInterleavedSampleModel/DataBuffer combination will represent an image with a subset of the bands of the original PixelInterleavedSampleModel/DataBuffer combination.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Description copied from class: Object Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap. The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the Object.equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables. As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

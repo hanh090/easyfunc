@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class JMX  extends Object
+		</name>
+		<description>
+			Static methods from the JMX API. There are no instances of this class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String DEFAULT_VALUE_FIELD
+				</name>
+				<description>
+					The name of the defaultValue field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String IMMUTABLE_INFO_FIELD
+				</name>
+				<description>
+					The name of the immutableInfo field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String INTERFACE_CLASS_NAME_FIELD
+				</name>
+				<description>
+					The name of the interfaceClassName field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LEGAL_VALUES_FIELD
+				</name>
+				<description>
+					The name of the legalValues field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MAX_VALUE_FIELD
+				</name>
+				<description>
+					The name of the maxValue field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MIN_VALUE_FIELD
+				</name>
+				<description>
+					The name of the minValue field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String MXBEAN_FIELD
+				</name>
+				<description>
+					The name of the mxbean field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String OPEN_TYPE_FIELD
+				</name>
+				<description>
+					The name of the openType field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ORIGINAL_TYPE_FIELD
+				</name>
+				<description>
+					The name of the originalType field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T newMBeanProxy(MBeanServerConnection connection,                    ObjectName objectName,                    Class<T> interfaceClass)
+				</name>
+				<description>
+					Make a proxy for a Standard MBean in a local or remote MBean Server. If you have an MBean Server mbs containing an MBean with ObjectName name, and if the MBean's management interface is described by the Java interface MyMBean, you can construct a proxy for the MBean like this:    MyMBean proxy = JMX.newMBeanProxy(mbs, name, MyMBean.class);   Suppose, for example, MyMBean looks like this:    public interface MyMBean {       public String getSomeAttribute();       public void setSomeAttribute(String value);       public void someOperation(String param1, int param2);   }   Then you can execute: proxy.getSomeAttribute() which will result in a call to mbs.getAttribute(name, "SomeAttribute"). proxy.setSomeAttribute("whatever") which will result in a call to mbs.setAttribute(name, new Attribute("SomeAttribute", "whatever")). proxy.someOperation("param1", 2) which will be translated into a call to mbs.invoke(name, "someOperation", <etc>). The object returned by this method is a Proxy whose InvocationHandler is an MBeanServerInvocationHandler. This method is equivalent to newMBeanProxy(connection, objectName, interfaceClass, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T newMBeanProxy(MBeanServerConnection connection,                    ObjectName objectName,                    Class<T> interfaceClass,                    boolean notificationEmitter)
+				</name>
+				<description>
+					Make a proxy for a Standard MBean in a local or remote MBean Server that may also support the methods of NotificationEmitter. This method behaves the same as newMBeanProxy(MBeanServerConnection, ObjectName, Class), but additionally, if notificationEmitter is true, then the MBean is assumed to be a NotificationBroadcaster or NotificationEmitter and the returned proxy will implement NotificationEmitter as well as interfaceClass. A call to NotificationBroadcaster.addNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object) on the proxy will result in a call to MBeanServerConnection.addNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object), and likewise for the other methods of NotificationBroadcaster and NotificationEmitter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T newMXBeanProxy(MBeanServerConnection connection,                     ObjectName objectName,                     Class<T> interfaceClass)
+				</name>
+				<description>
+					Make a proxy for an MXBean in a local or remote MBean Server. If you have an MBean Server mbs containing an MXBean with ObjectName name, and if the MXBean's management interface is described by the Java interface MyMXBean, you can construct a proxy for the MXBean like this:    MyMXBean proxy = JMX.newMXBeanProxy(mbs, name, MyMXBean.class);   Suppose, for example, MyMXBean looks like this:    public interface MyMXBean {       public String getSimpleAttribute();       public void setSimpleAttribute(String value);       public MemoryUsage getMappedAttribute();       public void setMappedAttribute(MemoryUsage memoryUsage);       public MemoryUsage someOperation(String param1, MemoryUsage param2);   }   Then: proxy.getSimpleAttribute() will result in a call to mbs.getAttribute(name, "SimpleAttribute"). proxy.setSimpleAttribute("whatever") will result in a call to mbs.setAttribute(name, new Attribute("SimpleAttribute", "whatever")). Because String is a simple type, in the sense of SimpleType, it is not changed in the context of an MXBean. The MXBean proxy behaves the same as a Standard MBean proxy (see newMBeanProxy) for the attribute SimpleAttribute. proxy.getMappedAttribute() will result in a call to mbs.getAttribute("MappedAttribute"). The MXBean mapping rules mean that the actual type of the attribute MappedAttribute will be CompositeData and that is what the mbs.getAttribute call will return. The proxy will then convert the CompositeData back into the expected type MemoryUsage using the MXBean mapping rules. Similarly, proxy.setMappedAttribute(memoryUsage) will convert the MemoryUsage argument into a CompositeData before calling mbs.setAttribute. proxy.someOperation("whatever", memoryUsage) will convert the MemoryUsage argument into a CompositeData and call mbs.invoke. The value returned by mbs.invoke will be also be a CompositeData, and the proxy will convert this into the expected type MemoryUsage using the MXBean mapping rules. The object returned by this method is a Proxy whose InvocationHandler is an MBeanServerInvocationHandler. This method is equivalent to newMXBeanProxy(connection, objectName, interfaceClass, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T newMXBeanProxy(MBeanServerConnection connection,                     ObjectName objectName,                     Class<T> interfaceClass,                     boolean notificationEmitter)
+				</name>
+				<description>
+					Make a proxy for an MXBean in a local or remote MBean Server that may also support the methods of NotificationEmitter. This method behaves the same as newMXBeanProxy(MBeanServerConnection, ObjectName, Class), but additionally, if notificationEmitter is true, then the MXBean is assumed to be a NotificationBroadcaster or NotificationEmitter and the returned proxy will implement NotificationEmitter as well as interfaceClass. A call to NotificationBroadcaster.addNotificationListener(javax.management.NotificationListener, javax.management.NotificationFilter, java.lang.Object) on the proxy will result in a call to MBeanServerConnection.addNotificationListener(ObjectName, NotificationListener, NotificationFilter, Object), and likewise for the other methods of NotificationBroadcaster and NotificationEmitter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isMXBeanInterface(Class<?> interfaceClass)
+				</name>
+				<description>
+					Test whether an interface is an MXBean interface. An interface is an MXBean interface if it is annotated @MXBean or @MXBean(true) or if it does not have an @MXBean annotation and its name ends with "MXBean".
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

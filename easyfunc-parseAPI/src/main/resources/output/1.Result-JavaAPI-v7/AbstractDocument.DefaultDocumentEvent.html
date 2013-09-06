@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class AbstractDocument.DefaultDocumentEvent  extends CompoundEdit  implements DocumentEvent
+		</name>
+		<description>
+			Stores document changes as the document is being modified. Can subsequently be used for change notification when done with the document modification transaction. This is used by the AbstractDocument class and its extensions for broadcasting change information to the document listeners.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AbstractDocument.DefaultDocumentEvent(int offs,                                       int len,                                       DocumentEvent.EventType type)
+				</name>
+				<description>
+					Constructs a change record.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string description of the change event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addEdit(UndoableEdit anEdit)
+				</name>
+				<description>
+					Adds a document edit. If the number of edits crosses a threshold, this switches on a hashtable lookup for ElementChange implementations since access of these needs to be relatively quick.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void redo()            throws CannotRedoException
+				</name>
+				<description>
+					Redoes a change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void undo()            throws CannotUndoException
+				</name>
+				<description>
+					Undoes a change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSignificant()
+				</name>
+				<description>
+					DefaultDocument events are significant. If you wish to aggregate DefaultDocumentEvents to present them as a single edit to the user place them into a CompoundEdit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPresentationName()
+				</name>
+				<description>
+					Provides a localized, human readable description of this edit suitable for use in, say, a change log.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUndoPresentationName()
+				</name>
+				<description>
+					Provides a localized, human readable description of the undoable form of this edit, e.g. for use as an Undo menu item. Typically derived from getDescription();
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRedoPresentationName()
+				</name>
+				<description>
+					Provides a localized, human readable description of the redoable form of this edit, e.g. for use as a Redo menu item. Typically derived from getPresentationName();
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DocumentEvent.EventType getType()
+				</name>
+				<description>
+					Returns the type of event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset()
+				</name>
+				<description>
+					Returns the offset within the document of the start of the change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLength()
+				</name>
+				<description>
+					Returns the length of the change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Document getDocument()
+				</name>
+				<description>
+					Gets the document that sourced the change event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DocumentEvent.ElementChange getChange(Element elem)
+				</name>
+				<description>
+					Gets the changes for an element.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

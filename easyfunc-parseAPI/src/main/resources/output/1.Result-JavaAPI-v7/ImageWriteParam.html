@@ -1,0 +1,486 @@
+<javaelement>
+	<package>
+		javax.imageio
+	</package>
+	<type>
+		<name>
+			public class ImageWriteParam  extends IIOParam
+		</name>
+		<description>
+			A class describing how a stream is to be encoded. Instances of this class or its subclasses are used to supply prescriptive "how-to" information to instances of ImageWriter. A plug-in for a specific image format may define a subclass of this class, and return objects of that class from the getDefaultWriteParam method of its ImageWriter implementation. For example, the built-in JPEG writer plug-in will return instances of javax.imageio.plugins.jpeg.JPEGImageWriteParam. The region of the image to be written is determined by first intersecting the actual bounds of the image with the rectangle specified by IIOParam.setSourceRegion, if any. If the resulting rectangle has a width or height of zero, the writer will throw an IIOException. If the intersection is non-empty, writing will commence with the first subsampled pixel and include additional pixels within the intersected bounds according to the horizontal and vertical subsampling factors specified by IIOParam.setSourceSubsampling. Individual features such as tiling, progressive encoding, and compression may be set in one of four modes. MODE_DISABLED disables the features; MODE_DEFAULT enables the feature with writer-controlled parameter values; MODE_EXPLICIT enables the feature and allows the use of a set method to provide additional parameters; and MODE_COPY_FROM_METADATA copies relevant parameter values from the stream and image metadata objects passed to the writer. The default for all features is MODE_COPY_FROM_METADATA. Non-standard features supplied in subclasses are encouraged, but not required to use a similar scheme. Plug-in writers may extend the functionality of ImageWriteParam by providing a subclass that implements additional, plug-in specific interfaces. It is up to the plug-in to document what interfaces are available and how they are to be used. Writers will silently ignore any extended features of an ImageWriteParam subclass of which they are not aware. Also, they may ignore any optional features that they normally disable when creating their own ImageWriteParam instances via getDefaultWriteParam. Note that unless a query method exists for a capability, it must be supported by all ImageWriter implementations (e.g. progressive encoding is optional, but subsampling must be supported).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int MODE_DISABLED
+				</name>
+				<description>
+					A constant value that may be passed into methods such as setTilingMode, setProgressiveMode, and setCompressionMode to disable a feature for future writes. That is, when this mode is set the stream will not be tiled, progressive, or compressed, and the relevant accessor methods will throw an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int MODE_DEFAULT
+				</name>
+				<description>
+					A constant value that may be passed into methods such as setTilingMode, setProgressiveMode, and setCompressionMode to enable that feature for future writes. That is, when this mode is enabled the stream will be tiled, progressive, or compressed according to a sensible default chosen internally by the writer in a plug-in dependent way, and the relevant accessor methods will throw an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int MODE_EXPLICIT
+				</name>
+				<description>
+					A constant value that may be passed into methods such as setTilingMode or setCompressionMode to enable a feature for future writes. That is, when this mode is set the stream will be tiled or compressed according to additional information supplied to the corresponding set methods in this class and retrievable from the corresponding get methods. Note that this mode is not supported for progressive output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int MODE_COPY_FROM_METADATA
+				</name>
+				<description>
+					A constant value that may be passed into methods such as setTilingMode, setProgressiveMode, or setCompressionMode to enable that feature for future writes. That is, when this mode is enabled the stream will be tiled, progressive, or compressed based on the contents of stream and/or image metadata passed into the write operation, and any relevant accessor methods will throw an IllegalStateException. This is the default mode for all features, so that a read including metadata followed by a write including metadata will preserve as much information as possible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean canWriteTiles
+				</name>
+				<description>
+					A boolean that is true if this ImageWriteParam allows tile width and tile height parameters to be set. By default, the value is false. Subclasses must set the value manually. Subclasses that do not support writing tiles should ensure that this value is set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int tilingMode
+				</name>
+				<description>
+					The mode controlling tiling settings, which Must be set to one of the four MODE_* values. The default is MODE_COPY_FROM_METADATA. Subclasses that do not writing tiles may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Dimension[] preferredTileSizes
+				</name>
+				<description>
+					An array of preferred tile size range pairs. The default value is null, which indicates that there are no preferred sizes. If the value is non-null, it must have an even length of at least two. Subclasses that do not support writing tiles may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean tilingSet
+				</name>
+				<description>
+					A boolean that is true if tiling parameters have been specified. Subclasses that do not support writing tiles may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int tileWidth
+				</name>
+				<description>
+					The width of each tile if tiling has been set, or 0 otherwise. Subclasses that do not support tiling may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int tileHeight
+				</name>
+				<description>
+					The height of each tile if tiling has been set, or 0 otherwise. The initial value is 0. Subclasses that do not support tiling may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean canOffsetTiles
+				</name>
+				<description>
+					A boolean that is true if this ImageWriteParam allows tiling grid offset parameters to be set. By default, the value is false. Subclasses must set the value manually. Subclasses that do not support writing tiles, or that supprt writing but not offsetting tiles must ensure that this value is set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int tileGridXOffset
+				</name>
+				<description>
+					The amount by which the tile grid origin should be offset horizontally from the image origin if tiling has been set, or 0 otherwise. The initial value is 0. Subclasses that do not support offsetting tiles may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int tileGridYOffset
+				</name>
+				<description>
+					The amount by which the tile grid origin should be offset vertically from the image origin if tiling has been set, or 0 otherwise. The initial value is 0. Subclasses that do not support offsetting tiles may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean canWriteProgressive
+				</name>
+				<description>
+					A boolean that is true if this ImageWriteParam allows images to be written as a progressive sequence of increasing quality passes. By default, the value is false. Subclasses must set the value manually. Subclasses that do not support progressive encoding must ensure that this value is set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int progressiveMode
+				</name>
+				<description>
+					The mode controlling progressive encoding, which must be set to one of the four MODE_* values, except MODE_EXPLICIT. The default is MODE_COPY_FROM_METADATA. Subclasses that do not support progressive encoding may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean canWriteCompressed
+				</name>
+				<description>
+					A boolean that is true if this writer can write images using compression. By default, the value is false. Subclasses must set the value manually. Subclasses that do not support compression must ensure that this value is set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int compressionMode
+				</name>
+				<description>
+					The mode controlling compression settings, which must be set to one of the four MODE_* values. The default is MODE_COPY_FROM_METADATA. Subclasses that do not support compression may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String[] compressionTypes
+				</name>
+				<description>
+					An array of Strings containing the names of the available compression types. Subclasses must set the value manually. Subclasses that do not support compression may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String compressionType
+				</name>
+				<description>
+					A String containing the name of the current compression type, or null if none is set. Subclasses that do not support compression may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected float compressionQuality
+				</name>
+				<description>
+					A float containing the current compression quality setting. The initial value is 1.0F. Subclasses that do not support compression may ignore this value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Locale locale
+				</name>
+				<description>
+					A Locale to be used to localize compression type names and quality descriptions, or null to use a default Locale. Subclasses must set the value manually.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ImageWriteParam()
+				</name>
+				<description>
+					Constructs an empty ImageWriteParam. It is up to the subclass to set up the instance variables properly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageWriteParam(Locale locale)
+				</name>
+				<description>
+					Constructs an ImageWriteParam set to use a given Locale.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Locale getLocale()
+				</name>
+				<description>
+					Returns the currently set Locale, or null if only a default Locale is supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canWriteTiles()
+				</name>
+				<description>
+					Returns true if the writer can perform tiling while writing. If this method returns false, then setTiling will throw an UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canOffsetTiles()
+				</name>
+				<description>
+					Returns true if the writer can perform tiling with non-zero grid offsets while writing. If this method returns false, then setTiling will throw an UnsupportedOperationException if the grid offset arguments are not both zero. If canWriteTiles returns false, this method will return false as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTilingMode(int mode)
+				</name>
+				<description>
+					Determines whether the image will be tiled in the output stream and, if it will, how the tiling parameters will be determined. The modes are interpreted as follows: MODE_DISABLED - The image will not be tiled. setTiling will throw an IllegalStateException. MODE_DEFAULT - The image will be tiled using default parameters. setTiling will throw an IllegalStateException. MODE_EXPLICIT - The image will be tiled according to parameters given in the setTiling method. Any previously set tiling parameters are discarded. MODE_COPY_FROM_METADATA - The image will conform to the metadata object passed in to a write. setTiling will throw an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTilingMode()
+				</name>
+				<description>
+					Returns the current tiling mode, if tiling is supported. Otherwise throws an UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension[] getPreferredTileSizes()
+				</name>
+				<description>
+					Returns an array of Dimensions indicating the legal size ranges for tiles as they will be encoded in the output file or stream. The returned array is a copy. The information is returned as a set of pairs; the first element of a pair contains an (inclusive) minimum width and height, and the second element contains an (inclusive) maximum width and height. Together, each pair defines a valid range of sizes. To specify a fixed size, use the same width and height for both elements. To specify an arbitrary range, a value of null is used in place of an actual array of Dimensions. If no array is specified on the constructor, but tiling is allowed, then this method returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTiling(int tileWidth,               int tileHeight,               int tileGridXOffset,               int tileGridYOffset)
+				</name>
+				<description>
+					Specifies that the image should be tiled in the output stream. The tileWidth and tileHeight parameters specify the width and height of the tiles in the file. If the tile width or height is greater than the width or height of the image, the image is not tiled in that dimension. If canOffsetTiles returns false, then the tileGridXOffset and tileGridYOffset parameters must be zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unsetTiling()
+				</name>
+				<description>
+					Removes any previous tile grid parameters specified by calls to setTiling. The default implementation sets the instance variables tileWidth, tileHeight, tileGridXOffset, and tileGridYOffset to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTileWidth()
+				</name>
+				<description>
+					Returns the width of each tile in an image as it will be written to the output stream. If tiling parameters have not been set, an IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTileHeight()
+				</name>
+				<description>
+					Returns the height of each tile in an image as it will be written to the output stream. If tiling parameters have not been set, an IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTileGridXOffset()
+				</name>
+				<description>
+					Returns the horizontal tile grid offset of an image as it will be written to the output stream. If tiling parameters have not been set, an IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTileGridYOffset()
+				</name>
+				<description>
+					Returns the vertical tile grid offset of an image as it will be written to the output stream. If tiling parameters have not been set, an IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canWriteProgressive()
+				</name>
+				<description>
+					Returns true if the writer can write out images as a series of passes of progressively increasing quality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProgressiveMode(int mode)
+				</name>
+				<description>
+					Specifies that the writer is to write the image out in a progressive mode such that the stream will contain a series of scans of increasing quality. If progressive encoding is not supported, an UnsupportedOperationException will be thrown. The mode argument determines how the progression parameters are chosen, and must be either MODE_DISABLED, MODE_COPY_FROM_METADATA, or MODE_DEFAULT. Otherwise an IllegalArgumentException is thrown. The modes are interpreted as follows: MODE_DISABLED - No progression. Use this to turn off progession. MODE_COPY_FROM_METADATA - The output image will use whatever progression parameters are found in the metadata objects passed into the writer. MODE_DEFAULT - The image will be written progressively, with parameters chosen by the writer. The default is MODE_COPY_FROM_METADATA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getProgressiveMode()
+				</name>
+				<description>
+					Returns the current mode for writing the stream in a progressive manner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean canWriteCompressed()
+				</name>
+				<description>
+					Returns true if this writer supports compression.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCompressionMode(int mode)
+				</name>
+				<description>
+					Specifies whether compression is to be performed, and if so how compression parameters are to be determined. The mode argument must be one of the four modes, interpreted as follows: MODE_DISABLED - If the mode is set to MODE_DISABLED, methods that query or modify the compression type or parameters will throw an IllegalStateException (if compression is normally supported by the plug-in). Some writers, such as JPEG, do not normally offer uncompressed output. In this case, attempting to set the mode to MODE_DISABLED will throw an UnsupportedOperationException and the mode will not be changed. MODE_EXPLICIT - Compress using the compression type and quality settings specified in this ImageWriteParam. Any previously set compression parameters are discarded. MODE_COPY_FROM_METADATA - Use whatever compression parameters are specified in metadata objects passed in to the writer. MODE_DEFAULT - Use default compression parameters. The default is MODE_COPY_FROM_METADATA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getCompressionMode()
+				</name>
+				<description>
+					Returns the current compression mode, if compression is supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getCompressionTypes()
+				</name>
+				<description>
+					Returns a list of available compression types, as an array or Strings, or null if a compression type may not be chosen using these interfaces. The array returned is a copy. If the writer only offers a single, mandatory form of compression, it is not necessary to provide any named compression types. Named compression types should only be used where the user is able to make a meaningful choice between different schemes. The default implementation checks if compression is supported and throws an UnsupportedOperationException if not. Otherwise, it returns a clone of the compressionTypes instance variable if it is non-null, or else returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCompressionType(String compressionType)
+				</name>
+				<description>
+					Sets the compression type to one of the values indicated by getCompressionTypes. If a value of null is passed in, any previous setting is removed. The default implementation checks whether compression is supported and the compression mode is MODE_EXPLICIT. If so, it calls getCompressionTypes and checks if compressionType is one of the legal values. If it is, the compressionType instance variable is set. If compressionType is null, the instance variable is set without performing any checking.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getCompressionType()
+				</name>
+				<description>
+					Returns the currently set compression type, or null if none has been set. The type is returned as a String from among those returned by getCompressionTypes. If no compression type has been set, null is returned. The default implementation checks whether compression is supported and the compression mode is MODE_EXPLICIT. If so, it returns the value of the compressionType instance variable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unsetCompression()
+				</name>
+				<description>
+					Removes any previous compression type and quality settings. The default implementation sets the instance variable compressionType to null, and the instance variable compressionQuality to 1.0F.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLocalizedCompressionTypeName()
+				</name>
+				<description>
+					Returns a localized version of the name of the current compression type, using the Locale returned by getLocale. The default implementation checks whether compression is supported and the compression mode is MODE_EXPLICIT. If so, if compressionType is non-null the value of getCompressionType is returned as a convenience.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCompressionLossless()
+				</name>
+				<description>
+					Returns true if the current compression type provides lossless compression. If a plug-in provides only one mandatory compression type, then this method may be called without calling setCompressionType first. If there are multiple compression types but none has been set, an IllegalStateException is thrown. The default implementation checks whether compression is supported and the compression mode is MODE_EXPLICIT. If so, if getCompressionTypes() is null or getCompressionType() is non-null true is returned as a convenience.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCompressionQuality(float quality)
+				</name>
+				<description>
+					Sets the compression quality to a value between 0 and 1. Only a single compression quality setting is supported by default; writers can provide extended versions of ImageWriteParam that offer more control. For lossy compression schemes, the compression quality should control the tradeoff between file size and image quality (for example, by choosing quantization tables when writing JPEG images). For lossless schemes, the compression quality may be used to control the tradeoff between file size and time taken to perform the compression (for example, by optimizing row filters and setting the ZLIB compression level when writing PNG images). A compression quality setting of 0.0 is most generically interpreted as "high compression is important," while a setting of 1.0 is most generically interpreted as "high image quality is important." If there are multiple compression types but none has been set, an IllegalStateException is thrown. The default implementation checks that compression is supported, and that the compression mode is MODE_EXPLICIT. If so, if getCompressionTypes() returns null or compressionType is non-null it sets the compressionQuality instance variable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getCompressionQuality()
+				</name>
+				<description>
+					Returns the current compression quality setting. If there are multiple compression types but none has been set, an IllegalStateException is thrown. The default implementation checks that compression is supported and that the compression mode is MODE_EXPLICIT. If so, if getCompressionTypes() is null or getCompressionType() is non-null, it returns the value of the compressionQuality instance variable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getBitRate(float quality)
+				</name>
+				<description>
+					Returns a float indicating an estimate of the number of bits of output data for each bit of input image data at the given quality level. The value will typically lie between 0 and 1, with smaller values indicating more compression. A special value of -1.0F is used to indicate that no estimate is available. If there are multiple compression types but none has been set, an IllegalStateException is thrown. The default implementation checks that compression is supported and the compression mode is MODE_EXPLICIT. If so, if getCompressionTypes() is null or getCompressionType() is non-null, and quality is within bounds, it returns -1.0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getCompressionQualityDescriptions()
+				</name>
+				<description>
+					Returns an array of Strings that may be used along with getCompressionQualityValues as part of a user interface for setting or displaying the compression quality level. The String with index i provides a description of the range of quality levels between getCompressionQualityValues[i] and getCompressionQualityValues[i + 1]. Note that the length of the array returned from getCompressionQualityValues will always be one greater than that returned from getCompressionQualityDescriptions. As an example, the strings "Good", "Better", and "Best" could be associated with the ranges [0, .33), [.33, .66), and [.66, 1.0]. In this case, getCompressionQualityDescriptions would return { "Good", "Better", "Best" } and getCompressionQualityValues would return { 0.0F, .33F, .66F, 1.0F }. If no descriptions are available, null is returned. If null is returned from getCompressionQualityValues, this method must also return null. The descriptions should be localized for the Locale returned by getLocale, if it is non-null. If there are multiple compression types but none has been set, an IllegalStateException is thrown. The default implementation checks that compression is supported and that the compression mode is MODE_EXPLICIT. If so, if getCompressionTypes() is null or getCompressionType() is non-null, it returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float[] getCompressionQualityValues()
+				</name>
+				<description>
+					Returns an array of floats that may be used along with getCompressionQualityDescriptions as part of a user interface for setting or displaying the compression quality level. See getCompressionQualityDescriptions for more information. If no descriptions are available, null is returned. If null is returned from getCompressionQualityDescriptions, this method must also return null. If there are multiple compression types but none has been set, an IllegalStateException is thrown. The default implementation checks that compression is supported and that the compression mode is MODE_EXPLICIT. If so, if getCompressionTypes() is null or getCompressionType() is non-null, it returns null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,288 @@
+<javaelement>
+	<package>
+		java.lang
+	</package>
+	<type>
+		<name>
+			public final class System  extends Object
+		</name>
+		<description>
+			The System class contains several useful class fields and methods. It cannot be instantiated. Among the facilities provided by the System class are standard input, standard output, and error output streams; access to externally defined properties and environment variables; a means of loading files and libraries; and a utility method for quickly copying a portion of an array.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final InputStream in
+				</name>
+				<description>
+					The "standard" input stream. This stream is already open and ready to supply input data. Typically this stream corresponds to keyboard input or another input source specified by the host environment or user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final PrintStream out
+				</name>
+				<description>
+					The "standard" output stream. This stream is already open and ready to accept output data. Typically this stream corresponds to display output or another output destination specified by the host environment or user. For simple stand-alone Java applications, a typical way to write a line of output data is:        System.out.println(data)   See the println methods in class PrintStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final PrintStream err
+				</name>
+				<description>
+					The "standard" error output stream. This stream is already open and ready to accept output data. Typically this stream corresponds to display output or another output destination specified by the host environment or user. By convention, this output stream is used to display error messages or other information that should come to the immediate attention of a user even if the principal output stream, the value of the variable out, has been redirected to a file or other destination that is typically not continuously monitored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setIn(InputStream in)
+				</name>
+				<description>
+					Reassigns the "standard" input stream. First, if there is a security manager, its checkPermission method is called with a RuntimePermission("setIO") permission to see if it's ok to reassign the "standard" input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setOut(PrintStream out)
+				</name>
+				<description>
+					Reassigns the "standard" output stream. First, if there is a security manager, its checkPermission method is called with a RuntimePermission("setIO") permission to see if it's ok to reassign the "standard" output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setErr(PrintStream err)
+				</name>
+				<description>
+					Reassigns the "standard" error output stream. First, if there is a security manager, its checkPermission method is called with a RuntimePermission("setIO") permission to see if it's ok to reassign the "standard" error output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Console console()
+				</name>
+				<description>
+					Returns the unique Console object associated with the current Java virtual machine, if any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Channel inheritedChannel()                                  throws IOException
+				</name>
+				<description>
+					Returns the channel inherited from the entity that created this Java virtual machine. This method returns the channel obtained by invoking the inheritedChannel method of the system-wide default SelectorProvider object. In addition to the network-oriented channels described in inheritedChannel, this method may return other kinds of channels in the future.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setSecurityManager(SecurityManager s)
+				</name>
+				<description>
+					Sets the System security. If there is a security manager already installed, this method first calls the security manager's checkPermission method with a RuntimePermission("setSecurityManager") permission to ensure it's ok to replace the existing security manager. This may result in throwing a SecurityException. Otherwise, the argument is established as the current security manager. If the argument is null and no security manager has been established, then no action is taken and the method simply returns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SecurityManager getSecurityManager()
+				</name>
+				<description>
+					Gets the system security interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static long currentTimeMillis()
+				</name>
+				<description>
+					Returns the current time in milliseconds. Note that while the unit of time of the return value is a millisecond, the granularity of the value depends on the underlying operating system and may be larger. For example, many operating systems measure time in units of tens of milliseconds. See the description of the class Date for a discussion of slight discrepancies that may arise between "computer time" and coordinated universal time (UTC).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static long nanoTime()
+				</name>
+				<description>
+					Returns the current value of the running Java Virtual Machine's high-resolution time source, in nanoseconds. This method can only be used to measure elapsed time and is not related to any other notion of system or wall-clock time. The value returned represents nanoseconds since some fixed but arbitrary origin time (perhaps in the future, so values may be negative). The same origin is used by all invocations of this method in an instance of a Java virtual machine; other virtual machine instances are likely to use a different origin. This method provides nanosecond precision, but not necessarily nanosecond resolution (that is, how frequently the value changes) - no guarantees are made except that the resolution is at least as good as that of currentTimeMillis(). Differences in successive calls that span greater than approximately 292 years (263 nanoseconds) will not correctly compute elapsed time due to numerical overflow. The values returned by this method become meaningful only when the difference between two such values, obtained within the same instance of a Java virtual machine, is computed. For example, to measure how long some code takes to execute:  long startTime = System.nanoTime();   // ... the code being measured ...   long estimatedTime = System.nanoTime() - startTime; To compare two nanoTime values  long t0 = System.nanoTime();   ...   long t1 = System.nanoTime(); one should use t1 - t0 < 0, not t1 < t0, because of the possibility of numerical overflow.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void arraycopy(Object src,               int srcPos,               Object dest,               int destPos,               int length)
+				</name>
+				<description>
+					Copies an array from the specified source array, beginning at the specified position, to the specified position of the destination array. A subsequence of array components are copied from the source array referenced by src to the destination array referenced by dest. The number of components copied is equal to the length argument. The components at positions srcPos through srcPos+length-1 in the source array are copied into positions destPos through destPos+length-1, respectively, of the destination array. If the src and dest arguments refer to the same array object, then the copying is performed as if the components at positions srcPos through srcPos+length-1 were first copied to a temporary array with length components and then the contents of the temporary array were copied into positions destPos through destPos+length-1 of the destination array. If dest is null, then a NullPointerException is thrown. If src is null, then a NullPointerException is thrown and the destination array is not modified. Otherwise, if any of the following is true, an ArrayStoreException is thrown and the destination is not modified: The src argument refers to an object that is not an array. The dest argument refers to an object that is not an array. The src argument and dest argument refer to arrays whose component types are different primitive types. The src argument refers to an array with a primitive component type and the dest argument refers to an array with a reference component type. The src argument refers to an array with a reference component type and the dest argument refers to an array with a primitive component type. Otherwise, if any of the following is true, an IndexOutOfBoundsException is thrown and the destination is not modified: The srcPos argument is negative. The destPos argument is negative. The length argument is negative. srcPos+length is greater than src.length, the length of the source array. destPos+length is greater than dest.length, the length of the destination array. Otherwise, if any actual component of the source array from position srcPos through srcPos+length-1 cannot be converted to the component type of the destination array by assignment conversion, an ArrayStoreException is thrown. In this case, let k be the smallest nonnegative integer less than length such that src[srcPos+k] cannot be converted to the component type of the destination array; when the exception is thrown, source array components from positions srcPos through srcPos+k-1 will already have been copied to destination array positions destPos through destPos+k-1 and no other positions of the destination array will have been modified. (Because of the restrictions already itemized, this paragraph effectively applies only to the situation where both arrays have component types that are reference types.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int identityHashCode(Object x)
+				</name>
+				<description>
+					Returns the same hash code for the given object as would be returned by the default method hashCode(), whether or not the given object's class overrides hashCode(). The hash code for the null reference is zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Properties getProperties()
+				</name>
+				<description>
+					Determines the current system properties. First, if there is a security manager, its checkPropertiesAccess method is called with no arguments. This may result in a security exception. The current set of system properties for use by the getProperty(String) method is returned as a Properties object. If there is no current set of system properties, a set of system properties is first created and initialized. This set of system properties always includes values for the following keys: Key Description of Associated Value java.version Java Runtime Environment version java.vendor Java Runtime Environment vendor java.vendor.url Java vendor URL java.home Java installation directory java.vm.specification.version Java Virtual Machine specification version java.vm.specification.vendor Java Virtual Machine specification vendor java.vm.specification.name Java Virtual Machine specification name java.vm.version Java Virtual Machine implementation version java.vm.vendor Java Virtual Machine implementation vendor java.vm.name Java Virtual Machine implementation name java.specification.version Java Runtime Environment specification version java.specification.vendor Java Runtime Environment specification vendor java.specification.name Java Runtime Environment specification name java.class.version Java class format version number java.class.path Java class path java.library.path List of paths to search when loading libraries java.io.tmpdir Default temp file path java.compiler Name of JIT compiler to use java.ext.dirs Path of extension directory or directories os.name Operating system name os.arch Operating system architecture os.version Operating system version file.separator File separator ("/" on UNIX) path.separator Path separator (":" on UNIX) line.separator Line separator ("\n" on UNIX) user.name User's account name user.home User's home directory user.dir User's current working directory Multiple paths in a system property value are separated by the path separator character of the platform. Note that even if the security manager does not permit the getProperties operation, it may choose to permit the getProperty(String) operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String lineSeparator()
+				</name>
+				<description>
+					Returns the system-dependent line separator string. It always returns the same value - the initial value of the system property line.separator. On UNIX systems, it returns "\n"; on Microsoft Windows systems it returns "\r\n".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setProperties(Properties props)
+				</name>
+				<description>
+					Sets the system properties to the Properties argument. First, if there is a security manager, its checkPropertiesAccess method is called with no arguments. This may result in a security exception. The argument becomes the current set of system properties for use by the getProperty(String) method. If the argument is null, then the current set of system properties is forgotten.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String getProperty(String key)
+				</name>
+				<description>
+					Gets the system property indicated by the specified key. First, if there is a security manager, its checkPropertyAccess method is called with the key as its argument. This may result in a SecurityException. If there is no current set of system properties, a set of system properties is first created and initialized in the same manner as for the getProperties method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String getProperty(String key,                   String def)
+				</name>
+				<description>
+					Gets the system property indicated by the specified key. First, if there is a security manager, its checkPropertyAccess method is called with the key as its argument. If there is no current set of system properties, a set of system properties is first created and initialized in the same manner as for the getProperties method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String setProperty(String key,                   String value)
+				</name>
+				<description>
+					Sets the system property indicated by the specified key. First, if a security manager exists, its SecurityManager.checkPermission method is called with a PropertyPermission(key, "write") permission. This may result in a SecurityException being thrown. If no exception is thrown, the specified property is set to the given value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String clearProperty(String key)
+				</name>
+				<description>
+					Removes the system property indicated by the specified key. First, if a security manager exists, its SecurityManager.checkPermission method is called with a PropertyPermission(key, "write") permission. This may result in a SecurityException being thrown. If no exception is thrown, the specified property is removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String getenv(String name)
+				</name>
+				<description>
+					Gets the value of the specified environment variable. An environment variable is a system-dependent external named value. If a security manager exists, its checkPermission method is called with a RuntimePermission("getenv."+name) permission. This may result in a SecurityException being thrown. If no exception is thrown the value of the variable name is returned. System properties and environment variables are both conceptually mappings between names and values. Both mechanisms can be used to pass user-defined information to a Java process. Environment variables have a more global effect, because they are visible to all descendants of the process which defines them, not just the immediate Java subprocess. They can have subtly different semantics, such as case insensitivity, on different operating systems. For these reasons, environment variables are more likely to have unintended side effects. It is best to use system properties where possible. Environment variables should be used when a global effect is desired, or when an external system interface requires an environment variable (such as PATH). On UNIX systems the alphabetic case of name is typically significant, while on Microsoft Windows systems it is typically not. For example, the expression System.getenv("FOO").equals(System.getenv("foo")) is likely to be true on Microsoft Windows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Map<String,String> getenv()
+				</name>
+				<description>
+					Returns an unmodifiable string map view of the current system environment. The environment is a system-dependent mapping from names to values which is passed from parent to child processes. If the system does not support environment variables, an empty map is returned. The returned map will never contain null keys or values. Attempting to query the presence of a null key or value will throw a NullPointerException. Attempting to query the presence of a key or value which is not of type String will throw a ClassCastException. The returned map and its collection views may not obey the general contract of the Object.equals(java.lang.Object) and Object.hashCode() methods. The returned map is typically case-sensitive on all platforms. If a security manager exists, its checkPermission method is called with a RuntimePermission("getenv.*") permission. This may result in a SecurityException being thrown. When passing information to a Java subprocess, system properties are generally preferred over environment variables.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void exit(int status)
+				</name>
+				<description>
+					Terminates the currently running Java Virtual Machine. The argument serves as a status code; by convention, a nonzero status code indicates abnormal termination. This method calls the exit method in class Runtime. This method never returns normally. The call System.exit(n) is effectively equivalent to the call:    Runtime.getRuntime().exit(n)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void gc()
+				</name>
+				<description>
+					Runs the garbage collector. Calling the gc method suggests that the Java Virtual Machine expend effort toward recycling unused objects in order to make the memory they currently occupy available for quick reuse. When control returns from the method call, the Java Virtual Machine has made a best effort to reclaim space from all discarded objects. The call System.gc() is effectively equivalent to the call:    Runtime.getRuntime().gc()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void runFinalization()
+				</name>
+				<description>
+					Runs the finalization methods of any objects pending finalization. Calling this method suggests that the Java Virtual Machine expend effort toward running the finalize methods of objects that have been found to be discarded but whose finalize methods have not yet been run. When control returns from the method call, the Java Virtual Machine has made a best effort to complete all outstanding finalizations. The call System.runFinalization() is effectively equivalent to the call:    Runtime.getRuntime().runFinalization()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public static void runFinalizersOnExit(boolean value)
+				</name>
+				<description>
+					Deprecated. This method is inherently unsafe. It may result in finalizers being called on live objects while other threads are concurrently manipulating those objects, resulting in erratic behavior or deadlock. Enable or disable finalization on exit; doing so specifies that the finalizers of all objects that have finalizers that have not yet been automatically invoked are to be run before the Java runtime exits. By default, finalization on exit is disabled. If there is a security manager, its checkExit method is first called with 0 as its argument to ensure the exit is allowed. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void load(String filename)
+				</name>
+				<description>
+					Loads a code file with the specified filename from the local file system as a dynamic library. The filename argument must be a complete path name. The call System.load(name) is effectively equivalent to the call:    Runtime.getRuntime().load(name)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void loadLibrary(String libname)
+				</name>
+				<description>
+					Loads the system library specified by the libname argument. The manner in which a library name is mapped to the actual system library is system dependent. The call System.loadLibrary(name) is effectively equivalent to the call    Runtime.getRuntime().loadLibrary(name)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String mapLibraryName(String libname)
+				</name>
+				<description>
+					Maps a library name into a platform-specific string representing a native library.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

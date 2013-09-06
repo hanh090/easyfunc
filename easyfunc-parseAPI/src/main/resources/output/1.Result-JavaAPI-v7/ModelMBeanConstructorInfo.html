@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.management.modelmbean
+	</package>
+	<type>
+		<name>
+			public class ModelMBeanConstructorInfo  extends MBeanConstructorInfo  implements DescriptorAccess
+		</name>
+		<description>
+			The ModelMBeanConstructorInfo object describes a constructor of the ModelMBean. It is a subclass of MBeanConstructorInfo with the addition of an associated Descriptor and an implementation of the DescriptorAccess interface. The fields in the descriptor are defined, but not limited to, the following. Note that when the Type in this table is Number, a String that is the decimal representation of a Long can also be used. Name Type Meaning name String Constructor name. descriptorType String Must be "operation". role String Must be "constructor". displayName String Human readable name of constructor. visibility Number 1-4 where 1: always visible 4: rarely visible. presentationString String XML formatted string to describe how to present operation The persistPolicy and currencyTimeLimit fields are meaningless for constructors, but are not considered invalid. The default descriptor will have the name, descriptorType, displayName and role fields. The serialVersionUID of this class is 3862947819818064362L.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ModelMBeanConstructorInfo(String description,                           Constructor<?> constructorMethod)
+				</name>
+				<description>
+					Constructs a ModelMBeanConstructorInfo object with a default descriptor. The Descriptor of the constructed object will include fields contributed by any annotations on the Constructor object that contain the DescriptorKey meta-annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanConstructorInfo(String description,                           Constructor<?> constructorMethod,                           Descriptor descriptor)
+				</name>
+				<description>
+					Constructs a ModelMBeanConstructorInfo object. The Descriptor of the constructed object will include fields contributed by any annotations on the Constructor object that contain the DescriptorKey meta-annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanConstructorInfo(String name,                           String description,                           MBeanParameterInfo[] signature)
+				</name>
+				<description>
+					Constructs a ModelMBeanConstructorInfo object with a default descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanConstructorInfo(String name,                           String description,                           MBeanParameterInfo[] signature,                           Descriptor descriptor)
+				</name>
+				<description>
+					Constructs a ModelMBeanConstructorInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates and returns a new ModelMBeanConstructorInfo which is a duplicate of this ModelMBeanConstructorInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor getDescriptor()
+				</name>
+				<description>
+					Returns a copy of the associated Descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDescriptor(Descriptor inDescriptor)
+				</name>
+				<description>
+					Sets associated Descriptor (full replace) of ModelMBeanConstructorInfo. If the new Descriptor is null, then the associated Descriptor reverts to a default descriptor. The Descriptor is validated before it is assigned. If the new Descriptor is invalid, then a RuntimeOperationsException wrapping an IllegalArgumentException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string containing the entire contents of the ModelMBeanConstructorInfo in human readable form.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

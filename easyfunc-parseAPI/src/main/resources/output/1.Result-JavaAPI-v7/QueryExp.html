@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public interface QueryExp  extends Serializable
+		</name>
+		<description>
+			Represents relational constraints similar to database query "where clauses". Instances of QueryExp are returned by the static methods of the Query class. It is possible, but not recommended, to create custom queries by implementing this interface. In that case, it is better to extend the QueryEval class than to implement the interface directly, so that the setMBeanServer(javax.management.MBeanServer) method works correctly.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean apply(ObjectName name)                throws BadStringOperationException,                       BadBinaryOpValueExpException,                       BadAttributeValueExpException,                       InvalidApplicationException
+				</name>
+				<description>
+					Applies the QueryExp on an MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setMBeanServer(MBeanServer s)
+				</name>
+				<description>
+					Sets the MBean server on which the query is to be performed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

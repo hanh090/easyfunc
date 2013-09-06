@@ -1,0 +1,270 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract class CompositeView  extends View
+		</name>
+		<description>
+			CompositeView is an abstract View implementation which manages one or more child views. (Note that CompositeView is intended for managing relatively small numbers of child views.) CompositeView is intended to be used as a starting point for View implementations, such as BoxView, that will contain child Views. Subclasses that wish to manage the collection of child Views should use the replace(int, int, javax.swing.text.View[]) method. As View invokes replace during DocumentListener notification, you normally won't need to directly invoke replace. While CompositeView does not impose a layout policy on its child Views, it does allow for inseting the child Views it will contain. The insets can be set by either setInsets(short, short, short, short) or setParagraphInsets(javax.swing.text.AttributeSet). In addition to the abstract methods of View, subclasses of CompositeView will need to override: isBefore(int, int, java.awt.Rectangle) - Used to test if a given View location is before the visual space of the CompositeView. isAfter(int, int, java.awt.Rectangle) - Used to test if a given View location is after the visual space of the CompositeView. getViewAtPoint(int, int, java.awt.Rectangle) - Returns the view at a given visual location. childAllocation(int, java.awt.Rectangle) - Returns the bounds of a particular child View. getChildAllocation will invoke childAllocation after offseting the bounds by the Insets of the CompositeView.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CompositeView(Element elem)
+				</name>
+				<description>
+					Constructs a CompositeView for the given element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void loadChildren(ViewFactory f)
+				</name>
+				<description>
+					Loads all of the children to initialize the view. This is called by the setParent(javax.swing.text.View) method. Subclasses can reimplement this to initialize their child views in a different manner. The default implementation creates a child view for each child element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(View parent)
+				</name>
+				<description>
+					Sets the parent of the view. This is reimplemented to provide the superclass behavior as well as calling the loadChildren method if this view does not already have children. The children should not be loaded in the constructor because the act of setting the parent may cause them to try to search up the hierarchy (to get the hosting Container for example). If this view has children (the view is being moved from one place in the view hierarchy to another), the loadChildren method will not be called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getViewCount()
+				</name>
+				<description>
+					Returns the number of child views of this view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View getView(int n)
+				</name>
+				<description>
+					Returns the n-th view in this container.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replace(int offset,             int length,             View[] views)
+				</name>
+				<description>
+					Replaces child views. If there are no views to remove this acts as an insert. If there are no views to add this acts as a remove. Views being removed will have the parent set to null, and the internal reference to them removed so that they may be garbage collected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getChildAllocation(int index,                         Shape a)
+				</name>
+				<description>
+					Fetches the allocation for the given child view to render into. This enables finding out where various views are located.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int p0,                  Position.Bias b0,                  int p1,                  Position.Bias b1,                  Shape a)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(float x,                float y,                Shape a,                Position.Bias[] bias)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNextVisualPositionFrom(int pos,                              Position.Bias b,                              Shape a,                              int direction,                              Position.Bias[] biasRet)                                throws BadLocationException
+				</name>
+				<description>
+					Provides a way to determine the next visually represented model location that one might place a caret. Some views may not be visible, they might not be in the same order found in the model, or they just might not allow access to some of the locations in the model. This is a convenience method for getNextNorthSouthVisualPositionFrom(int, javax.swing.text.Position.Bias, java.awt.Shape, int, javax.swing.text.Position.Bias[]) and getNextEastWestVisualPositionFrom(int, javax.swing.text.Position.Bias, java.awt.Shape, int, javax.swing.text.Position.Bias[]).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getViewIndex(int pos,                 Position.Bias b)
+				</name>
+				<description>
+					Returns the child view index representing the given position in the model. This is implemented to call the getViewIndexByPosition method for backward compatibility.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract boolean isBefore(int x,                 int y,                 Rectangle alloc)
+				</name>
+				<description>
+					Tests whether a point lies before the rectangle range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract boolean isAfter(int x,                int y,                Rectangle alloc)
+				</name>
+				<description>
+					Tests whether a point lies after the rectangle range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract View getViewAtPoint(int x,                    int y,                    Rectangle alloc)
+				</name>
+				<description>
+					Fetches the child view at the given coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void childAllocation(int index,                     Rectangle a)
+				</name>
+				<description>
+					Returns the allocation for a given child.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View getViewAtPosition(int pos,                       Rectangle a)
+				</name>
+				<description>
+					Fetches the child view that represents the given position in the model. This is implemented to fetch the view in the case where there is a child view for each child element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getViewIndexAtPosition(int pos)
+				</name>
+				<description>
+					Fetches the child view index representing the given position in the model. This is implemented to fetch the view in the case where there is a child view for each child element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle getInsideAllocation(Shape a)
+				</name>
+				<description>
+					Translates the immutable allocation given to the view to a mutable allocation that represents the interior allocation (i.e. the bounds of the given allocation with the top, left, bottom, and right insets removed. It is expected that the returned value would be further mutated to represent an allocation to a child view. This is implemented to reuse an instance variable so it avoids creating excessive Rectangles. Typically the result of calling this method would be fed to the childAllocation method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setParagraphInsets(AttributeSet attr)
+				</name>
+				<description>
+					Sets the insets from the paragraph attributes specified in the given attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setInsets(short top,               short left,               short bottom,               short right)
+				</name>
+				<description>
+					Sets the insets for the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected short getLeftInset()
+				</name>
+				<description>
+					Gets the left inset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected short getRightInset()
+				</name>
+				<description>
+					Gets the right inset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected short getTopInset()
+				</name>
+				<description>
+					Gets the top inset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected short getBottomInset()
+				</name>
+				<description>
+					Gets the bottom inset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getNextNorthSouthVisualPositionFrom(int pos,                                        Position.Bias b,                                        Shape a,                                        int direction,                                        Position.Bias[] biasRet)                                             throws BadLocationException
+				</name>
+				<description>
+					Returns the next visual position for the cursor, in either the north or south direction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getNextEastWestVisualPositionFrom(int pos,                                      Position.Bias b,                                      Shape a,                                      int direction,                                      Position.Bias[] biasRet)                                           throws BadLocationException
+				</name>
+				<description>
+					Returns the next visual position for the cursor, in either the east or west direction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean flipEastAndWestAtEnds(int position,                              Position.Bias bias)
+				</name>
+				<description>
+					Determines in which direction the next view lays. Consider the View at index n. Typically the Views are layed out from left to right, so that the View to the EAST will be at index n + 1, and the View to the WEST will be at index n - 1. In certain situations, such as with bidirectional text, it is possible that the View to EAST is not at index n + 1, but rather at index n - 1, or that the View to the WEST is not at index n - 1, but index n + 1. In this case this method would return true, indicating the Views are layed out in descending order. This unconditionally returns false, subclasses should override this method if there is the possibility for laying Views in descending order.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

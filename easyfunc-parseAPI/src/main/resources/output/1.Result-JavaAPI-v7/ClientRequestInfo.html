@@ -1,0 +1,18 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface ClientRequestInfo  extends ClientRequestInfoOperations, RequestInfo, IDLEntity
+		</name>
+		<description>
+			Request Information, accessible to client-side request interceptors. Some attributes and operations on ClientRequestInfo are not valid at all interception points. The following table shows the validity of each attribute or operation. If it is not valid, attempting to access it will result in a BAD_INV_ORDER being thrown with a standard minor code of 14.   send_request send_poll receive_reply receive_exception receive_other Inherited from RequestInfo: request_id yes yes yes yes yes operation yes yes yes yes yes arguments yes1 no yes no no exceptions yes no yes yes yes contexts yes no yes yes yes operation_context yes no yes yes yes result no no yes no no response_expected yes yes yes yes yes sync_scope yes no yes yes yes reply_status no no yes yes yes forward_reference no no no no yes2 get_slot yes yes yes yes yes get_request_service_context yes no yes yes yes get_reply_service_context no no yes yes yes ClientRequestInfo-specific: target yes yes yes yes yes effective_target yes yes yes yes yes effective_profile yes yes yes yes yes received_exception no no no yes no received_exception_id no no no yes no get_effective_component yes no yes yes yes get_effective_components yes no yes yes yes get_request_policy yes no yes yes yes add_request_service_context yes no no no no When ClientRequestInfo is passed to send_request, there is an entry in the list for every argument, whether in, inout, or out. But only the in and inout arguments will be available. If the reply_status atribute is not LOCATION_FORWARD, accessing this attribute will throw BAD_INV_ORDER with a standard minor code of 14.
+		</description>
+		<methods>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

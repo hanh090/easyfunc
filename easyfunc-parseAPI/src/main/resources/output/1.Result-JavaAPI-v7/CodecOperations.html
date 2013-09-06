@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		org.omg.IOP
+	</package>
+	<type>
+		<name>
+			public interface CodecOperations
+		</name>
+		<description>
+			The formats of IOR components and service context data used by ORB services are often defined as CDR encapsulations encoding instances of IDL defined data types. The Codec provides a mechanism to transfer these components between their IDL data types and their CDR encapsulation representations. A Codec is obtained from the CodecFactory. The CodecFactory is obtained through a call to ORB.resolve_initial_references( "CodecFactory" ).
+		</description>
+		<methods>
+			<method>
+				<name>
+					byte[] encode(Any data)                throws InvalidTypeForEncoding
+				</name>
+				<description>
+					Converts the given any into a byte array based on the encoding format effective for this Codec.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Any decode(byte[] data)             throws FormatMismatch
+				</name>
+				<description>
+					Decodes the given byte array into an Any based on the encoding format effective for this Codec.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] encode_value(Any data)                      throws InvalidTypeForEncoding
+				</name>
+				<description>
+					Converts the given any into a byte array based on the encoding format effective for this Codec. Only the data from the Any is encoded, not the TypeCode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Any decode_value(byte[] data,                 TypeCode tc)                   throws FormatMismatch,                          TypeMismatch
+				</name>
+				<description>
+					Decodes the given byte array into an Any based on the given TypeCode and the encoding format effective for this Codec.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

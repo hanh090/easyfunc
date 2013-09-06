@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class DefaultHighlighter  extends LayeredHighlighter
+		</name>
+		<description>
+			Implements the Highlighter interfaces. Implements a simple highlight painter that renders in a solid color.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final LayeredHighlighter.LayerPainter DefaultPainter
+				</name>
+				<description>
+					Default implementation of LayeredHighlighter.LayerPainter that can be used for painting highlights. As of 1.4 this field is final.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultHighlighter()
+				</name>
+				<description>
+					Creates a new DefaultHighlighther object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g)
+				</name>
+				<description>
+					Renders the highlights.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void install(JTextComponent c)
+				</name>
+				<description>
+					Called when the UI is being installed into the interface of a JTextComponent. Installs the editor, and removes any existing highlights.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deinstall(JTextComponent c)
+				</name>
+				<description>
+					Called when the UI is being removed from the interface of a JTextComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object addHighlight(int p0,                    int p1,                    Highlighter.HighlightPainter p)                      throws BadLocationException
+				</name>
+				<description>
+					Adds a highlight to the view. Returns a tag that can be used to refer to the highlight.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeHighlight(Object tag)
+				</name>
+				<description>
+					Removes a highlight from the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAllHighlights()
+				</name>
+				<description>
+					Removes all highlights.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changeHighlight(Object tag,                     int p0,                     int p1)                       throws BadLocationException
+				</name>
+				<description>
+					Changes a highlight.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Highlighter.Highlight[] getHighlights()
+				</name>
+				<description>
+					Makes a copy of the highlights. Does not actually clone each highlight, but only makes references to them.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintLayeredHighlights(Graphics g,                            int p0,                            int p1,                            Shape viewBounds,                            JTextComponent editor,                            View view)
+				</name>
+				<description>
+					When leaf Views (such as LabelView) are rendering they should call into this method. If a highlight is in the given region it will be drawn immediately.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDrawsLayeredHighlights(boolean newValue)
+				</name>
+				<description>
+					If true, highlights are drawn as the Views draw the text. That is the Views will call into paintLayeredHighlight which will result in a rectangle being drawn before the text is drawn (if the offsets are in a highlighted region that is). For this to work the painter supplied must be an instance of LayeredHighlightPainter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getDrawsLayeredHighlights()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

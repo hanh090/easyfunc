@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.xml.stream.events
+	</package>
+	<type>
+		<name>
+			public interface XMLEvent  extends XMLStreamConstants
+		</name>
+		<description>
+			This is the base event interface for handling markup events. Events are value objects that are used to communicate the XML 1.0 InfoSet to the Application. Events may be cached and referenced after the parse has completed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					int getEventType()
+				</name>
+				<description>
+					Returns an integer code for this event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Location getLocation()
+				</name>
+				<description>
+					Return the location of this event. The Location returned from this method is non-volatile and will retain its information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isStartElement()
+				</name>
+				<description>
+					A utility function to check if this event is a StartElement.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isAttribute()
+				</name>
+				<description>
+					A utility function to check if this event is an Attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isNamespace()
+				</name>
+				<description>
+					A utility function to check if this event is a Namespace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isEndElement()
+				</name>
+				<description>
+					A utility function to check if this event is a EndElement.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isEntityReference()
+				</name>
+				<description>
+					A utility function to check if this event is an EntityReference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isProcessingInstruction()
+				</name>
+				<description>
+					A utility function to check if this event is a ProcessingInstruction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isCharacters()
+				</name>
+				<description>
+					A utility function to check if this event is Characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isStartDocument()
+				</name>
+				<description>
+					A utility function to check if this event is a StartDocument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isEndDocument()
+				</name>
+				<description>
+					A utility function to check if this event is an EndDocument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					StartElement asStartElement()
+				</name>
+				<description>
+					Returns this event as a start element event, may result in a class cast exception if this event is not a start element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					EndElement asEndElement()
+				</name>
+				<description>
+					Returns this event as an end element event, may result in a class cast exception if this event is not a end element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Characters asCharacters()
+				</name>
+				<description>
+					Returns this event as Characters, may result in a class cast exception if this event is not Characters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					QName getSchemaType()
+				</name>
+				<description>
+					This method is provided for implementations to provide optional type information about the associated event. It is optional and will return null if no information is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeAsEncodedUnicode(Writer writer)                             throws XMLStreamException
+				</name>
+				<description>
+					This method will write the XMLEvent as per the XML 1.0 specification as Unicode characters. No indentation or whitespace should be outputted. Any user defined event type SHALL have this method called when being written to on an output stream. Built in Event types MUST implement this method, but implementations MAY choose not call these methods for optimizations reasons when writing out built in Events to an output stream. The output generated MUST be equivalent in terms of the infoset expressed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

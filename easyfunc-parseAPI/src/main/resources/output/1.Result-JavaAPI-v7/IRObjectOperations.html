@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public interface IRObjectOperations
+		</name>
+		<description>
+			This is the Operations interface for the mapping from IRObject. Several interfaces are used as base interfaces for objects in the Interface Repository (IR). These base interfaces are not instantiable. A common set of operations is used to locate objects within the Interface Repository. Some of these operations are defined in the IRObject. All IR objects inherit from the IRObject interface, which provides an operation for identifying the actual type of the object. (The IDL base interface IRObject represents the most generic interface from which all other Interface Repository interfaces are derived, even the Repository itself.) All java implementations of IR objects must implement the IRObjectOperations interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					DefinitionKind def_kind()
+				</name>
+				<description>
+					Returns the DefinitionKind corresponding to this Interface Repository object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void destroy()
+				</name>
+				<description>
+					Destroys this object. If the object is a Container, this method is applied to all its contents. If the object contains an IDLType attribute for an anonymous type, that IDLType is destroyed. If the object is currently contained in some other object, it is removed. If the method is invoked on a Repository or on a PrimitiveDef then the BAD_INV_ORDER exception is raised with minor value 2. An attempt to destroy an object that would leave the repository in an incoherent state causes BAD_INV_ORDER exception to be raised with the minor code 1.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

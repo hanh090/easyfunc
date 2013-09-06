@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public class VetoableChangeSupport  extends Object  implements Serializable
+		</name>
+		<description>
+			This is a utility class that can be used by beans that support constrained properties. It manages a list of listeners and dispatches PropertyChangeEvents to them. You can use an instance of this class as a member field of your bean and delegate these types of work to it. The VetoableChangeListener can be registered for all properties or for a property specified by name. Here is an example of VetoableChangeSupport usage that follows the rules and recommendations laid out in the JavaBeans™ specification:    public class MyBean {       private final VetoableChangeSupport vcs = new VetoableChangeSupport(this);         public void addVetoableChangeListener(VetoableChangeListener listener) {           this.vcs.addVetoableChangeListener(listener);       }         public void removeVetoableChangeListener(VetoableChangeListener listener) {           this.vcs.removeVetoableChangeListener(listener);       }         private String value;         public String getValue() {           return this.value;       }         public void setValue(String newValue) throws PropertyVetoException {           String oldValue = this.value;           this.vcs.fireVetoableChange("value", oldValue, newValue);           this.value = newValue;       }         [...]   }   A VetoableChangeSupport instance is thread-safe. This class is serializable. When it is serialized it will save (and restore) any listeners that are themselves serializable. Any non-serializable listeners will be skipped during serialization.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public VetoableChangeSupport(Object sourceBean)
+				</name>
+				<description>
+					Constructs a VetoableChangeSupport object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addVetoableChangeListener(VetoableChangeListener listener)
+				</name>
+				<description>
+					Add a VetoableChangeListener to the listener list. The listener is registered for all properties. The same listener object may be added more than once, and will be called as many times as it is added. If listener is null, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeVetoableChangeListener(VetoableChangeListener listener)
+				</name>
+				<description>
+					Remove a VetoableChangeListener from the listener list. This removes a VetoableChangeListener that was registered for all properties. If listener was added more than once to the same event source, it will be notified one less time after being removed. If listener is null, or was never added, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public VetoableChangeListener[] getVetoableChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the listeners that were added to the VetoableChangeSupport object with addVetoableChangeListener(). If some listeners have been added with a named property, then the returned array will be a mixture of VetoableChangeListeners and VetoableChangeListenerProxys. If the calling method is interested in distinguishing the listeners then it must test each element to see if it's a VetoableChangeListenerProxy, perform the cast, and examine the parameter.    VetoableChangeListener[] listeners = bean.getVetoableChangeListeners();   for (int i = 0; i < listeners.length; i++) {          if (listeners[i] instanceof VetoableChangeListenerProxy) {       VetoableChangeListenerProxy proxy =                      (VetoableChangeListenerProxy)listeners[i];       if (proxy.getPropertyName().equals("foo")) {         // proxy is a VetoableChangeListener which was associated         // with the property named "foo"       }     }   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addVetoableChangeListener(String propertyName,                               VetoableChangeListener listener)
+				</name>
+				<description>
+					Add a VetoableChangeListener for a specific property. The listener will be invoked only when a call on fireVetoableChange names that specific property. The same listener object may be added more than once. For each property, the listener will be invoked the number of times it was added for that property. If propertyName or listener is null, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeVetoableChangeListener(String propertyName,                                  VetoableChangeListener listener)
+				</name>
+				<description>
+					Remove a VetoableChangeListener for a specific property. If listener was added more than once to the same event source for the specified property, it will be notified one less time after being removed. If propertyName is null, no exception is thrown and no action is taken. If listener is null, or was never added for the specified property, no exception is thrown and no action is taken.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public VetoableChangeListener[] getVetoableChangeListeners(String propertyName)
+				</name>
+				<description>
+					Returns an array of all the listeners which have been associated with the named property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireVetoableChange(String propertyName,                        Object oldValue,                        Object newValue)                          throws PropertyVetoException
+				</name>
+				<description>
+					Reports a constrained property update to listeners that have been registered to track updates of all properties or a property with the specified name. Any listener can throw a PropertyVetoException to veto the update. If one of the listeners vetoes the update, this method passes a new "undo" PropertyChangeEvent that reverts to the old value to all listeners that already confirmed this update and throws the PropertyVetoException again. No event is fired if old and new values are equal and non-null. This is merely a convenience wrapper around the more general fireVetoableChange(PropertyChangeEvent) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireVetoableChange(String propertyName,                        int oldValue,                        int newValue)                          throws PropertyVetoException
+				</name>
+				<description>
+					Reports an integer constrained property update to listeners that have been registered to track updates of all properties or a property with the specified name. Any listener can throw a PropertyVetoException to veto the update. If one of the listeners vetoes the update, this method passes a new "undo" PropertyChangeEvent that reverts to the old value to all listeners that already confirmed this update and throws the PropertyVetoException again. No event is fired if old and new values are equal. This is merely a convenience wrapper around the more general fireVetoableChange(String, Object, Object) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireVetoableChange(String propertyName,                        boolean oldValue,                        boolean newValue)                          throws PropertyVetoException
+				</name>
+				<description>
+					Reports a boolean constrained property update to listeners that have been registered to track updates of all properties or a property with the specified name. Any listener can throw a PropertyVetoException to veto the update. If one of the listeners vetoes the update, this method passes a new "undo" PropertyChangeEvent that reverts to the old value to all listeners that already confirmed this update and throws the PropertyVetoException again. No event is fired if old and new values are equal. This is merely a convenience wrapper around the more general fireVetoableChange(String, Object, Object) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireVetoableChange(PropertyChangeEvent event)                          throws PropertyVetoException
+				</name>
+				<description>
+					Fires a property change event to listeners that have been registered to track updates of all properties or a property with the specified name. Any listener can throw a PropertyVetoException to veto the update. If one of the listeners vetoes the update, this method passes a new "undo" PropertyChangeEvent that reverts to the old value to all listeners that already confirmed this update and throws the PropertyVetoException again. No event is fired if the given event's old and new values are equal and non-null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasListeners(String propertyName)
+				</name>
+				<description>
+					Check if there are any listeners for a specific property, including those registered on all properties. If propertyName is null, only check for listeners registered on all properties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

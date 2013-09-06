@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		org.xml.sax.helpers
+	</package>
+	<type>
+		<name>
+			public class NamespaceSupport  extends Object
+		</name>
+		<description>
+			Encapsulate Namespace logic for use by applications using SAX, or internally by SAX drivers. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. See http://www.saxproject.org for further information. This class encapsulates the logic of Namespace processing: it tracks the declarations currently in force for each context and automatically processes qualified XML names into their Namespace parts; it can also be used in reverse for generating XML qnames from Namespaces. Namespace support objects are reusable, but the reset method must be invoked between each session. Here is a simple session:    String parts[] = new String[3];   NamespaceSupport support = new NamespaceSupport();     support.pushContext();   support.declarePrefix("", "http://www.w3.org/1999/xhtml");   support.declarePrefix("dc", "http://www.purl.org/dc#");     parts = support.processName("p", parts, false);   System.out.println("Namespace URI: " + parts[0]);   System.out.println("Local name: " + parts[1]);   System.out.println("Raw name: " + parts[2]);     parts = support.processName("dc:title", parts, false);   System.out.println("Namespace URI: " + parts[0]);   System.out.println("Local name: " + parts[1]);   System.out.println("Raw name: " + parts[2]);     support.popContext();   Note that this class is optimized for the use case where most elements do not contain Namespace declarations: if the same prefix/URI mapping is repeated for each context (for example), this class will be somewhat less efficient. Although SAX drivers (parsers) may choose to use this class to implement namespace handling, they are not required to do so. Applications must track namespace information themselves if they want to use namespace information.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String XMLNS
+				</name>
+				<description>
+					The XML Namespace URI as a constant. The value is http://www.w3.org/XML/1998/namespace as defined in the "Namespaces in XML" * recommendation. This is the Namespace URI that is automatically mapped to the "xml" prefix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String NSDECL
+				</name>
+				<description>
+					The namespace declaration URI as a constant. The value is http://www.w3.org/xmlns/2000/, as defined in a backwards-incompatible erratum to the "Namespaces in XML" recommendation. Because that erratum postdated SAX2, SAX2 defaults to the original recommendation, and does not normally use this URI. This is the Namespace URI that is optionally applied to xmlns and xmlns:* attributes, which are used to declare namespaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NamespaceSupport()
+				</name>
+				<description>
+					Create a new Namespace support object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()
+				</name>
+				<description>
+					Reset this Namespace support object for reuse. It is necessary to invoke this method before reusing the Namespace support object for a new session. If namespace declaration URIs are to be supported, that flag must also be set to a non-default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void pushContext()
+				</name>
+				<description>
+					Start a new Namespace context. The new context will automatically inherit the declarations of its parent context, but it will also keep track of which declarations were made within this context. Event callback code should start a new context once per element. This means being ready to call this in either of two places. For elements that don't include namespace declarations, the ContentHandler.startElement() callback is the right place. For elements with such a declaration, it'd done in the first ContentHandler.startPrefixMapping() callback. A boolean flag can be used to track whether a context has been started yet. When either of those methods is called, it checks the flag to see if a new context needs to be started. If so, it starts the context and sets the flag. After ContentHandler.startElement() does that, it always clears the flag. Normally, SAX drivers would push a new context at the beginning of each XML element. Then they perform a first pass over the attributes to process all namespace declarations, making ContentHandler.startPrefixMapping() callbacks. Then a second pass is made, to determine the namespace-qualified names for all attributes and for the element name. Finally all the information for the ContentHandler.startElement() callback is available, so it can then be made. The Namespace support object always starts with a base context already in force: in this context, only the "xml" prefix is declared.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void popContext()
+				</name>
+				<description>
+					Revert to the previous Namespace context. Normally, you should pop the context at the end of each XML element. After popping the context, all Namespace prefix mappings that were previously in force are restored. You must not attempt to declare additional Namespace prefixes after popping a context, unless you push another context first.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean declarePrefix(String prefix,                      String uri)
+				</name>
+				<description>
+					Declare a Namespace prefix. All prefixes must be declared before they are referenced. For example, a SAX driver (parser) would scan an element's attributes in two passes: first for namespace declarations, then a second pass using processName() to interpret prefixes against (potentially redefined) prefixes. This method declares a prefix in the current Namespace context; the prefix will remain in force until this context is popped, unless it is shadowed in a descendant context. To declare the default element Namespace, use the empty string as the prefix. Note that there is an asymmetry in this library: getPrefix will not return the "" prefix, even if you have declared a default element namespace. To check for a default namespace, you have to look it up explicitly using getURI. This asymmetry exists to make it easier to look up prefixes for attribute names, where the default prefix is not allowed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] processName(String qName,                     String[] parts,                     boolean isAttribute)
+				</name>
+				<description>
+					Process a raw XML qualified name, after all declarations in the current context have been handled by declarePrefix(). This method processes a raw XML qualified name in the current context by removing the prefix and looking it up among the prefixes currently declared. The return value will be the array supplied by the caller, filled in as follows: parts[0] The Namespace URI, or an empty string if none is in use. parts[1] The local name (without prefix). parts[2] The original raw name. All of the strings in the array will be internalized. If the raw name has a prefix that has not been declared, then the return value will be null. Note that attribute names are processed differently than element names: an unprefixed element name will receive the default Namespace (if any), while an unprefixed attribute name will not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getURI(String prefix)
+				</name>
+				<description>
+					Look up a prefix and get the currently-mapped Namespace URI. This method looks up the prefix in the current context. Use the empty string ("") for the default Namespace.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration getPrefixes()
+				</name>
+				<description>
+					Return an enumeration of all prefixes whose declarations are active in the current context. This includes declarations from parent contexts that have not been overridden. Note: if there is a default prefix, it will not be returned in this enumeration; check for the default prefix using the getURI with an argument of "".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPrefix(String uri)
+				</name>
+				<description>
+					Return one of the prefixes mapped to a Namespace URI. If more than one prefix is currently mapped to the same URI, this method will make an arbitrary selection; if you want all of the prefixes, use the getPrefixes() method instead. Note: this will never return the empty (default) prefix; to check for a default prefix, use the getURI method with an argument of "".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration getPrefixes(String uri)
+				</name>
+				<description>
+					Return an enumeration of all prefixes for a given URI whose declarations are active in the current context. This includes declarations from parent contexts that have not been overridden. This method returns prefixes mapped to a specific Namespace URI. The xml: prefix will be included. If you want only one prefix that's mapped to the Namespace URI, and you don't care which one you get, use the getPrefix method instead. Note: the empty (default) prefix is never included in this enumeration; to check for the presence of a default Namespace, use the getURI method with an argument of "".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration getDeclaredPrefixes()
+				</name>
+				<description>
+					Return an enumeration of all prefixes declared in this context. The empty (default) prefix will be included in this enumeration; note that this behaviour differs from that of getPrefix(java.lang.String) and getPrefixes().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNamespaceDeclUris(boolean value)
+				</name>
+				<description>
+					Controls whether namespace declaration attributes are placed into the NSDECL namespace by processName(). This may only be changed before any contexts have been pushed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNamespaceDeclUris()
+				</name>
+				<description>
+					Returns true if namespace declaration attributes are placed into a namespace. This behavior is not the default.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,315 @@
+<javaelement>
+	<package>
+		javax.xml.bind.helpers
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractMarshallerImpl  extends Object  implements Marshaller
+		</name>
+		<description>
+			Partial default Marshaller implementation. This class provides a partial default implementation for the Marshaller interface. The only methods that a JAXB Provider has to implement are marshal(Object, javax.xml.transform.Result), marshal(Object, javax.xml.stream.XMLStreamWriter), and marshal(Object, javax.xml.stream.XMLEventWriter).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AbstractMarshallerImpl()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void marshal(Object obj,             OutputStream os)                     throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Marshal the content tree rooted at jaxbElement into an output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void marshal(Object jaxbElement,             File output)               throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Marshal the content tree rooted at jaxbElement into a file.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void marshal(Object obj,             Writer w)                     throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Marshal the content tree rooted at jaxbElement into a Writer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void marshal(Object obj,             ContentHandler handler)                     throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Marshal the content tree rooted at jaxbElement into SAX2 events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void marshal(Object obj,             Node node)                     throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Marshal the content tree rooted at jaxbElement into a DOM tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getNode(Object obj)               throws JAXBException
+				</name>
+				<description>
+					By default, the getNode method is unsupported and throw an UnsupportedOperationException. Implementations that choose to support this method must override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getEncoding()
+				</name>
+				<description>
+					Convenience method for getting the current output encoding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setEncoding(String encoding)
+				</name>
+				<description>
+					Convenience method for setting the output encoding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getSchemaLocation()
+				</name>
+				<description>
+					Convenience method for getting the current schemaLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setSchemaLocation(String location)
+				</name>
+				<description>
+					Convenience method for setting the schemaLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getNoNSSchemaLocation()
+				</name>
+				<description>
+					Convenience method for getting the current noNamespaceSchemaLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setNoNSSchemaLocation(String location)
+				</name>
+				<description>
+					Convenience method for setting the noNamespaceSchemaLocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isFormattedOutput()
+				</name>
+				<description>
+					Convenience method for getting the formatted output flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setFormattedOutput(boolean v)
+				</name>
+				<description>
+					Convenience method for setting the formatted output flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isFragment()
+				</name>
+				<description>
+					Convenience method for getting the fragment flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setFragment(boolean v)
+				</name>
+				<description>
+					Convenience method for setting the fragment flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getJavaEncoding(String encoding)                            throws UnsupportedEncodingException
+				</name>
+				<description>
+					Gets the corresponding Java encoding name from an IANA name. This method is a helper method for the derived class to convert encoding names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProperty(String name,                 Object value)                   throws PropertyException
+				</name>
+				<description>
+					Default implementation of the setProperty method handles the four defined properties in Marshaller. If a provider needs to handle additional properties, it should override this method in a derived class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)                     throws PropertyException
+				</name>
+				<description>
+					Default implementation of the getProperty method handles the four defined properties in Marshaller. If a provider needs to support additional provider specific properties, it should override this method in a derived class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ValidationEventHandler getEventHandler()                                         throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Return the current event handler or the default event handler if one hasn't been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEventHandler(ValidationEventHandler handler)                       throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Allow an application to register a validation event handler. The validation event handler will be called by the JAXB Provider if any validation errors are encountered during calls to any of the marshal API's. If the client application does not register a validation event handler before invoking one of the marshal methods, then validation events will be handled by the default event handler which will terminate the marshal operation after the first error or fatal error is encountered. Calling this method with a null parameter will cause the Marshaller to revert back to the default default event handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void marshal(Object obj,             XMLEventWriter writer)               throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Marshal the content tree rooted at jaxbElement into a XMLEventWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void marshal(Object obj,             XMLStreamWriter writer)               throws JAXBException
+				</name>
+				<description>
+					Description copied from interface: Marshaller Marshal the content tree rooted at jaxbElement into a XMLStreamWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSchema(Schema schema)
+				</name>
+				<description>
+					Description copied from interface: Marshaller Specify the JAXP 1.3 Schema object that should be used to validate subsequent marshal operations against. Passing null into this method will disable validation. This method allows the caller to validate the marshalled XML as it's marshalled. Initially this property is set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Schema getSchema()
+				</name>
+				<description>
+					Description copied from interface: Marshaller Get the JAXP 1.3 Schema object being used to perform marshal-time validation. If there is no Schema set on the marshaller, then this method will return null indicating that marshal-time validation will not be performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAdapter(XmlAdapter adapter)
+				</name>
+				<description>
+					Description copied from interface: Marshaller Associates a configured instance of XmlAdapter with this marshaller. This is a convenience method that invokes setAdapter(adapter.getClass(),adapter);.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <A extends XmlAdapter> void setAdapter(Class<A> type,                                       A adapter)
+				</name>
+				<description>
+					Description copied from interface: Marshaller Associates a configured instance of XmlAdapter with this marshaller. Every marshaller internally maintains a Map<Class,XmlAdapter>, which it uses for marshalling classes whose fields/methods are annotated with XmlJavaTypeAdapter. This method allows applications to use a configured instance of XmlAdapter. When an instance of an adapter is not given, a marshaller will create one by invoking its default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <A extends XmlAdapter> A getAdapter(Class<A> type)
+				</name>
+				<description>
+					Description copied from interface: Marshaller Gets the adapter associated with the specified type. This is the reverse operation of the Marshaller.setAdapter(javax.xml.bind.annotation.adapters.XmlAdapter) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAttachmentMarshaller(AttachmentMarshaller am)
+				</name>
+				<description>
+					Description copied from interface: Marshaller Associate a context that enables binary data within an XML document to be transmitted as XML-binary optimized attachment. The attachment is referenced from the XML document content model by content-id URIs(cid) references stored within the xml document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttachmentMarshaller getAttachmentMarshaller()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setListener(Marshaller.Listener listener)
+				</name>
+				<description>
+					Description copied from interface: Marshaller Register marshal event callback Marshaller.Listener with this Marshaller. There is only one Listener per Marshaller. Setting a Listener replaces the previous set Listener. One can unregister current Listener by setting listener to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Marshaller.Listener getListener()
+				</name>
+				<description>
+					Description copied from interface: Marshaller Return Marshaller.Listener registered with this Marshaller.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

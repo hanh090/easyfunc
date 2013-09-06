@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.activation
+	</package>
+	<type>
+		<name>
+			public class ActivationDataFlavor  extends DataFlavor
+		</name>
+		<description>
+			The ActivationDataFlavor class is a special subclass of java.awt.datatransfer.DataFlavor. It allows the JAF to set all three values stored by the DataFlavor class via a new constructor. It also contains improved MIME parsing in the equals method. Except for the improved parsing, its semantics are identical to that of the JDK's DataFlavor class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ActivationDataFlavor(Class representationClass,                      String mimeType,                      String humanPresentableName)
+				</name>
+				<description>
+					Construct a DataFlavor that represents an arbitrary Java object. This constructor is an extension of the JDK's DataFlavor in that it allows the explicit setting of all three DataFlavor attributes. The returned DataFlavor will have the following characteristics: representationClass = representationClass mimeType = mimeType humanName = humanName
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationDataFlavor(Class representationClass,                      String humanPresentableName)
+				</name>
+				<description>
+					Construct a DataFlavor that represents a MimeType. The returned DataFlavor will have the following characteristics: If the mimeType is "application/x-java-serialized-object; class=", the result is the same as calling new DataFlavor(Class.forName()) as above. otherwise: representationClass = InputStream mimeType = mimeType
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationDataFlavor(String mimeType,                      String humanPresentableName)
+				</name>
+				<description>
+					Construct a DataFlavor that represents a MimeType. The returned DataFlavor will have the following characteristics: If the mimeType is "application/x-java-serialized-object; class=", the result is the same as calling new DataFlavor(Class.forName()) as above, otherwise: representationClass = InputStream mimeType = mimeType
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMimeType()
+				</name>
+				<description>
+					Return the MIME type for this DataFlavor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class getRepresentationClass()
+				</name>
+				<description>
+					Return the representation class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getHumanPresentableName()
+				</name>
+				<description>
+					Return the Human Presentable name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHumanPresentableName(String humanPresentableName)
+				</name>
+				<description>
+					Set the human presentable name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(DataFlavor dataFlavor)
+				</name>
+				<description>
+					Compares the DataFlavor passed in with this DataFlavor; calls the isMimeTypeEqual method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMimeTypeEqual(String mimeType)
+				</name>
+				<description>
+					Is the string representation of the MIME type passed in equivalent to the MIME type of this DataFlavor. ActivationDataFlavor delegates the comparison of MIME types to the MimeType class included as part of the JavaBeans Activation Framework. This provides a more robust comparison than is normally available in the DataFlavor class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String normalizeMimeTypeParameter(String parameterName,                                  String parameterValue)
+				</name>
+				<description>
+					Deprecated.  Called on DataFlavor for every MIME Type parameter to allow DataFlavor subclasses to handle special parameters like the text/plain charset parameters, whose values are case insensitive. (MIME type parameter values are supposed to be case sensitive). This method is called for each parameter name/value pair and should return the normalized representation of the parameterValue. This method is never invoked by this implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String normalizeMimeType(String mimeType)
+				</name>
+				<description>
+					Deprecated.  Called for each MIME type string to give DataFlavor subtypes the opportunity to change how the normalization of MIME types is accomplished. One possible use would be to add default parameter/value pairs in cases where none are present in the MIME type string passed in. This method is never invoked by this implementation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

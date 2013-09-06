@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public abstract class X509CRLEntry  extends Object  implements X509Extension
+		</name>
+		<description>
+			Abstract class for a revoked certificate in a CRL (Certificate Revocation List). The ASN.1 definition for revokedCertificates is:    revokedCertificates    SEQUENCE OF SEQUENCE  {       userCertificate    CertificateSerialNumber,       revocationDate     ChoiceOfTime,       crlEntryExtensions Extensions OPTIONAL                          -- if present, must be v2   }  OPTIONAL      CertificateSerialNumber  ::=  INTEGER      Extensions  ::=  SEQUENCE SIZE (1..MAX) OF Extension      Extension  ::=  SEQUENCE  {       extnId        OBJECT IDENTIFIER,       critical      BOOLEAN DEFAULT FALSE,       extnValue     OCTET STRING                     -- contains a DER encoding of a value                     -- of the type registered for use with                     -- the extnId object identifier value   }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public X509CRLEntry()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object other)
+				</name>
+				<description>
+					Compares this CRL entry for equality with the given object. If the other object is an instanceof X509CRLEntry, then its encoded form (the inner SEQUENCE) is retrieved and compared with the encoded form of this CRL entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode value for this CRL entry from its encoded form.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract byte[] getEncoded()                             throws CRLException
+				</name>
+				<description>
+					Returns the ASN.1 DER-encoded form of this CRL Entry, that is the inner SEQUENCE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract BigInteger getSerialNumber()
+				</name>
+				<description>
+					Gets the serial number from this X509CRLEntry, the userCertificate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public X500Principal getCertificateIssuer()
+				</name>
+				<description>
+					Get the issuer of the X509Certificate described by this entry. If the certificate issuer is also the CRL issuer, this method returns null. This method is used with indirect CRLs. The default implementation always returns null. Subclasses that wish to support indirect CRLs should override it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Date getRevocationDate()
+				</name>
+				<description>
+					Gets the revocation date from this X509CRLEntry, the revocationDate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean hasExtensions()
+				</name>
+				<description>
+					Returns true if this CRL entry has extensions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String toString()
+				</name>
+				<description>
+					Returns a string representation of this CRL entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CRLReason getRevocationReason()
+				</name>
+				<description>
+					Returns the reason the certificate has been revoked, as specified in the Reason Code extension of this CRL entry.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

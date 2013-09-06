@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		javax.xml.validation
+	</package>
+	<type>
+		<name>
+			public abstract class Validator  extends Object
+		</name>
+		<description>
+			A processor that checks an XML document against Schema. A validator object is not thread-safe and not reentrant. In other words, it is the application's responsibility to make sure that one Validator object is not used from more than one thread at any given time, and while the validate method is invoked, applications may not recursively call the validate method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Validator()
+				</name>
+				<description>
+					Constructor for derived classes. The constructor does nothing. Derived classes must create Validator objects that have null ErrorHandler and null LSResourceResolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void reset()
+				</name>
+				<description>
+					Reset this Validator to its original configuration. Validator is reset to the same state as when it was created with Schema.newValidator(). reset() is designed to allow the reuse of existing Validators thus saving resources associated with the creation of new Validators. The reset Validator is not guaranteed to have the same LSResourceResolver or ErrorHandler Objects, e.g. Object.equals(Object obj). It is guaranteed to have a functionally equal LSResourceResolver and ErrorHandler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void validate(Source source)                throws SAXException,                       IOException
+				</name>
+				<description>
+					Validates the specified input. This is just a convenience method for validate(Source source, Result result) with result of null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void validate(Source source,              Result result)                         throws SAXException,                                IOException
+				</name>
+				<description>
+					Validates the specified input and send the augmented validation result to the specified output. This method places the following restrictions on the types of the Source/Result accepted. Source / Result Accepted StreamSource SAXSource DOMSource StAXSource null OK OK OK OK StreamResult OK IllegalArgumentException IllegalArgumentException IllegalArgumentException SAXResult IllegalArgumentException OK IllegalArgumentException IllegalArgumentException DOMResult IllegalArgumentException IllegalArgumentException OK IllegalArgumentException StAXResult IllegalArgumentException IllegalArgumentException IllegalArgumentException OK To validate one Source into another kind of Result, use the identity transformer (see TransformerFactory.newTransformer()). Errors found during the validation is sent to the specified ErrorHandler. If a document is valid, or if a document contains some errors but none of them were fatal and the ErrorHandler didn't throw any exception, then the method returns normally.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setErrorHandler(ErrorHandler errorHandler)
+				</name>
+				<description>
+					Sets the ErrorHandler to receive errors encountered during the validate method invocation. Error handler can be used to customize the error handling process during a validation. When an ErrorHandler is set, errors found during the validation will be first sent to the ErrorHandler. The error handler can abort further validation immediately by throwing SAXException from the handler. Or for example it can print an error to the screen and try to continue the validation by returning normally from the ErrorHandler If any Throwable is thrown from an ErrorHandler, the caller of the validate method will be thrown the same Throwable object. Validator is not allowed to throw SAXException without first reporting it to ErrorHandler. When the ErrorHandler is null, the implementation will behave as if the following ErrorHandler is set:    class DraconianErrorHandler implements ErrorHandler {       public void fatalError( SAXParseException e ) throws SAXException {           throw e;       }       public void error( SAXParseException e ) throws SAXException {           throw e;       }       public void warning( SAXParseException e ) throws SAXException {           // noop       }   }   When a new Validator object is created, initially this field is set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ErrorHandler getErrorHandler()
+				</name>
+				<description>
+					Gets the current ErrorHandler set to this Validator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setResourceResolver(LSResourceResolver resourceResolver)
+				</name>
+				<description>
+					Sets the LSResourceResolver to customize resource resolution while in a validation episode. Validator uses a LSResourceResolver when it needs to locate external resources while a validation, although exactly what constitutes "locating external resources" is up to each schema language. When the LSResourceResolver is null, the implementation will behave as if the following LSResourceResolver is set:    class DumbLSResourceResolver implements LSResourceResolver {       public LSInput resolveResource(           String publicId, String systemId, String baseURI) {             return null; // always return null       }   }   If a LSResourceResolver throws a RuntimeException (or instances of its derived classes), then the Validator will abort the parsing and the caller of the validate method will receive the same RuntimeException. When a new Validator object is created, initially this field is set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract LSResourceResolver getResourceResolver()
+				</name>
+				<description>
+					Gets the current LSResourceResolver set to this Validator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getFeature(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Look up the value of a feature flag. The feature name is any fully-qualified URI. It is possible for a Validator to recognize a feature name but temporarily be unable to return its value. Some feature values may be available only in specific contexts, such as before, during, or after a validation. Implementors are free (and encouraged) to invent their own features, using names built on their own URIs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFeature(String name,                boolean value)                  throws SAXNotRecognizedException,                         SAXNotSupportedException
+				</name>
+				<description>
+					Set the value of a feature flag. Feature can be used to control the way a Validator parses schemas, although Validators are not required to recognize any specific feature names. The feature name is any fully-qualified URI. It is possible for a Validator to expose a feature value but to be unable to change the current value. Some feature values may be immutable or mutable only in specific contexts, such as before, during, or after a validation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProperty(String name,                 Object object)                   throws SAXNotRecognizedException,                          SAXNotSupportedException
+				</name>
+				<description>
+					Set the value of a property. The property name is any fully-qualified URI. It is possible for a Validator to recognize a property name but to be unable to change the current value. Some property values may be immutable or mutable only in specific contexts, such as before, during, or after a validation. Validators are not required to recognize setting any specific property names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)                     throws SAXNotRecognizedException,                            SAXNotSupportedException
+				</name>
+				<description>
+					Look up the value of a property. The property name is any fully-qualified URI. It is possible for a Validator to recognize a property name but temporarily be unable to return its value. Some property values may be available only in specific contexts, such as before, during, or after a validation. Validators are not required to recognize any specific property names. Implementors are free (and encouraged) to invent their own properties, using names built on their own URIs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

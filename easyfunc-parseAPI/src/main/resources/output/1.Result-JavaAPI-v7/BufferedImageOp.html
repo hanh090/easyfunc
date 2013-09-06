@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public interface BufferedImageOp
+		</name>
+		<description>
+			This interface describes single-input/single-output operations performed on BufferedImage objects. It is implemented by AffineTransformOp, ConvolveOp, ColorConvertOp, RescaleOp, and LookupOp. These objects can be passed into a BufferedImageFilter to operate on a BufferedImage in the ImageProducer-ImageFilter-ImageConsumer paradigm. Classes that implement this interface must specify whether or not they allow in-place filtering-- filter operations where the source object is equal to the destination object. This interface cannot be used to describe more sophisticated operations such as those that take multiple sources. Note that this restriction also means that the values of the destination pixels prior to the operation are not used as input to the filter operation.
+		</description>
+		<methods>
+			<method>
+				<name>
+					BufferedImage filter(BufferedImage src,                     BufferedImage dest)
+				</name>
+				<description>
+					Performs a single-input/single-output operation on a BufferedImage. If the color models for the two images do not match, a color conversion into the destination color model is performed. If the destination image is null, a BufferedImage with an appropriate ColorModel is created. An IllegalArgumentException may be thrown if the source and/or destination image is incompatible with the types of images $ allowed by the class implementing this filter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Rectangle2D getBounds2D(BufferedImage src)
+				</name>
+				<description>
+					Returns the bounding box of the filtered destination image. An IllegalArgumentException may be thrown if the source image is incompatible with the types of images allowed by the class implementing this filter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					BufferedImage createCompatibleDestImage(BufferedImage src,                                        ColorModel destCM)
+				</name>
+				<description>
+					Creates a zeroed destination image with the correct size and number of bands. An IllegalArgumentException may be thrown if the source image is incompatible with the types of images allowed by the class implementing this filter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Point2D getPoint2D(Point2D srcPt,                   Point2D dstPt)
+				</name>
+				<description>
+					Returns the location of the corresponding destination point given a point in the source image. If dstPt is specified, it is used to hold the return value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RenderingHints getRenderingHints()
+				</name>
+				<description>
+					Returns the rendering hints for this operation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

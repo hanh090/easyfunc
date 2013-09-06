@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.swing.undo
+	</package>
+	<type>
+		<name>
+			public class UndoableEditSupport  extends Object
+		</name>
+		<description>
+			A support class used for managing UndoableEdit listeners.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int updateLevel
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected CompoundEdit compoundEdit
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Vector<UndoableEditListener> listeners
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object realSource
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UndoableEditSupport()
+				</name>
+				<description>
+					Constructs an UndoableEditSupport object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UndoableEditSupport(Object r)
+				</name>
+				<description>
+					Constructs an UndoableEditSupport object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addUndoableEditListener(UndoableEditListener l)
+				</name>
+				<description>
+					Registers an UndoableEditListener. The listener is notified whenever an edit occurs which can be undone.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUndoableEditListener(UndoableEditListener l)
+				</name>
+				<description>
+					Removes an UndoableEditListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UndoableEditListener[] getUndoableEditListeners()
+				</name>
+				<description>
+					Returns an array of all the UndoableEditListeners added to this UndoableEditSupport with addUndoableEditListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void _postEdit(UndoableEdit e)
+				</name>
+				<description>
+					Called only from postEdit and endUpdate. Calls undoableEditHappened in all listeners. No synchronization is performed here, since the two calling methods are synchronized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postEdit(UndoableEdit e)
+				</name>
+				<description>
+					DEADLOCK WARNING: Calling this method may call undoableEditHappened in all listeners. It is unwise to call this method from one of its listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getUpdateLevel()
+				</name>
+				<description>
+					Returns the update level value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void beginUpdate()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected CompoundEdit createCompoundEdit()
+				</name>
+				<description>
+					Called only from beginUpdate. Exposed here for subclasses' use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endUpdate()
+				</name>
+				<description>
+					DEADLOCK WARNING: Calling this method may call undoableEditHappened in all listeners. It is unwise to call this method from one of its listeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string that displays and identifies this object's properties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

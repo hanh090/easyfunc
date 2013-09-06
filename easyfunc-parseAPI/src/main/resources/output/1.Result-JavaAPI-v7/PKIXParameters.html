@@ -1,0 +1,288 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public class PKIXParameters  extends Object  implements CertPathParameters
+		</name>
+		<description>
+			Parameters used as input for the PKIX CertPathValidator algorithm. A PKIX CertPathValidator uses these parameters to validate a CertPath according to the PKIX certification path validation algorithm. To instantiate a PKIXParameters object, an application must specify one or more most-trusted CAs as defined by the PKIX certification path validation algorithm. The most-trusted CAs can be specified using one of two constructors. An application can call PKIXParameters(Set), specifying a Set of TrustAnchor objects, each of which identify a most-trusted CA. Alternatively, an application can call PKIXParameters(KeyStore), specifying a KeyStore instance containing trusted certificate entries, each of which will be considered as a most-trusted CA. Once a PKIXParameters object has been created, other parameters can be specified (by calling setInitialPolicies or setDate, for instance) and then the PKIXParameters is passed along with the CertPath to be validated to CertPathValidator.validate. Any parameter that is not set (or is set to null) will be set to the default value for that parameter. The default value for the date parameter is null, which indicates the current time when the path is validated. The default for the remaining parameters is the least constrained. Concurrent Access Unless otherwise specified, the methods defined in this class are not thread-safe. Multiple threads that need to access a single object concurrently should synchronize amongst themselves and provide the necessary locking. Multiple threads each manipulating separate objects need not synchronize.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PKIXParameters(Set<TrustAnchor> trustAnchors)                 throws InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates an instance of PKIXParameters with the specified Set of most-trusted CAs. Each element of the set is a TrustAnchor. Note that the Set is copied to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PKIXParameters(KeyStore keystore)                 throws KeyStoreException,                        InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates an instance of PKIXParameters that populates the set of most-trusted CAs from the trusted certificate entries contained in the specified KeyStore. Only keystore entries that contain trusted X509Certificates are considered; all other certificate types are ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<TrustAnchor> getTrustAnchors()
+				</name>
+				<description>
+					Returns an immutable Set of the most-trusted CAs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTrustAnchors(Set<TrustAnchor> trustAnchors)                       throws InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Sets the Set of most-trusted CAs. Note that the Set is copied to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<String> getInitialPolicies()
+				</name>
+				<description>
+					Returns an immutable Set of initial policy identifiers (OID strings), indicating that any one of these policies would be acceptable to the certificate user for the purposes of certification path processing. The default return value is an empty Set, which is interpreted as meaning that any policy would be acceptable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInitialPolicies(Set<String> initialPolicies)
+				</name>
+				<description>
+					Sets the Set of initial policy identifiers (OID strings), indicating that any one of these policies would be acceptable to the certificate user for the purposes of certification path processing. By default, any policy is acceptable (i.e. all policies), so a user that wants to allow any policy as acceptable does not need to call this method, or can call it with an empty Set (or null). Note that the Set is copied to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCertStores(List<CertStore> stores)
+				</name>
+				<description>
+					Sets the list of CertStores to be used in finding certificates and CRLs. May be null, in which case no CertStores will be used. The first CertStores in the list may be preferred to those that appear later. Note that the List is copied to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addCertStore(CertStore store)
+				</name>
+				<description>
+					Adds a CertStore to the end of the list of CertStores used in finding certificates and CRLs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<CertStore> getCertStores()
+				</name>
+				<description>
+					Returns an immutable List of CertStores that are used to find certificates and CRLs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRevocationEnabled(boolean val)
+				</name>
+				<description>
+					Sets the RevocationEnabled flag. If this flag is true, the default revocation checking mechanism of the underlying PKIX service provider will be used. If this flag is false, the default revocation checking mechanism will be disabled (not used). When a PKIXParameters object is created, this flag is set to true. This setting reflects the most common strategy for checking revocation, since each service provider must support revocation checking to be PKIX compliant. Sophisticated applications should set this flag to false when it is not practical to use a PKIX service provider's default revocation checking mechanism or when an alternative revocation checking mechanism is to be substituted (by also calling the addCertPathChecker or setCertPathCheckers methods).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isRevocationEnabled()
+				</name>
+				<description>
+					Checks the RevocationEnabled flag. If this flag is true, the default revocation checking mechanism of the underlying PKIX service provider will be used. If this flag is false, the default revocation checking mechanism will be disabled (not used). See the setRevocationEnabled method for more details on setting the value of this flag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExplicitPolicyRequired(boolean val)
+				</name>
+				<description>
+					Sets the ExplicitPolicyRequired flag. If this flag is true, an acceptable policy needs to be explicitly identified in every certificate. By default, the ExplicitPolicyRequired flag is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isExplicitPolicyRequired()
+				</name>
+				<description>
+					Checks if explicit policy is required. If this flag is true, an acceptable policy needs to be explicitly identified in every certificate. By default, the ExplicitPolicyRequired flag is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPolicyMappingInhibited(boolean val)
+				</name>
+				<description>
+					Sets the PolicyMappingInhibited flag. If this flag is true, policy mapping is inhibited. By default, policy mapping is not inhibited (the flag is false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPolicyMappingInhibited()
+				</name>
+				<description>
+					Checks if policy mapping is inhibited. If this flag is true, policy mapping is inhibited. By default, policy mapping is not inhibited (the flag is false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAnyPolicyInhibited(boolean val)
+				</name>
+				<description>
+					Sets state to determine if the any policy OID should be processed if it is included in a certificate. By default, the any policy OID is not inhibited (isAnyPolicyInhibited() returns false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAnyPolicyInhibited()
+				</name>
+				<description>
+					Checks whether the any policy OID should be processed if it is included in a certificate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPolicyQualifiersRejected(boolean qualifiersRejected)
+				</name>
+				<description>
+					Sets the PolicyQualifiersRejected flag. If this flag is true, certificates that include policy qualifiers in a certificate policies extension that is marked critical are rejected. If the flag is false, certificates are not rejected on this basis. When a PKIXParameters object is created, this flag is set to true. This setting reflects the most common (and simplest) strategy for processing policy qualifiers. Applications that want to use a more sophisticated policy must set this flag to false. Note that the PKIX certification path validation algorithm specifies that any policy qualifier in a certificate policies extension that is marked critical must be processed and validated. Otherwise the certification path must be rejected. If the policyQualifiersRejected flag is set to false, it is up to the application to validate all policy qualifiers in this manner in order to be PKIX compliant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getPolicyQualifiersRejected()
+				</name>
+				<description>
+					Gets the PolicyQualifiersRejected flag. If this flag is true, certificates that include policy qualifiers in a certificate policies extension that is marked critical are rejected. If the flag is false, certificates are not rejected on this basis. When a PKIXParameters object is created, this flag is set to true. This setting reflects the most common (and simplest) strategy for processing policy qualifiers. Applications that want to use a more sophisticated policy must set this flag to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Date getDate()
+				</name>
+				<description>
+					Returns the time for which the validity of the certification path should be determined. If null, the current time is used. Note that the Date returned is copied to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDate(Date date)
+				</name>
+				<description>
+					Sets the time for which the validity of the certification path should be determined. If null, the current time is used. Note that the Date supplied here is copied to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCertPathCheckers(List<PKIXCertPathChecker> checkers)
+				</name>
+				<description>
+					Sets a List of additional certification path checkers. If the specified List contains an object that is not a PKIXCertPathChecker, it is ignored. Each PKIXCertPathChecker specified implements additional checks on a certificate. Typically, these are checks to process and verify private extensions contained in certificates. Each PKIXCertPathChecker should be instantiated with any initialization parameters needed to execute the check. This method allows sophisticated applications to extend a PKIX CertPathValidator or CertPathBuilder. Each of the specified PKIXCertPathCheckers will be called, in turn, by a PKIX CertPathValidator or CertPathBuilder for each certificate processed or validated. Regardless of whether these additional PKIXCertPathCheckers are set, a PKIX CertPathValidator or CertPathBuilder must perform all of the required PKIX checks on each certificate. The one exception to this rule is if the RevocationEnabled flag is set to false (see the setRevocationEnabled method). Note that the List supplied here is copied and each PKIXCertPathChecker in the list is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<PKIXCertPathChecker> getCertPathCheckers()
+				</name>
+				<description>
+					Returns the List of certification path checkers. The returned List is immutable, and each PKIXCertPathChecker in the List is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addCertPathChecker(PKIXCertPathChecker checker)
+				</name>
+				<description>
+					Adds a PKIXCertPathChecker to the list of certification path checkers. See the setCertPathCheckers method for more details. Note that the PKIXCertPathChecker is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSigProvider()
+				</name>
+				<description>
+					Returns the signature provider's name, or null if not set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSigProvider(String sigProvider)
+				</name>
+				<description>
+					Sets the signature provider's name. The specified provider will be preferred when creating Signature objects. If null or not set, the first provider found supporting the algorithm will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CertSelector getTargetCertConstraints()
+				</name>
+				<description>
+					Returns the required constraints on the target certificate. The constraints are returned as an instance of CertSelector. If null, no constraints are defined. Note that the CertSelector returned is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTargetCertConstraints(CertSelector selector)
+				</name>
+				<description>
+					Sets the required constraints on the target certificate. The constraints are specified as an instance of CertSelector. If null, no constraints are defined. Note that the CertSelector specified is cloned to protect against subsequent modifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Makes a copy of this PKIXParameters object. Changes to the copy will not affect the original and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a formatted string describing the parameters.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.nio.channels
+	</package>
+	<type>
+		<name>
+			public abstract class ServerSocketChannel  extends AbstractSelectableChannel  implements NetworkChannel
+		</name>
+		<description>
+			A selectable channel for stream-oriented listening sockets. A server-socket channel is created by invoking the open method of this class. It is not possible to create a channel for an arbitrary, pre-existing ServerSocket. A newly-created server-socket channel is open but not yet bound. An attempt to invoke the accept method of an unbound server-socket channel will cause a NotYetBoundException to be thrown. A server-socket channel can be bound by invoking one of the bind methods defined by this class. Socket options are configured using the setOption method. Server-socket channels support the following options: Option Name Description SO_RCVBUF The size of the socket receive buffer SO_REUSEADDR Re-use address Additional (implementation specific) options may also be supported. Server-socket channels are safe for use by multiple concurrent threads.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ServerSocketChannel(SelectorProvider provider)
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ServerSocketChannel open()                                  throws IOException
+				</name>
+				<description>
+					Opens a server-socket channel. The new channel is created by invoking the openServerSocketChannel method of the system-wide default SelectorProvider object. The new channel's socket is initially unbound; it must be bound to a specific address via one of its socket's bind methods before connections can be accepted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int validOps()
+				</name>
+				<description>
+					Returns an operation set identifying this channel's supported operations. Server-socket channels only support the accepting of new connections, so this method returns SelectionKey.OP_ACCEPT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final ServerSocketChannel bind(SocketAddress local)                                 throws IOException
+				</name>
+				<description>
+					Binds the channel's socket to a local address and configures the socket to listen for connections. An invocation of this method is equivalent to the following:    bind(local, 0);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ServerSocketChannel bind(SocketAddress local,                         int backlog)                                    throws IOException
+				</name>
+				<description>
+					Binds the channel's socket to a local address and configures the socket to listen for connections. This method is used to establish an association between the socket and a local address. Once an association is established then the socket remains bound until the channel is closed. The backlog parameter is the maximum number of pending connections on the socket. Its exact semantics are implementation specific. In particular, an implementation may impose a maximum length or may choose to ignore the parameter altogther. If the backlog parameter has the value 0, or a negative value, then an implementation specific default is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <T> ServerSocketChannel setOption(SocketOption<T> name,                                  T value)                                         throws IOException
+				</name>
+				<description>
+					Description copied from interface: NetworkChannel Sets the value of a socket option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ServerSocket socket()
+				</name>
+				<description>
+					Retrieves a server socket associated with this channel. The returned object will not declare any public methods that are not declared in the ServerSocket class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SocketChannel accept()                                throws IOException
+				</name>
+				<description>
+					Accepts a connection made to this channel's socket. If this channel is in non-blocking mode then this method will immediately return null if there are no pending connections. Otherwise it will block indefinitely until a new connection is available or an I/O error occurs. The socket channel returned by this method, if any, will be in blocking mode regardless of the blocking mode of this channel. This method performs exactly the same security checks as the accept method of the ServerSocket class. That is, if a security manager has been installed then for each new connection this method verifies that the address and port number of the connection's remote endpoint are permitted by the security manager's checkAccept method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

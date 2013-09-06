@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class ConcurrentHashMap<K,V>  extends AbstractMap<K,V>  implements ConcurrentMap<K,V>, Serializable
+		</name>
+		<description>
+			A hash table supporting full concurrency of retrievals and adjustable expected concurrency for updates. This class obeys the same functional specification as Hashtable, and includes versions of methods corresponding to each method of Hashtable. However, even though all operations are thread-safe, retrieval operations do not entail locking, and there is not any support for locking the entire table in a way that prevents all access. This class is fully interoperable with Hashtable in programs that rely on its thread safety but not on its synchronization details. Retrieval operations (including get) generally do not block, so may overlap with update operations (including put and remove). Retrievals reflect the results of the most recently completed update operations holding upon their onset. For aggregate operations such as putAll and clear, concurrent retrievals may reflect insertion or removal of only some entries. Similarly, Iterators and Enumerations return elements reflecting the state of the hash table at some point at or since the creation of the iterator/enumeration. They do not throw ConcurrentModificationException. However, iterators are designed to be used by only one thread at a time. The allowed concurrency among update operations is guided by the optional concurrencyLevel constructor argument (default 16), which is used as a hint for internal sizing. The table is internally partitioned to try to permit the indicated number of concurrent updates without contention. Because placement in hash tables is essentially random, the actual concurrency will vary. Ideally, you should choose a value to accommodate as many threads as will ever concurrently modify the table. Using a significantly higher value than you need can waste space and time, and a significantly lower value can lead to thread contention. But overestimates and underestimates within an order of magnitude do not usually have much noticeable impact. A value of one is appropriate when it is known that only one thread will modify and all others will only read. Also, resizing this or any other kind of hash table is a relatively slow operation, so, when possible, it is a good idea to provide estimates of expected table sizes in constructors. This class and its views and iterators implement all of the optional methods of the Map and Iterator interfaces. Like Hashtable but unlike HashMap, this class does not allow null to be used as a key or value. This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ConcurrentHashMap(int initialCapacity,                   float loadFactor,                   int concurrencyLevel)
+				</name>
+				<description>
+					Creates a new, empty map with the specified initial capacity, load factor and concurrency level.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentHashMap(int initialCapacity,                   float loadFactor)
+				</name>
+				<description>
+					Creates a new, empty map with the specified initial capacity and load factor and with the default concurrencyLevel (16).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentHashMap(int initialCapacity)
+				</name>
+				<description>
+					Creates a new, empty map with the specified initial capacity, and with default load factor (0.75) and concurrencyLevel (16).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentHashMap()
+				</name>
+				<description>
+					Creates a new, empty map with a default initial capacity (16), load factor (0.75) and concurrencyLevel (16).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConcurrentHashMap(Map<? extends K,? extends V> m)
+				</name>
+				<description>
+					Creates a new map with the same mappings as the given map. The map is created with a capacity of 1.5 times the number of mappings in the given map or 16 (whichever is greater), and a default load factor (0.75) and concurrencyLevel (16).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Returns true if this map contains no key-value mappings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of key-value mappings in this map. If the map contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V get(Object key)
+				</name>
+				<description>
+					Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key. More formally, if this map contains a mapping from a key k to a value v such that key.equals(k), then this method returns v; otherwise it returns null. (There can be at most one such mapping.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(Object key)
+				</name>
+				<description>
+					Tests if the specified object is a key in this table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsValue(Object value)
+				</name>
+				<description>
+					Returns true if this map maps one or more keys to the specified value. Note: This method requires a full internal traversal of the hash table, and so is much slower than method containsKey.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object value)
+				</name>
+				<description>
+					Legacy method testing if some key maps into the specified value in this table. This method is identical in functionality to containsValue(java.lang.Object), and exists solely to ensure full compatibility with class Hashtable, which supported this method prior to introduction of the Java Collections framework.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V put(K key,      V value)
+				</name>
+				<description>
+					Maps the specified key to the specified value in this table. Neither the key nor the value can be null. The value can be retrieved by calling the get method with a key that is equal to the original key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V putIfAbsent(K key,              V value)
+				</name>
+				<description>
+					If the specified key is not already associated with a value, associate it with the given value. This is equivalent to      if (!map.containsKey(key))         return map.put(key, value);     else         return map.get(key); except that the action is performed atomically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void putAll(Map<? extends K,? extends V> m)
+				</name>
+				<description>
+					Copies all of the mappings from the specified map to this one. These mappings replace any mappings that this map had for any of the keys currently in the specified map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V remove(Object key)
+				</name>
+				<description>
+					Removes the key (and its corresponding value) from this map. This method does nothing if the key is not in the map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object key,               Object value)
+				</name>
+				<description>
+					Removes the entry for a key only if currently mapped to a given value. This is equivalent to      if (map.containsKey(key) && map.get(key).equals(value)) {         map.remove(key);         return true;     } else return false; except that the action is performed atomically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean replace(K key,                V oldValue,                V newValue)
+				</name>
+				<description>
+					Replaces the entry for a key only if currently mapped to a given value. This is equivalent to      if (map.containsKey(key) && map.get(key).equals(oldValue)) {         map.put(key, newValue);         return true;     } else return false; except that the action is performed atomically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V replace(K key,          V value)
+				</name>
+				<description>
+					Replaces the entry for a key only if currently mapped to some value. This is equivalent to      if (map.containsKey(key)) {         return map.put(key, value);     } else return null; except that the action is performed atomically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all of the mappings from this map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<K> keySet()
+				</name>
+				<description>
+					Returns a Set view of the keys contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and vice-versa. The set supports element removal, which removes the corresponding mapping from this map, via the Iterator.remove, Set.remove, removeAll, retainAll, and clear operations. It does not support the add or addAll operations. The view's iterator is a "weakly consistent" iterator that will never throw ConcurrentModificationException, and guarantees to traverse elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to construction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Collection<V> values()
+				</name>
+				<description>
+					Returns a Collection view of the values contained in this map. The collection is backed by the map, so changes to the map are reflected in the collection, and vice-versa. The collection supports element removal, which removes the corresponding mapping from this map, via the Iterator.remove, Collection.remove, removeAll, retainAll, and clear operations. It does not support the add or addAll operations. The view's iterator is a "weakly consistent" iterator that will never throw ConcurrentModificationException, and guarantees to traverse elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to construction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Map.Entry<K,V>> entrySet()
+				</name>
+				<description>
+					Returns a Set view of the mappings contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and vice-versa. The set supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove, Set.remove, removeAll, retainAll, and clear operations. It does not support the add or addAll operations. The view's iterator is a "weakly consistent" iterator that will never throw ConcurrentModificationException, and guarantees to traverse elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to construction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<K> keys()
+				</name>
+				<description>
+					Returns an enumeration of the keys in this table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<V> elements()
+				</name>
+				<description>
+					Returns an enumeration of the values in this table.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

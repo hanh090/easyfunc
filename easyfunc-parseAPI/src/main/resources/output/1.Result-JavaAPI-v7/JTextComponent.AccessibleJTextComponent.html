@@ -1,0 +1,351 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class JTextComponent.AccessibleJTextComponent  extends JComponent.AccessibleJComponent  implements AccessibleText, CaretListener, DocumentListener, AccessibleAction, AccessibleEditableText, AccessibleExtendedText
+		</name>
+		<description>
+			This class implements accessibility support for the JTextComponent class. It provides an implementation of the Java Accessibility API appropriate to menu user-interface elements. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JTextComponent.AccessibleJTextComponent()
+				</name>
+				<description>
+					Constructs an AccessibleJTextComponent. Adds a listener to track caret change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void caretUpdate(CaretEvent e)
+				</name>
+				<description>
+					Handles caret updates (fire appropriate property change event, which are AccessibleContext.ACCESSIBLE_CARET_PROPERTY and AccessibleContext.ACCESSIBLE_SELECTION_PROPERTY). This keeps track of the dot position internally. When the caret moves, the internal position is updated after firing the event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(DocumentEvent e)
+				</name>
+				<description>
+					Handles document insert (fire appropriate property change event which is AccessibleContext.ACCESSIBLE_TEXT_PROPERTY). This tracks the changed offset via the event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(DocumentEvent e)
+				</name>
+				<description>
+					Handles document remove (fire appropriate property change event, which is AccessibleContext.ACCESSIBLE_TEXT_PROPERTY). This tracks the changed offset via the event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent e)
+				</name>
+				<description>
+					Handles document remove (fire appropriate property change event, which is AccessibleContext.ACCESSIBLE_TEXT_PROPERTY). This tracks the changed offset via the event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleStateSet getAccessibleStateSet()
+				</name>
+				<description>
+					Gets the state set of the JTextComponent. The AccessibleStateSet of an object is composed of a set of unique AccessibleState's. A change in the AccessibleStateSet of an object will cause a PropertyChangeEvent to be fired for the AccessibleContext.ACCESSIBLE_STATE_PROPERTY property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleRole getAccessibleRole()
+				</name>
+				<description>
+					Gets the role of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleText getAccessibleText()
+				</name>
+				<description>
+					Get the AccessibleText associated with this object. In the implementation of the Java Accessibility API for this class, return this object, which is responsible for implementing the AccessibleText interface on behalf of itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIndexAtPoint(Point p)
+				</name>
+				<description>
+					Given a point in local coordinates, return the zero-based index of the character under that Point. If the point is invalid, this method returns -1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getCharacterBounds(int i)
+				</name>
+				<description>
+					Determines the bounding box of the character at the given index into the string. The bounds are returned in local coordinates. If the index is invalid a null rectangle is returned. The screen coordinates returned are "unscrolled coordinates" if the JTextComponent is contained in a JScrollPane in which case the resulting rectangle should be composed with the parent coordinates. A good algorithm to use is: Accessible a: AccessibleText at = a.getAccessibleText(); AccessibleComponent ac = a.getAccessibleComponent(); Rectangle r = at.getCharacterBounds(); Point p = ac.getLocation(); r.x += p.x; r.y += p.y; Note: the JTextComponent must have a valid size (e.g. have been added to a parent container whose ancestor container is a valid top-level window) for this method to be able to return a meaningful (non-null) value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getCharCount()
+				</name>
+				<description>
+					Returns the number of characters (valid indices)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getCaretPosition()
+				</name>
+				<description>
+					Returns the zero-based offset of the caret. Note: The character to the right of the caret will have the same index value as the offset (the caret is between two characters).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getCharacterAttribute(int i)
+				</name>
+				<description>
+					Returns the AttributeSet for a given character (at a given index).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectionStart()
+				</name>
+				<description>
+					Returns the start offset within the selected text. If there is no selection, but there is a caret, the start and end offsets will be the same. Return 0 if the text is empty, or the caret position if no selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectionEnd()
+				</name>
+				<description>
+					Returns the end offset within the selected text. If there is no selection, but there is a caret, the start and end offsets will be the same. Return 0 if the text is empty, or the caret position if no selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSelectedText()
+				</name>
+				<description>
+					Returns the portion of the text that is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAtIndex(int part,                  int index)
+				</name>
+				<description>
+					Returns the String at a given index. Whitespace between words is treated as a word.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAfterIndex(int part,                     int index)
+				</name>
+				<description>
+					Returns the String after a given index. Whitespace between words is treated as a word.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getBeforeIndex(int part,                      int index)
+				</name>
+				<description>
+					Returns the String before a given index. Whitespace between words is treated a word.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleEditableText getAccessibleEditableText()
+				</name>
+				<description>
+					Returns the AccessibleEditableText interface for this text component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTextContents(String s)
+				</name>
+				<description>
+					Sets the text contents to the specified string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertTextAtIndex(int index,                       String s)
+				</name>
+				<description>
+					Inserts the specified string at the given index
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getTextRange(int startIndex,                    int endIndex)
+				</name>
+				<description>
+					Returns the text string between two indices.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void delete(int startIndex,            int endIndex)
+				</name>
+				<description>
+					Deletes the text between two indices
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void cut(int startIndex,         int endIndex)
+				</name>
+				<description>
+					Cuts the text between two indices into the system clipboard.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paste(int startIndex)
+				</name>
+				<description>
+					Pastes the text from the system clipboard into the text starting at the specified index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replaceText(int startIndex,                 int endIndex,                 String s)
+				</name>
+				<description>
+					Replaces the text between two indices with the specified string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void selectText(int startIndex,                int endIndex)
+				</name>
+				<description>
+					Selects the text between two indices.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAttributes(int startIndex,                   int endIndex,                   AttributeSet as)
+				</name>
+				<description>
+					Sets attributes for the text between two indices.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleTextSequence getTextSequenceAt(int part,                                         int index)
+				</name>
+				<description>
+					Returns the AccessibleTextSequence at a given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleTextSequence getTextSequenceAfter(int part,                                            int index)
+				</name>
+				<description>
+					Returns the AccessibleTextSequence after a given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleTextSequence getTextSequenceBefore(int part,                                             int index)
+				</name>
+				<description>
+					Returns the AccessibleTextSequence before a given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getTextBounds(int startIndex,                        int endIndex)
+				</name>
+				<description>
+					Returns the Rectangle enclosing the text between two indicies.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleAction getAccessibleAction()
+				</name>
+				<description>
+					Description copied from class: AccessibleContext Gets the AccessibleAction associated with this object that supports one or more actions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAccessibleActionCount()
+				</name>
+				<description>
+					Returns the number of accessible actions available in this object If there are more than one, the first one is considered the "default" action of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAccessibleActionDescription(int i)
+				</name>
+				<description>
+					Returns a description of the specified action of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean doAccessibleAction(int i)
+				</name>
+				<description>
+					Performs the specified Action on the object
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

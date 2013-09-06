@@ -1,0 +1,297 @@
+<javaelement>
+	<package>
+		javax.xml.stream
+	</package>
+	<type>
+		<name>
+			public abstract class XMLEventFactory  extends Object
+		</name>
+		<description>
+			This interface defines a utility class for creating instances of XMLEvents
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected XMLEventFactory()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLEventFactory newInstance()                                     throws FactoryConfigurationError
+				</name>
+				<description>
+					Create a new instance of the factory
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLEventFactory newFactory()                                    throws FactoryConfigurationError
+				</name>
+				<description>
+					Create a new instance of the factory. This static method creates a new factory instance. This method uses the following ordered lookup procedure to determine the XMLEventFactory implementation class to load: Use the javax.xml.stream.XMLEventFactory system property. Use the properties file "lib/stax.properties" in the JRE directory. This configuration file is in standard java.util.Properties format and contains the fully qualified name of the implementation class with the key being the system property defined above. Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API will look for a classname in the file META-INF/services/javax.xml.stream.XMLEventFactory in jars available to the runtime. Platform default XMLEventFactory instance. Once an application has obtained a reference to a XMLEventFactory it can use the factory to configure and obtain stream instances. Note that this is a new method that replaces the deprecated newInstance() method. No changes in behavior are defined by this replacement method relative to the deprecated method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLEventFactory newInstance(String factoryId,                            ClassLoader classLoader)                                     throws FactoryConfigurationError
+				</name>
+				<description>
+					Deprecated. This method has been deprecated to maintain API consistency. All newInstance methods have been replaced with corresponding newFactory methods. The replacement newFactory(java.lang.String, java.lang.ClassLoader) method defines no changes in behavior. Create a new instance of the factory
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLEventFactory newFactory(String factoryId,                           ClassLoader classLoader)                                    throws FactoryConfigurationError
+				</name>
+				<description>
+					Create a new instance of the factory. If the classLoader argument is null, then the ContextClassLoader is used. Note that this is a new method that replaces the deprecated newInstance(String factoryId, ClassLoader classLoader) method. No changes in behavior are defined by this replacement method relative to the deprecated method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setLocation(Location location)
+				</name>
+				<description>
+					This method allows setting of the Location on each event that is created by this factory. The values are copied by value into the events created by this factory. To reset the location information set the location to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Attribute createAttribute(String prefix,                          String namespaceURI,                          String localName,                          String value)
+				</name>
+				<description>
+					Create a new Attribute
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Attribute createAttribute(String localName,                          String value)
+				</name>
+				<description>
+					Create a new Attribute
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Attribute createAttribute(QName name,                          String value)
+				</name>
+				<description>
+					Create a new Attribute
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Namespace createNamespace(String namespaceURI)
+				</name>
+				<description>
+					Create a new default Namespace
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Namespace createNamespace(String prefix,                          String namespaceUri)
+				</name>
+				<description>
+					Create a new Namespace
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartElement createStartElement(QName name,                                Iterator attributes,                                Iterator namespaces)
+				</name>
+				<description>
+					Create a new StartElement. Namespaces can be added to this StartElement by passing in an Iterator that walks over a set of Namespace interfaces. Attributes can be added to this StartElement by passing an iterator that walks over a set of Attribute interfaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartElement createStartElement(String prefix,                                String namespaceUri,                                String localName)
+				</name>
+				<description>
+					Create a new StartElement. This defaults the NamespaceContext to an empty NamespaceContext. Querying this event for its namespaces or attributes will result in an empty iterator being returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartElement createStartElement(String prefix,                                String namespaceUri,                                String localName,                                Iterator attributes,                                Iterator namespaces)
+				</name>
+				<description>
+					Create a new StartElement. Namespaces can be added to this StartElement by passing in an Iterator that walks over a set of Namespace interfaces. Attributes can be added to this StartElement by passing an iterator that walks over a set of Attribute interfaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartElement createStartElement(String prefix,                                String namespaceUri,                                String localName,                                Iterator attributes,                                Iterator namespaces,                                NamespaceContext context)
+				</name>
+				<description>
+					Create a new StartElement. Namespaces can be added to this StartElement by passing in an Iterator that walks over a set of Namespace interfaces. Attributes can be added to this StartElement by passing an iterator that walks over a set of Attribute interfaces.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EndElement createEndElement(QName name,                            Iterator namespaces)
+				</name>
+				<description>
+					Create a new EndElement
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EndElement createEndElement(String prefix,                            String namespaceUri,                            String localName)
+				</name>
+				<description>
+					Create a new EndElement
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EndElement createEndElement(String prefix,                            String namespaceUri,                            String localName,                            Iterator namespaces)
+				</name>
+				<description>
+					Create a new EndElement
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Characters createCharacters(String content)
+				</name>
+				<description>
+					Create a Characters event, this method does not check if the content is all whitespace. To create a space event use #createSpace(String)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Characters createCData(String content)
+				</name>
+				<description>
+					Create a Characters event with the CData flag set to true
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Characters createSpace(String content)
+				</name>
+				<description>
+					Create a Characters event with the isSpace flag set to true
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Characters createIgnorableSpace(String content)
+				</name>
+				<description>
+					Create an ignorable space
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartDocument createStartDocument()
+				</name>
+				<description>
+					Creates a new instance of a StartDocument event
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartDocument createStartDocument(String encoding,                                  String version,                                  boolean standalone)
+				</name>
+				<description>
+					Creates a new instance of a StartDocument event
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartDocument createStartDocument(String encoding,                                  String version)
+				</name>
+				<description>
+					Creates a new instance of a StartDocument event
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract StartDocument createStartDocument(String encoding)
+				</name>
+				<description>
+					Creates a new instance of a StartDocument event
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EndDocument createEndDocument()
+				</name>
+				<description>
+					Creates a new instance of an EndDocument event
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EntityReference createEntityReference(String name,                                      EntityDeclaration declaration)
+				</name>
+				<description>
+					Creates a new instance of a EntityReference event
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Comment createComment(String text)
+				</name>
+				<description>
+					Create a comment
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ProcessingInstruction createProcessingInstruction(String target,                                                  String data)
+				</name>
+				<description>
+					Create a processing instruction
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract DTD createDTD(String dtd)
+				</name>
+				<description>
+					Create a document type definition event This string contains the entire document type declaration that matches the doctypedecl in the XML 1.0 specification
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.sql.rowset.serial
+	</package>
+	<type>
+		<name>
+			public class SerialBlob  extends Object  implements Blob, Serializable, Cloneable
+		</name>
+		<description>
+			A serialized mapping in the Java programming language of an SQL BLOB value. The SerialBlob class provides a constructor for creating an instance from a Blob object. Note that the Blob object should have brought the SQL BLOB value's data over to the client before a SerialBlob object is constructed from it. The data of an SQL BLOB value can be materialized on the client as an array of bytes (using the method Blob.getBytes) or as a stream of uninterpreted bytes (using the method Blob.getBinaryStream). SerialBlob methods make it possible to make a copy of a SerialBlob object as an array of bytes or as a stream. They also make it possible to locate a given pattern of bytes or a Blob object within a SerialBlob object and to update or truncate a Blob object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SerialBlob(byte[] b)             throws SerialException,                    SQLException
+				</name>
+				<description>
+					Constructs a SerialBlob object that is a serialized version of the given byte array. The new SerialBlob object is initialized with the data from the byte array, thus allowing disconnected RowSet objects to establish serialized Blob objects without touching the data source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SerialBlob(Blob blob)             throws SerialException,                    SQLException
+				</name>
+				<description>
+					Constructs a SerialBlob object that is a serialized version of the given Blob object. The new SerialBlob object is initialized with the data from the Blob object; therefore, the Blob object should have previously brought the SQL BLOB value's data over to the client from the database. Otherwise, the new SerialBlob object will contain no data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getBytes(long pos,                int length)                  throws SerialException
+				</name>
+				<description>
+					Copies the specified number of bytes, starting at the given position, from this SerialBlob object to another array of bytes. Note that if the given number of bytes to be copied is larger than the length of this SerialBlob object's array of bytes, the given number will be shortened to the array's length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long length()              throws SerialException
+				</name>
+				<description>
+					Retrieves the number of bytes in this SerialBlob object's array of bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream getBinaryStream()                              throws SerialException
+				</name>
+				<description>
+					Returns this SerialBlob object as an input stream. Unlike the related method, setBinaryStream, a stream is produced regardless of whether the SerialBlob was created with a Blob object or a byte array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long position(byte[] pattern,              long start)                throws SerialException,                       SQLException
+				</name>
+				<description>
+					Returns the position in this SerialBlob object where the given pattern of bytes begins, starting the search at the specified position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long position(Blob pattern,              long start)                throws SerialException,                       SQLException
+				</name>
+				<description>
+					Returns the position in this SerialBlob object where the given Blob object begins, starting the search at the specified position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int setBytes(long pos,             byte[] bytes)               throws SerialException,                      SQLException
+				</name>
+				<description>
+					Writes the given array of bytes to the BLOB value that this Blob object represents, starting at position pos, and returns the number of bytes written.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int setBytes(long pos,             byte[] bytes,             int offset,             int length)               throws SerialException,                      SQLException
+				</name>
+				<description>
+					Writes all or part of the given byte array to the BLOB value that this Blob object represents and returns the number of bytes written. Writing starts at position pos in the BLOB value; len bytes from the given byte array are written.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream setBinaryStream(long pos)                               throws SerialException,                                      SQLException
+				</name>
+				<description>
+					Retrieves a stream that can be used to write to the BLOB value that this Blob object represents. The stream begins at position pos. This method forwards the setBinaryStream() call to the underlying Blob in the event that this SerialBlob object is instantiated with a Blob. If this SerialBlob is instantiated with a byte array, a SerialException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void truncate(long length)                throws SerialException
+				</name>
+				<description>
+					Truncates the BLOB value that this Blob object represents to be len bytes in length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream getBinaryStream(long pos,                            long length)                              throws SQLException
+				</name>
+				<description>
+					Returns an InputStream object that contains a partial Blob value, starting with the byte specified by pos, which is length bytes in length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void free()            throws SQLException
+				</name>
+				<description>
+					This method frees the Blob object and releases the resources that it holds. Blob object. The object is invalid once the free method is called. If free is called multiple times, the subsequent calls to free are treated as a no-op.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

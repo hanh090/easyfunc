@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.activation
+	</package>
+	<type>
+		<name>
+			public abstract class FileTypeMap  extends Object
+		</name>
+		<description>
+			The FileTypeMap is an abstract class that provides a data typing interface for files. Implementations of this class will implement the getContentType methods which will derive a content type from a file name or a File object. FileTypeMaps could use any scheme to determine the data type, from examining the file extension of a file (like the MimetypesFileTypeMap) to opening the file and trying to derive its type from the contents of the file. The FileDataSource class uses the default FileTypeMap (a MimetypesFileTypeMap unless changed) to determine the content type of files.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FileTypeMap()
+				</name>
+				<description>
+					The default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getContentType(File file)
+				</name>
+				<description>
+					Return the type of the file object. This method should always return a valid MIME type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getContentType(String filename)
+				</name>
+				<description>
+					Return the type of the file passed in. This method should always return a valid MIME type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefaultFileTypeMap(FileTypeMap map)
+				</name>
+				<description>
+					Sets the default FileTypeMap for the system. This instance will be returned to callers of getDefaultFileTypeMap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FileTypeMap getDefaultFileTypeMap()
+				</name>
+				<description>
+					Return the default FileTypeMap for the system. If setDefaultFileTypeMap was called, return that instance, otherwise return an instance of MimetypesFileTypeMap.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

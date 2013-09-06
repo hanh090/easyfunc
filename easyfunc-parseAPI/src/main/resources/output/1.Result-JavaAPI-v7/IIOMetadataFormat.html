@@ -1,0 +1,450 @@
+<javaelement>
+	<package>
+		javax.imageio.metadata
+	</package>
+	<type>
+		<name>
+			public interface IIOMetadataFormat
+		</name>
+		<description>
+			An object describing the structure of metadata documents returned from IIOMetadata.getAsTree and passed to IIOMetadata.setFromTree and mergeTree. Document structures are described by a set of constraints on the type and number of child elements that may belong to a given parent element type, the names, types, and values of attributes that may belong to an element, and the type and values of Object reference that may be stored at a node. N.B: classes that implement this interface should contain a method declared as public static getInstance() which returns an instance of the class. Commonly, an implentation will construct only a single instance and cache it for future invocations of getInstance. The structures that may be described by this class are a subset of those expressible using XML document type definitions (DTDs), with the addition of some basic information on the datatypes of attributes and the ability to store an Object reference within a node. In the future, XML Schemas could be used to represent these structures, and many others. The differences between IIOMetadataFormat-described structures and DTDs are as follows: Elements may not contain text or mix text with embedded tags. The children of an element must conform to one of a few simple patterns, described in the documentation for the CHILD_* constants; The in-memory representation of an elements may contain a reference to an Object. There is no provision for representing such objects textually.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final int CHILD_POLICY_EMPTY
+				</name>
+				<description>
+					A constant returned by getChildPolicy to indicate that an element may not have any children. In other words, it is required to be a leaf node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int CHILD_POLICY_ALL
+				</name>
+				<description>
+					A constant returned by getChildPolicy to indicate that an element must have a single instance of each of its legal child elements, in order. In DTD terms, the contents of the element are defined by a sequence a,b,c,d,....
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int CHILD_POLICY_SOME
+				</name>
+				<description>
+					A constant returned by getChildPolicy to indicate that an element must have zero or one instance of each of its legal child elements, in order. In DTD terms, the contents of the element are defined by a sequence a?,b?,c?,d?,....
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int CHILD_POLICY_CHOICE
+				</name>
+				<description>
+					A constant returned by getChildPolicy to indicate that an element must have zero or one children, selected from among its legal child elements. In DTD terms, the contents of the element are defined by a selection a|b|c|d|....
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int CHILD_POLICY_SEQUENCE
+				</name>
+				<description>
+					A constant returned by getChildPolicy to indicate that an element must have a sequence of instances of any of its legal child elements. In DTD terms, the contents of the element are defined by a sequence (a|b|c|d|...)*.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int CHILD_POLICY_REPEAT
+				</name>
+				<description>
+					A constant returned by getChildPolicy to indicate that an element must have zero or more instances of its unique legal child element. In DTD terms, the contents of the element are defined by a starred expression a*.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int CHILD_POLICY_MAX
+				</name>
+				<description>
+					The largest valid CHILD_POLICY_* constant, to be used for range checks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_NONE
+				</name>
+				<description>
+					A constant returned by getObjectValueType to indicate the absence of a user object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_ARBITRARY
+				</name>
+				<description>
+					A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set a single, arbitrary value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_RANGE
+				</name>
+				<description>
+					A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set a range of values. Both the minimum and maximum values of the range are exclusive. It is recommended that ranges of integers be inclusive on both ends, and that exclusive ranges be used only for floating-point data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_RANGE_MIN_INCLUSIVE_MASK
+				</name>
+				<description>
+					A value that may be or'ed with VALUE_RANGE to obtain VALUE_RANGE_MIN_INCLUSIVE, and with VALUE_RANGE_MAX_INCLUSIVE to obtain VALUE_RANGE_MIN_MAX_INCLUSIVE. Similarly, the value may be and'ed with the value of getAttributeValueTypeor getObjectValueType to determine if the minimum value of the range is inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_RANGE_MAX_INCLUSIVE_MASK
+				</name>
+				<description>
+					A value that may be or'ed with VALUE_RANGE to obtain VALUE_RANGE_MAX_INCLUSIVE, and with VALUE_RANGE_MIN_INCLUSIVE to obtain VALUE_RANGE_MIN_MAX_INCLUSIVE. Similarly, the value may be and'ed with the value of getAttributeValueTypeor getObjectValueType to determine if the maximum value of the range is inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_RANGE_MIN_INCLUSIVE
+				</name>
+				<description>
+					A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set to a range of values. The minimum (but not the maximum) value of the range is inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_RANGE_MAX_INCLUSIVE
+				</name>
+				<description>
+					A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set to a range of values. The maximum (but not the minimum) value of the range is inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_RANGE_MIN_MAX_INCLUSIVE
+				</name>
+				<description>
+					A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set a range of values. Both the minimum and maximum values of the range are inclusive. It is recommended that ranges of integers be inclusive on both ends, and that exclusive ranges be used only for floating-point data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_ENUMERATION
+				</name>
+				<description>
+					A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set one of a number of enumerated values. In the case of attributes, these values are Strings; for objects, they are Objects implementing a given class or interface. Attribute values of type DATATYPE_BOOLEAN should be marked as enumerations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int VALUE_LIST
+				</name>
+				<description>
+					A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set to a list or array of values. In the case of attributes, the list will consist of whitespace-separated values within a String; for objects, an array will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int DATATYPE_STRING
+				</name>
+				<description>
+					A constant returned by getAttributeDataType indicating that the value of an attribute is a general Unicode string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int DATATYPE_BOOLEAN
+				</name>
+				<description>
+					A constant returned by getAttributeDataType indicating that the value of an attribute is one of the boolean values 'true' or 'false'. Attribute values of type DATATYPE_BOOLEAN should be marked as enumerations, and the permitted values should be the string literal values "TRUE" or "FALSE", although a plugin may also recognise lower or mixed case equivalents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int DATATYPE_INTEGER
+				</name>
+				<description>
+					A constant returned by getAttributeDataType indicating that the value of an attribute is a string representation of an integer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int DATATYPE_FLOAT
+				</name>
+				<description>
+					A constant returned by getAttributeDataType indicating that the value of an attribute is a string representation of a decimal floating-point number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int DATATYPE_DOUBLE
+				</name>
+				<description>
+					A constant returned by getAttributeDataType indicating that the value of an attribute is a string representation of a double-precision decimal floating-point number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getRootName()
+				</name>
+				<description>
+					Returns the name of the root element of the format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean canNodeAppear(String elementName,                      ImageTypeSpecifier imageType)
+				</name>
+				<description>
+					Returns true if the element (and the subtree below it) is allowed to appear in a metadata document for an image of the given type, defined by an ImageTypeSpecifier. For example, a metadata document format might contain an element that describes the primary colors of the image, which would not be allowed when writing a grayscale image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getElementMinChildren(String elementName)
+				</name>
+				<description>
+					Returns the minimum number of children of the named element with child policy CHILD_POLICY_REPEAT. For example, an element representing color primary information might be required to have at least 3 children, one for each primay.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getElementMaxChildren(String elementName)
+				</name>
+				<description>
+					Returns the maximum number of children of the named element with child policy CHILD_POLICY_REPEAT. For example, an element representing an entry in an 8-bit color palette might be allowed to repeat up to 256 times. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getElementDescription(String elementName,                             Locale locale)
+				</name>
+				<description>
+					Returns a String containing a description of the named element, or null. The desciption will be localized for the supplied Locale if possible. If locale is null, the current default Locale returned by Locale.getLocale will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getChildPolicy(String elementName)
+				</name>
+				<description>
+					Returns one of the constants starting with CHILD_POLICY_, indicating the legal pattern of children for the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getChildNames(String elementName)
+				</name>
+				<description>
+					Returns an array of Strings indicating the names of the element which are allowed to be children of the named element, in the order in which they should appear. If the element cannot have children, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getAttributeNames(String elementName)
+				</name>
+				<description>
+					Returns an array of Strings listing the names of the attributes that may be associated with the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getAttributeValueType(String elementName,                          String attrName)
+				</name>
+				<description>
+					Returns one of the constants starting with VALUE_, indicating whether the values of the given attribute within the named element are arbitrary, constrained to lie within a specified range, constrained to be one of a set of enumerated values, or are a whitespace-separated list of arbitrary values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getAttributeDataType(String elementName,                         String attrName)
+				</name>
+				<description>
+					Returns one of the constants starting with DATATYPE_, indicating the format and interpretation of the value of the given attribute within th enamed element. If getAttributeValueType returns VALUE_LIST, then the legal value is a whitespace-spearated list of values of the returned datatype.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isAttributeRequired(String elementName,                            String attrName)
+				</name>
+				<description>
+					Returns true if the named attribute must be present within the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getAttributeDefaultValue(String elementName,                                String attrName)
+				</name>
+				<description>
+					Returns the default value of the named attribute, if it is not explictly present within the named element, as a String, or null if no default value is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getAttributeEnumerations(String elementName,                                  String attrName)
+				</name>
+				<description>
+					Returns an array of Strings containing the legal enumerated values for the given attribute within the named element. This method should only be called if getAttributeValueType returns VALUE_ENUMERATION.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getAttributeMinValue(String elementName,                            String attrName)
+				</name>
+				<description>
+					Returns the minimum legal value for the attribute. Whether this value is inclusive or exclusive may be determined by the value of getAttributeValueType. The value is returned as a String; its interpretation is dependent on the value of getAttributeDataType. This method should only be called if getAttributeValueType returns VALUE_RANGE_*.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getAttributeMaxValue(String elementName,                            String attrName)
+				</name>
+				<description>
+					Returns the maximum legal value for the attribute. Whether this value is inclusive or exclusive may be determined by the value of getAttributeValueType. The value is returned as a String; its interpretation is dependent on the value of getAttributeDataType. This method should only be called if getAttributeValueType returns VALUE_RANGE_*.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getAttributeListMinLength(String elementName,                              String attrName)
+				</name>
+				<description>
+					Returns the minimum number of list items that may be used to define this attribute. The attribute itself is defined as a String containing multiple whitespace-separated items. This method should only be called if getAttributeValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getAttributeListMaxLength(String elementName,                              String attrName)
+				</name>
+				<description>
+					Returns the maximum number of list items that may be used to define this attribute. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound. The attribute itself is defined as a String containing multiple whitespace-separated items. This method should only be called if getAttributeValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getAttributeDescription(String elementName,                               String attrName,                               Locale locale)
+				</name>
+				<description>
+					Returns a String containing a description of the named attribute, or null. The desciption will be localized for the supplied Locale if possible. If locale is null, the current default Locale returned by Locale.getLocale will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getObjectValueType(String elementName)
+				</name>
+				<description>
+					Returns one of the enumerated values starting with VALUE_, indicating the type of values (enumeration, range, or array) that are allowed for the Object reference. If no object value can be stored within the given element, the result of this method will be VALUE_NONE. Object references whose legal values are defined as a range must implement the Comparable interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Class<?> getObjectClass(String elementName)
+				</name>
+				<description>
+					Returns the Class type of the Object reference stored within the element. If this element may not contain an Object reference, an IllegalArgumentException will be thrown. If the class type is an array, this field indicates the underlying class type (e.g, for an array of ints, this method would return int.class). Object references whose legal values are defined as a range must implement the Comparable interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getObjectDefaultValue(String elementName)
+				</name>
+				<description>
+					Returns an Objects containing the default value for the Object reference within the named element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object[] getObjectEnumerations(String elementName)
+				</name>
+				<description>
+					Returns an array of Objects containing the legal enumerated values for the Object reference within the named element. This method should only be called if getObjectValueType returns VALUE_ENUMERATION. The Object associated with a node that accepts emuerated values must be equal to one of the values returned by this method, as defined by the == operator (as opposed to the Object.equals method).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Comparable<?> getObjectMinValue(String elementName)
+				</name>
+				<description>
+					Returns the minimum legal value for the Object reference within the named element. Whether this value is inclusive or exclusive may be determined by the value of getObjectValueType. This method should only be called if getObjectValueType returns one of the constants starting with VALUE_RANGE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Comparable<?> getObjectMaxValue(String elementName)
+				</name>
+				<description>
+					Returns the maximum legal value for the Object reference within the named element. Whether this value is inclusive or exclusive may be determined by the value of getObjectValueType. This method should only be called if getObjectValueType returns one of the constants starting with VALUE_RANGE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getObjectArrayMinLength(String elementName)
+				</name>
+				<description>
+					Returns the minimum number of array elements that may be used to define the Object reference within the named element. This method should only be called if getObjectValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getObjectArrayMaxLength(String elementName)
+				</name>
+				<description>
+					Returns the maximum number of array elements that may be used to define the Object reference within the named element. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound. This method should only be called if getObjectValueType returns VALUE_LIST.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

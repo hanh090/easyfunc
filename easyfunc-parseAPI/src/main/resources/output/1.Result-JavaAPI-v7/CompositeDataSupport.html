@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.management.openmbean
+	</package>
+	<type>
+		<name>
+			public class CompositeDataSupport  extends Object  implements CompositeData, Serializable
+		</name>
+		<description>
+			The CompositeDataSupport class is the open data class which implements the CompositeData interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CompositeDataSupport(CompositeType compositeType,                      String[] itemNames,                      Object[] itemValues)                       throws OpenDataException
+				</name>
+				<description>
+					Constructs a CompositeDataSupport instance with the specified compositeType, whose item values are specified by itemValues[], in the same order as in itemNames[]. As a CompositeType does not specify any order on its items, the itemNames[] parameter is used to specify the order in which the values are given in itemValues[]. The items contained in this CompositeDataSupport instance are internally stored in a TreeMap, thus sorted in ascending lexicographic order of their names, for faster retrieval of individual item values. The constructor checks that all the constraints listed below for each parameter are satisfied, and throws the appropriate exception if they are not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CompositeDataSupport(CompositeType compositeType,                      Map<String,?> items)                       throws OpenDataException
+				</name>
+				<description>
+					Constructs a CompositeDataSupport instance with the specified compositeType, whose item names and corresponding values are given by the mappings in the map items. This constructor converts the keys to a string array and the values to an object array and calls CompositeDataSupport(javax.management.openmbean.CompositeType, java.lang.String[], java.lang.Object[]).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CompositeType getCompositeType()
+				</name>
+				<description>
+					Returns the composite type of this composite data instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get(String key)
+				</name>
+				<description>
+					Returns the value of the item whose name is key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getAll(String[] keys)
+				</name>
+				<description>
+					Returns an array of the values of the items whose names are specified by keys, in the same order as keys.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(String key)
+				</name>
+				<description>
+					Returns true if and only if this CompositeData instance contains an item whose name is key. If key is a null or empty String, this method simply returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsValue(Object value)
+				</name>
+				<description>
+					Returns true if and only if this CompositeData instance contains an item whose value is value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Collection<?> values()
+				</name>
+				<description>
+					Returns an unmodifiable Collection view of the item values contained in this CompositeData instance. The returned collection's iterator will return the values in the ascending lexicographic order of the corresponding item names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares the specified obj parameter with this CompositeDataSupport instance for equality. Returns true if and only if all of the following statements are true: obj is non null, obj also implements the CompositeData interface, their composite types are equal their contents, i.e. (name, value) pairs are equal. If a value contained in the content is an array, the value comparison is done as if by calling the deepEquals method for arrays of object reference types or the appropriate overloading of Arrays.equals(e1,e2) for arrays of primitive types This ensures that this equals method works properly for obj parameters which are different implementations of the CompositeData interface, with the restrictions mentioned in the equals method of the java.util.Collection interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this CompositeDataSupport instance. The hash code of a CompositeDataSupport instance is the sum of the hash codes of all elements of information used in equals comparisons (ie: its composite type and all the item values). This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two CompositeDataSupport instances t1 and t2, as required by the general contract of the method Object.hashCode(). Each item value's hash code is added to the returned hash code. If an item value is an array, its hash code is obtained as if by calling the deepHashCode method for arrays of object reference types or the appropriate overloading of Arrays.hashCode(e) for arrays of primitive types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this CompositeDataSupport instance. The string representation consists of the name of this class (ie javax.management.openmbean.CompositeDataSupport), the string representation of the composite type of this instance, and the string representation of the contents (ie list the itemName=itemValue mappings).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

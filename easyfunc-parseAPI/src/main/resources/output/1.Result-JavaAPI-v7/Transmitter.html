@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.sound.midi
+	</package>
+	<type>
+		<name>
+			public interface Transmitter  extends AutoCloseable
+		</name>
+		<description>
+			A Transmitter sends MidiEvent objects to one or more Receivers. Common MIDI transmitters include sequencers and MIDI input ports.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void setReceiver(Receiver receiver)
+				</name>
+				<description>
+					Sets the receiver to which this transmitter will deliver MIDI messages. If a receiver is currently set, it is replaced with this one.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Receiver getReceiver()
+				</name>
+				<description>
+					Obtains the current receiver to which this transmitter will deliver MIDI messages.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void close()
+				</name>
+				<description>
+					Indicates that the application has finished using the transmitter, and that limited resources it requires may be released or made available. If the creation of this Transmitter resulted in implicitly opening the underlying device, the device is implicitly closed by this method. This is true unless the device is kept open by other Receiver or Transmitter instances that opened the device implicitly, and unless the device has been opened explicitly. If the device this Transmitter is retrieved from is closed explicitly by calling MidiDevice.close, the Transmitter is closed, too. For a detailed description of open/close behaviour see the class description of MidiDevice.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

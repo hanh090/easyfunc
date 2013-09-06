@@ -1,0 +1,810 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class Window  extends Container  implements Accessible
+		</name>
+		<description>
+			A Window object is a top-level window with no borders and no menubar. The default layout for a window is BorderLayout. A window must have either a frame, dialog, or another window defined as its owner when it's constructed. In a multi-screen environment, you can create a Window on a different screen device by constructing the Window with Window(Window, GraphicsConfiguration). The GraphicsConfiguration object is one of the GraphicsConfiguration objects of the target screen device. In a virtual device multi-screen environment in which the desktop area could span multiple physical screen devices, the bounds of all configurations are relative to the virtual device coordinate system. The origin of the virtual-coordinate system is at the upper left-hand corner of the primary physical screen. Depending on the location of the primary screen in the virtual device, negative coordinates are possible, as shown in the following figure. In such an environment, when calling setLocation, you must pass a virtual coordinate to this method. Similarly, calling getLocationOnScreen on a Window returns virtual device coordinates. Call the getBounds method of a GraphicsConfiguration to find its origin in the virtual coordinate system. The following code sets the location of a Window at (10, 10) relative to the origin of the physical screen of the corresponding GraphicsConfiguration. If the bounds of the GraphicsConfiguration is not taken into account, the Window location would be set at (10, 10) relative to the virtual-coordinate system and would appear on the primary physical screen, which might be different from the physical screen of the specified GraphicsConfiguration.         Window w = new Window(Window owner, GraphicsConfiguration gc);        Rectangle bounds = gc.getBounds();        w.setLocation(10 + bounds.x, 10 + bounds.y);   Note: the location and size of top-level windows (including Windows, Frames, and Dialogs) are under the control of the desktop's window management system. Calls to setLocation, setSize, and setBounds are requests (not directives) which are forwarded to the window management system. Every effort will be made to honor such requests. However, in some cases the window management system may ignore such requests, or modify the requested geometry in order to place and size the Window in a way that more closely matches the desktop settings. Due to the asynchronous nature of native event handling, the results returned by getBounds, getLocation, getLocationOnScreen, and getSize might not reflect the actual geometry of the Window on screen until the last request has been processed. During the processing of subsequent requests these values might change accordingly while the window management system fulfills the requests. An application may set the size and location of an invisible Window arbitrarily, but the window management system may subsequently change its size and/or location when the Window is made visible. One or more ComponentEvents will be generated to indicate the new geometry. Windows are capable of generating the following WindowEvents: WindowOpened, WindowClosed, WindowGainedFocus, WindowLostFocus.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Window(Frame owner)
+				</name>
+				<description>
+					Constructs a new, initially invisible window with the specified Frame as its owner. The window will not be focusable unless its owner is showing on the screen. If there is a security manager, this method first calls the security manager's checkTopLevelWindow method with this as its argument to determine whether or not the window must be displayed with a warning banner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Window(Window owner)
+				</name>
+				<description>
+					Constructs a new, initially invisible window with the specified Window as its owner. This window will not be focusable unless its nearest owning Frame or Dialog is showing on the screen. If there is a security manager, this method first calls the security manager's checkTopLevelWindow method with this as its argument to determine whether or not the window must be displayed with a warning banner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Window(Window owner,        GraphicsConfiguration gc)
+				</name>
+				<description>
+					Constructs a new, initially invisible window with the specified owner Window and a GraphicsConfiguration of a screen device. The Window will not be focusable unless its nearest owning Frame or Dialog is showing on the screen. If there is a security manager, this method first calls the security manager's checkTopLevelWindow method with this as its argument to determine whether or not the window must be displayed with a warning banner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<Image> getIconImages()
+				</name>
+				<description>
+					Returns the sequence of images to be displayed as the icon for this window. This method returns a copy of the internally stored list, so all operations on the returned object will not affect the window's behavior.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIconImages(List<? extends Image> icons)
+				</name>
+				<description>
+					Sets the sequence of images to be displayed as the icon for this window. Subsequent calls to getIconImages will always return a copy of the icons list. Depending on the platform capabilities one or several images of different dimensions will be used as the window's icon. The icons list is scanned for the images of most appropriate dimensions from the beginning. If the list contains several images of the same size, the first will be used. Ownerless windows with no icon specified use platfrom-default icon. The icon of an owned window may be inherited from the owner unless explicitly overridden. Setting the icon to null or empty list restores the default behavior. Note : Native windowing systems may use different images of differing dimensions to represent a window, depending on the context (e.g. window decoration, window list, taskbar, etc.). They could also use just a single image for all contexts or no image at all.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIconImage(Image image)
+				</name>
+				<description>
+					Sets the image to be displayed as the icon for this window. This method can be used instead of setIconImages() to specify a single image as a window's icon. The following statement:        setIconImage(image);   is equivalent to:        ArrayList<Image> imageList = new ArrayList<Image>();       imageList.add(image);       setIconImages(imageList);   Note : Native windowing systems may use different images of differing dimensions to represent a window, depending on the context (e.g. window decoration, window list, taskbar, etc.). They could also use just a single image for all contexts or no image at all.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotify()
+				</name>
+				<description>
+					Makes this Window displayable by creating the connection to its native screen resource. This method is called internally by the toolkit and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotify()
+				</name>
+				<description>
+					Makes this Container undisplayable by removing its connection to its native screen resource. Making a container undisplayable will cause all of its children to be made undisplayable. This method is called by the toolkit internally and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void pack()
+				</name>
+				<description>
+					Causes this Window to be sized to fit the preferred size and layouts of its subcomponents. The resulting width and height of the window are automatically enlarged if either of dimensions is less than the minimum size as specified by the previous call to the setMinimumSize method. If the window and/or its owner are not displayable yet, both of them are made displayable before calculating the preferred size. The Window is validated after its size is being calculated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMinimumSize(Dimension minimumSize)
+				</name>
+				<description>
+					Sets the minimum size of this window to a constant value. Subsequent calls to getMinimumSize will always return this value. If current window's size is less than minimumSize the size of the window is automatically enlarged to honor the minimum size. If the setSize or setBounds methods are called afterwards with a width or height less than that was specified by the setMinimumSize method the window is automatically enlarged to meet the minimumSize value. The minimumSize value also affects the behaviour of the pack method. The default behavior is restored by setting the minimum size parameter to the null value. Resizing operation may be restricted if the user tries to resize window below the minimumSize value. This behaviour is platform-dependent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(Dimension d)
+				</name>
+				<description>
+					Resizes this component so that it has width d.width and height d.height. This method changes layout-related information, and therefore, invalidates the component hierarchy. The d.width and d.height values are automatically enlarged if either is less than the minimum size as specified by previous call to setMinimumSize. The method changes the geometry-related data. Therefore, the native windowing system may ignore such requests, or it may modify the requested data, so that the Window object is placed and sized in a way that corresponds closely to the desktop settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(int width,             int height)
+				</name>
+				<description>
+					Resizes this component so that it has width width and height height. This method changes layout-related information, and therefore, invalidates the component hierarchy. The width and height values are automatically enlarged if either is less than the minimum size as specified by previous call to setMinimumSize. The method changes the geometry-related data. Therefore, the native windowing system may ignore such requests, or it may modify the requested data, so that the Window object is placed and sized in a way that corresponds closely to the desktop settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocation(int x,                 int y)
+				</name>
+				<description>
+					Moves this component to a new location. The top-left corner of the new location is specified by the x and y parameters in the coordinate space of this component's parent. This method changes layout-related information, and therefore, invalidates the component hierarchy. The method changes the geometry-related data. Therefore, the native windowing system may ignore such requests, or it may modify the requested data, so that the Window object is placed and sized in a way that corresponds closely to the desktop settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocation(Point p)
+				</name>
+				<description>
+					Moves this component to a new location. The top-left corner of the new location is specified by point p. Point p is given in the parent's coordinate space. This method changes layout-related information, and therefore, invalidates the component hierarchy. The method changes the geometry-related data. Therefore, the native windowing system may ignore such requests, or it may modify the requested data, so that the Window object is placed and sized in a way that corresponds closely to the desktop settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void reshape(int x,                        int y,                        int width,                        int height)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by setBounds(int, int, int, int).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVisible(boolean b)
+				</name>
+				<description>
+					Shows or hides this Window depending on the value of parameter b. If the method shows the window then the window is also made focused under the following conditions: The Window meets the requirements outlined in the isFocusableWindow() method. The Window's autoRequestFocus property is of the true value. Native windowing system allows the Window to get focused. There is an exception for the second condition (the value of the autoRequestFocus property). The property is not taken into account if the window is a modal dialog, which blocks the currently focused window. Developers must never assume that the window is the focused or active window until it receives a WINDOW_GAINED_FOCUS or WINDOW_ACTIVATED event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void show()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.5, replaced by setVisible(boolean). Makes the Window visible. If the Window and/or its owner are not yet displayable, both are made displayable. The Window will be validated prior to being made visible. If the Window is already visible, this will bring the Window to the front.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void hide()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.5, replaced by setVisible(boolean). Hide this Window, its subcomponents, and all of its owned children. The Window and its subcomponents can be made visible again with a call to show.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dispose()
+				</name>
+				<description>
+					Releases all of the native screen resources used by this Window, its subcomponents, and all of its owned children. That is, the resources for these Components will be destroyed, any memory they consume will be returned to the OS, and they will be marked as undisplayable. The Window and its subcomponents can be made displayable again by rebuilding the native resources with a subsequent call to pack or show. The states of the recreated Window and its subcomponents will be identical to the states of these objects at the point where the Window was disposed (not accounting for additional modifications between those actions). Note: When the last displayable window within the Java virtual machine (VM) is disposed of, the VM may terminate. See AWT Threading Issues for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void toFront()
+				</name>
+				<description>
+					If this Window is visible, brings this Window to the front and may make it the focused Window. Places this Window at the top of the stacking order and shows it in front of any other Windows in this VM. No action will take place if this Window is not visible. Some platforms do not allow Windows which own other Windows to appear on top of those owned Windows. Some platforms may not permit this VM to place its Windows above windows of native applications, or Windows of other VMs. This permission may depend on whether a Window in this VM is already focused. Every attempt will be made to move this Window as high as possible in the stacking order; however, developers should not assume that this method will move this Window above all other windows in every situation. Developers must never assume that this Window is the focused or active Window until this Window receives a WINDOW_GAINED_FOCUS or WINDOW_ACTIVATED event. On platforms where the top-most window is the focused window, this method will probably focus this Window (if it is not already focused) under the following conditions: The window meets the requirements outlined in the isFocusableWindow() method. The window's property autoRequestFocus is of the true value. Native windowing system allows the window to get focused. On platforms where the stacking order does not typically affect the focused window, this method will probably leave the focused and active Windows unchanged. If this method causes this Window to be focused, and this Window is a Frame or a Dialog, it will also become activated. If this Window is focused, but it is not a Frame or a Dialog, then the first Frame or Dialog that is an owner of this Window will be activated. If this window is blocked by modal dialog, then the blocking dialog is brought to the front and remains above the blocked window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void toBack()
+				</name>
+				<description>
+					If this Window is visible, sends this Window to the back and may cause it to lose focus or activation if it is the focused or active Window. Places this Window at the bottom of the stacking order and shows it behind any other Windows in this VM. No action will take place is this Window is not visible. Some platforms do not allow Windows which are owned by other Windows to appear below their owners. Every attempt will be made to move this Window as low as possible in the stacking order; however, developers should not assume that this method will move this Window below all other windows in every situation. Because of variations in native windowing systems, no guarantees about changes to the focused and active Windows can be made. Developers must never assume that this Window is no longer the focused or active Window until this Window receives a WINDOW_LOST_FOCUS or WINDOW_DEACTIVATED event. On platforms where the top-most window is the focused window, this method will probably cause this Window to lose focus. In that case, the next highest, focusable Window in this VM will receive focus. On platforms where the stacking order does not typically affect the focused window, this method will probably leave the focused and active Windows unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Toolkit getToolkit()
+				</name>
+				<description>
+					Returns the toolkit of this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getWarningString()
+				</name>
+				<description>
+					Gets the warning string that is displayed with this window. If this window is insecure, the warning string is displayed somewhere in the visible area of the window. A window is insecure if there is a security manager, and the security manager's checkTopLevelWindow method returns false when this window is passed to it as an argument. If the window is secure, then getWarningString returns null. If the window is insecure, this method checks for the system property awt.appletWarning and returns the string value of that property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Locale getLocale()
+				</name>
+				<description>
+					Gets the Locale object that is associated with this window, if the locale has been set. If no locale has been set, then the default locale is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputContext getInputContext()
+				</name>
+				<description>
+					Gets the input context for this window. A window always has an input context, which is shared by subcomponents unless they create and set their own.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCursor(Cursor cursor)
+				</name>
+				<description>
+					Set the cursor image to a specified cursor. The method may have no visual effect if the Java platform implementation and/or the native system do not support changing the mouse cursor shape.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Window getOwner()
+				</name>
+				<description>
+					Returns the owner of this window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Window[] getOwnedWindows()
+				</name>
+				<description>
+					Return an array containing all the windows this window currently owns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Window[] getWindows()
+				</name>
+				<description>
+					Returns an array of all Windows, both owned and ownerless, created by this application. If called from an applet, the array includes only the Windows accessible by that applet. Warning: this method may return system created windows, such as a print dialog. Applications should not assume the existence of these dialogs, nor should an application assume anything about these dialogs such as component positions, LayoutManagers or serialization.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Window[] getOwnerlessWindows()
+				</name>
+				<description>
+					Returns an array of all Windows created by this application that have no owner. They include Frames and ownerless Dialogs and Windows. If called from an applet, the array includes only the Windows accessible by that applet. Warning: this method may return system created windows, such as a print dialog. Applications should not assume the existence of these dialogs, nor should an application assume anything about these dialogs such as component positions, LayoutManagers or serialization.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModalExclusionType(Dialog.ModalExclusionType exclusionType)
+				</name>
+				<description>
+					Specifies the modal exclusion type for this window. If a window is modal excluded, it is not blocked by some modal dialogs. See Dialog.ModalExclusionType for possible modal exclusion types. If the given type is not supported, NO_EXCLUDE is used. Note: changing the modal exclusion type for a visible window may have no effect until it is hidden and then shown again.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dialog.ModalExclusionType getModalExclusionType()
+				</name>
+				<description>
+					Returns the modal exclusion type of this window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addWindowListener(WindowListener l)
+				</name>
+				<description>
+					Adds the specified window listener to receive window events from this window. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addWindowStateListener(WindowStateListener l)
+				</name>
+				<description>
+					Adds the specified window state listener to receive window events from this window. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addWindowFocusListener(WindowFocusListener l)
+				</name>
+				<description>
+					Adds the specified window focus listener to receive window events from this window. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeWindowListener(WindowListener l)
+				</name>
+				<description>
+					Removes the specified window listener so that it no longer receives window events from this window. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeWindowStateListener(WindowStateListener l)
+				</name>
+				<description>
+					Removes the specified window state listener so that it no longer receives window events from this window. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeWindowFocusListener(WindowFocusListener l)
+				</name>
+				<description>
+					Removes the specified window focus listener so that it no longer receives window events from this window. If l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WindowListener[] getWindowListeners()
+				</name>
+				<description>
+					Returns an array of all the window listeners registered on this window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WindowFocusListener[] getWindowFocusListeners()
+				</name>
+				<description>
+					Returns an array of all the window focus listeners registered on this window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WindowStateListener[] getWindowStateListeners()
+				</name>
+				<description>
+					Returns an array of all the window state listeners registered on this window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Returns an array of all the objects currently registered as FooListeners upon this Window. FooListeners are registered using the addFooListener method. You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a Window w for its window listeners with the following code: WindowListener[] wls = (WindowListener[])(w.getListeners(WindowListener.class)); If no such listeners exist, this method returns an empty array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processEvent(AWTEvent e)
+				</name>
+				<description>
+					Processes events on this window. If the event is an WindowEvent, it invokes the processWindowEvent method, else it invokes its superclass's processEvent. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processWindowEvent(WindowEvent e)
+				</name>
+				<description>
+					Processes window events occurring on this window by dispatching them to any registered WindowListener objects. NOTE: This method will not be called unless window events are enabled for this component; this happens when one of the following occurs: A WindowListener object is registered via addWindowListener Window events are enabled via enableEvents Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processWindowFocusEvent(WindowEvent e)
+				</name>
+				<description>
+					Processes window focus event occuring on this window by dispatching them to any registered WindowFocusListener objects. NOTE: this method will not be called unless window focus events are enabled for this window. This happens when one of the following occurs: a WindowFocusListener is registered via addWindowFocusListener Window focus events are enabled via enableEvents Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processWindowStateEvent(WindowEvent e)
+				</name>
+				<description>
+					Processes window state event occuring on this window by dispatching them to any registered WindowStateListener objects. NOTE: this method will not be called unless window state events are enabled for this window. This happens when one of the following occurs: a WindowStateListener is registered via addWindowStateListener window state events are enabled via enableEvents Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setAlwaysOnTop(boolean alwaysOnTop)                            throws SecurityException
+				</name>
+				<description>
+					Sets whether this window should always be above other windows. If there are multiple always-on-top windows, their relative order is unspecified and platform dependent. If some other window is already always-on-top then the relative order between these windows is unspecified (depends on platform). No window can be brought to be over the always-on-top window except maybe another always-on-top window. All windows owned by an always-on-top window inherit this state and automatically become always-on-top. If a window ceases to be always-on-top, the windows that it owns will no longer be always-on-top. When an always-on-top window is sent toBack, its always-on-top state is set to false. When this method is called on a window with a value of true, and the window is visible and the platform supports always-on-top for this window, the window is immediately brought forward, "sticking" it in the top-most position. If the window isn`t currently visible, this method sets the always-on-top state to true but does not bring the window forward. When the window is later shown, it will be always-on-top. When this method is called on a window with a value of false the always-on-top state is set to normal. The window remains in the top-most position but it`s z-order can be changed as for any other window. Calling this method with a value of false on a window that has a normal state has no effect. Setting the always-on-top state to false has no effect on the relative z-order of the windows if there are no other always-on-top windows. Note: some platforms might not support always-on-top windows. To detect if always-on-top windows are supported by the current platform, use Toolkit.isAlwaysOnTopSupported() and isAlwaysOnTopSupported(). If always-on-top mode isn't supported by the toolkit or for this window, calling this method has no effect. If a SecurityManager is installed, the calling thread must be granted the AWTPermission "setWindowAlwaysOnTop" in order to set the value of this property. If this permission is not granted, this method will throw a SecurityException, and the current value of the property will be left unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAlwaysOnTopSupported()
+				</name>
+				<description>
+					Returns whether the always-on-top mode is supported for this window. Some platforms may not support always-on-top windows, some may support only some kinds of top-level windows; for example, a platform may not support always-on-top modal dialogs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isAlwaysOnTop()
+				</name>
+				<description>
+					Returns whether this window is an always-on-top window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getFocusOwner()
+				</name>
+				<description>
+					Returns the child Component of this Window that has focus if this Window is focused; returns null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getMostRecentFocusOwner()
+				</name>
+				<description>
+					Returns the child Component of this Window that will receive the focus when this Window is focused. If this Window is currently focused, this method returns the same Component as getFocusOwner(). If this Window is not focused, then the child Component that most recently requested focus will be returned. If no child Component has ever requested focus, and this is a focusable Window, then this Window's initial focusable Component is returned. If no child Component has ever requested focus, and this is a non-focusable Window, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isActive()
+				</name>
+				<description>
+					Returns whether this Window is active. Only a Frame or a Dialog may be active. The native windowing system may denote the active Window or its children with special decorations, such as a highlighted title bar. The active Window is always either the focused Window, or the first Frame or Dialog that is an owner of the focused Window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFocused()
+				</name>
+				<description>
+					Returns whether this Window is focused. If there exists a focus owner, the focused Window is the Window that is, or contains, that focus owner. If there is no focus owner, then no Window is focused. If the focused Window is a Frame or a Dialog it is also the active Window. Otherwise, the active Window is the first Frame or Dialog that is an owner of the focused Window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<AWTKeyStroke> getFocusTraversalKeys(int id)
+				</name>
+				<description>
+					Gets a focus traversal key for this Window. (See setFocusTraversalKeys for a full description of each key.) If the traversal key has not been explicitly set for this Window, then this Window's parent's traversal key is returned. If the traversal key has not been explicitly set for any of this Window's ancestors, then the current KeyboardFocusManager's default traversal key is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setFocusCycleRoot(boolean focusCycleRoot)
+				</name>
+				<description>
+					Does nothing because Windows must always be roots of a focus traversal cycle. The passed-in value is ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isFocusCycleRoot()
+				</name>
+				<description>
+					Always returns true because all Windows must be roots of a focus traversal cycle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Container getFocusCycleRootAncestor()
+				</name>
+				<description>
+					Always returns null because Windows have no ancestors; they represent the top of the Component hierarchy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isFocusableWindow()
+				</name>
+				<description>
+					Returns whether this Window can become the focused Window, that is, whether this Window or any of its subcomponents can become the focus owner. For a Frame or Dialog to be focusable, its focusable Window state must be set to true. For a Window which is not a Frame or Dialog to be focusable, its focusable Window state must be set to true, its nearest owning Frame or Dialog must be showing on the screen, and it must contain at least one Component in its focus traversal cycle. If any of these conditions is not met, then neither this Window nor any of its subcomponents can become the focus owner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getFocusableWindowState()
+				</name>
+				<description>
+					Returns whether this Window can become the focused Window if it meets the other requirements outlined in isFocusableWindow. If this method returns false, then isFocusableWindow will return false as well. If this method returns true, then isFocusableWindow may return true or false depending upon the other requirements which must be met in order for a Window to be focusable. By default, all Windows have a focusable Window state of true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFocusableWindowState(boolean focusableWindowState)
+				</name>
+				<description>
+					Sets whether this Window can become the focused Window if it meets the other requirements outlined in isFocusableWindow. If this Window's focusable Window state is set to false, then isFocusableWindow will return false. If this Window's focusable Window state is set to true, then isFocusableWindow may return true or false depending upon the other requirements which must be met in order for a Window to be focusable. Setting a Window's focusability state to false is the standard mechanism for an application to identify to the AWT a Window which will be used as a floating palette or toolbar, and thus should be a non-focusable Window. Setting the focusability state on a visible Window can have a delayed effect on some platforms ? the actual change may happen only when the Window becomes hidden and then visible again. To ensure consistent behavior across platforms, set the Window's focusable state when the Window is invisible and then show it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAutoRequestFocus(boolean autoRequestFocus)
+				</name>
+				<description>
+					Sets whether this window should receive focus on subsequently being shown (with a call to setVisible(true)), or being moved to the front (with a call to toFront()). Note that setVisible(true) may be called indirectly (e.g. when showing an owner of the window makes the window to be shown). toFront() may also be called indirectly (e.g. when setVisible(true) is called on already visible window). In all such cases this property takes effect as well. The value of the property is not inherited by owned windows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAutoRequestFocus()
+				</name>
+				<description>
+					Returns whether this window should receive focus on subsequently being shown (with a call to setVisible(true)), or being moved to the front (with a call to toFront()). By default, the window has autoRequestFocus value of true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Adds a PropertyChangeListener to the listener list. The listener is registered for all bound properties of this class, including the following: this Window's font ("font") this Window's background color ("background") this Window's foreground color ("foreground") this Window's focusability ("focusable") this Window's focus traversal keys enabled state ("focusTraversalKeysEnabled") this Window's Set of FORWARD_TRAVERSAL_KEYS ("forwardFocusTraversalKeys") this Window's Set of BACKWARD_TRAVERSAL_KEYS ("backwardFocusTraversalKeys") this Window's Set of UP_CYCLE_TRAVERSAL_KEYS ("upCycleFocusTraversalKeys") this Window's Set of DOWN_CYCLE_TRAVERSAL_KEYS ("downCycleFocusTraversalKeys") this Window's focus traversal policy ("focusTraversalPolicy") this Window's focusable Window state ("focusableWindowState") this Window's always-on-top state("alwaysOnTop") Note that if this Window is inheriting a bound property, then no event will be fired in response to a change in the inherited property. If listener is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPropertyChangeListener(String propertyName,                               PropertyChangeListener listener)
+				</name>
+				<description>
+					Adds a PropertyChangeListener to the listener list for a specific property. The specified property may be user-defined, or one of the following: this Window's font ("font") this Window's background color ("background") this Window's foreground color ("foreground") this Window's focusability ("focusable") this Window's focus traversal keys enabled state ("focusTraversalKeysEnabled") this Window's Set of FORWARD_TRAVERSAL_KEYS ("forwardFocusTraversalKeys") this Window's Set of BACKWARD_TRAVERSAL_KEYS ("backwardFocusTraversalKeys") this Window's Set of UP_CYCLE_TRAVERSAL_KEYS ("upCycleFocusTraversalKeys") this Window's Set of DOWN_CYCLE_TRAVERSAL_KEYS ("downCycleFocusTraversalKeys") this Window's focus traversal policy ("focusTraversalPolicy") this Window's focusable Window state ("focusableWindowState") this Window's always-on-top state("alwaysOnTop") Note that if this Window is inheriting a bound property, then no event will be fired in response to a change in the inherited property. If listener is null, no exception is thrown and no action is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isValidateRoot()
+				</name>
+				<description>
+					Indicates if this container is a validate root. Window objects are the validate roots, and, therefore, they override this method to return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public boolean postEvent(Event e)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1 replaced by dispatchEvent(AWTEvent).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isShowing()
+				</name>
+				<description>
+					Checks if this Window is showing on screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void applyResourceBundle(ResourceBundle rb)
+				</name>
+				<description>
+					Deprecated. As of J2SE 1.4, replaced by Component.applyComponentOrientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void applyResourceBundle(String rbName)
+				</name>
+				<description>
+					Deprecated. As of J2SE 1.4, replaced by Component.applyComponentOrientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setType(Window.Type type)
+				</name>
+				<description>
+					Sets the type of the window. This method can only be called while the window is not displayable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Window.Type getType()
+				</name>
+				<description>
+					Returns the type of the window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this Window. For windows, the AccessibleContext takes the form of an AccessibleAWTWindow. A new AccessibleAWTWindow instance is created if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocationRelativeTo(Component c)
+				</name>
+				<description>
+					Sets the location of the window relative to the specified component according to the following scenarios. The target screen mentioned below is a screen to which the window should be placed after the setLocationRelativeTo method is called. If the component is null, or the GraphicsConfiguration associated with this component is null, the window is placed in the center of the screen. The center point can be obtained with the GraphicsEnvironment.getCenterPoint method. If the component is not null, but it is not currently showing, the window is placed in the center of the target screen defined by the GraphicsConfiguration associated with this component. If the component is not null and is shown on the screen, then the window is located in such a way that the center of the window coincides with the center of the component. If the screens configuration does not allow the window to be moved from one screen to another, then the window is only placed at the location determined according to the above conditions and its GraphicsConfiguration is not changed. Note: If the lower edge of the window is out of the screen, then the window is placed to the side of the Component that is closest to the center of the screen. So if the component is on the right part of the screen, the window is placed to its left, and vice versa. If after the window location has been calculated, the upper, left, or right edge of the window is out of the screen, then the window is located in such a way that the upper, left, or right edge of the window coincides with the corresponding edge of the screen. If both left and right edges of the window are out of the screen, the window is placed at the left side of the screen. The similar placement will occur if both top and bottom edges are out of the screen. In that case, the window is placed at the top side of the screen. The method changes the geometry-related data. Therefore, the native windowing system may ignore such requests, or it may modify the requested data, so that the Window object is placed and sized in a way that corresponds closely to the desktop settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void createBufferStrategy(int numBuffers)
+				</name>
+				<description>
+					Creates a new strategy for multi-buffering on this component. Multi-buffering is useful for rendering performance. This method attempts to create the best strategy available with the number of buffers supplied. It will always create a BufferStrategy with that number of buffers. A page-flipping strategy is attempted first, then a blitting strategy using accelerated buffers. Finally, an unaccelerated blitting strategy is used. Each time this method is called, the existing buffer strategy for this component is discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void createBufferStrategy(int numBuffers,                          BufferCapabilities caps)                            throws AWTException
+				</name>
+				<description>
+					Creates a new strategy for multi-buffering on this component with the required buffer capabilities. This is useful, for example, if only accelerated memory or page flipping is desired (as specified by the buffer capabilities). Each time this method is called, the existing buffer strategy for this component is discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferStrategy getBufferStrategy()
+				</name>
+				<description>
+					Returns the BufferStrategy used by this component. This method will return null if a BufferStrategy has not yet been created or has been disposed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocationByPlatform(boolean locationByPlatform)
+				</name>
+				<description>
+					Sets whether this Window should appear at the default location for the native windowing system or at the current location (returned by getLocation) the next time the Window is made visible. This behavior resembles a native window shown without programmatically setting its location. Most windowing systems cascade windows if their locations are not explicitly set. The actual location is determined once the window is shown on the screen. This behavior can also be enabled by setting the System Property "java.awt.Window.locationByPlatform" to "true", though calls to this method take precedence. Calls to setVisible, setLocation and setBounds after calling setLocationByPlatform clear this property of the Window. For example, after the following code is executed:    setLocationByPlatform(true);   setVisible(true);   boolean flag = isLocationByPlatform();   The window will be shown at platform's default location and flag will be false. In the following sample:    setLocationByPlatform(true);   setLocation(10, 10);   boolean flag = isLocationByPlatform();   setVisible(true);   The window will be shown at (10, 10) and flag will be false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLocationByPlatform()
+				</name>
+				<description>
+					Returns true if this Window will appear at the default location for the native windowing system the next time this Window is made visible. This method always returns false if the Window is showing on the screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBounds(int x,               int y,               int width,               int height)
+				</name>
+				<description>
+					Moves and resizes this component. The new location of the top-left corner is specified by x and y, and the new size is specified by width and height. This method changes layout-related information, and therefore, invalidates the component hierarchy. The width or height values are automatically enlarged if either is less than the minimum size as specified by previous call to setMinimumSize. The method changes the geometry-related data. Therefore, the native windowing system may ignore such requests, or it may modify the requested data, so that the Window object is placed and sized in a way that corresponds closely to the desktop settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBounds(Rectangle r)
+				</name>
+				<description>
+					Moves and resizes this component to conform to the new bounding rectangle r. This component's new position is specified by r.x and r.y, and its new size is specified by r.width and r.height This method changes layout-related information, and therefore, invalidates the component hierarchy. The r.width or r.height values will be automatically enlarged if either is less than the minimum size as specified by previous call to setMinimumSize. The method changes the geometry-related data. Therefore, the native windowing system may ignore such requests, or it may modify the requested data, so that the Window object is placed and sized in a way that corresponds closely to the desktop settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getOpacity()
+				</name>
+				<description>
+					Returns the opacity of the window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOpacity(float opacity)
+				</name>
+				<description>
+					Sets the opacity of the window. The opacity value is in the range [0..1]. Note that setting the opacity level of 0 may or may not disable the mouse event handling on this window. This is a platform-dependent behavior. The following conditions must be met in order to set the opacity value less than 1.0f: The TRANSLUCENT translucency must be supported by the underlying system The window must be undecorated (see Frame.setUndecorated(boolean) and Dialog.setUndecorated(boolean)) The window must not be in full-screen mode (see GraphicsDevice.setFullScreenWindow(Window)) If the requested opacity value is less than 1.0f, and any of the above conditions are not met, the window opacity will not change, and the IllegalComponentStateException will be thrown. The translucency levels of individual pixels may also be effected by the alpha component of their color (see setBackground(Color)) and the current shape of this window (see setShape(Shape)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getShape()
+				</name>
+				<description>
+					Returns the shape of the window. The value returned by this method may not be the same as previously set with setShape(shape), but it is guaranteed to represent the same shape.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setShape(Shape shape)
+				</name>
+				<description>
+					Sets the shape of the window. Setting a shape cuts off some parts of the window. Only the parts that belong to the given Shape remain visible and clickable. If the shape argument is null, this method restores the default shape, making the window rectangular on most platforms. The following conditions must be met to set a non-null shape: The PERPIXEL_TRANSPARENT translucency must be supported by the underlying system The window must be undecorated (see Frame.setUndecorated(boolean) and Dialog.setUndecorated(boolean)) The window must not be in full-screen mode (see GraphicsDevice.setFullScreenWindow(Window)) If the requested shape is not null, and any of the above conditions are not met, the shape of this window will not change, and either the UnsupportedOperationException or IllegalComponentStateException will be thrown. The tranlucency levels of individual pixels may also be effected by the alpha component of their color (see setBackground(Color)) and the opacity value (see setOpacity(float)). See GraphicsDevice.WindowTranslucency for more details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackground()
+				</name>
+				<description>
+					Gets the background color of this window. Note that the alpha component of the returned color indicates whether the window is in the non-opaque (per-pixel translucent) mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBackground(Color bgColor)
+				</name>
+				<description>
+					Sets the background color of this window. If the windowing system supports the PERPIXEL_TRANSLUCENT tranclucency, the alpha component of the given background color may effect the mode of operation for this window: it indicates whether this window must be opaque (alpha equals 1.0f) or per-pixel translucent (alpha is less than 1.0f). If the given background color is null, the window is considered completely opaque. All the following conditions must be met to enable the per-pixel transparency mode for this window: The PERPIXEL_TRANSLUCENT translucency must be supported by the graphics device where this window is located The window must be undecorated (see Frame.setUndecorated(boolean) and Dialog.setUndecorated(boolean)) The window must not be in full-screen mode (see GraphicsDevice.setFullScreenWindow(Window)) If the alpha component of the requested background color is less than 1.0f, and any of the above conditions are not met, the background color of this window will not change, the alpha component of the given background color will not affect the mode of operation for this window, and either the UnsupportedOperationException or IllegalComponentStateException will be thrown. When the window is per-pixel translucent, the drawing sub-system respects the alpha value of each individual pixel. If a pixel gets painted with the alpha color component equal to zero, it becomes visually transparent. If the alpha of the pixel is equal to 1.0f, the pixel is fully opaque. Interim values of the alpha color component make the pixel semi-transparent. In this mode, the background of the window gets painted with the alpha value of the given background color. If the alpha value of the argument of this method is equal to 0, the background is not painted at all. The actual level of translucency of a given pixel also depends on window opacity (see setOpacity(float)), as well as the current shape of this window (see setShape(Shape)). Note that painting a pixel with the alpha value of 0 may or may not disable the mouse event handling on this pixel. This is a platform-dependent behavior. To make sure the mouse events do not get dispatched to a particular pixel, the pixel must be excluded from the shape of the window. Enabling the per-pixel translucency mode may change the graphics configuration of this window due to the native platform requirements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOpaque()
+				</name>
+				<description>
+					Indicates if the window is currently opaque. The method returns false if the background color of the window is not null and the alpha component of the color is less than 1.0f. The method returns true otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g)
+				</name>
+				<description>
+					Paints the container. This forwards the paint to any lightweight components that are children of this container. If this method is reimplemented, super.paint(g) should be called so that lightweight components are properly rendered. If a child component is entirely clipped by the current clipping setting in g, paint() will not be forwarded to that child.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		javax.management.openmbean
+	</package>
+	<type>
+		<name>
+			public class OpenMBeanAttributeInfoSupport  extends MBeanAttributeInfo  implements OpenMBeanAttributeInfo
+		</name>
+		<description>
+			Describes an attribute of an open MBean.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public OpenMBeanAttributeInfoSupport(String name,                               String description,                               OpenType<?> openType,                               boolean isReadable,                               boolean isWritable,                               boolean isIs)
+				</name>
+				<description>
+					Constructs an OpenMBeanAttributeInfoSupport instance, which describes the attribute of an open MBean with the specified name, openType and description, and the specified read/write access properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OpenMBeanAttributeInfoSupport(String name,                               String description,                               OpenType<?> openType,                               boolean isReadable,                               boolean isWritable,                               boolean isIs,                               Descriptor descriptor)
+				</name>
+				<description>
+					Constructs an OpenMBeanAttributeInfoSupport instance, which describes the attribute of an open MBean with the specified name, openType, description, read/write access properties, and Descriptor. The descriptor can contain entries that will define the values returned by certain methods of this class, as explained in the package description.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OpenMBeanAttributeInfoSupport(String name,                               String description,                               OpenType<T> openType,                               boolean isReadable,                               boolean isWritable,                               boolean isIs,                               T defaultValue)                                throws OpenDataException
+				</name>
+				<description>
+					Constructs an OpenMBeanAttributeInfoSupport instance, which describes the attribute of an open MBean with the specified name, openType, description and defaultValue, and the specified read/write access properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OpenMBeanAttributeInfoSupport(String name,                               String description,                               OpenType<T> openType,                               boolean isReadable,                               boolean isWritable,                               boolean isIs,                               T defaultValue,                               T[] legalValues)                                throws OpenDataException
+				</name>
+				<description>
+					Constructs an OpenMBeanAttributeInfoSupport instance, which describes the attribute of an open MBean with the specified name, openType, description, defaultValue and legalValues, and the specified read/write access properties. The contents of legalValues are copied, so subsequent modifications of the array referenced by legalValues have no impact on this OpenMBeanAttributeInfoSupport instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OpenMBeanAttributeInfoSupport(String name,                               String description,                               OpenType<T> openType,                               boolean isReadable,                               boolean isWritable,                               boolean isIs,                               T defaultValue,                               Comparable<T> minValue,                               Comparable<T> maxValue)                                throws OpenDataException
+				</name>
+				<description>
+					Constructs an OpenMBeanAttributeInfoSupport instance, which describes the attribute of an open MBean, with the specified name, openType, description, defaultValue, minValue and maxValue. It is possible to specify minimal and maximal values only for an open type whose values are Comparable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OpenType<?> getOpenType()
+				</name>
+				<description>
+					Returns the open type for the values of the attribute described by this OpenMBeanAttributeInfoSupport instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getDefaultValue()
+				</name>
+				<description>
+					Returns the default value for the attribute described by this OpenMBeanAttributeInfoSupport instance, if specified, or null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<?> getLegalValues()
+				</name>
+				<description>
+					Returns an unmodifiable Set of legal values for the attribute described by this OpenMBeanAttributeInfoSupport instance, if specified, or null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparable<?> getMinValue()
+				</name>
+				<description>
+					Returns the minimal value for the attribute described by this OpenMBeanAttributeInfoSupport instance, if specified, or null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Comparable<?> getMaxValue()
+				</name>
+				<description>
+					Returns the maximal value for the attribute described by this OpenMBeanAttributeInfoSupport instance, if specified, or null otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasDefaultValue()
+				</name>
+				<description>
+					Returns true if this OpenMBeanAttributeInfoSupport instance specifies a non-null default value for the described attribute, false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasLegalValues()
+				</name>
+				<description>
+					Returns true if this OpenMBeanAttributeInfoSupport instance specifies a non-null set of legal values for the described attribute, false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasMinValue()
+				</name>
+				<description>
+					Returns true if this OpenMBeanAttributeInfoSupport instance specifies a non-null minimal value for the described attribute, false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasMaxValue()
+				</name>
+				<description>
+					Returns true if this OpenMBeanAttributeInfoSupport instance specifies a non-null maximal value for the described attribute, false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isValue(Object obj)
+				</name>
+				<description>
+					Tests whether obj is a valid value for the attribute described by this OpenMBeanAttributeInfoSupport instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares the specified obj parameter with this OpenMBeanAttributeInfoSupport instance for equality. Returns true if and only if all of the following statements are true: obj is non null, obj also implements the OpenMBeanAttributeInfo interface, their names are equal their open types are equal their access properties (isReadable, isWritable and isIs) are equal their default, min, max and legal values are equal. This ensures that this equals method works properly for obj parameters which are different implementations of the OpenMBeanAttributeInfo interface. If obj also implements DescriptorRead, then its getDescriptor() method must also return the same value as for this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this OpenMBeanAttributeInfoSupport instance. The hash code of an OpenMBeanAttributeInfoSupport instance is the sum of the hash codes of all elements of information used in equals comparisons (ie: its name, its open type, its default, min, max and legal values, and its Descriptor). This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two OpenMBeanAttributeInfoSupport instances t1 and t2, as required by the general contract of the method Object.hashCode(). However, note that another instance of a class implementing the OpenMBeanAttributeInfo interface may be equal to this OpenMBeanAttributeInfoSupport instance as defined by equals(java.lang.Object), but may have a different hash code if it is calculated differently. As OpenMBeanAttributeInfoSupport instances are immutable, the hash code for this instance is calculated once, on the first call to hashCode, and then the same value is returned for subsequent calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this OpenMBeanAttributeInfoSupport instance. The string representation consists of the name of this class (i.e. javax.management.openmbean.OpenMBeanAttributeInfoSupport), the string representation of the name and open type of the described parameter, the string representation of its default, min, max and legal values and the string representation of its descriptor. As OpenMBeanAttributeInfoSupport instances are immutable, the string representation for this instance is calculated once, on the first call to toString, and then the same value is returned for subsequent calls.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

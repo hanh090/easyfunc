@@ -1,0 +1,369 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class Query  extends Object
+		</name>
+		<description>
+			Constructs query object constraints. The MBean Server can be queried for MBeans that meet a particular condition, using its queryNames or queryMBeans method. The QueryExp parameter to the method can be any implementation of the interface QueryExp, but it is usually best to obtain the QueryExp value by calling the static methods in this class. This is particularly true when querying a remote MBean Server: a custom implementation of the QueryExp interface might not be present in the remote MBean Server, but the methods in this class return only standard classes that are part of the JMX implementation. As an example, suppose you wanted to find all MBeans where the Enabled attribute is true and the Owner attribute is "Duke". Here is how you could construct the appropriate QueryExp by chaining together method calls:    QueryExp query =       Query.and(Query.eq(Query.attr("Enabled"), Query.value(true)),                 Query.eq(Query.attr("Owner"), Query.value("Duke")));
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int GT
+				</name>
+				<description>
+					A code representing the gt(javax.management.ValueExp, javax.management.ValueExp) query. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int LT
+				</name>
+				<description>
+					A code representing the lt(javax.management.ValueExp, javax.management.ValueExp) query. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int GE
+				</name>
+				<description>
+					A code representing the geq(javax.management.ValueExp, javax.management.ValueExp) query. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int LE
+				</name>
+				<description>
+					A code representing the leq(javax.management.ValueExp, javax.management.ValueExp) query. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int EQ
+				</name>
+				<description>
+					A code representing the eq(javax.management.ValueExp, javax.management.ValueExp) query. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PLUS
+				</name>
+				<description>
+					A code representing the plus(javax.management.ValueExp, javax.management.ValueExp) expression. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int MINUS
+				</name>
+				<description>
+					A code representing the minus(javax.management.ValueExp, javax.management.ValueExp) expression. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TIMES
+				</name>
+				<description>
+					A code representing the times(javax.management.ValueExp, javax.management.ValueExp) expression. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int DIV
+				</name>
+				<description>
+					A code representing the div(javax.management.ValueExp, javax.management.ValueExp) expression. This is chiefly of interest for the serialized form of queries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Query()
+				</name>
+				<description>
+					Basic constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp and(QueryExp q1,             QueryExp q2)
+				</name>
+				<description>
+					Returns a query expression that is the conjunction of two other query expressions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp or(QueryExp q1,            QueryExp q2)
+				</name>
+				<description>
+					Returns a query expression that is the disjunction of two other query expressions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp gt(ValueExp v1,            ValueExp v2)
+				</name>
+				<description>
+					Returns a query expression that represents a "greater than" constraint on two values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp geq(ValueExp v1,             ValueExp v2)
+				</name>
+				<description>
+					Returns a query expression that represents a "greater than or equal to" constraint on two values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp leq(ValueExp v1,             ValueExp v2)
+				</name>
+				<description>
+					Returns a query expression that represents a "less than or equal to" constraint on two values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp lt(ValueExp v1,            ValueExp v2)
+				</name>
+				<description>
+					Returns a query expression that represents a "less than" constraint on two values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp eq(ValueExp v1,            ValueExp v2)
+				</name>
+				<description>
+					Returns a query expression that represents an equality constraint on two values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp between(ValueExp v1,                 ValueExp v2,                 ValueExp v3)
+				</name>
+				<description>
+					Returns a query expression that represents the constraint that one value is between two other values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp match(AttributeValueExp a,               StringValueExp s)
+				</name>
+				<description>
+					Returns a query expression that represents a matching constraint on a string argument. The matching syntax is consistent with file globbing: supports "?", "*", "[", each of which may be escaped with "\"; character classes may use "!" for negation and "-" for range. (* for any character sequence, ? for a single arbitrary character, [...] for a character sequence). For example: a*b?c would match a string starting with the character a, followed by any number of characters, followed by a b, any single character, and a c.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AttributeValueExp attr(String name)
+				</name>
+				<description>
+					Returns a new attribute expression. See AttributeValueExp for a detailed description of the semantics of the expression. Evaluating this expression for a given objectName includes performing MBeanServer.getAttribute(objectName, name).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AttributeValueExp attr(String className,                       String name)
+				</name>
+				<description>
+					Returns a new qualified attribute expression. Evaluating this expression for a given objectName includes performing MBeanServer.getObjectInstance(objectName) and MBeanServer.getAttribute(objectName, name).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AttributeValueExp classattr()
+				</name>
+				<description>
+					Returns a new class attribute expression which can be used in any Query call that expects a ValueExp. Evaluating this expression for a given objectName includes performing MBeanServer.getObjectInstance(objectName).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp not(QueryExp queryExp)
+				</name>
+				<description>
+					Returns a constraint that is the negation of its argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp in(ValueExp val,            ValueExp[] valueList)
+				</name>
+				<description>
+					Returns an expression constraining a value to be one of an explicit list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static StringValueExp value(String val)
+				</name>
+				<description>
+					Returns a new string expression.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp value(Number val)
+				</name>
+				<description>
+					Returns a numeric value expression that can be used in any Query call that expects a ValueExp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp value(int val)
+				</name>
+				<description>
+					Returns a numeric value expression that can be used in any Query call that expects a ValueExp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp value(long val)
+				</name>
+				<description>
+					Returns a numeric value expression that can be used in any Query call that expects a ValueExp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp value(float val)
+				</name>
+				<description>
+					Returns a numeric value expression that can be used in any Query call that expects a ValueExp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp value(double val)
+				</name>
+				<description>
+					Returns a numeric value expression that can be used in any Query call that expects a ValueExp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp value(boolean val)
+				</name>
+				<description>
+					Returns a boolean value expression that can be used in any Query call that expects a ValueExp.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp plus(ValueExp value1,              ValueExp value2)
+				</name>
+				<description>
+					Returns a binary expression representing the sum of two numeric values, or the concatenation of two string values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp times(ValueExp value1,               ValueExp value2)
+				</name>
+				<description>
+					Returns a binary expression representing the product of two numeric values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp minus(ValueExp value1,               ValueExp value2)
+				</name>
+				<description>
+					Returns a binary expression representing the difference between two numeric values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ValueExp div(ValueExp value1,             ValueExp value2)
+				</name>
+				<description>
+					Returns a binary expression representing the quotient of two numeric values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp initialSubString(AttributeValueExp a,                          StringValueExp s)
+				</name>
+				<description>
+					Returns a query expression that represents a matching constraint on a string argument. The value must start with the given literal string value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp anySubString(AttributeValueExp a,                      StringValueExp s)
+				</name>
+				<description>
+					Returns a query expression that represents a matching constraint on a string argument. The value must contain the given literal string value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp finalSubString(AttributeValueExp a,                        StringValueExp s)
+				</name>
+				<description>
+					Returns a query expression that represents a matching constraint on a string argument. The value must end with the given literal string value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static QueryExp isInstanceOf(StringValueExp classNameValue)
+				</name>
+				<description>
+					Returns a query expression that represents an inheritance constraint on an MBean class. Example: to find MBeans that are instances of NotificationBroadcaster, use Query.isInstanceOf(Query.value(NotificationBroadcaster.class.getName())). Evaluating this expression for a given objectName includes performing MBeanServer.isInstanceOf(objectName, ((StringValueExp)classNameValue.apply(objectName)).getValue().
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

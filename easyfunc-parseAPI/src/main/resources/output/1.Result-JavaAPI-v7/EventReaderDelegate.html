@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.xml.stream.util
+	</package>
+	<type>
+		<name>
+			public class EventReaderDelegate  extends Object  implements XMLEventReader
+		</name>
+		<description>
+			This is the base class for deriving an XMLEventReader filter. This class is designed to sit between an XMLEventReader and an application's XMLEventReader. By default each method does nothing but call the corresponding method on the parent interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public EventReaderDelegate()
+				</name>
+				<description>
+					Construct an empty filter with no parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EventReaderDelegate(XMLEventReader reader)
+				</name>
+				<description>
+					Construct an filter with the specified parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(XMLEventReader reader)
+				</name>
+				<description>
+					Set the parent of this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLEventReader getParent()
+				</name>
+				<description>
+					Get the parent of this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLEvent nextEvent()                     throws XMLStreamException
+				</name>
+				<description>
+					Description copied from interface: XMLEventReader Get the next XMLEvent
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object next()
+				</name>
+				<description>
+					Description copied from interface: Iterator Returns the next element in the iteration.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasNext()
+				</name>
+				<description>
+					Description copied from interface: XMLEventReader Check if there are more events. Returns true if there are more events and false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLEvent peek()                throws XMLStreamException
+				</name>
+				<description>
+					Description copied from interface: XMLEventReader Check the next XMLEvent without reading it from the stream. Returns null if the stream is at EOF or has no more XMLEvents. A call to peek() will be equal to the next return of next().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws XMLStreamException
+				</name>
+				<description>
+					Description copied from interface: XMLEventReader Frees any resources associated with this Reader. This method does not close the underlying input source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getElementText()                        throws XMLStreamException
+				</name>
+				<description>
+					Description copied from interface: XMLEventReader Reads the content of a text-only element. Precondition: the current event is START_ELEMENT. Postcondition: The current event is the corresponding END_ELEMENT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLEvent nextTag()                   throws XMLStreamException
+				</name>
+				<description>
+					Description copied from interface: XMLEventReader Skips any insignificant space events until a START_ELEMENT or END_ELEMENT is reached. If anything other than space characters are encountered, an exception is thrown. This method should be used when processing element-only content because the parser is not able to recognize ignorable whitespace if the DTD is missing or not interpreted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getProperty(String name)                     throws IllegalArgumentException
+				</name>
+				<description>
+					Description copied from interface: XMLEventReader Get the value of a feature/property from the underlying implementation
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove()
+				</name>
+				<description>
+					Description copied from interface: Iterator Removes from the underlying collection the last element returned by this iterator (optional operation). This method can be called only once per call to Iterator.next(). The behavior of an iterator is unspecified if the underlying collection is modified while the iteration is in progress in any way other than by calling this method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

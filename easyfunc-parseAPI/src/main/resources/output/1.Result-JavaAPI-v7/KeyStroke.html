@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class KeyStroke  extends AWTKeyStroke
+		</name>
+		<description>
+			A KeyStroke represents a key action on the keyboard, or equivalent input device. KeyStrokes can correspond to only a press or release of a particular key, just as KEY_PRESSED and KEY_RELEASED KeyEvents do; alternately, they can correspond to typing a specific Java character, just as KEY_TYPED KeyEvents do. In all cases, KeyStrokes can specify modifiers (alt, shift, control, meta, altGraph, or a combination thereof) which must be present during the action for an exact match. KeyStrokes are used to define high-level (semantic) action events. Instead of trapping every keystroke and throwing away the ones you are not interested in, those keystrokes you care about automatically initiate actions on the Components with which they are registered. KeyStrokes are immutable, and are intended to be unique. Client code cannot create a KeyStroke; a variant of getKeyStroke must be used instead. These factory methods allow the KeyStroke implementation to cache and share instances efficiently. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static KeyStroke getKeyStroke(char keyChar)
+				</name>
+				<description>
+					Returns a shared instance of a KeyStroke that represents a KEY_TYPED event for the specified character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public static KeyStroke getKeyStroke(char keyChar,                                  boolean onKeyRelease)
+				</name>
+				<description>
+					Deprecated. use getKeyStroke(char) Returns an instance of a KeyStroke, specifying whether the key is considered to be activated when it is pressed or released. Unlike all other factory methods in this class, the instances returned by this method are not necessarily cached or shared.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static KeyStroke getKeyStroke(Character keyChar,                       int modifiers)
+				</name>
+				<description>
+					Returns a shared instance of a KeyStroke that represents a KEY_TYPED event for the specified Character object and a set of modifiers. Note that the first parameter is of type Character rather than char. This is to avoid inadvertent clashes with calls to getKeyStroke(int keyCode, int modifiers). The modifiers consist of any combination of following: java.awt.event.InputEvent.SHIFT_DOWN_MASK java.awt.event.InputEvent.CTRL_DOWN_MASK java.awt.event.InputEvent.META_DOWN_MASK java.awt.event.InputEvent.ALT_DOWN_MASK java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK The old modifiers listed below also can be used, but they are mapped to _DOWN_ modifiers. java.awt.event.InputEvent.SHIFT_MASK java.awt.event.InputEvent.CTRL_MASK java.awt.event.InputEvent.META_MASK java.awt.event.InputEvent.ALT_MASK java.awt.event.InputEvent.ALT_GRAPH_MASK also can be used, but they are mapped to _DOWN_ modifiers. Since these numbers are all different powers of two, any combination of them is an integer in which each bit represents a different modifier key. Use 0 to specify no modifiers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static KeyStroke getKeyStroke(int keyCode,                       int modifiers,                       boolean onKeyRelease)
+				</name>
+				<description>
+					Returns a shared instance of a KeyStroke, given a numeric key code and a set of modifiers, specifying whether the key is activated when it is pressed or released. The "virtual key" constants defined in java.awt.event.KeyEvent can be used to specify the key code. For example: java.awt.event.KeyEvent.VK_ENTER java.awt.event.KeyEvent.VK_TAB java.awt.event.KeyEvent.VK_SPACE Alternatively, the key code may be obtained by calling java.awt.event.KeyEvent.getExtendedKeyCodeForChar. The modifiers consist of any combination of: java.awt.event.InputEvent.SHIFT_DOWN_MASK java.awt.event.InputEvent.CTRL_DOWN_MASK java.awt.event.InputEvent.META_DOWN_MASK java.awt.event.InputEvent.ALT_DOWN_MASK java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK The old modifiers java.awt.event.InputEvent.SHIFT_MASK java.awt.event.InputEvent.CTRL_MASK java.awt.event.InputEvent.META_MASK java.awt.event.InputEvent.ALT_MASK java.awt.event.InputEvent.ALT_GRAPH_MASK also can be used, but they are mapped to _DOWN_ modifiers. Since these numbers are all different powers of two, any combination of them is an integer in which each bit represents a different modifier key. Use 0 to specify no modifiers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static KeyStroke getKeyStroke(int keyCode,                       int modifiers)
+				</name>
+				<description>
+					Returns a shared instance of a KeyStroke, given a numeric key code and a set of modifiers. The returned KeyStroke will correspond to a key press. The "virtual key" constants defined in java.awt.event.KeyEvent can be used to specify the key code. For example: java.awt.event.KeyEvent.VK_ENTER java.awt.event.KeyEvent.VK_TAB java.awt.event.KeyEvent.VK_SPACE Alternatively, the key code may be obtained by calling java.awt.event.KeyEvent.getExtendedKeyCodeForChar. The modifiers consist of any combination of: java.awt.event.InputEvent.SHIFT_DOWN_MASK java.awt.event.InputEvent.CTRL_DOWN_MASK java.awt.event.InputEvent.META_DOWN_MASK java.awt.event.InputEvent.ALT_DOWN_MASK java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK The old modifiers java.awt.event.InputEvent.SHIFT_MASK java.awt.event.InputEvent.CTRL_MASK java.awt.event.InputEvent.META_MASK java.awt.event.InputEvent.ALT_MASK java.awt.event.InputEvent.ALT_GRAPH_MASK also can be used, but they are mapped to _DOWN_ modifiers. Since these numbers are all different powers of two, any combination of them is an integer in which each bit represents a different modifier key. Use 0 to specify no modifiers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static KeyStroke getKeyStrokeForEvent(KeyEvent anEvent)
+				</name>
+				<description>
+					Returns a KeyStroke which represents the stroke which generated a given KeyEvent. This method obtains the keyChar from a KeyTyped event, and the keyCode from a KeyPressed or KeyReleased event. The KeyEvent modifiers are obtained for all three types of KeyEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static KeyStroke getKeyStroke(String s)
+				</name>
+				<description>
+					Parses a string and returns a KeyStroke. The string must have the following syntax:       <modifiers>* (<typedID> | <pressedReleasedID>)        modifiers := shift | control | ctrl | meta | alt | altGraph      typedID := typed <typedKey>      typedKey := string of length 1 giving Unicode character.      pressedReleasedID := (pressed | released) key      key := KeyEvent key code name, i.e. the name following "VK_".   If typed, pressed or released is not specified, pressed is assumed. Here are some examples:        "INSERT" => getKeyStroke(KeyEvent.VK_INSERT, 0);       "control DELETE" => getKeyStroke(KeyEvent.VK_DELETE, InputEvent.CTRL_MASK);       "alt shift X" => getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK | InputEvent.SHIFT_MASK);       "alt shift released X" => getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK | InputEvent.SHIFT_MASK, true);       "typed a" => getKeyStroke('a');   In order to maintain backward-compatibility, specifying a null String, or a String which is formatted incorrectly, returns null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.nio.channels
+	</package>
+	<type>
+		<name>
+			public abstract class Pipe  extends Object
+		</name>
+		<description>
+			A pair of channels that implements a unidirectional pipe. A pipe consists of a pair of channels: A writable sink channel and a readable source channel. Once some bytes are written to the sink channel they can be read from source channel in exactly the order in which they were written. Whether or not a thread writing bytes to a pipe will block until another thread reads those bytes, or some previously-written bytes, from the pipe is system-dependent and therefore unspecified. Many pipe implementations will buffer up to a certain number of bytes between the sink and source channels, but such buffering should not be assumed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Pipe()
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Pipe.SourceChannel source()
+				</name>
+				<description>
+					Returns this pipe's source channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Pipe.SinkChannel sink()
+				</name>
+				<description>
+					Returns this pipe's sink channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Pipe open()                   throws IOException
+				</name>
+				<description>
+					Opens a pipe. The new pipe is created by invoking the openPipe method of the system-wide default SelectorProvider object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

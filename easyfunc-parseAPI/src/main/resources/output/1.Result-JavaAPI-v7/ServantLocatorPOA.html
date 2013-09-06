@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.omg.PortableServer
+	</package>
+	<type>
+		<name>
+			public abstract class ServantLocatorPOA  extends Servant  implements ServantLocatorOperations, InvokeHandler
+		</name>
+		<description>
+			When the POA has the NON_RETAIN policy it uses servant managers that are ServantLocators. Because the POA knows that the servant returned by this servant manager will be used only for a single request, it can supply extra information to the servant manager's operations and the servant manager's pair of operations may be able to cooperate to do something different than a ServantActivator. When the POA uses the ServantLocator interface, immediately after performing the operation invocation on the servant returned by preinvoke, the POA will invoke postinvoke on the servant manager, passing the ObjectId value and the Servant value as parameters (among others). This feature may be used to force every request for objects associated with a POA to be mediated by the servant manager.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ServantLocatorPOA()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream _invoke(String $method,                     InputStream in,                     ResponseHandler $rh)
+				</name>
+				<description>
+					Description copied from interface: InvokeHandler Invoked by the ORB to dispatch a request to the servant. ORB passes the method name, an InputStream containing the marshalled arguments, and a ResponseHandler which the servant uses to construct a proper reply. Only CORBA SystemException may be thrown by this method. The method must return an OutputStream created by the ResponseHandler which contains the marshalled reply. A servant must not retain a reference to the ResponseHandler beyond the lifetime of a method invocation. Servant behaviour is defined as follows: 1. Determine correct method, and unmarshal parameters from InputStream. 2. Invoke method implementation. 3. If no user exception, create a normal reply using ResponseHandler. 4. If user exception occurred, create exception reply using ResponseHandler. 5. Marshal reply into OutputStream returned by ResponseHandler. 6. Return OutputStream to ORB.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] _all_interfaces(POA poa,                         byte[] objectId)
+				</name>
+				<description>
+					Description copied from class: Servant Used by the ORB to obtain complete type information from the servant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServantLocator _this()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServantLocator _this(ORB orb)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

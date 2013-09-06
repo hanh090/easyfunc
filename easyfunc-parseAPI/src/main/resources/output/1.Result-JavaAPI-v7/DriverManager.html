@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.sql
+	</package>
+	<type>
+		<name>
+			public class DriverManager  extends Object
+		</name>
+		<description>
+			The basic service for managing a set of JDBC drivers. NOTE: The DataSource interface, new in the JDBC 2.0 API, provides another way to connect to a data source. The use of a DataSource object is the preferred means of connecting to a data source. As part of its initialization, the DriverManager class will attempt to load the driver classes referenced in the "jdbc.drivers" system property. This allows a user to customize the JDBC Drivers used by their applications. For example in your ~/.hotjava/properties file you might specify:    jdbc.drivers=foo.bah.Driver:wombat.sql.Driver:bad.taste.ourDriver   The DriverManager methods getConnection and getDrivers have been enhanced to support the Java Standard Edition Service Provider mechanism. JDBC 4.0 Drivers must include the file META-INF/services/java.sql.Driver. This file contains the name of the JDBC drivers implementation of java.sql.Driver. For example, to load the my.sql.Driver class, the META-INF/services/java.sql.Driver file would contain the entry:    my.sql.Driver   Applications no longer need to explictly load JDBC drivers using Class.forName(). Existing programs which currently load JDBC drivers using Class.forName() will continue to work without modification. When the method getConnection is called, the DriverManager will attempt to locate a suitable driver from amongst those loaded at initialization and those loaded explicitly using the same classloader as the current applet or application. Starting with the Java 2 SDK, Standard Edition, version 1.3, a logging stream can be set only if the proper permission has been granted. Normally this will be done with the tool PolicyTool, which can be used to grant permission java.sql.SQLPermission "setLog".
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static PrintWriter getLogWriter()
+				</name>
+				<description>
+					Retrieves the log writer. The getLogWriter and setLogWriter methods should be used instead of the get/setlogStream methods, which are deprecated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setLogWriter(PrintWriter out)
+				</name>
+				<description>
+					Sets the logging/tracing PrintWriter object that is used by the DriverManager and all drivers. There is a minor versioning problem created by the introduction of the method setLogWriter. The method setLogWriter cannot create a PrintStream object that will be returned by getLogStream---the Java platform does not provide a backward conversion. As a result, a new application that uses setLogWriter and also uses a JDBC 1.0 driver that uses getLogStream will likely not see debugging information written by that driver. Starting with the Java 2 SDK, Standard Edition, version 1.3 release, this method checks to see that there is an SQLPermission object before setting the logging stream. If a SecurityManager exists and its checkPermission method denies setting the log writer, this method throws a java.lang.SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Connection getConnection(String url,                         Properties info)                                  throws SQLException
+				</name>
+				<description>
+					Attempts to establish a connection to the given database URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Connection getConnection(String url,                         String user,                         String password)                                  throws SQLException
+				</name>
+				<description>
+					Attempts to establish a connection to the given database URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Connection getConnection(String url)                                  throws SQLException
+				</name>
+				<description>
+					Attempts to establish a connection to the given database URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Driver getDriver(String url)                          throws SQLException
+				</name>
+				<description>
+					Attempts to locate a driver that understands the given URL. The DriverManager attempts to select an appropriate driver from the set of registered JDBC drivers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void registerDriver(Driver driver)                             throws SQLException
+				</name>
+				<description>
+					Registers the given driver with the DriverManager. A newly-loaded driver class should call the method registerDriver to make itself known to the DriverManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void deregisterDriver(Driver driver)                               throws SQLException
+				</name>
+				<description>
+					Drops a driver from the DriverManager's list. Applets can only deregister drivers from their own classloaders.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Enumeration<Driver> getDrivers()
+				</name>
+				<description>
+					Retrieves an Enumeration with all of the currently loaded JDBC drivers to which the current caller has access. Note: The classname of a driver can be found using d.getClass().getName()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setLoginTimeout(int seconds)
+				</name>
+				<description>
+					Sets the maximum time in seconds that a driver will wait while attempting to connect to a database.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int getLoginTimeout()
+				</name>
+				<description>
+					Gets the maximum time in seconds that a driver can wait when attempting to log in to a database.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setLogStream(PrintStream out)
+				</name>
+				<description>
+					Deprecated.  Sets the logging/tracing PrintStream that is used by the DriverManager and all drivers. In the Java 2 SDK, Standard Edition, version 1.3 release, this method checks to see that there is an SQLPermission object before setting the logging stream. If a SecurityManager exists and its checkPermission method denies setting the log writer, this method throws a java.lang.SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PrintStream getLogStream()
+				</name>
+				<description>
+					Deprecated.  Retrieves the logging/tracing PrintStream that is used by the DriverManager and all drivers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void println(String message)
+				</name>
+				<description>
+					Prints a message to the current JDBC log stream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

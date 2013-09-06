@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.xml.bind.annotation
+	</package>
+	<type>
+		<name>
+			public class W3CDomHandler  extends Object  implements DomHandler<Element,DOMResult>
+		</name>
+		<description>
+			DomHandler implementation for W3C DOM (org.w3c.dom package.)
+		</description>
+		<methods>
+			<method>
+				<name>
+					public W3CDomHandler()
+				</name>
+				<description>
+					Default constructor. It is up to a JAXB provider to decide which DOM implementation to use or how that is configured.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public W3CDomHandler(DocumentBuilder builder)
+				</name>
+				<description>
+					Constructor that allows applications to specify which DOM implementation to be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DocumentBuilder getBuilder()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBuilder(DocumentBuilder builder)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DOMResult createUnmarshaller(ValidationEventHandler errorHandler)
+				</name>
+				<description>
+					Description copied from interface: DomHandler When a JAXB provider needs to unmarshal a part of a document into an infoset representation, it first calls this method to create a Result object. A JAXB provider will then send a portion of the XML into the given result. Such a portion always form a subtree of the whole XML document rooted at an element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element getElement(DOMResult r)
+				</name>
+				<description>
+					Description copied from interface: DomHandler Once the portion is sent to the Result. This method is called by a JAXB provider to obtain the unmarshalled element representation. Multiple invocations of this method may return different objects. This method can be invoked only when the whole sub-tree are fed to the Result object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Source marshal(Element element,               ValidationEventHandler errorHandler)
+				</name>
+				<description>
+					Description copied from interface: DomHandler This method is called when a JAXB provider needs to marshal an element to XML. If non-null, the returned Source must contain a whole document rooted at one element, which will then be weaved into a bigger document that the JAXB provider is marshalling.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

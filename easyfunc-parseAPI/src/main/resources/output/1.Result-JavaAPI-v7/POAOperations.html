@@ -1,0 +1,306 @@
+<javaelement>
+	<package>
+		org.omg.PortableServer
+	</package>
+	<type>
+		<name>
+			public interface POAOperations
+		</name>
+		<description>
+			A POA object manages the implementation of a collection of objects. The POA supports a name space for the objects, which are identified by Object Ids. A POA also provides a name space for POAs. A POA is created as a child of an existing POA, which forms a hierarchy starting with the root POA. A POA object must not be exported to other processes, or externalized with ORB::object_to_string.
+		</description>
+		<methods>
+			<method>
+				<name>
+					POA create_POA(String adapter_name,               POAManager a_POAManager,               Policy[] policies)                 throws AdapterAlreadyExists,                        InvalidPolicy
+				</name>
+				<description>
+					This operation creates a new POA as a child of the target POA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					POA find_POA(String adapter_name,             boolean activate_it)               throws AdapterNonExistent
+				</name>
+				<description>
+					If the target POA is the parent of a child POA with the specified name (relative to the target POA), that child POA is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void destroy(boolean etherealize_objects,             boolean wait_for_completion)
+				</name>
+				<description>
+					This operation destroys the POA and all descendant POAs. All descendant POAs are destroyed (recursively) before the destruction of the containing POA. The POA so destroyed (that is, the POA with its name) may be re-created later in the same process.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ThreadPolicy create_thread_policy(ThreadPolicyValue value)
+				</name>
+				<description>
+					These operations each return a reference to a policy object with the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					LifespanPolicy create_lifespan_policy(LifespanPolicyValue value)
+				</name>
+				<description>
+					These operations each return a reference to a policy object with the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					IdUniquenessPolicy create_id_uniqueness_policy(IdUniquenessPolicyValue value)
+				</name>
+				<description>
+					These operations each return a reference to a policy object with the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					IdAssignmentPolicy create_id_assignment_policy(IdAssignmentPolicyValue value)
+				</name>
+				<description>
+					These operations each return a reference to a policy object with the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ImplicitActivationPolicy create_implicit_activation_policy(ImplicitActivationPolicyValue value)
+				</name>
+				<description>
+					These operations each return a reference to a policy object with the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ServantRetentionPolicy create_servant_retention_policy(ServantRetentionPolicyValue value)
+				</name>
+				<description>
+					These operations each return a reference to a policy object with the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RequestProcessingPolicy create_request_processing_policy(RequestProcessingPolicyValue value)
+				</name>
+				<description>
+					These operations each return a reference to a policy object with the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String the_name()
+				</name>
+				<description>
+					This attribute identifies the POA relative to its parent. This name is assigned when the POA is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					POA the_parent()
+				</name>
+				<description>
+					This attribute identifies the parent of the POA. The parent of the root POA is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					POA[] the_children()
+				</name>
+				<description>
+					This attribute identifies the current set of all child POAs of the POA. The set of child POAs includes only the POA's immediate children, and not their descendants.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					POAManager the_POAManager()
+				</name>
+				<description>
+					This attribute identifies the POA manager associated with the POA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AdapterActivator the_activator()
+				</name>
+				<description>
+					This attribute identifies the adapter activator associated with the POA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void the_activator(AdapterActivator newThe_activator)
+				</name>
+				<description>
+					This attribute identifies the adapter activator associated with the POA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ServantManager get_servant_manager()                                     throws WrongPolicy
+				</name>
+				<description>
+					If the ServantRetentionPolicy of the POA is RETAIN, then the ServantManager argument (imgr) shall support the ServantActivator interface. For a NON_RETAIN policy, the ServantManager shall support the ServantLocator interface. If the argument is nil, or does not support the required interface, then the OBJ_ADAPTER exception is raised.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void set_servant_manager(ServantManager imgr)                           throws WrongPolicy
+				</name>
+				<description>
+					This operation sets the default servant manager associated with the POA. This operation may only be invoked once after a POA has been created. Attempting to set the servant manager after one has already been set will result in the BAD_INV_ORDER exception being raised.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Servant get_servant()                      throws NoServant,                             WrongPolicy
+				</name>
+				<description>
+					This operation returns the default servant associated with the POA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void set_servant(Servant p_servant)                   throws WrongPolicy
+				</name>
+				<description>
+					This operation registers the specified servant with the POA as the default servant. This servant will be used for all requests for which no servant is found in the Active Object Map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] activate_object(Servant p_servant)                         throws ServantAlreadyActive,                                WrongPolicy
+				</name>
+				<description>
+					This operation generates an Object Id and enters the Object Id and the specified servant in the Active Object Map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void activate_object_with_id(byte[] id,                             Servant p_servant)                               throws ServantAlreadyActive,                                      ObjectAlreadyActive,                                      WrongPolicy
+				</name>
+				<description>
+					This operation enters an association between the specified Object Id and the specified servant in the Active Object Map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void deactivate_object(byte[] oid)                         throws ObjectNotActive,                                WrongPolicy
+				</name>
+				<description>
+					This operation causes the ObjectId specified in the oid parameter to be deactivated. An ObjectId which has been deactivated continues to process requests until there are no active requests for that ObjectId. A deactivated ObjectId is removed from the Active Object Map when all requests executing for that ObjectId have completed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object create_reference(String intf)                          throws WrongPolicy
+				</name>
+				<description>
+					This operation creates an object reference that encapsulates a POA-generated Object Id value and the specified interface repository id.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object create_reference_with_id(byte[] oid,                                String intf)
+				</name>
+				<description>
+					This operation creates an object reference that encapsulates the specified Object Id and interface repository Id values. It does not cause an activation to take place. The resulting reference may be passed to clients, so that subsequent requests on those references will cause the object to be activated if necessary, or the default servant used, depending on the applicable policies.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] servant_to_id(Servant p_servant)                       throws ServantNotActive,                              WrongPolicy
+				</name>
+				<description>
+					This operation has four possible behaviors. 1. If the POA has the UNIQUE_ID policy and the specified servant is active, the Object Id associated with that servant is returned. 2. If the POA has the IMPLICIT_ACTIVATION policy and either the POA has the MULTIPLE_ID policy or the specified servant is not active, the servant is activated using a POA-generated Object Id and the Interface Id associated with the servant, and that Object Id is returned. 3. If the POA has the USE_DEFAULT_SERVANT policy, the servant specified is the default servant, and the operation is being invoked in the context of executing a request on the default servant, then the ObjectId associated with the current invocation is returned. 4. Otherwise, the ServantNotActive exception is raised.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object servant_to_reference(Servant p_servant)                              throws ServantNotActive,                                     WrongPolicy
+				</name>
+				<description>
+					This operation requires the RETAIN policy and either the UNIQUE_ID or IMPLICIT_ACTIVATION policies if invoked outside the context of an operation dispatched by this POA. It has four possible behaviors. 1. If the POA has both the RETAIN and the UNIQUE_ID policy and the specified servant is active, an object reference encapsulating the information used to activate the servant is returned. 2. If the POA has both the RETAIN and the IMPLICIT_ACTIVATION policy and either the POA has the MULTIPLE_ID policy or the specified servant is not active, the servant is activated using a POA-generated Object Id and the Interface Id associated with the servant, and a corresponding object reference is returned. 3. If the operation was invoked in the context of executing a request on the specified servant, the reference associated with the current invocation is returned. 4. Otherwise, the ServantNotActive exception is raised.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Servant reference_to_servant(Object reference)                               throws ObjectNotActive,                                      WrongPolicy,                                      WrongAdapter
+				</name>
+				<description>
+					If the POA has the RETAIN policy and the specified object is present in the Active Object Map, this operation returns the servant associated with that object in the Active Object Map. Otherwise, if the POA has the USE_DEFAULT_SERVANT policy and a default servant has been registered with the POA, this operation returns the default servant. If the object reference was not created by this POA, the WrongAdapter exception is raised. (OMG Issue on inconsistency with the POA.IDL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] reference_to_id(Object reference)                         throws WrongAdapter,                                WrongPolicy
+				</name>
+				<description>
+					This operation returns the Object Id value encapsulated by the specified reference. This operation is valid only if the reference was created by the POA on which the operation is being performed. The object denoted by the reference does not have to be active for this operation to succeed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Servant id_to_servant(byte[] oid)                        throws ObjectNotActive,                               WrongPolicy
+				</name>
+				<description>
+					If the POA has the RETAIN policy and the specified ObjectId is in the Active Object Map, this operation returns the servant associated with that object in the Active Object Map. Otherwise, if the POA has the USE_DEFAULT_SERVANT policy and a default servant has been registered with the POA, this operation returns the default servant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object id_to_reference(byte[] oid)                         throws ObjectNotActive,                                WrongPolicy
+				</name>
+				<description>
+					If an object with the specified Object Id value is currently active, a reference encapsulating the information used to activate the object is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] id()
+				</name>
+				<description>
+					This returns the unique id of the POA in the process in which it is created. It is for use by portable interceptors. This id is guaranteed unique for the life span of the POA in the process. For persistent POAs, this means that if a POA is created in the same path with the same name as another POA, these POAs are identical and, therefore, have the same id. For transient POAs, each POA is unique.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class ProgressMonitor  extends Object  implements Accessible
+		</name>
+		<description>
+			A class to monitor the progress of some operation. If it looks like the operation will take a while, a progress dialog will be popped up. When the ProgressMonitor is created it is given a numeric range and a descriptive string. As the operation progresses, call the setProgress method to indicate how far along the [min,max] range the operation is. Initially, there is no ProgressDialog. After the first millisToDecideToPopup milliseconds (default 500) the progress monitor will predict how long the operation will take. If it is longer than millisToPopup (default 2000, 2 seconds) a ProgressDialog will be popped up. From time to time, when the Dialog box is visible, the progress bar will be updated when setProgress is called. setProgress won't always update the progress bar, it will only be done if the amount of progress is visibly significant. For further documentation and examples see How to Monitor Progress, a section in The Java Tutorial.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AccessibleContext accessibleContext
+				</name>
+				<description>
+					The AccessibleContext for the ProgressMonitor
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ProgressMonitor(Component parentComponent,                 Object message,                 String note,                 int min,                 int max)
+				</name>
+				<description>
+					Constructs a graphic object that shows progress, typically by filling in a rectangular bar as the process nears completion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setProgress(int nv)
+				</name>
+				<description>
+					Indicate the progress of the operation being monitored. If the specified value is >= the maximum, the progress monitor is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()
+				</name>
+				<description>
+					Indicate that the operation is complete. This happens automatically when the value set by setProgress is >= max, but it may be called earlier if the operation ends early.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinimum()
+				</name>
+				<description>
+					Returns the minimum value -- the lower end of the progress value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMinimum(int m)
+				</name>
+				<description>
+					Specifies the minimum value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaximum()
+				</name>
+				<description>
+					Returns the maximum value -- the higher end of the progress value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaximum(int m)
+				</name>
+				<description>
+					Specifies the maximum value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCanceled()
+				</name>
+				<description>
+					Returns true if the user hits the Cancel button in the progress dialog.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMillisToDecideToPopup(int millisToDecideToPopup)
+				</name>
+				<description>
+					Specifies the amount of time to wait before deciding whether or not to popup a progress monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMillisToDecideToPopup()
+				</name>
+				<description>
+					Returns the amount of time this object waits before deciding whether or not to popup a progress monitor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMillisToPopup(int millisToPopup)
+				</name>
+				<description>
+					Specifies the amount of time it will take for the popup to appear. (If the predicted time remaining is less than this time, the popup won't be displayed.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMillisToPopup()
+				</name>
+				<description>
+					Returns the amount of time it will take for the popup to appear.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNote(String note)
+				</name>
+				<description>
+					Specifies the additional note that is displayed along with the progress message. Used, for example, to show which file the is currently being copied during a multiple-file copy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNote()
+				</name>
+				<description>
+					Specifies the additional note that is displayed along with the progress message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext for the ProgressMonitor
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

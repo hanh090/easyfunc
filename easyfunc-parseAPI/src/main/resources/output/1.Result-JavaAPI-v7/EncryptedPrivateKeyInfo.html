@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.crypto
+	</package>
+	<type>
+		<name>
+			public class EncryptedPrivateKeyInfo  extends Object
+		</name>
+		<description>
+			This class implements the EncryptedPrivateKeyInfo type as defined in PKCS #8. Its ASN.1 definition is as follows:    EncryptedPrivateKeyInfo ::=  SEQUENCE {       encryptionAlgorithm   AlgorithmIdentifier,       encryptedData   OCTET STRING }     AlgorithmIdentifier  ::=  SEQUENCE  {       algorithm              OBJECT IDENTIFIER,       parameters             ANY DEFINED BY algorithm OPTIONAL  }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public EncryptedPrivateKeyInfo(byte[] encoded)                          throws IOException
+				</name>
+				<description>
+					Constructs (i.e., parses) an EncryptedPrivateKeyInfo from its ASN.1 encoding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EncryptedPrivateKeyInfo(String algName,                         byte[] encryptedData)                          throws NoSuchAlgorithmException
+				</name>
+				<description>
+					Constructs an EncryptedPrivateKeyInfo from the encryption algorithm name and the encrypted data. Note: This constructor will use null as the value of the algorithm parameters. If the encryption algorithm has parameters whose value is not null, a different constructor, e.g. EncryptedPrivateKeyInfo(AlgorithmParameters, byte[]), should be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EncryptedPrivateKeyInfo(AlgorithmParameters algParams,                         byte[] encryptedData)                          throws NoSuchAlgorithmException
+				</name>
+				<description>
+					Constructs an EncryptedPrivateKeyInfo from the encryption algorithm parameters and the encrypted data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAlgName()
+				</name>
+				<description>
+					Returns the encryption algorithm. Note: Standard name is returned instead of the specified one in the constructor when such mapping is available. See Appendix A in the Java Cryptography Architecture Reference Guide for information about standard Cipher algorithm names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AlgorithmParameters getAlgParameters()
+				</name>
+				<description>
+					Returns the algorithm parameters used by the encryption algorithm.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getEncryptedData()
+				</name>
+				<description>
+					Returns the encrypted data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PKCS8EncodedKeySpec getKeySpec(Cipher cipher)                                 throws InvalidKeySpecException
+				</name>
+				<description>
+					Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it. Note: In order to successfully retrieve the enclosed PKCS8EncodedKeySpec object, cipher needs to be initialized to either Cipher.DECRYPT_MODE or Cipher.UNWRAP_MODE, with the same key and parameters used for generating the encrypted data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PKCS8EncodedKeySpec getKeySpec(Key decryptKey)                                 throws NoSuchAlgorithmException,                                        InvalidKeyException
+				</name>
+				<description>
+					Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PKCS8EncodedKeySpec getKeySpec(Key decryptKey,                               String providerName)                                 throws NoSuchProviderException,                                        NoSuchAlgorithmException,                                        InvalidKeyException
+				</name>
+				<description>
+					Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PKCS8EncodedKeySpec getKeySpec(Key decryptKey,                               Provider provider)                                 throws NoSuchAlgorithmException,                                        InvalidKeyException
+				</name>
+				<description>
+					Extract the enclosed PKCS8EncodedKeySpec object from the encrypted data and return it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getEncoded()                    throws IOException
+				</name>
+				<description>
+					Returns the ASN.1 encoding of this object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

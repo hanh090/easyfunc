@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.text
+	</package>
+	<type>
+		<name>
+			public class FieldPosition  extends Object
+		</name>
+		<description>
+			FieldPosition is a simple class used by Format and its subclasses to identify fields in formatted output. Fields can be identified in two ways: By an integer constant, whose names typically end with _FIELD. The constants are defined in the various subclasses of Format. By a Format.Field constant, see ERA_FIELD and its friends in DateFormat for an example. FieldPosition keeps track of the position of the field within the formatted output with two indices: the index of the first character of the field and the index of the last character of the field. One version of the format method in the various Format classes requires a FieldPosition object as an argument. You use this format method to perform partial formatting or to get information about the formatted output (such as the position of a field). If you are interested in the positions of all attributes in the formatted string use the Format method formatToCharacterIterator.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FieldPosition(int field)
+				</name>
+				<description>
+					Creates a FieldPosition object for the given field. Fields are identified by constants, whose names typically end with _FIELD, in the various subclasses of Format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FieldPosition(Format.Field attribute)
+				</name>
+				<description>
+					Creates a FieldPosition object for the given field constant. Fields are identified by constants defined in the various Format subclasses. This is equivalent to calling new FieldPosition(attribute, -1).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FieldPosition(Format.Field attribute,               int fieldID)
+				</name>
+				<description>
+					Creates a FieldPosition object for the given field. The field is identified by an attribute constant from one of the Field subclasses as well as an integer field ID defined by the Format subclasses. Format subclasses that are aware of Field should give precedence to attribute and ignore fieldID if attribute is not null. However, older Format subclasses may not be aware of Field and rely on fieldID. If the field has no corresponding integer constant, fieldID should be -1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Format.Field getFieldAttribute()
+				</name>
+				<description>
+					Returns the field identifier as an attribute constant from one of the Field subclasses. May return null if the field is specified only by an integer field ID.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getField()
+				</name>
+				<description>
+					Retrieves the field identifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBeginIndex()
+				</name>
+				<description>
+					Retrieves the index of the first character in the requested field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getEndIndex()
+				</name>
+				<description>
+					Retrieves the index of the character following the last character in the requested field.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBeginIndex(int bi)
+				</name>
+				<description>
+					Sets the begin index. For use by subclasses of Format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEndIndex(int ei)
+				</name>
+				<description>
+					Sets the end index. For use by subclasses of Format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Overrides equals
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code for this FieldPosition.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Return a string representation of this FieldPosition.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

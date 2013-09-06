@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.jws
+	</package>
+	<type>
+		<name>
+			@Retention(value=RUNTIME)  @Target(value=METHOD)  public @interface WebMethod
+		</name>
+		<description>
+			Customizes a method that is exposed as a Web Service operation. The associated method must be public and its parameters return value, and exceptions must follow the rules defined in JAX-RPC 1.1, section 5. The method is not required to throw java.rmi.RemoteException.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String operationName
+				</name>
+				<description>
+					Name of the wsdl:operation matching this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String action
+				</name>
+				<description>
+					The action for this operation. For SOAP bindings, this determines the value of the soap action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean exclude
+				</name>
+				<description>
+					Marks a method to NOT be exposed as a web method. Used to stop an inherited method from being exposed as part of this web service. If this element is specified, other elements MUST NOT be specified for the @WebMethod. This member-value is not allowed on endpoint interfaces.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

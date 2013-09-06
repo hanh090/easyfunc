@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public interface PropertyEditor
+		</name>
+		<description>
+			A PropertyEditor class provides support for GUIs that want to allow users to edit a property value of a given type. PropertyEditor supports a variety of different kinds of ways of displaying and updating property values. Most PropertyEditors will only need to support a subset of the different options available in this API. Simple PropertyEditors may only support the getAsText and setAsText methods and need not support (say) paintValue or getCustomEditor. More complex types may be unable to support getAsText and setAsText but will instead support paintValue and getCustomEditor. Every propertyEditor must support one or more of the three simple display styles. Thus it can either (1) support isPaintable or (2) both return a non-null String[] from getTags() and return a non-null value from getAsText or (3) simply return a non-null String from getAsText(). Every property editor must support a call on setValue when the argument object is of the type for which this is the corresponding propertyEditor. In addition, each property editor must either support a custom editor, or support setAsText. Each PropertyEditor should have a null constructor.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void setValue(Object value)
+				</name>
+				<description>
+					Set (or change) the object that is to be edited. Primitive types such as "int" must be wrapped as the corresponding object type such as "java.lang.Integer".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getValue()
+				</name>
+				<description>
+					Gets the property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isPaintable()
+				</name>
+				<description>
+					Determines whether this property editor is paintable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void paintValue(Graphics gfx,                Rectangle box)
+				</name>
+				<description>
+					Paint a representation of the value into a given area of screen real estate. Note that the propertyEditor is responsible for doing its own clipping so that it fits into the given rectangle. If the PropertyEditor doesn't honor paint requests (see isPaintable) this method should be a silent noop. The given Graphics object will have the default font, color, etc of the parent container. The PropertyEditor may change graphics attributes such as font and color and doesn't need to restore the old values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getJavaInitializationString()
+				</name>
+				<description>
+					Returns a fragment of Java code that can be used to set a property to match the editors current state. This method is intended for use when generating Java code to reflect changes made through the property editor. The code fragment should be context free and must be a legal Java expression as specified by the JLS. Specifically, if the expression represents a computation then all classes and static members should be fully qualified. This rule applies to constructors, static methods and non primitive arguments. Caution should be used when evaluating the expression as it may throw exceptions. In particular, code generators must ensure that generated code will compile in the presence of an expression that can throw checked exceptions. Example results are: Primitive expresssion: 2 Class constructor: new java.awt.Color(127,127,34) Static field: java.awt.Color.orange Static method: javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 5))
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getAsText()
+				</name>
+				<description>
+					Gets the property value as text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setAsText(String text)                 throws IllegalArgumentException
+				</name>
+				<description>
+					Set the property value by parsing a given String. May raise java.lang.IllegalArgumentException if either the String is badly formatted or if this kind of property can't be expressed as text.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getTags()
+				</name>
+				<description>
+					If the property value must be one of a set of known tagged values, then this method should return an array of the tags. This can be used to represent (for example) enum values. If a PropertyEditor supports tags, then it should support the use of setAsText with a tag value as a way of setting the value and the use of getAsText to identify the current value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Component getCustomEditor()
+				</name>
+				<description>
+					A PropertyEditor may choose to make available a full custom Component that edits its property value. It is the responsibility of the PropertyEditor to hook itself up to its editor Component itself and to report property value changes by firing a PropertyChange event. The higher-level code that calls getCustomEditor may either embed the Component in some larger property sheet, or it may put it in its own individual dialog, or ...
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean supportsCustomEditor()
+				</name>
+				<description>
+					Determines whether this property editor supports a custom editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addPropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Adds a listener for the value change. When the property editor changes its value it should fire a PropertyChangeEvent on all registered PropertyChangeListeners, specifying the null value for the property name and itself as the source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removePropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Removes a listener for the value change.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

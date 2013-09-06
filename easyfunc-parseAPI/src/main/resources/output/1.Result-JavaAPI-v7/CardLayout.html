@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class CardLayout  extends Object  implements LayoutManager2, Serializable
+		</name>
+		<description>
+			A CardLayout object is a layout manager for a container. It treats each component in the container as a card. Only one card is visible at a time, and the container acts as a stack of cards. The first component added to a CardLayout object is the visible component when the container is first displayed. The ordering of cards is determined by the container's own internal ordering of its component objects. CardLayout defines a set of methods that allow an application to flip through these cards sequentially, or to show a specified card. The addLayoutComponent(java.awt.Component, java.lang.Object) method can be used to associate a string identifier with a given card for fast random access.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CardLayout()
+				</name>
+				<description>
+					Creates a new card layout with gaps of size zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CardLayout(int hgap,            int vgap)
+				</name>
+				<description>
+					Creates a new card layout with the specified horizontal and vertical gaps. The horizontal gaps are placed at the left and right edges. The vertical gaps are placed at the top and bottom edges.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHgap()
+				</name>
+				<description>
+					Gets the horizontal gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHgap(int hgap)
+				</name>
+				<description>
+					Sets the horizontal gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVgap()
+				</name>
+				<description>
+					Gets the vertical gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVgap(int vgap)
+				</name>
+				<description>
+					Sets the vertical gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addLayoutComponent(Component comp,                        Object constraints)
+				</name>
+				<description>
+					Adds the specified component to this card layout's internal table of names. The object specified by constraints must be a string. The card layout stores this string as a key-value pair that can be used for random access to a particular card. By calling the show method, an application can display the component with the specified name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void addLayoutComponent(String name,                                   Component comp)
+				</name>
+				<description>
+					Deprecated. replaced by addLayoutComponent(Component, Object). Description copied from interface: LayoutManager If the layout manager uses a per-component string, adds the component comp to the layout, associating it with the string specified by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeLayoutComponent(Component comp)
+				</name>
+				<description>
+					Removes the specified component from the layout. If the card was visible on top, the next card underneath it is shown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension preferredLayoutSize(Container parent)
+				</name>
+				<description>
+					Determines the preferred size of the container argument using this card layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension minimumLayoutSize(Container parent)
+				</name>
+				<description>
+					Calculates the minimum size for the specified panel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension maximumLayoutSize(Container target)
+				</name>
+				<description>
+					Returns the maximum dimensions for this layout given the components in the specified target container.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getLayoutAlignmentX(Container parent)
+				</name>
+				<description>
+					Returns the alignment along the x axis. This specifies how the component would like to be aligned relative to other components. The value should be a number between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the furthest away from the origin, 0.5 is centered, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getLayoutAlignmentY(Container parent)
+				</name>
+				<description>
+					Returns the alignment along the y axis. This specifies how the component would like to be aligned relative to other components. The value should be a number between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the furthest away from the origin, 0.5 is centered, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void invalidateLayout(Container target)
+				</name>
+				<description>
+					Invalidates the layout, indicating that if the layout manager has cached information it should be discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void layoutContainer(Container parent)
+				</name>
+				<description>
+					Lays out the specified container using this card layout. Each component in the parent container is reshaped to be the size of the container, minus space for surrounding insets, horizontal gaps, and vertical gaps.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void first(Container parent)
+				</name>
+				<description>
+					Flips to the first card of the container.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void next(Container parent)
+				</name>
+				<description>
+					Flips to the next card of the specified container. If the currently visible card is the last one, this method flips to the first card in the layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void previous(Container parent)
+				</name>
+				<description>
+					Flips to the previous card of the specified container. If the currently visible card is the first one, this method flips to the last card in the layout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void last(Container parent)
+				</name>
+				<description>
+					Flips to the last card of the container.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void show(Container parent,          String name)
+				</name>
+				<description>
+					Flips to the component that was added to this layout with the specified name, using addLayoutComponent. If no such component exists, then nothing happens.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of the state of this card layout.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

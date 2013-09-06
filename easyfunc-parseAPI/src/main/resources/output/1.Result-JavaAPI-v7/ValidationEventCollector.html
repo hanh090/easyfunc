@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.xml.bind.util
+	</package>
+	<type>
+		<name>
+			public class ValidationEventCollector  extends Object  implements ValidationEventHandler
+		</name>
+		<description>
+			ValidationEventHandler implementation that collects all events. To use this class, create a new instance and pass it to the setEventHandler method of the Validator, Unmarshaller, Marshaller class. After the call to validate or unmarshal completes, call the getEvents method to retrieve all the reported errors and warnings.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ValidationEventCollector()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ValidationEvent[] getEvents()
+				</name>
+				<description>
+					Return an array of ValidationEvent objects containing a copy of each of the collected errors and warnings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()
+				</name>
+				<description>
+					Clear all collected errors and warnings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasEvents()
+				</name>
+				<description>
+					Returns true if this event collector contains at least one ValidationEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean handleEvent(ValidationEvent event)
+				</name>
+				<description>
+					Description copied from interface: ValidationEventHandler Receive notification of a validation warning or error. The ValidationEvent will have a ValidationEventLocator embedded in it that indicates where the error or warning occurred. If an unchecked runtime exception is thrown from this method, the JAXB provider will treat it as if the method returned false and interrupt the current unmarshal, validate, or marshal operation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

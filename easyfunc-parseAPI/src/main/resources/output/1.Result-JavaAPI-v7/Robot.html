@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class Robot  extends Object
+		</name>
+		<description>
+			This class is used to generate native system input events for the purposes of test automation, self-running demos, and other applications where control of the mouse and keyboard is needed. The primary purpose of Robot is to facilitate automated testing of Java platform implementations. Using the class to generate input events differs from posting events to the AWT event queue or AWT components in that the events are generated in the platform's native input queue. For example, Robot.mouseMove will actually move the mouse cursor instead of just generating mouse move events. Note that some platforms require special privileges or extensions to access low-level input control. If the current platform configuration does not allow input control, an AWTException will be thrown when trying to construct Robot objects. For example, X-Window systems will throw the exception if the XTEST 2.2 standard extension is not supported (or not enabled) by the X server. Applications that use Robot for purposes other than self-testing should handle these error conditions gracefully.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Robot()        throws AWTException
+				</name>
+				<description>
+					Constructs a Robot object in the coordinate system of the primary screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Robot(GraphicsDevice screen)        throws AWTException
+				</name>
+				<description>
+					Creates a Robot for the given screen device. Coordinates passed to Robot method calls like mouseMove and createScreenCapture will be interpreted as being in the same coordinate system as the specified screen. Note that depending on the platform configuration, multiple screens may either: share the same coordinate system to form a combined virtual screen use different coordinate systems to act as independent screens This constructor is meant for the latter case. If screen devices are reconfigured such that the coordinate system is affected, the behavior of existing Robot objects is undefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mouseMove(int x,               int y)
+				</name>
+				<description>
+					Moves mouse pointer to given screen coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mousePress(int buttons)
+				</name>
+				<description>
+					Presses one or more mouse buttons. The mouse buttons should be released using the mouseRelease(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mouseRelease(int buttons)
+				</name>
+				<description>
+					Releases one or more mouse buttons.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mouseWheel(int wheelAmt)
+				</name>
+				<description>
+					Rotates the scroll wheel on wheel-equipped mice.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void keyPress(int keycode)
+				</name>
+				<description>
+					Presses a given key. The key should be released using the keyRelease method. Key codes that have more than one physical key associated with them (e.g. KeyEvent.VK_SHIFT could mean either the left or right shift key) will map to the left key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void keyRelease(int keycode)
+				</name>
+				<description>
+					Releases a given key. Key codes that have more than one physical key associated with them (e.g. KeyEvent.VK_SHIFT could mean either the left or right shift key) will map to the left key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getPixelColor(int x,                    int y)
+				</name>
+				<description>
+					Returns the color of a pixel at the given screen coordinates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedImage createScreenCapture(Rectangle screenRect)
+				</name>
+				<description>
+					Creates an image containing pixels read from the screen. This image does not include the mouse cursor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAutoWaitForIdle()
+				</name>
+				<description>
+					Returns whether this Robot automatically invokes waitForIdle after generating an event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAutoWaitForIdle(boolean isOn)
+				</name>
+				<description>
+					Sets whether this Robot automatically invokes waitForIdle after generating an event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAutoDelay()
+				</name>
+				<description>
+					Returns the number of milliseconds this Robot sleeps after generating an event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAutoDelay(int ms)
+				</name>
+				<description>
+					Sets the number of milliseconds this Robot sleeps after generating an event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void delay(int ms)
+				</name>
+				<description>
+					Sleeps for the specified time. To catch any InterruptedExceptions that occur, Thread.sleep() may be used instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void waitForIdle()
+				</name>
+				<description>
+					Waits until all events currently on the event queue have been processed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this Robot.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

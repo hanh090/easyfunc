@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.lang.model.element
+	</package>
+	<type>
+		<name>
+			public enum NestingKind  extends Enum<NestingKind>
+		</name>
+		<description>
+			The nesting kind of a type element. Type elements come in four varieties: top-level, member, local, and anonymous. Nesting kind is a non-standard term used here to denote this classification. Note that it is possible additional nesting kinds will be added in future versions of the platform. Example: The classes below are annotated with their nesting kind.      import java.lang.annotation.*;   import static java.lang.annotation.RetentionPolicy.*;   import javax.lang.model.element.*;   import static javax.lang.model.element.NestingKind.*;     @Nesting(TOP_LEVEL)   public class NestingExamples {       @Nesting(MEMBER)       static class MemberClass1{}         @Nesting(MEMBER)       class MemberClass2{}         public static void main(String... argv) {           @Nesting(LOCAL)           class LocalClass{};             Class<?>[] classes = {               NestingExamples.class,               MemberClass1.class,               MemberClass2.class,               LocalClass.class           };             for(Class<?> clazz : classes) {               System.out.format("%s is %s%n",                                 clazz.getName(),                                 clazz.getAnnotation(Nesting.class).value());           }       }   }     @Retention(RUNTIME)   @interface Nesting {       NestingKind value();   }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final NestingKind TOP_LEVEL
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final NestingKind MEMBER
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final NestingKind LOCAL
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final NestingKind ANONYMOUS
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static NestingKind[] values()
+				</name>
+				<description>
+					Returns an array containing the constants of this enum type, in the order they are declared. This method may be used to iterate over the constants as follows:   for (NestingKind c : NestingKind.values())      System.out.println(c);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static NestingKind valueOf(String name)
+				</name>
+				<description>
+					Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNested()
+				</name>
+				<description>
+					Does this constant correspond to a nested type element? A nested type element is any that is not top-level. An inner type element is any nested type element that is not static.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

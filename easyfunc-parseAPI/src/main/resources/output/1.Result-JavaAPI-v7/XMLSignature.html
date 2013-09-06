@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig
+	</package>
+	<type>
+		<name>
+			public interface XMLSignature  extends XMLStructure
+		</name>
+		<description>
+			A representation of the XML Signature element as defined in the W3C Recommendation for XML-Signature Syntax and Processing. This class contains methods for signing and validating XML signatures with behavior as defined by the W3C specification. The XML Schema Definition is defined as:    <element name="Signature" type="ds:SignatureType"/>   <complexType name="SignatureType">      <sequence>        <element ref="ds:SignedInfo"/>        <element ref="ds:SignatureValue"/>        <element ref="ds:KeyInfo" minOccurs="0"/>        <element ref="ds:Object" minOccurs="0" maxOccurs="unbounded"/>      </sequence>      <attribute name="Id" type="ID" use="optional"/>   </complexType>   An XMLSignature instance may be created by invoking one of the newXMLSignature methods of the XMLSignatureFactory class. If the contents of the underlying document containing the XMLSignature are subsequently modified, the behavior is undefined. Note that this class is named XMLSignature rather than Signature to avoid naming clashes with the existing java.security.Signature class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final String XMLNS
+				</name>
+				<description>
+					The XML Namespace URI of the W3C Recommendation for XML-Signature Syntax and Processing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean validate(XMLValidateContext validateContext)                   throws XMLSignatureException
+				</name>
+				<description>
+					Validates the signature according to the core validation processing rules. This method validates the signature using the existing state, it does not unmarshal and reinitialize the contents of the XMLSignature using the location information specified in the context. This method only validates the signature the first time it is invoked. On subsequent invocations, it returns a cached result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					KeyInfo getKeyInfo()
+				</name>
+				<description>
+					Returns the key info of this XMLSignature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SignedInfo getSignedInfo()
+				</name>
+				<description>
+					Returns the signed info of this XMLSignature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List getObjects()
+				</name>
+				<description>
+					Returns an unmodifiable list of XMLObjects contained in this XMLSignature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getId()
+				</name>
+				<description>
+					Returns the optional Id of this XMLSignature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					XMLSignature.SignatureValue getSignatureValue()
+				</name>
+				<description>
+					Returns the signature value of this XMLSignature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void sign(XMLSignContext signContext)            throws MarshalException,                   XMLSignatureException
+				</name>
+				<description>
+					Signs this XMLSignature. If this method throws an exception, this XMLSignature and the signContext parameter will be left in the state that it was in prior to the invocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					KeySelectorResult getKeySelectorResult()
+				</name>
+				<description>
+					Returns the result of the KeySelector, if specified, after this XMLSignature has been signed or validated.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

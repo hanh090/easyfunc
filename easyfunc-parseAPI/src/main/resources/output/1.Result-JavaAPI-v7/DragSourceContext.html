@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		java.awt.dnd
+	</package>
+	<type>
+		<name>
+			public class DragSourceContext  extends Object  implements DragSourceListener, DragSourceMotionListener, Serializable
+		</name>
+		<description>
+			The DragSourceContext class is responsible for managing the initiator side of the Drag and Drop protocol. In particular, it is responsible for managing drag event notifications to the DragSourceListeners and DragSourceMotionListeners, and providing the Transferable representing the source data for the drag operation. Note that the DragSourceContext itself implements the DragSourceListener and DragSourceMotionListener interfaces. This is to allow the platform peer (the DragSourceContextPeer instance) created by the DragSource to notify the DragSourceContext of state changes in the ongoing operation. This allows the DragSourceContext object to interpose itself between the platform and the listeners provided by the initiator of the drag operation. By default, DragSourceContext sets the cursor as appropriate for the current state of the drag and drop operation. For example, if the user has chosen the move action, and the pointer is over a target that accepts the move action, the default move cursor is shown. When the pointer is over an area that does not accept the transfer, the default "no drop" cursor is shown. This default handling mechanism is disabled when a custom cursor is set by the setCursor(java.awt.Cursor) method. When the default handling is disabled, it becomes the responsibility of the developer to keep the cursor up to date, by listening to the DragSource events and calling the setCursor() method. Alternatively, you can provide custom cursor behavior by providing custom implementations of the DragSource and the DragSourceContext classes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected static final int DEFAULT
+				</name>
+				<description>
+					An int used by updateCurrentCursor() indicating that the Cursor should change to the default (no drop) Cursor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int ENTER
+				</name>
+				<description>
+					An int used by updateCurrentCursor() indicating that the Cursor has entered a DropTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int OVER
+				</name>
+				<description>
+					An int used by updateCurrentCursor() indicating that the Cursor is over a DropTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final int CHANGED
+				</name>
+				<description>
+					An int used by updateCurrentCursor() indicating that the user operation has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragSourceContext(java.awt.dnd.peer.DragSourceContextPeer dscp,                   DragGestureEvent trigger,                   Cursor dragCursor,                   Image dragImage,                   Point offset,                   Transferable t,                   DragSourceListener dsl)
+				</name>
+				<description>
+					Called from DragSource, this constructor creates a new DragSourceContext given the DragSourceContextPeer for this Drag, the DragGestureEvent that triggered the Drag, the initial Cursor to use for the Drag, an (optional) Image to display while the Drag is taking place, the offset of the Image origin from the hotspot at the instant of the triggering event, the Transferable subject data, and the DragSourceListener to use during the Drag and Drop operation. If DragSourceContextPeer is null NullPointerException is thrown. If DragGestureEvent is null NullPointerException is thrown. If Cursor is null no exception is thrown and the default drag cursor behavior is activated for this drag operation. If Image is null no exception is thrown. If Image is not null and the offset is null NullPointerException is thrown. If Transferable is null NullPointerException is thrown. If DragSourceListener is null no exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragSource getDragSource()
+				</name>
+				<description>
+					Returns the DragSource that instantiated this DragSourceContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getComponent()
+				</name>
+				<description>
+					Returns the Component associated with this DragSourceContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragGestureEvent getTrigger()
+				</name>
+				<description>
+					Returns the DragGestureEvent that initially triggered the drag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSourceActions()
+				</name>
+				<description>
+					Returns a bitwise mask of DnDConstants that represent the set of drop actions supported by the drag source for the drag operation associated with this DragSourceContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCursor(Cursor c)
+				</name>
+				<description>
+					Sets the cursor for this drag operation to the specified Cursor. If the specified Cursor is null, the default drag cursor behavior is activated for this drag operation, otherwise it is deactivated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Cursor getCursor()
+				</name>
+				<description>
+					Returns the current drag Cursor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addDragSourceListener(DragSourceListener dsl)                             throws TooManyListenersException
+				</name>
+				<description>
+					Add a DragSourceListener to this DragSourceContext if one has not already been added. If a DragSourceListener already exists, this method throws a TooManyListenersException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeDragSourceListener(DragSourceListener dsl)
+				</name>
+				<description>
+					Removes the specified DragSourceListener from this DragSourceContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void transferablesFlavorsChanged()
+				</name>
+				<description>
+					Notifies the peer that the Transferable's DataFlavors have changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragEnter(DragSourceDragEvent dsde)
+				</name>
+				<description>
+					Calls dragEnter on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDragEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragOver(DragSourceDragEvent dsde)
+				</name>
+				<description>
+					Calls dragOver on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDragEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragExit(DragSourceEvent dse)
+				</name>
+				<description>
+					Calls dragExit on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dropActionChanged(DragSourceDragEvent dsde)
+				</name>
+				<description>
+					Calls dropActionChanged on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDragEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragDropEnd(DragSourceDropEvent dsde)
+				</name>
+				<description>
+					Calls dragDropEnd on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDropEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragMouseMoved(DragSourceDragEvent dsde)
+				</name>
+				<description>
+					Calls dragMouseMoved on the DragSourceMotionListeners registered with the DragSource associated with this DragSourceContext, and them passes the specified DragSourceDragEvent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Transferable getTransferable()
+				</name>
+				<description>
+					Returns the Transferable associated with this DragSourceContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateCurrentCursor(int sourceAct,                         int targetAct,                         int status)
+				</name>
+				<description>
+					If the default drag cursor behavior is active, this method sets the default drag cursor for the specified actions supported by the drag source, the drop target action, and status, otherwise this method does nothing.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class CharArrayWriter  extends Writer
+		</name>
+		<description>
+			This class implements a character buffer that can be used as an Writer. The buffer automatically grows when data is written to the stream. The data can be retrieved using toCharArray() and toString(). Note: Invoking close() on this class has no effect, and methods of this class can be called after the stream has closed without generating an IOException.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected char[] buf
+				</name>
+				<description>
+					The buffer where data is stored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int count
+				</name>
+				<description>
+					The number of chars in the buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharArrayWriter()
+				</name>
+				<description>
+					Creates a new CharArrayWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharArrayWriter(int initialSize)
+				</name>
+				<description>
+					Creates a new CharArrayWriter with the specified initial size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(int c)
+				</name>
+				<description>
+					Writes a character to the buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(char[] c,           int off,           int len)
+				</name>
+				<description>
+					Writes characters to the buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(String str,           int off,           int len)
+				</name>
+				<description>
+					Write a portion of a string to the buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void writeTo(Writer out)               throws IOException
+				</name>
+				<description>
+					Writes the contents of the buffer to another character stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharArrayWriter append(CharSequence csq)
+				</name>
+				<description>
+					Appends the specified character sequence to this writer. An invocation of this method of the form out.append(csq) behaves in exactly the same way as the invocation        out.write(csq.toString()) Depending on the specification of toString for the character sequence csq, the entire sequence may not be appended. For instance, invoking the toString method of a character buffer will return a subsequence whose content depends upon the buffer's position and limit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharArrayWriter append(CharSequence csq,                       int start,                       int end)
+				</name>
+				<description>
+					Appends a subsequence of the specified character sequence to this writer. An invocation of this method of the form out.append(csq, start, end) when csq is not null, behaves in exactly the same way as the invocation        out.write(csq.subSequence(start, end).toString())
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharArrayWriter append(char c)
+				</name>
+				<description>
+					Appends the specified character to this writer. An invocation of this method of the form out.append(c) behaves in exactly the same way as the invocation        out.write(c)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()
+				</name>
+				<description>
+					Resets the buffer so that you can use it again without throwing away the already allocated buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public char[] toCharArray()
+				</name>
+				<description>
+					Returns a copy of the input data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the current size of the buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Converts input data to a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flush()
+				</name>
+				<description>
+					Flush the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()
+				</name>
+				<description>
+					Close the stream. This method does not release the buffer, since its contents might still be required. Note: Invoking this method in this class will have no effect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

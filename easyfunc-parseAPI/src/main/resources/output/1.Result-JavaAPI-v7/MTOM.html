@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.xml.ws.soap
+	</package>
+	<type>
+		<name>
+			@Target(value={TYPE,METHOD,FIELD})  @Retention(value=RUNTIME)  @Documented  @WebServiceFeatureAnnotation(id="http://www.w3.org/2004/08/soap/features/http-optimization",                               bean=MTOMFeature.class)  public @interface MTOM
+		</name>
+		<description>
+			This feature represents the use of MTOM with a web service. This annotation MUST only be used in conjunction the javax.jws.WebService, WebServiceProvider, WebServiceRef annotations. When used with the javax.jws.WebService annotation this annotation MUST only be used on the service endpoint implementation class. When used with a WebServiceRef annotation, this annotation MUST only be used when a proxy instance is created. The injected SEI proxy, and endpoint MUST honor the values of the MTOM annotation. This annotation's behaviour is defined by the corresponding feature MTOMFeature.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract boolean enabled
+				</name>
+				<description>
+					Specifies if this feature is enabled or disabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int threshold
+				</name>
+				<description>
+					Property for MTOM threshold value. When MTOM is enabled, binary data above this size in bytes will be XOP encoded or sent as attachment. The value of this property MUST always be >= 0. Default value is 0.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

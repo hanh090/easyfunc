@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public abstract class HttpsURLConnection  extends HttpURLConnection
+		</name>
+		<description>
+			HttpsURLConnection extends HttpURLConnection with support for https-specific features. See http://www.w3.org/pub/WWW/Protocols/ and RFC 2818 for more details on the https specification. This class uses HostnameVerifier and SSLSocketFactory. There are default implementations defined for both classes. However, the implementations can be replaced on a per-class (static) or per-instance basis. All new HttpsURLConnections instances will be assigned the "default" static values at instance creation, but they can be overriden by calling the appropriate per-instance set method(s) before connecting.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected HostnameVerifier hostnameVerifier
+				</name>
+				<description>
+					The hostnameVerifier for this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected HttpsURLConnection(URL url)
+				</name>
+				<description>
+					Creates an HttpsURLConnection using the URL specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getCipherSuite()
+				</name>
+				<description>
+					Returns the cipher suite in use on this connection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Certificate[] getLocalCertificates()
+				</name>
+				<description>
+					Returns the certificate(s) that were sent to the server during handshaking. Note: This method is useful only when using certificate-based cipher suites. When multiple certificates are available for use in a handshake, the implementation chooses what it considers the "best" certificate chain available, and transmits that to the other side. This method allows the caller to know which certificate chain was actually sent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Certificate[] getServerCertificates()                                               throws SSLPeerUnverifiedException
+				</name>
+				<description>
+					Returns the server's certificate chain which was established as part of defining the session. Note: This method can be used only when using certificate-based cipher suites; using it with non-certificate-based cipher suites, such as Kerberos, will throw an SSLPeerUnverifiedException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Principal getPeerPrincipal()                             throws SSLPeerUnverifiedException
+				</name>
+				<description>
+					Returns the server's principal which was established as part of defining the session. Note: Subclasses should override this method. If not overridden, it will default to returning the X500Principal of the server's end-entity certificate for certificate-based ciphersuites, or throw an SSLPeerUnverifiedException for non-certificate based ciphersuites, such as Kerberos.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Principal getLocalPrincipal()
+				</name>
+				<description>
+					Returns the principal that was sent to the server during handshaking. Note: Subclasses should override this method. If not overridden, it will default to returning the X500Principal of the end-entity certificate that was sent to the server for certificate-based ciphersuites or, return null for non-certificate based ciphersuites, such as Kerberos.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefaultHostnameVerifier(HostnameVerifier v)
+				</name>
+				<description>
+					Sets the default HostnameVerifier inherited by a new instance of this class. If this method is not called, the default HostnameVerifier assumes the connection should not be permitted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static HostnameVerifier getDefaultHostnameVerifier()
+				</name>
+				<description>
+					Gets the default HostnameVerifier that is inherited by new instances of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHostnameVerifier(HostnameVerifier v)
+				</name>
+				<description>
+					Sets the HostnameVerifier for this instance. New instances of this class inherit the default static hostname verifier set by setDefaultHostnameVerifier. Calls to this method replace this object's HostnameVerifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public HostnameVerifier getHostnameVerifier()
+				</name>
+				<description>
+					Gets the HostnameVerifier in place on this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefaultSSLSocketFactory(SSLSocketFactory sf)
+				</name>
+				<description>
+					Sets the default SSLSocketFactory inherited by new instances of this class. The socket factories are used when creating sockets for secure https URL connections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static SSLSocketFactory getDefaultSSLSocketFactory()
+				</name>
+				<description>
+					Gets the default static SSLSocketFactory that is inherited by new instances of this class. The socket factories are used when creating sockets for secure https URL connections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSSLSocketFactory(SSLSocketFactory sf)
+				</name>
+				<description>
+					Sets the SSLSocketFactory to be used when this instance creates sockets for secure https URL connections. New instances of this class inherit the default static SSLSocketFactory set by setDefaultSSLSocketFactory. Calls to this method replace this object's SSLSocketFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SSLSocketFactory getSSLSocketFactory()
+				</name>
+				<description>
+					Gets the SSL socket factory to be used when creating sockets for secure https URL connections.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

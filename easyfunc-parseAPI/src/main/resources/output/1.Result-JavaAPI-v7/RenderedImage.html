@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public interface RenderedImage
+		</name>
+		<description>
+			RenderedImage is a common interface for objects which contain or can produce image data in the form of Rasters. The image data may be stored/produced as a single tile or a regular array of tiles.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Vector<RenderedImage> getSources()
+				</name>
+				<description>
+					Returns a vector of RenderedImages that are the immediate sources of image data for this RenderedImage. This method returns null if the RenderedImage object has no information about its immediate sources. It returns an empty Vector if the RenderedImage object has no immediate sources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getProperty(String name)
+				</name>
+				<description>
+					Gets a property from the property set of this image. The set of properties and whether it is immutable is determined by the implementing class. This method returns java.awt.Image.UndefinedProperty if the specified property is not defined for this RenderedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getPropertyNames()
+				</name>
+				<description>
+					Returns an array of names recognized by getProperty(String) or null, if no property names are recognized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ColorModel getColorModel()
+				</name>
+				<description>
+					Returns the ColorModel associated with this image. All Rasters returned from this image will have this as their ColorModel. This can return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SampleModel getSampleModel()
+				</name>
+				<description>
+					Returns the SampleModel associated with this image. All Rasters returned from this image will have this as their SampleModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getWidth()
+				</name>
+				<description>
+					Returns the width of the RenderedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getHeight()
+				</name>
+				<description>
+					Returns the height of the RenderedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMinX()
+				</name>
+				<description>
+					Returns the minimum X coordinate (inclusive) of the RenderedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMinY()
+				</name>
+				<description>
+					Returns the minimum Y coordinate (inclusive) of the RenderedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getNumXTiles()
+				</name>
+				<description>
+					Returns the number of tiles in the X direction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getNumYTiles()
+				</name>
+				<description>
+					Returns the number of tiles in the Y direction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMinTileX()
+				</name>
+				<description>
+					Returns the minimum tile index in the X direction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getMinTileY()
+				</name>
+				<description>
+					Returns the minimum tile index in the Y direction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getTileWidth()
+				</name>
+				<description>
+					Returns the tile width in pixels. All tiles must have the same width.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getTileHeight()
+				</name>
+				<description>
+					Returns the tile height in pixels. All tiles must have the same height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getTileGridXOffset()
+				</name>
+				<description>
+					Returns the X offset of the tile grid relative to the origin, i.e., the X coordinate of the upper-left pixel of tile (0, 0). (Note that tile (0, 0) may not actually exist.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getTileGridYOffset()
+				</name>
+				<description>
+					Returns the Y offset of the tile grid relative to the origin, i.e., the Y coordinate of the upper-left pixel of tile (0, 0). (Note that tile (0, 0) may not actually exist.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Raster getTile(int tileX,               int tileY)
+				</name>
+				<description>
+					Returns tile (tileX, tileY). Note that tileX and tileY are indices into the tile array, not pixel locations. The Raster that is returned is live and will be updated if the image is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Raster getData()
+				</name>
+				<description>
+					Returns the image as one large tile (for tile based images this will require fetching the whole image and copying the image data over). The Raster returned is a copy of the image data and will not be updated if the image is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Raster getData(Rectangle rect)
+				</name>
+				<description>
+					Computes and returns an arbitrary region of the RenderedImage. The Raster returned is a copy of the image data and will not be updated if the image is changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					WritableRaster copyData(WritableRaster raster)
+				</name>
+				<description>
+					Computes an arbitrary rectangular region of the RenderedImage and copies it into a caller-supplied WritableRaster. The region to be computed is determined from the bounds of the supplied WritableRaster. The supplied WritableRaster must have a SampleModel that is compatible with this image. If raster is null, an appropriate WritableRaster is created.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

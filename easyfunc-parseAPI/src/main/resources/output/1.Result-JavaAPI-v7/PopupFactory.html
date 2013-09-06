@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class PopupFactory  extends Object
+		</name>
+		<description>
+			PopupFactory, as the name implies, is used to obtain instances of Popups. Popups are used to display a Component above all other Components in a particular containment hierarchy. The general contract is that once you have obtained a Popup from a PopupFactory, you must invoke hide on the Popup. The typical usage is:      PopupFactory factory = PopupFactory.getSharedInstance();     Popup popup = factory.getPopup(owner, contents, x, y);     popup.show();     ...     popup.hide();
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PopupFactory()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setSharedInstance(PopupFactory factory)
+				</name>
+				<description>
+					Sets the PopupFactory that will be used to obtain Popups. This will throw an IllegalArgumentException if factory is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PopupFactory getSharedInstance()
+				</name>
+				<description>
+					Returns the shared PopupFactory which can be used to obtain Popups.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Popup getPopup(Component owner,               Component contents,               int x,               int y)                 throws IllegalArgumentException
+				</name>
+				<description>
+					Creates a Popup for the Component owner containing the Component contents. owner is used to determine which Window the new Popup will parent the Component the Popup creates to. A null owner implies there is no valid parent. x and y specify the preferred initial location to place the Popup at. Based on screen size, or other paramaters, the Popup may not display at x and y.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

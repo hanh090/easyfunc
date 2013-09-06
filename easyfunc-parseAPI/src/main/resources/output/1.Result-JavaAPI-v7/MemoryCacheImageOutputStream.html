@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.imageio.stream
+	</package>
+	<type>
+		<name>
+			public class MemoryCacheImageOutputStream  extends ImageOutputStreamImpl
+		</name>
+		<description>
+			An implementation of ImageOutputStream that writes its output to a regular OutputStream. A memory buffer is used to cache at least the data between the discard position and the current write position. The only constructor takes an OutputStream, so this class may not be used for read/modify/write operations. Reading can occur only on parts of the stream that have already been written to the cache and not yet flushed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MemoryCacheImageOutputStream(OutputStream stream)
+				</name>
+				<description>
+					Constructs a MemoryCacheImageOutputStream that will write to a given OutputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Description copied from class: ImageInputStreamImpl Reads a single byte from the stream and returns it as an int between 0 and 255. If EOF is reached, -1 is returned. Subclasses must provide an implementation for this method. The subclass implementation should update the stream position before exiting. The bit offset within the stream must be reset to zero before the read occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Description copied from class: ImageInputStreamImpl Reads up to len bytes from the stream, and stores them into b starting at index off. If no bytes can be read because the end of the stream has been reached, -1 is returned. The bit offset within the stream must be reset to zero before the read occurs. Subclasses must provide an implementation for this method. The subclass implementation should update the stream position before exiting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(int b)             throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a single byte to the stream at the current position. The 24 high-order bits of b are ignored. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write. Implementers can use the flushBits method of ImageOutputStreamImpl to guarantee this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(byte[] b,           int off,           int len)             throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageOutputStream Writes a sequence of bytes to the stream at the current position. If len is 0, nothing is written. The byte b[off] is written first, then the byte b[off + 1], and so on. If the bit offset within the stream is non-zero, the remainder of the current byte is padded with 0s and written out first. The bit offset will be 0 after the write. Implementers can use the flushBits method of ImageOutputStreamImpl to guarantee this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long length()
+				</name>
+				<description>
+					Description copied from class: ImageInputStreamImpl Returns -1L to indicate that the stream has unknown length. Subclasses must override this method to provide actual length information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCached()
+				</name>
+				<description>
+					Returns true since this ImageOutputStream caches data in order to allow seeking backwards.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCachedFile()
+				</name>
+				<description>
+					Returns false since this ImageOutputStream does not maintain a file cache.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCachedMemory()
+				</name>
+				<description>
+					Returns true since this ImageOutputStream maintains a main memory cache.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this MemoryCacheImageOutputStream. All pending data is flushed to the output, and the cache is released. The destination OutputStream is not closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flushBefore(long pos)                   throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageInputStream Discards the initial portion of the stream prior to the indicated postion. Attempting to seek to an offset within the flushed portion of the stream will result in an IndexOutOfBoundsException. Calling flushBefore may allow classes implementing this interface to free up resources such as memory or disk space that are being used to store data from the stream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

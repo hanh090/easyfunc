@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			@Deprecated  public abstract class IdentityScope  extends Identity
+		</name>
+		<description>
+			Deprecated.  This class is no longer used. Its functionality has been replaced by java.security.KeyStore, the java.security.cert package, and java.security.Principal. This class represents a scope for identities. It is an Identity itself, and therefore has a name and can have a scope. It can also optionally have a public key and associated certificates. An IdentityScope can contain Identity objects of all kinds, including Signers. All types of Identity objects can be retrieved, added, and removed using the same methods. Note that it is possible, and in fact expected, that different types of identity scopes will apply different policies for their various operations on the various types of Identities. There is a one-to-one mapping between keys and identities, and there can only be one copy of one key per scope. For example, suppose Acme Software, Inc is a software publisher known to a user. Suppose it is an Identity, that is, it has a public key, and a set of associated certificates. It is named in the scope using the name "Acme Software". No other named Identity in the scope has the same public key. Of course, none has the same name as well.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected IdentityScope()
+				</name>
+				<description>
+					Deprecated.  This constructor is used for serialization only and should not be used by subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IdentityScope(String name)
+				</name>
+				<description>
+					Deprecated.  Constructs a new identity scope with the specified name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IdentityScope(String name,               IdentityScope scope)                throws KeyManagementException
+				</name>
+				<description>
+					Deprecated.  Constructs a new identity scope with the specified name and scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static IdentityScope getSystemScope()
+				</name>
+				<description>
+					Deprecated.  Returns the system's identity scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static void setSystemScope(IdentityScope scope)
+				</name>
+				<description>
+					Deprecated.  Sets the system's identity scope. First, if there is a security manager, its checkSecurityAccess method is called with "setSystemScope" as its argument to see if it's ok to set the identity scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int size()
+				</name>
+				<description>
+					Deprecated.  Returns the number of identities within this identity scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Identity getIdentity(String name)
+				</name>
+				<description>
+					Deprecated.  Returns the identity in this scope with the specified name (if any).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Identity getIdentity(Principal principal)
+				</name>
+				<description>
+					Deprecated.  Retrieves the identity whose name is the same as that of the specified principal. (Note: Identity implements Principal.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Identity getIdentity(PublicKey key)
+				</name>
+				<description>
+					Deprecated.  Retrieves the identity with the specified public key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void addIdentity(Identity identity)                            throws KeyManagementException
+				</name>
+				<description>
+					Deprecated.  Adds an identity to this identity scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void removeIdentity(Identity identity)                               throws KeyManagementException
+				</name>
+				<description>
+					Deprecated.  Removes an identity from this identity scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Enumeration<Identity> identities()
+				</name>
+				<description>
+					Deprecated.  Returns an enumeration of all identities in this identity scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Deprecated.  Returns a string representation of this identity scope, including its name, its scope name, and the number of identities in this identity scope.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

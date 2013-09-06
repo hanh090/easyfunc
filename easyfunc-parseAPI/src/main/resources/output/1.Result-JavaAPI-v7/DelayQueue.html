@@ -1,0 +1,189 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class DelayQueue<E extends Delayed>  extends AbstractQueue<E>  implements BlockingQueue<E>
+		</name>
+		<description>
+			An unbounded blocking queue of Delayed elements, in which an element can only be taken when its delay has expired. The head of the queue is that Delayed element whose delay expired furthest in the past. If no delay has expired there is no head and poll will return null. Expiration occurs when an element's getDelay(TimeUnit.NANOSECONDS) method returns a value less than or equal to zero. Even though unexpired elements cannot be removed using take or poll, they are otherwise treated as normal elements. For example, the size method returns the count of both expired and unexpired elements. This queue does not permit null elements. This class and its iterator implement all of the optional methods of the Collection and Iterator interfaces. This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DelayQueue()
+				</name>
+				<description>
+					Creates a new DelayQueue that is initially empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DelayQueue(Collection<? extends E> c)
+				</name>
+				<description>
+					Creates a DelayQueue initially containing the elements of the given collection of Delayed instances.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(E e)
+				</name>
+				<description>
+					Inserts the specified element into this delay queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean offer(E e)
+				</name>
+				<description>
+					Inserts the specified element into this delay queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void put(E e)
+				</name>
+				<description>
+					Inserts the specified element into this delay queue. As the queue is unbounded this method will never block.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean offer(E e,              long timeout,              TimeUnit unit)
+				</name>
+				<description>
+					Inserts the specified element into this delay queue. As the queue is unbounded this method will never block.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E poll()
+				</name>
+				<description>
+					Retrieves and removes the head of this queue, or returns null if this queue has no elements with an expired delay.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E take()                         throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the head of this queue, waiting if necessary until an element with an expired delay is available on this queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E poll(long timeout,       TimeUnit unit)                         throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the head of this queue, waiting if necessary until an element with an expired delay is available on this queue, or the specified wait time expires.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public E peek()
+				</name>
+				<description>
+					Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty. Unlike poll, if no expired elements are available in the queue, this method returns the element that will expire next, if one exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Description copied from interface: Collection Returns the number of elements in this collection. If this collection contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int drainTo(Collection<? super E> c)
+				</name>
+				<description>
+					Description copied from interface: BlockingQueue Removes all available elements from this queue and adds them to the given collection. This operation may be more efficient than repeatedly polling this queue. A failure encountered while attempting to add elements to collection c may result in elements being in neither, either or both collections when the associated exception is thrown. Attempts to drain a queue to itself result in IllegalArgumentException. Further, the behavior of this operation is undefined if the specified collection is modified while the operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int drainTo(Collection<? super E> c,            int maxElements)
+				</name>
+				<description>
+					Description copied from interface: BlockingQueue Removes at most the given number of available elements from this queue and adds them to the given collection. A failure encountered while attempting to add elements to collection c may result in elements being in neither, either or both collections when the associated exception is thrown. Attempts to drain a queue to itself result in IllegalArgumentException. Further, the behavior of this operation is undefined if the specified collection is modified while the operation is in progress.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Atomically removes all of the elements from this delay queue. The queue will be empty after this call returns. Elements with an unexpired delay are not waited for; they are simply discarded from the queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int remainingCapacity()
+				</name>
+				<description>
+					Always returns Integer.MAX_VALUE because a DelayQueue is not capacity constrained.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] toArray()
+				</name>
+				<description>
+					Returns an array containing all of the elements in this queue. The returned array elements are in no particular order. The returned array will be "safe" in that no references to it are maintained by this queue. (In other words, this method must allocate a new array). The caller is thus free to modify the returned array. This method acts as bridge between array-based and collection-based APIs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T[] toArray(T[] a)
+				</name>
+				<description>
+					Returns an array containing all of the elements in this queue; the runtime type of the returned array is that of the specified array. The returned array elements are in no particular order. If the queue fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this queue. If this queue fits in the specified array with room to spare (i.e., the array has more elements than this queue), the element in the array immediately following the end of the queue is set to null. Like the toArray() method, this method acts as bridge between array-based and collection-based APIs. Further, this method allows precise control over the runtime type of the output array, and may, under certain circumstances, be used to save allocation costs. The following code can be used to dump a delay queue into a newly allocated array of Delayed:        Delayed[] a = q.toArray(new Delayed[0]); Note that toArray(new Object[0]) is identical in function to toArray().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object o)
+				</name>
+				<description>
+					Removes a single instance of the specified element from this queue, if it is present, whether or not it has expired.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over all the elements (both expired and unexpired) in this queue. The iterator does not return the elements in any particular order. The returned iterator is a "weakly consistent" iterator that will never throw ConcurrentModificationException, and guarantees to traverse elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect any modifications subsequent to construction.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.awt.image.renderable
+	</package>
+	<type>
+		<name>
+			public class RenderableImageProducer  extends Object  implements ImageProducer, Runnable
+		</name>
+		<description>
+			An adapter class that implements ImageProducer to allow the asynchronous production of a RenderableImage. The size of the ImageConsumer is determined by the scale factor of the usr2dev transform in the RenderContext. If the RenderContext is null, the default rendering of the RenderableImage is used. This class implements an asynchronous production that produces the image in one thread at one resolution. This class may be subclassed to implement versions that will render the image using several threads. These threads could render either the same image at progressively better quality, or different sections of the image at a single resolution.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RenderableImageProducer(RenderableImage rdblImage,                         RenderContext rc)
+				</name>
+				<description>
+					Constructs a new RenderableImageProducer from a RenderableImage and a RenderContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRenderContext(RenderContext rc)
+				</name>
+				<description>
+					Sets a new RenderContext to use for the next startProduction() call.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addConsumer(ImageConsumer ic)
+				</name>
+				<description>
+					Adds an ImageConsumer to the list of consumers interested in data for this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isConsumer(ImageConsumer ic)
+				</name>
+				<description>
+					Determine if an ImageConsumer is on the list of consumers currently interested in data for this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeConsumer(ImageConsumer ic)
+				</name>
+				<description>
+					Remove an ImageConsumer from the list of consumers interested in data for this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startProduction(ImageConsumer ic)
+				</name>
+				<description>
+					Adds an ImageConsumer to the list of consumers interested in data for this image, and immediately starts delivery of the image data through the ImageConsumer interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void requestTopDownLeftRightResend(ImageConsumer ic)
+				</name>
+				<description>
+					Requests that a given ImageConsumer have the image data delivered one more time in top-down, left-right order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void run()
+				</name>
+				<description>
+					The runnable method for this class. This will produce an image using the current RenderableImage and RenderContext and send it to all the ImageConsumer currently registered with this class.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

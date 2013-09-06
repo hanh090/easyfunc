@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.sound.midi
+	</package>
+	<type>
+		<name>
+			public interface Synthesizer  extends MidiDevice
+		</name>
+		<description>
+			A Synthesizer generates sound. This usually happens when one of the Synthesizer's MidiChannel objects receives a noteOn message, either directly or via the Synthesizer object. Many Synthesizers support Receivers, through which MIDI events can be delivered to the Synthesizer. In such cases, the Synthesizer typically responds by sending a corresponding message to the appropriate MidiChannel, or by processing the event itself if the event isn't one of the MIDI channel messages. The Synthesizer interface includes methods for loading and unloading instruments from soundbanks. An instrument is a specification for synthesizing a certain type of sound, whether that sound emulates a traditional instrument or is some kind of sound effect or other imaginary sound. A soundbank is a collection of instruments, organized by bank and program number (via the instrument's Patch object). Different Synthesizer classes might implement different sound-synthesis techniques, meaning that some instruments and not others might be compatible with a given synthesizer. Also, synthesizers may have a limited amount of memory for instruments, meaning that not every soundbank and instrument can be used by every synthesizer, even if the synthesis technique is compatible. To see whether the instruments from a certain soundbank can be played by a given synthesizer, invoke the isSoundbankSupported method of Synthesizer. "Loading" an instrument means that that instrument becomes available for synthesizing notes. The instrument is loaded into the bank and program location specified by its Patch object. Loading does not necessarily mean that subsequently played notes will immediately have the sound of this newly loaded instrument. For the instrument to play notes, one of the synthesizer's MidiChannel objects must receive (or have received) a program-change message that causes that particular instrument's bank and program number to be selected.
+		</description>
+		<methods>
+			<method>
+				<name>
+					int getMaxPolyphony()
+				</name>
+				<description>
+					Obtains the maximum number of notes that this synthesizer can sound simultaneously.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getLatency()
+				</name>
+				<description>
+					Obtains the processing latency incurred by this synthesizer, expressed in microseconds. This latency measures the worst-case delay between the time a MIDI message is delivered to the synthesizer and the time that the synthesizer actually produces the corresponding result. Although the latency is expressed in microseconds, a synthesizer's actual measured delay may vary over a wider range than this resolution suggests. For example, a synthesizer might have a worst-case delay of a few milliseconds or more.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					MidiChannel[] getChannels()
+				</name>
+				<description>
+					Obtains the set of MIDI channels controlled by this synthesizer. Each non-null element in the returned array is a MidiChannel that receives the MIDI messages sent on that channel number. The MIDI 1.0 specification provides for 16 channels, so this method returns an array of at least 16 elements. However, if this synthesizer doesn't make use of all 16 channels, some of the elements of the array might be null, so you should check each element before using it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					VoiceStatus[] getVoiceStatus()
+				</name>
+				<description>
+					Obtains the current status of the voices produced by this synthesizer. If this class of Synthesizer does not provide voice information, the returned array will always be of length 0. Otherwise, its length is always equal to the total number of voices, as returned by getMaxPolyphony(). (See the VoiceStatus class description for an explanation of synthesizer voices.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSoundbankSupported(Soundbank soundbank)
+				</name>
+				<description>
+					Informs the caller whether this synthesizer is capable of loading instruments from the specified soundbank. If the soundbank is unsupported, any attempts to load instruments from it will result in an IllegalArgumentException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean loadInstrument(Instrument instrument)
+				</name>
+				<description>
+					Makes a particular instrument available for synthesis. This instrument is loaded into the patch location specified by its Patch object, so that if a program-change message is received (or has been received) that causes that patch to be selected, subsequent notes will be played using the sound of instrument. If the specified instrument is already loaded, this method does nothing and returns true. The instrument must be part of a soundbank that this Synthesizer supports. (To make sure, you can use the getSoundbank method of Instrument and the isSoundbankSupported method of Synthesizer.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unloadInstrument(Instrument instrument)
+				</name>
+				<description>
+					Unloads a particular instrument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean remapInstrument(Instrument from,                        Instrument to)
+				</name>
+				<description>
+					Remaps an instrument. Instrument to takes the place of instrument from. For example, if from was located at bank number 2, program number 11, remapping causes that bank and program location to be occupied instead by to. If the function succeeds, instrument from is unloaded. To cancel the remapping reload instrument from by invoking one of loadInstrument(javax.sound.midi.Instrument), loadInstruments(javax.sound.midi.Soundbank, javax.sound.midi.Patch[]) or loadAllInstruments(javax.sound.midi.Soundbank).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Soundbank getDefaultSoundbank()
+				</name>
+				<description>
+					Obtains the default soundbank for the synthesizer, if one exists. (Some synthesizers provide a default or built-in soundbank.) If a synthesizer doesn't have a default soundbank, instruments must be loaded explicitly from an external soundbank.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Instrument[] getAvailableInstruments()
+				</name>
+				<description>
+					Obtains a list of instruments that come with the synthesizer. These instruments might be built into the synthesizer, or they might be part of a default soundbank provided with the synthesizer, etc. Note that you don't use this method to find out which instruments are currently loaded onto the synthesizer; for that purpose, you use getLoadedInstruments(). Nor does the method indicate all the instruments that can be loaded onto the synthesizer; it only indicates the subset that come with the synthesizer. To learn whether another instrument can be loaded, you can invoke isSoundbankSupported(), and if the instrument's Soundbank is supported, you can try loading the instrument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Instrument[] getLoadedInstruments()
+				</name>
+				<description>
+					Obtains a list of the instruments that are currently loaded onto this Synthesizer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean loadAllInstruments(Soundbank soundbank)
+				</name>
+				<description>
+					Loads onto the Synthesizer all instruments contained in the specified Soundbank.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unloadAllInstruments(Soundbank soundbank)
+				</name>
+				<description>
+					Unloads all instruments contained in the specified Soundbank.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean loadInstruments(Soundbank soundbank,                        Patch[] patchList)
+				</name>
+				<description>
+					Loads the instruments referenced by the specified patches, from the specified Soundbank. Each of the Patch objects indicates a bank and program number; the Instrument that has the matching Patch is loaded into that bank and program location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unloadInstruments(Soundbank soundbank,                       Patch[] patchList)
+				</name>
+				<description>
+					Unloads the instruments referenced by the specified patches, from the MIDI sound bank specified.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

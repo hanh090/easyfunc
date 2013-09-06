@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class ImageIcon  extends Object  implements Icon, Serializable, Accessible
+		</name>
+		<description>
+			An implementation of the Icon interface that paints Icons from Images. Images that are created from a URL, filename or byte array are preloaded using MediaTracker to monitor the loaded state of the image. For further information and examples of using image icons, see How to Use Icons in The Java Tutorial. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected static final Component component
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final MediaTracker tracker
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon(String filename,           String description)
+				</name>
+				<description>
+					Creates an ImageIcon from the specified file. The image will be preloaded by using MediaTracker to monitor the loading state of the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@ConstructorProperties(value="description")  public ImageIcon(String filename)
+				</name>
+				<description>
+					Creates an ImageIcon from the specified file. The image will be preloaded by using MediaTracker to monitor the loading state of the image. The specified String can be a file name or a file path. When specifying a path, use the Internet-standard forward-slash ("/") as a separator. (The string is converted to an URL, so the forward-slash works on all systems.) For example, specify:       new ImageIcon("images/myImage.gif") The description is initialized to the filename string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon(URL location,           String description)
+				</name>
+				<description>
+					Creates an ImageIcon from the specified URL. The image will be preloaded by using MediaTracker to monitor the loaded state of the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon(URL location)
+				</name>
+				<description>
+					Creates an ImageIcon from the specified URL. The image will be preloaded by using MediaTracker to monitor the loaded state of the image. The icon's description is initialized to be a string representation of the URL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon(Image image,           String description)
+				</name>
+				<description>
+					Creates an ImageIcon from the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon(Image image)
+				</name>
+				<description>
+					Creates an ImageIcon from an image object. If the image has a "comment" property that is a string, then the string is used as the description of this icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon(byte[] imageData,           String description)
+				</name>
+				<description>
+					Creates an ImageIcon from an array of bytes which were read from an image file containing a supported image format, such as GIF, JPEG, or (as of 1.3) PNG. Normally this array is created by reading an image using Class.getResourceAsStream(), but the byte array may also be statically stored in a class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon(byte[] imageData)
+				</name>
+				<description>
+					Creates an ImageIcon from an array of bytes which were read from an image file containing a supported image format, such as GIF, JPEG, or (as of 1.3) PNG. Normally this array is created by reading an image using Class.getResourceAsStream(), but the byte array may also be statically stored in a class. If the resulting image has a "comment" property that is a string, then the string is used as the description of this icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageIcon()
+				</name>
+				<description>
+					Creates an uninitialized image icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void loadImage(Image image)
+				</name>
+				<description>
+					Loads the image, returning only when the image is loaded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getImageLoadStatus()
+				</name>
+				<description>
+					Returns the status of the image loading operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Image getImage()
+				</name>
+				<description>
+					Returns this icon's Image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setImage(Image image)
+				</name>
+				<description>
+					Sets the image displayed by this icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDescription()
+				</name>
+				<description>
+					Gets the description of the image. This is meant to be a brief textual description of the object. For example, it might be presented to a blind user to give an indication of the purpose of the image. The description may be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDescription(String description)
+				</name>
+				<description>
+					Sets the description of the image. This is meant to be a brief textual description of the object. For example, it might be presented to a blind user to give an indication of the purpose of the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintIcon(Component c,               Graphics g,               int x,               int y)
+				</name>
+				<description>
+					Paints the icon. The top-left corner of the icon is drawn at the point (x, y) in the coordinate space of the graphics context g. If this icon has no image observer, this method uses the c component as the observer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIconWidth()
+				</name>
+				<description>
+					Gets the width of the icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getIconHeight()
+				</name>
+				<description>
+					Gets the height of the icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setImageObserver(ImageObserver observer)
+				</name>
+				<description>
+					Sets the image observer for the image. Set this property if the ImageIcon contains an animated GIF, so the observer is notified to update its display. For example:        icon = new ImageIcon(...)       button.setIcon(icon);       icon.setImageObserver(button);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageObserver getImageObserver()
+				</name>
+				<description>
+					Returns the image observer for the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this ImageIcon. For image icons, the AccessibleContext takes the form of an AccessibleImageIcon. A new AccessibleImageIcon instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

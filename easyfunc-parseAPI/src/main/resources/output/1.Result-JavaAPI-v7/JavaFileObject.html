@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public interface JavaFileObject  extends FileObject
+		</name>
+		<description>
+			File abstraction for tools operating on Java™ programming language source and class files. All methods in this interface might throw a SecurityException if a security exception occurs. Unless explicitly allowed, all methods in this interface might throw a NullPointerException if given a null argument.
+		</description>
+		<methods>
+			<method>
+				<name>
+					JavaFileObject.Kind getKind()
+				</name>
+				<description>
+					Gets the kind of this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isNameCompatible(String simpleName,                         JavaFileObject.Kind kind)
+				</name>
+				<description>
+					Checks if this file object is compatible with the specified simple name and kind. A simple name is a single identifier (not qualified) as defined in The Java™ Language Specification, section 6.2 "Names and Identifiers".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NestingKind getNestingKind()
+				</name>
+				<description>
+					Provides a hint about the nesting level of the class represented by this file object. This method may return NestingKind.MEMBER to mean NestingKind.LOCAL or NestingKind.ANONYMOUS. If the nesting level is not known or this file object does not represent a class file this method returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Modifier getAccessLevel()
+				</name>
+				<description>
+					Provides a hint about the access level of the class represented by this file object. If the access level is not known or if this file object does not represent a class file this method returns null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

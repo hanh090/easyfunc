@@ -1,0 +1,279 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public interface BlockingDeque<E>  extends BlockingQueue<E>, Deque<E>
+		</name>
+		<description>
+			A Deque that additionally supports blocking operations that wait for the deque to become non-empty when retrieving an element, and wait for space to become available in the deque when storing an element. BlockingDeque methods come in four forms, with different ways of handling operations that cannot be satisfied immediately, but may be satisfied at some point in the future: one throws an exception, the second returns a special value (either null or false, depending on the operation), the third blocks the current thread indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up. These methods are summarized in the following table: First Element (Head) Throws exception Special value Blocks Times out Insert addFirst(e) offerFirst(e) putFirst(e) offerFirst(e, time, unit) Remove removeFirst() pollFirst() takeFirst() pollFirst(time, unit) Examine getFirst() peekFirst() not applicable not applicable Last Element (Tail) Throws exception Special value Blocks Times out Insert addLast(e) offerLast(e) putLast(e) offerLast(e, time, unit) Remove removeLast() pollLast() takeLast() pollLast(time, unit) Examine getLast() peekLast() not applicable not applicable Like any BlockingQueue, a BlockingDeque is thread safe, does not permit null elements, and may (or may not) be capacity-constrained. A BlockingDeque implementation may be used directly as a FIFO BlockingQueue. The methods inherited from the BlockingQueue interface are precisely equivalent to BlockingDeque methods as indicated in the following table: BlockingQueue Method Equivalent BlockingDeque Method Insert add(e) addLast(e) offer(e) offerLast(e) put(e) putLast(e) offer(e, time, unit) offerLast(e, time, unit) Remove remove() removeFirst() poll() pollFirst() take() takeFirst() poll(time, unit) pollFirst(time, unit) Examine element() getFirst() peek() peekFirst() Memory consistency effects: As with other concurrent collections, actions in a thread prior to placing an object into a BlockingDeque happen-before actions subsequent to the access or removal of that element from the BlockingDeque in another thread. This interface is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void addFirst(E e)
+				</name>
+				<description>
+					Inserts the specified element at the front of this deque if it is possible to do so immediately without violating capacity restrictions, throwing an IllegalStateException if no space is currently available. When using a capacity-restricted deque, it is generally preferable to use offerFirst.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addLast(E e)
+				</name>
+				<description>
+					Inserts the specified element at the end of this deque if it is possible to do so immediately without violating capacity restrictions, throwing an IllegalStateException if no space is currently available. When using a capacity-restricted deque, it is generally preferable to use offerLast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean offerFirst(E e)
+				</name>
+				<description>
+					Inserts the specified element at the front of this deque if it is possible to do so immediately without violating capacity restrictions, returning true upon success and false if no space is currently available. When using a capacity-restricted deque, this method is generally preferable to the addFirst method, which can fail to insert an element only by throwing an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean offerLast(E e)
+				</name>
+				<description>
+					Inserts the specified element at the end of this deque if it is possible to do so immediately without violating capacity restrictions, returning true upon success and false if no space is currently available. When using a capacity-restricted deque, this method is generally preferable to the addLast method, which can fail to insert an element only by throwing an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void putFirst(E e)                throws InterruptedException
+				</name>
+				<description>
+					Inserts the specified element at the front of this deque, waiting if necessary for space to become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void putLast(E e)               throws InterruptedException
+				</name>
+				<description>
+					Inserts the specified element at the end of this deque, waiting if necessary for space to become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean offerFirst(E e,                   long timeout,                   TimeUnit unit)                     throws InterruptedException
+				</name>
+				<description>
+					Inserts the specified element at the front of this deque, waiting up to the specified wait time if necessary for space to become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean offerLast(E e,                  long timeout,                  TimeUnit unit)                    throws InterruptedException
+				</name>
+				<description>
+					Inserts the specified element at the end of this deque, waiting up to the specified wait time if necessary for space to become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E takeFirst()              throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the first element of this deque, waiting if necessary until an element becomes available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E takeLast()             throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the last element of this deque, waiting if necessary until an element becomes available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E pollFirst(long timeout,            TimeUnit unit)              throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the first element of this deque, waiting up to the specified wait time if necessary for an element to become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E pollLast(long timeout,           TimeUnit unit)             throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the last element of this deque, waiting up to the specified wait time if necessary for an element to become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean removeFirstOccurrence(Object o)
+				</name>
+				<description>
+					Removes the first occurrence of the specified element from this deque. If the deque does not contain the element, it is unchanged. More formally, removes the first element e such that o.equals(e) (if such an element exists). Returns true if this deque contained the specified element (or equivalently, if this deque changed as a result of the call).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean removeLastOccurrence(Object o)
+				</name>
+				<description>
+					Removes the last occurrence of the specified element from this deque. If the deque does not contain the element, it is unchanged. More formally, removes the last element e such that o.equals(e) (if such an element exists). Returns true if this deque contained the specified element (or equivalently, if this deque changed as a result of the call).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean add(E e)
+				</name>
+				<description>
+					Inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque) if it is possible to do so immediately without violating capacity restrictions, returning true upon success and throwing an IllegalStateException if no space is currently available. When using a capacity-restricted deque, it is generally preferable to use offer. This method is equivalent to addLast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean offer(E e)
+				</name>
+				<description>
+					Inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque) if it is possible to do so immediately without violating capacity restrictions, returning true upon success and false if no space is currently available. When using a capacity-restricted deque, this method is generally preferable to the add(E) method, which can fail to insert an element only by throwing an exception. This method is equivalent to offerLast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void put(E e)           throws InterruptedException
+				</name>
+				<description>
+					Inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque), waiting if necessary for space to become available. This method is equivalent to putLast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean offer(E e,              long timeout,              TimeUnit unit)                throws InterruptedException
+				</name>
+				<description>
+					Inserts the specified element into the queue represented by this deque (in other words, at the tail of this deque), waiting up to the specified wait time if necessary for space to become available. This method is equivalent to offerLast.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E remove()
+				</name>
+				<description>
+					Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque). This method differs from poll only in that it throws an exception if this deque is empty. This method is equivalent to removeFirst.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E poll()
+				</name>
+				<description>
+					Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty. This method is equivalent to Deque.pollFirst().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E take()         throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), waiting if necessary until an element becomes available. This method is equivalent to takeFirst.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E poll(long timeout,       TimeUnit unit)         throws InterruptedException
+				</name>
+				<description>
+					Retrieves and removes the head of the queue represented by this deque (in other words, the first element of this deque), waiting up to the specified wait time if necessary for an element to become available. This method is equivalent to pollFirst.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E element()
+				</name>
+				<description>
+					Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque). This method differs from peek only in that it throws an exception if this deque is empty. This method is equivalent to getFirst.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					E peek()
+				</name>
+				<description>
+					Retrieves, but does not remove, the head of the queue represented by this deque (in other words, the first element of this deque), or returns null if this deque is empty. This method is equivalent to peekFirst.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean remove(Object o)
+				</name>
+				<description>
+					Removes the first occurrence of the specified element from this deque. If the deque does not contain the element, it is unchanged. More formally, removes the first element e such that o.equals(e) (if such an element exists). Returns true if this deque contained the specified element (or equivalently, if this deque changed as a result of the call). This method is equivalent to removeFirstOccurrence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean contains(Object o)
+				</name>
+				<description>
+					Returns true if this deque contains the specified element. More formally, returns true if and only if this deque contains at least one element e such that o.equals(e).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int size()
+				</name>
+				<description>
+					Returns the number of elements in this deque.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Iterator<E> iterator()
+				</name>
+				<description>
+					Returns an iterator over the elements in this deque in proper sequence. The elements will be returned in order from first (head) to last (tail).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void push(E e)
+				</name>
+				<description>
+					Pushes an element onto the stack represented by this deque. In other words, inserts the element at the front of this deque unless it would violate capacity restrictions. This method is equivalent to addFirst.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

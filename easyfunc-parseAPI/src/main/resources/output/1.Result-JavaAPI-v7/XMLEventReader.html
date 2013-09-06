@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.xml.stream
+	</package>
+	<type>
+		<name>
+			public interface XMLEventReader  extends Iterator
+		</name>
+		<description>
+			This is the top level interface for parsing XML Events. It provides the ability to peek at the next event and returns configuration information through the property interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					XMLEvent nextEvent()                     throws XMLStreamException
+				</name>
+				<description>
+					Get the next XMLEvent
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean hasNext()
+				</name>
+				<description>
+					Check if there are more events. Returns true if there are more events and false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					XMLEvent peek()                throws XMLStreamException
+				</name>
+				<description>
+					Check the next XMLEvent without reading it from the stream. Returns null if the stream is at EOF or has no more XMLEvents. A call to peek() will be equal to the next return of next().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getElementText()                        throws XMLStreamException
+				</name>
+				<description>
+					Reads the content of a text-only element. Precondition: the current event is START_ELEMENT. Postcondition: The current event is the corresponding END_ELEMENT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					XMLEvent nextTag()                   throws XMLStreamException
+				</name>
+				<description>
+					Skips any insignificant space events until a START_ELEMENT or END_ELEMENT is reached. If anything other than space characters are encountered, an exception is thrown. This method should be used when processing element-only content because the parser is not able to recognize ignorable whitespace if the DTD is missing or not interpreted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getProperty(String name)                     throws IllegalArgumentException
+				</name>
+				<description>
+					Get the value of a feature/property from the underlying implementation
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void close()             throws XMLStreamException
+				</name>
+				<description>
+					Frees any resources associated with this Reader. This method does not close the underlying input source.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

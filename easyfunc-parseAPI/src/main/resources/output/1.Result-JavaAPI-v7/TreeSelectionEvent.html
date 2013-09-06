@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.swing.event
+	</package>
+	<type>
+		<name>
+			public class TreeSelectionEvent  extends EventObject
+		</name>
+		<description>
+			An event that characterizes a change in the current selection. The change is based on any number of paths. TreeSelectionListeners will generally query the source of the event for the new selected status of each potentially changed row. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected TreePath[] paths
+				</name>
+				<description>
+					Paths this event represents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean[] areNew
+				</name>
+				<description>
+					For each path identifies if that path is in fact new.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreePath oldLeadSelectionPath
+				</name>
+				<description>
+					leadSelectionPath before the paths changed, may be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreePath newLeadSelectionPath
+				</name>
+				<description>
+					leadSelectionPath after the paths changed, may be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeSelectionEvent(Object source,                    TreePath[] paths,                    boolean[] areNew,                    TreePath oldLeadSelectionPath,                    TreePath newLeadSelectionPath)
+				</name>
+				<description>
+					Represents a change in the selection of a TreeSelectionModel. paths identifies the paths that have been either added or removed from the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeSelectionEvent(Object source,                    TreePath path,                    boolean isNew,                    TreePath oldLeadSelectionPath,                    TreePath newLeadSelectionPath)
+				</name>
+				<description>
+					Represents a change in the selection of a TreeSelectionModel. path identifies the path that have been either added or removed from the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath[] getPaths()
+				</name>
+				<description>
+					Returns the paths that have been added or removed from the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getPath()
+				</name>
+				<description>
+					Returns the first path element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAddedPath()
+				</name>
+				<description>
+					Returns whether the path identified by getPath was added to the selection. A return value of true indicates the path identified by getPath was added to the selection. A return value of false indicates getPath was selected, but is no longer selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAddedPath(TreePath path)
+				</name>
+				<description>
+					Returns whether the specified path was added to the selection. A return value of true indicates the path identified by path was added to the selection. A return value of false indicates path is no longer selected. This method is only valid for the paths returned from getPaths(); invoking with a path not included in getPaths() throws an IllegalArgumentException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAddedPath(int index)
+				</name>
+				<description>
+					Returns whether the path at getPaths()[index] was added to the selection. A return value of true indicates the path was added to the selection. A return value of false indicates the path is no longer selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getOldLeadSelectionPath()
+				</name>
+				<description>
+					Returns the path that was previously the lead path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getNewLeadSelectionPath()
+				</name>
+				<description>
+					Returns the current lead path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object cloneWithSource(Object newSource)
+				</name>
+				<description>
+					Returns a copy of the receiver, but with the source being newSource.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

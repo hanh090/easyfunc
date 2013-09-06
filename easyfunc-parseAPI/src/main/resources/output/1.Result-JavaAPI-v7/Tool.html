@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public interface Tool
+		</name>
+		<description>
+			Common interface for tools that can be invoked from a program. A tool is traditionally a command line program such as a compiler. The set of tools available with a platform is defined by the vendor. Tools can be located using ServiceLoader.load(Class).
+		</description>
+		<methods>
+			<method>
+				<name>
+					int run(InputStream in,        OutputStream out,        OutputStream err,        String... arguments)
+				</name>
+				<description>
+					Run the tool with the given I/O channels and arguments. By convention a tool returns 0 for success and nonzero for errors. Any diagnostics generated will be written to either out or err in some unspecified format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Set<SourceVersion> getSourceVersions()
+				</name>
+				<description>
+					Gets the source versions of the Java™ programming language supported by this tool.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

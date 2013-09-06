@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.sql
+	</package>
+	<type>
+		<name>
+			public class StatementEvent  extends EventObject
+		</name>
+		<description>
+			A StatementEvent is sent to all StatementEventListeners which were registered with a PooledConnection. This occurs when the driver determines that a PreparedStatement that is associated with the PooledConnection has been closed or the driver determines is invalid.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StatementEvent(PooledConnection con,                PreparedStatement statement)
+				</name>
+				<description>
+					Constructs a StatementEvent with the specified PooledConnection and PreparedStatement. The SQLException contained in the event defaults to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StatementEvent(PooledConnection con,                PreparedStatement statement,                SQLException exception)
+				</name>
+				<description>
+					Constructs a StatementEvent with the specified PooledConnection, PreparedStatement and SQLException
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PreparedStatement getStatement()
+				</name>
+				<description>
+					Returns the PreparedStatement that is being closed or is invalid
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLException getSQLException()
+				</name>
+				<description>
+					Returns the SQLException the driver is about to throw
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

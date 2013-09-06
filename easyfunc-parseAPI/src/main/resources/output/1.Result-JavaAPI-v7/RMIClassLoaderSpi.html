@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.rmi.server
+	</package>
+	<type>
+		<name>
+			public abstract class RMIClassLoaderSpi  extends Object
+		</name>
+		<description>
+			RMIClassLoaderSpi is the service provider interface for RMIClassLoader. In particular, an RMIClassLoaderSpi instance provides an implementation of the following static methods of RMIClassLoader: RMIClassLoader.loadClass(URL,String) RMIClassLoader.loadClass(String,String) RMIClassLoader.loadClass(String,String,ClassLoader) RMIClassLoader.loadProxyClass(String,String[],ClassLoader) RMIClassLoader.getClassLoader(String) RMIClassLoader.getClassAnnotation(Class) When one of those methods is invoked, its behavior is to delegate to a corresponding method on an instance of this class. The details of how each method delegates to the provider instance is described in the documentation for each particular method. See the documentation for RMIClassLoader for a description of how a provider instance is chosen.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RMIClassLoaderSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Class<?> loadClass(String codebase,                   String name,                   ClassLoader defaultLoader)                              throws MalformedURLException,                                     ClassNotFoundException
+				</name>
+				<description>
+					Provides the implementation for RMIClassLoader.loadClass(URL,String), RMIClassLoader.loadClass(String,String), and RMIClassLoader.loadClass(String,String,ClassLoader). Loads a class from a codebase URL path, optionally using the supplied loader. Typically, a provider implementation will attempt to resolve the named class using the given defaultLoader, if specified, before attempting to resolve the class from the codebase URL path. An implementation of this method must either return a class with the given name or throw an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Class<?> loadProxyClass(String codebase,                        String[] interfaces,                        ClassLoader defaultLoader)                                   throws MalformedURLException,                                          ClassNotFoundException
+				</name>
+				<description>
+					Provides the implementation for RMIClassLoader.loadProxyClass(String,String[],ClassLoader). Loads a dynamic proxy class (see Proxy that implements a set of interfaces with the given names from a codebase URL path, optionally using the supplied loader. An implementation of this method must either return a proxy class that implements the named interfaces or throw an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ClassLoader getClassLoader(String codebase)                                      throws MalformedURLException
+				</name>
+				<description>
+					Provides the implementation for RMIClassLoader.getClassLoader(String). Returns a class loader that loads classes from the given codebase URL path. If there is a security manger, its checkPermission method will be invoked with a RuntimePermission("getClassLoader") permission; this could result in a SecurityException. The implementation of this method may also perform further security checks to verify that the calling context has permission to connect to all of the URLs in the codebase URL path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getClassAnnotation(Class<?> cl)
+				</name>
+				<description>
+					Provides the implementation for RMIClassLoader.getClassAnnotation(Class). Returns the annotation string (representing a location for the class definition) that RMI will use to annotate the class descriptor when marshalling objects of the given class.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

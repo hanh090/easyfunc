@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public abstract class LookupTable  extends Object
+		</name>
+		<description>
+			This abstract class defines a lookup table object. ByteLookupTable and ShortLookupTable are subclasses, which contain byte and short data, respectively. A lookup table contains data arrays for one or more bands (or components) of an image (for example, separate arrays for R, G, and B), and it contains an offset which will be subtracted from the input values before indexing into the arrays. This allows an array smaller than the native data size to be provided for a constrained input. If there is only one array in the lookup table, it will be applied to all bands. All arrays must be the same size.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected LookupTable(int offset,             int numComponents)
+				</name>
+				<description>
+					Constructs a new LookupTable from the number of components and an offset into the lookup table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumComponents()
+				</name>
+				<description>
+					Returns the number of components in the lookup table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOffset()
+				</name>
+				<description>
+					Returns the offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int[] lookupPixel(int[] src,                  int[] dest)
+				</name>
+				<description>
+					Returns an int array of components for one pixel. The dest array contains the result of the lookup and is returned. If dest is null, a new array is allocated. The source and destination can be equal.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

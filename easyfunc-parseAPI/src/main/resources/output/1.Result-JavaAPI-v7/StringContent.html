@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public final class StringContent  extends Object  implements AbstractDocument.Content, Serializable
+		</name>
+		<description>
+			An implementation of the AbstractDocument.Content interface that is a brute force implementation that is useful for relatively small documents and/or debugging. It manages the character content as a simple character array. It is also quite inefficient. It is generally recommended that the gap buffer or piece table implementations be used instead. This buffer does not scale up to large sizes. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StringContent()
+				</name>
+				<description>
+					Creates a new StringContent object. Initial size defaults to 10.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StringContent(int initialLength)
+				</name>
+				<description>
+					Creates a new StringContent object, with the initial size specified. If the length is < 1, a size of 1 is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int length()
+				</name>
+				<description>
+					Returns the length of the content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UndoableEdit insertString(int where,                          String str)                            throws BadLocationException
+				</name>
+				<description>
+					Inserts a string into the content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UndoableEdit remove(int where,                    int nitems)                      throws BadLocationException
+				</name>
+				<description>
+					Removes part of the content. where + nitems must be < length().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getString(int where,                 int len)                   throws BadLocationException
+				</name>
+				<description>
+					Retrieves a portion of the content. where + len must be <= length().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void getChars(int where,              int len,              Segment chars)                throws BadLocationException
+				</name>
+				<description>
+					Retrieves a portion of the content. where + len must be <= length()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Position createPosition(int offset)                          throws BadLocationException
+				</name>
+				<description>
+					Creates a position within the content that will track change as the content is mutated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Vector getPositionsInRange(Vector v,                           int offset,                           int length)
+				</name>
+				<description>
+					Returns a Vector containing instances of UndoPosRef for the Positions in the range offset to offset + length. If v is not null the matching Positions are placed in there. The vector with the resulting Positions are returned. This is meant for internal usage, and is generally not of interest to subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateUndoPositions(Vector positions)
+				</name>
+				<description>
+					Resets the location for all the UndoPosRef instances in positions. This is meant for internal usage, and is generally not of interest to subclasses.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public static class JSpinner.DefaultEditor  extends JPanel  implements ChangeListener, PropertyChangeListener, LayoutManager
+		</name>
+		<description>
+			A simple base class for more specialized editors that displays a read-only view of the model's current value with a JFormattedTextField. Subclasses can configure the JFormattedTextField to create an editor that's appropriate for the type of model they support and they may want to override the stateChanged and propertyChanged methods, which keep the model and the text field in sync. This class defines a dismiss method that removes the editors ChangeListener from the JSpinner that it's part of. The setEditor method knows about DefaultEditor.dismiss, so if the developer replaces an editor that's derived from JSpinner.DefaultEditor its ChangeListener connection back to the JSpinner will be removed. However after that, it's up to the developer to manage their editor listeners. Similarly, if a subclass overrides createEditor, it's up to the subclasser to deal with their editor subsequently being replaced (with setEditor). We expect that in most cases, and in editor installed with setEditor or created by a createEditor override, will not be replaced anyway. This class is the LayoutManager for it's single JFormattedTextField child. By default the child is just centered with the parents insets.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JSpinner.DefaultEditor(JSpinner spinner)
+				</name>
+				<description>
+					Constructs an editor component for the specified JSpinner. This DefaultEditor is it's own layout manager and it is added to the spinner's ChangeListener list. The constructor creates a single JFormattedTextField child, initializes it's value to be the spinner model's current value and adds it to this DefaultEditor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dismiss(JSpinner spinner)
+				</name>
+				<description>
+					Disconnect this editor from the specified JSpinner. By default, this method removes itself from the spinners ChangeListener list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JSpinner getSpinner()
+				</name>
+				<description>
+					Returns the JSpinner ancestor of this editor or null if none of the ancestors are a JSpinner. Typically the editor's parent is a JSpinner however subclasses of JSpinner may override the the createEditor method and insert one or more containers between the JSpinner and it's editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFormattedTextField getTextField()
+				</name>
+				<description>
+					Returns the JFormattedTextField child of this editor. By default the text field is the first and only child of editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void stateChanged(ChangeEvent e)
+				</name>
+				<description>
+					This method is called when the spinner's model's state changes. It sets the value of the text field to the current value of the spinners model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void propertyChange(PropertyChangeEvent e)
+				</name>
+				<description>
+					Called by the JFormattedTextField PropertyChangeListener. When the "value" property changes, which implies that the user has typed a new number, we set the value of the spinners model. This class ignores PropertyChangeEvents whose source is not the JFormattedTextField, so subclasses may safely make this DefaultEditor a PropertyChangeListener on other objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addLayoutComponent(String name,                        Component child)
+				</name>
+				<description>
+					This LayoutManager method does nothing. We're only managing a single child and there's no support for layout constraints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeLayoutComponent(Component child)
+				</name>
+				<description>
+					This LayoutManager method does nothing. There isn't any per-child state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension preferredLayoutSize(Container parent)
+				</name>
+				<description>
+					Returns the preferred size of first (and only) child plus the size of the parents insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension minimumLayoutSize(Container parent)
+				</name>
+				<description>
+					Returns the minimum size of first (and only) child plus the size of the parents insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void layoutContainer(Container parent)
+				</name>
+				<description>
+					Resize the one (and only) child to completely fill the area within the parents insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void commitEdit()                  throws ParseException
+				</name>
+				<description>
+					Pushes the currently edited value to the SpinnerModel. The default implementation invokes commitEdit on the JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBaseline(int width,                int height)
+				</name>
+				<description>
+					Returns the baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component.BaselineResizeBehavior getBaselineResizeBehavior()
+				</name>
+				<description>
+					Returns an enum indicating how the baseline of the component changes as the size changes.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

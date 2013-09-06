@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public final class Inet4Address  extends InetAddress
+		</name>
+		<description>
+			This class represents an Internet Protocol version 4 (IPv4) address. Defined by RFC 790: Assigned Numbers, RFC 1918: Address Allocation for Private Internets, and RFC 2365: Administratively Scoped IP Multicast Textual representation of IP addresses Textual representation of IPv4 address used as input to methods takes one of the following forms: d.d.d.d d.d.d d.d d When four parts are specified, each is interpreted as a byte of data and assigned, from left to right, to the four bytes of an IPv4 address. When a three part address is specified, the last part is interpreted as a 16-bit quantity and placed in the right most two bytes of the network address. This makes the three part address format convenient for specifying Class B net- work addresses as 128.net.host. When a two part address is supplied, the last part is interpreted as a 24-bit quantity and placed in the right most three bytes of the network address. This makes the two part address format convenient for specifying Class A network addresses as net.host. When only one part is given, the value is stored directly in the network address without any byte rearrangement. For methods that return a textual representation as output value, the first form, i.e. a dotted-quad string, is used. The Scope of a Multicast Address Historically the IPv4 TTL field in the IP header has doubled as a multicast scope field: a TTL of 0 means node-local, 1 means link-local, up through 32 means site-local, up through 64 means region-local, up through 128 means continent-local, and up through 255 are global. However, the administrative scoping is preferred. Please refer to RFC 2365: Administratively Scoped IP Multicast
+		</description>
+		<methods>
+			<method>
+				<name>
+					public boolean isMulticastAddress()
+				</name>
+				<description>
+					Utility routine to check if the InetAddress is an IP multicast address. IP multicast address is a Class D address i.e first four bits of the address are 1110.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isAnyLocalAddress()
+				</name>
+				<description>
+					Utility routine to check if the InetAddress in a wildcard address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLoopbackAddress()
+				</name>
+				<description>
+					Description copied from class: InetAddress Utility routine to check if the InetAddress is a loopback address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLinkLocalAddress()
+				</name>
+				<description>
+					Utility routine to check if the InetAddress is an link local address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSiteLocalAddress()
+				</name>
+				<description>
+					Utility routine to check if the InetAddress is a site local address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMCGlobal()
+				</name>
+				<description>
+					Utility routine to check if the multicast address has global scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMCNodeLocal()
+				</name>
+				<description>
+					Utility routine to check if the multicast address has node scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMCLinkLocal()
+				</name>
+				<description>
+					Utility routine to check if the multicast address has link scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMCSiteLocal()
+				</name>
+				<description>
+					Utility routine to check if the multicast address has site scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMCOrgLocal()
+				</name>
+				<description>
+					Utility routine to check if the multicast address has organization scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getAddress()
+				</name>
+				<description>
+					Returns the raw IP address of this InetAddress object. The result is in network byte order: the highest order byte of the address is in getAddress()[0].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getHostAddress()
+				</name>
+				<description>
+					Returns the IP address string in textual presentation form.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this IP address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this object against the specified object. The result is true if and only if the argument is not null and it represents the same IP address as this object. Two instances of InetAddress represent the same IP address if the length of the byte arrays returned by getAddress is the same for both, and each of the array components is the same for the byte arrays.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

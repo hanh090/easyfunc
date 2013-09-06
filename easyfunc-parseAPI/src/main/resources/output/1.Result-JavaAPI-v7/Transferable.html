@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.awt.datatransfer
+	</package>
+	<type>
+		<name>
+			public interface Transferable
+		</name>
+		<description>
+			Defines the interface for classes that can be used to provide data for a transfer operation. For information on using data transfer with Swing, see How to Use Drag and Drop and Data Transfer, a section in The Java Tutorial, for more information.
+		</description>
+		<methods>
+			<method>
+				<name>
+					DataFlavor[] getTransferDataFlavors()
+				</name>
+				<description>
+					Returns an array of DataFlavor objects indicating the flavors the data can be provided in. The array should be ordered according to preference for providing the data (from most richly descriptive to least descriptive).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isDataFlavorSupported(DataFlavor flavor)
+				</name>
+				<description>
+					Returns whether or not the specified data flavor is supported for this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getTransferData(DataFlavor flavor)                         throws UnsupportedFlavorException,                                IOException
+				</name>
+				<description>
+					Returns an object which represents the data to be transferred. The class of the object returned is defined by the representation class of the flavor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

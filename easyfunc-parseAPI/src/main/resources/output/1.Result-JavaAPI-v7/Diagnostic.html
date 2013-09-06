@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public interface Diagnostic<S>
+		</name>
+		<description>
+			Interface for diagnostics from tools. A diagnostic usually reports a problem at a specific position in a source file. However, not all diagnostics are associated with a position or a file. A position is a zero-based character offset from the beginning of a file. Negative values (except NOPOS) are not valid positions. Line and column numbers begin at 1. Negative values (except NOPOS) and 0 are not valid line or column numbers.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final long NOPOS
+				</name>
+				<description>
+					Used to signal that no position is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Diagnostic.Kind getKind()
+				</name>
+				<description>
+					Gets the kind of this diagnostic, for example, error or warning.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					S getSource()
+				</name>
+				<description>
+					Gets the source object associated with this diagnostic.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getPosition()
+				</name>
+				<description>
+					Gets a character offset from the beginning of the source object associated with this diagnostic that indicates the location of the problem. In addition, the following must be true: getStartPostion() <= getPosition() getPosition() <= getEndPosition()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getStartPosition()
+				</name>
+				<description>
+					Gets the character offset from the beginning of the file associated with this diagnostic that indicates the start of the problem.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getEndPosition()
+				</name>
+				<description>
+					Gets the character offset from the beginning of the file associated with this diagnostic that indicates the end of the problem.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getLineNumber()
+				</name>
+				<description>
+					Gets the line number of the character offset returned by getPosition().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getColumnNumber()
+				</name>
+				<description>
+					Gets the column number of the character offset returned by getPosition().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getCode()
+				</name>
+				<description>
+					Gets a diagnostic code indicating the type of diagnostic. The code is implementation-dependent and might be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getMessage(Locale locale)
+				</name>
+				<description>
+					Gets a localized message for the given locale. The actual message is implementation-dependent. If the locale is null use the default locale.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.management.openmbean
+	</package>
+	<type>
+		<name>
+			public class CompositeType  extends OpenType<CompositeData>
+		</name>
+		<description>
+			The CompositeType class is the open type class whose instances describe the types of CompositeData values.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CompositeType(String typeName,               String description,               String[] itemNames,               String[] itemDescriptions,               OpenType<?>[] itemTypes)                throws OpenDataException
+				</name>
+				<description>
+					Constructs a CompositeType instance, checking for the validity of the given parameters. The validity constraints are described below for each parameter. Note that the contents of the three array parameters itemNames, itemDescriptions and itemTypes are internally copied so that any subsequent modification of these arrays by the caller of this constructor has no impact on the constructed CompositeType instance. The Java class name of composite data values this composite type represents (ie the class name returned by the getClassName method) is set to the string value returned by CompositeData.class.getName().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(String itemName)
+				</name>
+				<description>
+					Returns true if this CompositeType instance defines an item whose name is itemName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDescription(String itemName)
+				</name>
+				<description>
+					Returns the description of the item whose name is itemName, or null if this CompositeType instance does not define any item whose name is itemName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OpenType<?> getType(String itemName)
+				</name>
+				<description>
+					Returns the open type of the item whose name is itemName, or null if this CompositeType instance does not define any item whose name is itemName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<String> keySet()
+				</name>
+				<description>
+					Returns an unmodifiable Set view of all the item names defined by this CompositeType instance. The set's iterator will return the item names in ascending order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isValue(Object obj)
+				</name>
+				<description>
+					Tests whether obj is a value which could be described by this CompositeType instance. If obj is null or is not an instance of javax.management.openmbean.CompositeData, isValue returns false. If obj is an instance of javax.management.openmbean.CompositeData, then let ct be its CompositeType as returned by CompositeData.getCompositeType(). The result is true if this is assignable from ct. This means that: this.getTypeName() equals ct.getTypeName(), and there are no item names present in this that are not also present in ct, and for every item in this, its type is assignable from the type of the corresponding item in ct. A TabularType is assignable from another TabularType if they have the same typeName and index name list, and the row type of the first is assignable from the row type of the second. An ArrayType is assignable from another ArrayType if they have the same dimension; and both are primitive arrays or neither is; and the element type of the first is assignable from the element type of the second. In every other case, an OpenType is assignable from another OpenType only if they are equal. These rules mean that extra items can be added to a CompositeData without making it invalid for a CompositeType that does not have those items.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares the specified obj parameter with this CompositeType instance for equality. Two CompositeType instances are equal if and only if all of the following statements are true: their type names are equal their items' names and types are equal  
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this CompositeType instance. The hash code of a CompositeType instance is the sum of the hash codes of all elements of information used in equals comparisons (ie: name, items names, items types). This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two CompositeType instances t1 and t2, as required by the general contract of the method Object.hashCode(). As CompositeType instances are immutable, the hash code for this instance is calculated once, on the first call to hashCode, and then the same value is returned for subsequent calls.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this CompositeType instance. The string representation consists of the name of this class (ie javax.management.openmbean.CompositeType), the type name for this instance, and the list of the items names and types string representation of this instance. As CompositeType instances are immutable, the string representation for this instance is calculated once, on the first call to toString, and then the same value is returned for subsequent calls.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

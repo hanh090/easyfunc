@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public final class PropertyPermission  extends BasicPermission
+		</name>
+		<description>
+			This class is for property permissions. The name is the name of the property ("java.home", "os.name", etc). The naming convention follows the hierarchical property naming convention. Also, an asterisk may appear at the end of the name, following a ".", or by itself, to signify a wildcard match. For example: "java.*" or "*" is valid, "*java" or "a*b" is not valid. The actions to be granted are passed to the constructor in a string containing a list of one or more comma-separated keywords. The possible keywords are "read" and "write". Their meaning is defined as follows: read read permission. Allows System.getProperty to be called. write write permission. Allows System.setProperty to be called. The actions string is converted to lowercase before processing. Care should be taken before granting code permission to access certain system properties. For example, granting permission to access the "java.home" system property gives potentially malevolent code sensitive information about the system environment (the Java installation directory). Also, granting permission to access the "user.name" and "user.home" system properties gives potentially malevolent code sensitive information about the user environment (the user's account name and home directory).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PropertyPermission(String name,                    String actions)
+				</name>
+				<description>
+					Creates a new PropertyPermission object with the specified name. The name is the name of the system property, and actions contains a comma-separated list of the desired actions granted on the property. Possible actions are "read" and "write".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean implies(Permission p)
+				</name>
+				<description>
+					Checks if this PropertyPermission object "implies" the specified permission. More specifically, this method returns true if: p is an instanceof PropertyPermission, p's actions are a subset of this object's actions, and p's name is implied by this object's name. For example, "java.*" implies "java.home".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Checks two PropertyPermission objects for equality. Checks that obj is a PropertyPermission, and has the same name and actions as this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this object. The hash code used is the hash code of this permissions name, that is, getName().hashCode(), where getName is from the Permission superclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getActions()
+				</name>
+				<description>
+					Returns the "canonical string representation" of the actions. That is, this method always returns present actions in the following order: read, write. For example, if this PropertyPermission object allows both write and read actions, a call to getActions will return the string "read,write".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PermissionCollection newPermissionCollection()
+				</name>
+				<description>
+					Returns a new PermissionCollection object for storing PropertyPermission objects.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		javax.xml.parsers
+	</package>
+	<type>
+		<name>
+			public abstract class DocumentBuilderFactory  extends Object
+		</name>
+		<description>
+			Defines a factory API that enables applications to obtain a parser that produces DOM object trees from XML documents.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected DocumentBuilderFactory()
+				</name>
+				<description>
+					Protected constructor to prevent instantiation. Use newInstance().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DocumentBuilderFactory newInstance()
+				</name>
+				<description>
+					Obtain a new instance of a DocumentBuilderFactory. This static method creates a new factory instance. This method uses the following ordered lookup procedure to determine the DocumentBuilderFactory implementation class to load: Use the javax.xml.parsers.DocumentBuilderFactory system property. Use the properties file "lib/jaxp.properties" in the JRE directory. This configuration file is in standard java.util.Properties format and contains the fully qualified name of the implementation class with the key being the system property defined above. The jaxp.properties file is read only once by the JAXP implementation and it's values are then cached for future use. If the file does not exist when the first attempt is made to read from it, no further attempts are made to check for its existence. It is not possible to change the value of any property in jaxp.properties after it has been read for the first time. Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API will look for a classname in the file META-INF/services/javax.xml.parsers.DocumentBuilderFactory in jars available to the runtime. Platform default DocumentBuilderFactory instance. Once an application has obtained a reference to a DocumentBuilderFactory it can use the factory to configure and obtain parser instances. Tip for Trouble-shooting Setting the jaxp.debug system property will cause this method to print a lot of debug messages to System.err about what it is doing and where it is looking at. If you have problems loading DocumentBuilders, try:    java -Djaxp.debug=1 YourProgram ....
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DocumentBuilderFactory newInstance(String factoryClassName,                                   ClassLoader classLoader)
+				</name>
+				<description>
+					Obtain a new instance of a DocumentBuilderFactory from class name. This function is useful when there are multiple providers in the classpath. It gives more control to the application as it can specify which provider should be loaded. Once an application has obtained a reference to a DocumentBuilderFactory it can use the factory to configure and obtain parser instances. Tip for Trouble-shooting Setting the jaxp.debug system property will cause this method to print a lot of debug messages to System.err about what it is doing and where it is looking at. If you have problems try:    java -Djaxp.debug=1 YourProgram ....
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract DocumentBuilder newDocumentBuilder()                                              throws ParserConfigurationException
+				</name>
+				<description>
+					Creates a new instance of a DocumentBuilder using the currently configured parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNamespaceAware(boolean awareness)
+				</name>
+				<description>
+					Specifies that the parser produced by this code will provide support for XML namespaces. By default the value of this is set to false
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValidating(boolean validating)
+				</name>
+				<description>
+					Specifies that the parser produced by this code will validate documents as they are parsed. By default the value of this is set to false. Note that "the validation" here means a validating parser as defined in the XML recommendation. In other words, it essentially just controls the DTD validation. (except the legacy two properties defined in JAXP 1.2.) To use modern schema languages such as W3C XML Schema or RELAX NG instead of DTD, you can configure your parser to be a non-validating parser by leaving the setValidating(boolean) method false, then use the setSchema(Schema) method to associate a schema to a parser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIgnoringElementContentWhitespace(boolean whitespace)
+				</name>
+				<description>
+					Specifies that the parsers created by this factory must eliminate whitespace in element content (sometimes known loosely as 'ignorable whitespace') when parsing XML documents (see XML Rec 2.10). Note that only whitespace which is directly contained within element content that has an element only content model (see XML Rec 3.2.1) will be eliminated. Due to reliance on the content model this setting requires the parser to be in validating mode. By default the value of this is set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExpandEntityReferences(boolean expandEntityRef)
+				</name>
+				<description>
+					Specifies that the parser produced by this code will expand entity reference nodes. By default the value of this is set to true
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIgnoringComments(boolean ignoreComments)
+				</name>
+				<description>
+					Specifies that the parser produced by this code will ignore comments. By default the value of this is set to false .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCoalescing(boolean coalescing)
+				</name>
+				<description>
+					Specifies that the parser produced by this code will convert CDATA nodes to Text nodes and append it to the adjacent (if any) text node. By default the value of this is set to false
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNamespaceAware()
+				</name>
+				<description>
+					Indicates whether or not the factory is configured to produce parsers which are namespace aware.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isValidating()
+				</name>
+				<description>
+					Indicates whether or not the factory is configured to produce parsers which validate the XML content during parse.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isIgnoringElementContentWhitespace()
+				</name>
+				<description>
+					Indicates whether or not the factory is configured to produce parsers which ignore ignorable whitespace in element content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isExpandEntityReferences()
+				</name>
+				<description>
+					Indicates whether or not the factory is configured to produce parsers which expand entity reference nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isIgnoringComments()
+				</name>
+				<description>
+					Indicates whether or not the factory is configured to produce parsers which ignores comments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCoalescing()
+				</name>
+				<description>
+					Indicates whether or not the factory is configured to produce parsers which converts CDATA nodes to Text nodes and appends it to the adjacent (if any) Text node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setAttribute(String name,                  Object value)                             throws IllegalArgumentException
+				</name>
+				<description>
+					Allows the user to set specific attributes on the underlying implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getAttribute(String name)                               throws IllegalArgumentException
+				</name>
+				<description>
+					Allows the user to retrieve specific attributes on the underlying implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setFeature(String name,                boolean value)                           throws ParserConfigurationException
+				</name>
+				<description>
+					Set a feature for this DocumentBuilderFactory and DocumentBuilders created by this factory. Feature names are fully qualified URIs. Implementations may define their own features. A ParserConfigurationException is thrown if this DocumentBuilderFactory or the DocumentBuilders it creates cannot support the feature. It is possible for a DocumentBuilderFactory to expose a feature value but be unable to change its state. All implementations are required to support the XMLConstants.FEATURE_SECURE_PROCESSING feature. When the feature is: true: the implementation will limit XML processing to conform to implementation limits. Examples include enity expansion limits and XML Schema constructs that would consume large amounts of resources. If XML processing is limited for security reasons, it will be reported via a call to the registered ErrorHandler.fatalError(SAXParseException exception). See DocumentBuilder.setErrorHandler(org.xml.sax.ErrorHandler errorHandler). false: the implementation will processing XML according to the XML specifications without regard to possible implementation limits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean getFeature(String name)                              throws ParserConfigurationException
+				</name>
+				<description>
+					Get the state of the named feature. Feature names are fully qualified URIs. Implementations may define their own features. An ParserConfigurationException is thrown if this DocumentBuilderFactory or the DocumentBuilders it creates cannot support the feature. It is possible for an DocumentBuilderFactory to expose a feature value but be unable to change its state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Schema getSchema()
+				</name>
+				<description>
+					Gets the Schema object specified through the setSchema(Schema schema) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSchema(Schema schema)
+				</name>
+				<description>
+					Set the Schema to be used by parsers created from this factory. When a Schema is non-null, a parser will use a validator created from it to validate documents before it passes information down to the application. When errors are found by the validator, the parser is responsible to report them to the user-specified ErrorHandler (or if the error handler is not set, ignore them or throw them), just like any other errors found by the parser itself. In other words, if the user-specified ErrorHandler is set, it must receive those errors, and if not, they must be treated according to the implementation specific default error handling rules. A validator may modify the outcome of a parse (for example by adding default values that were missing in documents), and a parser is responsible to make sure that the application will receive modified DOM trees. Initialy, null is set as the Schema. This processing will take effect even if the isValidating() method returns false. It is an error to use the http://java.sun.com/xml/jaxp/properties/schemaSource property and/or the http://java.sun.com/xml/jaxp/properties/schemaLanguage property in conjunction with a Schema object. Such configuration will cause a ParserConfigurationException exception when the newDocumentBuilder() is invoked. Note for implmentors A parser must be able to work with any Schema implementation. However, parsers and schemas are allowed to use implementation-specific custom mechanisms as long as they yield the result described in the specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setXIncludeAware(boolean state)
+				</name>
+				<description>
+					Set state of XInclude processing. If XInclude markup is found in the document instance, should it be processed as specified in XML Inclusions (XInclude) Version 1.0. XInclude processing defaults to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isXIncludeAware()
+				</name>
+				<description>
+					Get state of XInclude processing.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.ws
+	</package>
+	<type>
+		<name>
+			public interface Dispatch<T>  extends BindingProvider
+		</name>
+		<description>
+			The Dispatch interface provides support for the dynamic invocation of a service endpoint operations. The javax.xml.ws.Service class acts as a factory for the creation of Dispatch instances.
+		</description>
+		<methods>
+			<method>
+				<name>
+					T invoke(T msg)
+				</name>
+				<description>
+					Invoke a service operation synchronously. The client is responsible for ensuring that the msg object when marshalled is formed according to the requirements of the protocol binding in use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Response<T> invokeAsync(T msg)
+				</name>
+				<description>
+					Invoke a service operation asynchronously. The method returns without waiting for the response to the operation invocation, the results of the operation are obtained by polling the returned Response. The client is responsible for ensuring that the msg object when marshalled is formed according to the requirements of the protocol binding in use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Future<?> invokeAsync(T msg,                      AsyncHandler<T> handler)
+				</name>
+				<description>
+					Invoke a service operation asynchronously. The method returns without waiting for the response to the operation invocation, the results of the operation are communicated to the client via the passed in handler. The client is responsible for ensuring that the msg object when marshalled is formed according to the requirements of the protocol binding in use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void invokeOneWay(T msg)
+				</name>
+				<description>
+					Invokes a service operation using the one-way interaction mode. The operation invocation is logically non-blocking, subject to the capabilities of the underlying protocol, no results are returned. When the protocol in use is SOAP/HTTP, this method MUST block until an HTTP response code has been received or an error occurs. The client is responsible for ensuring that the msg object when marshalled is formed according to the requirements of the protocol binding in use.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

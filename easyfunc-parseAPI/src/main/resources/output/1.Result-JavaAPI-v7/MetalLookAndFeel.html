@@ -1,0 +1,558 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.metal
+	</package>
+	<type>
+		<name>
+			public class MetalLookAndFeel  extends BasicLookAndFeel
+		</name>
+		<description>
+			The Java Look and Feel, otherwise known as Metal. Each of the ComponentUIs provided by MetalLookAndFeel derives its behavior from the defaults table. Unless otherwise noted each of the ComponentUI implementations in this package document the set of defaults they use. Unless otherwise noted the defaults are installed at the time installUI is invoked, and follow the recommendations outlined in LookAndFeel for installing defaults. MetalLookAndFeel derives it's color palette and fonts from MetalTheme. The default theme is OceanTheme. The theme can be changed using the setCurrentTheme method, refer to it for details on changing the theme. Prior to 1.5 the default theme was DefaultMetalTheme. The system property "swing.metalTheme" can be set to "steel" to indicate the default should be DefaultMetalTheme. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MetalLookAndFeel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Returns the name of this look and feel. This returns "Metal".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getID()
+				</name>
+				<description>
+					Returns an identifier for this look and feel. This returns "Metal".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getDescription()
+				</name>
+				<description>
+					Returns a short description of this look and feel. This returns "The Java(tm) Look and Feel".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNativeLookAndFeel()
+				</name>
+				<description>
+					Returns false; MetalLookAndFeel is not a native look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSupportedLookAndFeel()
+				</name>
+				<description>
+					Returns true; MetalLookAndFeel can be run on any platform.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getSupportsWindowDecorations()
+				</name>
+				<description>
+					Returns true; metal can provide Window decorations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initClassDefaults(UIDefaults table)
+				</name>
+				<description>
+					Populates table with mappings from uiClassID to the fully qualified name of the ui class. MetalLookAndFeel registers an entry for each of the classes in the package javax.swing.plaf.metal that are named MetalXXXUI. The string XXX is one of Swing's uiClassIDs. For the uiClassIDs that do not have a class in metal, the corresponding class in javax.swing.plaf.basic is used. For example, metal does not have a class named "MetalColorChooserUI", as such, javax.swing.plaf.basic.BasicColorChooserUI is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initSystemColorDefaults(UIDefaults table)
+				</name>
+				<description>
+					Populates table with system colors. The following values are added to table: Key Value "desktop" theme.getDesktopColor() "activeCaption" theme.getWindowTitleBackground() "activeCaptionText" theme.getWindowTitleForeground() "activeCaptionBorder" theme.getPrimaryControlShadow() "inactiveCaption" theme.getWindowTitleInactiveBackground() "inactiveCaptionText" theme.getWindowTitleInactiveForeground() "inactiveCaptionBorder" theme.getControlShadow() "window" theme.getWindowBackground() "windowBorder" theme.getControl() "windowText" theme.getUserTextColor() "menu" theme.getMenuBackground() "menuText" theme.getMenuForeground() "text" theme.getWindowBackground() "textText" theme.getUserTextColor() "textHighlight" theme.getTextHighlightColor() "textHighlightText" theme.getHighlightedTextColor() "textInactiveText" theme.getInactiveSystemTextColor() "control" theme.getControl() "controlText" theme.getControlTextColor() "controlHighlight" theme.getControlHighlight() "controlLtHighlight" theme.getControlHighlight() "controlShadow" theme.getControlShadow() "controlDkShadow" theme.getControlDarkShadow() "scrollbar" theme.getControl() "info" theme.getPrimaryControl() "infoText" theme.getPrimaryControlInfo() The value theme corresponds to the current MetalTheme.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initComponentDefaults(UIDefaults table)
+				</name>
+				<description>
+					Populates table with the defaults for metal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void createDefaultTheme()
+				</name>
+				<description>
+					Ensures the current MetalTheme is non-null. This is a cover method for getCurrentTheme.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UIDefaults getDefaults()
+				</name>
+				<description>
+					Returns the look and feel defaults. This invokes, in order, createDefaultTheme(), super.getDefaults() and getCurrentTheme().addCustomEntriesToTable(table). While this method is public, it should only be invoked by the UIManager when the look and feel is set as the current look and feel and after initialize has been invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void provideErrorFeedback(Component component)
+				</name>
+				<description>
+					Invoked when the user attempts an invalid operation, such as pasting into an uneditable JTextField that has focus. The default implementation beeps. Subclasses that wish different behavior should override this and provide the additional feedback.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setCurrentTheme(MetalTheme theme)
+				</name>
+				<description>
+					Set the theme used by MetalLookAndFeel. After the theme is set, MetalLookAndFeel needs to be re-installed and the uis need to be recreated. The following shows how to do this:      MetalLookAndFeel.setCurrentTheme(theme);       // re-install the Metal Look and Feel     UIManager.setLookAndFeel(new MetalLookAndFeel());       // Update the ComponentUIs for all Components. This     // needs to be invoked for all windows.     SwingUtilities.updateComponentTreeUI(rootComponent);   If this is not done the results are undefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MetalTheme getCurrentTheme()
+				</name>
+				<description>
+					Return the theme currently being used by MetalLookAndFeel. If the current theme is null, the default theme is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledIcon(JComponent component,                     Icon icon)
+				</name>
+				<description>
+					Returns an Icon with a disabled appearance. This method is used to generate a disabled Icon when one has not been specified. For example, if you create a JButton and only specify an Icon via setIcon this method will be called to generate the disabled Icon. If null is passed as icon this method returns null. Some look and feels might not render the disabled Icon, in which case they will ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledSelectedIcon(JComponent component,                             Icon icon)
+				</name>
+				<description>
+					Returns an Icon for use by disabled components that are also selected. This method is used to generate an Icon for components that are in both the disabled and selected states but do not have a specific Icon for this state. For example, if you create a JButton and only specify an Icon via setIcon this method will be called to generate the disabled and selected Icon. If null is passed as icon this method returns null. Some look and feels might not render the disabled and selected Icon, in which case they will ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FontUIResource getControlTextFont()
+				</name>
+				<description>
+					Returns the control text font of the current theme. This is a cover method for getCurrentTheme().getControlTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FontUIResource getSystemTextFont()
+				</name>
+				<description>
+					Returns the sytem text font of the current theme. This is a cover method for getCurrentTheme().getSystemTextFont().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FontUIResource getUserTextFont()
+				</name>
+				<description>
+					Returns the user text font of the current theme. This is a cover method for getCurrentTheme().getUserTextFont().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FontUIResource getMenuTextFont()
+				</name>
+				<description>
+					Returns the menu text font of the current theme. This is a cover method for getCurrentTheme().getMenuTextFont().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FontUIResource getWindowTitleFont()
+				</name>
+				<description>
+					Returns the window title font of the current theme. This is a cover method for getCurrentTheme().getWindowTitleFont().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FontUIResource getSubTextFont()
+				</name>
+				<description>
+					Returns the sub-text font of the current theme. This is a cover method for getCurrentTheme().getSubTextFont().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getDesktopColor()
+				</name>
+				<description>
+					Returns the desktop color of the current theme. This is a cover method for getCurrentTheme().getDesktopColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getFocusColor()
+				</name>
+				<description>
+					Returns the focus color of the current theme. This is a cover method for getCurrentTheme().getFocusColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getWhite()
+				</name>
+				<description>
+					Returns the white color of the current theme. This is a cover method for getCurrentTheme().getWhite().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getBlack()
+				</name>
+				<description>
+					Returns the black color of the current theme. This is a cover method for getCurrentTheme().getBlack().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getControl()
+				</name>
+				<description>
+					Returns the control color of the current theme. This is a cover method for getCurrentTheme().getControl().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getControlShadow()
+				</name>
+				<description>
+					Returns the control shadow color of the current theme. This is a cover method for getCurrentTheme().getControlShadow().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getControlDarkShadow()
+				</name>
+				<description>
+					Returns the control dark shadow color of the current theme. This is a cover method for getCurrentTheme().getControlDarkShadow().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getControlInfo()
+				</name>
+				<description>
+					Returns the control info color of the current theme. This is a cover method for getCurrentTheme().getControlInfo().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getControlHighlight()
+				</name>
+				<description>
+					Returns the control highlight color of the current theme. This is a cover method for getCurrentTheme().getControlHighlight().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getControlDisabled()
+				</name>
+				<description>
+					Returns the control disabled color of the current theme. This is a cover method for getCurrentTheme().getControlDisabled().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getPrimaryControl()
+				</name>
+				<description>
+					Returns the primary control color of the current theme. This is a cover method for getCurrentTheme().getPrimaryControl().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getPrimaryControlShadow()
+				</name>
+				<description>
+					Returns the primary control shadow color of the current theme. This is a cover method for getCurrentTheme().getPrimaryControlShadow().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getPrimaryControlDarkShadow()
+				</name>
+				<description>
+					Returns the primary control dark shadow color of the current theme. This is a cover method for getCurrentTheme().getPrimaryControlDarkShadow().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getPrimaryControlInfo()
+				</name>
+				<description>
+					Returns the primary control info color of the current theme. This is a cover method for getCurrentTheme().getPrimaryControlInfo().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getPrimaryControlHighlight()
+				</name>
+				<description>
+					Returns the primary control highlight color of the current theme. This is a cover method for getCurrentTheme().getPrimaryControlHighlight().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getSystemTextColor()
+				</name>
+				<description>
+					Returns the system text color of the current theme. This is a cover method for getCurrentTheme().getSystemTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getControlTextColor()
+				</name>
+				<description>
+					Returns the control text color of the current theme. This is a cover method for getCurrentTheme().getControlTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getInactiveControlTextColor()
+				</name>
+				<description>
+					Returns the inactive control text color of the current theme. This is a cover method for getCurrentTheme().getInactiveControlTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getInactiveSystemTextColor()
+				</name>
+				<description>
+					Returns the inactive system text color of the current theme. This is a cover method for getCurrentTheme().getInactiveSystemTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getUserTextColor()
+				</name>
+				<description>
+					Returns the user text color of the current theme. This is a cover method for getCurrentTheme().getUserTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getTextHighlightColor()
+				</name>
+				<description>
+					Returns the text highlight color of the current theme. This is a cover method for getCurrentTheme().getTextHighlightColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getHighlightedTextColor()
+				</name>
+				<description>
+					Returns the highlighted text color of the current theme. This is a cover method for getCurrentTheme().getHighlightedTextColor().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getWindowBackground()
+				</name>
+				<description>
+					Returns the window background color of the current theme. This is a cover method for getCurrentTheme().getWindowBackground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getWindowTitleBackground()
+				</name>
+				<description>
+					Returns the window title background color of the current theme. This is a cover method for getCurrentTheme().getWindowTitleBackground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getWindowTitleForeground()
+				</name>
+				<description>
+					Returns the window title foreground color of the current theme. This is a cover method for getCurrentTheme().getWindowTitleForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getWindowTitleInactiveBackground()
+				</name>
+				<description>
+					Returns the window title inactive background color of the current theme. This is a cover method for getCurrentTheme().getWindowTitleInactiveBackground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getWindowTitleInactiveForeground()
+				</name>
+				<description>
+					Returns the window title inactive foreground color of the current theme. This is a cover method for getCurrentTheme().getWindowTitleInactiveForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getMenuBackground()
+				</name>
+				<description>
+					Returns the menu background color of the current theme. This is a cover method for getCurrentTheme().getMenuBackground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getMenuForeground()
+				</name>
+				<description>
+					Returns the menu foreground color of the current theme. This is a cover method for getCurrentTheme().getMenuForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getMenuSelectedBackground()
+				</name>
+				<description>
+					Returns the menu selected background color of the current theme. This is a cover method for getCurrentTheme().getMenuSelectedBackground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getMenuSelectedForeground()
+				</name>
+				<description>
+					Returns the menu selected foreground color of the current theme. This is a cover method for getCurrentTheme().getMenuSelectedForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getMenuDisabledForeground()
+				</name>
+				<description>
+					Returns the menu disabled foreground color of the current theme. This is a cover method for getCurrentTheme().getMenuDisabledForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getSeparatorBackground()
+				</name>
+				<description>
+					Returns the separator background color of the current theme. This is a cover method for getCurrentTheme().getSeparatorBackground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getSeparatorForeground()
+				</name>
+				<description>
+					Returns the separator foreground color of the current theme. This is a cover method for getCurrentTheme().getSeparatorForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getAcceleratorForeground()
+				</name>
+				<description>
+					Returns the accelerator foreground color of the current theme. This is a cover method for getCurrentTheme().getAcceleratorForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ColorUIResource getAcceleratorSelectedForeground()
+				</name>
+				<description>
+					Returns the accelerator selected foreground color of the current theme. This is a cover method for getCurrentTheme().getAcceleratorSelectedForeground().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LayoutStyle getLayoutStyle()
+				</name>
+				<description>
+					Returns a LayoutStyle implementing the Java look and feel design guidelines as specified at http://java.sun.com/products/jlf/ed2/book/HIG.Visual2.html.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

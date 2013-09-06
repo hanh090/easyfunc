@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class EventQueue  extends Object
+		</name>
+		<description>
+			EventQueue is a platform-independent class that queues events, both from the underlying peer classes and from trusted application classes. It encapsulates asynchronous event dispatch machinery which extracts events from the queue and dispatches them by calling dispatchEvent(AWTEvent) method on this EventQueue with the event to be dispatched as an argument. The particular behavior of this machinery is implementation-dependent. The only requirements are that events which were actually enqueued to this queue (note that events being posted to the EventQueue can be coalesced) are dispatched: Sequentially. That is, it is not permitted that several events from this queue are dispatched simultaneously. In the same order as they are enqueued. That is, if AWTEvent A is enqueued to the EventQueue before AWTEvent B then event B will not be dispatched before event A. Some browsers partition applets in different code bases into separate contexts, and establish walls between these contexts. In such a scenario, there will be one EventQueue per context. Other browsers place all applets into the same context, implying that there will be only a single, global EventQueue for all applets. This behavior is implementation-dependent. Consult your browser's documentation for more information. For information on the threading issues of the event dispatch machinery, see AWT Threading Issues.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public EventQueue()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postEvent(AWTEvent theEvent)
+				</name>
+				<description>
+					Posts a 1.1-style event to the EventQueue. If there is an existing event on the queue with the same ID and event source, the source Component's coalesceEvents method will be called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AWTEvent getNextEvent()                        throws InterruptedException
+				</name>
+				<description>
+					Removes an event from the EventQueue and returns it. This method will block until an event has been posted by another thread.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AWTEvent peekEvent()
+				</name>
+				<description>
+					Returns the first event on the EventQueue without removing it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AWTEvent peekEvent(int id)
+				</name>
+				<description>
+					Returns the first event with the specified id, if any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void dispatchEvent(AWTEvent event)
+				</name>
+				<description>
+					Dispatches an event. The manner in which the event is dispatched depends upon the type of the event and the type of the event's source object: Event Type Source Type Dispatched To ActiveEvent Any event.dispatch() Other Component source.dispatchEvent(AWTEvent) Other MenuComponent source.dispatchEvent(AWTEvent) Other Other No action (ignored)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static long getMostRecentEventTime()
+				</name>
+				<description>
+					Returns the timestamp of the most recent event that had a timestamp, and that was dispatched from the EventQueue associated with the calling thread. If an event with a timestamp is currently being dispatched, its timestamp will be returned. If no events have yet been dispatched, the EventQueue's initialization time will be returned instead.In the current version of the JDK, only InputEvents, ActionEvents, and InvocationEvents have timestamps; however, future versions of the JDK may add timestamps to additional event types. Note that this method should only be invoked from an application's event dispatching thread. If this method is invoked from another thread, the current system time (as reported by System.currentTimeMillis()) will be returned instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AWTEvent getCurrentEvent()
+				</name>
+				<description>
+					Returns the the event currently being dispatched by the EventQueue associated with the calling thread. This is useful if a method needs access to the event, but was not designed to receive a reference to it as an argument. Note that this method should only be invoked from an application's event dispatching thread. If this method is invoked from another thread, null will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void push(EventQueue newEventQueue)
+				</name>
+				<description>
+					Replaces the existing EventQueue with the specified one. Any pending events are transferred to the new EventQueue for processing by it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void pop()              throws EmptyStackException
+				</name>
+				<description>
+					Stops dispatching events using this EventQueue. Any pending events are transferred to the previous EventQueue for processing. Warning: To avoid deadlock, do not declare this method synchronized in a subclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SecondaryLoop createSecondaryLoop()
+				</name>
+				<description>
+					Creates a new secondary loop associated with this event queue. Use the SecondaryLoop.enter() and SecondaryLoop.exit() methods to start and stop the event loop and dispatch the events from this queue.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isDispatchThread()
+				</name>
+				<description>
+					Returns true if the calling thread is the current AWT EventQueue's dispatch thread. Use this method to ensure that a particular task is being executed (or not being) there. Note: use the invokeLater(java.lang.Runnable) or invokeAndWait(java.lang.Runnable) methods to execute a task in the current AWT EventQueue's dispatch thread.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void invokeLater(Runnable runnable)
+				</name>
+				<description>
+					Causes runnable to have its run method called in the dispatch thread of the system EventQueue. This will happen after all pending events are processed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void invokeAndWait(Runnable runnable)                            throws InterruptedException,                                   InvocationTargetException
+				</name>
+				<description>
+					Causes runnable to have its run method called in the dispatch thread of the system EventQueue. This will happen after all pending events are processed. The call blocks until this has happened. This method will throw an Error if called from the event dispatcher thread.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

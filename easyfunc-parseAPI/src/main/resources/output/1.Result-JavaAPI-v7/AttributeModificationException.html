@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.naming.directory
+	</package>
+	<type>
+		<name>
+			public class AttributeModificationException  extends NamingException
+		</name>
+		<description>
+			This exception is thrown when an attempt is made to add, or remove, or modify an attribute, its identifier, or its values that conflicts with the attribute's (schema) definition or the attribute's state. It is thrown in response to DirContext.modifyAttributes(). It contains a list of modifications that have not been performed, in the order that they were supplied to modifyAttributes(). If the list is null, none of the modifications were performed successfully. An AttributeModificationException instance is not synchronized against concurrent multithreaded access. Multiple threads trying to access and modify a single AttributeModification instance should lock the object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public AttributeModificationException(String explanation)
+				</name>
+				<description>
+					Constructs a new instance of AttributeModificationException using an explanation. All other fields are set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeModificationException()
+				</name>
+				<description>
+					Constructs a new instance of AttributeModificationException. All fields are set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUnexecutedModifications(ModificationItem[] e)
+				</name>
+				<description>
+					Sets the unexecuted modification list to be e. Items in the list must appear in the same order in which they were originally supplied in DirContext.modifyAttributes(). The first item in the list is the first one that was not executed. If this list is null, none of the operations originally submitted to modifyAttributes() were executed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModificationItem[] getUnexecutedModifications()
+				</name>
+				<description>
+					Retrieves the unexecuted modification list. Items in the list appear in the same order in which they were originally supplied in DirContext.modifyAttributes(). The first item in the list is the first one that was not executed. If this list is null, none of the operations originally submitted to modifyAttributes() were executed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					The string representation of this exception consists of information about where the error occurred, and the first unexecuted modification. This string is meant for debugging and not mean to be interpreted programmatically.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

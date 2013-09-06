@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public abstract static class JFormattedTextField.AbstractFormatter  extends Object  implements Serializable
+		</name>
+		<description>
+			Instances of AbstractFormatter are used by JFormattedTextField to handle the conversion both from an Object to a String, and back from a String to an Object. AbstractFormatters can also enfore editing policies, or navigation policies, or manipulate the JFormattedTextField in any way it sees fit to enforce the desired policy. An AbstractFormatter can only be active in one JFormattedTextField at a time. JFormattedTextField invokes install when it is ready to use it followed by uninstall when done. Subclasses that wish to install additional state should override install and message super appropriately. Subclasses must override the conversion methods stringToValue and valueToString. Optionally they can override getActions, getNavigationFilter and getDocumentFilter to restrict the JFormattedTextField in a particular way. Subclasses that allow the JFormattedTextField to be in a temporarily invalid state should invoke setEditValid at the appropriate times.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JFormattedTextField.AbstractFormatter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void install(JFormattedTextField ftf)
+				</name>
+				<description>
+					Installs the AbstractFormatter onto a particular JFormattedTextField. This will invoke valueToString to convert the current value from the JFormattedTextField to a String. This will then install the Actions from getActions, the DocumentFilter returned from getDocumentFilter and the NavigationFilter returned from getNavigationFilter onto the JFormattedTextField. Subclasses will typically only need to override this if they wish to install additional listeners on the JFormattedTextField. If there is a ParseException in converting the current value to a String, this will set the text to an empty String, and mark the JFormattedTextField as being in an invalid state. While this is a public method, this is typically only useful for subclassers of JFormattedTextField. JFormattedTextField will invoke this method at the appropriate times when the value changes, or its internal state changes. You will only need to invoke this yourself if you are subclassing JFormattedTextField and installing/uninstalling AbstractFormatter at a different time than JFormattedTextField does.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstall()
+				</name>
+				<description>
+					Uninstalls any state the AbstractFormatter may have installed on the JFormattedTextField. This resets the DocumentFilter, NavigationFilter and additional Actions installed on the JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object stringToValue(String text)                                throws ParseException
+				</name>
+				<description>
+					Parses text returning an arbitrary Object. Some formatters may return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String valueToString(Object value)                                throws ParseException
+				</name>
+				<description>
+					Returns the string value to display for value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JFormattedTextField getFormattedTextField()
+				</name>
+				<description>
+					Returns the current JFormattedTextField the AbstractFormatter is installed on.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void invalidEdit()
+				</name>
+				<description>
+					This should be invoked when the user types an invalid character. This forwards the call to the current JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setEditValid(boolean valid)
+				</name>
+				<description>
+					Invoke this to update the editValid property of the JFormattedTextField. If you an enforce a policy such that the JFormattedTextField is always in a valid state, you will never need to invoke this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Action[] getActions()
+				</name>
+				<description>
+					Subclass and override if you wish to provide a custom set of Actions. install will install these on the JFormattedTextField's ActionMap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DocumentFilter getDocumentFilter()
+				</name>
+				<description>
+					Subclass and override if you wish to provide a DocumentFilter to restrict what can be input. install will install the returned value onto the JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected NavigationFilter getNavigationFilter()
+				</name>
+				<description>
+					Subclass and override if you wish to provide a filter to restrict where the user can navigate to. install will install the returned value onto the JFormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object clone()                  throws CloneNotSupportedException
+				</name>
+				<description>
+					Clones the AbstractFormatter. The returned instance is not associated with a JFormattedTextField.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

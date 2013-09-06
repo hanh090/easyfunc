@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public static class FlowView.FlowStrategy  extends Object
+		</name>
+		<description>
+			Strategy for maintaining the physical form of the flow. The default implementation is completely stateless, and recalculates the entire flow if the layout is invalid on the given FlowView. Alternative strategies can be implemented by subclassing, and might perform incrementatal repair to the layout or alternative breaking behavior.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FlowView.FlowStrategy()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(FlowView fv,                  DocumentEvent e,                  Rectangle alloc)
+				</name>
+				<description>
+					Gives notification that something was inserted into the document in a location that the given flow view is responsible for. The strategy should update the appropriate changed region (which depends upon the strategy used for repair).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(FlowView fv,                  DocumentEvent e,                  Rectangle alloc)
+				</name>
+				<description>
+					Gives notification that something was removed from the document in a location that the given flow view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(FlowView fv,                   DocumentEvent e,                   Rectangle alloc)
+				</name>
+				<description>
+					Gives notification from the document that attributes were changed in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View getLogicalView(FlowView fv)
+				</name>
+				<description>
+					This method gives flow strategies access to the logical view of the FlowView.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void layout(FlowView fv)
+				</name>
+				<description>
+					Update the flow on the given FlowView. By default, this causes all of the rows (child views) to be rebuilt to match the given constraints for each row. This is called by a FlowView.layout to update the child views in the flow.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int layoutRow(FlowView fv,              int rowIndex,              int pos)
+				</name>
+				<description>
+					Creates a row of views that will fit within the layout span of the row. This is called by the layout method. This is implemented to fill the row by repeatedly calling the createView method until the available span has been exhausted, a forced break was encountered, or the createView method returned null. If the remaining span was exhaused, the adjustRow method will be called to perform adjustments to the row to try and make it fit into the given span.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void adjustRow(FlowView fv,               int rowIndex,               int desiredSpan,               int x)
+				</name>
+				<description>
+					Adjusts the given row if possible to fit within the layout span. By default this will try to find the highest break weight possible nearest the end of the row. If a forced break is encountered, the break will be positioned there.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View createView(FlowView fv,                int startOffset,                int spanLeft,                int rowIndex)
+				</name>
+				<description>
+					Creates a view that can be used to represent the current piece of the flow. This can be either an entire view from the logical view, or a fragment of the logical view.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

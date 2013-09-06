@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.naming.event
+	</package>
+	<type>
+		<name>
+			public class NamingExceptionEvent  extends EventObject
+		</name>
+		<description>
+			This class represents an event fired when the procedures/processes used to collect information for notifying listeners of NamingEvents threw a NamingException. This can happen, for example, if the server which the listener is using aborts subsequent to the addNamingListener() call.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public NamingExceptionEvent(EventContext source,                      NamingException exc)
+				</name>
+				<description>
+					Constructs an instance of NamingExceptionEvent using the context in which the NamingException was thrown and the exception that was thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NamingException getException()
+				</name>
+				<description>
+					Retrieves the exception that was thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EventContext getEventContext()
+				</name>
+				<description>
+					Retrieves the EventContext that fired this event. This returns the same object as EventObject.getSource().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dispatch(NamingListener listener)
+				</name>
+				<description>
+					Invokes the namingExceptionThrown() method on a listener using this event.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

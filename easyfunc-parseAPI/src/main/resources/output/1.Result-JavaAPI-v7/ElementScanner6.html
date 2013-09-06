@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.lang.model.util
+	</package>
+	<type>
+		<name>
+			@SupportedSourceVersion(value=RELEASE_6)  public class ElementScanner6<R,P>  extends AbstractElementVisitor6<R,P>
+		</name>
+		<description>
+			A scanning visitor of program elements with default behavior appropriate for the RELEASE_6 source version. The visitXYZ methods in this class scan their component elements by calling scan on their enclosed elements, parameters, etc., as indicated in the individual method specifications. A subclass can control the order elements are visited by overriding the visitXYZ methods. Note that clients of a scanner may get the desired behavior be invoking v.scan(e, p) rather than v.visit(e, p) on the root objects of interest. When a subclass overrides a visitXYZ method, the new method can cause the enclosed elements to be scanned in the default way by calling super.visitXYZ. In this fashion, the concrete visitor can control the ordering of traversal over the component elements with respect to the additional processing; for example, consistently calling super.visitXYZ at the start of the overridden methods will yield a preorder traversal, etc. If the component elements should be traversed in some other order, instead of calling super.visitXYZ, an overriding visit method should call scan with the elements in the desired order. Methods in this class may be overridden subject to their general contract. Note that annotating methods in concrete subclasses with @Override will help ensure that methods are overridden as intended. WARNING: The ElementVisitor interface implemented by this class may have methods added to it in the future to accommodate new, currently unknown, language structures added to future versions of the Java™ programming language. Therefore, methods whose names begin with "visit" may be added to this class in the future; to avoid incompatibilities, classes which extend this class should not declare any instance methods with names beginning with "visit". When such a new visit method is added, the default implementation in this class will be to call the visitUnknown method. A new element scanner visitor class will also be introduced to correspond to the new language level; this visitor will have different default behavior for the visit method in question. When the new visitor is introduced, all or portions of this visitor may be deprecated.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final R DEFAULT_VALUE
+				</name>
+				<description>
+					The specified default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ElementScanner6()
+				</name>
+				<description>
+					Constructor for concrete subclasses; uses null for the default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ElementScanner6(R defaultValue)
+				</name>
+				<description>
+					Constructor for concrete subclasses; uses the argument for the default value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final R scan(Iterable<? extends Element> iterable,       P p)
+				</name>
+				<description>
+					Iterates over the given elements and calls scan(Element, P) on each one. Returns the result of the last call to scan or DEFAULT_VALUE for an empty iterable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R scan(Element e,       P p)
+				</name>
+				<description>
+					Processes an element by calling e.accept(this, p); this method may be overridden by subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final R scan(Element e)
+				</name>
+				<description>
+					Convenience method equivalent to v.scan(e, null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitPackage(PackageElement e,               P p)
+				</name>
+				<description>
+					Visits a package element. This implementation scans the enclosed elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitType(TypeElement e,            P p)
+				</name>
+				<description>
+					Visits a type element. This implementation scans the enclosed elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitVariable(VariableElement e,                P p)
+				</name>
+				<description>
+					Visits a variable element. This implementation scans the enclosed elements, unless the element is a RESOURCE_VARIABLE in which case visitUnknown is called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitExecutable(ExecutableElement e,                  P p)
+				</name>
+				<description>
+					Visits an executable element. This implementation scans the parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public R visitTypeParameter(TypeParameterElement e,                     P p)
+				</name>
+				<description>
+					Visits a type parameter element. This implementation scans the enclosed elements.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

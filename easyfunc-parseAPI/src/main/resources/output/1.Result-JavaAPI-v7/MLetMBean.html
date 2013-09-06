@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.management.loading
+	</package>
+	<type>
+		<name>
+			public interface MLetMBean
+		</name>
+		<description>
+			Exposes the remote management interface of the MLet MBean.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Set<Object> getMBeansFromURL(String url)                               throws ServiceNotFoundException
+				</name>
+				<description>
+					Loads a text file containing MLET tags that define the MBeans to be added to the MBean server. The location of the text file is specified by a URL. The text file is read using the UTF-8 encoding. The MBeans specified in the MLET file will be instantiated and registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Set<Object> getMBeansFromURL(URL url)                               throws ServiceNotFoundException
+				</name>
+				<description>
+					Loads a text file containing MLET tags that define the MBeans to be added to the MBean server. The location of the text file is specified by a URL. The text file is read using the UTF-8 encoding. The MBeans specified in the MLET file will be instantiated and registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addURL(URL url)
+				</name>
+				<description>
+					Appends the specified URL to the list of URLs to search for classes and resources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addURL(String url)              throws ServiceNotFoundException
+				</name>
+				<description>
+					Appends the specified URL to the list of URLs to search for classes and resources.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					URL[] getURLs()
+				</name>
+				<description>
+					Returns the search path of URLs for loading classes and resources. This includes the original list of URLs specified to the constructor, along with any URLs subsequently appended by the addURL() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					URL getResource(String name)
+				</name>
+				<description>
+					Finds the resource with the given name. A resource is some data (images, audio, text, etc) that can be accessed by class code in a way that is independent of the location of the code. The name of a resource is a "/"-separated path name that identifies the resource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream getResourceAsStream(String name)
+				</name>
+				<description>
+					Returns an input stream for reading the specified resource. The search order is described in the documentation for getResource(String).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Enumeration<URL> getResources(String name)                                throws IOException
+				</name>
+				<description>
+					Finds all the resources with the given name. A resource is some data (images, audio, text, etc) that can be accessed by class code in a way that is independent of the location of the code. The name of a resource is a "/"-separated path name that identifies the resource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getLibraryDirectory()
+				</name>
+				<description>
+					Gets the current directory used by the library loader for storing native libraries before they are loaded into memory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setLibraryDirectory(String libdir)
+				</name>
+				<description>
+					Sets the directory used by the library loader for storing native libraries before they are loaded into memory.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.nio.channels.spi
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractSelector  extends Selector
+		</name>
+		<description>
+			Base implementation class for selectors. This class encapsulates the low-level machinery required to implement the interruption of selection operations. A concrete selector class must invoke the begin and end methods before and after, respectively, invoking an I/O operation that might block indefinitely. In order to ensure that the end method is always invoked, these methods should be used within a try ... finally block:    try {       begin();       // Perform blocking I/O operation here       ...   } finally {       end();   } This class also defines methods for maintaining a selector's cancelled-key set and for removing a key from its channel's key set, and declares the abstract register method that is invoked by a selectable channel's register method in order to perform the actual work of registering a channel.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AbstractSelector(SelectorProvider provider)
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void close()                   throws IOException
+				</name>
+				<description>
+					Closes this selector. If the selector has already been closed then this method returns immediately. Otherwise it marks the selector as closed and then invokes the implCloseSelector method in order to complete the close operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void implCloseSelector()                                     throws IOException
+				</name>
+				<description>
+					Closes this selector. This method is invoked by the close method in order to perform the actual work of closing the selector. This method is only invoked if the selector has not yet been closed, and it is never invoked more than once. An implementation of this method must arrange for any other thread that is blocked in a selection operation upon this selector to return immediately as if by invoking the wakeup method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isOpen()
+				</name>
+				<description>
+					Description copied from class: Selector Tells whether or not this selector is open.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final SelectorProvider provider()
+				</name>
+				<description>
+					Returns the provider that created this channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Set<SelectionKey> cancelledKeys()
+				</name>
+				<description>
+					Retrieves this selector's cancelled-key set. This set should only be used while synchronized upon it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract SelectionKey register(AbstractSelectableChannel ch,                      int ops,                      Object att)
+				</name>
+				<description>
+					Registers the given channel with this selector. This method is invoked by a channel's register method in order to perform the actual work of registering the channel with this selector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void deregister(AbstractSelectionKey key)
+				</name>
+				<description>
+					Removes the given key from its channel's key set. This method must be invoked by the selector for each channel that it deregisters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void begin()
+				</name>
+				<description>
+					Marks the beginning of an I/O operation that might block indefinitely. This method should be invoked in tandem with the end method, using a try ... finally block as shown above, in order to implement interruption for this selector. Invoking this method arranges for the selector's wakeup method to be invoked if a thread's interrupt method is invoked while the thread is blocked in an I/O operation upon the selector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void end()
+				</name>
+				<description>
+					Marks the end of an I/O operation that might block indefinitely. This method should be invoked in tandem with the begin method, using a try ... finally block as shown above, in order to implement interruption for this selector.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public abstract class RecursiveTask<V>  extends ForkJoinTask<V>
+		</name>
+		<description>
+			A recursive result-bearing ForkJoinTask. For a classic example, here is a task computing Fibonacci numbers:  class Fibonacci extends RecursiveTask<Integer> {     final int n;     Fibonacci(int n) { this.n = n; }     Integer compute() {       if (n <= 1)          return n;       Fibonacci f1 = new Fibonacci(n - 1);       f1.fork();       Fibonacci f2 = new Fibonacci(n - 2);       return f2.compute() + f1.join();     }   } However, besides being a dumb way to compute Fibonacci functions (there is a simple fast linear algorithm that you'd use in practice), this is likely to perform poorly because the smallest subtasks are too small to be worthwhile splitting up. Instead, as is the case for nearly all fork/join applications, you'd pick some minimum granularity size (for example 10 here) for which you always sequentially solve rather than subdividing.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RecursiveTask()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract V compute()
+				</name>
+				<description>
+					The main computation performed by this task.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final V getRawResult()
+				</name>
+				<description>
+					Description copied from class: ForkJoinTask Returns the result that would be returned by ForkJoinTask.join(), even if this task completed abnormally, or null if this task is not known to have been completed. This method is designed to aid debugging, as well as to support extensions. Its use in any other context is discouraged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void setRawResult(V value)
+				</name>
+				<description>
+					Description copied from class: ForkJoinTask Forces the given value to be returned as a result. This method is designed to support extensions, and should not in general be called otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final boolean exec()
+				</name>
+				<description>
+					Implements execution conventions for RecursiveTask.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

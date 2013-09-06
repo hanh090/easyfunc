@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public class ForwardingFileObject<F extends FileObject>  extends Object  implements FileObject
+		</name>
+		<description>
+			Forwards calls to a given file object. Subclasses of this class might override some of these methods and might also provide additional fields and methods.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final F extends FileObject fileObject
+				</name>
+				<description>
+					The file object which all methods are delegated to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ForwardingFileObject(F fileObject)
+				</name>
+				<description>
+					Creates a new instance of ForwardingFileObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URI toUri()
+				</name>
+				<description>
+					Description copied from interface: FileObject Returns a URI identifying this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets a user-friendly name for this file object. The exact value returned is not specified but implementations should take care to preserve names as given by the user. For example, if the user writes the filename "BobsApp\Test.java" on the command line, this method should return "BobsApp\Test.java" whereas the toUri method might return file:///C:/Documents%20and%20Settings/UncleBob/BobsApp/Test.java.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream openInputStream()                              throws IOException
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets an InputStream for this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream openOutputStream()                                throws IOException
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets an OutputStream for this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reader openReader(boolean ignoreEncodingErrors)                    throws IOException
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets a reader for this object. The returned reader will replace bytes that cannot be decoded with the default translation character. In addition, the reader may report a diagnostic unless ignoreEncodingErrors is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CharSequence getCharContent(boolean ignoreEncodingErrors)                              throws IOException
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets the character content of this file object, if available. Any byte that cannot be decoded will be replaced by the default translation character. In addition, a diagnostic may be reported unless ignoreEncodingErrors is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Writer openWriter()                    throws IOException
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets a Writer for this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getLastModified()
+				</name>
+				<description>
+					Description copied from interface: FileObject Gets the time this file object was last modified. The time is measured in milliseconds since the epoch (00:00:00 GMT, January 1, 1970).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean delete()
+				</name>
+				<description>
+					Description copied from interface: FileObject Deletes this file object. In case of errors, returns false.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

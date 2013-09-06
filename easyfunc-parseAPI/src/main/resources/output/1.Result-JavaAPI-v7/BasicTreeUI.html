@@ -1,0 +1,1341 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.basic
+	</package>
+	<type>
+		<name>
+			public class BasicTreeUI  extends TreeUI
+		</name>
+		<description>
+			The basic L&F for a hierarchical data structure.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected transient Icon collapsedIcon
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Icon expandedIcon
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int leftChildIndent
+				</name>
+				<description>
+					Distance between left margin and where vertical dashes will be drawn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int rightChildIndent
+				</name>
+				<description>
+					Distance to add to leftChildIndent to determine where cell contents will be drawn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int totalChildIndent
+				</name>
+				<description>
+					Total distance that will be indented. The sum of leftChildIndent and rightChildIndent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Dimension preferredMinSize
+				</name>
+				<description>
+					Minimum preferred size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int lastSelectedRow
+				</name>
+				<description>
+					Index of the row that was last selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JTree tree
+				</name>
+				<description>
+					Component that we're going to be drawing into.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TreeCellRenderer currentCellRenderer
+				</name>
+				<description>
+					Renderer that is being used to do the actual cell drawing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean createdRenderer
+				</name>
+				<description>
+					Set to true if the renderer that is currently in the tree was created by this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TreeCellEditor cellEditor
+				</name>
+				<description>
+					Editor for the tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean createdCellEditor
+				</name>
+				<description>
+					Set to true if editor that is currently in the tree was created by this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean stopEditingInCompleteEditing
+				</name>
+				<description>
+					Set to false when editing and shouldSelectCell() returns true meaning the node should be selected before editing, used in completeEditing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected CellRendererPane rendererPane
+				</name>
+				<description>
+					Used to paint the TreeCellRenderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Dimension preferredSize
+				</name>
+				<description>
+					Size needed to completely display all the nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean validCachedPreferredSize
+				</name>
+				<description>
+					Is the preferredSize valid?
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected AbstractLayoutCache treeState
+				</name>
+				<description>
+					Object responsible for handling sizing and expanded issues.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Hashtable<TreePath,Boolean> drawingCache
+				</name>
+				<description>
+					Used for minimizing the drawing of vertical lines.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean largeModel
+				</name>
+				<description>
+					True if doing optimizations for a largeModel. Subclasses that don't support this may wish to override createLayoutCache to not return a FixedHeightLayoutCache instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected AbstractLayoutCache.NodeDimensions nodeDimensions
+				</name>
+				<description>
+					Reponsible for telling the TreeState the size needed for a node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeModel treeModel
+				</name>
+				<description>
+					Used to determine what to display.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeSelectionModel treeSelectionModel
+				</name>
+				<description>
+					Model maintaing the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int depthOffset
+				</name>
+				<description>
+					How much the depth should be offset to properly calculate x locations. This is based on whether or not the root is visible, and if the root handles are visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component editingComponent
+				</name>
+				<description>
+					When editing, this will be the Component that is doing the actual editing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreePath editingPath
+				</name>
+				<description>
+					Path that is being edited.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int editingRow
+				</name>
+				<description>
+					Row that is being edited. Should only be referenced if editingComponent is not null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean editorHasDifferentSize
+				</name>
+				<description>
+					Set to true if the editor has a different size than the renderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicTreeUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentUI createUI(JComponent x)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color getHashColor()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setHashColor(Color color)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLeftChildIndent(int newAmount)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLeftChildIndent()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRightChildIndent(int newAmount)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRightChildIndent()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExpandedIcon(Icon newG)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getExpandedIcon()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCollapsedIcon(Icon newG)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getCollapsedIcon()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setLargeModel(boolean largeModel)
+				</name>
+				<description>
+					Updates the componentListener, if necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isLargeModel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setRowHeight(int rowHeight)
+				</name>
+				<description>
+					Sets the row height, this is forwarded to the treeState.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getRowHeight()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setCellRenderer(TreeCellRenderer tcr)
+				</name>
+				<description>
+					Sets the TreeCellRenderer to tcr. This invokes updateRenderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeCellRenderer getCellRenderer()
+				</name>
+				<description>
+					Return currentCellRenderer, which will either be the trees renderer, or defaultCellRenderer, which ever wasn't null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setModel(TreeModel model)
+				</name>
+				<description>
+					Sets the TreeModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeModel getModel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setRootVisible(boolean newValue)
+				</name>
+				<description>
+					Sets the root to being visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isRootVisible()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setShowsRootHandles(boolean newValue)
+				</name>
+				<description>
+					Determines whether the node handles are to be displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean getShowsRootHandles()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setCellEditor(TreeCellEditor editor)
+				</name>
+				<description>
+					Sets the cell editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeCellEditor getCellEditor()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setEditable(boolean newValue)
+				</name>
+				<description>
+					Configures the receiver to allow, or not allow, editing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isEditable()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setSelectionModel(TreeSelectionModel newLSM)
+				</name>
+				<description>
+					Resets the selection model. The appropriate listener are installed on the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeSelectionModel getSelectionModel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getPathBounds(JTree tree,                        TreePath path)
+				</name>
+				<description>
+					Returns the Rectangle enclosing the label portion that the last item in path will be drawn into. Will return null if any component in path is currently valid.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getPathForRow(JTree tree,                       int row)
+				</name>
+				<description>
+					Returns the path for passed in row. If row is not visible null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowForPath(JTree tree,                  TreePath path)
+				</name>
+				<description>
+					Returns the row that the last item identified in path is visible at. Will return -1 if any of the elements in path are not currently visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowCount(JTree tree)
+				</name>
+				<description>
+					Returns the number of rows that are being displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getClosestPathForLocation(JTree tree,                                   int x,                                   int y)
+				</name>
+				<description>
+					Returns the path to the node that is closest to x,y. If there is nothing currently visible this will return null, otherwise it'll always return a valid path. If you need to test if the returned object is exactly at x, y you should get the bounds for the returned path and test x, y against that.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEditing(JTree tree)
+				</name>
+				<description>
+					Returns true if the tree is being edited. The item that is being edited can be returned by getEditingPath().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean stopEditing(JTree tree)
+				</name>
+				<description>
+					Stops the current editing session. This has no effect if the tree isn't being edited. Returns true if the editor allows the editing session to stop.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void cancelEditing(JTree tree)
+				</name>
+				<description>
+					Cancels the current editing session.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startEditingAtPath(JTree tree,                        TreePath path)
+				</name>
+				<description>
+					Selects the last item in path and tries to edit it. Editing will fail if the CellEditor won't allow it for the selected item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getEditingPath(JTree tree)
+				</name>
+				<description>
+					Returns the path to the element that is being edited.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void installUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Configures the specified component appropriately for the look and feel. This method is invoked when the ComponentUI instance is being installed as the UI delegate on the specified component. This method should completely configure the component for the look and feel, including the following: Install default property values for color, fonts, borders, icons, opacity, etc. on the component. Whenever possible, property values initialized by the client program should not be overridden. Install a LayoutManager on the component if necessary. Create/add any required sub-components to the component. Create/install event listeners on the component. Create/install a PropertyChangeListener on the component in order to detect and respond to component property changes appropriately. Install keyboard UI (mnemonics, traversal, etc.) on the component. Initialize any appropriate instance data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void prepareForUIInstall()
+				</name>
+				<description>
+					Invoked after the tree instance variable has been set, but before any defaults/listeners have been installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void completeUIInstall()
+				</name>
+				<description>
+					Invoked from installUI after all the defaults/listeners have been installed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installDefaults()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installListeners()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void installComponents()
+				</name>
+				<description>
+					Intalls the subcomponents of the tree, which is the renderer pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected AbstractLayoutCache.NodeDimensions createNodeDimensions()
+				</name>
+				<description>
+					Creates an instance of NodeDimensions that is able to determine the size of a given node in the tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createPropertyChangeListener()
+				</name>
+				<description>
+					Creates a listener that is responsible that updates the UI based on how the tree changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected MouseListener createMouseListener()
+				</name>
+				<description>
+					Creates the listener responsible for updating the selection based on mouse events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener createFocusListener()
+				</name>
+				<description>
+					Creates a listener that is responsible for updating the display when focus is lost/gained.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected KeyListener createKeyListener()
+				</name>
+				<description>
+					Creates the listener reponsible for getting key events from the tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected PropertyChangeListener createSelectionModelPropertyChangeListener()
+				</name>
+				<description>
+					Creates the listener responsible for getting property change events from the selection model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeSelectionListener createTreeSelectionListener()
+				</name>
+				<description>
+					Creates the listener that updates the display based on selection change methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected CellEditorListener createCellEditorListener()
+				</name>
+				<description>
+					Creates a listener to handle events from the current editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ComponentListener createComponentListener()
+				</name>
+				<description>
+					Creates and returns a new ComponentHandler. This is used for the large model to mark the validCachedPreferredSize as invalid when the component moves.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeExpansionListener createTreeExpansionListener()
+				</name>
+				<description>
+					Creates and returns the object responsible for updating the treestate when nodes expanded state changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected AbstractLayoutCache createLayoutCache()
+				</name>
+				<description>
+					Creates the object responsible for managing what is expanded, as well as the size of nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected CellRendererPane createCellRendererPane()
+				</name>
+				<description>
+					Returns the renderer pane that renderer components are placed in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeCellEditor createDefaultCellEditor()
+				</name>
+				<description>
+					Creates a default cell editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeCellRenderer createDefaultCellRenderer()
+				</name>
+				<description>
+					Returns the default cell renderer that is used to do the stamping of each node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeModelListener createTreeModelListener()
+				</name>
+				<description>
+					Returns a listener that can update the tree when the model changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallUI(JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Reverses configuration which was done on the specified component during installUI. This method is invoked when this UIComponent instance is being removed as the UI delegate for the specified component. This method should undo the configuration performed in installUI, being careful to leave the JComponent instance in a clean state (no extraneous listeners, look-and-feel-specific property objects, etc.). This should include the following: Remove any UI-set borders from the component. Remove any UI-set layout managers on the component. Remove any UI-added sub-components from the component. Remove any UI-added event/property listeners from the component. Remove any UI-installed keyboard UI from the component. Nullify any allocated instance data objects to allow for GC.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void prepareForUIUninstall()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void completeUIUninstall()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallDefaults()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallListeners()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallKeyboardActions()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void uninstallComponents()
+				</name>
+				<description>
+					Uninstalls the renderer pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBaseline(JComponent c,                int width,                int height)
+				</name>
+				<description>
+					Returns the baseline.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c)
+				</name>
+				<description>
+					Returns an enum indicating how the baseline of the component changes as the size changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           JComponent c)
+				</name>
+				<description>
+					Description copied from class: ComponentUI Paints the specified component appropriately for the look and feel. This method is invoked from the ComponentUI.update method when the specified component is being painted. Subclasses should override this method and use the specified Graphics object to render the content of the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isDropLine(JTree.DropLocation loc)
+				</name>
+				<description>
+					Tells if a DropLocation should be indicated by a line between nodes. This is meant for javax.swing.DropMode.INSERT and javax.swing.DropMode.ON_OR_INSERT drop modes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintDropLine(Graphics g)
+				</name>
+				<description>
+					Paints the drop line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle getDropLineRect(JTree.DropLocation loc)
+				</name>
+				<description>
+					Returns a ubounding box for the drop line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintHorizontalPartOfLeg(Graphics g,                              Rectangle clipBounds,                              Insets insets,                              Rectangle bounds,                              TreePath path,                              int row,                              boolean isExpanded,                              boolean hasBeenExpanded,                              boolean isLeaf)
+				</name>
+				<description>
+					Paints the horizontal part of the leg. The receiver should NOT modify clipBounds, or insets. NOTE: parentRow can be -1 if the root is not visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintVerticalPartOfLeg(Graphics g,                            Rectangle clipBounds,                            Insets insets,                            TreePath path)
+				</name>
+				<description>
+					Paints the vertical part of the leg. The receiver should NOT modify clipBounds, insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintExpandControl(Graphics g,                        Rectangle clipBounds,                        Insets insets,                        Rectangle bounds,                        TreePath path,                        int row,                        boolean isExpanded,                        boolean hasBeenExpanded,                        boolean isLeaf)
+				</name>
+				<description>
+					Paints the expand (toggle) part of a row. The receiver should NOT modify clipBounds, or insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintRow(Graphics g,              Rectangle clipBounds,              Insets insets,              Rectangle bounds,              TreePath path,              int row,              boolean isExpanded,              boolean hasBeenExpanded,              boolean isLeaf)
+				</name>
+				<description>
+					Paints the renderer part of a row. The receiver should NOT modify clipBounds, or insets.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean shouldPaintExpandControl(TreePath path,                                 int row,                                 boolean isExpanded,                                 boolean hasBeenExpanded,                                 boolean isLeaf)
+				</name>
+				<description>
+					Returns true if the expand (toggle) control should be drawn for the specified row.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintVerticalLine(Graphics g,                       JComponent c,                       int x,                       int top,                       int bottom)
+				</name>
+				<description>
+					Paints a vertical line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void paintHorizontalLine(Graphics g,                         JComponent c,                         int y,                         int left,                         int right)
+				</name>
+				<description>
+					Paints a horizontal line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getVerticalLegBuffer()
+				</name>
+				<description>
+					The vertical element of legs between nodes starts at the bottom of the parent node by default. This method makes the leg start below that.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getHorizontalLegBuffer()
+				</name>
+				<description>
+					The horizontal element of legs between nodes starts at the right of the left-hand side of the child node by default. This method makes the leg end before that.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void drawCentered(Component c,                  Graphics graphics,                  Icon icon,                  int x,                  int y)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void drawDashedHorizontalLine(Graphics g,                              int y,                              int x1,                              int x2)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void drawDashedVerticalLine(Graphics g,                            int x,                            int y1,                            int y2)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getRowX(int row,            int depth)
+				</name>
+				<description>
+					Returns the location, along the x-axis, to render a particular row at. The return value does not include any Insets specified on the JTree. This does not check for the validity of the row or depth, it is assumed to be correct and will not throw an Exception if the row or depth doesn't match that of the tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateLayoutCacheExpandedNodes()
+				</name>
+				<description>
+					Makes all the nodes that are expanded in JTree expanded in LayoutCache. This invokes updateExpandedDescendants with the root path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateExpandedDescendants(TreePath path)
+				</name>
+				<description>
+					Updates the expanded state of all the descendants of path by getting the expanded descendants from the tree and forwarding to the tree state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreePath getLastChildPath(TreePath parent)
+				</name>
+				<description>
+					Returns a path to the last child of parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateDepthOffset()
+				</name>
+				<description>
+					Updates how much each depth should be offset by.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateCellEditor()
+				</name>
+				<description>
+					Updates the cellEditor based on the editability of the JTree that we're contained in. If the tree is editable but doesn't have a cellEditor, a basic one will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateRenderer()
+				</name>
+				<description>
+					Messaged from the tree we're in when the renderer has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void configureLayoutCache()
+				</name>
+				<description>
+					Resets the TreeState instance based on the tree we're providing the look and feel for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateSize()
+				</name>
+				<description>
+					Marks the cached size as being invalid, and messages the tree with treeDidChange.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateCachedPreferredSize()
+				</name>
+				<description>
+					Updates the preferredSize instance variable, which is returned from getPreferredSize(). For left to right orientations, the size is determined from the current AbstractLayoutCache. For RTL orientations, the preferred size becomes the width minus the minimum x position.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void pathWasExpanded(TreePath path)
+				</name>
+				<description>
+					Messaged from the VisibleTreeNode after it has been expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void pathWasCollapsed(TreePath path)
+				</name>
+				<description>
+					Messaged from the VisibleTreeNode after it has collapsed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void ensureRowsAreVisible(int beginRow,                          int endRow)
+				</name>
+				<description>
+					Ensures that the rows identified by beginRow through endRow are visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPreferredMinSize(Dimension newSize)
+				</name>
+				<description>
+					Sets the preferred minimum size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredMinSize()
+				</name>
+				<description>
+					Returns the minimum preferred size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize(JComponent c)
+				</name>
+				<description>
+					Returns the preferred size to properly display the tree, this is a cover method for getPreferredSize(c, true).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize(JComponent c,                           boolean checkConsistency)
+				</name>
+				<description>
+					Returns the preferred size to represent the tree in c. If checkConsistency is true checkConsistency is messaged first.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize(JComponent c)
+				</name>
+				<description>
+					Returns the minimum size for this component. Which will be the min preferred size or 0, 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMaximumSize(JComponent c)
+				</name>
+				<description>
+					Returns the maximum size for this component, which will be the preferred size if the instance is currently in a JTree, or 0, 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void completeEditing()
+				</name>
+				<description>
+					Messages to stop the editing session. If the UI the receiver is providing the look and feel for returns true from getInvokesStopCellEditing, stopCellEditing will invoked on the current editor. Then completeEditing will be messaged with false, true, false to cancel any lingering editing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void completeEditing(boolean messageStop,                     boolean messageCancel,                     boolean messageTree)
+				</name>
+				<description>
+					Stops the editing session. If messageStop is true the editor is messaged with stopEditing, if messageCancel is true the editor is messaged with cancelEditing. If messageTree is true the treeModel is messaged with valueForPathChanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean startEditing(TreePath path,                     MouseEvent event)
+				</name>
+				<description>
+					Will start editing for node if there is a cellEditor and shouldSelectCell returns true. This assumes that path is valid and visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void checkForClickInExpandControl(TreePath path,                                  int mouseX,                                  int mouseY)
+				</name>
+				<description>
+					If the mouseX and mouseY are in the expand/collapse region of the row, this will toggle the row.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isLocationInExpandControl(TreePath path,                                  int mouseX,                                  int mouseY)
+				</name>
+				<description>
+					Returns true if mouseX and mouseY fall in the area of row that is used to expand/collapse the node and the node at row does not represent a leaf.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleExpandControlClick(TreePath path,                              int mouseX,                              int mouseY)
+				</name>
+				<description>
+					Messaged when the user clicks the particular row, this invokes toggleExpandState.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void toggleExpandState(TreePath path)
+				</name>
+				<description>
+					Expands path if it is not expanded, or collapses row if it is expanded. If expanding a path and JTree scrolls on expand, ensureRowsAreVisible is invoked to scroll as many of the children to visible as possible (tries to scroll to last visible descendant of path).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isToggleSelectionEvent(MouseEvent event)
+				</name>
+				<description>
+					Returning true signifies a mouse event on the node should toggle the selection of only the row under mouse.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isMultiSelectEvent(MouseEvent event)
+				</name>
+				<description>
+					Returning true signifies a mouse event on the node should select from the anchor point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isToggleEvent(MouseEvent event)
+				</name>
+				<description>
+					Returning true indicates the row under the mouse should be toggled based on the event. This is invoked after checkForClickInExpandControl, implying the location is not in the expand (toggle) control
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectPathForEvent(TreePath path,                        MouseEvent event)
+				</name>
+				<description>
+					Messaged to update the selection based on a MouseEvent over a particular row. If the event is a toggle selection event, the row is either selected, or deselected. If the event identifies a multi selection event, the selection is updated from the anchor point. Otherwise the row is selected, and if the event specified a toggle event the row is expanded/collapsed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isLeaf(int row)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateLeadSelectionRow()
+				</name>
+				<description>
+					Updates the lead row of the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getLeadSelectionRow()
+				</name>
+				<description>
+					Returns the lead row of the selection.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

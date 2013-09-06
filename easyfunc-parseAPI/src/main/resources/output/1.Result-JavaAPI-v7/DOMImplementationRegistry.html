@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.w3c.dom.bootstrap
+	</package>
+	<type>
+		<name>
+			public final class DOMImplementationRegistry  extends Object
+		</name>
+		<description>
+			A factory that enables applications to obtain instances of DOMImplementation. Example:     // get an instance of the DOMImplementation registry    DOMImplementationRegistry registry =         DOMImplementationRegistry.newInstance();    // get a DOM implementation the Level 3 XML module    DOMImplementation domImpl =         registry.getDOMImplementation("XML 3.0");   This provides an application with an implementation-independent starting point. DOM implementations may modify this class to meet new security standards or to provide *additional* fallbacks for the list of DOMImplementationSources.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String PROPERTY
+				</name>
+				<description>
+					The system property to specify the DOMImplementationSource class names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DOMImplementationRegistry newInstance()                                               throws ClassNotFoundException,                                                      InstantiationException,                                                      IllegalAccessException,                                                      ClassCastException
+				</name>
+				<description>
+					Obtain a new instance of a DOMImplementationRegistry. The DOMImplementationRegistry is initialized by the application or the implementation, depending on the context, by first checking the value of the Java system property org.w3c.dom.DOMImplementationSourceList and the service provider whose contents are at "META_INF/services/org.w3c.dom.DOMImplementationSourceList". The value of this property is a white-space separated list of names of availables classes implementing the DOMImplementationSource interface. Each class listed in the class name list is instantiated and any exceptions encountered are thrown to the application.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DOMImplementation getDOMImplementation(String features)
+				</name>
+				<description>
+					Return the first implementation that has the desired features, or null if none is found.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DOMImplementationList getDOMImplementationList(String features)
+				</name>
+				<description>
+					Return a list of implementations that support the desired features.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSource(DOMImplementationSource s)
+				</name>
+				<description>
+					Register an implementation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

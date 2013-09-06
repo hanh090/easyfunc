@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.xml.bind
+	</package>
+	<type>
+		<name>
+			public abstract static class Unmarshaller.Listener  extends Object
+		</name>
+		<description>
+			Register an instance of an implementation of this class with Unmarshaller to externally listen for unmarshal events. This class enables pre and post processing of an instance of a JAXB mapped class as XML data is unmarshalled into it. The event callbacks are called when unmarshalling XML content into a JAXBElement instance or a JAXB mapped class that represents a complex type definition. The event callbacks are not called when unmarshalling to an instance of a Java datatype that represents a simple type definition. External listener is one of two different mechanisms for defining unmarshal event callbacks. See Unmarshal Event Callbacks for an overview. (@link #setListener(Listener)} (@link #getListener()}
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Unmarshaller.Listener()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void beforeUnmarshal(Object target,                     Object parent)
+				</name>
+				<description>
+					Callback method invoked before unmarshalling into target. This method is invoked immediately after target was created and before the unmarshalling of this object begins. Note that if the class of target defines its own beforeUnmarshal method, the class specific callback method is invoked before this method is invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void afterUnmarshal(Object target,                    Object parent)
+				</name>
+				<description>
+					Callback method invoked after unmarshalling XML data into target. This method is invoked after all the properties (except IDREF) are unmarshalled into target, but before target is set into its parent object. Note that if the class of target defines its own afterUnmarshal method, the class specific callback method is invoked before this method is invoked.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

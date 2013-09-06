@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.sql
+	</package>
+	<type>
+		<name>
+			public interface RowSetInternal
+		</name>
+		<description>
+			The interface that a RowSet object implements in order to present itself to a RowSetReader or RowSetWriter object. The RowSetInternal interface contains methods that let the reader or writer access and modify the internal state of the rowset.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Object[] getParams()                     throws SQLException
+				</name>
+				<description>
+					Retrieves the parameters that have been set for this RowSet object's command.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Connection getConnection()                           throws SQLException
+				</name>
+				<description>
+					Retrieves the Connection object that was passed to this RowSet object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setMetaData(RowSetMetaData md)                   throws SQLException
+				</name>
+				<description>
+					Sets the given RowSetMetaData object as the RowSetMetaData object for this RowSet object. The RowSetReader object associated with the rowset will use RowSetMetaData methods to set the values giving information about the rowset's columns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ResultSet getOriginal()                        throws SQLException
+				</name>
+				<description>
+					Retrieves a ResultSet object containing the original value of this RowSet object. The cursor is positioned before the first row in the result set. Only rows contained in the result set returned by the method getOriginal are said to have an original value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ResultSet getOriginalRow()                           throws SQLException
+				</name>
+				<description>
+					Retrieves a ResultSet object containing the original value of the current row only. If the current row has no original value, an empty result set is returned. If there is no current row, an exception is thrown.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

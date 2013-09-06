@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.awt.image
+	</package>
+	<type>
+		<name>
+			public class ConvolveOp  extends Object  implements BufferedImageOp, RasterOp
+		</name>
+		<description>
+			This class implements a convolution from the source to the destination. Convolution using a convolution kernel is a spatial operation that computes the output pixel from an input pixel by multiplying the kernel with the surround of the input pixel. This allows the output pixel to be affected by the immediate neighborhood in a way that can be mathematically specified with a kernel. This class operates with BufferedImage data in which color components are premultiplied with the alpha component. If the Source BufferedImage has an alpha component, and the color components are not premultiplied with the alpha component, then the data are premultiplied before being convolved. If the Destination has color components which are not premultiplied, then alpha is divided out before storing into the Destination (if alpha is 0, the color components are set to 0). If the Destination has no alpha component, then the resulting alpha is discarded after first dividing it out of the color components. Rasters are treated as having no alpha channel. If the above treatment of the alpha channel in BufferedImages is not desired, it may be avoided by getting the Raster of a source BufferedImage and using the filter method of this class which works with Rasters. If a RenderingHints object is specified in the constructor, the color rendering hint and the dithering hint may be used when color conversion is required. Note that the Source and the Destination may not be the same object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int EDGE_ZERO_FILL
+				</name>
+				<description>
+					Pixels at the edge of the destination image are set to zero. This is the default.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int EDGE_NO_OP
+				</name>
+				<description>
+					Pixels at the edge of the source image are copied to the corresponding pixels in the destination without modification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConvolveOp(Kernel kernel,            int edgeCondition,            RenderingHints hints)
+				</name>
+				<description>
+					Constructs a ConvolveOp given a Kernel, an edge condition, and a RenderingHints object (which may be null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConvolveOp(Kernel kernel)
+				</name>
+				<description>
+					Constructs a ConvolveOp given a Kernel. The edge condition will be EDGE_ZERO_FILL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getEdgeCondition()
+				</name>
+				<description>
+					Returns the edge condition.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Kernel getKernel()
+				</name>
+				<description>
+					Returns the Kernel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final BufferedImage filter(BufferedImage src,                     BufferedImage dst)
+				</name>
+				<description>
+					Performs a convolution on BufferedImages. Each component of the source image will be convolved (including the alpha component, if present). If the color model in the source image is not the same as that in the destination image, the pixels will be converted in the destination. If the destination image is null, a BufferedImage will be created with the source ColorModel. The IllegalArgumentException may be thrown if the source is the same as the destination.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final WritableRaster filter(Raster src,                      WritableRaster dst)
+				</name>
+				<description>
+					Performs a convolution on Rasters. Each band of the source Raster will be convolved. The source and destination must have the same number of bands. If the destination Raster is null, a new Raster will be created. The IllegalArgumentException may be thrown if the source is the same as the destination.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedImage createCompatibleDestImage(BufferedImage src,                                        ColorModel destCM)
+				</name>
+				<description>
+					Creates a zeroed destination image with the correct size and number of bands. If destCM is null, an appropriate ColorModel will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public WritableRaster createCompatibleDestRaster(Raster src)
+				</name>
+				<description>
+					Creates a zeroed destination Raster with the correct size and number of bands, given this source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Rectangle2D getBounds2D(BufferedImage src)
+				</name>
+				<description>
+					Returns the bounding box of the filtered destination image. Since this is not a geometric operation, the bounding box does not change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Rectangle2D getBounds2D(Raster src)
+				</name>
+				<description>
+					Returns the bounding box of the filtered destination Raster. Since this is not a geometric operation, the bounding box does not change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Point2D getPoint2D(Point2D srcPt,                   Point2D dstPt)
+				</name>
+				<description>
+					Returns the location of the destination point given a point in the source. If dstPt is non-null, it will be used to hold the return value. Since this is not a geometric operation, the srcPt will equal the dstPt.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final RenderingHints getRenderingHints()
+				</name>
+				<description>
+					Returns the rendering hints for this op.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

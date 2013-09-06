@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public interface FileObject
+		</name>
+		<description>
+			File abstraction for tools. In this context, file means an abstraction of regular files and other sources of data. For example, a file object can be used to represent regular files, memory cache, or data in databases. All methods in this interface might throw a SecurityException if a security exception occurs. Unless explicitly allowed, all methods in this interface might throw a NullPointerException if given a null argument.
+		</description>
+		<methods>
+			<method>
+				<name>
+					URI toUri()
+				</name>
+				<description>
+					Returns a URI identifying this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getName()
+				</name>
+				<description>
+					Gets a user-friendly name for this file object. The exact value returned is not specified but implementations should take care to preserve names as given by the user. For example, if the user writes the filename "BobsApp\Test.java" on the command line, this method should return "BobsApp\Test.java" whereas the toUri method might return file:///C:/Documents%20and%20Settings/UncleBob/BobsApp/Test.java.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					InputStream openInputStream()                              throws IOException
+				</name>
+				<description>
+					Gets an InputStream for this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					OutputStream openOutputStream()                                throws IOException
+				</name>
+				<description>
+					Gets an OutputStream for this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Reader openReader(boolean ignoreEncodingErrors)                    throws IOException
+				</name>
+				<description>
+					Gets a reader for this object. The returned reader will replace bytes that cannot be decoded with the default translation character. In addition, the reader may report a diagnostic unless ignoreEncodingErrors is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					CharSequence getCharContent(boolean ignoreEncodingErrors)                              throws IOException
+				</name>
+				<description>
+					Gets the character content of this file object, if available. Any byte that cannot be decoded will be replaced by the default translation character. In addition, a diagnostic may be reported unless ignoreEncodingErrors is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Writer openWriter()                    throws IOException
+				</name>
+				<description>
+					Gets a Writer for this file object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getLastModified()
+				</name>
+				<description>
+					Gets the time this file object was last modified. The time is measured in milliseconds since the epoch (00:00:00 GMT, January 1, 1970).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean delete()
+				</name>
+				<description>
+					Deletes this file object. In case of errors, returns false.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		java.security.cert
+	</package>
+	<type>
+		<name>
+			public abstract class CertPathValidatorSpi  extends Object
+		</name>
+		<description>
+			The Service Provider Interface (SPI) for the CertPathValidator class. All CertPathValidator implementations must include a class (the SPI class) that extends this class (CertPathValidatorSpi) and implements all of its methods. In general, instances of this class should only be accessed through the CertPathValidator class. For details, see the Java Cryptography Architecture. Concurrent Access Instances of this class need not be protected against concurrent access from multiple threads. Threads that need to access a single CertPathValidatorSpi instance concurrently should synchronize amongst themselves and provide the necessary locking before calling the wrapping CertPathValidator object. However, implementations of CertPathValidatorSpi may still encounter concurrency issues, since multiple threads each manipulating a different CertPathValidatorSpi instance need not synchronize.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CertPathValidatorSpi()
+				</name>
+				<description>
+					The default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract CertPathValidatorResult engineValidate(CertPath certPath,                                       CertPathParameters params)                                                  throws CertPathValidatorException,                                                         InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Validates the specified certification path using the specified algorithm parameter set. The CertPath specified must be of a type that is supported by the validation algorithm, otherwise an InvalidAlgorithmParameterException will be thrown. For example, a CertPathValidator that implements the PKIX algorithm validates CertPath objects of type X.509.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

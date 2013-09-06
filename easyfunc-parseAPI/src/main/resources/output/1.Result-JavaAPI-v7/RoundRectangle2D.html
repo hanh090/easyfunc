@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.awt.geom
+	</package>
+	<type>
+		<name>
+			public abstract class RoundRectangle2D  extends RectangularShape
+		</name>
+		<description>
+			The RoundRectangle2D class defines a rectangle with rounded corners defined by a location (x,y), a dimension (w x h), and the width and height of an arc with which to round the corners. This class is the abstract superclass for all objects that store a 2D rounded rectangle. The actual storage representation of the coordinates is left to the subclass.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected RoundRectangle2D()
+				</name>
+				<description>
+					This is an abstract class that cannot be instantiated directly. Type-specific implementation subclasses are available for instantiation and provide a number of formats for storing the information necessary to satisfy the various accessor methods below.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getArcWidth()
+				</name>
+				<description>
+					Gets the width of the arc that rounds off the corners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getArcHeight()
+				</name>
+				<description>
+					Gets the height of the arc that rounds off the corners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setRoundRect(double x,                  double y,                  double w,                  double h,                  double arcWidth,                  double arcHeight)
+				</name>
+				<description>
+					Sets the location, size, and corner radii of this RoundRectangle2D to the specified double values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRoundRect(RoundRectangle2D rr)
+				</name>
+				<description>
+					Sets this RoundRectangle2D to be the same as the specified RoundRectangle2D.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFrame(double x,              double y,              double w,              double h)
+				</name>
+				<description>
+					Sets the location and size of the framing rectangle of this Shape to the specified rectangular values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y)
+				</name>
+				<description>
+					Tests if the specified coordinates are inside the boundary of the Shape, as described by the definition of insideness.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean intersects(double x,                   double y,                   double w,                   double h)
+				</name>
+				<description>
+					Tests if the interior of the Shape intersects the interior of a specified rectangular area. The rectangular area is considered to intersect the Shape if any point is contained in both the interior of the Shape and the specified rectangular area. The Shape.intersects() method allows a Shape implementation to conservatively return true when: there is a high probability that the rectangular area and the Shape intersect, but the calculations to accurately determine this intersection are prohibitively expensive. This means that for some Shapes this method might return true even though the rectangular area does not intersect the Shape. The Area class performs more accurate computations of geometric intersection than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y,                 double w,                 double h)
+				</name>
+				<description>
+					Tests if the interior of the Shape entirely contains the specified rectangular area. All coordinates that lie inside the rectangular area must lie within the Shape for the entire rectanglar area to be considered contained within the Shape. The Shape.contains() method allows a Shape implementation to conservatively return false when: the intersect method returns true and the calculations to determine whether or not the Shape entirely contains the rectangular area are prohibitively expensive. This means that for some Shapes this method might return false even though the Shape contains the rectangular area. The Area class performs more accurate geometric computations than most Shape objects and therefore can be used if a more precise answer is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PathIterator getPathIterator(AffineTransform at)
+				</name>
+				<description>
+					Returns an iteration object that defines the boundary of this RoundRectangle2D. The iterator for this class is multi-threaded safe, which means that this RoundRectangle2D class guarantees that modifications to the geometry of this RoundRectangle2D object do not affect any iterations of that geometry that are already in process.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hashcode for this RoundRectangle2D.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Determines whether or not the specified Object is equal to this RoundRectangle2D. The specified Object is equal to this RoundRectangle2D if it is an instance of RoundRectangle2D and if its location, size, and corner arc dimensions are the same as this RoundRectangle2D.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

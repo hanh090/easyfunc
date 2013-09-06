@@ -1,0 +1,1548 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JTree  extends JComponent  implements Scrollable, Accessible
+		</name>
+		<description>
+			A control that displays a set of hierarchical data as an outline. You can find task-oriented documentation and examples of using trees in How to Use Trees, a section in The Java Tutorial. A specific node in a tree can be identified either by a TreePath (an object that encapsulates a node and all of its ancestors), or by its display row, where each row in the display area displays one node. An expanded node is a non-leaf node (as identified by TreeModel.isLeaf(node) returning false) that will displays its children when all its ancestors are expanded. A collapsed node is one which hides them. A hidden node is one which is under a collapsed ancestor. All of a viewable nodes parents are expanded, but may or may not be displayed. A displayed node is both viewable and in the display area, where it can be seen. The following JTree methods use "visible" to mean "displayed": isRootVisible() setRootVisible() scrollPathToVisible() scrollRowToVisible() getVisibleRowCount() setVisibleRowCount() The next group of JTree methods use "visible" to mean "viewable" (under an expanded parent): isVisible() makeVisible() If you are interested in knowing when the selection changes implement the TreeSelectionListener interface and add the instance using the method addTreeSelectionListener. valueChanged will be invoked when the selection changes, that is if the user clicks twice on the same node valueChanged will only be invoked once. If you are interested in detecting either double-click events or when a user clicks on a node, regardless of whether or not it was selected, we recommend you do the following:    final JTree tree = ...;     MouseListener ml = new MouseAdapter() {       public void mousePressed(MouseEvent e) {           int selRow = tree.getRowForLocation(e.getX(), e.getY());           TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());           if(selRow != -1) {               if(e.getClickCount() == 1) {                   mySingleClick(selRow, selPath);               }               else if(e.getClickCount() == 2) {                   myDoubleClick(selRow, selPath);               }           }       }   };   tree.addMouseListener(ml);   NOTE: This example obtains both the path and row, but you only need to get the one you're interested in. To use JTree to display compound nodes (for example, nodes containing both a graphic icon and text), subclass TreeCellRenderer and use setCellRenderer(javax.swing.tree.TreeCellRenderer) to tell the tree to use it. To edit such nodes, subclass TreeCellEditor and use setCellEditor(javax.swing.tree.TreeCellEditor). Like all JComponent classes, you can use InputMap and ActionMap to associate an Action object with a KeyStroke and execute the action under specified conditions. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected transient TreeModel treeModel
+				</name>
+				<description>
+					The model that defines the tree displayed by this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TreeSelectionModel selectionModel
+				</name>
+				<description>
+					Models the set of selected nodes in this tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean rootVisible
+				</name>
+				<description>
+					True if the root node is displayed, false if its children are the highest visible nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TreeCellRenderer cellRenderer
+				</name>
+				<description>
+					The cell used to draw nodes. If null, the UI uses a default cellRenderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int rowHeight
+				</name>
+				<description>
+					Height to use for each display row. If this is <= 0 the renderer determines the height for each row.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean showsRootHandles
+				</name>
+				<description>
+					True if handles are displayed at the topmost level of the tree. A handle is a small icon that displays adjacent to the node which allows the user to click once to expand or collapse the node. A common interface shows a plus sign (+) for a node which can be expanded and a minus sign (-) for a node which can be collapsed. Handles are always shown for nodes below the topmost level. If the rootVisible setting specifies that the root node is to be displayed, then that is the only node at the topmost level. If the root node is not displayed, then all of its children are at the topmost level of the tree. Handles are always displayed for nodes other than the topmost. If the root node isn't visible, it is generally a good to make this value true. Otherwise, the tree looks exactly like a list, and users may not know that the "list entries" are actually tree nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient JTree.TreeSelectionRedirector selectionRedirector
+				</name>
+				<description>
+					Creates a new event and passed it off the selectionListeners.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TreeCellEditor cellEditor
+				</name>
+				<description>
+					Editor for the entries. Default is null (tree is not editable).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean editable
+				</name>
+				<description>
+					Is the tree editable? Default is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean largeModel
+				</name>
+				<description>
+					Is this tree a large model? This is a code-optimization setting. A large model can be used when the cell height is the same for all nodes. The UI will then cache very little information and instead continually message the model. Without a large model the UI caches most of the information, resulting in fewer method calls to the model. This value is only a suggestion to the UI. Not all UIs will take advantage of it. Default value is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int visibleRowCount
+				</name>
+				<description>
+					Number of rows to make visible at one time. This value is used for the Scrollable interface. It determines the preferred size of the display area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean invokesStopCellEditing
+				</name>
+				<description>
+					If true, when editing is to be stopped by way of selection changing, data in tree changing or other means stopCellEditing is invoked, and changes are saved. If false, cancelCellEditing is invoked, and changes are discarded. Default is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean scrollsOnExpand
+				</name>
+				<description>
+					If true, when a node is expanded, as many of the descendants are scrolled to be visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int toggleClickCount
+				</name>
+				<description>
+					Number of mouse clicks before a node is expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TreeModelListener treeModelListener
+				</name>
+				<description>
+					Updates the expandedState.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CELL_RENDERER_PROPERTY
+				</name>
+				<description>
+					Bound property name for cellRenderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String TREE_MODEL_PROPERTY
+				</name>
+				<description>
+					Bound property name for treeModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ROOT_VISIBLE_PROPERTY
+				</name>
+				<description>
+					Bound property name for rootVisible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String SHOWS_ROOT_HANDLES_PROPERTY
+				</name>
+				<description>
+					Bound property name for showsRootHandles.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ROW_HEIGHT_PROPERTY
+				</name>
+				<description>
+					Bound property name for rowHeight.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CELL_EDITOR_PROPERTY
+				</name>
+				<description>
+					Bound property name for cellEditor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String EDITABLE_PROPERTY
+				</name>
+				<description>
+					Bound property name for editable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LARGE_MODEL_PROPERTY
+				</name>
+				<description>
+					Bound property name for largeModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String SELECTION_MODEL_PROPERTY
+				</name>
+				<description>
+					Bound property name for selectionModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String VISIBLE_ROW_COUNT_PROPERTY
+				</name>
+				<description>
+					Bound property name for visibleRowCount.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String INVOKES_STOP_CELL_EDITING_PROPERTY
+				</name>
+				<description>
+					Bound property name for messagesStopCellEditing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String SCROLLS_ON_EXPAND_PROPERTY
+				</name>
+				<description>
+					Bound property name for scrollsOnExpand.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String TOGGLE_CLICK_COUNT_PROPERTY
+				</name>
+				<description>
+					Bound property name for toggleClickCount.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LEAD_SELECTION_PATH_PROPERTY
+				</name>
+				<description>
+					Bound property name for leadSelectionPath.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String ANCHOR_SELECTION_PATH_PROPERTY
+				</name>
+				<description>
+					Bound property name for anchor selection path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String EXPANDS_SELECTED_PATHS_PROPERTY
+				</name>
+				<description>
+					Bound property name for expands selected paths property
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTree()
+				</name>
+				<description>
+					Returns a JTree with a sample model. The default model used by the tree defines a leaf node as any node without children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTree(Object[] value)
+				</name>
+				<description>
+					Returns a JTree with each element of the specified array as the child of a new root node which is not displayed. By default, the tree defines a leaf node as any node without children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTree(Vector<?> value)
+				</name>
+				<description>
+					Returns a JTree with each element of the specified Vector as the child of a new root node which is not displayed. By default, the tree defines a leaf node as any node without children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTree(Hashtable<?,?> value)
+				</name>
+				<description>
+					Returns a JTree created from a Hashtable which does not display with root. Each value-half of the key/value pairs in the HashTable becomes a child of the new root node. By default, the tree defines a leaf node as any node without children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTree(TreeNode root)
+				</name>
+				<description>
+					Returns a JTree with the specified TreeNode as its root, which displays the root node. By default, the tree defines a leaf node as any node without children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTree(TreeNode root,       boolean asksAllowsChildren)
+				</name>
+				<description>
+					Returns a JTree with the specified TreeNode as its root, which displays the root node and which decides whether a node is a leaf node in the specified manner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@ConstructorProperties(value="model")  public JTree(TreeModel newModel)
+				</name>
+				<description>
+					Returns an instance of JTree which displays the root node -- the tree is created using the specified data model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static TreeModel getDefaultTreeModel()
+				</name>
+				<description>
+					Creates and returns a sample TreeModel. Used primarily for beanbuilders to show something interesting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static TreeModel createTreeModel(Object value)
+				</name>
+				<description>
+					Returns a TreeModel wrapping the specified object. If the object is: an array of Objects, a Hashtable, or a Vector then a new root node is created with each of the incoming objects as children. Otherwise, a new root is created with a value of "root".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeUI getUI()
+				</name>
+				<description>
+					Returns the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(TreeUI ui)
+				</name>
+				<description>
+					Sets the L&F object that renders this component. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Notification from the UIManager that the L&F has changed. Replaces the current UI object with the latest version from the UIManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the name of the L&F class that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeCellRenderer getCellRenderer()
+				</name>
+				<description>
+					Returns the current TreeCellRenderer that is rendering each cell.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCellRenderer(TreeCellRenderer x)
+				</name>
+				<description>
+					Sets the TreeCellRenderer that will be used to draw each cell. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEditable(boolean flag)
+				</name>
+				<description>
+					Determines whether the tree is editable. Fires a property change event if the new setting is different from the existing setting. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEditable()
+				</name>
+				<description>
+					Returns true if the tree is editable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCellEditor(TreeCellEditor cellEditor)
+				</name>
+				<description>
+					Sets the cell editor. A null value implies that the tree cannot be edited. If this represents a change in the cellEditor, the propertyChange method is invoked on all listeners. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeCellEditor getCellEditor()
+				</name>
+				<description>
+					Returns the editor used to edit entries in the tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeModel getModel()
+				</name>
+				<description>
+					Returns the TreeModel that is providing the data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(TreeModel newModel)
+				</name>
+				<description>
+					Sets the TreeModel that will provide the data. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isRootVisible()
+				</name>
+				<description>
+					Returns true if the root node of the tree is displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRootVisible(boolean rootVisible)
+				</name>
+				<description>
+					Determines whether or not the root node from the TreeModel is visible. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setShowsRootHandles(boolean newValue)
+				</name>
+				<description>
+					Sets the value of the showsRootHandles property, which specifies whether the node handles should be displayed. The default value of this property depends on the constructor used to create the JTree. Some look and feels might not support handles; they will ignore this property. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getShowsRootHandles()
+				</name>
+				<description>
+					Returns the value of the showsRootHandles property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRowHeight(int rowHeight)
+				</name>
+				<description>
+					Sets the height of each cell, in pixels. If the specified value is less than or equal to zero the current cell renderer is queried for each row's height. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowHeight()
+				</name>
+				<description>
+					Returns the height of each row. If the returned value is less than or equal to 0 the height for each row is determined by the renderer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFixedRowHeight()
+				</name>
+				<description>
+					Returns true if the height of each display row is a fixed size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLargeModel(boolean newValue)
+				</name>
+				<description>
+					Specifies whether the UI should use a large model. (Not all UIs will implement this.) Fires a property change for the LARGE_MODEL_PROPERTY. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLargeModel()
+				</name>
+				<description>
+					Returns true if the tree is configured for a large model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInvokesStopCellEditing(boolean newValue)
+				</name>
+				<description>
+					Determines what happens when editing is interrupted by selecting another node in the tree, a change in the tree's data, or by some other means. Setting this property to true causes the changes to be automatically saved when editing is interrupted. Fires a property change for the INVOKES_STOP_CELL_EDITING_PROPERTY.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getInvokesStopCellEditing()
+				</name>
+				<description>
+					Returns the indicator that tells what happens when editing is interrupted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setScrollsOnExpand(boolean newValue)
+				</name>
+				<description>
+					Sets the scrollsOnExpand property, which determines whether the tree might scroll to show previously hidden children. If this property is true (the default), when a node expands the tree can use scrolling to make the maximum possible number of the node's descendants visible. In some look and feels, trees might not need to scroll when expanded; those look and feels will ignore this property. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollsOnExpand()
+				</name>
+				<description>
+					Returns the value of the scrollsOnExpand property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setToggleClickCount(int clickCount)
+				</name>
+				<description>
+					Sets the number of mouse clicks before a node will expand or close. The default is two. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getToggleClickCount()
+				</name>
+				<description>
+					Returns the number of mouse clicks needed to expand or close a node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExpandsSelectedPaths(boolean newValue)
+				</name>
+				<description>
+					Configures the expandsSelectedPaths property. If true, any time the selection is changed, either via the TreeSelectionModel, or the cover methods provided by JTree, the TreePaths parents will be expanded to make them visible (visible meaning the parent path is expanded, not necessarily in the visible rectangle of the JTree). If false, when the selection changes the nodes parent is not made visible (all its parents expanded). This is useful if you wish to have your selection model maintain paths that are not always visible (all parents expanded). This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getExpandsSelectedPaths()
+				</name>
+				<description>
+					Returns the expandsSelectedPaths property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDragEnabled(boolean b)
+				</name>
+				<description>
+					Turns on or off automatic drag handling. In order to enable automatic drag handling, this property should be set to true, and the tree's TransferHandler needs to be non-null. The default value of the dragEnabled property is false. The job of honoring this property, and recognizing a user drag gesture, lies with the look and feel implementation, and in particular, the tree's TreeUI. When automatic drag handling is enabled, most look and feels (including those that subclass BasicLookAndFeel) begin a drag and drop operation whenever the user presses the mouse button over an item and then moves the mouse a few pixels. Setting this property to true can therefore have a subtle effect on how selections behave. If a look and feel is used that ignores this property, you can still begin a drag and drop operation by calling exportAsDrag on the tree's TransferHandler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getDragEnabled()
+				</name>
+				<description>
+					Returns whether or not automatic drag handling is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setDropMode(DropMode dropMode)
+				</name>
+				<description>
+					Sets the drop mode for this component. For backward compatibility, the default for this property is DropMode.USE_SELECTION. Usage of one of the other modes is recommended, however, for an improved user experience. DropMode.ON, for instance, offers similar behavior of showing items as selected, but does so without affecting the actual selection in the tree. JTree supports the following drop modes: DropMode.USE_SELECTION DropMode.ON DropMode.INSERT DropMode.ON_OR_INSERT The drop mode is only meaningful if this component has a TransferHandler that accepts drops.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final DropMode getDropMode()
+				</name>
+				<description>
+					Returns the drop mode for this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final JTree.DropLocation getDropLocation()
+				</name>
+				<description>
+					Returns the location that this component should visually indicate as the drop location during a DnD operation over the component, or null if no location is to currently be shown. This method is not meant for querying the drop location from a TransferHandler, as the drop location is only set after the TransferHandler's canImport has returned and has allowed for the location to be shown. When this property changes, a property change event with name "dropLocation" is fired by the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPathEditable(TreePath path)
+				</name>
+				<description>
+					Returns isEditable. This is invoked from the UI before editing begins to insure that the given path can be edited. This is provided as an entry point for subclassers to add filtered editing without having to resort to creating a new editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(MouseEvent event)
+				</name>
+				<description>
+					Overrides JComponent's getToolTipText method in order to allow renderer's tips to be used if it has text set. NOTE: For JTree to properly display tooltips of its renderers, JTree must be a registered component with the ToolTipManager. This can be done by invoking ToolTipManager.sharedInstance().registerComponent(tree). This is not done automatically!
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String convertValueToText(Object value,                          boolean selected,                          boolean expanded,                          boolean leaf,                          int row,                          boolean hasFocus)
+				</name>
+				<description>
+					Called by the renderers to convert the specified value to text. This implementation returns value.toString, ignoring all other arguments. To control the conversion, subclass this method and use any of the arguments you need.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowCount()
+				</name>
+				<description>
+					Returns the number of viewable nodes. A node is viewable if all of its parents are expanded. The root is only included in this count if isRootVisible() is true. This returns 0 if the UI has not been set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionPath(TreePath path)
+				</name>
+				<description>
+					Selects the node identified by the specified path. If any component of the path is hidden (under a collapsed node), and getExpandsSelectedPaths is true it is exposed (made viewable).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionPaths(TreePath[] paths)
+				</name>
+				<description>
+					Selects the nodes identified by the specified array of paths. If any component in any of the paths is hidden (under a collapsed node), and getExpandsSelectedPaths is true it is exposed (made viewable).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLeadSelectionPath(TreePath newPath)
+				</name>
+				<description>
+					Sets the path identifies as the lead. The lead may not be selected. The lead is not maintained by JTree, rather the UI will update it. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAnchorSelectionPath(TreePath newPath)
+				</name>
+				<description>
+					Sets the path identified as the anchor. The anchor is not maintained by JTree, rather the UI will update it. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionRow(int row)
+				</name>
+				<description>
+					Selects the node at the specified row in the display.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionRows(int[] rows)
+				</name>
+				<description>
+					Selects the nodes corresponding to each of the specified rows in the display. If a particular element of rows is < 0 or >= getRowCount, it will be ignored. If none of the elements in rows are valid rows, the selection will be cleared. That is it will be as if clearSelection was invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSelectionPath(TreePath path)
+				</name>
+				<description>
+					Adds the node identified by the specified TreePath to the current selection. If any component of the path isn't viewable, and getExpandsSelectedPaths is true it is made viewable. Note that JTree does not allow duplicate nodes to exist as children under the same parent -- each sibling must be a unique object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSelectionPaths(TreePath[] paths)
+				</name>
+				<description>
+					Adds each path in the array of paths to the current selection. If any component of any of the paths isn't viewable and getExpandsSelectedPaths is true, it is made viewable. Note that JTree does not allow duplicate nodes to exist as children under the same parent -- each sibling must be a unique object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSelectionRow(int row)
+				</name>
+				<description>
+					Adds the path at the specified row to the current selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSelectionRows(int[] rows)
+				</name>
+				<description>
+					Adds the paths at each of the specified rows to the current selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getLastSelectedPathComponent()
+				</name>
+				<description>
+					Returns the last path component of the selected path. This is a convenience method for getSelectionModel().getSelectionPath().getLastPathComponent(). This is typically only useful if the selection has one path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getLeadSelectionPath()
+				</name>
+				<description>
+					Returns the path identified as the lead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getAnchorSelectionPath()
+				</name>
+				<description>
+					Returns the path identified as the anchor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getSelectionPath()
+				</name>
+				<description>
+					Returns the path to the first selected node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath[] getSelectionPaths()
+				</name>
+				<description>
+					Returns the paths of all selected values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSelectionRows()
+				</name>
+				<description>
+					Returns all of the currently selected rows. This method is simply forwarded to the TreeSelectionModel. If nothing is selected null or an empty array will be returned, based on the TreeSelectionModel implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectionCount()
+				</name>
+				<description>
+					Returns the number of nodes selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMinSelectionRow()
+				</name>
+				<description>
+					Returns the smallest selected row. If the selection is empty, or none of the selected paths are viewable, -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxSelectionRow()
+				</name>
+				<description>
+					Returns the largest selected row. If the selection is empty, or none of the selected paths are viewable, -1 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLeadSelectionRow()
+				</name>
+				<description>
+					Returns the row index corresponding to the lead path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isPathSelected(TreePath path)
+				</name>
+				<description>
+					Returns true if the item identified by the path is currently selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isRowSelected(int row)
+				</name>
+				<description>
+					Returns true if the node identified by row is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<TreePath> getExpandedDescendants(TreePath parent)
+				</name>
+				<description>
+					Returns an Enumeration of the descendants of the path parent that are currently expanded. If parent is not currently expanded, this will return null. If you expand/collapse nodes while iterating over the returned Enumeration this may not return all the expanded paths, or may return paths that are no longer expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasBeenExpanded(TreePath path)
+				</name>
+				<description>
+					Returns true if the node identified by the path has ever been expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isExpanded(TreePath path)
+				</name>
+				<description>
+					Returns true if the node identified by the path is currently expanded,
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isExpanded(int row)
+				</name>
+				<description>
+					Returns true if the node at the specified display row is currently expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCollapsed(TreePath path)
+				</name>
+				<description>
+					Returns true if the value identified by path is currently collapsed, this will return false if any of the values in path are currently not being displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCollapsed(int row)
+				</name>
+				<description>
+					Returns true if the node at the specified display row is collapsed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void makeVisible(TreePath path)
+				</name>
+				<description>
+					Ensures that the node identified by path is currently viewable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isVisible(TreePath path)
+				</name>
+				<description>
+					Returns true if the value identified by path is currently viewable, which means it is either the root or all of its parents are expanded. Otherwise, this method returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getPathBounds(TreePath path)
+				</name>
+				<description>
+					Returns the Rectangle that the specified node will be drawn into. Returns null if any component in the path is hidden (under a collapsed parent). Note: This method returns a valid rectangle, even if the specified node is not currently displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getRowBounds(int row)
+				</name>
+				<description>
+					Returns the Rectangle that the node at the specified row is drawn in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void scrollPathToVisible(TreePath path)
+				</name>
+				<description>
+					Makes sure all the path components in path are expanded (except for the last path component) and scrolls so that the node identified by the path is displayed. Only works when this JTree is contained in a JScrollPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void scrollRowToVisible(int row)
+				</name>
+				<description>
+					Scrolls the item identified by row until it is displayed. The minimum of amount of scrolling necessary to bring the row into view is performed. Only works when this JTree is contained in a JScrollPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getPathForRow(int row)
+				</name>
+				<description>
+					Returns the path for the specified row. If row is not visible, or a TreeUI has not been set, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowForPath(TreePath path)
+				</name>
+				<description>
+					Returns the row that displays the node identified by the specified path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void expandPath(TreePath path)
+				</name>
+				<description>
+					Ensures that the node identified by the specified path is expanded and viewable. If the last item in the path is a leaf, this will have no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void expandRow(int row)
+				</name>
+				<description>
+					Ensures that the node in the specified row is expanded and viewable. If row is < 0 or >= getRowCount this will have no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void collapsePath(TreePath path)
+				</name>
+				<description>
+					Ensures that the node identified by the specified path is collapsed and viewable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void collapseRow(int row)
+				</name>
+				<description>
+					Ensures that the node in the specified row is collapsed. If row is < 0 or >= getRowCount this will have no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getPathForLocation(int x,                            int y)
+				</name>
+				<description>
+					Returns the path for the node at the specified location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowForLocation(int x,                      int y)
+				</name>
+				<description>
+					Returns the row for the specified location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getClosestPathForLocation(int x,                                   int y)
+				</name>
+				<description>
+					Returns the path to the node that is closest to x,y. If no nodes are currently viewable, or there is no model, returns null, otherwise it always returns a valid path. To test if the node is exactly at x, y, get the node's bounds and test x, y against that.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getClosestRowForLocation(int x,                             int y)
+				</name>
+				<description>
+					Returns the row to the node that is closest to x,y. If no nodes are viewable or there is no model, returns -1. Otherwise, it always returns a valid row. To test if the returned object is exactly at x, y, get the bounds for the node at the returned row and test x, y against that.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEditing()
+				</name>
+				<description>
+					Returns true if the tree is being edited. The item that is being edited can be obtained using getSelectionPath.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean stopEditing()
+				</name>
+				<description>
+					Ends the current editing session. (The DefaultTreeCellEditor object saves any edits that are currently in progress on a cell. Other implementations may operate differently.) Has no effect if the tree isn't being edited. Note: To make edit-saves automatic whenever the user changes their position in the tree, use setInvokesStopCellEditing(boolean).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void cancelEditing()
+				</name>
+				<description>
+					Cancels the current editing session. Has no effect if the tree isn't being edited.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startEditingAtPath(TreePath path)
+				</name>
+				<description>
+					Selects the node identified by the specified path and initiates editing. The edit-attempt fails if the CellEditor does not allow editing for the specified item.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getEditingPath()
+				</name>
+				<description>
+					Returns the path to the element that is currently being edited.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionModel(TreeSelectionModel selectionModel)
+				</name>
+				<description>
+					Sets the tree's selection model. When a null value is specified an empty selectionModel is used, which does not allow selections. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeSelectionModel getSelectionModel()
+				</name>
+				<description>
+					Returns the model for selections. This should always return a non-null value. If you don't want to allow anything to be selected set the selection model to null, which forces an empty selection model to be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreePath[] getPathBetweenRows(int index0,                              int index1)
+				</name>
+				<description>
+					Returns the paths (inclusive) between the specified rows. If the specified indices are within the viewable set of rows, or bound the viewable set of rows, then the indices are constrained by the viewable set of rows. If the specified indices are not within the viewable set of rows, or do not bound the viewable set of rows, then an empty array is returned. For example, if the row count is 10, and this method is invoked with -1, 20, then the specified indices are constrained to the viewable set of rows, and this is treated as if invoked with 0, 9. On the other hand, if this were invoked with -10, -1, then the specified indices do not bound the viewable set of rows, and an empty array is returned. The parameters are not order dependent. That is, getPathBetweenRows(x, y) is equivalent to getPathBetweenRows(y, x). An empty array is returned if the row count is 0, or the specified indices do not bound the viewable set of rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectionInterval(int index0,                          int index1)
+				</name>
+				<description>
+					Selects the rows in the specified interval (inclusive). If the specified indices are within the viewable set of rows, or bound the viewable set of rows, then the specified rows are constrained by the viewable set of rows. If the specified indices are not within the viewable set of rows, or do not bound the viewable set of rows, then the selection is cleared. For example, if the row count is 10, and this method is invoked with -1, 20, then the specified indices bounds the viewable range, and this is treated as if invoked with 0, 9. On the other hand, if this were invoked with -10, -1, then the specified indices do not bound the viewable set of rows, and the selection is cleared. The parameters are not order dependent. That is, setSelectionInterval(x, y) is equivalent to setSelectionInterval(y, x).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addSelectionInterval(int index0,                          int index1)
+				</name>
+				<description>
+					Adds the specified rows (inclusive) to the selection. If the specified indices are within the viewable set of rows, or bound the viewable set of rows, then the specified indices are constrained by the viewable set of rows. If the indices are not within the viewable set of rows, or do not bound the viewable set of rows, then the selection is unchanged. For example, if the row count is 10, and this method is invoked with -1, 20, then the specified indices bounds the viewable range, and this is treated as if invoked with 0, 9. On the other hand, if this were invoked with -10, -1, then the specified indices do not bound the viewable set of rows, and the selection is unchanged. The parameters are not order dependent. That is, addSelectionInterval(x, y) is equivalent to addSelectionInterval(y, x).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeSelectionInterval(int index0,                             int index1)
+				</name>
+				<description>
+					Removes the specified rows (inclusive) from the selection. If the specified indices are within the viewable set of rows, or bound the viewable set of rows, then the specified indices are constrained by the viewable set of rows. If the specified indices are not within the viewable set of rows, or do not bound the viewable set of rows, then the selection is unchanged. For example, if the row count is 10, and this method is invoked with -1, 20, then the specified range bounds the viewable range, and this is treated as if invoked with 0, 9. On the other hand, if this were invoked with -10, -1, then the specified range does not bound the viewable set of rows, and the selection is unchanged. The parameters are not order dependent. That is, removeSelectionInterval(x, y) is equivalent to removeSelectionInterval(y, x).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeSelectionPath(TreePath path)
+				</name>
+				<description>
+					Removes the node identified by the specified path from the current selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeSelectionPaths(TreePath[] paths)
+				</name>
+				<description>
+					Removes the nodes identified by the specified paths from the current selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeSelectionRow(int row)
+				</name>
+				<description>
+					Removes the row at the index row from the current selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeSelectionRows(int[] rows)
+				</name>
+				<description>
+					Removes the rows that are selected at each of the specified rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clearSelection()
+				</name>
+				<description>
+					Clears the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSelectionEmpty()
+				</name>
+				<description>
+					Returns true if the selection is currently empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTreeExpansionListener(TreeExpansionListener tel)
+				</name>
+				<description>
+					Adds a listener for TreeExpansion events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeTreeExpansionListener(TreeExpansionListener tel)
+				</name>
+				<description>
+					Removes a listener for TreeExpansion events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeExpansionListener[] getTreeExpansionListeners()
+				</name>
+				<description>
+					Returns an array of all the TreeExpansionListeners added to this JTree with addTreeExpansionListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTreeWillExpandListener(TreeWillExpandListener tel)
+				</name>
+				<description>
+					Adds a listener for TreeWillExpand events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeTreeWillExpandListener(TreeWillExpandListener tel)
+				</name>
+				<description>
+					Removes a listener for TreeWillExpand events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeWillExpandListener[] getTreeWillExpandListeners()
+				</name>
+				<description>
+					Returns an array of all the TreeWillExpandListeners added to this JTree with addTreeWillExpandListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTreeExpanded(TreePath path)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the path parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTreeCollapsed(TreePath path)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the path parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTreeWillExpand(TreePath path)                          throws ExpandVetoException
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the path parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void fireTreeWillCollapse(TreePath path)                            throws ExpandVetoException
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the path parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addTreeSelectionListener(TreeSelectionListener tsl)
+				</name>
+				<description>
+					Adds a listener for TreeSelection events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeTreeSelectionListener(TreeSelectionListener tsl)
+				</name>
+				<description>
+					Removes a TreeSelection listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreeSelectionListener[] getTreeSelectionListeners()
+				</name>
+				<description>
+					Returns an array of all the TreeSelectionListeners added to this JTree with addTreeSelectionListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireValueChanged(TreeSelectionEvent e)
+				</name>
+				<description>
+					Notifies all listeners that have registered interest for notification on this event type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void treeDidChange()
+				</name>
+				<description>
+					Sent when the tree has changed enough that we need to resize the bounds, but not enough that we need to remove the expanded node set (e.g nodes were expanded or collapsed, or nodes were inserted into the tree). You should never have to invoke this, the UI will invoke this as it needs to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVisibleRowCount(int newCount)
+				</name>
+				<description>
+					Sets the number of rows that are to be displayed. This will only work if the tree is contained in a JScrollPane, and will adjust the preferred size and size of that scrollpane. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVisibleRowCount()
+				</name>
+				<description>
+					Returns the number of rows that are displayed in the display area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getNextMatch(String prefix,                      int startingRow,                      Position.Bias bias)
+				</name>
+				<description>
+					Returns the TreePath to the next tree element that begins with a prefix. To handle the conversion of a TreePath into a String, convertValueToText is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredScrollableViewportSize()
+				</name>
+				<description>
+					Returns the preferred display size of a JTree. The height is determined from getVisibleRowCount and the width is the current preferred width.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableUnitIncrement(Rectangle visibleRect,                               int orientation,                               int direction)
+				</name>
+				<description>
+					Returns the amount to increment when scrolling. The amount is the height of the first displayed row that isn't completely in view or, if it is totally displayed, the height of the next row in the scrolling direction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableBlockIncrement(Rectangle visibleRect,                                int orientation,                                int direction)
+				</name>
+				<description>
+					Returns the amount for a block increment, which is the height or width of visibleRect, based on orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportWidth()
+				</name>
+				<description>
+					Returns false to indicate that the width of the viewport does not determine the width of the table, unless the preferred width of the tree is smaller than the viewports width. In other words: ensure that the tree is never smaller than its viewport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportHeight()
+				</name>
+				<description>
+					Returns false to indicate that the height of the viewport does not determine the height of the table, unless the preferred height of the tree is smaller than the viewports height. In other words: ensure that the tree is never smaller than its viewport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setExpandedState(TreePath path,                      boolean state)
+				</name>
+				<description>
+					Sets the expanded state of this JTree. If state is true, all parents of path and path are marked as expanded. If state is false, all parents of path are marked EXPANDED, but path itself is marked collapsed. This will fail if a TreeWillExpandListener vetos it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Enumeration<TreePath> getDescendantToggledPaths(TreePath parent)
+				</name>
+				<description>
+					Returns an Enumeration of TreePaths that have been expanded that are descendants of parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeDescendantToggledPaths(Enumeration<TreePath> toRemove)
+				</name>
+				<description>
+					Removes any descendants of the TreePaths in toRemove that have been expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void clearToggledPaths()
+				</name>
+				<description>
+					Clears the cache of toggled tree paths. This does NOT send out any TreeExpansionListener events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TreeModelListener createTreeModelListener()
+				</name>
+				<description>
+					Creates and returns an instance of TreeModelHandler. The returned object is responsible for updating the expanded state when the TreeModel changes. For more information on what expanded state means, see the JTree description above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean removeDescendantSelectedPaths(TreePath path,                                      boolean includePath)
+				</name>
+				<description>
+					Removes any paths in the selection that are descendants of path. If includePath is true and path is selected, it will be removed from the selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JTree. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JTree. For JTrees, the AccessibleContext takes the form of an AccessibleJTree. A new AccessibleJTree instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

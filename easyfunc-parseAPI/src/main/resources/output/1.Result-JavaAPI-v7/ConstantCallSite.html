@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.lang.invoke
+	</package>
+	<type>
+		<name>
+			public class ConstantCallSite  extends CallSite
+		</name>
+		<description>
+			A ConstantCallSite is a CallSite whose target is permanent, and can never be changed. An invokedynamic instruction linked to a ConstantCallSite is permanently bound to the call site's target.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ConstantCallSite(MethodHandle target)
+				</name>
+				<description>
+					Creates a call site with a permanent target.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ConstantCallSite(MethodType targetType,                  MethodHandle createTargetHook)                      throws Throwable
+				</name>
+				<description>
+					Creates a call site with a permanent target, possibly bound to the call site itself. During construction of the call site, the createTargetHook is invoked to produce the actual target, as if by a call of the form (MethodHandle) createTargetHook.invoke(this). Note that user code cannot perform such an action directly in a subclass constructor, since the target must be fixed before the ConstantCallSite constructor returns. The hook is said to bind the call site to a target method handle, and a typical action would be someTarget.bindTo(this). However, the hook is free to take any action whatever, including ignoring the call site and returning a constant target. The result returned by the hook must be a method handle of exactly the same type as the call site. While the hook is being called, the new ConstantCallSite object is in a partially constructed state. In this state, a call to getTarget, or any other attempt to use the target, will result in an IllegalStateException. It is legal at all times to obtain the call site's type using the type method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final MethodHandle getTarget()
+				</name>
+				<description>
+					Returns the target method of the call site, which behaves like a final field of the ConstantCallSite. That is, the the target is always the original value passed to the constructor call which created this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void setTarget(MethodHandle ignore)
+				</name>
+				<description>
+					Always throws an UnsupportedOperationException. This kind of call site cannot change its target.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final MethodHandle dynamicInvoker()
+				</name>
+				<description>
+					Returns this call site's permanent target. Since that target will never change, this is a correct implementation of CallSite.dynamicInvoker.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

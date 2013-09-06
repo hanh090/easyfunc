@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		javax.management.relation
+	</package>
+	<type>
+		<name>
+			public interface Relation
+		</name>
+		<description>
+			This interface has to be implemented by any MBean class expected to represent a relation managed using the Relation Service. Simple relations, i.e. having only roles, no properties or methods, can be created directly by the Relation Service (represented as RelationSupport objects, internally handled by the Relation Service). If the user wants to represent more complex relations, involving properties and/or methods, he has to provide his own class implementing the Relation interface. This can be achieved either by inheriting from RelationSupport class, or by implementing the interface (fully or delegation to a RelationSupport object member). Specifying such user relation class is to introduce properties and/or methods. Those have to be exposed for remote management. So this means that any user relation class must be a MBean class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					List<ObjectName> getRole(String roleName)                           throws IllegalArgumentException,                                  RoleNotFoundException,                                  RelationServiceNotRegisteredException
+				</name>
+				<description>
+					Retrieves role value for given role name. Checks if the role exists and is readable according to the relation type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RoleResult getRoles(String[] roleNameArray)                      throws IllegalArgumentException,                             RelationServiceNotRegisteredException
+				</name>
+				<description>
+					Retrieves values of roles with given names. Checks for each role if it exists and is readable according to the relation type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Integer getRoleCardinality(String roleName)                             throws IllegalArgumentException,                                    RoleNotFoundException
+				</name>
+				<description>
+					Returns the number of MBeans currently referenced in the given role.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RoleResult getAllRoles()                         throws RelationServiceNotRegisteredException
+				</name>
+				<description>
+					Returns all roles present in the relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RoleList retrieveAllRoles()
+				</name>
+				<description>
+					Returns all roles in the relation without checking read mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setRole(Role role)               throws IllegalArgumentException,                      RoleNotFoundException,                      RelationTypeNotFoundException,                      InvalidRoleValueException,                      RelationServiceNotRegisteredException,                      RelationNotFoundException
+				</name>
+				<description>
+					Sets the given role. Will check the role according to its corresponding role definition provided in relation's relation type Will send a notification (RelationNotification with type RELATION_BASIC_UPDATE or RELATION_MBEAN_UPDATE, depending if the relation is a MBean or not).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RoleResult setRoles(RoleList roleList)                      throws IllegalArgumentException,                             RelationServiceNotRegisteredException,                             RelationTypeNotFoundException,                             RelationNotFoundException
+				</name>
+				<description>
+					Sets the given roles. Will check the role according to its corresponding role definition provided in relation's relation type Will send one notification (RelationNotification with type RELATION_BASIC_UPDATE or RELATION_MBEAN_UPDATE, depending if the relation is a MBean or not) per updated role.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void handleMBeanUnregistration(ObjectName objectName,                               String roleName)                                 throws IllegalArgumentException,                                        RoleNotFoundException,                                        InvalidRoleValueException,                                        RelationServiceNotRegisteredException,                                        RelationTypeNotFoundException,                                        RelationNotFoundException
+				</name>
+				<description>
+					Callback used by the Relation Service when a MBean referenced in a role is unregistered. The Relation Service will call this method to let the relation take action to reflect the impact of such unregistration. BEWARE. the user is not expected to call this method. Current implementation is to set the role with its current value (list of ObjectNames of referenced MBeans) without the unregistered one.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Map<ObjectName,List<String>> getReferencedMBeans()
+				</name>
+				<description>
+					Retrieves MBeans referenced in the various roles of the relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getRelationTypeName()
+				</name>
+				<description>
+					Returns name of associated relation type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectName getRelationServiceName()
+				</name>
+				<description>
+					Returns ObjectName of the Relation Service handling the relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getRelationId()
+				</name>
+				<description>
+					Returns relation identifier (used to uniquely identify the relation inside the Relation Service).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,243 @@
+<javaelement>
+	<package>
+		java.awt.dnd
+	</package>
+	<type>
+		<name>
+			public class DragSource  extends Object  implements Serializable
+		</name>
+		<description>
+			The DragSource is the entity responsible for the initiation of the Drag and Drop operation, and may be used in a number of scenarios: 1 default instance per JVM for the lifetime of that JVM. 1 instance per class of potential Drag Initiator object (e.g TextField). [implementation dependent] 1 per instance of a particular Component, or application specific object associated with a Component instance in the GUI. [implementation dependent] Some other arbitrary association. [implementation dependent] Once the DragSource is obtained, a DragGestureRecognizer should also be obtained to associate the DragSource with a particular Component. The initial interpretation of the user's gesture, and the subsequent starting of the drag operation are the responsibility of the implementing Component, which is usually implemented by a DragGestureRecognizer. When a drag gesture occurs, the DragSource's startDrag() method shall be invoked in order to cause processing of the user's navigational gestures and delivery of Drag and Drop protocol notifications. A DragSource shall only permit a single Drag and Drop operation to be current at any one time, and shall reject any further startDrag() requests by throwing an IllegalDnDOperationException until such time as the extant operation is complete. The startDrag() method invokes the createDragSourceContext() method to instantiate an appropriate DragSourceContext and associate the DragSourceContextPeer with that. If the Drag and Drop System is unable to initiate a drag operation for some reason, the startDrag() method throws a java.awt.dnd.InvalidDnDOperationException to signal such a condition. Typically this exception is thrown when the underlying platform system is either not in a state to initiate a drag, or the parameters specified are invalid. Note that during the drag, the set of operations exposed by the source at the start of the drag operation may not change until the operation is complete. The operation(s) are constant for the duration of the operation with respect to the DragSource.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final Cursor DefaultCopyDrop
+				</name>
+				<description>
+					The default Cursor to use with a copy operation indicating that a drop is currently allowed. null if GraphicsEnvironment.isHeadless() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Cursor DefaultMoveDrop
+				</name>
+				<description>
+					The default Cursor to use with a move operation indicating that a drop is currently allowed. null if GraphicsEnvironment.isHeadless() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Cursor DefaultLinkDrop
+				</name>
+				<description>
+					The default Cursor to use with a link operation indicating that a drop is currently allowed. null if GraphicsEnvironment.isHeadless() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Cursor DefaultCopyNoDrop
+				</name>
+				<description>
+					The default Cursor to use with a copy operation indicating that a drop is currently not allowed. null if GraphicsEnvironment.isHeadless() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Cursor DefaultMoveNoDrop
+				</name>
+				<description>
+					The default Cursor to use with a move operation indicating that a drop is currently not allowed. null if GraphicsEnvironment.isHeadless() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Cursor DefaultLinkNoDrop
+				</name>
+				<description>
+					The default Cursor to use with a link operation indicating that a drop is currently not allowed. null if GraphicsEnvironment.isHeadless() returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragSource()             throws HeadlessException
+				</name>
+				<description>
+					Creates a new DragSource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DragSource getDefaultDragSource()
+				</name>
+				<description>
+					Gets the DragSource object associated with the underlying platform.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isDragImageSupported()
+				</name>
+				<description>
+					Reports whether or not drag Image support is available on the underlying platform.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startDrag(DragGestureEvent trigger,               Cursor dragCursor,               Image dragImage,               Point imageOffset,               Transferable transferable,               DragSourceListener dsl,               FlavorMap flavorMap)                 throws InvalidDnDOperationException
+				</name>
+				<description>
+					Start a drag, given the DragGestureEvent that initiated the drag, the initial Cursor to use, the Image to drag, the offset of the Image origin from the hotspot of the Cursor at the instant of the trigger, the Transferable subject data of the drag, the DragSourceListener, and the FlavorMap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startDrag(DragGestureEvent trigger,               Cursor dragCursor,               Transferable transferable,               DragSourceListener dsl,               FlavorMap flavorMap)                 throws InvalidDnDOperationException
+				</name>
+				<description>
+					Start a drag, given the DragGestureEvent that initiated the drag, the initial Cursor to use, the Transferable subject data of the drag, the DragSourceListener, and the FlavorMap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startDrag(DragGestureEvent trigger,               Cursor dragCursor,               Image dragImage,               Point dragOffset,               Transferable transferable,               DragSourceListener dsl)                 throws InvalidDnDOperationException
+				</name>
+				<description>
+					Start a drag, given the DragGestureEvent that initiated the drag, the initial Cursor to use, the Image to drag, the offset of the Image origin from the hotspot of the Cursor at the instant of the trigger, the subject data of the drag, and the DragSourceListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void startDrag(DragGestureEvent trigger,               Cursor dragCursor,               Transferable transferable,               DragSourceListener dsl)                 throws InvalidDnDOperationException
+				</name>
+				<description>
+					Start a drag, given the DragGestureEvent that initiated the drag, the initial Cursor to use, the Transferable subject data of the drag, and the DragSourceListener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DragSourceContext createDragSourceContext(java.awt.dnd.peer.DragSourceContextPeer dscp,                                          DragGestureEvent dgl,                                          Cursor dragCursor,                                          Image dragImage,                                          Point imageOffset,                                          Transferable t,                                          DragSourceListener dsl)
+				</name>
+				<description>
+					Creates the DragSourceContext to handle the current drag operation. To incorporate a new DragSourceContext subclass, subclass DragSource and override this method. If dragImage is null, no image is used to represent the drag over feedback for this drag operation, but NullPointerException is not thrown. If dsl is null, no drag source listener is registered with the created DragSourceContext, but NullPointerException is not thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FlavorMap getFlavorMap()
+				</name>
+				<description>
+					This method returns the FlavorMap for this DragSource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends DragGestureRecognizer> T createDragGestureRecognizer(Class<T> recognizerAbstractClass,                                                                Component c,                                                                int actions,                                                                DragGestureListener dgl)
+				</name>
+				<description>
+					Creates a new DragGestureRecognizer that implements the specified abstract subclass of DragGestureRecognizer, and sets the specified Component and DragGestureListener on the newly created object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragGestureRecognizer createDefaultDragGestureRecognizer(Component c,                                                         int actions,                                                         DragGestureListener dgl)
+				</name>
+				<description>
+					Creates a new DragGestureRecognizer that implements the default abstract subclass of DragGestureRecognizer for this DragSource, and sets the specified Component and DragGestureListener on the newly created object. For this DragSource the default is MouseDragGestureRecognizer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addDragSourceListener(DragSourceListener dsl)
+				</name>
+				<description>
+					Adds the specified DragSourceListener to this DragSource to receive drag source events during drag operations intiated with this DragSource. If a null listener is specified, no action is taken and no exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeDragSourceListener(DragSourceListener dsl)
+				</name>
+				<description>
+					Removes the specified DragSourceListener from this DragSource. If a null listener is specified, no action is taken and no exception is thrown. If the listener specified by the argument was not previously added to this DragSource, no action is taken and no exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragSourceListener[] getDragSourceListeners()
+				</name>
+				<description>
+					Gets all the DragSourceListeners registered with this DragSource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addDragSourceMotionListener(DragSourceMotionListener dsml)
+				</name>
+				<description>
+					Adds the specified DragSourceMotionListener to this DragSource to receive drag motion events during drag operations intiated with this DragSource. If a null listener is specified, no action is taken and no exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeDragSourceMotionListener(DragSourceMotionListener dsml)
+				</name>
+				<description>
+					Removes the specified DragSourceMotionListener from this DragSource. If a null listener is specified, no action is taken and no exception is thrown. If the listener specified by the argument was not previously added to this DragSource, no action is taken and no exception is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DragSourceMotionListener[] getDragSourceMotionListeners()
+				</name>
+				<description>
+					Gets all of the DragSourceMotionListeners registered with this DragSource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Gets all the objects currently registered as FooListeners upon this DragSource. FooListeners are registered using the addFooListener method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int getDragThreshold()
+				</name>
+				<description>
+					Returns the drag gesture motion threshold. The drag gesture motion threshold defines the recommended behavior for MouseDragGestureRecognizers. If the system property awt.dnd.drag.threshold is set to a positive integer, this method returns the value of the system property; otherwise if a pertinent desktop property is available and supported by the implementation of the Java platform, this method returns the value of that property; otherwise this method returns some default value. The pertinent desktop property can be queried using java.awt.Toolkit.getDesktopProperty("DnD.gestureMotionThreshold").
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

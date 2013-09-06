@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class ZoneView  extends BoxView
+		</name>
+		<description>
+			ZoneView is a View implementation that creates zones for which the child views are not created or stored until they are needed for display or model/view translations. This enables a substantial reduction in memory consumption for situations where the model being represented is very large, by building view objects only for the region being actively viewed/edited. The size of the children can be estimated in some way, or calculated asynchronously with only the result being saved. ZoneView extends BoxView to provide a box that implements zones for its children. The zones are special View implementations (the children of an instance of this class) that represent only a portion of the model that an instance of ZoneView is responsible for. The zones don't create child views until an attempt is made to display them. A box shaped view is well suited to this because: Boxes are a heavily used view, and having a box that provides this behavior gives substantial opportunity to plug the behavior into a view hierarchy from the view factory. Boxes are tiled in one direction, so it is easy to divide them into zones in a reliable way. Boxes typically have a simple relationship to the model (i.e. they create child views that directly represent the child elements). Boxes are easier to estimate the size of than some other shapes. The default behavior is controled by two properties, maxZoneSize and maxZonesLoaded. Setting maxZoneSize to Integer.MAX_VALUE would have the effect of causing only one zone to be created. This would effectively turn the view into an implementation of the decorator pattern. Setting maxZonesLoaded to a value of Integer.MAX_VALUE would cause zones to never be unloaded. For simplicity, zones are created on boundaries represented by the child elements of the element the view is responsible for. The zones can be any View implementation, but the default implementation is based upon AsyncBoxView which supports fairly large zones efficiently.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ZoneView(Element elem,          int axis)
+				</name>
+				<description>
+					Constructs a ZoneView.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaximumZoneSize()
+				</name>
+				<description>
+					Get the current maximum zone size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaximumZoneSize(int size)
+				</name>
+				<description>
+					Set the desired maximum zone size. A zone may get larger than this size if a single child view is larger than this size since zones are formed on child view boundaries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMaxZonesLoaded()
+				</name>
+				<description>
+					Get the current setting of the number of zones allowed to be loaded at the same time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMaxZonesLoaded(int mzl)
+				</name>
+				<description>
+					Sets the current setting of the number of zones allowed to be loaded at the same time. This will throw an IllegalArgumentException if mzl is less than 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void zoneWasLoaded(View zone)
+				</name>
+				<description>
+					Called by a zone when it gets loaded. This happens when an attempt is made to display or perform a model/view translation on a zone that was in an unloaded state. This is imlemented to check if the maximum number of zones was reached and to unload the oldest zone if so.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void unloadZone(View zone)
+				</name>
+				<description>
+					Unload a zone (Convert the zone to its memory saving state). The zones are expected to represent a subset of the child elements of the element this view is responsible for. Therefore, the default implementation is to simple remove all the children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isZoneLoaded(View zone)
+				</name>
+				<description>
+					Determine if a zone is in the loaded state. The zones are expected to represent a subset of the child elements of the element this view is responsible for. Therefore, the default implementation is to return true if the view has children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View createZone(int p0,                int p1)
+				</name>
+				<description>
+					Create a view to represent a zone for the given range within the model (which should be within the range of this objects responsibility). This is called by the zone management logic to create new zones. Subclasses can provide a different implementation for a zone by changing this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void loadChildren(ViewFactory f)
+				</name>
+				<description>
+					Loads all of the children to initialize the view. This is called by the setParent method. This is reimplemented to not load any children directly (as they are created by the zones). This method creates the initial set of zones. Zones don't actually get populated however until an attempt is made to display them or to do model/view coordinate translation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getViewIndexAtPosition(int pos)
+				</name>
+				<description>
+					Returns the child view index representing the given position in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean updateChildren(DocumentEvent.ElementChange ec,                       DocumentEvent e,                       ViewFactory f)
+				</name>
+				<description>
+					The superclass behavior will try to update the child views which is not desired in this case, since the children are zones and not directly effected by the changes to the associated element. This is reimplemented to do nothing and return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was inserted into the document in a location that this view is responsible for. This is largely delegated to the superclass, but is reimplemented to update the relevant zone (i.e. determine if a zone needs to be split into a set of 2 or more zones).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was removed from the document in a location that this view is responsible for. This is largely delegated to the superclass, but is reimplemented to update the relevant zones (i.e. determine if zones need to be removed or joined with another zone).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

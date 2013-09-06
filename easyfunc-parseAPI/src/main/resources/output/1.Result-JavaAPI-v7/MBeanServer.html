@@ -1,0 +1,342 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public interface MBeanServer  extends MBeanServerConnection
+		</name>
+		<description>
+			This is the interface for MBean manipulation on the agent side. It contains the methods necessary for the creation, registration, and deletion of MBeans as well as the access methods for registered MBeans. This is the core component of the JMX infrastructure. User code does not usually implement this interface. Instead, an object that implements this interface is obtained with one of the methods in the MBeanServerFactory class. Every MBean which is added to the MBean server becomes manageable: its attributes and operations become remotely accessible through the connectors/adaptors connected to that MBean server. A Java object cannot be registered in the MBean server unless it is a JMX compliant MBean. When an MBean is registered or unregistered in the MBean server a MBeanServerNotification Notification is emitted. To register an object as listener to MBeanServerNotifications you should call the MBean server method addNotificationListener with ObjectName the ObjectName of the MBeanServerDelegate. This ObjectName is: JMImplementation:type=MBeanServerDelegate. An object obtained from the createMBeanServer or newMBeanServer methods of the MBeanServerFactory class applies security checks to its methods, as follows. First, if there is no security manager (System.getSecurityManager() is null), then an implementation of this interface is free not to make any checks. Assuming that there is a security manager, or that the implementation chooses to make checks anyway, the checks are made as detailed below. In what follows, and unless otherwise specified, className is the string returned by MBeanInfo.getClassName() for the target MBean. If a security check fails, the method throws SecurityException. For methods that can throw InstanceNotFoundException, this exception is thrown for a non-existent MBean, regardless of permissions. This is because a non-existent MBean has no className. For the invoke method, the caller's permissions must imply MBeanPermission(className, operationName, name, "invoke"). For the getAttribute method, the caller's permissions must imply MBeanPermission(className, attribute, name, "getAttribute"). For the getAttributes method, the caller's permissions must imply MBeanPermission(className, null, name, "getAttribute"). Additionally, for each attribute a in the AttributeList, if the caller's permissions do not imply MBeanPermission(className, a, name, "getAttribute"), the MBean server will behave as if that attribute had not been in the supplied list. For the setAttribute method, the caller's permissions must imply MBeanPermission(className, attrName, name, "setAttribute"), where attrName is attribute.getName(). For the setAttributes method, the caller's permissions must imply MBeanPermission(className, null, name, "setAttribute"). Additionally, for each attribute a in the AttributeList, if the caller's permissions do not imply MBeanPermission(className, a, name, "setAttribute"), the MBean server will behave as if that attribute had not been in the supplied list. For the addNotificationListener methods, the caller's permissions must imply MBeanPermission(className, null, name, "addNotificationListener"). For the removeNotificationListener methods, the caller's permissions must imply MBeanPermission(className, null, name, "removeNotificationListener"). For the getMBeanInfo method, the caller's permissions must imply MBeanPermission(className, null, name, "getMBeanInfo"). For the getObjectInstance method, the caller's permissions must imply MBeanPermission(className, null, name, "getObjectInstance"). For the isInstanceOf method, the caller's permissions must imply MBeanPermission(className, null, name, "isInstanceOf"). For the queryMBeans method, the caller's permissions must imply MBeanPermission(null, null, null, "queryMBeans"). Additionally, for each MBean n that matches name, if the caller's permissions do not imply MBeanPermission(className, null, n, "queryMBeans"), the MBean server will behave as if that MBean did not exist. Certain query elements perform operations on the MBean server. If the caller does not have the required permissions for a given MBean, that MBean will not be included in the result of the query. The standard query elements that are affected are Query.attr(String), Query.attr(String,String), and Query.classattr(). For the queryNames method, the checks are the same as for queryMBeans except that "queryNames" is used instead of "queryMBeans" in the MBeanPermission objects. Note that a "queryMBeans" permission implies the corresponding "queryNames" permission. For the getDomains method, the caller's permissions must imply MBeanPermission(null, null, null, "getDomains"). Additionally, for each domain d in the returned array, if the caller's permissions do not imply MBeanPermission(null, null, new ObjectName("d:x=x"), "getDomains"), the domain is eliminated from the array. Here, x=x is any key=value pair, needed to satisfy ObjectName's constructor but not otherwise relevant. For the getClassLoader method, the caller's permissions must imply MBeanPermission(className, null, loaderName, "getClassLoader"). For the getClassLoaderFor method, the caller's permissions must imply MBeanPermission(className, null, mbeanName, "getClassLoaderFor"). For the getClassLoaderRepository method, the caller's permissions must imply MBeanPermission(null, null, null, "getClassLoaderRepository"). For the deprecated deserialize methods, the required permissions are the same as for the methods that replace them. For the instantiate methods, the caller's permissions must imply MBeanPermission(className, null, null, "instantiate"), where className is the name of the class which is to be instantiated. For the registerMBean method, the caller's permissions must imply MBeanPermission(className, null, name, "registerMBean"). If the MBeanPermission check succeeds, the MBean's class is validated by checking that its ProtectionDomain implies MBeanTrustPermission("register"). Finally, if the name argument is null, another MBeanPermission check is made using the ObjectName returned by MBeanRegistration.preRegister. For the createMBean methods, the caller's permissions must imply the permissions needed by the equivalent instantiate followed by registerMBean. For the unregisterMBean method, the caller's permissions must imply MBeanPermission(className, null, name, "unregisterMBean").
+		</description>
+		<methods>
+			<method>
+				<name>
+					ObjectInstance createMBean(String className,                           ObjectName name)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException
+				</name>
+				<description>
+					Instantiates and registers an MBean in the MBean server. The MBean server will use its Default Loader Repository to load the class of the MBean. An object name is associated with the MBean. If the object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method. This method is equivalent to createMBean(className, name, (Object[]) null, (String[]) null). If this method successfully creates an MBean, a notification is sent as described above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectInstance createMBean(String className,                           ObjectName name,                           ObjectName loaderName)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException,                                    InstanceNotFoundException
+				</name>
+				<description>
+					Instantiates and registers an MBean in the MBean server. The class loader to be used is identified by its object name. An object name is associated with the MBean. If the object name of the loader is null, the ClassLoader that loaded the MBean server will be used. If the MBean's object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method. This method is equivalent to createMBean(className, name, loaderName, (Object[]) null, (String[]) null). If this method successfully creates an MBean, a notification is sent as described above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectInstance createMBean(String className,                           ObjectName name,                           Object[] params,                           String[] signature)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException
+				</name>
+				<description>
+					Instantiates and registers an MBean in the MBean server. The MBean server will use its Default Loader Repository to load the class of the MBean. An object name is associated with the MBean. If the object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method. If this method successfully creates an MBean, a notification is sent as described above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectInstance createMBean(String className,                           ObjectName name,                           ObjectName loaderName,                           Object[] params,                           String[] signature)                             throws ReflectionException,                                    InstanceAlreadyExistsException,                                    MBeanRegistrationException,                                    MBeanException,                                    NotCompliantMBeanException,                                    InstanceNotFoundException
+				</name>
+				<description>
+					Instantiates and registers an MBean in the MBean server. The class loader to be used is identified by its object name. An object name is associated with the MBean. If the object name of the loader is not specified, the ClassLoader that loaded the MBean server will be used. If the MBean object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method. If this method successfully creates an MBean, a notification is sent as described above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectInstance registerMBean(Object object,                             ObjectName name)                               throws InstanceAlreadyExistsException,                                      MBeanRegistrationException,                                      NotCompliantMBeanException
+				</name>
+				<description>
+					Registers a pre-existing object as an MBean with the MBean server. If the object name given is null, the MBean must provide its own name by implementing the MBeanRegistration interface and returning the name from the preRegister method. If this method successfully registers an MBean, a notification is sent as described above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unregisterMBean(ObjectName name)                       throws InstanceNotFoundException,                              MBeanRegistrationException
+				</name>
+				<description>
+					Unregisters an MBean from the MBean server. The MBean is identified by its object name. Once the method has been invoked, the MBean may no longer be accessed by its object name. If this method successfully unregisters an MBean, a notification is sent as described above.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ObjectInstance getObjectInstance(ObjectName name)                                   throws InstanceNotFoundException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Gets the ObjectInstance for a given MBean registered with the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Set<ObjectInstance> queryMBeans(ObjectName name,                                QueryExp query)
+				</name>
+				<description>
+					Gets MBeans controlled by the MBean server. This method allows any of the following to be obtained: All MBeans, a set of MBeans specified by pattern matching on the ObjectName and/or a Query expression, a specific MBean. When the object name is null or no domain and key properties are specified, all objects are to be selected (and filtered if a query is specified). It returns the set of ObjectInstance objects (containing the ObjectName and the Java Class name) for the selected MBeans.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Set<ObjectName> queryNames(ObjectName name,                           QueryExp query)
+				</name>
+				<description>
+					Gets the names of MBeans controlled by the MBean server. This method enables any of the following to be obtained: The names of all MBeans, the names of a set of MBeans specified by pattern matching on the ObjectName and/or a Query expression, a specific MBean name (equivalent to testing whether an MBean is registered). When the object name is null or no domain and key properties are specified, all objects are selected (and filtered if a query is specified). It returns the set of ObjectNames for the MBeans selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isRegistered(ObjectName name)
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Checks whether an MBean, identified by its object name, is already registered with the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Integer getMBeanCount()
+				</name>
+				<description>
+					Returns the number of MBeans registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getAttribute(ObjectName name,                    String attribute)                      throws MBeanException,                             AttributeNotFoundException,                             InstanceNotFoundException,                             ReflectionException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Gets the value of a specific attribute of a named MBean. The MBean is identified by its object name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeList getAttributes(ObjectName name,                            String[] attributes)                              throws InstanceNotFoundException,                                     ReflectionException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Retrieves the values of several attributes of a named MBean. The MBean is identified by its object name. If one or more attributes cannot be retrieved for some reason, they will be omitted from the returned AttributeList. The caller should check that the list is the same size as the attributes array. To discover what problem prevented a given attribute from being retrieved, call getAttribute for that attribute. Here is an example of calling this method and checking that it succeeded in retrieving all the requested attributes:    String[] attrNames = ...;   AttributeList list = mbeanServerConnection.getAttributes(objectName, attrNames);   if (list.size() == attrNames.length)       System.out.println("All attributes were retrieved successfully");   else {       List<String> missing = new ArrayList<String>(Arrays.asList(attrNames));       for (Attribute a : list.asList())           missing.remove(a.getName());       System.out.println("Did not retrieve: " + missing);   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setAttribute(ObjectName name,                  Attribute attribute)                    throws InstanceNotFoundException,                           AttributeNotFoundException,                           InvalidAttributeValueException,                           MBeanException,                           ReflectionException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Sets the value of a specific attribute of a named MBean. The MBean is identified by its object name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeList setAttributes(ObjectName name,                            AttributeList attributes)                              throws InstanceNotFoundException,                                     ReflectionException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Sets the values of several attributes of a named MBean. The MBean is identified by its object name. If one or more attributes cannot be set for some reason, they will be omitted from the returned AttributeList. The caller should check that the input AttributeList is the same size as the output one. To discover what problem prevented a given attribute from being retrieved, it will usually be possible to call setAttribute for that attribute, although this is not guaranteed to work. (For example, the values of two attributes may have been rejected because they were inconsistent with each other. Setting one of them alone might be allowed.) Here is an example of calling this method and checking that it succeeded in setting all the requested attributes:    AttributeList inputAttrs = ...;   AttributeList outputAttrs = mbeanServerConnection.setAttributes(objectName, inputAttrs);   if (inputAttrs.size() == outputAttrs.size())       System.out.println("All attributes were set successfully");   else {       List<String> missing = new ArrayList<String>();       for (Attribute a : inputAttrs.asList())           missing.add(a.getName());       for (Attribute a : outputAttrs.asList())           missing.remove(a.getName());       System.out.println("Did not set: " + missing);   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object invoke(ObjectName name,              String operationName,              Object[] params,              String[] signature)                throws InstanceNotFoundException,                       MBeanException,                       ReflectionException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Invokes an operation on an MBean. Because of the need for a signature to differentiate possibly-overloaded operations, it is much simpler to invoke operations through an MBean proxy where possible. For example, suppose you have a Standard MBean interface like this:    public interface FooMBean {       public int countMatches(String[] patterns, boolean ignoreCase);   }   The countMatches operation can be invoked as follows:    String[] myPatterns = ...;   int count = (Integer) mbeanServerConnection.invoke(           objectName,           "countMatches",           new Object[] {myPatterns, true},           new String[] {String[].class.getName(), boolean.class.getName()});   Alternatively, it can be invoked through a proxy as follows:    String[] myPatterns = ...;   FooMBean fooProxy = JMX.newMBeanProxy(           mbeanServerConnection, objectName, FooMBean.class);   int count = fooProxy.countMatches(myPatterns, true);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getDefaultDomain()
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Returns the default domain used for naming the MBean. The default domain name is used as the domain part in the ObjectName of MBeans if no domain is specified by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getDomains()
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Returns the list of domains in which any MBean is currently registered. A string is in the returned array if and only if there is at least one MBean registered with an ObjectName whose getDomain() is equal to that string. The order of strings within the returned array is not defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addNotificationListener(ObjectName name,                             NotificationListener listener,                             NotificationFilter filter,                             Object handback)                               throws InstanceNotFoundException
+				</name>
+				<description>
+					Adds a listener to a registered MBean. Notifications emitted by the MBean will be forwarded to the listener. If the source of the notification is a reference to an MBean object, the MBean server will replace it by that MBean's ObjectName. Otherwise the source is unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addNotificationListener(ObjectName name,                             ObjectName listener,                             NotificationFilter filter,                             Object handback)                               throws InstanceNotFoundException
+				</name>
+				<description>
+					Adds a listener to a registered MBean. A notification emitted by an MBean will be forwarded by the MBeanServer to the listener. If the source of the notification is a reference to an MBean object, the MBean server will replace it by that MBean's ObjectName. Otherwise the source is unchanged. The listener object that receives notifications is the one that is registered with the given name at the time this method is called. Even if it is subsequently unregistered, it will continue to receive notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeNotificationListener(ObjectName name,                                ObjectName listener)                                  throws InstanceNotFoundException,                                         ListenerNotFoundException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Removes a listener from a registered MBean. If the listener is registered more than once, perhaps with different filters or callbacks, this method will remove all those registrations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeNotificationListener(ObjectName name,                                ObjectName listener,                                NotificationFilter filter,                                Object handback)                                  throws InstanceNotFoundException,                                         ListenerNotFoundException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Removes a listener from a registered MBean. The MBean must have a listener that exactly matches the given listener, filter, and handback parameters. If there is more than one such listener, only one is removed. The filter and handback parameters may be null if and only if they are null in a listener to be removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeNotificationListener(ObjectName name,                                NotificationListener listener)                                  throws InstanceNotFoundException,                                         ListenerNotFoundException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Removes a listener from a registered MBean. If the listener is registered more than once, perhaps with different filters or callbacks, this method will remove all those registrations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeNotificationListener(ObjectName name,                                NotificationListener listener,                                NotificationFilter filter,                                Object handback)                                  throws InstanceNotFoundException,                                         ListenerNotFoundException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Removes a listener from a registered MBean. The MBean must have a listener that exactly matches the given listener, filter, and handback parameters. If there is more than one such listener, only one is removed. The filter and handback parameters may be null if and only if they are null in a listener to be removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					MBeanInfo getMBeanInfo(ObjectName name)                         throws InstanceNotFoundException,                                IntrospectionException,                                ReflectionException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection This method discovers the attributes and operations that an MBean exposes for management.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isInstanceOf(ObjectName name,                     String className)                       throws InstanceNotFoundException
+				</name>
+				<description>
+					Description copied from interface: MBeanServerConnection Returns true if the MBean specified is an instance of the specified class, false otherwise. If name does not name an MBean, this method throws InstanceNotFoundException. Otherwise, let X be the MBean named by name, L be the ClassLoader of X, N be the class name in X's MBeanInfo. If N equals className, the result is true. Otherwise, if L successfully loads className and X is an instance of this class, the result is true. Otherwise, if L successfully loads both N and className, and the second class is assignable from the first, the result is true. Otherwise, the result is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object instantiate(String className)                     throws ReflectionException,                            MBeanException
+				</name>
+				<description>
+					Instantiates an object using the list of all class loaders registered in the MBean server's Class Loader Repository. The object's class should have a public constructor. This method returns a reference to the newly created object. The newly created object is not registered in the MBean server. This method is equivalent to instantiate(className, (Object[]) null, (String[]) null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object instantiate(String className,                   ObjectName loaderName)                     throws ReflectionException,                            MBeanException,                            InstanceNotFoundException
+				</name>
+				<description>
+					Instantiates an object using the class Loader specified by its ObjectName. If the loader name is null, the ClassLoader that loaded the MBean Server will be used. The object's class should have a public constructor. This method returns a reference to the newly created object. The newly created object is not registered in the MBean server. This method is equivalent to instantiate(className, loaderName, (Object[]) null, (String[]) null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object instantiate(String className,                   Object[] params,                   String[] signature)                     throws ReflectionException,                            MBeanException
+				</name>
+				<description>
+					Instantiates an object using the list of all class loaders registered in the MBean server Class Loader Repository. The object's class should have a public constructor. The call returns a reference to the newly created object. The newly created object is not registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object instantiate(String className,                   ObjectName loaderName,                   Object[] params,                   String[] signature)                     throws ReflectionException,                            MBeanException,                            InstanceNotFoundException
+				</name>
+				<description>
+					Instantiates an object. The class loader to be used is identified by its object name. If the object name of the loader is null, the ClassLoader that loaded the MBean server will be used. The object's class should have a public constructor. The call returns a reference to the newly created object. The newly created object is not registered in the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  ObjectInputStream deserialize(ObjectName name,                                         byte[] data)                                throws InstanceNotFoundException,                                       OperationsException
+				</name>
+				<description>
+					Deprecated. Use getClassLoaderFor to obtain the appropriate class loader for deserialization. De-serializes a byte array in the context of the class loader of an MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  ObjectInputStream deserialize(String className,                                         byte[] data)                                throws OperationsException,                                       ReflectionException
+				</name>
+				<description>
+					Deprecated. Use getClassLoaderRepository() to obtain the class loader repository and use it to deserialize. De-serializes a byte array in the context of a given MBean class loader. The class loader is found by loading the class className through the Class Loader Repository. The resultant class's class loader is the one to use.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  ObjectInputStream deserialize(String className,                                         ObjectName loaderName,                                         byte[] data)                                throws InstanceNotFoundException,                                       OperationsException,                                       ReflectionException
+				</name>
+				<description>
+					Deprecated. Use getClassLoader to obtain the class loader for deserialization. De-serializes a byte array in the context of a given MBean class loader. The class loader is the one that loaded the class with name "className". The name of the class loader to be used for loading the specified class is specified. If null, the MBean Server's class loader will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ClassLoader getClassLoaderFor(ObjectName mbeanName)                                throws InstanceNotFoundException
+				</name>
+				<description>
+					Return the ClassLoader that was used for loading the class of the named MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ClassLoader getClassLoader(ObjectName loaderName)                             throws InstanceNotFoundException
+				</name>
+				<description>
+					Return the named ClassLoader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ClassLoaderRepository getClassLoaderRepository()
+				</name>
+				<description>
+					Return the ClassLoaderRepository for this MBeanServer.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.management.remote
+	</package>
+	<type>
+		<name>
+			public abstract class JMXConnectorServer  extends NotificationBroadcasterSupport  implements JMXConnectorServerMBean, MBeanRegistration, JMXAddressable
+		</name>
+		<description>
+			Superclass of every connector server. A connector server is attached to an MBean server. It listens for client connection requests and creates a connection for each one. A connector server is associated with an MBean server either by registering it in that MBean server, or by passing the MBean server to its constructor. A connector server is inactive when created. It only starts listening for client connections when the start method is called. A connector server stops listening for client connections when the stop method is called or when the connector server is unregistered from its MBean server. Stopping a connector server does not unregister it from its MBean server. A connector server once stopped cannot be restarted. Each time a client connection is made or broken, a notification of class JMXConnectionNotification is emitted.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String AUTHENTICATOR
+				</name>
+				<description>
+					Name of the attribute that specifies the authenticator for a connector server. The value associated with this attribute, if any, must be an object that implements the interface JMXAuthenticator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXConnectorServer()
+				</name>
+				<description>
+					Constructs a connector server that will be registered as an MBean in the MBean server it is attached to. This constructor is typically called by one of the createMBean methods when creating, within an MBean server, a connector server that makes it available remotely.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXConnectorServer(MBeanServer mbeanServer)
+				</name>
+				<description>
+					Constructs a connector server that is attached to the given MBean server. A connector server that is created in this way can be registered in a different MBean server, or not registered in any MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanServer getMBeanServer()
+				</name>
+				<description>
+					Returns the MBean server that this connector server is attached to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMBeanServerForwarder(MBeanServerForwarder mbsf)
+				</name>
+				<description>
+					Description copied from interface: JMXConnectorServerMBean Inserts an object that intercepts requests for the MBean server that arrive through this connector server. This object will be supplied as the MBeanServer for any new connection created by this connector server. Existing connections are unaffected. This method can be called more than once with different MBeanServerForwarder objects. The result is a chain of forwarders. The last forwarder added is the first in the chain. In more detail: If this connector server is already associated with an MBeanServer object, then that object is given to mbsf.setMBeanServer. If doing so produces an exception, this method throws the same exception without any other effect. If this connector is not already associated with an MBeanServer object, or if the mbsf.setMBeanServer call just mentioned succeeds, then mbsf becomes this connector server's MBeanServer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getConnectionIds()
+				</name>
+				<description>
+					Description copied from interface: JMXConnectorServerMBean The list of IDs for currently-open connections to this connector server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXConnector toJMXConnector(Map<String,?> env)                              throws IOException
+				</name>
+				<description>
+					Returns a client stub for this connector server. A client stub is a serializable object whose connect method can be used to make one new connection to this connector server. A given connector need not support the generation of client stubs. However, the connectors specified by the JMX Remote API do (JMXMP Connector and RMI Connector). The default implementation of this method uses JMXConnectorServerMBean.getAddress() and JMXConnectorFactory to generate the stub, with code equivalent to the following:    JMXServiceURL addr = getAddress();   return JMXConnectorFactory.newJMXConnector(addr, env);   A connector server for which this is inappropriate must override this method so that it either implements the appropriate logic or throws UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanNotificationInfo[] getNotificationInfo()
+				</name>
+				<description>
+					Returns an array indicating the notifications that this MBean sends. The implementation in JMXConnectorServer returns an array with one element, indicating that it can emit notifications of class JMXConnectionNotification with the types defined in that class. A subclass that can emit other notifications should return an array that contains this element plus descriptions of the other notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void connectionOpened(String connectionId,                      String message,                      Object userData)
+				</name>
+				<description>
+					Called by a subclass when a new client connection is opened. Adds connectionId to the list returned by getConnectionIds(), then emits a JMXConnectionNotification with type JMXConnectionNotification.OPENED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void connectionClosed(String connectionId,                      String message,                      Object userData)
+				</name>
+				<description>
+					Called by a subclass when a client connection is closed normally. Removes connectionId from the list returned by getConnectionIds(), then emits a JMXConnectionNotification with type JMXConnectionNotification.CLOSED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void connectionFailed(String connectionId,                      String message,                      Object userData)
+				</name>
+				<description>
+					Called by a subclass when a client connection fails. Removes connectionId from the list returned by getConnectionIds(), then emits a JMXConnectionNotification with type JMXConnectionNotification.FAILED.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName preRegister(MBeanServer mbs,                       ObjectName name)
+				</name>
+				<description>
+					Called by an MBean server when this connector server is registered in that MBean server. This connector server becomes attached to the MBean server and its getMBeanServer() method will return mbs. If this connector server is already attached to an MBean server, this method has no effect. The MBean server it is attached to is not necessarily the one it is being registered in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postRegister(Boolean registrationDone)
+				</name>
+				<description>
+					Description copied from interface: MBeanRegistration Allows the MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postRegister will not change the state of the MBean: if the MBean was already registered (registrationDone is true), the MBean will remain registered. This might be confusing for the code calling createMBean() or registerMBean(), as such code might assume that MBean registration has failed when such an exception is raised. Therefore it is recommended that implementations of postRegister do not throw Runtime Exceptions or Errors if it can be avoided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preDeregister()                     throws Exception
+				</name>
+				<description>
+					Called by an MBean server when this connector server is unregistered from that MBean server. If this connector server was attached to that MBean server by being registered in it, and if the connector server is still active, then unregistering it will call the stop method. If the stop method throws an exception, the unregistration attempt will fail. It is recommended to call the stop method explicitly before unregistering the MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postDeregister()
+				</name>
+				<description>
+					Description copied from interface: MBeanRegistration Allows the MBean to perform any operations needed after having been unregistered in the MBean server. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postDeregister will not change the state of the MBean: the MBean was already successfully deregistered and will remain so. This might be confusing for the code calling unregisterMBean(), as it might assume that MBean deregistration has failed. Therefore it is recommended that implementations of postDeregister do not throw Runtime Exceptions or Errors if it can be avoided.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

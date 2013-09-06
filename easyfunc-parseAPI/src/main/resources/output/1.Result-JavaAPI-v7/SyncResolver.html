@@ -1,0 +1,18 @@
+<javaelement>
+	<package>
+		javax.sql.rowset.spi
+	</package>
+	<type>
+		<name>
+			public interface SyncResolver  extends RowSet
+		</name>
+		<description>
+			Defines a framework that allows applications to use a manual decision tree to decide what should be done when a synchronization conflict occurs. Although it is not mandatory for applications to resolve synchronization conflicts manually, this framework provides the means to delegate to the application when conflicts arise. Note that a conflict is a situation where the RowSet object's original values for a row do not match the values in the data source, which indicates that the data source row has been modified since the last synchronization. Note also that a RowSet object's original values are the values it had just prior to the the last synchronization, which are not necessarily its initial values. Description of a SyncResolver Object A SyncResolver object is a specialized RowSet object that implements the SyncResolver interface. It may operate as either a connected RowSet object (an implementation of the JdbcRowSet interface) or a connected RowSet object (an implementation of the CachedRowSet interface or one of its subinterfaces). For information on the subinterfaces, see the javax.sql.rowset package description. The reference implementation for SyncResolver implements the CachedRowSet interface, but other implementations may choose to implement the JdbcRowSet interface to satisfy particular needs. After an application has attempted to synchronize a RowSet object with the data source (by calling the CachedRowSet method acceptChanges), and one or more conflicts have been found, a rowset's SyncProvider object creates an instance of SyncResolver. This new SyncResolver object has the same number of rows and columns as the RowSet object that was attempting the synchronization. The SyncResolver object contains the values from the data source that caused the conflict(s) and null for all other values. In addition, it contains information about each conflict. Getting and Using a SyncResolver Object When the method acceptChanges encounters conflicts, the SyncProvider object creates a SyncProviderException object and sets it with the new SyncResolver object. The method acceptChanges will throw this exception, which the application can then catch and use to retrieve the SyncResolver object it contains. The following code snippet uses the SyncProviderException method getSyncResolver to get the SyncResolver object resolver.        } catch (SyncProviderException spe) {           SyncResolver resolver = spe.getSyncResolver();       ...       }   With resolver in hand, an application can use it to get the information it contains about the conflict or conflicts. A SyncResolver object such as resolver keeps track of the conflicts for each row in which there is a conflict. It also places a lock on the table or tables affected by the rowset's command so that no more conflicts can occur while the current conflicts are being resolved. The following kinds of information can be obtained from a SyncResolver object:
+		</description>
+		<methods>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

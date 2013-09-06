@@ -1,0 +1,189 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public class HTMLWriter  extends AbstractWriter
+		</name>
+		<description>
+			This is a writer for HTMLDocuments.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public HTMLWriter(Writer w,            HTMLDocument doc)
+				</name>
+				<description>
+					Creates a new HTMLWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public HTMLWriter(Writer w,            HTMLDocument doc,            int pos,            int len)
+				</name>
+				<description>
+					Creates a new HTMLWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write()             throws IOException,                    BadLocationException
+				</name>
+				<description>
+					Iterates over the Element tree and controls the writing out of all the tags and its attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeAttributes(AttributeSet attr)                          throws IOException
+				</name>
+				<description>
+					Writes out the attribute set. Ignores all attributes with a key of type HTML.Tag, attributes with a key of type StyleConstants, and attributes with a key of type HTML.Attribute.ENDTAG.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void emptyTag(Element elem)                   throws BadLocationException,                          IOException
+				</name>
+				<description>
+					Writes out all empty elements (all tags that have no corresponding end tag).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isBlockTag(AttributeSet attr)
+				</name>
+				<description>
+					Determines if the HTML.Tag associated with the element is a block tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void startTag(Element elem)                   throws IOException,                          BadLocationException
+				</name>
+				<description>
+					Writes out a start tag for the element. Ignores all synthesized elements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void textAreaContent(AttributeSet attr)                          throws BadLocationException,                                 IOException
+				</name>
+				<description>
+					Writes out text that is contained in a TEXTAREA form element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void text(Element elem)               throws BadLocationException,                      IOException
+				</name>
+				<description>
+					Writes out text. If a range is specified when the constructor is invoked, then only the appropriate range of text is written out.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void selectContent(AttributeSet attr)                        throws IOException
+				</name>
+				<description>
+					Writes out the content of the SELECT form element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeOption(Option option)                      throws IOException
+				</name>
+				<description>
+					Writes out the content of the Option form element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void endTag(Element elem)                 throws IOException
+				</name>
+				<description>
+					Writes out an end tag for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void comment(Element elem)                  throws BadLocationException,                         IOException
+				</name>
+				<description>
+					Writes out comments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean synthesizedElement(Element elem)
+				</name>
+				<description>
+					Returns true if the element is a synthesized element. Currently we are only testing for the p-implied tag.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean matchNameAttribute(AttributeSet attr,                           HTML.Tag tag)
+				</name>
+				<description>
+					Returns true if the StyleConstants.NameAttribute is equal to the tag that is passed in as a parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeEmbeddedTags(AttributeSet attr)                            throws IOException
+				</name>
+				<description>
+					Searches for embedded tags in the AttributeSet and writes them out. It also stores these tags in a vector so that when appropriate the corresponding end tags can be written out.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void closeOutUnwantedEmbeddedTags(AttributeSet attr)                                       throws IOException
+				</name>
+				<description>
+					Searches the attribute set and for each tag that is stored in the tag vector. If the tag isnt found, then the tag is removed from the vector and a corresponding end tag is written out.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void writeLineSeparator()                             throws IOException
+				</name>
+				<description>
+					Writes the line separator. This is overriden to make sure we don't replace the newline content in case it is outside normal ascii.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void output(char[] chars,            int start,            int length)                 throws IOException
+				</name>
+				<description>
+					This method is overriden to map any character entities, such as < to &lt;. super.output will be invoked to write the content.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

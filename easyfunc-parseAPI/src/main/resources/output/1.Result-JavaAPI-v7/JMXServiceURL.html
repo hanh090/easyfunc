@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.management.remote
+	</package>
+	<type>
+		<name>
+			public class JMXServiceURL  extends Object  implements Serializable
+		</name>
+		<description>
+			The address of a JMX API connector server. Instances of this class are immutable. The address is an Abstract Service URL for SLP, as defined in RFC 2609 and amended by RFC 3111. It must look like this: service:jmx:protocol:sap Here, protocol is the transport protocol to be used to connect to the connector server. It is a string of one or more ASCII characters, each of which is a letter, a digit, or one of the characters + or -. The first character must be a letter. Uppercase letters are converted into lowercase ones. sap is the address at which the connector server is found. This address uses a subset of the syntax defined by RFC 2609 for IP-based protocols. It is a subset because the user@host syntax is not supported. The other syntaxes defined by RFC 2609 are not currently supported by this class. The supported syntax is: //[host[:port]][url-path] Square brackets [] indicate optional parts of the address. Not all protocols will recognize all optional parts. The host is a host name, an IPv4 numeric host address, or an IPv6 numeric address enclosed in square brackets. The port is a decimal port number. 0 means a default or anonymous port, depending on the protocol. The host and port can be omitted. The port cannot be supplied without a host. The url-path, if any, begins with a slash (/) or a semicolon (;) and continues to the end of the address. It can contain attributes using the semicolon syntax specified in RFC 2609. Those attributes are not parsed by this class and incorrect attribute syntax is not detected. Although it is legal according to RFC 2609 to have a url-path that begins with a semicolon, not all implementations of SLP allow it, so it is recommended to avoid that syntax. Case is not significant in the initial service:jmx:protocol string or in the host part of the address. Depending on the protocol, case can be significant in the url-path.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JMXServiceURL(String serviceURL)                throws MalformedURLException
+				</name>
+				<description>
+					Constructs a JMXServiceURL by parsing a Service URL string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXServiceURL(String protocol,               String host,               int port)                throws MalformedURLException
+				</name>
+				<description>
+					Constructs a JMXServiceURL with the given protocol, host, and port. This constructor is equivalent to JMXServiceURL(protocol, host, port, null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXServiceURL(String protocol,               String host,               int port,               String urlPath)                throws MalformedURLException
+				</name>
+				<description>
+					Constructs a JMXServiceURL with the given parts.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getProtocol()
+				</name>
+				<description>
+					The protocol part of the Service URL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getHost()
+				</name>
+				<description>
+					The host part of the Service URL. If the Service URL was constructed with the constructor that takes a URL string parameter, the result is the substring specifying the host in that URL. If the Service URL was constructed with a constructor that takes a separate host parameter, the result is the string that was specified. If that string was null, the result is InetAddress.getLocalHost().getHostName(). In either case, if the host was specified using the [...] syntax for numeric IPv6 addresses, the square brackets are not included in the return value here.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getPort()
+				</name>
+				<description>
+					The port of the Service URL. If no port was specified, the returned value is 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getURLPath()
+				</name>
+				<description>
+					The URL Path part of the Service URL. This is an empty string, or a string beginning with a slash (/), or a string beginning with a semicolon (;).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					The string representation of this Service URL. If the value returned by this method is supplied to the JMXServiceURL constructor, the resultant object is equal to this one. The host part of the returned string is the value returned by getHost(). If that value specifies a numeric IPv6 address, it is surrounded by square brackets []. The port part of the returned string is the value returned by getPort() in its shortest decimal form. If the value is zero, it is omitted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Indicates whether some other object is equal to this one. This method returns true if and only if obj is an instance of JMXServiceURL whose getProtocol(), getHost(), getPort(), and getURLPath() methods return the same values as for this object. The values for getProtocol() and getHost() can differ in case without affecting equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Description copied from class: Object Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap. The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the Object.equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables. As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

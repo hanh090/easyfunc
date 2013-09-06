@@ -1,0 +1,252 @@
+<javaelement>
+	<package>
+		java.awt.print
+	</package>
+	<type>
+		<name>
+			public abstract class PrinterJob  extends Object
+		</name>
+		<description>
+			The PrinterJob class is the principal class that controls printing. An application calls methods in this class to set up a job, optionally to invoke a print dialog with the user, and then to print the pages of the job.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PrinterJob()
+				</name>
+				<description>
+					A PrinterJob object should be created using the static getPrinterJob method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PrinterJob getPrinterJob()
+				</name>
+				<description>
+					Creates and returns a PrinterJob which is initially associated with the default printer. If no printers are available on the system, a PrinterJob will still be returned from this method, but getPrintService() will return null, and calling print with this PrinterJob might generate an exception. Applications that need to determine if there are suitable printers before creating a PrinterJob should ensure that the array returned from lookupPrintServices is not empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static PrintService[] lookupPrintServices()
+				</name>
+				<description>
+					A convenience method which looks up 2D print services. Services returned from this method may be installed on PrinterJobs which support print services. Calling this method is equivalent to calling PrintServiceLookup.lookupPrintServices() and specifying a Pageable DocFlavor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static StreamPrintServiceFactory[] lookupStreamPrintServices(String mimeType)
+				</name>
+				<description>
+					A convenience method which locates factories for stream print services which can image 2D graphics. Sample usage :    FileOutputStream outstream;   StreamPrintService psPrinter;   String psMimeType = "application/postscript";   PrinterJob pj = PrinterJob.getPrinterJob();     StreamPrintServiceFactory[] factories =       PrinterJob.lookupStreamPrintServices(psMimeType);   if (factories.length > 0) {       try {           outstream = new File("out.ps");           psPrinter =  factories[0].getPrintService(outstream);           // psPrinter can now be set as the service on a PrinterJob           pj.setPrintService(psPrinter)       } catch (Exception e) {           e.printStackTrace();       }   }   Services returned from this method may be installed on PrinterJob instances which support print services. Calling this method is equivalent to calling StreamPrintServiceFactory.lookupStreamPrintServiceFactories() and specifying a Pageable DocFlavor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintService getPrintService()
+				</name>
+				<description>
+					Returns the service (printer) for this printer job. Implementations of this class which do not support print services may return null. null will also be returned if no printers are available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPrintService(PrintService service)                       throws PrinterException
+				</name>
+				<description>
+					Associate this PrinterJob with a new PrintService. This method is overridden by subclasses which support specifying a Print Service. Throws PrinterException if the specified service cannot support the Pageable and Printable interfaces necessary to support 2D printing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setPrintable(Printable painter)
+				</name>
+				<description>
+					Calls painter to render the pages. The pages in the document to be printed by this PrinterJob are rendered by the Printable object, painter. The PageFormat for each page is the default page format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setPrintable(Printable painter,                  PageFormat format)
+				</name>
+				<description>
+					Calls painter to render the pages in the specified format. The pages in the document to be printed by this PrinterJob are rendered by the Printable object, painter. The PageFormat of each page is format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setPageable(Pageable document)                            throws NullPointerException
+				</name>
+				<description>
+					Queries document for the number of pages and the PageFormat and Printable for each page held in the Pageable instance, document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean printDialog()                               throws HeadlessException
+				</name>
+				<description>
+					Presents a dialog to the user for changing the properties of the print job. This method will display a native dialog if a native print service is selected, and user choice of printers will be restricted to these native print services. To present the cross platform print dialog for all services, including native ones instead use printDialog(PrintRequestAttributeSet). PrinterJob implementations which can use PrintService's will update the PrintService for this PrinterJob to reflect the new service selected by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean printDialog(PrintRequestAttributeSet attributes)                      throws HeadlessException
+				</name>
+				<description>
+					A convenience method which displays a cross-platform print dialog for all services which are capable of printing 2D graphics using the Pageable interface. The selected printer when the dialog is initially displayed will reflect the print service currently attached to this print job. If the user changes the print service, the PrinterJob will be updated to reflect this, unless the user cancels the dialog. As well as allowing the user to select the destination printer, the user can also select values of various print request attributes. The attributes parameter on input will reflect the applications required initial selections in the user dialog. Attributes not specified display using the default for the service. On return it will reflect the user's choices. Selections may be updated by the implementation to be consistent with the supported values for the currently selected print service. As the user scrolls to a new print service selection, the values copied are based on the settings for the previous service, together with any user changes. The values are not based on the original settings supplied by the client. With the exception of selected printer, the PrinterJob state is not updated to reflect the user's changes. For the selections to affect a printer job, the attributes must be specified in the call to the print(PrintRequestAttributeSet) method. If using the Pageable interface, clients which intend to use media selected by the user must create a PageFormat derived from the user's selections. If the user cancels the dialog, the attributes will not reflect any changes made by the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract PageFormat pageDialog(PageFormat page)                                 throws HeadlessException
+				</name>
+				<description>
+					Displays a dialog that allows modification of a PageFormat instance. The page argument is used to initialize controls in the page setup dialog. If the user cancels the dialog then this method returns the original page object unmodified. If the user okays the dialog then this method returns a new PageFormat object with the indicated changes. In either case, the original page object is not modified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageFormat pageDialog(PrintRequestAttributeSet attributes)                        throws HeadlessException
+				</name>
+				<description>
+					A convenience method which displays a cross-platform page setup dialog. The choices available will reflect the print service currently set on this PrinterJob. The attributes parameter on input will reflect the client's required initial selections in the user dialog. Attributes which are not specified display using the default for the service. On return it will reflect the user's choices. Selections may be updated by the implementation to be consistent with the supported values for the currently selected print service. The return value will be a PageFormat equivalent to the selections in the PrintRequestAttributeSet. If the user cancels the dialog, the attributes will not reflect any changes made by the user, and the return value will be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract PageFormat defaultPage(PageFormat page)
+				</name>
+				<description>
+					Clones the PageFormat argument and alters the clone to describe a default page size and orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageFormat defaultPage()
+				</name>
+				<description>
+					Creates a new PageFormat instance and sets it to a default size and orientation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PageFormat getPageFormat(PrintRequestAttributeSet attributes)
+				</name>
+				<description>
+					Calculates a PageFormat with values consistent with those supported by the current PrintService for this job (ie the value returned by getPrintService()) and media, printable area and orientation contained in attributes. Calling this method does not update the job. It is useful for clients that have a set of attributes obtained from printDialog(PrintRequestAttributeSet attributes) and need a PageFormat to print a Pageable object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract PageFormat validatePage(PageFormat page)
+				</name>
+				<description>
+					Returns the clone of page with its settings adjusted to be compatible with the current printer of this PrinterJob. For example, the returned PageFormat could have its imageable area adjusted to fit within the physical area of the paper that is used by the current printer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void print()                      throws PrinterException
+				</name>
+				<description>
+					Prints a set of pages.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(PrintRequestAttributeSet attributes)             throws PrinterException
+				</name>
+				<description>
+					Prints a set of pages using the settings in the attribute set. The default implementation ignores the attribute set. Note that some attributes may be set directly on the PrinterJob by equivalent method calls, (for example), copies: setcopies(int), job name: setJobName(String) and specifying media size and orientation though the PageFormat object. If a supported attribute-value is specified in this attribute set, it will take precedence over the API settings for this print() operation only. The following behaviour is specified for PageFormat: If a client uses the Printable interface, then the attributes parameter to this method is examined for attributes which specify media (by size), orientation, and imageable area, and those are used to construct a new PageFormat which is passed to the Printable object's print() method. See Printable for an explanation of the required behaviour of a Printable to ensure optimal printing via PrinterJob. For clients of the Pageable interface, the PageFormat will always be as supplied by that interface, on a per page basis. These behaviours allow an application to directly pass the user settings returned from printDialog(PrintRequestAttributeSet attributes to this print() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setCopies(int copies)
+				</name>
+				<description>
+					Sets the number of copies to be printed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getCopies()
+				</name>
+				<description>
+					Gets the number of copies to be printed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getUserName()
+				</name>
+				<description>
+					Gets the name of the printing user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setJobName(String jobName)
+				</name>
+				<description>
+					Sets the name of the document to be printed. The document name can not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getJobName()
+				</name>
+				<description>
+					Gets the name of the document to be printed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void cancel()
+				</name>
+				<description>
+					Cancels a print job that is in progress. If print has been called but has not returned then this method signals that the job should be cancelled at the next chance. If there is no print job in progress then this call does nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isCancelled()
+				</name>
+				<description>
+					Returns true if a print job is in progress, but is going to be cancelled at the next opportunity; otherwise returns false.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

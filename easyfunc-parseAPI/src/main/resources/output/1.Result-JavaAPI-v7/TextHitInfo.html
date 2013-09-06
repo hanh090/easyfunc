@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		java.awt.font
+	</package>
+	<type>
+		<name>
+			public final class TextHitInfo  extends Object
+		</name>
+		<description>
+			The TextHitInfo class represents a character position in a text model, and a bias, or "side," of the character. Biases are either leading (the left edge, for a left-to-right character) or trailing (the right edge, for a left-to-right character). Instances of TextHitInfo are used to specify caret and insertion positions within text. For example, consider the text "abc". TextHitInfo.trailing(1) corresponds to the right side of the 'b' in the text. TextHitInfo is used primarily by TextLayout and clients of TextLayout. Clients of TextLayout query TextHitInfo instances for an insertion offset, where new text is inserted into the text model. The insertion offset is equal to the character position in the TextHitInfo if the bias is leading, and one character after if the bias is trailing. The insertion offset for TextHitInfo.trailing(1) is 2. Sometimes it is convenient to construct a TextHitInfo with the same insertion offset as an existing one, but on the opposite character. The getOtherHit method constructs a new TextHitInfo with the same insertion offset as an existing one, with a hit on the character on the other side of the insertion offset. Calling getOtherHit on trailing(1) would return leading(2). In general, getOtherHit for trailing(n) returns leading(n+1) and getOtherHit for leading(n) returns trailing(n-1). Example: Converting a graphical point to an insertion point within a text model    TextLayout layout = ...;   Point2D.Float hitPoint = ...;   TextHitInfo hitInfo = layout.hitTestChar(hitPoint.x, hitPoint.y);   int insPoint = hitInfo.getInsertionIndex();   // insPoint is relative to layout;  may need to adjust for use   // in a text model
+		</description>
+		<methods>
+			<method>
+				<name>
+					public int getCharIndex()
+				</name>
+				<description>
+					Returns the index of the character hit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLeadingEdge()
+				</name>
+				<description>
+					Returns true if the leading edge of the character was hit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getInsertionIndex()
+				</name>
+				<description>
+					Returns the insertion index. This is the character index if the leading edge of the character was hit, and one greater than the character index if the trailing edge was hit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Returns true if the specified Object is a TextHitInfo and equals this TextHitInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(TextHitInfo hitInfo)
+				</name>
+				<description>
+					Returns true if the specified TextHitInfo has the same charIndex and isLeadingEdge as this TextHitInfo. This is not the same as having the same insertion offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a String representing the hit for debugging use only.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TextHitInfo leading(int charIndex)
+				</name>
+				<description>
+					Creates a TextHitInfo on the leading edge of the character at the specified charIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TextHitInfo trailing(int charIndex)
+				</name>
+				<description>
+					Creates a hit on the trailing edge of the character at the specified charIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TextHitInfo beforeOffset(int offset)
+				</name>
+				<description>
+					Creates a TextHitInfo at the specified offset, associated with the character before the offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static TextHitInfo afterOffset(int offset)
+				</name>
+				<description>
+					Creates a TextHitInfo at the specified offset, associated with the character after the offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getOtherHit()
+				</name>
+				<description>
+					Creates a TextHitInfo on the other side of the insertion point. This TextHitInfo remains unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TextHitInfo getOffsetHit(int delta)
+				</name>
+				<description>
+					Creates a TextHitInfo whose character index is offset by delta from the charIndex of this TextHitInfo. This TextHitInfo remains unchanged.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

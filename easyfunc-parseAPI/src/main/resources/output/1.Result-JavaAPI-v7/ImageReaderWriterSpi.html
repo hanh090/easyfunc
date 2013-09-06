@@ -1,0 +1,270 @@
+<javaelement>
+	<package>
+		javax.imageio.spi
+	</package>
+	<type>
+		<name>
+			public abstract class ImageReaderWriterSpi  extends IIOServiceProvider
+		</name>
+		<description>
+			A superclass containing instance variables and methods common to ImageReaderSpi and ImageWriterSpi.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected String[] names
+				</name>
+				<description>
+					An array of strings to be returned from getFormatNames, initially null. Constructors should set this to a non-null value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String[] suffixes
+				</name>
+				<description>
+					An array of strings to be returned from getFileSuffixes, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String[] MIMETypes
+				</name>
+				<description>
+					An array of strings to be returned from getMIMETypes, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String pluginClassName
+				</name>
+				<description>
+					A String containing the name of the associated plug-in class, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean supportsStandardStreamMetadataFormat
+				</name>
+				<description>
+					A boolean indicating whether this plug-in supports the standard metadata format for stream metadata, initially false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String nativeStreamMetadataFormatName
+				</name>
+				<description>
+					A String containing the name of the native stream metadata format supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String nativeStreamMetadataFormatClassName
+				</name>
+				<description>
+					A String containing the class name of the native stream metadata format supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String[] extraStreamMetadataFormatNames
+				</name>
+				<description>
+					An array of Strings containing the names of any additional stream metadata formats supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String[] extraStreamMetadataFormatClassNames
+				</name>
+				<description>
+					An array of Strings containing the class names of any additional stream metadata formats supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean supportsStandardImageMetadataFormat
+				</name>
+				<description>
+					A boolean indicating whether this plug-in supports the standard metadata format for image metadata, initially false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String nativeImageMetadataFormatName
+				</name>
+				<description>
+					A String containing the name of the native stream metadata format supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String nativeImageMetadataFormatClassName
+				</name>
+				<description>
+					A String containing the class name of the native stream metadata format supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String[] extraImageMetadataFormatNames
+				</name>
+				<description>
+					An array of Strings containing the names of any additional image metadata formats supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String[] extraImageMetadataFormatClassNames
+				</name>
+				<description>
+					An array of Strings containing the class names of any additional image metadata formats supported by this plug-in, initially null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageReaderWriterSpi(String vendorName,                      String version,                      String[] names,                      String[] suffixes,                      String[] MIMETypes,                      String pluginClassName,                      boolean supportsStandardStreamMetadataFormat,                      String nativeStreamMetadataFormatName,                      String nativeStreamMetadataFormatClassName,                      String[] extraStreamMetadataFormatNames,                      String[] extraStreamMetadataFormatClassNames,                      boolean supportsStandardImageMetadataFormat,                      String nativeImageMetadataFormatName,                      String nativeImageMetadataFormatClassName,                      String[] extraImageMetadataFormatNames,                      String[] extraImageMetadataFormatClassNames)
+				</name>
+				<description>
+					Constructs an ImageReaderWriterSpi with a given set of values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageReaderWriterSpi()
+				</name>
+				<description>
+					Constructs a blank ImageReaderWriterSpi. It is up to the subclass to initialize instance variables and/or override method implementations in order to provide working versions of all methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getFormatNames()
+				</name>
+				<description>
+					Returns an array of Strings containing human-readable names for the formats that are generally usable by the ImageReader or ImageWriter implementation associated with this service provider. For example, a single ImageReader might be able to process both PBM and PNM files.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getFileSuffixes()
+				</name>
+				<description>
+					Returns an array of Strings containing a list of file suffixes associated with the formats that are generally usable by the ImageReader or ImageWriter implementation associated with this service provider. For example, a single ImageReader might be able to process files with '.pbm' and '.pnm' suffixes, or both '.jpg' and '.jpeg' suffixes. If there are no known file suffixes, null will be returned. Returning a particular suffix does not guarantee that files with that suffix can be processed; it merely indicates that it may be worthwhile attempting to decode or encode such files using this service provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getMIMETypes()
+				</name>
+				<description>
+					Returns an array of Strings containing a list of MIME types associated with the formats that are generally usable by the ImageReader or ImageWriter implementation associated with this service provider. Ideally, only a single MIME type would be required in order to describe a particular format. However, for several reasons it is necessary to associate a list of types with each service provider. First, many common image file formats do not have standard MIME types, so a list of commonly used unofficial names will be required, such as image/x-pbm and image/x-portable-bitmap. Some file formats have official MIME types but may sometimes be referred to using their previous unofficial designations, such as image/x-png instead of the official image/png. Finally, a single service provider may be capable of parsing multiple distinct types from the MIME point of view, for example image/x-xbitmap and image/x-xpixmap. Returning a particular MIME type does not guarantee that files claiming to be of that type can be processed; it merely indicates that it may be worthwhile attempting to decode or encode such files using this service provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPluginClassName()
+				</name>
+				<description>
+					Returns the fully-qualified class name of the ImageReader or ImageWriter plug-in associated with this service provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isStandardStreamMetadataFormatSupported()
+				</name>
+				<description>
+					Returns true if the standard metadata format is among the document formats recognized by the getAsTree and setFromTree methods on the stream metadata objects produced or consumed by this plug-in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNativeStreamMetadataFormatName()
+				</name>
+				<description>
+					Returns the name of the "native" stream metadata format for this plug-in, which typically allows for lossless encoding and transmission of the stream metadata stored in the format handled by this plug-in. If no such format is supported, nullwill be returned. The default implementation returns the nativeStreamMetadataFormatName instance variable, which is typically set by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getExtraStreamMetadataFormatNames()
+				</name>
+				<description>
+					Returns an array of Strings containing the names of additional document formats, other than the native and standard formats, recognized by the getAsTree and setFromTree methods on the stream metadata objects produced or consumed by this plug-in. If the plug-in does not handle metadata, null should be returned. The set of formats may differ according to the particular images being read or written; this method should indicate all the additional formats supported by the plug-in under any circumstances. The default implementation returns a clone of the extraStreamMetadataFormatNames instance variable, which is typically set by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isStandardImageMetadataFormatSupported()
+				</name>
+				<description>
+					Returns true if the standard metadata format is among the document formats recognized by the getAsTree and setFromTree methods on the image metadata objects produced or consumed by this plug-in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNativeImageMetadataFormatName()
+				</name>
+				<description>
+					Returns the name of the "native" image metadata format for this plug-in, which typically allows for lossless encoding and transmission of the image metadata stored in the format handled by this plug-in. If no such format is supported, nullwill be returned. The default implementation returns the nativeImageMetadataFormatName instance variable, which is typically set by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getExtraImageMetadataFormatNames()
+				</name>
+				<description>
+					Returns an array of Strings containing the names of additional document formats, other than the native and standard formats, recognized by the getAsTree and setFromTree methods on the image metadata objects produced or consumed by this plug-in. If the plug-in does not handle image metadata, null should be returned. The set of formats may differ according to the particular images being read or written; this method should indicate all the additional formats supported by the plug-in under any circumstances. The default implementation returns a clone of the extraImageMetadataFormatNames instance variable, which is typically set by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOMetadataFormat getStreamMetadataFormat(String formatName)
+				</name>
+				<description>
+					Returns an IIOMetadataFormat object describing the given stream metadata format, or null if no description is available. The supplied name must be the native stream metadata format name, the standard metadata format name, or one of those returned by getExtraStreamMetadataFormatNames.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOMetadataFormat getImageMetadataFormat(String formatName)
+				</name>
+				<description>
+					Returns an IIOMetadataFormat object describing the given image metadata format, or null if no description is available. The supplied name must be the native iamge metadata format name, the standard metadata format name, or one of those returned by getExtraImageMetadataFormatNames.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

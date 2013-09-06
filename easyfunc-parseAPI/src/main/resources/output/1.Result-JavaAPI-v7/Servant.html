@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		org.omg.PortableServer
+	</package>
+	<type>
+		<name>
+			public abstract class Servant  extends Object
+		</name>
+		<description>
+			Defines the native Servant type. In Java, the Servant type is mapped to the Java org.omg.PortableServer.Servant class. It serves as the base class for all POA servant implementations and provides a number of methods that may be invoked by the application programmer, as well as methods which are invoked by the POA itself and may be overridden by the user to control aspects of servant behavior. Based on IDL to Java spec. (CORBA V2.3.1) ptc/00-01-08.pdf.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Servant()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Delegate _get_delegate()
+				</name>
+				<description>
+					Gets the ORB vendor-specific implementation of PortableServer::Servant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void _set_delegate(Delegate delegate)
+				</name>
+				<description>
+					Supports the Java ORB portability interfaces by providing a method for classes that support ORB portability through delegation to set their delegate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Object _this_object()
+				</name>
+				<description>
+					Allows the servant to obtain the object reference for the target CORBA object it is incarnating for that request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Object _this_object(ORB orb)
+				</name>
+				<description>
+					Allows the servant to obtain the object reference for the target CORBA Object it is incarnating for that request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final ORB _orb()
+				</name>
+				<description>
+					Returns the instance of the ORB currently associated with the Servant (convenience method).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final POA _poa()
+				</name>
+				<description>
+					Allows easy execution of common methods, equivalent to PortableServer::Current:get_POA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final byte[] _object_id()
+				</name>
+				<description>
+					Allows easy execution of common methods, equivalent to calling PortableServer::Current::get_object_id.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public POA _default_POA()
+				</name>
+				<description>
+					Returns the root POA from the ORB instance associated with the servant. Subclasses may override this method to return a different POA.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean _is_a(String repository_id)
+				</name>
+				<description>
+					Checks to see if the specified repository_id is present on the list returned by _all_interfaces() or is the repository_id for the generic CORBA Object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean _non_existent()
+				</name>
+				<description>
+					Checks for the existence of an Object. The Servant provides a default implementation of _non_existent() that can be overridden by derived servants.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object _get_interface_def()
+				</name>
+				<description>
+					Returns an InterfaceDef object as a CORBA::Object that defines the runtime type of the CORBA::Object implemented by the Servant. The invoker of _get_interface_def must narrow the result to an InterfaceDef in order to use it. This default implementation of _get_interface_def() can be overridden by derived servants if the default behavior is not adequate. As defined in the CORBA 2.3.1 specification, section 11.3.1, the default behavior of _get_interface_def() is to use the most derived interface of a static servant or the most derived interface retrieved from a dynamic servant to obtain the InterfaceDef. This behavior must be supported by the Delegate that implements the Servant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String[] _all_interfaces(POA poa,                         byte[] objectId)
+				</name>
+				<description>
+					Used by the ORB to obtain complete type information from the servant.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

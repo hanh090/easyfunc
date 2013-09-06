@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public interface AlgorithmConstraints
+		</name>
+		<description>
+			This interface specifies constraints for cryptographic algorithms, keys (key sizes), and other algorithm parameters. AlgorithmConstraints objects are immutable. An implementation of this interface should not provide methods that can change the state of an instance once it has been created. Note that AlgorithmConstraints can be used to represent the restrictions described by the security properties jdk.certpath.disabledAlgorithms and jdk.tls.disabledAlgorithms, or could be used by a concrete PKIXCertPathChecker to check whether a specified certificate in the certification path contains the required algorithm constraints.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean permits(Set<CryptoPrimitive> primitives,                String algorithm,                AlgorithmParameters parameters)
+				</name>
+				<description>
+					Determines whether an algorithm is granted permission for the specified cryptographic primitives.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean permits(Set<CryptoPrimitive> primitives,                Key key)
+				</name>
+				<description>
+					Determines whether a key is granted permission for the specified cryptographic primitives. This method is usually used to check key size and key usage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean permits(Set<CryptoPrimitive> primitives,                String algorithm,                Key key,                AlgorithmParameters parameters)
+				</name>
+				<description>
+					Determines whether an algorithm and the corresponding key are granted permission for the specified cryptographic primitives.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

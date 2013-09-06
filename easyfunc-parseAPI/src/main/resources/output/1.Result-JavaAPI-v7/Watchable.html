@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		java.nio.file
+	</package>
+	<type>
+		<name>
+			public interface Watchable
+		</name>
+		<description>
+			An object that may be registered with a watch service so that it can be watched for changes and events. This interface defines the register method to register the object with a WatchService returning a WatchKey to represent the registration. An object may be registered with more than one watch service. Registration with a watch service is cancelled by invoking the key's cancel method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					WatchKey register(WatchService watcher,                  WatchEvent.Kind<?>[] events,                  WatchEvent.Modifier... modifiers)                    throws IOException
+				</name>
+				<description>
+					Registers an object with a watch service. If the file system object identified by this object is currently registered with the watch service then the watch key, representing that registration, is returned after changing the event set or modifiers to those specified by the events and modifiers parameters. Changing the event set does not cause pending events for the object to be discarded. Objects are automatically registered for the OVERFLOW event. This event is not required to be present in the array of events. Otherwise the file system object has not yet been registered with the given watch service, so it is registered and the resulting new key is returned. Implementations of this interface should specify the events they support.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					WatchKey register(WatchService watcher,                  WatchEvent.Kind<?>... events)                    throws IOException
+				</name>
+				<description>
+					Registers an object with a watch service. An invocation of this method behaves in exactly the same way as the invocation        watchable.register(watcher, events, new WatchEvent.Modifier[0]);
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

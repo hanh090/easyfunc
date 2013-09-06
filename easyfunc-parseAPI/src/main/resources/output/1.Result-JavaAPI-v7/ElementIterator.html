@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class ElementIterator  extends Object  implements Cloneable
+		</name>
+		<description>
+			ElementIterator, as the name suggests, iteratates over the Element tree. The constructor can be invoked with either Document or an Element as an argument. If the constructor is invoked with a Document as an argument then the root of the iteration is the return value of document.getDefaultRootElement(). The iteration happens in a depth-first manner. In terms of how boundary conditions are handled: a) if next() is called before first() or current(), the root will be returned. b) next() returns null to indicate the end of the list. c) previous() returns null when the current element is the root or next() has returned null. The ElementIterator does no locking of the Element tree. This means that it does not track any changes. It is the responsibility of the user of this class, to ensure that no changes happen during element iteration. Simple usage example: public void iterate() { ElementIterator it = new ElementIterator(root); Element elem; while (true) { if ((elem = next()) != null) { // process element System.out.println("elem: " + elem.getName()); } else { break; } } }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ElementIterator(Document document)
+				</name>
+				<description>
+					Creates a new ElementIterator. The root element is taken to get the default root element of the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ElementIterator(Element root)
+				</name>
+				<description>
+					Creates a new ElementIterator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Clones the ElementIterator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element first()
+				</name>
+				<description>
+					Fetches the first element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int depth()
+				</name>
+				<description>
+					Fetches the current depth of element tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element current()
+				</name>
+				<description>
+					Fetches the current Element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element next()
+				</name>
+				<description>
+					Fetches the next Element. The strategy used to locate the next element is a depth-first search.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Element previous()
+				</name>
+				<description>
+					Fetches the previous Element. If howver the current element is the last element, or the current element is null, then null is returned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

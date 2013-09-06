@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.security.sasl
+	</package>
+	<type>
+		<name>
+			public interface SaslServerFactory
+		</name>
+		<description>
+			An interface for creating instances of SaslServer. A class that implements this interface must be thread-safe and handle multiple simultaneous requests. It must also have a public constructor that accepts no argument. This interface is not normally accessed directly by a server, which will use the Sasl static methods instead. However, a particular environment may provide and install a new or different SaslServerFactory.
+		</description>
+		<methods>
+			<method>
+				<name>
+					SaslServer createSaslServer(String mechanism,                            String protocol,                            String serverName,                            Map<String,?> props,                            CallbackHandler cbh)                              throws SaslException
+				</name>
+				<description>
+					Creates a SaslServer using the parameters supplied. It returns null if no SaslServer can be created using the parameters supplied. Throws SaslException if it cannot create a SaslServer because of an error.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getMechanismNames(Map<String,?> props)
+				</name>
+				<description>
+					Returns an array of names of mechanisms that match the specified mechanism selection policies.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

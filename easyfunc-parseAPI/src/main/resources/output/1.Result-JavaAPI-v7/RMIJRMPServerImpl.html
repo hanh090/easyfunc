@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.management.remote.rmi
+	</package>
+	<type>
+		<name>
+			public class RMIJRMPServerImpl  extends RMIServerImpl
+		</name>
+		<description>
+			An RMIServer object that is exported through JRMP and that creates client connections as RMI objects exported through JRMP. User code does not usually reference this class directly.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RMIJRMPServerImpl(int port,                   RMIClientSocketFactory csf,                   RMIServerSocketFactory ssf,                   Map<String,?> env)                    throws IOException
+				</name>
+				<description>
+					Creates a new RMIServer object that will be exported on the given port using the given socket factories.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void export()                 throws IOException
+				</name>
+				<description>
+					Description copied from class: RMIServerImpl Exports this RMI object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String getProtocol()
+				</name>
+				<description>
+					Description copied from class: RMIServerImpl Returns the protocol string for this object. The string is rmi for RMI/JRMP and iiop for RMI/IIOP.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Remote toStub()                throws IOException
+				</name>
+				<description>
+					Returns a serializable stub for this RMIServer object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected RMIConnection makeClient(String connectionId,                         Subject subject)                              throws IOException
+				</name>
+				<description>
+					Creates a new client connection as an RMI object exported through JRMP. The port and socket factories for the new RMIConnection object are the ones supplied to the RMIJRMPServerImpl constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void closeClient(RMIConnection client)                      throws IOException
+				</name>
+				<description>
+					Description copied from class: RMIServerImpl Closes a client connection made by makeClient.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void closeServer()                      throws IOException
+				</name>
+				<description>
+					Called by RMIServerImpl.close() to close the connector server by unexporting this object. After returning from this method, the connector server must not accept any new connections.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

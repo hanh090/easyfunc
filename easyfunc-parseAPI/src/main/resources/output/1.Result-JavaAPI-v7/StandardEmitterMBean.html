@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class StandardEmitterMBean  extends StandardMBean  implements NotificationEmitter
+		</name>
+		<description>
+			An MBean whose management interface is determined by reflection on a Java interface, and that emits notifications. The following example shows how to use the public constructor StandardEmitterMBean(implementation, mbeanInterface, emitter) to create an MBean emitting notifications with any implementation class name Impl, with a management interface defined (as for current Standard MBeans) by any interface Intf, and with any implementation of the interface NotificationEmitter. The example uses the class NotificationBroadcasterSupport as an implementation of the interface NotificationEmitter.        MBeanServer mbs;       ...       final String[] types = new String[] {"sun.disc.space","sun.disc.alarm"};       final MBeanNotificationInfo info = new MBeanNotificationInfo(                                            types,                                            Notification.class.getName(),                                            "Notification about disc info.");       final NotificationEmitter emitter =                      new NotificationBroadcasterSupport(info);         final Intf impl = new Impl(...);       final Object mbean = new StandardEmitterMBean(                                       impl, Intf.class, emitter);       mbs.registerMBean(mbean, objectName);
+		</description>
+		<methods>
+			<method>
+				<name>
+					public StandardEmitterMBean(T implementation,                      Class<T> mbeanInterface,                      NotificationEmitter emitter)
+				</name>
+				<description>
+					Make an MBean whose management interface is specified by mbeanInterface, with the given implementation and where notifications are handled by the given NotificationEmitter. The resultant MBean implements the NotificationEmitter interface by forwarding its methods to emitter. It is legal and useful for implementation and emitter to be the same object. If emitter is an instance of NotificationBroadcasterSupport then the MBean's sendNotification method will call emitter.sendNotification. The array returned by getNotificationInfo() on the new MBean is a copy of the array returned by emitter.getNotificationInfo() at the time of construction. If the array returned by emitter.getNotificationInfo() later changes, that will have no effect on this object's getNotificationInfo().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StandardEmitterMBean(T implementation,                      Class<T> mbeanInterface,                      boolean isMXBean,                      NotificationEmitter emitter)
+				</name>
+				<description>
+					Make an MBean whose management interface is specified by mbeanInterface, with the given implementation and where notifications are handled by the given NotificationEmitter. This constructor can be used to make either Standard MBeans or MXBeans. The resultant MBean implements the NotificationEmitter interface by forwarding its methods to emitter. It is legal and useful for implementation and emitter to be the same object. If emitter is an instance of NotificationBroadcasterSupport then the MBean's sendNotification method will call emitter.sendNotification. The array returned by getNotificationInfo() on the new MBean is a copy of the array returned by emitter.getNotificationInfo() at the time of construction. If the array returned by emitter.getNotificationInfo() later changes, that will have no effect on this object's getNotificationInfo().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StandardEmitterMBean(Class<?> mbeanInterface,                      NotificationEmitter emitter)
+				</name>
+				<description>
+					Make an MBean whose management interface is specified by mbeanInterface, and where notifications are handled by the given NotificationEmitter. The resultant MBean implements the NotificationEmitter interface by forwarding its methods to emitter. If emitter is an instance of NotificationBroadcasterSupport then the MBean's sendNotification method will call emitter.sendNotification. The array returned by getNotificationInfo() on the new MBean is a copy of the array returned by emitter.getNotificationInfo() at the time of construction. If the array returned by emitter.getNotificationInfo() later changes, that will have no effect on this object's getNotificationInfo(). This constructor must be called from a subclass that implements the given mbeanInterface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StandardEmitterMBean(Class<?> mbeanInterface,                      boolean isMXBean,                      NotificationEmitter emitter)
+				</name>
+				<description>
+					Make an MBean whose management interface is specified by mbeanInterface, and where notifications are handled by the given NotificationEmitter. This constructor can be used to make either Standard MBeans or MXBeans. The resultant MBean implements the NotificationEmitter interface by forwarding its methods to emitter. If emitter is an instance of NotificationBroadcasterSupport then the MBean's sendNotification method will call emitter.sendNotification. The array returned by getNotificationInfo() on the new MBean is a copy of the array returned by emitter.getNotificationInfo() at the time of construction. If the array returned by emitter.getNotificationInfo() later changes, that will have no effect on this object's getNotificationInfo(). This constructor must be called from a subclass that implements the given mbeanInterface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotificationListener(NotificationListener listener)                                  throws ListenerNotFoundException
+				</name>
+				<description>
+					Description copied from interface: NotificationBroadcaster Removes a listener from this MBean. If the listener has been registered with different handback objects or notification filters, all entries corresponding to the listener will be removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotificationListener(NotificationListener listener,                                NotificationFilter filter,                                Object handback)                                  throws ListenerNotFoundException
+				</name>
+				<description>
+					Description copied from interface: NotificationEmitter Removes a listener from this MBean. The MBean must have a listener that exactly matches the given listener, filter, and handback parameters. If there is more than one such listener, only one is removed. The filter and handback parameters may be null if and only if they are null in a listener to be removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotificationListener(NotificationListener listener,                             NotificationFilter filter,                             Object handback)
+				</name>
+				<description>
+					Description copied from interface: NotificationBroadcaster Adds a listener to this MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanNotificationInfo[] getNotificationInfo()
+				</name>
+				<description>
+					Description copied from interface: NotificationBroadcaster Returns an array indicating, for each notification this MBean may send, the name of the Java class of the notification and the notification type. It is not illegal for the MBean to send notifications not described in this array. However, some clients of the MBean server may depend on the array being complete for their correct functioning.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void sendNotification(Notification n)
+				</name>
+				<description>
+					Sends a notification. If the emitter parameter to the constructor was an instance of NotificationBroadcasterSupport then this method will call emitter.sendNotification.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

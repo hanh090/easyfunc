@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		org.xml.sax.ext
+	</package>
+	<type>
+		<name>
+			public interface DeclHandler
+		</name>
+		<description>
+			SAX2 extension handler for DTD declaration events. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. See http://www.saxproject.org for further information. This is an optional extension handler for SAX2 to provide more complete information about DTD declarations in an XML document. XML readers are not required to recognize this handler, and it is not part of core-only SAX2 distributions. Note that data-related DTD declarations (unparsed entities and notations) are already reported through the DTDHandler interface. If you are using the declaration handler together with a lexical handler, all of the events will occur between the startDTD and the endDTD events. To set the DeclHandler for an XML reader, use the setProperty method with the property name http://xml.org/sax/properties/declaration-handler and an object implementing this interface (or null) as the value. If the reader does not report declaration events, it will throw a SAXNotRecognizedException when you attempt to register the handler.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void elementDecl(String name,                 String model)                   throws SAXException
+				</name>
+				<description>
+					Report an element type declaration. The content model will consist of the string "EMPTY", the string "ANY", or a parenthesised group, optionally followed by an occurrence indicator. The model will be normalized so that all parameter entities are fully resolved and all whitespace is removed,and will include the enclosing parentheses. Other normalization (such as removing redundant parentheses or simplifying occurrence indicators) is at the discretion of the parser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void attributeDecl(String eName,                   String aName,                   String type,                   String mode,                   String value)                     throws SAXException
+				</name>
+				<description>
+					Report an attribute type declaration. Only the effective (first) declaration for an attribute will be reported. The type will be one of the strings "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", a parenthesized token group with the separator "|" and all whitespace removed, or the word "NOTATION" followed by a space followed by a parenthesized token group with all whitespace removed. The value will be the value as reported to applications, appropriately normalized and with entity and character references expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void internalEntityDecl(String name,                        String value)                          throws SAXException
+				</name>
+				<description>
+					Report an internal entity declaration. Only the effective (first) declaration for each entity will be reported. All parameter entities in the value will be expanded, but general entities will not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void externalEntityDecl(String name,                        String publicId,                        String systemId)                          throws SAXException
+				</name>
+				<description>
+					Report a parsed external entity declaration. Only the effective (first) declaration for each entity will be reported. If the system identifier is a URL, the parser must resolve it fully before passing it to the application.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

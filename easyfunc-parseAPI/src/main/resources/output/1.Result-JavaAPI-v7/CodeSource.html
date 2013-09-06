@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public class CodeSource  extends Object  implements Serializable
+		</name>
+		<description>
+			This class extends the concept of a codebase to encapsulate not only the location (URL) but also the certificate chains that were used to verify signed code originating from that location.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CodeSource(URL url,            Certificate[] certs)
+				</name>
+				<description>
+					Constructs a CodeSource and associates it with the specified location and set of certificates.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CodeSource(URL url,            CodeSigner[] signers)
+				</name>
+				<description>
+					Constructs a CodeSource and associates it with the specified location and set of code signers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Tests for equality between the specified object and this object. Two CodeSource objects are considered equal if their locations are of identical value and if their signer certificate chains are of identical value. It is not required that the certificate chains be in the same order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final URL getLocation()
+				</name>
+				<description>
+					Returns the location associated with this CodeSource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Certificate[] getCertificates()
+				</name>
+				<description>
+					Returns the certificates associated with this CodeSource. If this CodeSource object was created using the CodeSource(URL url, CodeSigner[] signers) constructor then its certificate chains are extracted and used to create an array of Certificate objects. Each signer certificate is followed by its supporting certificate chain (which may be empty). Each signer certificate and its supporting certificate chain is ordered bottom-to-top (i.e., with the signer certificate first and the (root) certificate authority last).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final CodeSigner[] getCodeSigners()
+				</name>
+				<description>
+					Returns the code signers associated with this CodeSource. If this CodeSource object was created using the CodeSource(URL url, Certificate[] certs) constructor then its certificate chains are extracted and used to create an array of CodeSigner objects. Note that only X.509 certificates are examined - all other certificate types are ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean implies(CodeSource codesource)
+				</name>
+				<description>
+					Returns true if this CodeSource object "implies" the specified CodeSource. More specifically, this method makes the following checks, in order. If any fail, it returns false. If they all succeed, it returns true. codesource must not be null. If this object's certificates are not null, then all of this object's certificates must be present in codesource's certificates. If this object's location (getLocation()) is not null, then the following checks are made against this object's location and codesource's: codesource's location must not be null. If this object's location equals codesource's location, then return true. This object's protocol (getLocation().getProtocol()) must be equal to codesource's protocol. If this object's host (getLocation().getHost()) is not null, then the SocketPermission constructed with this object's host must imply the SocketPermission constructed with codesource's host. If this object's port (getLocation().getPort()) is not equal to -1 (that is, if a port is specified), it must equal codesource's port. If this object's file (getLocation().getFile()) doesn't equal codesource's file, then the following checks are made: If this object's file ends with "/-", then codesource's file must start with this object's file (exclusive the trailing "-"). If this object's file ends with a "/*", then codesource's file must start with this object's file and must not have any further "/" separators. If this object's file doesn't end with a "/", then codesource's file must match this object's file with a '/' appended. If this object's reference (getLocation().getRef()) is not null, it must equal codesource's reference. For example, the codesource objects with the following locations and null certificates all imply the codesource with the location "http://java.sun.com/classes/foo.jar" and null certificates:        http:       http://*.sun.com/classes/*       http://java.sun.com/classes/-       http://java.sun.com/classes/foo.jar   Note that if this CodeSource has a null location and a null certificate chain, then it implies every other CodeSource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string describing this CodeSource, telling its URL and certificates.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

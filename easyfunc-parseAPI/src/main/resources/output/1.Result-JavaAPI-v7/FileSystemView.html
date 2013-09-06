@@ -1,0 +1,234 @@
+<javaelement>
+	<package>
+		javax.swing.filechooser
+	</package>
+	<type>
+		<name>
+			public abstract class FileSystemView  extends Object
+		</name>
+		<description>
+			FileSystemView is JFileChooser's gateway to the file system. Since the JDK1.1 File API doesn't allow access to such information as root partitions, file type information, or hidden file bits, this class is designed to intuit as much OS-specific file system information as possible. Java Licensees may want to provide a different implementation of FileSystemView to better handle a given operating system.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FileSystemView()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static FileSystemView getFileSystemView()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isRoot(File f)
+				</name>
+				<description>
+					Determines if the given file is a root in the navigatable tree(s). Examples: Windows 98 has one root, the Desktop folder. DOS has one root per drive letter, C:\, D:\, etc. Unix has one root, the "/" directory. The default implementation gets information from the ShellFolder class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Boolean isTraversable(File f)
+				</name>
+				<description>
+					Returns true if the file (directory) can be visited. Returns false if the directory cannot be traversed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSystemDisplayName(File f)
+				</name>
+				<description>
+					Name of a file, directory, or folder as it would be displayed in a system file browser. Example from Windows: the "M:\" directory displays as "CD-ROM (M:)" The default implementation gets information from the ShellFolder class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSystemTypeDescription(File f)
+				</name>
+				<description>
+					Type description for a file, directory, or folder as it would be displayed in a system file browser. Example from Windows: the "Desktop" folder is desribed as "Desktop". Override for platforms with native ShellFolder implementations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getSystemIcon(File f)
+				</name>
+				<description>
+					Icon for a file, directory, or folder as it would be displayed in a system file browser. Example from Windows: the "M:\" directory displays a CD-ROM icon. The default implementation gets information from the ShellFolder class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isParent(File folder,                 File file)
+				</name>
+				<description>
+					On Windows, a file can appear in multiple folders, other than its parent directory in the filesystem. Folder could for example be the "Desktop" folder which is not the same as file.getParentFile().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File getChild(File parent,              String fileName)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFileSystem(File f)
+				</name>
+				<description>
+					Checks if f represents a real directory or file as opposed to a special folder such as "Desktop". Used by UI classes to decide if a folder is selectable when doing directory choosing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract File createNewFolder(File containingDir)                                throws IOException
+				</name>
+				<description>
+					Creates a new folder with a default folder name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isHiddenFile(File f)
+				</name>
+				<description>
+					Returns whether a file is hidden or not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFileSystemRoot(File dir)
+				</name>
+				<description>
+					Is dir the root of a tree in the file system, such as a drive or partition. Example: Returns true for "C:\" on Windows 98.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDrive(File dir)
+				</name>
+				<description>
+					Used by UI classes to decide whether to display a special icon for drives or partitions, e.g. a "hard disk" icon. The default implementation has no way of knowing, so always returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFloppyDrive(File dir)
+				</name>
+				<description>
+					Used by UI classes to decide whether to display a special icon for a floppy disk. Implies isDrive(dir). The default implementation has no way of knowing, so always returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isComputerNode(File dir)
+				</name>
+				<description>
+					Used by UI classes to decide whether to display a special icon for a computer node, e.g. "My Computer" or a network server. The default implementation has no way of knowing, so always returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File[] getRoots()
+				</name>
+				<description>
+					Returns all root partitions on this system. For example, on Windows, this would be the "Desktop" folder, while on DOS this would be the A: through Z: drives.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File getHomeDirectory()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File getDefaultDirectory()
+				</name>
+				<description>
+					Return the user's default starting directory for the file chooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File createFileObject(File dir,                      String filename)
+				</name>
+				<description>
+					Returns a File object constructed in dir from the given filename.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File createFileObject(String path)
+				</name>
+				<description>
+					Returns a File object constructed from the given path string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File[] getFiles(File dir,                boolean useFileHiding)
+				</name>
+				<description>
+					Gets the list of shown (i.e. not hidden) files.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public File getParentDirectory(File dir)
+				</name>
+				<description>
+					Returns the parent directory of dir.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected File createFileSystemRoot(File f)
+				</name>
+				<description>
+					Creates a new File object for f with correct behavior for a file system root directory.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

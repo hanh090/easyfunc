@@ -1,0 +1,315 @@
+<javaelement>
+	<package>
+		java.awt.geom
+	</package>
+	<type>
+		<name>
+			public abstract class Arc2D  extends RectangularShape
+		</name>
+		<description>
+			Arc2D is the abstract superclass for all objects that store a 2D arc defined by a framing rectangle, start angle, angular extent (length of the arc), and a closure type (OPEN, CHORD, or PIE). The arc is a partial section of a full ellipse which inscribes the framing rectangle of its parent RectangularShape. The angles are specified relative to the non-square framing rectangle such that 45 degrees always falls on the line from the center of the ellipse to the upper right corner of the framing rectangle. As a result, if the framing rectangle is noticeably longer along one axis than the other, the angles to the start and end of the arc segment will be skewed farther along the longer axis of the frame. The actual storage representation of the coordinates is left to the subclass.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int OPEN
+				</name>
+				<description>
+					The closure type for an open arc with no path segments connecting the two ends of the arc segment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CHORD
+				</name>
+				<description>
+					The closure type for an arc closed by drawing a straight line segment from the start of the arc segment to the end of the arc segment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PIE
+				</name>
+				<description>
+					The closure type for an arc closed by drawing straight line segments from the start of the arc segment to the center of the full ellipse and from that point to the end of the arc segment.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Arc2D()
+				</name>
+				<description>
+					This is an abstract class that cannot be instantiated directly. Type-specific implementation subclasses are available for instantiation and provide a number of formats for storing the information necessary to satisfy the various accessor methods below. This constructor creates an object with a default closure type of OPEN. It is provided only to enable serialization of subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Arc2D(int type)
+				</name>
+				<description>
+					This is an abstract class that cannot be instantiated directly. Type-specific implementation subclasses are available for instantiation and provide a number of formats for storing the information necessary to satisfy the various accessor methods below.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getAngleStart()
+				</name>
+				<description>
+					Returns the starting angle of the arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract double getAngleExtent()
+				</name>
+				<description>
+					Returns the angular extent of the arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getArcType()
+				</name>
+				<description>
+					Returns the arc closure type of the arc: OPEN, CHORD, or PIE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point2D getStartPoint()
+				</name>
+				<description>
+					Returns the starting point of the arc. This point is the intersection of the ray from the center defined by the starting angle and the elliptical boundary of the arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point2D getEndPoint()
+				</name>
+				<description>
+					Returns the ending point of the arc. This point is the intersection of the ray from the center defined by the starting angle plus the angular extent of the arc and the elliptical boundary of the arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setArc(double x,            double y,            double w,            double h,            double angSt,            double angExt,            int closure)
+				</name>
+				<description>
+					Sets the location, size, angular extents, and closure type of this arc to the specified double values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setArc(Point2D loc,            Dimension2D size,            double angSt,            double angExt,            int closure)
+				</name>
+				<description>
+					Sets the location, size, angular extents, and closure type of this arc to the specified values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setArc(Rectangle2D rect,            double angSt,            double angExt,            int closure)
+				</name>
+				<description>
+					Sets the location, size, angular extents, and closure type of this arc to the specified values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setArc(Arc2D a)
+				</name>
+				<description>
+					Sets this arc to be the same as the specified arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setArcByCenter(double x,                    double y,                    double radius,                    double angSt,                    double angExt,                    int closure)
+				</name>
+				<description>
+					Sets the position, bounds, angular extents, and closure type of this arc to the specified values. The arc is defined by a center point and a radius rather than a framing rectangle for the full ellipse.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setArcByTangent(Point2D p1,                     Point2D p2,                     Point2D p3,                     double radius)
+				</name>
+				<description>
+					Sets the position, bounds, and angular extents of this arc to the specified value. The starting angle of the arc is tangent to the line specified by points (p1, p2), the ending angle is tangent to the line specified by points (p2, p3), and the arc has the specified radius.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setAngleStart(double angSt)
+				</name>
+				<description>
+					Sets the starting angle of this arc to the specified double value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setAngleExtent(double angExt)
+				</name>
+				<description>
+					Sets the angular extent of this arc to the specified double value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAngleStart(Point2D p)
+				</name>
+				<description>
+					Sets the starting angle of this arc to the angle that the specified point defines relative to the center of this arc. The angular extent of the arc will remain the same.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAngles(double x1,               double y1,               double x2,               double y2)
+				</name>
+				<description>
+					Sets the starting angle and angular extent of this arc using two sets of coordinates. The first set of coordinates is used to determine the angle of the starting point relative to the arc's center. The second set of coordinates is used to determine the angle of the end point relative to the arc's center. The arc will always be non-empty and extend counterclockwise from the first point around to the second point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setAngles(Point2D p1,               Point2D p2)
+				</name>
+				<description>
+					Sets the starting angle and angular extent of this arc using two points. The first point is used to determine the angle of the starting point relative to the arc's center. The second point is used to determine the angle of the end point relative to the arc's center. The arc will always be non-empty and extend counterclockwise from the first point around to the second point.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setArcType(int type)
+				</name>
+				<description>
+					Sets the closure type of this arc to the specified value: OPEN, CHORD, or PIE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFrame(double x,              double y,              double w,              double h)
+				</name>
+				<description>
+					Sets the location and size of the framing rectangle of this Shape to the specified rectangular values. Note that the arc partially inscribes the framing rectangle of this RectangularShape.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getBounds2D()
+				</name>
+				<description>
+					Returns the high-precision framing rectangle of the arc. The framing rectangle contains only the part of this Arc2D that is in between the starting and ending angles and contains the pie wedge, if this Arc2D has a PIE closure type. This method differs from the getBounds in that the getBounds method only returns the bounds of the enclosing ellipse of this Arc2D without considering the starting and ending angles of this Arc2D.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract Rectangle2D makeBounds(double x,                       double y,                       double w,                       double h)
+				</name>
+				<description>
+					Constructs a Rectangle2D of the appropriate precision to hold the parameters calculated to be the framing rectangle of this arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAngle(double angle)
+				</name>
+				<description>
+					Determines whether or not the specified angle is within the angular extents of the arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y)
+				</name>
+				<description>
+					Determines whether or not the specified point is inside the boundary of the arc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean intersects(double x,                   double y,                   double w,                   double h)
+				</name>
+				<description>
+					Determines whether or not the interior of the arc intersects the interior of the specified rectangle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(double x,                 double y,                 double w,                 double h)
+				</name>
+				<description>
+					Determines whether or not the interior of the arc entirely contains the specified rectangle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Rectangle2D r)
+				</name>
+				<description>
+					Determines whether or not the interior of the arc entirely contains the specified rectangle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PathIterator getPathIterator(AffineTransform at)
+				</name>
+				<description>
+					Returns an iteration object that defines the boundary of the arc. This iterator is multithread safe. Arc2D guarantees that modifications to the geometry of the arc do not affect any iterations of that geometry that are already in process.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hashcode for this Arc2D.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Determines whether or not the specified Object is equal to this Arc2D. The specified Object is equal to this Arc2D if it is an instance of Arc2D and if its location, size, arc extents and type are the same as this Arc2D.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

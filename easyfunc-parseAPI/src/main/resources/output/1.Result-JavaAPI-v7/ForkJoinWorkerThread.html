@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class ForkJoinWorkerThread  extends Thread
+		</name>
+		<description>
+			A thread managed by a ForkJoinPool, which executes ForkJoinTasks. This class is subclassable solely for the sake of adding functionality -- there are no overridable methods dealing with scheduling or execution. However, you can override initialization and termination methods surrounding the main task processing loop. If you do create such a subclass, you will also need to supply a custom ForkJoinPool.ForkJoinWorkerThreadFactory to use it in a ForkJoinPool.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ForkJoinWorkerThread(ForkJoinPool pool)
+				</name>
+				<description>
+					Creates a ForkJoinWorkerThread operating in the given pool.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ForkJoinPool getPool()
+				</name>
+				<description>
+					Returns the pool hosting this thread.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getPoolIndex()
+				</name>
+				<description>
+					Returns the index number of this thread in its pool. The returned value ranges from zero to the maximum number of threads (minus one) that have ever been created in the pool. This method may be useful for applications that track status or collect results per-worker rather than per-task.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void onStart()
+				</name>
+				<description>
+					Initializes internal state after construction but before processing any tasks. If you override this method, you must invoke super.onStart() at the beginning of the method. Initialization requires care: Most fields must have legal default values, to ensure that attempted accesses from other threads work correctly even before this thread starts processing tasks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void onTermination(Throwable exception)
+				</name>
+				<description>
+					Performs cleanup associated with termination of this worker thread. If you override this method, you must invoke super.onTermination at the end of the overridden method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void run()
+				</name>
+				<description>
+					This method is required to be public, but should never be called explicitly. It performs the main run loop to execute ForkJoinTasks.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

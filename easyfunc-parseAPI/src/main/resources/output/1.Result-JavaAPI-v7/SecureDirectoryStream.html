@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.nio.file
+	</package>
+	<type>
+		<name>
+			public interface SecureDirectoryStream<T>  extends DirectoryStream<T>
+		</name>
+		<description>
+			A DirectoryStream that defines operations on files that are located relative to an open directory. A SecureDirectoryStream is intended for use by sophisticated or security sensitive applications requiring to traverse file trees or otherwise operate on directories in a race-free manner. Race conditions can arise when a sequence of file operations cannot be carried out in isolation. Each of the file operations defined by this interface specify a relative path. All access to the file is relative to the open directory irrespective of if the directory is moved or replaced by an attacker while the directory is open. A SecureDirectoryStream may also be used as a virtual working directory. A SecureDirectoryStream requires corresponding support from the underlying operating system. Where an implementation supports this features then the DirectoryStream returned by the newDirectoryStream method will be a SecureDirectoryStream and must be cast to that type in order to invoke the methods defined by this interface. In the case of the default provider, and a security manager is set, then the permission checks are performed using the path obtained by resolving the given relative path against the original path of the directory (irrespective of if the directory is moved since it was opened).
+		</description>
+		<methods>
+			<method>
+				<name>
+					SecureDirectoryStream<T> newDirectoryStream(T path,                                            LinkOption... options)                                              throws IOException
+				</name>
+				<description>
+					Opens the directory identified by the given path, returning a SecureDirectoryStream to iterate over the entries in the directory. This method works in exactly the manner specified by the newDirectoryStream method for the case that the path parameter is an absolute path. When the parameter is a relative path then the directory to open is relative to this open directory. The NOFOLLOW_LINKS option may be used to ensure that this method fails if the file is a symbolic link. The new directory stream, once created, is not dependent upon the directory stream used to create it. Closing this directory stream has no effect upon newly created directory stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					SeekableByteChannel newByteChannel(T path,                                   Set<? extends OpenOption> options,                                   FileAttribute<?>... attrs)                                     throws IOException
+				</name>
+				<description>
+					Opens or creates a file in this directory, returning a seekable byte channel to access the file. This method works in exactly the manner specified by the Files.newByteChannel method for the case that the path parameter is an absolute path. When the parameter is a relative path then the file to open or create is relative to this open directory. In addition to the options defined by the Files.newByteChannel method, the NOFOLLOW_LINKS option may be used to ensure that this method fails if the file is a symbolic link. The channel, once created, is not dependent upon the directory stream used to create it. Closing this directory stream has no effect upon the channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void deleteFile(T path)                  throws IOException
+				</name>
+				<description>
+					Deletes a file. Unlike the delete() method, this method does not first examine the file to determine if the file is a directory. Whether a directory is deleted by this method is system dependent and therefore not specified. If the file is a symbolic link, then the link itself, not the final target of the link, is deleted. When the parameter is a relative path then the file to delete is relative to this open directory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void deleteDirectory(T path)                       throws IOException
+				</name>
+				<description>
+					Deletes a directory. Unlike the delete() method, this method does not first examine the file to determine if the file is a directory. Whether non-directories are deleted by this method is system dependent and therefore not specified. When the parameter is a relative path then the directory to delete is relative to this open directory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void move(T srcpath,          SecureDirectoryStream<T> targetdir,          T targetpath)            throws IOException
+				</name>
+				<description>
+					Move a file from this directory to another directory. This method works in a similar manner to move method when the ATOMIC_MOVE option is specified. That is, this method moves a file as an atomic file system operation. If the srcpath parameter is an absolute path then it locates the source file. If the parameter is a relative path then it is located relative to this open directory. If the targetpath parameter is absolute then it locates the target file (the targetdir parameter is ignored). If the parameter is a relative path it is located relative to the open directory identified by the targetdir parameter. In all cases, if the target file exists then it is implementation specific if it is replaced or this method fails.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					<V extends FileAttributeView> V getFileAttributeView(Class<V> type)
+				</name>
+				<description>
+					Returns a new file attribute view to access the file attributes of this directory. The resulting file attribute view can be used to read or update the attributes of this (open) directory. The type parameter specifies the type of the attribute view and the method returns an instance of that type if supported. Invoking this method to obtain a BasicFileAttributeView always returns an instance of that class that is bound to this open directory. The state of resulting file attribute view is intimately connected to this directory stream. Once the directory stream is closed, then all methods to read or update attributes will throw ClosedDirectoryStreamException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					<V extends FileAttributeView> V getFileAttributeView(T path,                                                     Class<V> type,                                                     LinkOption... options)
+				</name>
+				<description>
+					Returns a new file attribute view to access the file attributes of a file in this directory. The resulting file attribute view can be used to read or update the attributes of file in this directory. The type parameter specifies the type of the attribute view and the method returns an instance of that type if supported. Invoking this method to obtain a BasicFileAttributeView always returns an instance of that class that is bound to the file in the directory. The state of resulting file attribute view is intimately connected to this directory stream. Once the directory stream closed, then all methods to read or update attributes will throw ClosedDirectoryStreamException. The file is not required to exist at the time that the file attribute view is created but methods to read or update attributes of the file will fail when invoked and the file does not exist.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

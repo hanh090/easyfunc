@@ -1,0 +1,441 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JRootPane  extends JComponent  implements Accessible
+		</name>
+		<description>
+			A lightweight container used behind the scenes by JFrame, JDialog, JWindow, JApplet, and JInternalFrame. For task-oriented information on functionality provided by root panes see How to Use Root Panes, a section in The Java Tutorial. The following image shows the relationships between the classes that use root panes. The "heavyweight" components (those that delegate to a peer, or native component on the host system) are shown with a darker, heavier box. The four heavyweight JFC/Swing containers (JFrame, JDialog, JWindow, and JApplet) are shown in relation to the AWT classes they extend. These four components are the only heavyweight containers in the Swing library. The lightweight container JInternalFrame is also shown. All five of these JFC/Swing containers implement the RootPaneContainer interface, and they all delegate their operations to a JRootPane (shown with a little "handle" on top). Note: The JComponent method getRootPane can be used to obtain the JRootPane that contains a given component. The diagram at right shows the structure of a JRootPane. A JRootpane is made up of a glassPane, an optional menuBar, and a contentPane. (The JLayeredPane manages the menuBar and the contentPane.) The glassPane sits over the top of everything, where it is in a position to intercept mouse movements. Since the glassPane (like the contentPane) can be an arbitrary component, it is also possible to set up the glassPane for drawing. Lines and images on the glassPane can then range over the frames underneath without being limited by their boundaries. Although the menuBar component is optional, the layeredPane, contentPane, and glassPane always exist. Attempting to set them to null generates an exception. To add components to the JRootPane (other than the optional menu bar), you add the object to the contentPane of the JRootPane, like this:          rootPane.getContentPane().add(child);   The same principle holds true for setting layout managers, removing components, listing children, etc. All these methods are invoked on the contentPane instead of on the JRootPane. Note: The default layout manager for the contentPane is a BorderLayout manager. However, the JRootPane uses a custom LayoutManager. So, when you want to change the layout manager for the components you added to a JRootPane, be sure to use code like this:       rootPane.getContentPane().setLayout(new BoxLayout());   If a JMenuBar component is set on the JRootPane, it is positioned along the upper edge of the frame. The contentPane is adjusted in location and size to fill the remaining area. (The JMenuBar and the contentPane are added to the layeredPane component at the JLayeredPane.FRAME_CONTENT_LAYER layer.) The layeredPane is the parent of all children in the JRootPane -- both as the direct parent of the menu and the grandparent of all components added to the contentPane. It is an instance of JLayeredPane, which provides the ability to add components at several layers. This capability is very useful when working with menu popups, dialog boxes, and dragging -- situations in which you need to place a component on top of all other components in the pane. The glassPane sits on top of all other components in the JRootPane. That provides a convenient place to draw above all other components, and makes it possible to intercept mouse events, which is useful both for dragging and for drawing. Developers can use setVisible on the glassPane to control when the glassPane displays over the other children. By default the glassPane is not visible. The custom LayoutManager used by JRootPane ensures that: The glassPane fills the entire viewable area of the JRootPane (bounds - insets). The layeredPane fills the entire viewable area of the JRootPane. (bounds - insets) The menuBar is positioned at the upper edge of the layeredPane. The contentPane fills the entire viewable area, minus the menuBar, if present. Any other views in the JRootPane view hierarchy are ignored. If you replace the LayoutManager of the JRootPane, you are responsible for managing all of these views. So ordinarily you will want to be sure that you change the layout manager for the contentPane rather than for the JRootPane itself! The painting architecture of Swing requires an opaque JComponent to exist in the containment hieararchy above all other components. This is typically provided by way of the content pane. If you replace the content pane, it is recommended that you make the content pane opaque by way of setOpaque(true). Additionally, if the content pane overrides paintComponent, it will need to completely fill in the background in an opaque color in paintComponent. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int NONE
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should not provide any sort of Window decorations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FRAME
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PLAIN_DIALOG
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Dialog.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int INFORMATION_DIALOG
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Dialog used to display an informational message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ERROR_DIALOG
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Dialog used to display an error message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int COLOR_CHOOSER_DIALOG
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Dialog used to display a JColorChooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int FILE_CHOOSER_DIALOG
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Dialog used to display a JFileChooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int QUESTION_DIALOG
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Dialog used to present a question to the user.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int WARNING_DIALOG
+				</name>
+				<description>
+					Constant used for the windowDecorationStyle property. Indicates that the JRootPane should provide decorations appropriate for a Dialog used to display a warning message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JMenuBar menuBar
+				</name>
+				<description>
+					The menu bar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Container contentPane
+				</name>
+				<description>
+					The content pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JLayeredPane layeredPane
+				</name>
+				<description>
+					The layered pane that manages the menu bar and content pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component glassPane
+				</name>
+				<description>
+					The glass pane that overlays the menu bar and content pane, so it can intercept mouse movements and such.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JButton defaultButton
+				</name>
+				<description>
+					The button that gets activated when the pane has the focus and a UI-specific action like pressing the Enter key occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected javax.swing.JRootPane.DefaultAction defaultPressAction
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this unusable field is no longer used. To override the default button you should replace the Action in the JRootPane's ActionMap. Please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected javax.swing.JRootPane.DefaultAction defaultReleaseAction
+				</name>
+				<description>
+					Deprecated. As of Java 2 platform v1.3. As of Java 2 platform v1.3 this unusable field is no longer used. To override the default button you should replace the Action in the JRootPane's ActionMap. Please refer to the key bindings specification for further details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JRootPane()
+				</name>
+				<description>
+					Creates a JRootPane, setting up its glassPane, layeredPane, and contentPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDoubleBuffered(boolean aFlag)
+				</name>
+				<description>
+					Sets whether this component should use a buffer to paint. If set to true, all the drawing from this component will be done in an offscreen painting buffer. The offscreen painting buffer will the be copied onto the screen. If a Component is buffered and one of its ancestor is also buffered, the ancestor buffer will be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getWindowDecorationStyle()
+				</name>
+				<description>
+					Returns a constant identifying the type of Window decorations the JRootPane is providing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setWindowDecorationStyle(int windowDecorationStyle)
+				</name>
+				<description>
+					Sets the type of Window decorations (such as borders, widgets for closing a Window, title ...) the JRootPane should provide. The default is to provide no Window decorations (NONE). This is only a hint, and some look and feels may not support this. This is a bound property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RootPaneUI getUI()
+				</name>
+				<description>
+					Returns the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(RootPaneUI ui)
+				</name>
+				<description>
+					Sets the L&F object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the UI property to a value from the current look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns a string that specifies the name of the L&F class that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JLayeredPane createLayeredPane()
+				</name>
+				<description>
+					Called by the constructor methods to create the default layeredPane. Bt default it creates a new JLayeredPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Container createContentPane()
+				</name>
+				<description>
+					Called by the constructor methods to create the default contentPane. By default this method creates a new JComponent add sets a BorderLayout as its LayoutManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component createGlassPane()
+				</name>
+				<description>
+					Called by the constructor methods to create the default glassPane. By default this method creates a new JComponent with visibility set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected LayoutManager createRootLayout()
+				</name>
+				<description>
+					Called by the constructor methods to create the default layoutManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setJMenuBar(JMenuBar menu)
+				</name>
+				<description>
+					Adds or changes the menu bar used in the layered pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setMenuBar(JMenuBar menu)
+				</name>
+				<description>
+					Deprecated. As of Swing version 1.0.3 replaced by setJMenuBar(JMenuBar menu). Specifies the menu bar value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMenuBar getJMenuBar()
+				</name>
+				<description>
+					Returns the menu bar from the layered pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public JMenuBar getMenuBar()
+				</name>
+				<description>
+					Deprecated. As of Swing version 1.0.3 replaced by getJMenuBar(). Returns the menu bar value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentPane(Container content)
+				</name>
+				<description>
+					Sets the content pane -- the container that holds the components parented by the root pane. Swing's painting architecture requires an opaque JComponent in the containment hiearchy. This is typically provided by the content pane. If you replace the content pane it is recommended you replace it with an opaque JComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Container getContentPane()
+				</name>
+				<description>
+					Returns the content pane -- the container that holds the components parented by the root pane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayeredPane(JLayeredPane layered)
+				</name>
+				<description>
+					Sets the layered pane for the root pane. The layered pane typically holds a content pane and an optional JMenuBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JLayeredPane getLayeredPane()
+				</name>
+				<description>
+					Gets the layered pane used by the root pane. The layered pane typically holds a content pane and an optional JMenuBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setGlassPane(Component glass)
+				</name>
+				<description>
+					Sets a specified Component to be the glass pane for this root pane. The glass pane should normally be a lightweight, transparent component, because it will be made visible when ever the root pane needs to grab input events. The new glass pane's visibility is changed to match that of the current glass pane. An implication of this is that care must be taken when you want to replace the glass pane and make it visible. Either of the following will work:      root.setGlassPane(newGlassPane);     newGlassPane.setVisible(true);   or:      root.getGlassPane().setVisible(true);     root.setGlassPane(newGlassPane);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getGlassPane()
+				</name>
+				<description>
+					Returns the current glass pane for this JRootPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isValidateRoot()
+				</name>
+				<description>
+					If a descendant of this JRootPane calls revalidate, validate from here on down. Deferred requests to layout a component and its descendents again. For example, calls to revalidate, are pushed upwards to either a JRootPane or a JScrollPane because both classes override isValidateRoot to return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOptimizedDrawingEnabled()
+				</name>
+				<description>
+					The glassPane and contentPane have the same bounds, which means JRootPane does not tiles its children and this should return false. On the other hand, the glassPane is normally not visible, and so this can return true if the glassPane isn't visible. Therefore, the return value here depends upon the visiblity of the glassPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotify()
+				</name>
+				<description>
+					Notifies this component that it now has a parent component. When this method is invoked, the chain of parent components is set up with KeyboardAction event listeners. This method is called by the toolkit internally and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotify()
+				</name>
+				<description>
+					Notifies this component that it no longer has a parent component. When this method is invoked, any KeyboardActions set up in the the chain of parent components are removed. This method is called by the toolkit internally and should not be called directly by programs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultButton(JButton defaultButton)
+				</name>
+				<description>
+					Sets the defaultButton property, which determines the current default button for this JRootPane. The default button is the button which will be activated when a UI-defined activation event (typically the Enter key) occurs in the root pane regardless of whether or not the button has keyboard focus (unless there is another component within the root pane which consumes the activation event, such as a JTextPane). For default activation to work, the button must be an enabled descendent of the root pane when activation occurs. To remove a default button from this root pane, set this property to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JButton getDefaultButton()
+				</name>
+				<description>
+					Returns the value of the defaultButton property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addImpl(Component comp,             Object constraints,             int index)
+				</name>
+				<description>
+					Overridden to enforce the position of the glass component as the zero child.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JRootPane. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JRootPane. For root panes, the AccessibleContext takes the form of an AccessibleJRootPane. A new AccessibleJRootPane instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

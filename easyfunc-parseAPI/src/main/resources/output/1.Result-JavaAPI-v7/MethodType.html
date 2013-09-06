@@ -1,0 +1,297 @@
+<javaelement>
+	<package>
+		java.lang.invoke
+	</package>
+	<type>
+		<name>
+			public final class MethodType  extends Object  implements Serializable
+		</name>
+		<description>
+			A method type represents the arguments and return type accepted and returned by a method handle, or the arguments and return type passed and expected by a method handle caller. Method types must be properly matched between a method handle and all its callers, and the JVM's operations enforce this matching at, specifically during calls to MethodHandle.invokeExact and MethodHandle.invoke, and during execution of invokedynamic instructions. The structure is a return type accompanied by any number of parameter types. The types (primitive, void, and reference) are represented by Class objects. (For ease of exposition, we treat void as if it were a type. In fact, it denotes the absence of a return type.) All instances of MethodType are immutable. Two instances are completely interchangeable if they compare equal. Equality depends on pairwise correspondence of the return and parameter types and on nothing else. This type can be created only by factory methods. All factory methods may cache values, though caching is not guaranteed. Some factory methods are static, while others are virtual methods which modify precursor method types, e.g., by changing a selected parameter. Factory methods which operate on groups of parameter types are systematically presented in two versions, so that both Java arrays and Java lists can be used to work with groups of parameter types. The query methods parameterArray and parameterList also provide a choice between arrays and lists. MethodType objects are sometimes derived from bytecode instructions such as invokedynamic, specifically from the type descriptor strings associated with the instructions in a class file's constant pool. Like classes and strings, method types can also be represented directly in a class file's constant pool as constants. A method type may be loaded by an ldc instruction which refers to a suitable CONSTANT_MethodType constant pool entry. The entry refers to a CONSTANT_Utf8 spelling for the descriptor string. For more details, see the package summary. When the JVM materializes a MethodType from a descriptor string, all classes named in the descriptor must be accessible, and will be loaded. (But the classes need not be initialized, as is the case with a CONSTANT_Class.) This loading may occur at any time before the MethodType object is first derived.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static MethodType methodType(Class<?> rtype,                      Class<?>[] ptypes)
+				</name>
+				<description>
+					Finds or creates an instance of the given method type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType methodType(Class<?> rtype,                      List<Class<?>> ptypes)
+				</name>
+				<description>
+					Finds or creates a method type with the given components. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType methodType(Class<?> rtype,                      Class<?> ptype0,                      Class<?>... ptypes)
+				</name>
+				<description>
+					Finds or creates a method type with the given components. Convenience method for methodType. The leading parameter type is prepended to the remaining array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType methodType(Class<?> rtype)
+				</name>
+				<description>
+					Finds or creates a method type with the given components. Convenience method for methodType. The resulting method has no parameter types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType methodType(Class<?> rtype,                      Class<?> ptype0)
+				</name>
+				<description>
+					Finds or creates a method type with the given components. Convenience method for methodType. The resulting method has the single given parameter type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType methodType(Class<?> rtype,                      MethodType ptypes)
+				</name>
+				<description>
+					Finds or creates a method type with the given components. Convenience method for methodType. The resulting method has the same parameter types as ptypes, and the specified return type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType genericMethodType(int objectArgCount,                             boolean finalArray)
+				</name>
+				<description>
+					Finds or creates a method type whose components are Object with an optional trailing Object[] array. Convenience method for methodType. All parameters and the return type will be Object, except the final array parameter if any, which will be Object[].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType genericMethodType(int objectArgCount)
+				</name>
+				<description>
+					Finds or creates a method type whose components are all Object. Convenience method for methodType. All parameters and the return type will be Object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType changeParameterType(int num,                               Class<?> nptype)
+				</name>
+				<description>
+					Finds or creates a method type with a single different parameter type. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType insertParameterTypes(int num,                                Class<?>... ptypesToInsert)
+				</name>
+				<description>
+					Finds or creates a method type with additional parameter types. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType appendParameterTypes(Class<?>... ptypesToInsert)
+				</name>
+				<description>
+					Finds or creates a method type with additional parameter types. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType insertParameterTypes(int num,                                List<Class<?>> ptypesToInsert)
+				</name>
+				<description>
+					Finds or creates a method type with additional parameter types. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType appendParameterTypes(List<Class<?>> ptypesToInsert)
+				</name>
+				<description>
+					Finds or creates a method type with additional parameter types. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType dropParameterTypes(int start,                              int end)
+				</name>
+				<description>
+					Finds or creates a method type with some parameter types omitted. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType changeReturnType(Class<?> nrtype)
+				</name>
+				<description>
+					Finds or creates a method type with a different return type. Convenience method for methodType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasPrimitives()
+				</name>
+				<description>
+					Reports if this type contains a primitive argument or return value. The return type void counts as a primitive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasWrappers()
+				</name>
+				<description>
+					Reports if this type contains a wrapper argument or return value. Wrappers are types which box primitive values, such as Integer. The reference type java.lang.Void counts as a wrapper, if it occurs as a return type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType erase()
+				</name>
+				<description>
+					Erases all reference types to Object. Convenience method for methodType. All primitive types (including void) will remain unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType generic()
+				</name>
+				<description>
+					Converts all types, both reference and primitive, to Object. Convenience method for genericMethodType. The expression type.wrap().erase() produces the same value as type.generic().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType wrap()
+				</name>
+				<description>
+					Converts all primitive types to their corresponding wrapper types. Convenience method for methodType. All reference types (including wrapper types) will remain unchanged. A void return type is changed to the type java.lang.Void. The expression type.wrap().erase() produces the same value as type.generic().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MethodType unwrap()
+				</name>
+				<description>
+					Converts all wrapper types to their corresponding primitive types. Convenience method for methodType. All primitive types (including void) will remain unchanged. A return type of java.lang.Void is changed to void.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> parameterType(int num)
+				</name>
+				<description>
+					Returns the parameter type at the specified index, within this method type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int parameterCount()
+				</name>
+				<description>
+					Returns the number of parameter types in this method type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> returnType()
+				</name>
+				<description>
+					Returns the return type of this method type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<Class<?>> parameterList()
+				</name>
+				<description>
+					Presents the parameter types as a list (a convenience method). The list will be immutable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?>[] parameterArray()
+				</name>
+				<description>
+					Presents the parameter types as an array (a convenience method). Changes to the array will not result in changes to the type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object x)
+				</name>
+				<description>
+					Compares the specified object with this type for equality. That is, it returns true if and only if the specified object is also a method type with exactly the same parameters and return type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this method type. It is defined to be the same as the hashcode of a List whose elements are the return type followed by the parameter types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of the method type, of the form "(PT0,PT1...)RT". The string representation of a method type is a parenthesis enclosed, comma separated list of type names, followed immediately by the return type. Each type is represented by its simple name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static MethodType fromMethodDescriptorString(String descriptor,                                      ClassLoader loader)                                               throws IllegalArgumentException,                                                      TypeNotPresentException
+				</name>
+				<description>
+					Finds or creates an instance of a method type, given the spelling of its bytecode descriptor. Convenience method for methodType. Any class or interface name embedded in the descriptor string will be resolved by calling ClassLoader.loadClass(java.lang.String) on the given loader (or if it is null, on the system class loader). Note that it is possible to encounter method types which cannot be constructed by this method, because their component types are not all reachable from a common class loader. This method is included for the benfit of applications that must generate bytecodes that process method handles and invokedynamic.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toMethodDescriptorString()
+				</name>
+				<description>
+					Produces a bytecode descriptor representation of the method type. Note that this is not a strict inverse of fromMethodDescriptorString. Two distinct classes which share a common name but have different class loaders will appear identical when viewed within descriptor strings. This method is included for the benfit of applications that must generate bytecodes that process method handles and invokedynamic. fromMethodDescriptorString, because the latter requires a suitable class loader argument.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

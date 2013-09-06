@@ -1,0 +1,243 @@
+<javaelement>
+	<package>
+		javax.xml.ws
+	</package>
+	<type>
+		<name>
+			public class Service  extends Object
+		</name>
+		<description>
+			Service objects provide the client view of a Web service. Service acts as a factory of the following: Proxies for a target service endpoint. Instances of Dispatch for dynamic message-oriented invocation of a remote operation. The ports available on a service can be enumerated using the getPorts method. Alternatively, you can pass a service endpoint interface to the unary getPort method and let the runtime select a compatible port. Handler chains for all the objects created by a Service can be set by means of a HandlerResolver. An Executor may be set on the service in order to gain better control over the threads used to dispatch asynchronous callbacks. For instance, thread pooling with certain parameters can be enabled by creating a ThreadPoolExecutor and registering it with the service.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Service(URL wsdlDocumentLocation,         QName serviceName)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Service(URL wsdlDocumentLocation,         QName serviceName,         WebServiceFeature... features)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T getPort(QName portName,              Class<T> serviceEndpointInterface)
+				</name>
+				<description>
+					The getPort method returns a proxy. A service client uses this proxy to invoke operations on the target service endpoint. The serviceEndpointInterface specifies the service endpoint interface that is supported by the created dynamic proxy instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T getPort(QName portName,              Class<T> serviceEndpointInterface,              WebServiceFeature... features)
+				</name>
+				<description>
+					The getPort method returns a proxy. A service client uses this proxy to invoke operations on the target service endpoint. The serviceEndpointInterface specifies the service endpoint interface that is supported by the created dynamic proxy instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T getPort(Class<T> serviceEndpointInterface)
+				</name>
+				<description>
+					The getPort method returns a proxy. The parameter serviceEndpointInterface specifies the service endpoint interface that is supported by the returned proxy. In the implementation of this method, the JAX-WS runtime system takes the responsibility of selecting a protocol binding (and a port) and configuring the proxy accordingly. The returned proxy should not be reconfigured by the client.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T getPort(Class<T> serviceEndpointInterface,              WebServiceFeature... features)
+				</name>
+				<description>
+					The getPort method returns a proxy. The parameter serviceEndpointInterface specifies the service endpoint interface that is supported by the returned proxy. In the implementation of this method, the JAX-WS runtime system takes the responsibility of selecting a protocol binding (and a port) and configuring the proxy accordingly. The returned proxy should not be reconfigured by the client.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> T getPort(EndpointReference endpointReference,              Class<T> serviceEndpointInterface,              WebServiceFeature... features)
+				</name>
+				<description>
+					The getPort method returns a proxy. The parameter endpointReference specifies the endpoint that will be invoked by the returned proxy. If there are any reference parameters in the endpointReference, then those reference parameters MUST appear as SOAP headers, indicating them to be reference parameters, on all messages sent to the endpoint. The endpointReference's address MUST be used for invocations on the endpoint. The parameter serviceEndpointInterface specifies the service endpoint interface that is supported by the returned proxy. In the implementation of this method, the JAX-WS runtime system takes the responsibility of selecting a protocol binding (and a port) and configuring the proxy accordingly from the WSDL associated with this Service instance or from the metadata from the endpointReference. If this Service instance has a WSDL and the endpointReference metadata also has a WSDL, then the WSDL from this instance MUST be used. If this Service instance does not have a WSDL and the endpointReference does have a WSDL, then the WSDL from the endpointReference MAY be used. The returned proxy should not be reconfigured by the client. If this Service instance has a known proxy port that matches the information contained in the WSDL, then that proxy is returned, otherwise a WebServiceException is thrown. Calling this method has the same behavior as the following    port = service.getPort(portName, serviceEndpointInterface);   where the portName is retrieved from the metadata of the endpointReference or from the serviceEndpointInterface and the WSDL associated with this Service instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPort(QName portName,             String bindingId,             String endpointAddress)
+				</name>
+				<description>
+					Creates a new port for the service. Ports created in this way contain no WSDL port type information and can only be used for creating Dispatchinstances.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> Dispatch<T> createDispatch(QName portName,                               Class<T> type,                               Service.Mode mode)
+				</name>
+				<description>
+					Creates a Dispatch instance for use with objects of the client's choosing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> Dispatch<T> createDispatch(QName portName,                               Class<T> type,                               Service.Mode mode,                               WebServiceFeature... features)
+				</name>
+				<description>
+					Creates a Dispatch instance for use with objects of the client's choosing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> Dispatch<T> createDispatch(EndpointReference endpointReference,                               Class<T> type,                               Service.Mode mode,                               WebServiceFeature... features)
+				</name>
+				<description>
+					Creates a Dispatch instance for use with objects of the client's choosing. If there are any reference parameters in the endpointReference, then those reference parameters MUST appear as SOAP headers, indicating them to be reference parameters, on all messages sent to the endpoint. The endpointReference's address MUST be used for invocations on the endpoint. In the implementation of this method, the JAX-WS runtime system takes the responsibility of selecting a protocol binding (and a port) and configuring the dispatch accordingly from the WSDL associated with this Service instance or from the metadata from the endpointReference. If this Service instance has a WSDL and the endpointReference also has a WSDL in its metadata, then the WSDL from this instance MUST be used. If this Service instance does not have a WSDL and the endpointReference does have a WSDL, then the WSDL from the endpointReference MAY be used. An implementation MUST be able to retrieve the portName from the endpointReference metadata. This method behaves the same as calling    dispatch = service.createDispatch(portName, type, mode, features);   where the portName is retrieved from the WSDL or EndpointReference metadata.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dispatch<Object> createDispatch(QName portName,                                JAXBContext context,                                Service.Mode mode)
+				</name>
+				<description>
+					Creates a Dispatch instance for use with JAXB generated objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dispatch<Object> createDispatch(QName portName,                                JAXBContext context,                                Service.Mode mode,                                WebServiceFeature... features)
+				</name>
+				<description>
+					Creates a Dispatch instance for use with JAXB generated objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dispatch<Object> createDispatch(EndpointReference endpointReference,                                JAXBContext context,                                Service.Mode mode,                                WebServiceFeature... features)
+				</name>
+				<description>
+					Creates a Dispatch instance for use with JAXB generated objects. If there are any reference parameters in the endpointReference, then those reference parameters MUST appear as SOAP headers, indicating them to be reference parameters, on all messages sent to the endpoint. The endpointReference's address MUST be used for invocations on the endpoint. In the implementation of this method, the JAX-WS runtime system takes the responsibility of selecting a protocol binding (and a port) and configuring the dispatch accordingly from the WSDL associated with this Service instance or from the metadata from the endpointReference. If this Service instance has a WSDL and the endpointReference also has a WSDL in its metadata, then the WSDL from this instance MUST be used. If this Service instance does not have a WSDL and the endpointReference does have a WSDL, then the WSDL from the endpointReference MAY be used. An implementation MUST be able to retrieve the portName from the endpointReference metadata. This method behavies the same as calling    dispatch = service.createDispatch(portName, context, mode, features);   where the portName is retrieved from the WSDL or endpointReference metadata.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public QName getServiceName()
+				</name>
+				<description>
+					Gets the name of this service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator<QName> getPorts()
+				</name>
+				<description>
+					Returns an Iterator for the list of QNames of service endpoints grouped by this service
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URL getWSDLDocumentLocation()
+				</name>
+				<description>
+					Gets the location of the WSDL document for this Service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public HandlerResolver getHandlerResolver()
+				</name>
+				<description>
+					Returns the configured handler resolver.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHandlerResolver(HandlerResolver handlerResolver)
+				</name>
+				<description>
+					Sets the HandlerResolver for this Service instance. The handler resolver, if present, will be called once for each proxy or dispatch instance that is created, and the handler chain returned by the resolver will be set on the instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Executor getExecutor()
+				</name>
+				<description>
+					Returns the executor for this Serviceinstance. The executor is used for all asynchronous invocations that require callbacks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExecutor(Executor executor)
+				</name>
+				<description>
+					Sets the executor for this Service instance. The executor is used for all asynchronous invocations that require callbacks.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Service create(URL wsdlDocumentLocation,               QName serviceName)
+				</name>
+				<description>
+					Creates a Service instance. The specified WSDL document location and service qualified name MUST uniquely identify a wsdl:service element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Service create(URL wsdlDocumentLocation,               QName serviceName,               WebServiceFeature... features)
+				</name>
+				<description>
+					Creates a Service instance. The created instance is configured with the web service features. The specified WSDL document location and service qualified name MUST uniquely identify a wsdl:service element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Service create(QName serviceName)
+				</name>
+				<description>
+					Creates a Service instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Service create(QName serviceName,               WebServiceFeature... features)
+				</name>
+				<description>
+					Creates a Service instance. The created instance is configured with the web service features.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

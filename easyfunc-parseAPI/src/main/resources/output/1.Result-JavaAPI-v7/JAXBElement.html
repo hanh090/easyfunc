@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.xml.bind
+	</package>
+	<type>
+		<name>
+			public class JAXBElement<T>  extends Object  implements Serializable
+		</name>
+		<description>
+			JAXB representation of an Xml Element. This class represents information about an Xml Element from both the element declaration within a schema and the element instance value within an xml document with the following properties element's xml tag name value represents the element instance's atttribute(s) and content model element declaration's declaredType (xs:element @type attribute) scope of element declaration boolean nil property. (element instance's xsi:nil attribute) The declaredType and scope property are the JAXB class binding for the xml type definition. Scope is either JAXBElement.GlobalScope or the Java class representing the complex type definition containing the schema element declaration. There is a property constraint that if value is null, then nil must be true. The converse is not true to enable representing a nil element with attribute(s). If nil is true, it is possible that value is non-null so it can hold the value of the attributes associated with a nil element.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final QName name
+				</name>
+				<description>
+					xml element tag name
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Class<T> declaredType
+				</name>
+				<description>
+					Java datatype binding for xml element declaration's type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Class scope
+				</name>
+				<description>
+					Scope of xml element declaration representing this xml element instance. Can be one of the following values: - JAXBElement.GlobalScope for global xml element declaration. - local element declaration has a scope set to the Java class representation of complex type defintion containing xml element declaration.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected T value
+				</name>
+				<description>
+					xml element value. Represents content model and attributes of an xml element instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean nil
+				</name>
+				<description>
+					true iff the xml element instance has xsi:nil="true".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JAXBElement(QName name,             Class<T> declaredType,             Class scope,             T value)
+				</name>
+				<description>
+					Construct an xml element instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JAXBElement(QName name,             Class<T> declaredType,             T value)
+				</name>
+				<description>
+					Construct an xml element instance. This is just a convenience method for new JAXBElement(name,declaredType,GlobalScope.class,value)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<T> getDeclaredType()
+				</name>
+				<description>
+					Returns the Java binding of the xml element declaration's type attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public QName getName()
+				</name>
+				<description>
+					Returns the xml element tag name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValue(T t)
+				</name>
+				<description>
+					Set the content model and attributes of this xml element. When this property is set to null, isNil() must by true. Details of constraint are described at isNil().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public T getValue()
+				</name>
+				<description>
+					Return the content model and attribute values for this element. See isNil() for a description of a property constraint when this value is null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class getScope()
+				</name>
+				<description>
+					Returns scope of xml element declaration.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNil()
+				</name>
+				<description>
+					Returns true iff this element instance content model is nil. This property always returns true when getValue() is null. Note that the converse is not true, when this property is true, getValue() can contain a non-null value for attribute(s). It is valid for a nil xml element to have attribute(s).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNil(boolean value)
+				</name>
+				<description>
+					Set whether this element has nil content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isGlobalScope()
+				</name>
+				<description>
+					Returns true iff this xml element declaration is global.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isTypeSubstituted()
+				</name>
+				<description>
+					Returns true iff this xml element instance's value has a different type than xml element declaration's declared type.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

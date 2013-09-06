@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.xml.transform.stax
+	</package>
+	<type>
+		<name>
+			public class StAXResult  extends Object  implements Result
+		</name>
+		<description>
+			Acts as a holder for an XML Result in the form of a StAX writer,i.e. XMLStreamWriter or XMLEventWriter. StAXResult can be used in all cases that accept a Result, e.g. Transformer, Validator which accept Result as input.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String FEATURE
+				</name>
+				<description>
+					If TransformerFactory.getFeature(String name) returns true when passed this value as an argument, the Transformer supports Result output of this type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StAXResult(XMLEventWriter xmlEventWriter)
+				</name>
+				<description>
+					Creates a new instance of a StAXResult by supplying an XMLEventWriter. XMLEventWriter must be a non-null reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public StAXResult(XMLStreamWriter xmlStreamWriter)
+				</name>
+				<description>
+					Creates a new instance of a StAXResult by supplying an XMLStreamWriter. XMLStreamWriter must be a non-null reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLEventWriter getXMLEventWriter()
+				</name>
+				<description>
+					Get the XMLEventWriter used by this StAXResult. XMLEventWriter will be null if this StAXResult was created with a XMLStreamWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLStreamWriter getXMLStreamWriter()
+				</name>
+				<description>
+					Get the XMLStreamWriter used by this StAXResult. XMLStreamWriter will be null if this StAXResult was created with a XMLEventWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSystemId(String systemId)
+				</name>
+				<description>
+					In the context of a StAXResult, it is not appropriate to explicitly set the system identifier. The XMLEventWriter or XMLStreamWriter used to construct this StAXResult determines the system identifier of the XML result. An UnsupportedOperationException is always thrown by this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSystemId()
+				</name>
+				<description>
+					The returned system identifier is always null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

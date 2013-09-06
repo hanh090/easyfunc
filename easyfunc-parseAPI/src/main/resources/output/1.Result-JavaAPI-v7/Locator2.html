@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		org.xml.sax.ext
+	</package>
+	<type>
+		<name>
+			public interface Locator2  extends Locator
+		</name>
+		<description>
+			SAX2 extension to augment the entity information provided though a Locator. If an implementation supports this extension, the Locator provided in ContentHandler.setDocumentLocator() will implement this interface, and the http://xml.org/sax/features/use-locator2 feature flag will have the value true. This module, both source code and documentation, is in the Public Domain, and comes with NO WARRANTY. XMLReader implementations are not required to support this information, and it is not part of core-only SAX2 distributions.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getXMLVersion()
+				</name>
+				<description>
+					Returns the version of XML used for the entity. This will normally be the identifier from the current entity's <?xml version='...' ...?> declaration, or be defaulted by the parser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getEncoding()
+				</name>
+				<description>
+					Returns the name of the character encoding for the entity. If the encoding was declared externally (for example, in a MIME Content-Type header), that will be the name returned. Else if there was an <?xml ...encoding='...'?> declaration at the start of the document, that encoding name will be returned. Otherwise the encoding will been inferred (normally to be UTF-8, or some UTF-16 variant), and that inferred name will be returned. When an InputSource is used to provide an entity's character stream, this method returns the encoding provided in that input stream. Note that some recent W3C specifications require that text in some encodings be normalized, using Unicode Normalization Form C, before processing. Such normalization must be performed by applications, and would normally be triggered based on the value returned by this method. Encoding names may be those used by the underlying JVM, and comparisons should be case-insensitive.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

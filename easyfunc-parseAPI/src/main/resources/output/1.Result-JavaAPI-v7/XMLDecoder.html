@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public class XMLDecoder  extends Object  implements AutoCloseable
+		</name>
+		<description>
+			The XMLDecoder class is used to read XML documents created using the XMLEncoder and is used just like the ObjectInputStream. For example, one can use the following fragment to read the first object defined in an XML document written by the XMLEncoder class:          XMLDecoder d = new XMLDecoder(                            new BufferedInputStream(                                new FileInputStream("Test.xml")));         Object result = d.readObject();         d.close();   For more information you might also want to check out Long Term Persistence of JavaBeans Components: XML Schema, an article in The Swing Connection.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public XMLDecoder(InputStream in)
+				</name>
+				<description>
+					Creates a new input stream for reading archives created by the XMLEncoder class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLDecoder(InputStream in,            Object owner)
+				</name>
+				<description>
+					Creates a new input stream for reading archives created by the XMLEncoder class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLDecoder(InputStream in,            Object owner,            ExceptionListener exceptionListener)
+				</name>
+				<description>
+					Creates a new input stream for reading archives created by the XMLEncoder class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLDecoder(InputStream in,            Object owner,            ExceptionListener exceptionListener,            ClassLoader cl)
+				</name>
+				<description>
+					Creates a new input stream for reading archives created by the XMLEncoder class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLDecoder(InputSource is)
+				</name>
+				<description>
+					Creates a new decoder to parse XML archives created by the XMLEncoder class. If the input source is is null, no exception is thrown and no parsing is performed. This behavior is similar to behavior of other constructors that use InputStream as a parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()
+				</name>
+				<description>
+					This method closes the input stream associated with this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExceptionListener(ExceptionListener exceptionListener)
+				</name>
+				<description>
+					Sets the exception handler for this stream to exceptionListener. The exception handler is notified when this stream catches recoverable exceptions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ExceptionListener getExceptionListener()
+				</name>
+				<description>
+					Gets the exception handler for this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object readObject()
+				</name>
+				<description>
+					Reads the next object from the underlying input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOwner(Object owner)
+				</name>
+				<description>
+					Sets the owner of this decoder to owner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getOwner()
+				</name>
+				<description>
+					Gets the owner of this decoder.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DefaultHandler createHandler(Object owner,                             ExceptionListener el,                             ClassLoader cl)
+				</name>
+				<description>
+					Creates a new handler for SAX parser that can be used to parse embedded XML archives created by the XMLEncoder class. The owner should be used if parsed XML document contains the method call within context of the <java> element. The null value may cause illegal parsing in such case. The same problem may occur, if the owner class does not contain expected method to call. See details here.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

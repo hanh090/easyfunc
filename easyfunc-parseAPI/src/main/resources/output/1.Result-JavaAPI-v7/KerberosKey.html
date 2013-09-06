@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.security.auth.kerberos
+	</package>
+	<type>
+		<name>
+			public class KerberosKey  extends Object  implements SecretKey, Destroyable
+		</name>
+		<description>
+			This class encapsulates a long term secret key for a Kerberos principal. All Kerberos JAAS login modules that obtain a principal's password and generate the secret key from it should use this class. Sometimes, such as when authenticating a server in the absence of user-to-user authentication, the login module will store an instance of this class in the private credential set of a Subject during the commit phase of the authentication process. A Kerberos service using a keytab to read secret keys should use the KeyTab class, where latest keys can be read when needed. It might be necessary for the application to be granted a PrivateCredentialPermission if it needs to access the KerberosKey instance from a Subject. This permission is not needed when the application depends on the default JGSS Kerberos mechanism to access the KerberosKey. In that case, however, the application will need an appropriate ServicePermission.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public KerberosKey(KerberosPrincipal principal,             byte[] keyBytes,             int keyType,             int versionNum)
+				</name>
+				<description>
+					Constructs a KerberosKey from the given bytes when the key type and key version number are known. This can be used when reading the secret key information from a Kerberos "keytab".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public KerberosKey(KerberosPrincipal principal,             char[] password,             String algorithm)
+				</name>
+				<description>
+					Constructs a KerberosKey from a principal's password.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final KerberosPrincipal getPrincipal()
+				</name>
+				<description>
+					Returns the principal that this key belongs to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getVersionNumber()
+				</name>
+				<description>
+					Returns the key version number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getKeyType()
+				</name>
+				<description>
+					Returns the key type for this long-term key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getAlgorithm()
+				</name>
+				<description>
+					Returns the standard algorithm name for this key. For example, "DES" would indicate that this key is a DES key. See Appendix A in the Java Cryptography Architecture API Specification & Reference for information about standard algorithm names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getFormat()
+				</name>
+				<description>
+					Returns the name of the encoding format for this secret key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final byte[] getEncoded()
+				</name>
+				<description>
+					Returns the key material of this secret key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void destroy()               throws DestroyFailedException
+				</name>
+				<description>
+					Destroys this key. A call to any of its other methods after this will cause an IllegalStateException to be thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDestroyed()
+				</name>
+				<description>
+					Determines if this key has been destroyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: Object Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method. The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:    getClass().getName() + '@' + Integer.toHexString(hashCode())
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this KerberosKey.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object other)
+				</name>
+				<description>
+					Compares the specified Object with this KerberosKey for equality. Returns true if the given object is also a KerberosKey and the two KerberosKey instances are equivalent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.xml.ws.spi
+	</package>
+	<type>
+		<name>
+			@Target(value=ANNOTATION_TYPE)  @Retention(value=RUNTIME)  @Documented  public @interface WebServiceFeatureAnnotation
+		</name>
+		<description>
+			Annotation used to identify other annotations as a WebServiceFeature. Each WebServiceFeature annotation annotated with this annotation MUST contain an enabled property of type boolean with a default value of true. JAX-WS defines the following WebServiceFeature annotations (Addressing, MTOM, RespectBinding), however, an implementation may define vendors specific annotations for other features. Annotations annotated with WebServiceFeatureAnnotation MUST have the same @Target of WebServiceRef annotation, so that the resulting feature annotation can be used in conjunction with the WebServiceRef annotation if necessary. If a JAX-WS implementation encounters an annotation annotated with the WebServiceFeatureAnnotation that it does not recognize/support an error MUST be given.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public abstract String id
+				</name>
+				<description>
+					Unique identifier for the WebServiceFeature. This identifier MUST be unique across all implementations of JAX-WS.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Class<? extends WebServiceFeature> bean
+				</name>
+				<description>
+					The WebServiceFeature bean that is associated with the WebServiceFeature annotation
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

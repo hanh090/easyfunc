@@ -1,0 +1,486 @@
+<javaelement>
+	<package>
+		javax.swing.tree
+	</package>
+	<type>
+		<name>
+			public class DefaultTreeCellRenderer  extends JLabel  implements TreeCellRenderer
+		</name>
+		<description>
+			Displays an entry in a tree. DefaultTreeCellRenderer is not opaque and unless you subclass paint you should not change this. See How to Use Trees in The Java Tutorial for examples of customizing node display using this class. The set of icons and colors used by DefaultTreeCellRenderer can be configured using the various setter methods. The value for each property is initialized from the defaults table. When the look and feel changes (updateUI is invoked), any properties that have a value of type UIResource are refreshed from the defaults table. The following table lists the mapping between DefaultTreeCellRenderer property and defaults table key: Property: Key: "leafIcon" "Tree.leafIcon" "closedIcon" "Tree.closedIcon" "openIcon" "Tree.openIcon" "textSelectionColor" "Tree.selectionForeground" "textNonSelectionColor" "Tree.textForeground" "backgroundSelectionColor" "Tree.selectionBackground" "backgroundNonSelectionColor" "Tree.textBackground" "borderSelectionColor" "Tree.selectionBorderColor" Implementation Note: This class overrides invalidate, validate, revalidate, repaint, and firePropertyChange solely to improve performance. If not overridden, these frequently called methods would execute code paths that are unnecessary for the default tree cell renderer. If you write your own renderer, take care to weigh the benefits and drawbacks of overriding these methods. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected boolean selected
+				</name>
+				<description>
+					Is the value currently selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean hasFocus
+				</name>
+				<description>
+					True if has focus.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Icon closedIcon
+				</name>
+				<description>
+					Icon used to show non-leaf nodes that aren't expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Icon leafIcon
+				</name>
+				<description>
+					Icon used to show leaf nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Icon openIcon
+				</name>
+				<description>
+					Icon used to show non-leaf nodes that are expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color textSelectionColor
+				</name>
+				<description>
+					Color to use for the foreground for selected nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color textNonSelectionColor
+				</name>
+				<description>
+					Color to use for the foreground for non-selected nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color backgroundSelectionColor
+				</name>
+				<description>
+					Color to use for the background when a node is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color backgroundNonSelectionColor
+				</name>
+				<description>
+					Color to use for the background when the node isn't selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Color borderSelectionColor
+				</name>
+				<description>
+					Color to use for the focus indicator when the node has focus.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DefaultTreeCellRenderer()
+				</name>
+				<description>
+					Creates a DefaultTreeCellRenderer. Icons and text color are determined from the UIManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the UI property to a value from the current look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDefaultOpenIcon()
+				</name>
+				<description>
+					Returns the default icon, for the current laf, that is used to represent non-leaf nodes that are expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDefaultClosedIcon()
+				</name>
+				<description>
+					Returns the default icon, for the current laf, that is used to represent non-leaf nodes that are not expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDefaultLeafIcon()
+				</name>
+				<description>
+					Returns the default icon, for the current laf, that is used to represent leaf nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOpenIcon(Icon newIcon)
+				</name>
+				<description>
+					Sets the icon used to represent non-leaf nodes that are expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getOpenIcon()
+				</name>
+				<description>
+					Returns the icon used to represent non-leaf nodes that are expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setClosedIcon(Icon newIcon)
+				</name>
+				<description>
+					Sets the icon used to represent non-leaf nodes that are not expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getClosedIcon()
+				</name>
+				<description>
+					Returns the icon used to represent non-leaf nodes that are not expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLeafIcon(Icon newIcon)
+				</name>
+				<description>
+					Sets the icon used to represent leaf nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getLeafIcon()
+				</name>
+				<description>
+					Returns the icon used to represent leaf nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTextSelectionColor(Color newColor)
+				</name>
+				<description>
+					Sets the color the text is drawn with when the node is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getTextSelectionColor()
+				</name>
+				<description>
+					Returns the color the text is drawn with when the node is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTextNonSelectionColor(Color newColor)
+				</name>
+				<description>
+					Sets the color the text is drawn with when the node isn't selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getTextNonSelectionColor()
+				</name>
+				<description>
+					Returns the color the text is drawn with when the node isn't selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBackgroundSelectionColor(Color newColor)
+				</name>
+				<description>
+					Sets the color to use for the background if node is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackgroundSelectionColor()
+				</name>
+				<description>
+					Returns the color to use for the background if node is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBackgroundNonSelectionColor(Color newColor)
+				</name>
+				<description>
+					Sets the background color to be used for non selected nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackgroundNonSelectionColor()
+				</name>
+				<description>
+					Returns the background color to be used for non selected nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBorderSelectionColor(Color newColor)
+				</name>
+				<description>
+					Sets the color to use for the border.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBorderSelectionColor()
+				</name>
+				<description>
+					Returns the color the border is drawn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFont(Font font)
+				</name>
+				<description>
+					Subclassed to map FontUIResources to null. If font is null, or a FontUIResource, this has the effect of letting the font of the JTree show through. On the other hand, if font is non-null, and not a FontUIResource, the font becomes font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont()
+				</name>
+				<description>
+					Gets the font of this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBackground(Color color)
+				</name>
+				<description>
+					Subclassed to map ColorUIResources to null. If color is null, or a ColorUIResource, this has the effect of letting the background color of the JTree show through. On the other hand, if color is non-null, and not a ColorUIResource, the background becomes color.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getTreeCellRendererComponent(JTree tree,                                       Object value,                                       boolean sel,                                       boolean expanded,                                       boolean leaf,                                       int row,                                       boolean hasFocus)
+				</name>
+				<description>
+					Configures the renderer based on the passed in components. The value is set from messaging the tree with convertValueToText, which ultimately invokes toString on value. The foreground color is set based on the selection and the icon is set based on the leaf and expanded parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g)
+				</name>
+				<description>
+					Paints the value. The background is filled based on selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize()
+				</name>
+				<description>
+					Overrides JComponent.getPreferredSize to return slightly wider preferred size value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void validate()
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void invalidate()
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void revalidate()
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void repaint(long tm,             int x,             int y,             int width,             int height)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void repaint(Rectangle r)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void repaint()
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void firePropertyChange(String propertyName,                        Object oldValue,                        Object newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        byte oldValue,                        byte newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        char oldValue,                        char newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        short oldValue,                        short newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        int oldValue,                        int newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        long oldValue,                        long newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        float oldValue,                        float newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        double oldValue,                        double newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void firePropertyChange(String propertyName,                        boolean oldValue,                        boolean newValue)
+				</name>
+				<description>
+					Overridden for performance reasons. See the Implementation Note for more information.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

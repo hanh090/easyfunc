@@ -1,0 +1,378 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class PrintStream  extends FilterOutputStream  implements Appendable, Closeable
+		</name>
+		<description>
+			A PrintStream adds functionality to another output stream, namely the ability to print representations of various data values conveniently. Two other features are provided as well. Unlike other output streams, a PrintStream never throws an IOException; instead, exceptional situations merely set an internal flag that can be tested via the checkError method. Optionally, a PrintStream can be created so as to flush automatically; this means that the flush method is automatically invoked after a byte array is written, one of the println methods is invoked, or a newline character or byte ('\n') is written. All characters printed by a PrintStream are converted into bytes using the platform's default character encoding. The PrintWriter class should be used in situations that require writing characters rather than bytes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PrintStream(OutputStream out)
+				</name>
+				<description>
+					Creates a new print stream. This stream will not flush automatically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream(OutputStream out,             boolean autoFlush)
+				</name>
+				<description>
+					Creates a new print stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream(OutputStream out,             boolean autoFlush,             String encoding)              throws UnsupportedEncodingException
+				</name>
+				<description>
+					Creates a new print stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream(String fileName)              throws FileNotFoundException
+				</name>
+				<description>
+					Creates a new print stream, without automatic line flushing, with the specified file name. This convenience constructor creates the necessary intermediate OutputStreamWriter, which will encode characters using the default charset for this instance of the Java virtual machine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream(String fileName,             String csn)              throws FileNotFoundException,                     UnsupportedEncodingException
+				</name>
+				<description>
+					Creates a new print stream, without automatic line flushing, with the specified file name and charset. This convenience constructor creates the necessary intermediate OutputStreamWriter, which will encode characters using the provided charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream(File file)              throws FileNotFoundException
+				</name>
+				<description>
+					Creates a new print stream, without automatic line flushing, with the specified file. This convenience constructor creates the necessary intermediate OutputStreamWriter, which will encode characters using the default charset for this instance of the Java virtual machine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream(File file,             String csn)              throws FileNotFoundException,                     UnsupportedEncodingException
+				</name>
+				<description>
+					Creates a new print stream, without automatic line flushing, with the specified file and charset. This convenience constructor creates the necessary intermediate OutputStreamWriter, which will encode characters using the provided charset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flush()
+				</name>
+				<description>
+					Flushes the stream. This is done by writing any buffered output bytes to the underlying output stream and then flushing that stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()
+				</name>
+				<description>
+					Closes the stream. This is done by flushing the stream and then closing the underlying output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean checkError()
+				</name>
+				<description>
+					Flushes the stream and checks its error state. The internal error state is set to true when the underlying output stream throws an IOException other than InterruptedIOException, and when the setError method is invoked. If an operation on the underlying output stream throws an InterruptedIOException, then the PrintStream converts the exception back into an interrupt by doing:        Thread.currentThread().interrupt();   or the equivalent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setError()
+				</name>
+				<description>
+					Sets the error state of the stream to true. This method will cause subsequent invocations of checkError() to return true until clearError() is invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void clearError()
+				</name>
+				<description>
+					Clears the internal error state of this stream. This method will cause subsequent invocations of checkError() to return false until another write operation fails and invokes setError().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(int b)
+				</name>
+				<description>
+					Writes the specified byte to this stream. If the byte is a newline and automatic flushing is enabled then the flush method will be invoked. Note that the byte is written as given; to write a character that will be translated according to the platform's default character encoding, use the print(char) or println(char) methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(byte[] buf,           int off,           int len)
+				</name>
+				<description>
+					Writes len bytes from the specified byte array starting at offset off to this stream. If automatic flushing is enabled then the flush method will be invoked. Note that the bytes will be written as given; to write characters that will be translated according to the platform's default character encoding, use the print(char) or println(char) methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(boolean b)
+				</name>
+				<description>
+					Prints a boolean value. The string produced by String.valueOf(boolean) is translated into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(char c)
+				</name>
+				<description>
+					Prints a character. The character is translated into one or more bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(int i)
+				</name>
+				<description>
+					Prints an integer. The string produced by String.valueOf(int) is translated into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(long l)
+				</name>
+				<description>
+					Prints a long integer. The string produced by String.valueOf(long) is translated into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(float f)
+				</name>
+				<description>
+					Prints a floating-point number. The string produced by String.valueOf(float) is translated into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(double d)
+				</name>
+				<description>
+					Prints a double-precision floating-point number. The string produced by String.valueOf(double) is translated into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(char[] s)
+				</name>
+				<description>
+					Prints an array of characters. The characters are converted into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(String s)
+				</name>
+				<description>
+					Prints a string. If the argument is null then the string "null" is printed. Otherwise, the string's characters are converted into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void print(Object obj)
+				</name>
+				<description>
+					Prints an object. The string produced by the String.valueOf(Object) method is translated into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of the write(int) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println()
+				</name>
+				<description>
+					Terminates the current line by writing the line separator string. The line separator string is defined by the system property line.separator, and is not necessarily a single newline character ('\n').
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(boolean x)
+				</name>
+				<description>
+					Prints a boolean and then terminate the line. This method behaves as though it invokes print(boolean) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(char x)
+				</name>
+				<description>
+					Prints a character and then terminate the line. This method behaves as though it invokes print(char) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(int x)
+				</name>
+				<description>
+					Prints an integer and then terminate the line. This method behaves as though it invokes print(int) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(long x)
+				</name>
+				<description>
+					Prints a long and then terminate the line. This method behaves as though it invokes print(long) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(float x)
+				</name>
+				<description>
+					Prints a float and then terminate the line. This method behaves as though it invokes print(float) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(double x)
+				</name>
+				<description>
+					Prints a double and then terminate the line. This method behaves as though it invokes print(double) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(char[] x)
+				</name>
+				<description>
+					Prints an array of characters and then terminate the line. This method behaves as though it invokes print(char[]) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(String x)
+				</name>
+				<description>
+					Prints a String and then terminate the line. This method behaves as though it invokes print(String) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void println(Object x)
+				</name>
+				<description>
+					Prints an Object and then terminate the line. This method calls at first String.valueOf(x) to get the printed object's string value, then behaves as though it invokes print(String) and then println().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream printf(String format,                   Object... args)
+				</name>
+				<description>
+					A convenience method to write a formatted string to this output stream using the specified format string and arguments. An invocation of this method of the form out.printf(format, args) behaves in exactly the same way as the invocation        out.format(format, args)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream printf(Locale l,                   String format,                   Object... args)
+				</name>
+				<description>
+					A convenience method to write a formatted string to this output stream using the specified format string and arguments. An invocation of this method of the form out.printf(l, format, args) behaves in exactly the same way as the invocation        out.format(l, format, args)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream format(String format,                   Object... args)
+				</name>
+				<description>
+					Writes a formatted string to this output stream using the specified format string and arguments. The locale always used is the one returned by Locale.getDefault(), regardless of any previous invocations of other formatting methods on this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream format(Locale l,                   String format,                   Object... args)
+				</name>
+				<description>
+					Writes a formatted string to this output stream using the specified format string and arguments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream append(CharSequence csq)
+				</name>
+				<description>
+					Appends the specified character sequence to this output stream. An invocation of this method of the form out.append(csq) behaves in exactly the same way as the invocation        out.print(csq.toString()) Depending on the specification of toString for the character sequence csq, the entire sequence may not be appended. For instance, invoking then toString method of a character buffer will return a subsequence whose content depends upon the buffer's position and limit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream append(CharSequence csq,                   int start,                   int end)
+				</name>
+				<description>
+					Appends a subsequence of the specified character sequence to this output stream. An invocation of this method of the form out.append(csq, start, end) when csq is not null, behaves in exactly the same way as the invocation        out.print(csq.subSequence(start, end).toString())
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrintStream append(char c)
+				</name>
+				<description>
+					Appends the specified character to this output stream. An invocation of this method of the form out.append(c) behaves in exactly the same way as the invocation        out.print(c)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

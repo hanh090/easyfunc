@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class ByteArrayInputStream  extends InputStream
+		</name>
+		<description>
+			A ByteArrayInputStream contains an internal buffer that contains bytes that may be read from the stream. An internal counter keeps track of the next byte to be supplied by the read method. Closing a ByteArrayInputStream has no effect. The methods in this class can be called after the stream has been closed without generating an IOException.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected byte[] buf
+				</name>
+				<description>
+					An array of bytes that was provided by the creator of the stream. Elements buf[0] through buf[count-1] are the only bytes that can ever be read from the stream; element buf[pos] is the next byte to be read.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int pos
+				</name>
+				<description>
+					The index of the next character to read from the input stream buffer. This value should always be nonnegative and not larger than the value of count. The next byte to be read from the input stream buffer will be buf[pos].
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int mark
+				</name>
+				<description>
+					The currently marked position in the stream. ByteArrayInputStream objects are marked at position zero by default when constructed. They may be marked at another position within the buffer by the mark() method. The current buffer position is set to this point by the reset() method. If no mark has been set, then the value of mark is the offset passed to the constructor (or 0 if the offset was not supplied).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int count
+				</name>
+				<description>
+					The index one greater than the last valid character in the input stream buffer. This value should always be nonnegative and not larger than the length of buf. It is one greater than the position of the last byte within buf that can ever be read from the input stream buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ByteArrayInputStream(byte[] buf)
+				</name>
+				<description>
+					Creates a ByteArrayInputStream so that it uses buf as its buffer array. The buffer array is not copied. The initial value of pos is 0 and the initial value of count is the length of buf.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ByteArrayInputStream(byte[] buf,                      int offset,                      int length)
+				</name>
+				<description>
+					Creates ByteArrayInputStream that uses buf as its buffer array. The initial value of pos is offset and the initial value of count is the minimum of offset+length and buf.length. The buffer array is not copied. The buffer's mark is set to the specified offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()
+				</name>
+				<description>
+					Reads the next byte of data from this input stream. The value byte is returned as an int in the range 0 to 255. If no byte is available because the end of the stream has been reached, the value -1 is returned. This read method cannot block.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)
+				</name>
+				<description>
+					Reads up to len bytes of data into an array of bytes from this input stream. If pos equals count, then -1 is returned to indicate end of file. Otherwise, the number k of bytes read is equal to the smaller of len and count-pos. If k is positive, then bytes buf[pos] through buf[pos+k-1] are copied into b[off] through b[off+k-1] in the manner performed by System.arraycopy. The value k is added into pos and k is returned. This read method cannot block.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)
+				</name>
+				<description>
+					Skips n bytes of input from this input stream. Fewer bytes might be skipped if the end of the input stream is reached. The actual number k of bytes to be skipped is equal to the smaller of n and count-pos. The value k is added into pos and k is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()
+				</name>
+				<description>
+					Returns the number of remaining bytes that can be read (or skipped over) from this input stream. The value returned is count - pos, which is the number of bytes remaining to be read from the input buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean markSupported()
+				</name>
+				<description>
+					Tests if this InputStream supports mark/reset. The markSupported method of ByteArrayInputStream always returns true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mark(int readAheadLimit)
+				</name>
+				<description>
+					Set the current marked position in the stream. ByteArrayInputStream objects are marked at position zero by default when constructed. They may be marked at another position within the buffer by this method. If no mark has been set, then the value of the mark is the offset passed to the constructor (or 0 if the offset was not supplied). Note: The readAheadLimit for this class has no meaning.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()
+				</name>
+				<description>
+					Resets the buffer to the marked position. The marked position is 0 unless another position was marked or an offset was specified in the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closing a ByteArrayInputStream has no effect. The methods in this class can be called after the stream has been closed without generating an IOException.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

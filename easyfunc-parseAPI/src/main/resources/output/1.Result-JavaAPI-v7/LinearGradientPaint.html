@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public final class LinearGradientPaint  extends MultipleGradientPaint
+		</name>
+		<description>
+			The LinearGradientPaint class provides a way to fill a Shape with a linear color gradient pattern. The user may specify two or more gradient colors, and this paint will provide an interpolation between each color. The user also specifies start and end points which define where in user space the color gradient should begin and end. The user must provide an array of floats specifying how to distribute the colors along the gradient. These values should range from 0.0 to 1.0 and act like keyframes along the gradient (they mark where the gradient should be exactly a particular color). In the event that the user does not set the first keyframe value equal to 0 and/or the last keyframe value equal to 1, keyframes will be created at these positions and the first and last colors will be replicated there. So, if a user specifies the following arrays to construct a gradient:        {Color.BLUE, Color.RED}, {.3f, .7f}   this will be converted to a gradient with the following keyframes:        {Color.BLUE, Color.BLUE, Color.RED, Color.RED}, {0f, .3f, .7f, 1f}   The user may also select what action the LinearGradientPaint object takes when it is filling the space outside the start and end points by setting CycleMethod to either REFLECTION or REPEAT. The distances between any two colors in any of the reflected or repeated copies of the gradient are the same as the distance between those same two colors between the start and end points. Note that some minor variations in distances may occur due to sampling at the granularity of a pixel. If no cycle method is specified, NO_CYCLE will be chosen by default, which means the endpoint colors will be used to fill the remaining area. The colorSpace parameter allows the user to specify in which colorspace the interpolation should be performed, default sRGB or linearized RGB. The following code demonstrates typical usage of LinearGradientPaint:        Point2D start = new Point2D.Float(0, 0);       Point2D end = new Point2D.Float(50, 50);       float[] dist = {0.0f, 0.2f, 1.0f};       Color[] colors = {Color.RED, Color.WHITE, Color.BLUE};       LinearGradientPaint p =           new LinearGradientPaint(start, end, dist, colors);   This code will create a LinearGradientPaint which interpolates between red and white for the first 20% of the gradient and between white and blue for the remaining 80%. This image demonstrates the example code above for each of the three cycle methods:
+		</description>
+		<methods>
+			<method>
+				<name>
+					public LinearGradientPaint(float startX,                     float startY,                     float endX,                     float endY,                     float[] fractions,                     Color[] colors)
+				</name>
+				<description>
+					Constructs a LinearGradientPaint with a default NO_CYCLE repeating method and SRGB color space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LinearGradientPaint(float startX,                     float startY,                     float endX,                     float endY,                     float[] fractions,                     Color[] colors,                     MultipleGradientPaint.CycleMethod cycleMethod)
+				</name>
+				<description>
+					Constructs a LinearGradientPaint with a default SRGB color space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LinearGradientPaint(Point2D start,                     Point2D end,                     float[] fractions,                     Color[] colors)
+				</name>
+				<description>
+					Constructs a LinearGradientPaint with a default NO_CYCLE repeating method and SRGB color space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LinearGradientPaint(Point2D start,                     Point2D end,                     float[] fractions,                     Color[] colors,                     MultipleGradientPaint.CycleMethod cycleMethod)
+				</name>
+				<description>
+					Constructs a LinearGradientPaint with a default SRGB color space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@ConstructorProperties(value={"startPoint","endPoint","fractions","colors","cycleMethod","colorSpace","transform"})  public LinearGradientPaint(Point2D start,                                                Point2D end,                                                float[] fractions,                                                Color[] colors,                                                MultipleGradientPaint.CycleMethod cycleMethod,                                                MultipleGradientPaint.ColorSpaceType colorSpace,                                                AffineTransform gradientTransform)
+				</name>
+				<description>
+					Constructs a LinearGradientPaint.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PaintContext createContext(ColorModel cm,                           Rectangle deviceBounds,                           Rectangle2D userBounds,                           AffineTransform transform,                           RenderingHints hints)
+				</name>
+				<description>
+					Creates and returns a PaintContext used to generate a linear color gradient pattern. See the specification of the method in the Paint interface for information on null parameter handling.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point2D getStartPoint()
+				</name>
+				<description>
+					Returns a copy of the start point of the gradient axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point2D getEndPoint()
+				</name>
+				<description>
+					Returns a copy of the end point of the gradient axis.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,306 @@
+<javaelement>
+	<package>
+		javax.xml.stream
+	</package>
+	<type>
+		<name>
+			public interface XMLStreamWriter
+		</name>
+		<description>
+			The XMLStreamWriter interface specifies how to write XML. The XMLStreamWriter does not perform well formedness checking on its input. However the writeCharacters method is required to escape & , < and > For attribute values the writeAttribute method will escape the above characters plus " to ensure that all character content and attribute values are well formed. Each NAMESPACE and ATTRIBUTE must be individually written. XML Namespaces, javax.xml.stream.isRepairingNamespaces and write method behaviour Method isRepairingNamespaces == true isRepairingNamespaces == false namespaceURI bound namespaceURI unbound namespaceURI bound namespaceURI unbound writeAttribute(namespaceURI, localName, value) prefix:localName="value" [1] xmlns:{generated}="namespaceURI" {generated}:localName="value" prefix:localName="value" [1] XMLStreamException writeAttribute(prefix, namespaceURI, localName, value) bound to same prefix: prefix:localName="value" [1] bound to different prefix: xmlns:{generated}="namespaceURI" {generated}:localName="value" xmlns:prefix="namespaceURI" prefix:localName="value" [3] bound to same prefix: prefix:localName="value" [1][2] bound to different prefix: XMLStreamException[2] xmlns:prefix="namespaceURI" prefix:localName="value" [2][5] writeStartElement(namespaceURI, localName) writeEmptyElement(namespaceURI, localName) <prefix:localName> [1] <{generated}:localName xmlns:{generated}="namespaceURI"> <prefix:localName> [1] XMLStreamException writeStartElement(prefix, localName, namespaceURI) writeEmptyElement(prefix, localName, namespaceURI) bound to same prefix: <prefix:localName> [1] bound to different prefix: <{generated}:localName xmlns:{generated}="namespaceURI"> <prefix:localName xmlns:prefix="namespaceURI"> [4] bound to same prefix: <prefix:localName> [1] bound to different prefix: XMLStreamException <prefix:localName>  Notes: [1] if namespaceURI == default Namespace URI, then no prefix is written [2] if prefix == "" || null && namespaceURI == "", then no prefix or Namespace declaration is generated or written [3] if prefix == "" || null, then a prefix is randomly generated [4] if prefix == "" || null, then it is treated as the default Namespace and no prefix is generated or written, an xmlns declaration is generated and written if the namespaceURI is unbound [5] if prefix == "" || null, then it is treated as an invalid attempt to define the default Namespace and an XMLStreamException is thrown
+		</description>
+		<methods>
+			<method>
+				<name>
+					void writeStartElement(String localName)                         throws XMLStreamException
+				</name>
+				<description>
+					Writes a start tag to the output. All writeStartElement methods open a new scope in the internal namespace context. Writing the corresponding EndElement causes the scope to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeStartElement(String namespaceURI,                       String localName)                         throws XMLStreamException
+				</name>
+				<description>
+					Writes a start tag to the output
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeStartElement(String prefix,                       String localName,                       String namespaceURI)                         throws XMLStreamException
+				</name>
+				<description>
+					Writes a start tag to the output
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeEmptyElement(String namespaceURI,                       String localName)                         throws XMLStreamException
+				</name>
+				<description>
+					Writes an empty element tag to the output
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeEmptyElement(String prefix,                       String localName,                       String namespaceURI)                         throws XMLStreamException
+				</name>
+				<description>
+					Writes an empty element tag to the output
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeEmptyElement(String localName)                         throws XMLStreamException
+				</name>
+				<description>
+					Writes an empty element tag to the output
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeEndElement()                       throws XMLStreamException
+				</name>
+				<description>
+					Writes an end tag to the output relying on the internal state of the writer to determine the prefix and local name of the event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeEndDocument()                        throws XMLStreamException
+				</name>
+				<description>
+					Closes any start tags and writes corresponding end tags.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void close()             throws XMLStreamException
+				</name>
+				<description>
+					Close this writer and free any resources associated with the writer. This must not close the underlying output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void flush()             throws XMLStreamException
+				</name>
+				<description>
+					Write any cached data to the underlying output mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeAttribute(String localName,                    String value)                      throws XMLStreamException
+				</name>
+				<description>
+					Writes an attribute to the output stream without a prefix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeAttribute(String prefix,                    String namespaceURI,                    String localName,                    String value)                      throws XMLStreamException
+				</name>
+				<description>
+					Writes an attribute to the output stream
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeAttribute(String namespaceURI,                    String localName,                    String value)                      throws XMLStreamException
+				</name>
+				<description>
+					Writes an attribute to the output stream
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeNamespace(String prefix,                    String namespaceURI)                      throws XMLStreamException
+				</name>
+				<description>
+					Writes a namespace to the output stream If the prefix argument to this method is the empty string, "xmlns", or null this method will delegate to writeDefaultNamespace
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeDefaultNamespace(String namespaceURI)                             throws XMLStreamException
+				</name>
+				<description>
+					Writes the default namespace to the stream
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeComment(String data)                    throws XMLStreamException
+				</name>
+				<description>
+					Writes an xml comment with the data enclosed
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeProcessingInstruction(String target)                                  throws XMLStreamException
+				</name>
+				<description>
+					Writes a processing instruction
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeProcessingInstruction(String target,                                String data)                                  throws XMLStreamException
+				</name>
+				<description>
+					Writes a processing instruction
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeCData(String data)                  throws XMLStreamException
+				</name>
+				<description>
+					Writes a CData section
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeDTD(String dtd)                throws XMLStreamException
+				</name>
+				<description>
+					Write a DTD section. This string represents the entire doctypedecl production from the XML 1.0 specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeEntityRef(String name)                      throws XMLStreamException
+				</name>
+				<description>
+					Writes an entity reference
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeStartDocument()                          throws XMLStreamException
+				</name>
+				<description>
+					Write the XML Declaration. Defaults the XML version to 1.0, and the encoding to utf-8
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeStartDocument(String version)                          throws XMLStreamException
+				</name>
+				<description>
+					Write the XML Declaration. Defaults the XML version to 1.0
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeStartDocument(String encoding,                        String version)                          throws XMLStreamException
+				</name>
+				<description>
+					Write the XML Declaration. Note that the encoding parameter does not set the actual encoding of the underlying output. That must be set when the instance of the XMLStreamWriter is created using the XMLOutputFactory
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeCharacters(String text)                       throws XMLStreamException
+				</name>
+				<description>
+					Write text to the output
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void writeCharacters(char[] text,                     int start,                     int len)                       throws XMLStreamException
+				</name>
+				<description>
+					Write text to the output
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getPrefix(String uri)                   throws XMLStreamException
+				</name>
+				<description>
+					Gets the prefix the uri is bound to
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setPrefix(String prefix,               String uri)                 throws XMLStreamException
+				</name>
+				<description>
+					Sets the prefix the uri is bound to. This prefix is bound in the scope of the current START_ELEMENT / END_ELEMENT pair. If this method is called before a START_ELEMENT has been written the prefix is bound in the root scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setDefaultNamespace(String uri)                           throws XMLStreamException
+				</name>
+				<description>
+					Binds a URI to the default namespace This URI is bound in the scope of the current START_ELEMENT / END_ELEMENT pair. If this method is called before a START_ELEMENT has been written the uri is bound in the root scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setNamespaceContext(NamespaceContext context)                           throws XMLStreamException
+				</name>
+				<description>
+					Sets the current namespace context for prefix and uri bindings. This context becomes the root namespace context for writing and will replace the current root namespace context. Subsequent calls to setPrefix and setDefaultNamespace will bind namespaces using the context passed to the method as the root context for resolving namespaces. This method may only be called once at the start of the document. It does not cause the namespaces to be declared. If a namespace URI to prefix mapping is found in the namespace context it is treated as declared and the prefix may be used by the StreamWriter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NamespaceContext getNamespaceContext()
+				</name>
+				<description>
+					Returns the current namespace context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getProperty(String name)                     throws IllegalArgumentException
+				</name>
+				<description>
+					Get the value of a feature/property from the underlying implementation
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

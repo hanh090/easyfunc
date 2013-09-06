@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig.dom
+	</package>
+	<type>
+		<name>
+			public class DOMValidateContext  extends DOMCryptoContext  implements XMLValidateContext
+		</name>
+		<description>
+			A DOM-specific XMLValidateContext. This class contains additional methods to specify the location in a DOM tree where an XMLSignature is to be unmarshalled and validated from. Note that the behavior of an unmarshalled XMLSignature is undefined if the contents of the underlying DOM tree are modified by the caller after the XMLSignature is created. Also, note that DOMValidateContext instances can contain information and state specific to the XML signature structure it is used with. The results are unpredictable if a DOMValidateContext is used with different signature structures (for example, you should not use the same DOMValidateContext instance to validate two different XMLSignature objects).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DOMValidateContext(KeySelector ks,                    Node node)
+				</name>
+				<description>
+					Creates a DOMValidateContext containing the specified key selector and node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DOMValidateContext(Key validatingKey,                    Node node)
+				</name>
+				<description>
+					Creates a DOMValidateContext containing the specified key and node. The validating key will be stored in a singleton KeySelector that is returned when the getKeySelector method is called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNode(Node node)
+				</name>
+				<description>
+					Sets the node.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getNode()
+				</name>
+				<description>
+					Returns the node.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

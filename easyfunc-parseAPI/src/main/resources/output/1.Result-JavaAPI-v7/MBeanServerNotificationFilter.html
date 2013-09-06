@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.management.relation
+	</package>
+	<type>
+		<name>
+			public class MBeanServerNotificationFilter  extends NotificationFilterSupport
+		</name>
+		<description>
+			Filter for MBeanServerNotification. This filter filters MBeanServerNotification notifications by selecting the ObjectNames of interest and the operations (registration, unregistration, both) of interest (corresponding to notification types). The serialVersionUID of this class is 2605900539589789736L.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MBeanServerNotificationFilter()
+				</name>
+				<description>
+					Creates a filter selecting all MBeanServerNotification notifications for all ObjectNames.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void disableAllObjectNames()
+				</name>
+				<description>
+					Disables any MBeanServerNotification (all ObjectNames are deselected).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void disableObjectName(ObjectName objectName)                         throws IllegalArgumentException
+				</name>
+				<description>
+					Disables MBeanServerNotifications concerning given ObjectName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void enableAllObjectNames()
+				</name>
+				<description>
+					Enables all MBeanServerNotifications (all ObjectNames are selected).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void enableObjectName(ObjectName objectName)                        throws IllegalArgumentException
+				</name>
+				<description>
+					Enables MBeanServerNotifications concerning given ObjectName.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<ObjectName> getEnabledObjectNames()
+				</name>
+				<description>
+					Gets all the ObjectNames enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<ObjectName> getDisabledObjectNames()
+				</name>
+				<description>
+					Gets all the ObjectNames disabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isNotificationEnabled(Notification notif)                                throws IllegalArgumentException
+				</name>
+				<description>
+					Invoked before sending the specified notification to the listener. If: - the ObjectName of the concerned MBean is selected (explicitly OR (implicitly and not explicitly deselected)) AND - the type of the operation (registration or unregistration) is selected then the notification is sent to the listener.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

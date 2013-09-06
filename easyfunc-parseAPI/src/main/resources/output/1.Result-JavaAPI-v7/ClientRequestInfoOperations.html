@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface ClientRequestInfoOperations  extends RequestInfoOperations
+		</name>
+		<description>
+			Request Information, accessible to client-side request interceptors. Some attributes and operations on ClientRequestInfo are not valid at all interception points. The following table shows the validity of each attribute or operation. If it is not valid, attempting to access it will result in a BAD_INV_ORDER being thrown with a standard minor code of 14.   send_request send_poll receive_reply receive_exception receive_other Inherited from RequestInfo: request_id yes yes yes yes yes operation yes yes yes yes yes arguments yes1 no yes no no exceptions yes no yes yes yes contexts yes no yes yes yes operation_context yes no yes yes yes result no no yes no no response_expected yes yes yes yes yes sync_scope yes no yes yes yes reply_status no no yes yes yes forward_reference no no no no yes2 get_slot yes yes yes yes yes get_request_service_context yes no yes yes yes get_reply_service_context no no yes yes yes ClientRequestInfo-specific: target yes yes yes yes yes effective_target yes yes yes yes yes effective_profile yes yes yes yes yes received_exception no no no yes no received_exception_id no no no yes no get_effective_component yes no yes yes yes get_effective_components yes no yes yes yes get_request_policy yes no yes yes yes add_request_service_context yes no no no no When ClientRequestInfo is passed to send_request, there is an entry in the list for every argument, whether in, inout, or out. But only the in and inout arguments will be available. If the reply_status atribute is not LOCATION_FORWARD, accessing this attribute will throw BAD_INV_ORDER with a standard minor code of 14.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Object target()
+				</name>
+				<description>
+					Returns the object which the client called to perform the operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object effective_target()
+				</name>
+				<description>
+					Returns the actual object on which the operation will be invoked. If the reply_status is LOCATION_FORWARD, then on subsequent requests, effective_target will contain the forwarded IOR while target will remain unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TaggedProfile effective_profile()
+				</name>
+				<description>
+					Returns the profile that will be used to send the request. If a location forward has occurred for this operation's object and that object's profile changed accordingly, then this profile will be that located profile.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Any received_exception()
+				</name>
+				<description>
+					Returns an any which contains the exception to be returned to the client. If the exception is a user exception which cannot be inserted into an any (e.g., it is unknown or the bindings don t provide the TypeCode), then this attribute will be an any containing the system exception UNKNOWN with a standard minor code of 1. However, the repository id of the exception is available in the received_exception_id attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String received_exception_id()
+				</name>
+				<description>
+					Returns the repository id of the exception to be returned to the client.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TaggedComponent get_effective_component(int id)
+				</name>
+				<description>
+					Returns the IOP.TaggedComponent with the given ID from the profile selected for this request. If there is more than one component for a given component ID, it is undefined which component this operation returns. If there is more than one component for a given component ID, get_effective_components should be called instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TaggedComponent[] get_effective_components(int id)
+				</name>
+				<description>
+					Returns an array of all tagged components with the given ID from the profile selected for this request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Policy get_request_policy(int type)
+				</name>
+				<description>
+					Returns the given policy in effect for this operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void add_request_service_context(ServiceContext service_context,                                 boolean replace)
+				</name>
+				<description>
+					Allows Interceptors to add service contexts to the request. There is no declaration of the order of the service contexts. They may or may not appear in the order that they are added.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

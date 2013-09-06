@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public class EnumMap<K extends Enum<K>,V>  extends AbstractMap<K,V>  implements Serializable, Cloneable
+		</name>
+		<description>
+			A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient. Enum maps are maintained in the natural order of their keys (the order in which the enum constants are declared). This is reflected in the iterators returned by the collections views (keySet(), entrySet(), and values()). Iterators returned by the collection views are weakly consistent: they will never throw ConcurrentModificationException and they may or may not show the effects of any modifications to the map that occur while the iteration is in progress. Null keys are not permitted. Attempts to insert a null key will throw NullPointerException. Attempts to test for the presence of a null key or to remove one will, however, function properly. Null values are permitted. Like most collection implementations EnumMap is not synchronized. If multiple threads access an enum map concurrently, and at least one of the threads modifies the map, it should be synchronized externally. This is typically accomplished by synchronizing on some object that naturally encapsulates the enum map. If no such object exists, the map should be "wrapped" using the Collections.synchronizedMap(java.util.Map<K, V>) method. This is best done at creation time, to prevent accidental unsynchronized access:        Map<EnumKey, V> m           = Collections.synchronizedMap(new EnumMap<EnumKey, V>(...));   Implementation note: All basic operations execute in constant time. They are likely (though not guaranteed) to be faster than their HashMap counterparts. This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public EnumMap(Class<K> keyType)
+				</name>
+				<description>
+					Creates an empty enum map with the specified key type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EnumMap(EnumMap<K,? extends V> m)
+				</name>
+				<description>
+					Creates an enum map with the same key type as the specified enum map, initially containing the same mappings (if any).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EnumMap(Map<K,? extends V> m)
+				</name>
+				<description>
+					Creates an enum map initialized from the specified map. If the specified map is an EnumMap instance, this constructor behaves identically to EnumMap(EnumMap). Otherwise, the specified map must contain at least one mapping (in order to determine the new enum map's key type).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of key-value mappings in this map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsValue(Object value)
+				</name>
+				<description>
+					Returns true if this map maps one or more keys to the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(Object key)
+				</name>
+				<description>
+					Returns true if this map contains a mapping for the specified key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V get(Object key)
+				</name>
+				<description>
+					Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key. More formally, if this map contains a mapping from a key k to a value v such that (key == k), then this method returns v; otherwise it returns null. (There can be at most one such mapping.) A return value of null does not necessarily indicate that the map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V put(K key,      V value)
+				</name>
+				<description>
+					Associates the specified value with the specified key in this map. If the map previously contained a mapping for this key, the old value is replaced.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V remove(Object key)
+				</name>
+				<description>
+					Removes the mapping for this key from this map if present.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void putAll(Map<? extends K,? extends V> m)
+				</name>
+				<description>
+					Copies all of the mappings from the specified map to this map. These mappings will replace any mappings that this map had for any of the keys currently in the specified map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all mappings from this map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<K> keySet()
+				</name>
+				<description>
+					Returns a Set view of the keys contained in this map. The returned set obeys the general contract outlined in Map.keySet(). The set's iterator will return the keys in their natural order (the order in which the enum constants are declared).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Collection<V> values()
+				</name>
+				<description>
+					Returns a Collection view of the values contained in this map. The returned collection obeys the general contract outlined in Map.values(). The collection's iterator will return the values in the order their corresponding keys appear in map, which is their natural order (the order in which the enum constants are declared).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Map.Entry<K,V>> entrySet()
+				</name>
+				<description>
+					Returns a Set view of the mappings contained in this map. The returned set obeys the general contract outlined in Map.keySet(). The set's iterator will return the mappings in the order their keys appear in map, which is their natural order (the order in which the enum constants are declared).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compares the specified object with this map for equality. Returns true if the given object is also a map and the two maps represent the same mappings, as specified in the Map.equals(Object) contract.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this map. The hash code of a map is defined to be the sum of the hash codes of each entry in the map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public EnumMap<K,V> clone()
+				</name>
+				<description>
+					Returns a shallow copy of this enum map. (The values themselves are not cloned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

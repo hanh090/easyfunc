@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.crypto
+	</package>
+	<type>
+		<name>
+			public abstract class MacSpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the Mac class. All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply the implementation of a particular MAC algorithm. Implementations are free to implement the Cloneable interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MacSpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract int engineGetMacLength()
+				</name>
+				<description>
+					Returns the length of the MAC in bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(Key key,                AlgorithmParameterSpec params)                              throws InvalidKeyException,                                     InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Initializes the MAC with the given (secret) key and algorithm parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineUpdate(byte input)
+				</name>
+				<description>
+					Processes the given byte.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineUpdate(byte[] input,                  int offset,                  int len)
+				</name>
+				<description>
+					Processes the first len bytes in input, starting at offset inclusive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void engineUpdate(ByteBuffer input)
+				</name>
+				<description>
+					Processes input.remaining() bytes in the ByteBuffer input, starting at input.position(). Upon return, the buffer's position will be equal to its limit; its limit will not have changed. Subclasses should consider overriding this method if they can process ByteBuffers more efficiently than byte arrays.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract byte[] engineDoFinal()
+				</name>
+				<description>
+					Completes the MAC computation and resets the MAC for further use, maintaining the secret key that the MAC was initialized with.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineReset()
+				</name>
+				<description>
+					Resets the MAC for further use, maintaining the secret key that the MAC was initialized with.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()               throws CloneNotSupportedException
+				</name>
+				<description>
+					Returns a clone if the implementation is cloneable.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

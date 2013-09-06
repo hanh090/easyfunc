@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.awt.datatransfer
+	</package>
+	<type>
+		<name>
+			public final class SystemFlavorMap  extends Object  implements FlavorMap, FlavorTable
+		</name>
+		<description>
+			The SystemFlavorMap is a configurable map between "natives" (Strings), which correspond to platform-specific data formats, and "flavors" (DataFlavors), which correspond to platform-independent MIME types. This mapping is used by the data transfer subsystem to transfer data between Java and native applications, and between Java applications in separate VMs. In the Sun reference implementation, the default SystemFlavorMap is initialized by the file jre/lib/flavormap.properties and the contents of the URL referenced by the AWT property AWT.DnD.flavorMapFileURL. See flavormap.properties for details.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static FlavorMap getDefaultFlavorMap()
+				</name>
+				<description>
+					Returns the default FlavorMap for this thread's ClassLoader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<String> getNativesForFlavor(DataFlavor flav)
+				</name>
+				<description>
+					Returns a List of String natives to which the specified DataFlavor can be translated by the data transfer subsystem. The List will be sorted from best native to worst. That is, the first native will best reflect data in the specified flavor to the underlying native platform. If the specified DataFlavor is previously unknown to the data transfer subsystem and the data transfer subsystem is unable to translate this DataFlavor to any existing native, then invoking this method will establish a mapping in both directions between the specified DataFlavor and an encoded version of its MIME type as its native.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<DataFlavor> getFlavorsForNative(String nat)
+				</name>
+				<description>
+					Returns a List of DataFlavors to which the specified String native can be translated by the data transfer subsystem. The List will be sorted from best DataFlavor to worst. That is, the first DataFlavor will best reflect data in the specified native to a Java application. If the specified native is previously unknown to the data transfer subsystem, and that native has been properly encoded, then invoking this method will establish a mapping in both directions between the specified native and a DataFlavor whose MIME type is a decoded version of the native. If the specified native is not a properly encoded native and the mappings for this native have not been altered with setFlavorsForNative, then the contents of the List is platform dependent, but null cannot be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<DataFlavor,String> getNativesForFlavors(DataFlavor[] flavors)
+				</name>
+				<description>
+					Returns a Map of the specified DataFlavors to their most preferred String native. Each native value will be the same as the first native in the List returned by getNativesForFlavor for the specified flavor. If a specified DataFlavor is previously unknown to the data transfer subsystem, then invoking this method will establish a mapping in both directions between the specified DataFlavor and an encoded version of its MIME type as its native.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<String,DataFlavor> getFlavorsForNatives(String[] natives)
+				</name>
+				<description>
+					Returns a Map of the specified String natives to their most preferred DataFlavor. Each DataFlavor value will be the same as the first DataFlavor in the List returned by getFlavorsForNative for the specified native. If a specified native is previously unknown to the data transfer subsystem, and that native has been properly encoded, then invoking this method will establish a mapping in both directions between the specified native and a DataFlavor whose MIME type is a decoded version of the native.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addUnencodedNativeForFlavor(DataFlavor flav,                                 String nat)
+				</name>
+				<description>
+					Adds a mapping from the specified DataFlavor (and all DataFlavors equal to the specified DataFlavor) to the specified String native. Unlike getNativesForFlavor, the mapping will only be established in one direction, and the native will not be encoded. To establish a two-way mapping, call addFlavorForUnencodedNative as well. The new mapping will be of lower priority than any existing mapping. This method has no effect if a mapping from the specified or equal DataFlavor to the specified String native already exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNativesForFlavor(DataFlavor flav,                         String[] natives)
+				</name>
+				<description>
+					Discards the current mappings for the specified DataFlavor and all DataFlavors equal to the specified DataFlavor, and creates new mappings to the specified String natives. Unlike getNativesForFlavor, the mappings will only be established in one direction, and the natives will not be encoded. To establish two-way mappings, call setFlavorsForNative as well. The first native in the array will represent the highest priority mapping. Subsequent natives will represent mappings of decreasing priority. If the array contains several elements that reference equal String natives, this method will establish new mappings for the first of those elements and ignore the rest of them. It is recommended that client code not reset mappings established by the data transfer subsystem. This method should only be used for application-level mappings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addFlavorForUnencodedNative(String nat,                                 DataFlavor flav)
+				</name>
+				<description>
+					Adds a mapping from a single String native to a single DataFlavor. Unlike getFlavorsForNative, the mapping will only be established in one direction, and the native will not be encoded. To establish a two-way mapping, call addUnencodedNativeForFlavor as well. The new mapping will be of lower priority than any existing mapping. This method has no effect if a mapping from the specified String native to the specified or equal DataFlavor already exists.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFlavorsForNative(String nat,                         DataFlavor[] flavors)
+				</name>
+				<description>
+					Discards the current mappings for the specified String native, and creates new mappings to the specified DataFlavors. Unlike getFlavorsForNative, the mappings will only be established in one direction, and the natives need not be encoded. To establish two-way mappings, call setNativesForFlavor as well. The first DataFlavor in the array will represent the highest priority mapping. Subsequent DataFlavors will represent mappings of decreasing priority. If the array contains several elements that reference equal DataFlavors, this method will establish new mappings for the first of those elements and ignore the rest of them. It is recommended that client code not reset mappings established by the data transfer subsystem. This method should only be used for application-level mappings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String encodeJavaMIMEType(String mimeType)
+				</name>
+				<description>
+					Encodes a MIME type for use as a String native. The format of an encoded representation of a MIME type is implementation-dependent. The only restrictions are: The encoded representation is null if and only if the MIME type String is null. The encoded representations for two non-null MIME type Strings are equal if and only if these Strings are equal according to String.equals(Object). Sun's reference implementation of this method returns the specified MIME type String prefixed with JAVA_DATAFLAVOR:.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String encodeDataFlavor(DataFlavor flav)
+				</name>
+				<description>
+					Encodes a DataFlavor for use as a String native. The format of an encoded DataFlavor is implementation-dependent. The only restrictions are: The encoded representation is null if and only if the specified DataFlavor is null or its MIME type String is null. The encoded representations for two non-null DataFlavors with non-null MIME type Strings are equal if and only if the MIME type Strings of these DataFlavors are equal according to String.equals(Object). Sun's reference implementation of this method returns the MIME type String of the specified DataFlavor prefixed with JAVA_DATAFLAVOR:.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isJavaMIMEType(String str)
+				</name>
+				<description>
+					Returns whether the specified String is an encoded Java MIME type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String decodeJavaMIMEType(String nat)
+				</name>
+				<description>
+					Decodes a String native for use as a Java MIME type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DataFlavor decodeDataFlavor(String nat)                                     throws ClassNotFoundException
+				</name>
+				<description>
+					Decodes a String native for use as a DataFlavor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

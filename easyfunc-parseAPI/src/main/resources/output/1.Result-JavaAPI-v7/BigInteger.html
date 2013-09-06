@@ -1,0 +1,495 @@
+<javaelement>
+	<package>
+		java.math
+	</package>
+	<type>
+		<name>
+			public class BigInteger  extends Number  implements Comparable<BigInteger>
+		</name>
+		<description>
+			Immutable arbitrary-precision integers. All operations behave as if BigIntegers were represented in two's-complement notation (like Java's primitive integer types). BigInteger provides analogues to all of Java's primitive integer operators, and all relevant methods from java.lang.Math. Additionally, BigInteger provides operations for modular arithmetic, GCD calculation, primality testing, prime generation, bit manipulation, and a few other miscellaneous operations. Semantics of arithmetic operations exactly mimic those of Java's integer arithmetic operators, as defined in The Java Language Specification. For example, division by zero throws an ArithmeticException, and division of a negative by a positive yields a negative (or zero) remainder. All of the details in the Spec concerning overflow are ignored, as BigIntegers are made as large as necessary to accommodate the results of an operation. Semantics of shift operations extend those of Java's shift operators to allow for negative shift distances. A right-shift with a negative shift distance results in a left shift, and vice-versa. The unsigned right shift operator (>>>) is omitted, as this operation makes little sense in combination with the "infinite word size" abstraction provided by this class. Semantics of bitwise logical operations exactly mimic those of Java's bitwise integer operators. The binary operators (and, or, xor) implicitly perform sign extension on the shorter of the two operands prior to performing the operation. Comparison operations perform signed integer comparisons, analogous to those performed by Java's relational and equality operators. Modular arithmetic operations are provided to compute residues, perform exponentiation, and compute multiplicative inverses. These methods always return a non-negative result, between 0 and (modulus - 1), inclusive. Bit operations operate on a single bit of the two's-complement representation of their operand. If necessary, the operand is sign- extended so that it contains the designated bit. None of the single-bit operations can produce a BigInteger with a different sign from the BigInteger being operated on, as they affect only a single bit, and the "infinite word size" abstraction provided by this class ensures that there are infinitely many "virtual sign bits" preceding each BigInteger. For the sake of brevity and clarity, pseudo-code is used throughout the descriptions of BigInteger methods. The pseudo-code expression (i + j) is shorthand for "a BigInteger whose value is that of the BigInteger i plus that of the BigInteger j." The pseudo-code expression (i == j) is shorthand for "true if and only if the BigInteger i represents the same value as the BigInteger j." Other pseudo-code expressions are interpreted similarly. All methods and constructors in this class throw NullPointerException when passed a null object reference for any input parameter.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final BigInteger ZERO
+				</name>
+				<description>
+					The BigInteger constant zero.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final BigInteger ONE
+				</name>
+				<description>
+					The BigInteger constant one.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final BigInteger TEN
+				</name>
+				<description>
+					The BigInteger constant ten.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger(byte[] val)
+				</name>
+				<description>
+					Translates a byte array containing the two's-complement binary representation of a BigInteger into a BigInteger. The input array is assumed to be in big-endian byte-order: the most significant byte is in the zeroth element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger(int signum,            byte[] magnitude)
+				</name>
+				<description>
+					Translates the sign-magnitude representation of a BigInteger into a BigInteger. The sign is represented as an integer signum value: -1 for negative, 0 for zero, or 1 for positive. The magnitude is a byte array in big-endian byte-order: the most significant byte is in the zeroth element. A zero-length magnitude array is permissible, and will result in a BigInteger value of 0, whether signum is -1, 0 or 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger(String val,            int radix)
+				</name>
+				<description>
+					Translates the String representation of a BigInteger in the specified radix into a BigInteger. The String representation consists of an optional minus or plus sign followed by a sequence of one or more digits in the specified radix. The character-to-digit mapping is provided by Character.digit. The String may not contain any extraneous characters (whitespace, for example).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger(String val)
+				</name>
+				<description>
+					Translates the decimal String representation of a BigInteger into a BigInteger. The String representation consists of an optional minus sign followed by a sequence of one or more decimal digits. The character-to-digit mapping is provided by Character.digit. The String may not contain any extraneous characters (whitespace, for example).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger(int numBits,            Random rnd)
+				</name>
+				<description>
+					Constructs a randomly generated BigInteger, uniformly distributed over the range 0 to (2numBits - 1), inclusive. The uniformity of the distribution assumes that a fair source of random bits is provided in rnd. Note that this constructor always constructs a non-negative BigInteger.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger(int bitLength,            int certainty,            Random rnd)
+				</name>
+				<description>
+					Constructs a randomly generated positive BigInteger that is probably prime, with the specified bitLength. It is recommended that the probablePrime method be used in preference to this constructor unless there is a compelling need to specify a certainty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BigInteger probablePrime(int bitLength,                         Random rnd)
+				</name>
+				<description>
+					Returns a positive BigInteger that is probably prime, with the specified bitLength. The probability that a BigInteger returned by this method is composite does not exceed 2-100.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger nextProbablePrime()
+				</name>
+				<description>
+					Returns the first integer greater than this BigInteger that is probably prime. The probability that the number returned by this method is composite does not exceed 2-100. This method will never skip over a prime when searching: if it returns p, there is no prime q such that this < q < p.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static BigInteger valueOf(long val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is equal to that of the specified long. This "static factory method" is provided in preference to a (long) constructor because it allows for reuse of frequently used BigIntegers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger add(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this + val).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger subtract(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this - val).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger multiply(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this * val).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger divide(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this / val).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger[] divideAndRemainder(BigInteger val)
+				</name>
+				<description>
+					Returns an array of two BigIntegers containing (this / val) followed by (this % val).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger remainder(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this % val).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger pow(int exponent)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (thisexponent). Note that exponent is an integer rather than a BigInteger.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger gcd(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is the greatest common divisor of abs(this) and abs(val). Returns 0 if this==0 && val==0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger abs()
+				</name>
+				<description>
+					Returns a BigInteger whose value is the absolute value of this BigInteger.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger negate()
+				</name>
+				<description>
+					Returns a BigInteger whose value is (-this).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int signum()
+				</name>
+				<description>
+					Returns the signum function of this BigInteger.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger mod(BigInteger m)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this mod m). This method differs from remainder in that it always returns a non-negative BigInteger.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger modPow(BigInteger exponent,                  BigInteger m)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (thisexponent mod m). (Unlike pow, this method permits negative exponents.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger modInverse(BigInteger m)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this-1 mod m).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger shiftLeft(int n)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this << n). The shift distance, n, may be negative, in which case this method performs a right shift. (Computes floor(this * 2n).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger shiftRight(int n)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this >> n). Sign extension is performed. The shift distance, n, may be negative, in which case this method performs a left shift. (Computes floor(this / 2n).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger and(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this & val). (This method returns a negative BigInteger if and only if this and val are both negative.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger or(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this | val). (This method returns a negative BigInteger if and only if either this or val is negative.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger xor(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this ^ val). (This method returns a negative BigInteger if and only if exactly one of this and val are negative.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger not()
+				</name>
+				<description>
+					Returns a BigInteger whose value is (~this). (This method returns a negative value if and only if this BigInteger is non-negative.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger andNot(BigInteger val)
+				</name>
+				<description>
+					Returns a BigInteger whose value is (this & ~val). This method, which is equivalent to and(val.not()), is provided as a convenience for masking operations. (This method returns a negative BigInteger if and only if this is negative and val is positive.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean testBit(int n)
+				</name>
+				<description>
+					Returns true if and only if the designated bit is set. (Computes ((this & (1<<n)) != 0).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger setBit(int n)
+				</name>
+				<description>
+					Returns a BigInteger whose value is equivalent to this BigInteger with the designated bit set. (Computes (this | (1<<n)).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger clearBit(int n)
+				</name>
+				<description>
+					Returns a BigInteger whose value is equivalent to this BigInteger with the designated bit cleared. (Computes (this & ~(1<<n)).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger flipBit(int n)
+				</name>
+				<description>
+					Returns a BigInteger whose value is equivalent to this BigInteger with the designated bit flipped. (Computes (this ^ (1<<n)).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLowestSetBit()
+				</name>
+				<description>
+					Returns the index of the rightmost (lowest-order) one bit in this BigInteger (the number of zero bits to the right of the rightmost one bit). Returns -1 if this BigInteger contains no one bits. (Computes (this==0? -1 : log2(this & -this)).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int bitLength()
+				</name>
+				<description>
+					Returns the number of bits in the minimal two's-complement representation of this BigInteger, excluding a sign bit. For positive BigIntegers, this is equivalent to the number of bits in the ordinary binary representation. (Computes (ceil(log2(this < 0 ? -this : this+1))).)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int bitCount()
+				</name>
+				<description>
+					Returns the number of bits in the two's complement representation of this BigInteger that differ from its sign bit. This method is useful when implementing bit-vector style sets atop BigIntegers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isProbablePrime(int certainty)
+				</name>
+				<description>
+					Returns true if this BigInteger is probably prime, false if it's definitely composite. If certainty is ? 0, true is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int compareTo(BigInteger val)
+				</name>
+				<description>
+					Compares this BigInteger with the specified BigInteger. This method is provided in preference to individual methods for each of the six boolean comparison operators (<, ==, >, >=, !=, <=). The suggested idiom for performing these comparisons is: (x.compareTo(y) <op> 0), where <op> is one of the six comparison operators.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object x)
+				</name>
+				<description>
+					Compares this BigInteger with the specified Object for equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger min(BigInteger val)
+				</name>
+				<description>
+					Returns the minimum of this BigInteger and val.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BigInteger max(BigInteger val)
+				</name>
+				<description>
+					Returns the maximum of this BigInteger and val.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code for this BigInteger.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString(int radix)
+				</name>
+				<description>
+					Returns the String representation of this BigInteger in the given radix. If the radix is outside the range from Character.MIN_RADIX to Character.MAX_RADIX inclusive, it will default to 10 (as is the case for Integer.toString). The digit-to-character mapping provided by Character.forDigit is used, and a minus sign is prepended if appropriate. (This representation is compatible with the (String, int) constructor.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the decimal String representation of this BigInteger. The digit-to-character mapping provided by Character.forDigit is used, and a minus sign is prepended if appropriate. (This representation is compatible with the (String) constructor, and allows for String concatenation with Java's + operator.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] toByteArray()
+				</name>
+				<description>
+					Returns a byte array containing the two's-complement representation of this BigInteger. The byte array will be in big-endian byte-order: the most significant byte is in the zeroth element. The array will contain the minimum number of bytes required to represent this BigInteger, including at least one sign bit, which is (ceil((this.bitLength() + 1)/8)). (This representation is compatible with the (byte[]) constructor.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int intValue()
+				</name>
+				<description>
+					Converts this BigInteger to an int. This conversion is analogous to a narrowing primitive conversion from long to int as defined in section 5.1.3 of The Java™ Language Specification: if this BigInteger is too big to fit in an int, only the low-order 32 bits are returned. Note that this conversion can lose information about the overall magnitude of the BigInteger value as well as return a result with the opposite sign.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long longValue()
+				</name>
+				<description>
+					Converts this BigInteger to a long. This conversion is analogous to a narrowing primitive conversion from long to int as defined in section 5.1.3 of The Java™ Language Specification: if this BigInteger is too big to fit in a long, only the low-order 64 bits are returned. Note that this conversion can lose information about the overall magnitude of the BigInteger value as well as return a result with the opposite sign.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float floatValue()
+				</name>
+				<description>
+					Converts this BigInteger to a float. This conversion is similar to the narrowing primitive conversion from double to float as defined in section 5.1.3 of The Java™ Language Specification: if this BigInteger has too great a magnitude to represent as a float, it will be converted to Float.NEGATIVE_INFINITY or Float.POSITIVE_INFINITY as appropriate. Note that even when the return value is finite, this conversion can lose information about the precision of the BigInteger value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double doubleValue()
+				</name>
+				<description>
+					Converts this BigInteger to a double. This conversion is similar to the narrowing primitive conversion from double to float as defined in section 5.1.3 of The Java™ Language Specification: if this BigInteger has too great a magnitude to represent as a double, it will be converted to Double.NEGATIVE_INFINITY or Double.POSITIVE_INFINITY as appropriate. Note that even when the return value is finite, this conversion can lose information about the precision of the BigInteger value.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

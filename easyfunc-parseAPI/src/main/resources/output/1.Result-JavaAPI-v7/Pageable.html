@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.awt.print
+	</package>
+	<type>
+		<name>
+			public interface Pageable
+		</name>
+		<description>
+			The Pageable implementation represents a set of pages to be printed. The Pageable object returns the total number of pages in the set as well as the PageFormat and Printable for a specified page.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final int UNKNOWN_NUMBER_OF_PAGES
+				</name>
+				<description>
+					This constant is returned from the getNumberOfPages method if a Pageable implementation does not know the number of pages in its set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getNumberOfPages()
+				</name>
+				<description>
+					Returns the number of pages in the set. To enable advanced printing features, it is recommended that Pageable implementations return the true number of pages rather than the UNKNOWN_NUMBER_OF_PAGES constant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					PageFormat getPageFormat(int pageIndex)                           throws IndexOutOfBoundsException
+				</name>
+				<description>
+					Returns the PageFormat of the page specified by pageIndex.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Printable getPrintable(int pageIndex)                         throws IndexOutOfBoundsException
+				</name>
+				<description>
+					Returns the Printable instance responsible for rendering the page specified by pageIndex.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

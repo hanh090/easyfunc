@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public abstract class TrustManagerFactorySpi  extends Object
+		</name>
+		<description>
+			This class defines the Service Provider Interface (SPI) for the TrustManagerFactory class. All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply the implementation of a particular trust manager factory.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TrustManagerFactorySpi()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(KeyStore ks)                              throws KeyStoreException
+				</name>
+				<description>
+					Initializes this factory with a source of certificate authorities and related trust material.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void engineInit(ManagerFactoryParameters spec)                              throws InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Initializes this factory with a source of provider-specific key material. In some cases, initialization parameters other than a keystore may be needed by a provider. Users of that particular provider are expected to pass an implementation of the appropriate ManagerFactoryParameters as defined by the provider. The provider can then call the specified methods in the ManagerFactoryParameters implementation to obtain the needed information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract TrustManager[] engineGetTrustManagers()
+				</name>
+				<description>
+					Returns one trust manager for each type of trust material.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

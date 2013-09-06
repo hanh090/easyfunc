@@ -1,0 +1,270 @@
+<javaelement>
+	<package>
+		java.awt.dnd
+	</package>
+	<type>
+		<name>
+			public class DropTarget  extends Object  implements DropTargetListener, Serializable
+		</name>
+		<description>
+			The DropTarget is associated with a Component when that Component wishes to accept drops during Drag and Drop operations. Each DropTarget is associated with a FlavorMap. The default FlavorMap hereafter designates the FlavorMap returned by SystemFlavorMap.getDefaultFlavorMap().
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DropTarget(Component c,            int ops,            DropTargetListener dtl,            boolean act,            FlavorMap fm)             throws HeadlessException
+				</name>
+				<description>
+					Creates a new DropTarget given the Component to associate itself with, an int representing the default acceptable action(s) to support, a DropTargetListener to handle event processing, a boolean indicating if the DropTarget is currently accepting drops, and a FlavorMap to use (or null for the default FlavorMap). The Component will receive drops only if it is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DropTarget(Component c,            int ops,            DropTargetListener dtl,            boolean act)             throws HeadlessException
+				</name>
+				<description>
+					Creates a DropTarget given the Component to associate itself with, an int representing the default acceptable action(s) to support, a DropTargetListener to handle event processing, and a boolean indicating if the DropTarget is currently accepting drops. The Component will receive drops only if it is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DropTarget()             throws HeadlessException
+				</name>
+				<description>
+					Creates a DropTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DropTarget(Component c,            DropTargetListener dtl)             throws HeadlessException
+				</name>
+				<description>
+					Creates a DropTarget given the Component to associate itself with, and the DropTargetListener to handle event processing. The Component will receive drops only if it is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DropTarget(Component c,            int ops,            DropTargetListener dtl)             throws HeadlessException
+				</name>
+				<description>
+					Creates a DropTarget given the Component to associate itself with, an int representing the default acceptable action(s) to support, and a DropTargetListener to handle event processing. The Component will receive drops only if it is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setComponent(Component c)
+				</name>
+				<description>
+					Note: this interface is required to permit the safe association of a DropTarget with a Component in one of two ways, either: component.setDropTarget(droptarget); or droptarget.setComponent(component); The Component will receive drops only if it is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getComponent()
+				</name>
+				<description>
+					Gets the Component associated with this DropTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultActions(int ops)
+				</name>
+				<description>
+					Sets the default acceptable actions for this DropTarget
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDefaultActions()
+				</name>
+				<description>
+					Gets an int representing the current action(s) supported by this DropTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setActive(boolean isActive)
+				</name>
+				<description>
+					Sets the DropTarget active if true, inactive if false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isActive()
+				</name>
+				<description>
+					Reports whether or not this DropTarget is currently active (ready to accept drops).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addDropTargetListener(DropTargetListener dtl)                             throws TooManyListenersException
+				</name>
+				<description>
+					Adds a new DropTargetListener (UNICAST SOURCE).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeDropTargetListener(DropTargetListener dtl)
+				</name>
+				<description>
+					Removes the current DropTargetListener (UNICAST SOURCE).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragEnter(DropTargetDragEvent dtde)
+				</name>
+				<description>
+					Calls dragEnter on the registered DropTargetListener and passes it the specified DropTargetDragEvent. Has no effect if this DropTarget is not active.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragOver(DropTargetDragEvent dtde)
+				</name>
+				<description>
+					Calls dragOver on the registered DropTargetListener and passes it the specified DropTargetDragEvent. Has no effect if this DropTarget is not active.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dropActionChanged(DropTargetDragEvent dtde)
+				</name>
+				<description>
+					Calls dropActionChanged on the registered DropTargetListener and passes it the specified DropTargetDragEvent. Has no effect if this DropTarget is not active.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragExit(DropTargetEvent dte)
+				</name>
+				<description>
+					Calls dragExit on the registered DropTargetListener and passes it the specified DropTargetEvent. Has no effect if this DropTarget is not active. This method itself does not throw any exception for null parameter but for exceptions thrown by the respective method of the listener.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void drop(DropTargetDropEvent dtde)
+				</name>
+				<description>
+					Calls drop on the registered DropTargetListener and passes it the specified DropTargetDropEvent if this DropTarget is active.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FlavorMap getFlavorMap()
+				</name>
+				<description>
+					Gets the FlavorMap associated with this DropTarget. If no FlavorMap has been set for this DropTarget, it is associated with the default FlavorMap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFlavorMap(FlavorMap fm)
+				</name>
+				<description>
+					Sets the FlavorMap associated with this DropTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotify(java.awt.peer.ComponentPeer peer)
+				</name>
+				<description>
+					Notify the DropTarget that it has been associated with a Component This method is usually called from java.awt.Component.addNotify() of the Component associated with this DropTarget to notify the DropTarget that a ComponentPeer has been associated with that Component. Calling this method, other than to notify this DropTarget of the association of the ComponentPeer with the Component may result in a malfunction of the DnD system.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotify(java.awt.peer.ComponentPeer peer)
+				</name>
+				<description>
+					Notify the DropTarget that it has been disassociated from a Component This method is usually called from java.awt.Component.removeNotify() of the Component associated with this DropTarget to notify the DropTarget that a ComponentPeer has been disassociated with that Component. Calling this method, other than to notify this DropTarget of the disassociation of the ComponentPeer from the Component may result in a malfunction of the DnD system.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DropTargetContext getDropTargetContext()
+				</name>
+				<description>
+					Gets the DropTargetContext associated with this DropTarget.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DropTargetContext createDropTargetContext()
+				</name>
+				<description>
+					Creates the DropTargetContext associated with this DropTarget. Subclasses may override this method to instantiate their own DropTargetContext subclass. This call is typically *only* called by the platform's DropTargetContextPeer as a drag operation encounters this DropTarget. Accessing the Context while no Drag is current has undefined results.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected DropTarget.DropTargetAutoScroller createDropTargetAutoScroller(Component c,                                                               Point p)
+				</name>
+				<description>
+					create an embedded autoscroller
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initializeAutoscrolling(Point p)
+				</name>
+				<description>
+					initialize autoscrolling
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateAutoscroll(Point dragCursorLocn)
+				</name>
+				<description>
+					update autoscrolling with current cursor locn
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void clearAutoscroll()
+				</name>
+				<description>
+					clear autoscrolling
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

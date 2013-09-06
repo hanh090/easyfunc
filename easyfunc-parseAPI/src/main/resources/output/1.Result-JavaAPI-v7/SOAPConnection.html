@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.soap
+	</package>
+	<type>
+		<name>
+			public abstract class SOAPConnection  extends Object
+		</name>
+		<description>
+			A point-to-point connection that a client can use for sending messages directly to a remote party (represented by a URL, for instance). The SOAPConnection class is optional. Some implementations may not implement this interface in which case the call to SOAPConnectionFactory.newInstance() (see below) will throw an UnsupportedOperationException. A client can obtain a SOAPConnection object using a SOAPConnectionFactory object as in the following example:         SOAPConnectionFactory factory = SOAPConnectionFactory.newInstance();        SOAPConnection con = factory.createConnection();   A SOAPConnection object can be used to send messages directly to a URL following the request/response paradigm. That is, messages are sent using the method call, which sends the message and then waits until it gets a reply.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SOAPConnection()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SOAPMessage call(SOAPMessage request,                 Object to)                            throws SOAPException
+				</name>
+				<description>
+					Sends the given message to the specified endpoint and blocks until it has returned the response.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SOAPMessage get(Object to)                  throws SOAPException
+				</name>
+				<description>
+					Gets a message from a specific endpoint and blocks until it receives,
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void close()                      throws SOAPException
+				</name>
+				<description>
+					Closes this SOAPConnection object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

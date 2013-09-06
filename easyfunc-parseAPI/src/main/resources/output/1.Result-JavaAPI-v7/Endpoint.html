@@ -1,0 +1,243 @@
+<javaelement>
+	<package>
+		javax.xml.ws
+	</package>
+	<type>
+		<name>
+			public abstract class Endpoint  extends Object
+		</name>
+		<description>
+			A Web service endpoint. Endpoints are created using the static methods defined in this class. An endpoint is always tied to one Binding and one implementor, both set at endpoint creation time. An endpoint is either in a published or an unpublished state. The publish methods can be used to start publishing an endpoint, at which point it starts accepting incoming requests. Conversely, the stop method can be used to stop accepting incoming requests and take the endpoint down. Once stopped, an endpoint cannot be published again. An Executor may be set on the endpoint in order to gain better control over the threads used to dispatch incoming requests. For instance, thread pooling with certain parameters can be enabled by creating a ThreadPoolExecutor and registering it with the endpoint. Handler chains can be set using the contained Binding. An endpoint may have a list of metadata documents, such as WSDL and XMLSchema documents, bound to it. At publishing time, the JAX-WS implementation will try to reuse as much of that metadata as possible instead of generating new ones based on the annotations present on the implementor.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String WSDL_SERVICE
+				</name>
+				<description>
+					Standard property: name of WSDL service. Type: javax.xml.namespace.QName
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String WSDL_PORT
+				</name>
+				<description>
+					Standard property: name of WSDL port. Type: javax.xml.namespace.QName
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Endpoint()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Endpoint create(Object implementor)
+				</name>
+				<description>
+					Creates an endpoint with the specified implementor object. If there is a binding specified via a BindingType annotation then it MUST be used else a default of SOAP 1.1 / HTTP binding MUST be used. The newly created endpoint may be published by calling one of the publish(String) and publish(Object) methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Endpoint create(Object implementor,                WebServiceFeature... features)
+				</name>
+				<description>
+					Creates an endpoint with the specified implementor object and web service features. If there is a binding specified via a BindingType annotation then it MUST be used else a default of SOAP 1.1 / HTTP binding MUST be used. The newly created endpoint may be published by calling one of the publish(String) and publish(Object) methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Endpoint create(String bindingId,                Object implementor)
+				</name>
+				<description>
+					Creates an endpoint with the specified binding type and implementor object. The newly created endpoint may be published by calling one of the publish(String) and publish(Object) methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Endpoint create(String bindingId,                Object implementor,                WebServiceFeature... features)
+				</name>
+				<description>
+					Creates an endpoint with the specified binding type, implementor object, and web service features. The newly created endpoint may be published by calling one of the publish(String) and publish(Object) methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Binding getBinding()
+				</name>
+				<description>
+					Returns the binding for this endpoint.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object getImplementor()
+				</name>
+				<description>
+					Returns the implementation object for this endpoint.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void publish(String address)
+				</name>
+				<description>
+					Publishes this endpoint at the given address. The necessary server infrastructure will be created and configured by the JAX-WS implementation using some default configuration. In order to get more control over the server configuration, please use the publish(Object) method instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Endpoint publish(String address,                 Object implementor)
+				</name>
+				<description>
+					Creates and publishes an endpoint for the specified implementor object at the given address. The necessary server infrastructure will be created and configured by the JAX-WS implementation using some default configuration. In order to get more control over the server configuration, please use the create(String,Object) and publish(Object) methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Endpoint publish(String address,                 Object implementor,                 WebServiceFeature... features)
+				</name>
+				<description>
+					Creates and publishes an endpoint for the specified implementor object at the given address. The created endpoint is configured with the web service features. The necessary server infrastructure will be created and configured by the JAX-WS implementation using some default configuration. In order to get more control over the server configuration, please use the create(String,Object) and publish(Object) methods instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void publish(Object serverContext)
+				</name>
+				<description>
+					Publishes this endpoint at the provided server context. A server context encapsulates the server infrastructure and addressing information for a particular transport. For a call to this method to succeed, the server context passed as an argument to it MUST be compatible with the endpoint's binding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void publish(HttpContext serverContext)
+				</name>
+				<description>
+					Publishes this endpoint at the provided server context. A server context encapsulates the server infrastructure and addressing information for a particular transport. For a call to this method to succeed, the server context passed as an argument to it MUST be compatible with the endpoint's binding. This is meant for container developers to publish the the endpoints portably and not intended for the end developers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void stop()
+				</name>
+				<description>
+					Stops publishing this endpoint. If the endpoint is not in a published state, this method has no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isPublished()
+				</name>
+				<description>
+					Returns true if the endpoint is in the published state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract List<Source> getMetadata()
+				</name>
+				<description>
+					Returns a list of metadata documents for the service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setMetadata(List<Source> metadata)
+				</name>
+				<description>
+					Sets the metadata for this endpoint.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Executor getExecutor()
+				</name>
+				<description>
+					Returns the executor for this Endpointinstance. The executor is used to dispatch an incoming request to the implementor object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setExecutor(Executor executor)
+				</name>
+				<description>
+					Sets the executor for this Endpoint instance. The executor is used to dispatch an incoming request to the implementor object. If this Endpoint is published using the publish(Object) method and the specified server context defines its own threading behavior, the executor may be ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Map<String,Object> getProperties()
+				</name>
+				<description>
+					Returns the property bag for this Endpoint instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setProperties(Map<String,Object> properties)
+				</name>
+				<description>
+					Sets the property bag for this Endpoint instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EndpointReference getEndpointReference(Element... referenceParameters)
+				</name>
+				<description>
+					Returns the EndpointReference associated with this Endpoint instance. If the Binding for this bindingProvider is either SOAP1.1/HTTP or SOAP1.2/HTTP, then a W3CEndpointReference MUST be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <T extends EndpointReference> T getEndpointReference(Class<T> clazz,                                                     Element... referenceParameters)
+				</name>
+				<description>
+					Returns the EndpointReference associated with this Endpoint instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEndpointContext(EndpointContext ctxt)
+				</name>
+				<description>
+					By settng a EndpointContext, JAX-WS runtime knows about addresses of other endpoints in an application. If multiple endpoints share different ports of a WSDL, then the multiple port addresses are patched when the WSDL is accessed. This needs to be set before publishing the endpoints.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

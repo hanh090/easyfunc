@@ -1,0 +1,189 @@
+<javaelement>
+	<package>
+		javax.management.modelmbean
+	</package>
+	<type>
+		<name>
+			public class DescriptorSupport  extends Object  implements Descriptor
+		</name>
+		<description>
+			This class represents the metadata set for a ModelMBean element. A descriptor is part of the ModelMBeanInfo, ModelMBeanNotificationInfo, ModelMBeanAttributeInfo, ModelMBeanConstructorInfo, and ModelMBeanParameterInfo. A descriptor consists of a collection of fields. Each field is in fieldname=fieldvalue format. Field names are not case sensitive, case will be preserved on field values. All field names and values are not predefined. New fields can be defined and added by any program. Some fields have been predefined for consistency of implementation and support by the ModelMBeanInfo, ModelMBeanAttributeInfo, ModelMBeanConstructorInfo, ModelMBeanNotificationInfo, ModelMBeanOperationInfo and ModelMBean classes. The serialVersionUID of this class is -6292969195866300415L.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DescriptorSupport()
+				</name>
+				<description>
+					Descriptor default constructor. Default initial descriptor size is 20. It will grow as needed. Note that the created empty descriptor is not a valid descriptor (the method isValid returns false)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DescriptorSupport(int initNumFields)                    throws MBeanException,                           RuntimeOperationsException
+				</name>
+				<description>
+					Descriptor constructor. Takes as parameter the initial capacity of the Map that stores the descriptor fields. Capacity will grow as needed. Note that the created empty descriptor is not a valid descriptor (the method isValid returns false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DescriptorSupport(DescriptorSupport inDescr)
+				</name>
+				<description>
+					Descriptor constructor taking a Descriptor as parameter. Creates a new descriptor initialized to the values of the descriptor passed in parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DescriptorSupport(String inStr)                    throws MBeanException,                           RuntimeOperationsException,                           XMLParseException
+				</name>
+				<description>
+					Descriptor constructor taking an XML String. The format of the XML string is not defined, but an implementation must ensure that the string returned by toXMLString() on an existing descriptor can be used to instantiate an equivalent descriptor using this constructor. In this implementation, all field values will be created as Strings. If the field values are not Strings, the programmer will have to reset or convert these fields correctly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DescriptorSupport(String[] fieldNames,                   Object[] fieldValues)                    throws RuntimeOperationsException
+				</name>
+				<description>
+					Constructor taking field names and field values. Neither array can be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DescriptorSupport(String... fields)
+				</name>
+				<description>
+					Constructor taking fields in the fieldName=fieldValue format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getFieldValue(String fieldName)                       throws RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: Descriptor Returns the value for a specific field name, or null if no value is present for that name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setField(String fieldName,              Object fieldValue)                throws RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: Descriptor Sets the value for a specific field name. This will modify an existing field or add a new field. The field value will be validated before it is set. If it is not valid, then an exception will be thrown. The meaning of validity is dependent on the descriptor implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getFields()
+				</name>
+				<description>
+					Description copied from interface: Descriptor Returns all of the fields contained in this descriptor as a string array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getFieldNames()
+				</name>
+				<description>
+					Description copied from interface: Descriptor Returns all the field names in the descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getFieldValues(String... fieldNames)
+				</name>
+				<description>
+					Description copied from interface: Descriptor Returns all the field values in the descriptor as an array of Objects. The returned values are in the same order as the fieldNames String array parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFields(String[] fieldNames,               Object[] fieldValues)                 throws RuntimeOperationsException
+				</name>
+				<description>
+					Description copied from interface: Descriptor Sets all fields in the field names array to the new value with the same index in the field values array. Array sizes must match. The field value will be validated before it is set. If it is not valid, then an exception will be thrown. If the arrays are empty, then no change will take effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()               throws RuntimeOperationsException
+				</name>
+				<description>
+					Returns a new Descriptor which is a duplicate of the Descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeField(String fieldName)
+				</name>
+				<description>
+					Description copied from interface: Descriptor Removes a field from the descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compares this descriptor to the given object. The objects are equal if the given object is also a Descriptor, and if the two Descriptors have the same field names (possibly differing in case) and the same associated values. The respective values for a field in the two Descriptors are equal if the following conditions hold: If one value is null then the other must be too. If one value is a primitive array then the other must be a primitive array of the same type with the same elements. If one value is an object array then the other must be too and Arrays.deepEquals must return true. Otherwise Object.equals(Object) must return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this descriptor. The hash code is computed as the sum of the hash codes for each field in the descriptor. The hash code of a field with name n and value v is n.toLowerCase().hashCode() ^ h. Here h is the hash code of v, computed as follows: If v is null then h is 0. If v is a primitive array then h is computed using the appropriate overloading of java.util.Arrays.hashCode. If v is an object array then h is computed using Arrays.deepHashCode. Otherwise h is v.hashCode().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isValid()                  throws RuntimeOperationsException
+				</name>
+				<description>
+					Returns true if all of the fields have legal values given their names. This implementation does not support interoperating with a directory or lookup service. Thus, conforming to the specification, no checking is done on the "export" field. Otherwise this implementation returns false if: name and descriptorType fieldNames are not defined, or null, or empty, or not String class, role, getMethod, setMethod fieldNames, if defined, are null or not String persistPeriod, currencyTimeLimit, lastUpdatedTimeStamp, lastReturnedTimeStamp if defined, are null, or not a Numeric String or not a Numeric Value >= -1 log fieldName, if defined, is null, or not a Boolean or not a String with value "t", "f", "true", "false". These String values must not be case sensitive. visibility fieldName, if defined, is null, or not a Numeric String or a not Numeric Value >= 1 and <= 4 severity fieldName, if defined, is null, or not a Numeric String or not a Numeric Value >= 0 and <= 6 persistPolicy fieldName, if defined, is null, or not one of the following strings: "OnUpdate", "OnTimer", "NoMoreOftenThan", "OnUnregister", "Always", "Never". These String values must not be case sensitive.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toXMLString()
+				</name>
+				<description>
+					Returns an XML String representing the descriptor. The format is not defined, but an implementation must ensure that the string returned by this method can be used to build an equivalent descriptor when instantiated using the constructor DescriptorSupport(String inStr). Fields which are not String objects will have toString() called on them to create the value. The value will be enclosed in parentheses. It is not guaranteed that you can reconstruct these objects unless they have been specifically set up to support toString() in a meaningful format and have a matching constructor that accepts a String in the same format. If the descriptor is empty the following String is returned: <Descriptor></Descriptor>
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a human readable string representing the descriptor. The string will be in the format of "fieldName=fieldValue,fieldName2=fieldValue2,..." If there are no fields in the descriptor, then an empty String is returned. If a fieldValue is an object then the toString() method is called on it and its returned value is used as the value for the field enclosed in parenthesis.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.xml.transform.sax
+	</package>
+	<type>
+		<name>
+			public class SAXSource  extends Object  implements Source
+		</name>
+		<description>
+			Acts as an holder for SAX-style Source. Note that XSLT requires namespace support. Attempting to transform an input source that is not generated with a namespace-aware parser may result in errors. Parsers can be made namespace aware by calling the SAXParserFactory.setNamespaceAware(boolean awareness) method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String FEATURE
+				</name>
+				<description>
+					If TransformerFactory.getFeature(java.lang.String) returns true when passed this value as an argument, the Transformer supports Source input of this type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SAXSource()
+				</name>
+				<description>
+					Zero-argument default constructor. If this constructor is used, and no SAX source is set using setInputSource(InputSource inputSource) , then the Transformer will create an empty source InputSource using new InputSource().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SAXSource(XMLReader reader,           InputSource inputSource)
+				</name>
+				<description>
+					Create a SAXSource, using an XMLReader and a SAX InputSource. The Transformer or SAXTransformerFactory will set itself to be the reader's ContentHandler, and then will call reader.parse(inputSource).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SAXSource(InputSource inputSource)
+				</name>
+				<description>
+					Create a SAXSource, using a SAX InputSource. The Transformer or SAXTransformerFactory creates a reader via XMLReaderFactory (if setXMLReader is not used), sets itself as the reader's ContentHandler, and calls reader.parse(inputSource).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setXMLReader(XMLReader reader)
+				</name>
+				<description>
+					Set the XMLReader to be used for the Source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public XMLReader getXMLReader()
+				</name>
+				<description>
+					Get the XMLReader to be used for the Source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setInputSource(InputSource inputSource)
+				</name>
+				<description>
+					Set the SAX InputSource to be used for the Source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputSource getInputSource()
+				</name>
+				<description>
+					Get the SAX InputSource to be used for the Source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSystemId(String systemId)
+				</name>
+				<description>
+					Set the system identifier for this Source. If an input source has already been set, it will set the system ID or that input source, otherwise it will create a new input source. The system identifier is optional if there is a byte stream or a character stream, but it is still useful to provide one, since the application can use it to resolve relative URIs and can include it in error messages and warnings (the parser will attempt to open a connection to the URI only if no byte stream or character stream is specified).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSystemId()
+				</name>
+				<description>
+					Get the base ID (URI or system ID) from where URIs will be resolved.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static InputSource sourceToInputSource(Source source)
+				</name>
+				<description>
+					Attempt to obtain a SAX InputSource object from a Source object.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		javax.imageio
+	</package>
+	<type>
+		<name>
+			public class IIOImage  extends Object
+		</name>
+		<description>
+			A simple container class to aggregate an image, a set of thumbnail (preview) images, and an object representing metadata associated with the image. The image data may take the form of either a RenderedImage, or a Raster. Reader methods that return an IIOImage will always return a BufferedImage using the RenderedImage reference. Writer methods that accept an IIOImage will always accept a RenderedImage, and may optionally accept a Raster. Exactly one of getRenderedImage and getRaster will return a non-null value. Subclasses are responsible for ensuring this behavior.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected RenderedImage image
+				</name>
+				<description>
+					The RenderedImage being referenced.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Raster raster
+				</name>
+				<description>
+					The Raster being referenced.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected List<? extends BufferedImage> thumbnails
+				</name>
+				<description>
+					A List of BufferedImage thumbnails, or null. Non-BufferedImage objects must not be stored in this List.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected IIOMetadata metadata
+				</name>
+				<description>
+					An IIOMetadata object containing metadata associated with the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOImage(RenderedImage image,          List<? extends BufferedImage> thumbnails,          IIOMetadata metadata)
+				</name>
+				<description>
+					Constructs an IIOImage containing a RenderedImage, and thumbnails and metadata associated with it. All parameters are stored by reference. The thumbnails argument must either be null or contain only BufferedImage objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOImage(Raster raster,          List<? extends BufferedImage> thumbnails,          IIOMetadata metadata)
+				</name>
+				<description>
+					Constructs an IIOImage containing a Raster, and thumbnails and metadata associated with it. All parameters are stored by reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RenderedImage getRenderedImage()
+				</name>
+				<description>
+					Returns the currently set RenderedImage, or null if only a Raster is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRenderedImage(RenderedImage image)
+				</name>
+				<description>
+					Sets the current RenderedImage. The value is stored by reference. Any existing Raster is discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasRaster()
+				</name>
+				<description>
+					Returns true if this IIOImage stores a Raster rather than a RenderedImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Raster getRaster()
+				</name>
+				<description>
+					Returns the currently set Raster, or null if only a RenderedImage is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRaster(Raster raster)
+				</name>
+				<description>
+					Sets the current Raster. The value is stored by reference. Any existing RenderedImage is discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNumThumbnails()
+				</name>
+				<description>
+					Returns the number of thumbnails stored in this IIOImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferedImage getThumbnail(int index)
+				</name>
+				<description>
+					Returns a thumbnail associated with the main image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<? extends BufferedImage> getThumbnails()
+				</name>
+				<description>
+					Returns the current List of thumbnail BufferedImages, or null if none is set. A live reference is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setThumbnails(List<? extends BufferedImage> thumbnails)
+				</name>
+				<description>
+					Sets the list of thumbnails to a new List of BufferedImages, or to null. The reference to the previous List is discarded. The thumbnails argument must either be null or contain only BufferedImage objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IIOMetadata getMetadata()
+				</name>
+				<description>
+					Returns a reference to the current IIOMetadata object, or null is none is set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMetadata(IIOMetadata metadata)
+				</name>
+				<description>
+					Sets the IIOMetadata to a new object, or null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

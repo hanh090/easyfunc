@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class GapContent  extends Object  implements AbstractDocument.Content, Serializable
+		</name>
+		<description>
+			An implementation of the AbstractDocument.Content interface implemented using a gapped buffer similar to that used by emacs. The underlying storage is a array of unicode characters with a gap somewhere. The gap is moved to the location of changes to take advantage of common behavior where most changes are in the same location. Changes that occur at a gap boundary are generally cheap and moving the gap is generally cheaper than moving the array contents directly to accomodate the change. The positions tracking change are also generally cheap to maintain. The Position implementations (marks) store the array index and can easily calculate the sequential position from the current gap location. Changes only require update to the the marks between the old and new gap boundaries when the gap is moved, so generally updating the marks is pretty cheap. The marks are stored sorted so they can be located quickly with a binary search. This increases the cost of adding a mark, and decreases the cost of keeping the mark updated.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public GapContent()
+				</name>
+				<description>
+					Creates a new GapContent object. Initial size defaults to 10.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GapContent(int initialLength)
+				</name>
+				<description>
+					Creates a new GapContent object, with the initial size specified. The initial size will not be allowed to go below 2, to give room for the implied break and the gap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object allocateArray(int len)
+				</name>
+				<description>
+					Allocate an array to store items of the type appropriate (which is determined by the subclass).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getArrayLength()
+				</name>
+				<description>
+					Get the length of the allocated array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int length()
+				</name>
+				<description>
+					Returns the length of the content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UndoableEdit insertString(int where,                          String str)                            throws BadLocationException
+				</name>
+				<description>
+					Inserts a string into the content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UndoableEdit remove(int where,                    int nitems)                      throws BadLocationException
+				</name>
+				<description>
+					Removes part of the content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getString(int where,                 int len)                   throws BadLocationException
+				</name>
+				<description>
+					Retrieves a portion of the content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void getChars(int where,              int len,              Segment chars)                throws BadLocationException
+				</name>
+				<description>
+					Retrieves a portion of the content. If the desired content spans the gap, we copy the content. If the desired content does not span the gap, the actual store is returned to avoid the copy since it is contiguous.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Position createPosition(int offset)                          throws BadLocationException
+				</name>
+				<description>
+					Creates a position within the content that will track change as the content is mutated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void shiftEnd(int newSize)
+				</name>
+				<description>
+					Make the gap bigger, moving any necessary data and updating the appropriate marks
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void shiftGap(int newGapStart)
+				</name>
+				<description>
+					Move the start of the gap to a new location, without changing the size of the gap. This moves the data in the array and updates the marks accordingly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void resetMarksAtZero()
+				</name>
+				<description>
+					Resets all the marks that have an offset of 0 to have an index of zero as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void shiftGapStartDown(int newGapStart)
+				</name>
+				<description>
+					Adjust the gap end downward. This doesn't move any data, but it does update any marks affected by the boundary change. All marks from the old gap start down to the new gap start are squeezed to the end of the gap (their location has been removed).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void shiftGapEndUp(int newGapEnd)
+				</name>
+				<description>
+					Adjust the gap end upward. This doesn't move any data, but it does update any marks affected by the boundary change. All marks from the old gap end up to the new gap end are squeezed to the end of the gap (their location has been removed).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Vector getPositionsInRange(Vector v,                           int offset,                           int length)
+				</name>
+				<description>
+					Returns a Vector containing instances of UndoPosRef for the Positions in the range offset to offset + length. If v is not null the matching Positions are placed in there. The vector with the resulting Positions are returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void updateUndoPositions(Vector positions,                         int offset,                         int length)
+				</name>
+				<description>
+					Resets the location for all the UndoPosRef instances in positions. This is meant for internal usage, and is generally not of interest to subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Object getArray()
+				</name>
+				<description>
+					Access to the array. The actual type of the array is known only by the subclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final int getGapStart()
+				</name>
+				<description>
+					Access to the start of the gap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final int getGapEnd()
+				</name>
+				<description>
+					Access to the end of the gap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void replace(int position,             int rmSize,             Object addItems,             int addSize)
+				</name>
+				<description>
+					Replace the given logical position in the storage with the given new items. This will move the gap to the area being changed if the gap is not currently located at the change location.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

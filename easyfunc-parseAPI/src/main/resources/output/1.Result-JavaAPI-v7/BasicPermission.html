@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public abstract class BasicPermission  extends Permission  implements Serializable
+		</name>
+		<description>
+			The BasicPermission class extends the Permission class, and can be used as the base class for permissions that want to follow the same naming convention as BasicPermission. The name for a BasicPermission is the name of the given permission (for example, "exit", "setFactory", "print.queueJob", etc). The naming convention follows the hierarchical property naming convention. An asterisk may appear by itself, or if immediately preceded by a "." may appear at the end of the name, to signify a wildcard match. For example, "*" and "java.*" are valid, while "*java", "a*b", and "java*" are not valid. The action string (inherited from Permission) is unused. Thus, BasicPermission is commonly used as the base class for "named" permissions (ones that contain a name but no actions list; you either have the named permission or you don't.) Subclasses may implement actions on top of BasicPermission, if desired.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public BasicPermission(String name)
+				</name>
+				<description>
+					Creates a new BasicPermission with the specified name. Name is the symbolic name of the permission, such as "setFactory", "print.queueJob", or "topLevelWindow", etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicPermission(String name,                 String actions)
+				</name>
+				<description>
+					Creates a new BasicPermission object with the specified name. The name is the symbolic name of the BasicPermission, and the actions String is currently unused.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean implies(Permission p)
+				</name>
+				<description>
+					Checks if the specified permission is "implied" by this object. More specifically, this method returns true if: p's class is the same as this object's class, and p's name equals or (in the case of wildcards) is implied by this object's name. For example, "a.b.*" implies "a.b.c".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Checks two BasicPermission objects for equality. Checks that obj's class is the same as this object's class and has the same name as this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this object. The hash code used is the hash code of the name, that is, getName().hashCode(), where getName is from the Permission superclass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getActions()
+				</name>
+				<description>
+					Returns the canonical string representation of the actions, which currently is the empty string "", since there are no actions for a BasicPermission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PermissionCollection newPermissionCollection()
+				</name>
+				<description>
+					Returns a new PermissionCollection object for storing BasicPermission objects. BasicPermission objects must be stored in a manner that allows them to be inserted in any order, but that also enables the PermissionCollection implies method to be implemented in an efficient (and consistent) manner.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

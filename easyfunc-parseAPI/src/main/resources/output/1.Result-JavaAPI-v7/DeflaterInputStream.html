@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		java.util.zip
+	</package>
+	<type>
+		<name>
+			public class DeflaterInputStream  extends FilterInputStream
+		</name>
+		<description>
+			Implements an input stream filter for compressing data in the "deflate" compression format.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final Deflater def
+				</name>
+				<description>
+					Compressor for this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final byte[] buf
+				</name>
+				<description>
+					Input buffer for reading compressed data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterInputStream(InputStream in)
+				</name>
+				<description>
+					Creates a new input stream with a default compressor and buffer size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterInputStream(InputStream in,                     Deflater defl)
+				</name>
+				<description>
+					Creates a new input stream with the specified compressor and a default buffer size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterInputStream(InputStream in,                     Deflater defl,                     int bufLen)
+				</name>
+				<description>
+					Creates a new input stream with the specified compressor and buffer size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this input stream and its underlying input stream, discarding any pending uncompressed data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads a single byte of compressed data from the input stream. This method will block until some input can be read and compressed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads compressed data into a byte array. This method will block until some input can be read and compressed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					Skips over and discards data from the input stream. This method may block until the specified number of bytes are read and skipped. Note: While n is given as a long, the maximum number of bytes which can be skipped is Integer.MAX_VALUE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int available()                throws IOException
+				</name>
+				<description>
+					Returns 0 after EOF has been reached, otherwise always return 1. Programs should not count on this method to return the actual number of bytes that could be read without blocking
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean markSupported()
+				</name>
+				<description>
+					Always returns false because this input stream does not support the mark() and reset() methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mark(int limit)
+				</name>
+				<description>
+					This operation is not supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()             throws IOException
+				</name>
+				<description>
+					This operation is not supported.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

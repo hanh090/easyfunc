@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public interface Highlighter
+		</name>
+		<description>
+			An interface for an object that allows one to mark up the background with colored areas.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void install(JTextComponent c)
+				</name>
+				<description>
+					Called when the UI is being installed into the interface of a JTextComponent. This can be used to gain access to the model that is being navigated by the implementation of this interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void deinstall(JTextComponent c)
+				</name>
+				<description>
+					Called when the UI is being removed from the interface of a JTextComponent. This is used to unregister any listeners that were attached.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void paint(Graphics g)
+				</name>
+				<description>
+					Renders the highlights.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object addHighlight(int p0,                    int p1,                    Highlighter.HighlightPainter p)                      throws BadLocationException
+				</name>
+				<description>
+					Adds a highlight to the view. Returns a tag that can be used to refer to the highlight.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeHighlight(Object tag)
+				</name>
+				<description>
+					Removes a highlight from the view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeAllHighlights()
+				</name>
+				<description>
+					Removes all highlights this highlighter is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void changeHighlight(Object tag,                     int p0,                     int p1)                       throws BadLocationException
+				</name>
+				<description>
+					Changes the given highlight to span a different portion of the document. This may be more efficient than a remove/add when a selection is expanding/shrinking (such as a sweep with a mouse) by damaging only what changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Highlighter.Highlight[] getHighlights()
+				</name>
+				<description>
+					Fetches the current list of highlights.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

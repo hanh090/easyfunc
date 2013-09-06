@@ -1,0 +1,612 @@
+<javaelement>
+	<package>
+		java.beans.beancontext
+	</package>
+	<type>
+		<name>
+			public class BeanContextSupport  extends BeanContextChildSupport  implements BeanContext, Serializable, PropertyChangeListener, VetoableChangeListener
+		</name>
+		<description>
+			This helper class provides a utility implementation of the java.beans.beancontext.BeanContext interface. Since this class directly implements the BeanContext interface, the class can, and is intended to be used either by subclassing this implementation, or via ad-hoc delegation of an instance of this class from another.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected transient HashMap children
+				</name>
+				<description>
+					all accesses to the protected HashMap children field shall be synchronized on that object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient ArrayList bcmListeners
+				</name>
+				<description>
+					all accesses to the protected ArrayList bcmListeners field shall be synchronized on that object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Locale locale
+				</name>
+				<description>
+					The current locale of this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean okToUseGui
+				</name>
+				<description>
+					A boolean indicating if this instance may now render a GUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean designTime
+				</name>
+				<description>
+					A boolean indicating whether or not this object is currently in design time mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextSupport(BeanContext peer,                    Locale lcle,                    boolean dTime,                    boolean visible)
+				</name>
+				<description>
+					Construct a BeanContextSupport instance
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextSupport(BeanContext peer,                    Locale lcle,                    boolean dtime)
+				</name>
+				<description>
+					Create an instance using the specified Locale and design mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextSupport(BeanContext peer,                    Locale lcle)
+				</name>
+				<description>
+					Create an instance using the specified locale
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextSupport(BeanContext peer)
+				</name>
+				<description>
+					Create an instance using with a default locale
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextSupport()
+				</name>
+				<description>
+					Create an instance that is not a delegate of another object
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContext getBeanContextPeer()
+				</name>
+				<description>
+					Gets the instance of BeanContext that this object is providing the implementation for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object instantiateChild(String beanName)                          throws IOException,                                 ClassNotFoundException
+				</name>
+				<description>
+					The instantiateChild method is a convenience hook in BeanContext to simplify the task of instantiating a Bean, nested, into a BeanContext. The semantics of the beanName parameter are defined by java.beans.Beans.instantate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Gets the number of children currently nested in this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Reports whether or not this BeanContext is empty. A BeanContext is considered empty when it contains zero nested children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object o)
+				</name>
+				<description>
+					Determines whether or not the specified object is currently a child of this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(Object o)
+				</name>
+				<description>
+					Determines whether or not the specified object is currently a child of this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator iterator()
+				</name>
+				<description>
+					Gets all JavaBean or BeanContext instances currently nested in this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] toArray()
+				</name>
+				<description>
+					Gets all JavaBean or BeanContext instances currently nested in this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] toArray(Object[] arry)
+				</name>
+				<description>
+					Gets an array containing all children of this BeanContext that match the types contained in arry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BeanContextSupport.BCSChild createBCSChild(Object targetChild,                                           Object peer)
+				</name>
+				<description>
+					Subclasses can override this method to insert their own subclass of Child without having to override add() or the other Collection methods that add children to the set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(Object targetChild)
+				</name>
+				<description>
+					Adds/nests a child within this BeanContext. Invoked as a side effect of java.beans.Beans.instantiate(). If the child object is not valid for adding then this method throws an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object targetChild)
+				</name>
+				<description>
+					Removes a child from this BeanContext. If the child object is not for adding then this method throws an IllegalStateException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean remove(Object targetChild,               boolean callChildSetBC)
+				</name>
+				<description>
+					internal remove used when removal caused by unexpected setBeanContext or by remove() invocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsAll(Collection c)
+				</name>
+				<description>
+					Tests to see if all objects in the specified Collection are children of this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addAll(Collection c)
+				</name>
+				<description>
+					add Collection to set of Children (Unsupported) implementations must synchronized on the hierarchy lock and "children" protected field
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean removeAll(Collection c)
+				</name>
+				<description>
+					remove all specified children (Unsupported) implementations must synchronized on the hierarchy lock and "children" protected field
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean retainAll(Collection c)
+				</name>
+				<description>
+					retain only specified children (Unsupported) implementations must synchronized on the hierarchy lock and "children" protected field
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					clear the children (Unsupported) implementations must synchronized on the hierarchy lock and "children" protected field
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addBeanContextMembershipListener(BeanContextMembershipListener bcml)
+				</name>
+				<description>
+					Adds a BeanContextMembershipListener
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeBeanContextMembershipListener(BeanContextMembershipListener bcml)
+				</name>
+				<description>
+					Removes a BeanContextMembershipListener
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream getResourceAsStream(String name,                                BeanContextChild bcc)
+				</name>
+				<description>
+					Description copied from interface: BeanContext Analagous to java.lang.ClassLoader.getResourceAsStream(), this method allows a BeanContext implementation to interpose behavior between the child Component and underlying ClassLoader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URL getResource(String name,                BeanContextChild bcc)
+				</name>
+				<description>
+					Description copied from interface: BeanContext Analagous to java.lang.ClassLoader.getResource(), this method allows a BeanContext implementation to interpose behavior between the child Component and underlying ClassLoader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDesignTime(boolean dTime)
+				</name>
+				<description>
+					Sets the new design time value for this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDesignTime()
+				</name>
+				<description>
+					Reports whether or not this object is in currently in design time mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocale(Locale newLocale)                 throws PropertyVetoException
+				</name>
+				<description>
+					Sets the locale of this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Locale getLocale()
+				</name>
+				<description>
+					Gets the locale for this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean needsGui()
+				</name>
+				<description>
+					This method is typically called from the environment in order to determine if the implementor "needs" a GUI. The algorithm used herein tests the BeanContextPeer, and its current children to determine if they are either Containers, Components, or if they implement Visibility and return needsGui() == true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dontUseGui()
+				</name>
+				<description>
+					notify this instance that it may no longer render a GUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void okToUseGui()
+				</name>
+				<description>
+					Notify this instance that it may now render a GUI
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean avoidingGui()
+				</name>
+				<description>
+					Used to determine if the BeanContext child is avoiding using its GUI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSerializing()
+				</name>
+				<description>
+					Is this BeanContext in the process of being serialized?
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Iterator bcsChildren()
+				</name>
+				<description>
+					Returns an iterator of all children of this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void bcsPreSerializationHook(ObjectOutputStream oos)                                  throws IOException
+				</name>
+				<description>
+					called by writeObject after defaultWriteObject() but prior to serialization of currently serializable children. This method may be overridden by subclasses to perform custom serialization of their state prior to this superclass serializing the children. This method should not however be used by subclasses to replace their own implementation (if any) of writeObject().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void bcsPreDeserializationHook(ObjectInputStream ois)                                    throws IOException,                                           ClassNotFoundException
+				</name>
+				<description>
+					called by readObject after defaultReadObject() but prior to deserialization of any children. This method may be overridden by subclasses to perform custom deserialization of their state prior to this superclass deserializing the children. This method should not however be used by subclasses to replace their own implementation (if any) of readObject().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void childDeserializedHook(Object child,                           BeanContextSupport.BCSChild bcsc)
+				</name>
+				<description>
+					Called by readObject with the newly deserialized child and BCSChild.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void serialize(ObjectOutputStream oos,               Collection coll)                          throws IOException
+				</name>
+				<description>
+					Used by writeObject to serialize a Collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void deserialize(ObjectInputStream ois,                 Collection coll)                            throws IOException,                                   ClassNotFoundException
+				</name>
+				<description>
+					used by readObject to deserialize a collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void writeChildren(ObjectOutputStream oos)                           throws IOException
+				</name>
+				<description>
+					Used to serialize all children of this BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void readChildren(ObjectInputStream ois)                          throws IOException,                                 ClassNotFoundException
+				</name>
+				<description>
+					When an instance of this class is used as a delegate for the implementation of the BeanContext protocols (and its subprotocols) there exists a 'chicken and egg' problem during deserialization
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void vetoableChange(PropertyChangeEvent pce)                      throws PropertyVetoException
+				</name>
+				<description>
+					subclasses may envelope to monitor veto child property changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void propertyChange(PropertyChangeEvent pce)
+				</name>
+				<description>
+					subclasses may envelope to monitor child property changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean validatePendingAdd(Object targetChild)
+				</name>
+				<description>
+					Subclasses of this class may override, or envelope, this method to add validation behavior for the BeanContext to examine child objects immediately prior to their being added to the BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean validatePendingRemove(Object targetChild)
+				</name>
+				<description>
+					Subclasses of this class may override, or envelope, this method to add validation behavior for the BeanContext to examine child objects immediately prior to their being removed from the BeanContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void childJustAddedHook(Object child,                        BeanContextSupport.BCSChild bcsc)
+				</name>
+				<description>
+					subclasses may override this method to simply extend add() semantics after the child has been added and before the event notification has occurred. The method is called with the child synchronized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void childJustRemovedHook(Object child,                          BeanContextSupport.BCSChild bcsc)
+				</name>
+				<description>
+					subclasses may override this method to simply extend remove() semantics after the child has been removed and before the event notification has occurred. The method is called with the child synchronized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final Visibility getChildVisibility(Object child)
+				</name>
+				<description>
+					Gets the Component (if any) associated with the specified child.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final Serializable getChildSerializable(Object child)
+				</name>
+				<description>
+					Gets the Serializable (if any) associated with the specified Child
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final PropertyChangeListener getChildPropertyChangeListener(Object child)
+				</name>
+				<description>
+					Gets the PropertyChangeListener (if any) of the specified child
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final VetoableChangeListener getChildVetoableChangeListener(Object child)
+				</name>
+				<description>
+					Gets the VetoableChangeListener (if any) of the specified child
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final BeanContextMembershipListener getChildBeanContextMembershipListener(Object child)
+				</name>
+				<description>
+					Gets the BeanContextMembershipListener (if any) of the specified child
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final BeanContextChild getChildBeanContextChild(Object child)
+				</name>
+				<description>
+					Gets the BeanContextChild (if any) of the specified child
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void fireChildrenAdded(BeanContextMembershipEvent bcme)
+				</name>
+				<description>
+					Fire a BeanContextshipEvent on the BeanContextMembershipListener interface
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void fireChildrenRemoved(BeanContextMembershipEvent bcme)
+				</name>
+				<description>
+					Fire a BeanContextshipEvent on the BeanContextMembershipListener interface
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initialize()
+				</name>
+				<description>
+					protected method called from constructor and readObject to initialize transient state of BeanContextSupport instance. This class uses this method to instantiate inner class listeners used to monitor PropertyChange and VetoableChange events on children. subclasses may envelope this method to add their own initialization behavior
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final Object[] copyChildren()
+				</name>
+				<description>
+					Gets a copy of the this BeanContext's children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final boolean classEquals(Class first,                    Class second)
+				</name>
+				<description>
+					Tests to see if two class objects, or their names are equal.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

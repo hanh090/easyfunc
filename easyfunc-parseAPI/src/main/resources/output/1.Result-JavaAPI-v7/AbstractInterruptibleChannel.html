@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		java.nio.channels.spi
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractInterruptibleChannel  extends Object  implements Channel, InterruptibleChannel
+		</name>
+		<description>
+			Base implementation class for interruptible channels. This class encapsulates the low-level machinery required to implement the asynchronous closing and interruption of channels. A concrete channel class must invoke the begin and end methods before and after, respectively, invoking an I/O operation that might block indefinitely. In order to ensure that the end method is always invoked, these methods should be used within a try ... finally block:    boolean completed = false;   try {       begin();       completed = ...;    // Perform blocking I/O operation       return ...;         // Return result   } finally {       end(completed);   } The completed argument to the end method tells whether or not the I/O operation actually completed, that is, whether it had any effect that would be visible to the invoker. In the case of an operation that reads bytes, for example, this argument should be true if, and only if, some bytes were actually transferred into the invoker's target buffer. A concrete channel class must also implement the implCloseChannel method in such a way that if it is invoked while another thread is blocked in a native I/O operation upon the channel then that operation will immediately return, either by throwing an exception or by returning normally. If a thread is interrupted or the channel upon which it is blocked is asynchronously closed then the channel's end method will throw the appropriate exception. This class performs the synchronization required to implement the Channel specification. Implementations of the implCloseChannel method need not synchronize against other threads that might be attempting to close the channel.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AbstractInterruptibleChannel()
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final void close()                   throws IOException
+				</name>
+				<description>
+					Closes this channel. If the channel has already been closed then this method returns immediately. Otherwise it marks the channel as closed and then invokes the implCloseChannel method in order to complete the close operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void implCloseChannel()                                    throws IOException
+				</name>
+				<description>
+					Closes this channel. This method is invoked by the close method in order to perform the actual work of closing the channel. This method is only invoked if the channel has not yet been closed, and it is never invoked more than once. An implementation of this method must arrange for any other thread that is blocked in an I/O operation upon this channel to return immediately, either by throwing an exception or by returning normally.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean isOpen()
+				</name>
+				<description>
+					Description copied from interface: Channel Tells whether or not this channel is open.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void begin()
+				</name>
+				<description>
+					Marks the beginning of an I/O operation that might block indefinitely. This method should be invoked in tandem with the end method, using a try ... finally block as shown above, in order to implement asynchronous closing and interruption for this channel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void end(boolean completed)                    throws AsynchronousCloseException
+				</name>
+				<description>
+					Marks the end of an I/O operation that might block indefinitely. This method should be invoked in tandem with the begin method, using a try ... finally block as shown above, in order to implement asynchronous closing and interruption for this channel.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public abstract class PrintJob  extends Object
+		</name>
+		<description>
+			An abstract class which initiates and executes a print job. It provides access to a print graphics object which renders to an appropriate print device.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PrintJob()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Graphics getGraphics()
+				</name>
+				<description>
+					Gets a Graphics object that will draw to the next page. The page is sent to the printer when the graphics object is disposed. This graphics object will also implement the PrintGraphics interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Dimension getPageDimension()
+				</name>
+				<description>
+					Returns the dimensions of the page in pixels. The resolution of the page is chosen so that it is similar to the screen resolution.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getPageResolution()
+				</name>
+				<description>
+					Returns the resolution of the page in pixels per inch. Note that this doesn't have to correspond to the physical resolution of the printer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean lastPageFirst()
+				</name>
+				<description>
+					Returns true if the last page will be printed first.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void end()
+				</name>
+				<description>
+					Ends the print job and does any necessary cleanup.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void finalize()
+				</name>
+				<description>
+					Ends this print job once it is no longer referenced.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

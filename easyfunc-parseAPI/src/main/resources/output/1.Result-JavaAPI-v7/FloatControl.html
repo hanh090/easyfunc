@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.sound.sampled
+	</package>
+	<type>
+		<name>
+			public abstract class FloatControl  extends Control
+		</name>
+		<description>
+			A FloatControl object provides control over a range of floating-point values. Float controls are often represented in graphical user interfaces by continuously adjustable objects such as sliders or rotary knobs. Concrete subclasses of FloatControl implement controls, such as gain and pan, that affect a line's audio signal in some way that an application can manipulate. The FloatControl.Type inner class provides static instances of types that are used to identify some common kinds of float control. The FloatControl abstract class provides methods to set and get the control's current floating-point value. Other methods obtain the possible range of values and the control's resolution (the smallest increment between returned values). Some float controls allow ramping to a new value over a specified period of time. FloatControl also includes methods that return string labels for the minimum, maximum, and midpoint positions of the control.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected FloatControl(FloatControl.Type type,              float minimum,              float maximum,              float precision,              int updatePeriod,              float initialValue,              String units,              String minLabel,              String midLabel,              String maxLabel)
+				</name>
+				<description>
+					Constructs a new float control object with the given parameters
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FloatControl(FloatControl.Type type,              float minimum,              float maximum,              float precision,              int updatePeriod,              float initialValue,              String units)
+				</name>
+				<description>
+					Constructs a new float control object with the given parameters. The labels for the minimum, maximum, and mid-point values are set to zero-length strings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValue(float newValue)
+				</name>
+				<description>
+					Sets the current value for the control. The default implementation simply sets the value as indicated. If the value indicated is greater than the maximum value, or smaller than the minimum value, an IllegalArgumentException is thrown. Some controls require that their line be open before they can be affected by setting a value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getValue()
+				</name>
+				<description>
+					Obtains this control's current value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMaximum()
+				</name>
+				<description>
+					Obtains the maximum value permitted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinimum()
+				</name>
+				<description>
+					Obtains the minimum value permitted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUnits()
+				</name>
+				<description>
+					Obtains the label for the units in which the control's values are expressed, such as "dB" or "frames per second."
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMinLabel()
+				</name>
+				<description>
+					Obtains the label for the minimum value, such as "Left" or "Off."
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMidLabel()
+				</name>
+				<description>
+					Obtains the label for the mid-point value, such as "Center" or "Default."
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getMaxLabel()
+				</name>
+				<description>
+					Obtains the label for the maximum value, such as "Right" or "Full."
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPrecision()
+				</name>
+				<description>
+					Obtains the resolution or granularity of the control, in the units that the control measures. The precision is the size of the increment between discrete valid values for this control, over the set of supported floating-point values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getUpdatePeriod()
+				</name>
+				<description>
+					Obtains the smallest time interval, in microseconds, over which the control's value can change during a shift. The update period is the inverse of the frequency with which the control updates its value during a shift. If the implementation does not support value shifting over time, it should set the control's value to the final value immediately and return -1 from this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void shift(float from,           float to,           int microseconds)
+				</name>
+				<description>
+					Changes the control value from the initial value to the final value linearly over the specified time period, specified in microseconds. This method returns without blocking; it does not wait for the shift to complete. An implementation should complete the operation within the time specified. The default implementation simply changes the value to the final value immediately.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Provides a string representation of the control
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

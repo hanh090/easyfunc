@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public abstract class URLStreamHandler  extends Object
+		</name>
+		<description>
+			The abstract class URLStreamHandler is the common superclass for all stream protocol handlers. A stream protocol handler knows how to make a connection for a particular protocol type, such as http, ftp, or gopher. In most cases, an instance of a URLStreamHandler subclass is not created directly by an application. Rather, the first time a protocol name is encountered when constructing a URL, the appropriate stream protocol handler is automatically loaded.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public URLStreamHandler()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract URLConnection openConnection(URL u)                                           throws IOException
+				</name>
+				<description>
+					Opens a connection to the object referenced by the URL argument. This method should be overridden by a subclass. If for the handler's protocol (such as HTTP or JAR), there exists a public, specialized URLConnection subclass belonging to one of the following packages or one of their subpackages: java.lang, java.io, java.util, java.net, the connection returned will be of that subclass. For example, for HTTP an HttpURLConnection will be returned, and for JAR a JarURLConnection will be returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected URLConnection openConnection(URL u,                             Proxy p)                                  throws IOException
+				</name>
+				<description>
+					Same as openConnection(URL), except that the connection will be made through the specified proxy; Protocol handlers that do not support proxying will ignore the proxy parameter and make a normal connection. Calling this method preempts the system's default ProxySelector settings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void parseURL(URL u,              String spec,              int start,              int limit)
+				</name>
+				<description>
+					Parses the string representation of a URL into a URL object. If there is any inherited context, then it has already been copied into the URL argument. The parseURL method of URLStreamHandler parses the string representation as if it were an http specification. Most URL protocol families have a similar parsing. A stream protocol handler for a protocol that has a different syntax must override this routine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getDefaultPort()
+				</name>
+				<description>
+					Returns the default port for a URL parsed by this handler. This method is meant to be overidden by handlers with default port numbers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean equals(URL u1,               URL u2)
+				</name>
+				<description>
+					Provides the default equals calculation. May be overidden by handlers for other protocols that have different requirements for equals(). This method requires that none of its arguments is null. This is guaranteed by the fact that it is only called by java.net.URL class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int hashCode(URL u)
+				</name>
+				<description>
+					Provides the default hash calculation. May be overidden by handlers for other protocols that have different requirements for hashCode calculation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean sameFile(URL u1,                 URL u2)
+				</name>
+				<description>
+					Compare two urls to see whether they refer to the same file, i.e., having the same protocol, host, port, and path. This method requires that none of its arguments is null. This is guaranteed by the fact that it is only called indirectly by java.net.URL class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected InetAddress getHostAddress(URL u)
+				</name>
+				<description>
+					Get the IP address of our host. An empty host field or a DNS failure will result in a null return.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean hostsEqual(URL u1,                   URL u2)
+				</name>
+				<description>
+					Compares the host components of two URLs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String toExternalForm(URL u)
+				</name>
+				<description>
+					Converts a URL of a specific protocol to a String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setURL(URL u,            String protocol,            String host,            int port,            String authority,            String userInfo,            String path,            String query,            String ref)
+				</name>
+				<description>
+					Sets the fields of the URL argument to the indicated values. Only classes derived from URLStreamHandler are supposed to be able to call the set method on a URL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected void setURL(URL u,                       String protocol,                       String host,                       int port,                       String file,                       String ref)
+				</name>
+				<description>
+					Deprecated. Use setURL(URL, String, String, int, String, String, String, String); Sets the fields of the URL argument to the indicated values. Only classes derived from URLStreamHandler are supposed to be able to call the set method on a URL.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

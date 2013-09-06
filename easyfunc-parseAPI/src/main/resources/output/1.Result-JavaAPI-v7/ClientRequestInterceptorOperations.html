@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface ClientRequestInterceptorOperations  extends InterceptorOperations
+		</name>
+		<description>
+			Client-side request interceptor. A request Interceptor is designed to intercept the flow of a request/reply sequence through the ORB at specific points so that services can query the request information and manipulate the service contexts which are propagated between clients and servers. The primary use of request Interceptors is to enable ORB services to transfer context information between clients and servers. There are two types of request Interceptors: client-side and server-side. To write a client-side Interceptor, implement the ClientRequestInterceptor interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void send_request(ClientRequestInfo ri)                    throws ForwardRequest
+				</name>
+				<description>
+					Allows an Interceptor to query request information and modify the service context before the request is sent to the server. This interception point may throw a system exception. If it does, no other Interceptors' send_request operations are called. Those Interceptors on the Flow Stack are popped and their receive_exception interception points are called. This interception point may also throw a ForwardRequest exception. If an Interceptor throws this exception, no other Interceptors' send_request operations are called. Those Interceptors on the Flow Stack are popped and their receive_other interception points are called. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_NO.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void send_poll(ClientRequestInfo ri)
+				</name>
+				<description>
+					Allows an Interceptor to query information during a Time-Independent Invocation (TII) polling get reply sequence. With TII, an application may poll for a response to a request sent previously by the polling client or some other client. This poll is reported to Interceptors through the send_poll interception point and the response is returned through the receive_reply or receive_exception interception points. If the response is not available before the poll time-out expires, the system exception TIMEOUT is thrown and receive_exception is called with this exception. This interception point may throw a system exception. If it does, no other Interceptors' send_poll operations are called. Those Interceptors on the Flow Stack are popped and their receive_exception interception points are called. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_NO.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void receive_reply(ClientRequestInfo ri)
+				</name>
+				<description>
+					Allows an Interceptor to query the information on a reply after it is returned from the server and before control is returned to the client. This interception point may throw a system exception. If it does, no other Interceptors' receive_reply operations are called. The remaining Interceptors in the Flow Stack shall have their receive_exception interception point called. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_YES.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void receive_exception(ClientRequestInfo ri)                         throws ForwardRequest
+				</name>
+				<description>
+					Indicates to the interceptor that an exception occurred. Allows an Interceptor to query the exception's information before it is thrown to the client. This interception point may throw a system exception. This has the effect of changing the exception which successive Interceptors popped from the Flow Stack receive on their calls to receive_exception. The exception thrown to the client will be the last exception thrown by an Interceptor, or the original exception if no Interceptor changes the exception. This interception point may also throw a ForwardRequest exception. If an Interceptor throws this exception, no other Interceptors' receive_exception operations are called. The remaining Interceptors in the Flow Stack are popped and have their receive_other interception point called. If the completion_status of the exception is not COMPLETED_NO, then it is inappropriate for this interception point to throw a ForwardRequest exception. The request s at-most-once semantics would be lost. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. If the original exception is a system exception, the completion_status of the new exception shall be the same as on the original. If the original exception is a user exception, then the completion_status of the new exception shall be COMPLETED_YES. Under some conditions, depending on what policies are in effect, an exception (such as COMM_FAILURE) may result in a retry of the request. While this retry is a new request with respect to Interceptors, there is one point of correlation between the original request and the retry: because control has not returned to the client, the PortableInterceptor.Current for both the original request and the retrying request is the same.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void receive_other(ClientRequestInfo ri)                     throws ForwardRequest
+				</name>
+				<description>
+					Allows an Interceptor to query the information available when a request results in something other than a normal reply or an exception. For example, a request could result in a retry (e.g., a GIOP Reply with a LOCATION_FORWARD status was received); or on asynchronous calls, the reply does not immediately follow the request, but control shall return to the client and an ending interception point shall be called. For retries, depending on the policies in effect, a new request may or may not follow when a retry has been indicated. If a new request does follow, while this request is a new request, with respect to Interceptors, there is one point of correlation between the original request and the retry: because control has not returned to the client, the request scoped PortableInterceptor.Current for both the original request and the retrying request is the same. This interception point may throw a system exception. If it does, no other Interceptors' receive_other operations are called. The remaining Interceptors in the Flow Stack are popped and have their receive_exception interception point called. This interception point may also throw a ForwardRequest exception. If an Interceptor throws this exception, successive Interceptors' receive_other operations are called with the new information provided by the ForwardRequest exception. Compliant Interceptors shall properly follow completion_status semantics if they throw a system exception from this interception point. The completion_status shall be COMPLETED_NO. If the target invocation had completed, this interception point would not be called.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

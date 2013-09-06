@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.naming.spi
+	</package>
+	<type>
+		<name>
+			public class DirectoryManager  extends NamingManager
+		</name>
+		<description>
+			This class contains methods for supporting DirContext implementations. This class is an extension of NamingManager. It contains methods for use by service providers for accessing object factories and state factories, and for getting continuation contexts for supporting federation. DirectoryManager is safe for concurrent access by multiple threads. Except as otherwise noted, a Name, Attributes, or environment parameter passed to any method is owned by the caller. The implementation will not modify the object or keep a reference to it, although it may keep a reference to a clone or copy.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static DirContext getContinuationDirContext(CannotProceedException cpe)                                              throws NamingException
+				</name>
+				<description>
+					Creates a context in which to continue a DirContext operation. Operates just like NamingManager.getContinuationContext(), only the continuation context returned is a DirContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object getObjectInstance(Object refInfo,                         Name name,                         Context nameCtx,                         Hashtable<?,?> environment,                         Attributes attrs)                                  throws Exception
+				</name>
+				<description>
+					Creates an instance of an object for the specified object, attributes, and environment. This method is the same as NamingManager.getObjectInstance except for the following differences: It accepts an Attributes parameter that contains attributes associated with the object. The DirObjectFactory might use these attributes to save having to look them up from the directory. The object factories tried must implement either ObjectFactory or DirObjectFactory. If it implements DirObjectFactory, DirObjectFactory.getObjectInstance() is used, otherwise, ObjectFactory.getObjectInstance() is used. Service providers that implement the DirContext interface should use this method, not NamingManager.getObjectInstance().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static DirStateFactory.Result getStateToBind(Object obj,                                      Name name,                                      Context nameCtx,                                      Hashtable<?,?> environment,                                      Attributes attrs)                                               throws NamingException
+				</name>
+				<description>
+					Retrieves the state of an object for binding when given the original object and its attributes. This method is like NamingManager.getStateToBind except for the following differences: It accepts an Attributes parameter containing attributes that were passed to the DirContext.bind() method. It returns a non-null DirStateFactory.Result instance containing the object to be bound, and the attributes to accompany the binding. Either the object or the attributes may be null. The state factories tried must each implement either StateFactory or DirStateFactory. If it implements DirStateFactory, then DirStateFactory.getStateToBind() is called; otherwise, StateFactory.getStateToBind() is called. Service providers that implement the DirContext interface should use this method, not NamingManager.getStateToBind(). See NamingManager.getStateToBind() for a description of how the list of state factories to be tried is determined. The object returned by this method is owned by the caller. The implementation will not subsequently modify it. It will contain either a new Attributes object that is likewise owned by the caller, or a reference to the original attrs parameter.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

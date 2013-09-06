@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.xml.ws.spi
+	</package>
+	<type>
+		<name>
+			public abstract class Provider  extends Object
+		</name>
+		<description>
+			Service provider for ServiceDelegate and Endpoint objects.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String JAXWSPROVIDER_PROPERTY
+				</name>
+				<description>
+					A constant representing the property used to lookup the name of a Provider implementation class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Provider()
+				</name>
+				<description>
+					Creates a new instance of Provider
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Provider provider()
+				</name>
+				<description>
+					Creates a new provider object. The algorithm used to locate the provider subclass to use consists of the following steps: If a resource with the name of META-INF/services/javax.xml.ws.spi.Provider exists, then its first line, if present, is used as the UTF-8 encoded name of the implementation class. If the $java.home/lib/jaxws.properties file exists and it is readable by the java.util.Properties.load(InputStream) method and it contains an entry whose key is javax.xml.ws.spi.Provider, then the value of that entry is used as the name of the implementation class. If a system property with the name javax.xml.ws.spi.Provider is defined, then its value is used as the name of the implementation class. Finally, a default implementation class name is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ServiceDelegate createServiceDelegate(URL wsdlDocumentLocation,                                      QName serviceName,                                      Class<? extends Service> serviceClass)
+				</name>
+				<description>
+					Creates a service delegate object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServiceDelegate createServiceDelegate(URL wsdlDocumentLocation,                                      QName serviceName,                                      Class<? extends Service> serviceClass,                                      WebServiceFeature... features)
+				</name>
+				<description>
+					Creates a service delegate object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Endpoint createEndpoint(String bindingId,                        Object implementor)
+				</name>
+				<description>
+					Creates an endpoint object with the provided binding and implementation object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Endpoint createAndPublishEndpoint(String address,                                  Object implementor)
+				</name>
+				<description>
+					Creates and publishes an endpoint object with the specified address and implementation object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EndpointReference readEndpointReference(Source eprInfoset)
+				</name>
+				<description>
+					read an EndpointReference from the infoset contained in eprInfoset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <T> T getPort(EndpointReference endpointReference,              Class<T> serviceEndpointInterface,              WebServiceFeature... features)
+				</name>
+				<description>
+					The getPort method returns a proxy. If there are any reference parameters in the endpointReference, then those reference parameters MUST appear as SOAP headers, indicating them to be reference parameters, on all messages sent to the endpoint. The parameter serviceEndpointInterface specifies the service endpoint interface that is supported by the returned proxy. The parameter endpointReference specifies the endpoint that will be invoked by the returned proxy. In the implementation of this method, the JAX-WS runtime system takes the responsibility of selecting a protocol binding (and a port) and configuring the proxy accordingly from the WSDL metadata of the serviceEndpointInterface and the EndpointReference. For this method to successfully return a proxy, WSDL metadata MUST be available and the endpointReference MUST contain an implementation understood serviceName metadata.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract W3CEndpointReference createW3CEndpointReference(String address,                                                QName serviceName,                                                QName portName,                                                List<Element> metadata,                                                String wsdlDocumentLocation,                                                List<Element> referenceParameters)
+				</name>
+				<description>
+					Factory method to create a W3CEndpointReference. This method can be used to create a W3CEndpointReference for any endpoint by specifying the address property along with any other desired properties. This method can also be used to create a W3CEndpointReference for an endpoint that is published by the same Java EE application. To do so the address property can be provided or this method can automatically determine the address of an endpoint that is published by the same Java EE application and is identified by the serviceName and portName propeties. If the address is null and the serviceName and portName do not identify an endpoint published by the same Java EE application, a javax.lang.IllegalStateException MUST be thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public W3CEndpointReference createW3CEndpointReference(String address,                                                QName interfaceName,                                                QName serviceName,                                                QName portName,                                                List<Element> metadata,                                                String wsdlDocumentLocation,                                                List<Element> referenceParameters,                                                List<Element> elements,                                                Map<QName,String> attributes)
+				</name>
+				<description>
+					Factory method to create a W3CEndpointReference. Using this method, a W3CEndpointReference instance can be created with extension elements, and attributes. Provider implementations must override the default implementation. This method can be used to create a W3CEndpointReference for any endpoint by specifying the address property along with any other desired properties. This method can also be used to create a W3CEndpointReference for an endpoint that is published by the same Java EE application. To do so the address property can be provided or this method can automatically determine the address of an endpoint that is published by the same Java EE application and is identified by the serviceName and portName propeties. If the address is null and the serviceName and portName do not identify an endpoint published by the same Java EE application, a javax.lang.IllegalStateException MUST be thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Endpoint createAndPublishEndpoint(String address,                                  Object implementor,                                  WebServiceFeature... features)
+				</name>
+				<description>
+					Creates and publishes an endpoint object with the specified address, implementation object and web service features. Provider implementations must override the default implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Endpoint createEndpoint(String bindingId,                        Object implementor,                        WebServiceFeature... features)
+				</name>
+				<description>
+					Creates an endpoint object with the provided binding, implementation object and web service features. Provider implementations must override the default implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Endpoint createEndpoint(String bindingId,                        Class<?> implementorClass,                        Invoker invoker,                        WebServiceFeature... features)
+				</name>
+				<description>
+					Creates an endpoint object with the provided binding, implementation class, invoker and web service features. Containers typically use this to create Endpoint objects. Provider implementations must override the default implementation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

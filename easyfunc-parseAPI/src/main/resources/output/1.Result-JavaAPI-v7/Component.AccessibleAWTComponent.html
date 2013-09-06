@@ -1,0 +1,396 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			protected abstract class Component.AccessibleAWTComponent  extends AccessibleContext  implements Serializable, AccessibleComponent
+		</name>
+		<description>
+			Inner class of Component used to provide default support for accessibility. This class is not meant to be used directly by application developers, but is instead meant only to be subclassed by component developers. The class used to obtain the accessible role for this object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ComponentListener accessibleAWTComponentHandler
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FocusListener accessibleAWTFocusHandler
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component.AccessibleAWTComponent()
+				</name>
+				<description>
+					Though the class is abstract, this should be called by all sub-classes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addPropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Adds a PropertyChangeListener to the listener list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removePropertyChangeListener(PropertyChangeListener listener)
+				</name>
+				<description>
+					Remove a PropertyChangeListener from the listener list. This removes a PropertyChangeListener that was registered for all properties.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAccessibleName()
+				</name>
+				<description>
+					Gets the accessible name of this object. This should almost never return java.awt.Component.getName(), as that generally isn't a localized name, and doesn't have meaning for the user. If the object is fundamentally a text object (e.g. a menu item), the accessible name should be the text of the object (e.g. "save"). If the object has a tooltip, the tooltip text may also be an appropriate String to return.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAccessibleDescription()
+				</name>
+				<description>
+					Gets the accessible description of this object. This should be a concise, localized description of what this object is - what is its meaning to the user. If the object has a tooltip, the tooltip text may be an appropriate string to return, assuming it contains a concise description of the object (instead of just the name of the object - e.g. a "Save" icon on a toolbar that had "save" as the tooltip text shouldn't return the tooltip text as the description, but something like "Saves the current text document" instead).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleRole getAccessibleRole()
+				</name>
+				<description>
+					Gets the role of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleStateSet getAccessibleStateSet()
+				</name>
+				<description>
+					Gets the state of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Accessible getAccessibleParent()
+				</name>
+				<description>
+					Gets the Accessible parent of this object. If the parent of this object implements Accessible, this method should simply return getParent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAccessibleIndexInParent()
+				</name>
+				<description>
+					Gets the index of this object in its accessible parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getAccessibleChildrenCount()
+				</name>
+				<description>
+					Returns the number of accessible children in the object. If all of the children of this object implement Accessible, then this method should return the number of children of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Accessible getAccessibleChild(int i)
+				</name>
+				<description>
+					Returns the nth Accessible child of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Locale getLocale()
+				</name>
+				<description>
+					Returns the locale of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleComponent getAccessibleComponent()
+				</name>
+				<description>
+					Gets the AccessibleComponent associated with this object if one exists. Otherwise return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackground()
+				</name>
+				<description>
+					Gets the background color of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBackground(Color c)
+				</name>
+				<description>
+					Sets the background color of this object. (For transparency, see isOpaque.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getForeground()
+				</name>
+				<description>
+					Gets the foreground color of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setForeground(Color c)
+				</name>
+				<description>
+					Sets the foreground color of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Cursor getCursor()
+				</name>
+				<description>
+					Gets the Cursor of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setCursor(Cursor cursor)
+				</name>
+				<description>
+					Sets the Cursor of this object. The method may have no visual effect if the Java platform implementation and/or the native system do not support changing the mouse cursor shape.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont()
+				</name>
+				<description>
+					Gets the Font of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFont(Font f)
+				</name>
+				<description>
+					Sets the Font of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FontMetrics getFontMetrics(Font f)
+				</name>
+				<description>
+					Gets the FontMetrics of this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEnabled()
+				</name>
+				<description>
+					Determines if the object is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEnabled(boolean b)
+				</name>
+				<description>
+					Sets the enabled state of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isVisible()
+				</name>
+				<description>
+					Determines if the object is visible. Note: this means that the object intends to be visible; however, it may not in fact be showing on the screen because one of the objects that this object is contained by is not visible. To determine if an object is showing on the screen, use isShowing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVisible(boolean b)
+				</name>
+				<description>
+					Sets the visible state of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isShowing()
+				</name>
+				<description>
+					Determines if the object is showing. This is determined by checking the visibility of the object and ancestors of the object. Note: this will return true even if the object is obscured by another (for example, it happens to be underneath a menu that was pulled down).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Point p)
+				</name>
+				<description>
+					Checks whether the specified point is within this object's bounds, where the point's x and y coordinates are defined to be relative to the coordinate system of the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point getLocationOnScreen()
+				</name>
+				<description>
+					Returns the location of the object on the screen.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Point getLocation()
+				</name>
+				<description>
+					Gets the location of the object relative to the parent in the form of a point specifying the object's top-left corner in the screen's coordinate space.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLocation(Point p)
+				</name>
+				<description>
+					Sets the location of the object relative to the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getBounds()
+				</name>
+				<description>
+					Gets the bounds of this object in the form of a Rectangle object. The bounds specify this object's width, height, and location relative to its parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBounds(Rectangle r)
+				</name>
+				<description>
+					Sets the bounds of this object in the form of a Rectangle object. The bounds specify this object's width, height, and location relative to its parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getSize()
+				</name>
+				<description>
+					Returns the size of this object in the form of a Dimension object. The height field of the Dimension object contains this objects's height, and the width field of the Dimension object contains this object's width.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(Dimension d)
+				</name>
+				<description>
+					Resizes this object so that it has width and height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Accessible getAccessibleAt(Point p)
+				</name>
+				<description>
+					Returns the Accessible child, if one exists, contained at the local coordinate Point. Otherwise returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFocusTraversable()
+				</name>
+				<description>
+					Returns whether this object can accept focus or not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void requestFocus()
+				</name>
+				<description>
+					Requests focus for this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addFocusListener(FocusListener l)
+				</name>
+				<description>
+					Adds the specified focus listener to receive focus events from this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeFocusListener(FocusListener l)
+				</name>
+				<description>
+					Removes the specified focus listener so it no longer receives focus events from this component.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

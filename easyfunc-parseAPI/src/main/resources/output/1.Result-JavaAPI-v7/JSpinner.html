@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JSpinner  extends JComponent  implements Accessible
+		</name>
+		<description>
+			A single line input field that lets the user select a number or an object value from an ordered sequence. Spinners typically provide a pair of tiny arrow buttons for stepping through the elements of the sequence. The keyboard up/down arrow keys also cycle through the elements. The user may also be allowed to type a (legal) value directly into the spinner. Although combo boxes provide similar functionality, spinners are sometimes preferred because they don't require a drop down list that can obscure important data. A JSpinner's sequence value is defined by its SpinnerModel. The model can be specified as a constructor argument and changed with the model property. SpinnerModel classes for some common types are provided: SpinnerListModel, SpinnerNumberModel, and SpinnerDateModel. A JSpinner has a single child component that's responsible for displaying and potentially changing the current element or value of the model, which is called the editor. The editor is created by the JSpinner's constructor and can be changed with the editor property. The JSpinner's editor stays in sync with the model by listening for ChangeEvents. If the user has changed the value displayed by the editor it is possible for the model's value to differ from that of the editor. To make sure the model has the same value as the editor use the commitEdit method, eg:      try {         spinner.commitEdit();     }     catch (ParseException pe) {{         // Edited value is invalid, spinner.getValue() will return         // the last valid value, you could revert the spinner to show that:         JComponent editor = spinner.getEditor()         if (editor instanceof DefaultEditor) {             ((DefaultEditor)editor).getTextField().setValue(spinner.getValue();         }         // reset the value to some known value:         spinner.setValue(fallbackValue);         // or treat the last valid value as the current, in which         // case you don't need to do anything.     }     return spinner.getValue();   For information and examples of using spinner see How to Use Spinners, a section in The Java Tutorial. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JSpinner(SpinnerModel model)
+				</name>
+				<description>
+					Constructs a spinner for the given model. The spinner has a set of previous/next buttons, and an editor appropriate for the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JSpinner()
+				</name>
+				<description>
+					Constructs a spinner with an Integer SpinnerNumberModel with initial value 0 and no minimum or maximum limits.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SpinnerUI getUI()
+				</name>
+				<description>
+					Returns the look and feel (L&F) object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(SpinnerUI ui)
+				</name>
+				<description>
+					Sets the look and feel (L&F) object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the suffix used to construct the name of the look and feel (L&F) class used to render this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Resets the UI property with the value from the current look and feel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JComponent createEditor(SpinnerModel model)
+				</name>
+				<description>
+					This method is called by the constructors to create the JComponent that displays the current value of the sequence. The editor may also allow the user to enter an element of the sequence directly. An editor must listen for ChangeEvents on the model and keep the value it displays in sync with the value of the model. Subclasses may override this method to add support for new SpinnerModel classes. Alternatively one can just replace the editor created here with the setEditor method. The default mapping from model type to editor is: SpinnerNumberModel => JSpinner.NumberEditor SpinnerDateModel => JSpinner.DateEditor SpinnerListModel => JSpinner.ListEditor all others => JSpinner.DefaultEditor
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(SpinnerModel model)
+				</name>
+				<description>
+					Changes the model that represents the value of this spinner. If the editor property has not been explicitly set, the editor property is (implicitly) set after the "model" PropertyChangeEvent has been fired. The editor property is set to the value returned by createEditor, as in:    setEditor(createEditor(model));
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SpinnerModel getModel()
+				</name>
+				<description>
+					Returns the SpinnerModel that defines this spinners sequence of values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getValue()
+				</name>
+				<description>
+					Returns the current value of the model, typically this value is displayed by the editor. If the user has changed the value displayed by the editor it is possible for the model's value to differ from that of the editor, refer to the class level javadoc for examples of how to deal with this. This method simply delegates to the model. It is equivalent to:    getModel().getValue()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setValue(Object value)
+				</name>
+				<description>
+					Changes current value of the model, typically this value is displayed by the editor. If the SpinnerModel implementation doesn't support the specified value then an IllegalArgumentException is thrown. This method simply delegates to the model. It is equivalent to:    getModel().setValue(value)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getNextValue()
+				</name>
+				<description>
+					Returns the object in the sequence that comes after the object returned by getValue(). If the end of the sequence has been reached then return null. Calling this method does not effect value. This method simply delegates to the model. It is equivalent to:    getModel().getNextValue()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addChangeListener(ChangeListener listener)
+				</name>
+				<description>
+					Adds a listener to the list that is notified each time a change to the model occurs. The source of ChangeEvents delivered to ChangeListeners will be this JSpinner. Note also that replacing the model will not affect listeners added directly to JSpinner. Applications can add listeners to the model directly. In that case is that the source of the event would be the SpinnerModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeChangeListener(ChangeListener listener)
+				</name>
+				<description>
+					Removes a ChangeListener from this spinner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ChangeListener[] getChangeListeners()
+				</name>
+				<description>
+					Returns an array of all the ChangeListeners added to this JSpinner with addChangeListener().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void fireStateChanged()
+				</name>
+				<description>
+					Sends a ChangeEvent, whose source is this JSpinner, to each ChangeListener. When a ChangeListener has been added to the spinner, this method method is called each time a ChangeEvent is received from the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getPreviousValue()
+				</name>
+				<description>
+					Returns the object in the sequence that comes before the object returned by getValue(). If the end of the sequence has been reached then return null. Calling this method does not effect value. This method simply delegates to the model. It is equivalent to:    getModel().getPreviousValue()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEditor(JComponent editor)
+				</name>
+				<description>
+					Changes the JComponent that displays the current value of the SpinnerModel. It is the responsibility of this method to disconnect the old editor from the model and to connect the new editor. This may mean removing the old editors ChangeListener from the model or the spinner itself and adding one for the new editor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JComponent getEditor()
+				</name>
+				<description>
+					Returns the component that displays and potentially changes the model's value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void commitEdit()                  throws ParseException
+				</name>
+				<description>
+					Commits the currently edited value to the SpinnerModel. If the editor is an instance of DefaultEditor, the call if forwarded to the editor, otherwise this does nothing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext for the JSpinner
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

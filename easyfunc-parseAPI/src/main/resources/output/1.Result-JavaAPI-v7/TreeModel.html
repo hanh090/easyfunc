@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.swing.tree
+	</package>
+	<type>
+		<name>
+			public interface TreeModel
+		</name>
+		<description>
+			The model used by JTree. JTree and its related classes make extensive use of TreePaths for indentifying nodes in the TreeModel. If a TreeModel returns the same object, as compared by equals, at two different indices under the same parent than the resulting TreePath objects will be considered equal as well. Some implementations may assume that if two TreePaths are equal, they identify the same node. If this condition is not met, painting problems and other oddities may result. In other words, if getChild for a given parent returns the same Object (as determined by equals) problems may result, and it is recommended you avoid doing this. Similarly JTree and its related classes place TreePaths in Maps. As such if a node is requested twice, the return values must be equal (using the equals method) and have the same hashCode. For further information on tree models, including an example of a custom implementation, see How to Use Trees in The Java Tutorial.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Object getRoot()
+				</name>
+				<description>
+					Returns the root of the tree. Returns null only if the tree has no nodes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getChild(Object parent,                int index)
+				</name>
+				<description>
+					Returns the child of parent at index index in the parent's child array. parent must be a node previously obtained from this data source. This should not return null if index is a valid index for parent (that is index >= 0 && index < getChildCount(parent)).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getChildCount(Object parent)
+				</name>
+				<description>
+					Returns the number of children of parent. Returns 0 if the node is a leaf or if it has no children. parent must be a node previously obtained from this data source.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isLeaf(Object node)
+				</name>
+				<description>
+					Returns true if node is a leaf. It is possible for this method to return false even if node has no children. A directory in a filesystem, for example, may contain no files; the node representing the directory is not a leaf, but it also has no children.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void valueForPathChanged(TreePath path,                         Object newValue)
+				</name>
+				<description>
+					Messaged when the user has altered the value for the item identified by path to newValue. If newValue signifies a truly new value the model should post a treeNodesChanged event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getIndexOfChild(Object parent,                    Object child)
+				</name>
+				<description>
+					Returns the index of child in parent. If either parent or child is null, returns -1. If either parent or child don't belong to this tree model, returns -1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addTreeModelListener(TreeModelListener l)
+				</name>
+				<description>
+					Adds a listener for the TreeModelEvent posted after the tree changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeTreeModelListener(TreeModelListener l)
+				</name>
+				<description>
+					Removes a listener previously added with addTreeModelListener.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

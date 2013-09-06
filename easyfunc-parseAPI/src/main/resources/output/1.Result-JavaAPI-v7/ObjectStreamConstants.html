@@ -1,0 +1,279 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public interface ObjectStreamConstants
+		</name>
+		<description>
+			Constants written into the Object Serialization Stream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final short STREAM_MAGIC
+				</name>
+				<description>
+					Magic number that is written to the stream header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short STREAM_VERSION
+				</name>
+				<description>
+					Version number that is written to the stream header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_BASE
+				</name>
+				<description>
+					First tag value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_NULL
+				</name>
+				<description>
+					Null object reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_REFERENCE
+				</name>
+				<description>
+					Reference to an object already written into the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_CLASSDESC
+				</name>
+				<description>
+					new Class Descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_OBJECT
+				</name>
+				<description>
+					new Object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_STRING
+				</name>
+				<description>
+					new String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_ARRAY
+				</name>
+				<description>
+					new Array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_CLASS
+				</name>
+				<description>
+					Reference to Class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_BLOCKDATA
+				</name>
+				<description>
+					Block of optional data. Byte following tag indicates number of bytes in this block data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_ENDBLOCKDATA
+				</name>
+				<description>
+					End of optional block data blocks for an object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_RESET
+				</name>
+				<description>
+					Reset stream context. All handles written into stream are reset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_BLOCKDATALONG
+				</name>
+				<description>
+					long Block data. The long following the tag indicates the number of bytes in this block data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_EXCEPTION
+				</name>
+				<description>
+					Exception during write.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_LONGSTRING
+				</name>
+				<description>
+					Long string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_PROXYCLASSDESC
+				</name>
+				<description>
+					new Proxy Class Descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_ENUM
+				</name>
+				<description>
+					new Enum constant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte TC_MAX
+				</name>
+				<description>
+					Last tag value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int baseWireHandle
+				</name>
+				<description>
+					First wire handle to be assigned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte SC_WRITE_METHOD
+				</name>
+				<description>
+					Bit mask for ObjectStreamClass flag. Indicates a Serializable class defines its own writeObject method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte SC_BLOCK_DATA
+				</name>
+				<description>
+					Bit mask for ObjectStreamClass flag. Indicates Externalizable data written in Block Data mode. Added for PROTOCOL_VERSION_2.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte SC_SERIALIZABLE
+				</name>
+				<description>
+					Bit mask for ObjectStreamClass flag. Indicates class is Serializable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte SC_EXTERNALIZABLE
+				</name>
+				<description>
+					Bit mask for ObjectStreamClass flag. Indicates class is Externalizable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final byte SC_ENUM
+				</name>
+				<description>
+					Bit mask for ObjectStreamClass flag. Indicates class is an enum type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final SerializablePermission SUBSTITUTION_PERMISSION
+				</name>
+				<description>
+					Enable substitution of one object for another during serialization/deserialization.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final SerializablePermission SUBCLASS_IMPLEMENTATION_PERMISSION
+				</name>
+				<description>
+					Enable overriding of readObject and writeObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int PROTOCOL_VERSION_1
+				</name>
+				<description>
+					A Stream Protocol Version. All externalizable data is written in JDK 1.1 external data format after calling this method. This version is needed to write streams containing Externalizable data that can be read by pre-JDK 1.1.6 JVMs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int PROTOCOL_VERSION_2
+				</name>
+				<description>
+					A Stream Protocol Version. This protocol is written by JVM 1.2. Externalizable data is written in block data mode and is terminated with TC_ENDBLOCKDATA. Externalizable classdescriptor flags has SC_BLOCK_DATA enabled. JVM 1.1.6 and greater can read this format change. Enables writing a nonSerializable class descriptor into the stream. The serialVersionUID of a nonSerializable class is set to 0L.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

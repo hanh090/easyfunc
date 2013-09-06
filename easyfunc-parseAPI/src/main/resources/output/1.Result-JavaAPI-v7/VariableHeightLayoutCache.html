@@ -1,0 +1,225 @@
+<javaelement>
+	<package>
+		javax.swing.tree
+	</package>
+	<type>
+		<name>
+			public class VariableHeightLayoutCache  extends AbstractLayoutCache
+		</name>
+		<description>
+			NOTE: This will become more open in a future release. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public VariableHeightLayoutCache()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setModel(TreeModel newModel)
+				</name>
+				<description>
+					Sets the TreeModel that will provide the data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRootVisible(boolean rootVisible)
+				</name>
+				<description>
+					Determines whether or not the root node from the TreeModel is visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRowHeight(int rowHeight)
+				</name>
+				<description>
+					Sets the height of each cell. If the specified value is less than or equal to zero the current cell renderer is queried for each row's height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setNodeDimensions(AbstractLayoutCache.NodeDimensions nd)
+				</name>
+				<description>
+					Sets the renderer that is responsible for drawing nodes in the tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setExpandedState(TreePath path,                      boolean isExpanded)
+				</name>
+				<description>
+					Marks the path path expanded state to isExpanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getExpandedState(TreePath path)
+				</name>
+				<description>
+					Returns true if the path is expanded, and visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getBounds(TreePath path,                    Rectangle placeIn)
+				</name>
+				<description>
+					Returns the Rectangle enclosing the label portion into which the item identified by path will be drawn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getPathForRow(int row)
+				</name>
+				<description>
+					Returns the path for row. If row is not visible, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowForPath(TreePath path)
+				</name>
+				<description>
+					Returns the row where the last item identified in path is visible. Will return -1 if any of the elements in path are not currently visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRowCount()
+				</name>
+				<description>
+					Returns the number of visible rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void invalidatePathBounds(TreePath path)
+				</name>
+				<description>
+					Instructs the LayoutCache that the bounds for path are invalid, and need to be updated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getPreferredHeight()
+				</name>
+				<description>
+					Returns the preferred height.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getPreferredWidth(Rectangle bounds)
+				</name>
+				<description>
+					Returns the preferred width and height for the region in visibleRegion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TreePath getPathClosestTo(int x,                          int y)
+				</name>
+				<description>
+					Returns the path to the node that is closest to x,y. If there is nothing currently visible this will return null, otherwise it will always return a valid path. If you need to test if the returned object is exactly at x, y you should get the bounds for the returned path and test x, y against that.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<TreePath> getVisiblePathsFrom(TreePath path)
+				</name>
+				<description>
+					Returns an Enumerator that increments over the visible paths starting at the passed in location. The ordering of the enumeration is based on how the paths are displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVisibleChildCount(TreePath path)
+				</name>
+				<description>
+					Returns the number of visible children for path.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void invalidateSizes()
+				</name>
+				<description>
+					Informs the TreeState that it needs to recalculate all the sizes it is referencing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isExpanded(TreePath path)
+				</name>
+				<description>
+					Returns true if the value identified by path is currently expanded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void treeNodesChanged(TreeModelEvent e)
+				</name>
+				<description>
+					Invoked after a node (or a set of siblings) has changed in some way. The node(s) have not changed locations in the tree or altered their children arrays, but other attributes have changed and may affect presentation. Example: the name of a file has changed, but it is in the same location in the file system. e.path returns the path the parent of the changed node(s). e.childIndices returns the index(es) of the changed node(s).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void treeNodesInserted(TreeModelEvent e)
+				</name>
+				<description>
+					Invoked after nodes have been inserted into the tree. e.path returns the parent of the new nodes. e.childIndices returns the indices of the new nodes in ascending order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void treeNodesRemoved(TreeModelEvent e)
+				</name>
+				<description>
+					Invoked after nodes have been removed from the tree. Note that if a subtree is removed from the tree, this method may only be invoked once for the root of the removed subtree, not once for each individual set of siblings removed. e.path returns the former parent of the deleted nodes. e.childIndices returns the indices the nodes had before they were deleted in ascending order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void treeStructureChanged(TreeModelEvent e)
+				</name>
+				<description>
+					Invoked after the tree has drastically changed structure from a given node down. If the path returned by e.getPath is of length one and the first element does not identify the current root node the first element should become the new root of the tree. e.path holds the path to the node. e.childIndices returns null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

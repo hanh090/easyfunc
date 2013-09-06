@@ -1,0 +1,180 @@
+<javaelement>
+	<package>
+		javax.security.auth
+	</package>
+	<type>
+		<name>
+			public final class Subject  extends Object  implements Serializable
+		</name>
+		<description>
+			A Subject represents a grouping of related information for a single entity, such as a person. Such information includes the Subject's identities as well as its security-related attributes (passwords and cryptographic keys, for example). Subjects may potentially have multiple identities. Each identity is represented as a Principal within the Subject. Principals simply bind names to a Subject. For example, a Subject that happens to be a person, Alice, might have two Principals: one which binds "Alice Bar", the name on her driver license, to the Subject, and another which binds, "999-99-9999", the number on her student identification card, to the Subject. Both Principals refer to the same Subject even though each has a different name. A Subject may also own security-related attributes, which are referred to as credentials. Sensitive credentials that require special protection, such as private cryptographic keys, are stored within a private credential Set. Credentials intended to be shared, such as public key certificates or Kerberos server tickets are stored within a public credential Set. Different permissions are required to access and modify the different credential Sets. To retrieve all the Principals associated with a Subject, invoke the getPrincipals method. To retrieve all the public or private credentials belonging to a Subject, invoke the getPublicCredentials method or getPrivateCredentials method, respectively. To modify the returned Set of Principals and credentials, use the methods defined in the Set class. For example:         Subject subject;        Principal principal;        Object credential;          // add a Principal and credential to the Subject        subject.getPrincipals().add(principal);        subject.getPublicCredentials().add(credential);   This Subject class implements Serializable. While the Principals associated with the Subject are serialized, the credentials associated with the Subject are not. Note that the java.security.Principal class does not implement Serializable. Therefore all concrete Principal implementations associated with Subjects must implement Serializable.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Subject()
+				</name>
+				<description>
+					Create an instance of a Subject with an empty Set of Principals and empty Sets of public and private credentials. The newly constructed Sets check whether this Subject has been set read-only before permitting subsequent modifications. The newly created Sets also prevent illegal modifications by ensuring that callers have sufficient permissions. To modify the Principals Set, the caller must have AuthPermission("modifyPrincipals"). To modify the public credential Set, the caller must have AuthPermission("modifyPublicCredentials"). To modify the private credential Set, the caller must have AuthPermission("modifyPrivateCredentials").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Subject(boolean readOnly,         Set<? extends Principal> principals,         Set<?> pubCredentials,         Set<?> privCredentials)
+				</name>
+				<description>
+					Create an instance of a Subject with Principals and credentials. The Principals and credentials from the specified Sets are copied into newly constructed Sets. These newly created Sets check whether this Subject has been set read-only before permitting subsequent modifications. The newly created Sets also prevent illegal modifications by ensuring that callers have sufficient permissions. To modify the Principals Set, the caller must have AuthPermission("modifyPrincipals"). To modify the public credential Set, the caller must have AuthPermission("modifyPublicCredentials"). To modify the private credential Set, the caller must have AuthPermission("modifyPrivateCredentials").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReadOnly()
+				</name>
+				<description>
+					Set this Subject to be read-only. Modifications (additions and removals) to this Subject's Principal Set and credential Sets will be disallowed. The destroy operation on this Subject's credentials will still be permitted. Subsequent attempts to modify the Subject's Principal and credential Sets will result in an IllegalStateException being thrown. Also, once a Subject is read-only, it can not be reset to being writable again.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isReadOnly()
+				</name>
+				<description>
+					Query whether this Subject is read-only.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Subject getSubject(AccessControlContext acc)
+				</name>
+				<description>
+					Get the Subject associated with the provided AccessControlContext. The AccessControlContext may contain many Subjects (from nested doAs calls). In this situation, the most recent Subject associated with the AccessControlContext is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T doAs(Subject subject,           PrivilegedAction<T> action)
+				</name>
+				<description>
+					Perform work as a particular Subject. This method first retrieves the current Thread's AccessControlContext via AccessController.getContext, and then instantiates a new AccessControlContext using the retrieved context along with a new SubjectDomainCombiner (constructed using the provided Subject). Finally, this method invokes AccessController.doPrivileged, passing it the provided PrivilegedAction, as well as the newly constructed AccessControlContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T doAs(Subject subject,           PrivilegedExceptionAction<T> action)                throws PrivilegedActionException
+				</name>
+				<description>
+					Perform work as a particular Subject. This method first retrieves the current Thread's AccessControlContext via AccessController.getContext, and then instantiates a new AccessControlContext using the retrieved context along with a new SubjectDomainCombiner (constructed using the provided Subject). Finally, this method invokes AccessController.doPrivileged, passing it the provided PrivilegedExceptionAction, as well as the newly constructed AccessControlContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T doAsPrivileged(Subject subject,                     PrivilegedAction<T> action,                     AccessControlContext acc)
+				</name>
+				<description>
+					Perform privileged work as a particular Subject. This method behaves exactly as Subject.doAs, except that instead of retrieving the current Thread's AccessControlContext, it uses the provided AccessControlContext. If the provided AccessControlContext is null, this method instantiates a new AccessControlContext with an empty collection of ProtectionDomains.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static <T> T doAsPrivileged(Subject subject,                     PrivilegedExceptionAction<T> action,                     AccessControlContext acc)                          throws PrivilegedActionException
+				</name>
+				<description>
+					Perform privileged work as a particular Subject. This method behaves exactly as Subject.doAs, except that instead of retrieving the current Thread's AccessControlContext, it uses the provided AccessControlContext. If the provided AccessControlContext is null, this method instantiates a new AccessControlContext with an empty collection of ProtectionDomains.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Principal> getPrincipals()
+				</name>
+				<description>
+					Return the Set of Principals associated with this Subject. Each Principal represents an identity for this Subject. The returned Set is backed by this Subject's internal Principal Set. Any modification to the returned Set affects the internal Principal Set as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends Principal> Set<T> getPrincipals(Class<T> c)
+				</name>
+				<description>
+					Return a Set of Principals associated with this Subject that are instances or subclasses of the specified Class. The returned Set is not backed by this Subject's internal Principal Set. A new Set is created and returned for each method invocation. Modifications to the returned Set will not affect the internal Principal Set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Object> getPublicCredentials()
+				</name>
+				<description>
+					Return the Set of public credentials held by this Subject. The returned Set is backed by this Subject's internal public Credential Set. Any modification to the returned Set affects the internal public Credential Set as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Object> getPrivateCredentials()
+				</name>
+				<description>
+					Return the Set of private credentials held by this Subject. The returned Set is backed by this Subject's internal private Credential Set. Any modification to the returned Set affects the internal private Credential Set as well. A caller requires permissions to access the Credentials in the returned Set, or to modify the Set itself. A SecurityException is thrown if the caller does not have the proper permissions. While iterating through the Set, a SecurityException is thrown if the caller does not have permission to access a particular Credential. The Iterator is nevertheless advanced to next element in the Set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> Set<T> getPublicCredentials(Class<T> c)
+				</name>
+				<description>
+					Return a Set of public credentials associated with this Subject that are instances or subclasses of the specified Class. The returned Set is not backed by this Subject's internal public Credential Set. A new Set is created and returned for each method invocation. Modifications to the returned Set will not affect the internal public Credential Set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T> Set<T> getPrivateCredentials(Class<T> c)
+				</name>
+				<description>
+					Return a Set of private credentials associated with this Subject that are instances or subclasses of the specified Class. The caller must have permission to access all of the requested Credentials, or a SecurityException will be thrown. The returned Set is not backed by this Subject's internal private Credential Set. A new Set is created and returned for each method invocation. Modifications to the returned Set will not affect the internal private Credential Set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compares the specified Object with this Subject for equality. Returns true if the given object is also a Subject and the two Subject instances are equivalent. More formally, two Subject instances are equal if their Principal and Credential Sets are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Return the String representation of this Subject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this Subject.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

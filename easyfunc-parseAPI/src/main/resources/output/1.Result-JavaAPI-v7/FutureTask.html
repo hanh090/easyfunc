@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class FutureTask<V>  extends Object  implements RunnableFuture<V>
+		</name>
+		<description>
+			A cancellable asynchronous computation. This class provides a base implementation of Future, with methods to start and cancel a computation, query to see if the computation is complete, and retrieve the result of the computation. The result can only be retrieved when the computation has completed; the get method will block if the computation has not yet completed. Once the computation has completed, the computation cannot be restarted or cancelled. A FutureTask can be used to wrap a Callable or Runnable object. Because FutureTask implements Runnable, a FutureTask can be submitted to an Executor for execution. In addition to serving as a standalone class, this class provides protected functionality that may be useful when creating customized task classes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FutureTask(Callable<V> callable)
+				</name>
+				<description>
+					Creates a FutureTask that will, upon running, execute the given Callable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FutureTask(Runnable runnable,            V result)
+				</name>
+				<description>
+					Creates a FutureTask that will, upon running, execute the given Runnable, and arrange that get will return the given result on successful completion.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCancelled()
+				</name>
+				<description>
+					Description copied from interface: Future Returns true if this task was cancelled before it completed normally.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDone()
+				</name>
+				<description>
+					Description copied from interface: Future Returns true if this task completed. Completion may be due to normal termination, an exception, or cancellation -- in all of these cases, this method will return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean cancel(boolean mayInterruptIfRunning)
+				</name>
+				<description>
+					Description copied from interface: Future Attempts to cancel execution of this task. This attempt will fail if the task has already completed, has already been cancelled, or could not be cancelled for some other reason. If successful, and this task has not started when cancel is called, this task should never run. If the task has already started, then the mayInterruptIfRunning parameter determines whether the thread executing this task should be interrupted in an attempt to stop the task. After this method returns, subsequent calls to Future.isDone() will always return true. Subsequent calls to Future.isCancelled() will always return true if this method returned true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V get()        throws InterruptedException,               ExecutionException
+				</name>
+				<description>
+					Description copied from interface: Future Waits if necessary for the computation to complete, and then retrieves its result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V get(long timeout,      TimeUnit unit)        throws InterruptedException,               ExecutionException,               TimeoutException
+				</name>
+				<description>
+					Description copied from interface: Future Waits if necessary for at most the given time for the computation to complete, and then retrieves its result, if available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void done()
+				</name>
+				<description>
+					Protected method invoked when this task transitions to state isDone (whether normally or via cancellation). The default implementation does nothing. Subclasses may override this method to invoke completion callbacks or perform bookkeeping. Note that you can query status inside the implementation of this method to determine whether this task has been cancelled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void set(V v)
+				</name>
+				<description>
+					Sets the result of this Future to the given value unless this future has already been set or has been cancelled. This method is invoked internally by the run method upon successful completion of the computation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setException(Throwable t)
+				</name>
+				<description>
+					Causes this future to report an ExecutionException with the given throwable as its cause, unless this Future has already been set or has been cancelled. This method is invoked internally by the run method upon failure of the computation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void run()
+				</name>
+				<description>
+					Sets this Future to the result of its computation unless it has been cancelled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean runAndReset()
+				</name>
+				<description>
+					Executes the computation without setting its result, and then resets this Future to initial state, failing to do so if the computation encounters an exception or is cancelled. This is designed for use with tasks that intrinsically execute more than once.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

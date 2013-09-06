@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public abstract class ExtendedSSLSession  extends Object  implements SSLSession
+		</name>
+		<description>
+			Extends the SSLSession interface to support additional session attributes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ExtendedSSLSession()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String[] getLocalSupportedSignatureAlgorithms()
+				</name>
+				<description>
+					Obtains an array of supported signature algorithms that the local side is willing to use. Note: this method is used to indicate to the peer which signature algorithms may be used for digital signatures in TLS 1.2. It is not meaningful for TLS versions prior to 1.2. The signature algorithm name must be a standard Java Security name (such as "SHA1withRSA", "SHA256withECDSA", and so on). See Appendix A in the Java Cryptography Architecture API Specification & Reference for information about standard algorithm names. Note: the local supported signature algorithms should conform to the algorithm constraints specified by getAlgorithmConstraints() method in SSLParameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String[] getPeerSupportedSignatureAlgorithms()
+				</name>
+				<description>
+					Obtains an array of supported signature algorithms that the peer is able to use. Note: this method is used to indicate to the local side which signature algorithms may be used for digital signatures in TLS 1.2. It is not meaningful for TLS versions prior to 1.2. The signature algorithm name must be a standard Java Security name (such as "SHA1withRSA", "SHA256withECDSA", and so on). See Appendix A in the Java Cryptography Architecture API Specification & Reference for information about standard algorithm names.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

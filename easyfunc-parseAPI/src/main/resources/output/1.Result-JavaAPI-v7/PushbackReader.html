@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public class PushbackReader  extends FilterReader
+		</name>
+		<description>
+			A character-stream reader that allows characters to be pushed back into the stream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PushbackReader(Reader in,                int size)
+				</name>
+				<description>
+					Creates a new pushback reader with a pushback buffer of the given size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PushbackReader(Reader in)
+				</name>
+				<description>
+					Creates a new pushback reader with a one-character pushback buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Reads a single character.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(char[] cbuf,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads characters into a portion of an array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unread(int c)              throws IOException
+				</name>
+				<description>
+					Pushes back a single character by copying it to the front of the pushback buffer. After this method returns, the next character to be read will have the value (char)c.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unread(char[] cbuf,            int off,            int len)              throws IOException
+				</name>
+				<description>
+					Pushes back a portion of an array of characters by copying it to the front of the pushback buffer. After this method returns, the next character to be read will have the value cbuf[off], the character after that will have the value cbuf[off+1], and so forth.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void unread(char[] cbuf)              throws IOException
+				</name>
+				<description>
+					Pushes back an array of characters by copying it to the front of the pushback buffer. After this method returns, the next character to be read will have the value cbuf[0], the character after that will have the value cbuf[1], and so forth.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean ready()                throws IOException
+				</name>
+				<description>
+					Tells whether this stream is ready to be read.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void mark(int readAheadLimit)            throws IOException
+				</name>
+				<description>
+					Marks the present position in the stream. The mark for class PushbackReader always throws an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void reset()             throws IOException
+				</name>
+				<description>
+					Resets the stream. The reset method of PushbackReader always throws an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean markSupported()
+				</name>
+				<description>
+					Tells whether this stream supports the mark() operation, which it does not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes the stream and releases any system resources associated with it. Once the stream has been closed, further read(), unread(), ready(), or skip() invocations will throw an IOException. Closing a previously closed stream has no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long skip(long n)            throws IOException
+				</name>
+				<description>
+					Skips characters. This method will block until some characters are available, an I/O error occurs, or the end of the stream is reached.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

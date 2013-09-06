@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.sql
+	</package>
+	<type>
+		<name>
+			public class ConnectionEvent  extends EventObject
+		</name>
+		<description>
+			An Event object that provides information about the source of a connection-related event. ConnectionEvent objects are generated when an application closes a pooled connection and when an error occurs. The ConnectionEvent object contains two kinds of information: The pooled connection closed by the application In the case of an error event, the SQLException about to be thrown to the application
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ConnectionEvent(PooledConnection con)
+				</name>
+				<description>
+					Constructs a ConnectionEvent object initialized with the given PooledConnection object. SQLException defaults to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConnectionEvent(PooledConnection con,                 SQLException ex)
+				</name>
+				<description>
+					Constructs a ConnectionEvent object initialized with the given PooledConnection object and SQLException object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SQLException getSQLException()
+				</name>
+				<description>
+					Retrieves the SQLException for this ConnectionEvent object. May be null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

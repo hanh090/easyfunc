@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.xml.soap
+	</package>
+	<type>
+		<name>
+			public class SAAJResult  extends DOMResult
+		</name>
+		<description>
+			Acts as a holder for the results of a JAXP transformation or a JAXB marshalling, in the form of a SAAJ tree. These results should be accessed by using the getResult() method. The DOMResult.getNode() method should be avoided in almost all cases.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SAAJResult()             throws SOAPException
+				</name>
+				<description>
+					Creates a SAAJResult that will present results in the form of a SAAJ tree that supports the default (SOAP 1.1) protocol. This kind of SAAJResult is meant for use in situations where the results will be used as a parameter to a method that takes a parameter whose type, such as SOAPElement, is drawn from the SAAJ API. When used in a transformation, the results are populated into the SOAPPart of a SOAPMessage that is created internally. The SOAPPart returned by DOMResult.getNode() is not guaranteed to be well-formed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SAAJResult(String protocol)             throws SOAPException
+				</name>
+				<description>
+					Creates a SAAJResult that will present results in the form of a SAAJ tree that supports the specified protocol. The DYNAMIC_SOAP_PROTOCOL is ambiguous in this context and will cause this constructor to throw an UnsupportedOperationException. This kind of SAAJResult is meant for use in situations where the results will be used as a parameter to a method that takes a parameter whose type, such as SOAPElement, is drawn from the SAAJ API. When used in a transformation the results are populated into the SOAPPart of a SOAPMessage that is created internally. The SOAPPart returned by DOMResult.getNode() is not guaranteed to be well-formed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SAAJResult(SOAPMessage message)
+				</name>
+				<description>
+					Creates a SAAJResult that will write the results into the SOAPPart of the supplied SOAPMessage. In the normal case these results will be written using DOM APIs and, as a result, the finished SOAPPart will not be guaranteed to be well-formed unless the data used to create it is also well formed. When used in a transformation the validity of the SOAPMessage after the transformation can be guaranteed only by means outside SAAJ specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SAAJResult(SOAPElement rootNode)
+				</name>
+				<description>
+					Creates a SAAJResult that will write the results as a child node of the SOAPElement specified. In the normal case these results will be written using DOM APIs and as a result may invalidate the structure of the SAAJ tree. This kind of SAAJResult should only be used when the validity of the incoming data can be guaranteed by means outside of the SAAJ specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Node getResult()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

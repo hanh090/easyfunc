@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.script
+	</package>
+	<type>
+		<name>
+			public interface ScriptContext
+		</name>
+		<description>
+			The interface whose implementing classes are used to connect Script Engines with objects, such as scoped Bindings, in hosting applications. Each scope is a set of named attributes whose values can be set and retrieved using the ScriptContext methods. ScriptContexts also expose Readers and Writers that can be used by the ScriptEngines for input and output.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final int ENGINE_SCOPE
+				</name>
+				<description>
+					EngineScope attributes are visible during the lifetime of a single ScriptEngine and a set of attributes is maintained for each engine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int GLOBAL_SCOPE
+				</name>
+				<description>
+					GlobalScope attributes are visible to all engines created by same ScriptEngineFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setBindings(Bindings bindings,                 int scope)
+				</name>
+				<description>
+					Associates a Bindings instance with a particular scope in this ScriptContext. Calls to the getAttribute and setAttribute methods must map to the get and put methods of the Bindings for the specified scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Bindings getBindings(int scope)
+				</name>
+				<description>
+					Gets the Bindings associated with the given scope in this ScriptContext.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setAttribute(String name,                  Object value,                  int scope)
+				</name>
+				<description>
+					Sets the value of an attribute in a given scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getAttribute(String name,                    int scope)
+				</name>
+				<description>
+					Gets the value of an attribute in a given scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object removeAttribute(String name,                       int scope)
+				</name>
+				<description>
+					Remove an attribute in a given scope.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getAttribute(String name)
+				</name>
+				<description>
+					Retrieves the value of the attribute with the given name in the scope occurring earliest in the search order. The order is determined by the numeric value of the scope parameter (lowest scope values first.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getAttributesScope(String name)
+				</name>
+				<description>
+					Get the lowest scope in which an attribute is defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Writer getWriter()
+				</name>
+				<description>
+					Returns the Writer for scripts to use when displaying output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Writer getErrorWriter()
+				</name>
+				<description>
+					Returns the Writer used to display error output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setWriter(Writer writer)
+				</name>
+				<description>
+					Sets the Writer for scripts to use when displaying output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setErrorWriter(Writer writer)
+				</name>
+				<description>
+					Sets the Writer used to display error output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Reader getReader()
+				</name>
+				<description>
+					Returns a Reader to be used by the script to read input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setReader(Reader reader)
+				</name>
+				<description>
+					Sets the Reader for scripts to read input .
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<Integer> getScopes()
+				</name>
+				<description>
+					Returns immutable List of all the valid values for scope in the ScriptContext.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

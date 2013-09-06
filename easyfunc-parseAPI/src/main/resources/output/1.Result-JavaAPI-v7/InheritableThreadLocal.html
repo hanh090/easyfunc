@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		java.lang
+	</package>
+	<type>
+		<name>
+			public class InheritableThreadLocal<T>  extends ThreadLocal<T>
+		</name>
+		<description>
+			This class extends ThreadLocal to provide inheritance of values from parent thread to child thread: when a child thread is created, the child receives initial values for all inheritable thread-local variables for which the parent has values. Normally the child's values will be identical to the parent's; however, the child's value can be made an arbitrary function of the parent's by overriding the childValue method in this class. Inheritable thread-local variables are used in preference to ordinary thread-local variables when the per-thread-attribute being maintained in the variable (e.g., User ID, Transaction ID) must be automatically transmitted to any child threads that are created.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public InheritableThreadLocal()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected T childValue(T parentValue)
+				</name>
+				<description>
+					Computes the child's initial value for this inheritable thread-local variable as a function of the parent's value at the time the child thread is created. This method is called from within the parent thread before the child is started. This method merely returns its input argument, and should be overridden if a different behavior is desired.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		java.rmi.activation
+	</package>
+	<type>
+		<name>
+			public final class ActivationDesc  extends Object  implements Serializable
+		</name>
+		<description>
+			An activation descriptor contains the information necessary to activate an object: the object's group identifier, the object's fully-qualified class name, the object's code location (the location of the class), a codebase URL path, the object's restart "mode", and, a "marshalled" object that can contain object specific initialization data. A descriptor registered with the activation system can be used to recreate/activate the object specified by the descriptor. The MarshalledObject in the object's descriptor is passed as the second argument to the remote object's constructor for object to use during reinitialization/activation.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ActivationDesc(String className,                String location,                MarshalledObject<?> data)                 throws ActivationException
+				</name>
+				<description>
+					Constructs an object descriptor for an object whose class name is className, that can be loaded from the code location and whose initialization information is data. If this form of the constructor is used, the groupID defaults to the current id for ActivationGroup for this VM. All objects with the same ActivationGroupID are activated in the same VM. Note that objects specified by a descriptor created with this constructor will only be activated on demand (by default, the restart mode is false). If an activatable object requires restart services, use one of the ActivationDesc constructors that takes a boolean parameter, restart. This constructor will throw ActivationException if there is no current activation group for this VM. To create an ActivationGroup use the ActivationGroup.createGroup method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationDesc(String className,                String location,                MarshalledObject<?> data,                boolean restart)                 throws ActivationException
+				</name>
+				<description>
+					Constructs an object descriptor for an object whose class name is className, that can be loaded from the code location and whose initialization information is data. If this form of the constructor is used, the groupID defaults to the current id for ActivationGroup for this VM. All objects with the same ActivationGroupID are activated in the same VM. This constructor will throw ActivationException if there is no current activation group for this VM. To create an ActivationGroup use the ActivationGroup.createGroup method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationDesc(ActivationGroupID groupID,                String className,                String location,                MarshalledObject<?> data)
+				</name>
+				<description>
+					Constructs an object descriptor for an object whose class name is className that can be loaded from the code location and whose initialization information is data. All objects with the same groupID are activated in the same Java VM. Note that objects specified by a descriptor created with this constructor will only be activated on demand (by default, the restart mode is false). If an activatable object requires restart services, use one of the ActivationDesc constructors that takes a boolean parameter, restart.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationDesc(ActivationGroupID groupID,                String className,                String location,                MarshalledObject<?> data,                boolean restart)
+				</name>
+				<description>
+					Constructs an object descriptor for an object whose class name is className that can be loaded from the code location and whose initialization information is data. All objects with the same groupID are activated in the same Java VM.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActivationGroupID getGroupID()
+				</name>
+				<description>
+					Returns the group identifier for the object specified by this descriptor. A group provides a way to aggregate objects into a single Java virtual machine. RMI creates/activates objects with the same groupID in the same virtual machine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getClassName()
+				</name>
+				<description>
+					Returns the class name for the object specified by this descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getLocation()
+				</name>
+				<description>
+					Returns the code location for the object specified by this descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MarshalledObject<?> getData()
+				</name>
+				<description>
+					Returns a "marshalled object" containing intialization/activation data for the object specified by this descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getRestartMode()
+				</name>
+				<description>
+					Returns the "restart" mode of the object associated with this activation descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares two activation descriptors for content equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Return the same hashCode for similar ActivationDescs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

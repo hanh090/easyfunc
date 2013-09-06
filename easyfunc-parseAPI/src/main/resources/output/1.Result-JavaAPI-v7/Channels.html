@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.nio.channels
+	</package>
+	<type>
+		<name>
+			public final class Channels  extends Object
+		</name>
+		<description>
+			Utility methods for channels and streams. This class defines static methods that support the interoperation of the stream classes of the java.io package with the channel classes of this package.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static InputStream newInputStream(ReadableByteChannel ch)
+				</name>
+				<description>
+					Constructs a stream that reads bytes from the given channel. The read methods of the resulting stream will throw an IllegalBlockingModeException if invoked while the underlying channel is in non-blocking mode. The stream will not be buffered, and it will not support the mark or reset methods. The stream will be safe for access by multiple concurrent threads. Closing the stream will in turn cause the channel to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static OutputStream newOutputStream(WritableByteChannel ch)
+				</name>
+				<description>
+					Constructs a stream that writes bytes to the given channel. The write methods of the resulting stream will throw an IllegalBlockingModeException if invoked while the underlying channel is in non-blocking mode. The stream will not be buffered. The stream will be safe for access by multiple concurrent threads. Closing the stream will in turn cause the channel to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static InputStream newInputStream(AsynchronousByteChannel ch)
+				</name>
+				<description>
+					Constructs a stream that reads bytes from the given channel. The stream will not be buffered, and it will not support the mark or reset methods. The stream will be safe for access by multiple concurrent threads. Closing the stream will in turn cause the channel to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static OutputStream newOutputStream(AsynchronousByteChannel ch)
+				</name>
+				<description>
+					Constructs a stream that writes bytes to the given channel. The stream will not be buffered. The stream will be safe for access by multiple concurrent threads. Closing the stream will in turn cause the channel to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ReadableByteChannel newChannel(InputStream in)
+				</name>
+				<description>
+					Constructs a channel that reads bytes from the given stream. The resulting channel will not be buffered; it will simply redirect its I/O operations to the given stream. Closing the channel will in turn cause the stream to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static WritableByteChannel newChannel(OutputStream out)
+				</name>
+				<description>
+					Constructs a channel that writes bytes to the given stream. The resulting channel will not be buffered; it will simply redirect its I/O operations to the given stream. Closing the channel will in turn cause the stream to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Reader newReader(ReadableByteChannel ch,                 CharsetDecoder dec,                 int minBufferCap)
+				</name>
+				<description>
+					Constructs a reader that decodes bytes from the given channel using the given decoder. The resulting stream will contain an internal input buffer of at least minBufferCap bytes. The stream's read methods will, as needed, fill the buffer by reading bytes from the underlying channel; if the channel is in non-blocking mode when bytes are to be read then an IllegalBlockingModeException will be thrown. The resulting stream will not otherwise be buffered, and it will not support the mark or reset methods. Closing the stream will in turn cause the channel to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Reader newReader(ReadableByteChannel ch,                 String csName)
+				</name>
+				<description>
+					Constructs a reader that decodes bytes from the given channel according to the named charset. An invocation of this method of the form    Channels.newReader(ch, csname) behaves in exactly the same way as the expression    Channels.newReader(ch,                      Charset.forName(csName)                          .newDecoder(),                      -1);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Writer newWriter(WritableByteChannel ch,                 CharsetEncoder enc,                 int minBufferCap)
+				</name>
+				<description>
+					Constructs a writer that encodes characters using the given encoder and writes the resulting bytes to the given channel. The resulting stream will contain an internal output buffer of at least minBufferCap bytes. The stream's write methods will, as needed, flush the buffer by writing bytes to the underlying channel; if the channel is in non-blocking mode when bytes are to be written then an IllegalBlockingModeException will be thrown. The resulting stream will not otherwise be buffered. Closing the stream will in turn cause the channel to be closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Writer newWriter(WritableByteChannel ch,                 String csName)
+				</name>
+				<description>
+					Constructs a writer that encodes characters according to the named charset and writes the resulting bytes to the given channel. An invocation of this method of the form    Channels.newWriter(ch, csname) behaves in exactly the same way as the expression    Channels.newWriter(ch,                      Charset.forName(csName)                          .newEncoder(),                      -1);
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

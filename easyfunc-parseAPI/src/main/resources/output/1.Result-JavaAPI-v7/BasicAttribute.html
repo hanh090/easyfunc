@@ -1,0 +1,252 @@
+<javaelement>
+	<package>
+		javax.naming.directory
+	</package>
+	<type>
+		<name>
+			public class BasicAttribute  extends Object  implements Attribute
+		</name>
+		<description>
+			This class provides a basic implementation of the Attribute interface. This implementation does not support the schema methods getAttributeDefinition() and getAttributeSyntaxDefinition(). They simply throw OperationNotSupportedException. Subclasses of BasicAttribute should override these methods if they support them. The BasicAttribute class by default uses Object.equals() to determine equality of attribute values when testing for equality or when searching for values, except when the value is an array. For an array, each element of the array is checked using Object.equals(). Subclasses of BasicAttribute can make use of schema information when doing similar equality checks by overriding methods in which such use of schema is meaningful. Similarly, the BasicAttribute class by default returns the values passed to its constructor and/or manipulated using the add/remove methods. Subclasses of BasicAttribute can override get() and getAll() to get the values dynamically from the directory (or implement the Attribute interface directly instead of subclassing BasicAttribute). Note that updates to BasicAttribute (such as adding or removing a value) does not affect the corresponding representation of the attribute in the directory. Updates to the directory can only be effected using operations in the DirContext interface. A BasicAttribute instance is not synchronized against concurrent multithreaded access. Multiple threads trying to access and modify a BasicAttribute should lock the object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected String attrID
+				</name>
+				<description>
+					Holds the attribute's id. It is initialized by the public constructor and cannot be null unless methods in BasicAttribute that use attrID have been overridden.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient Vector<Object> values
+				</name>
+				<description>
+					Holds the attribute's values. Initialized by public constructors. Cannot be null unless methods in BasicAttribute that use values have been overridden.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean ordered
+				</name>
+				<description>
+					A flag for recording whether this attribute's values are ordered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicAttribute(String id)
+				</name>
+				<description>
+					Constructs a new instance of an unordered attribute with no value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicAttribute(String id,                Object value)
+				</name>
+				<description>
+					Constructs a new instance of an unordered attribute with a single value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicAttribute(String id,                boolean ordered)
+				</name>
+				<description>
+					Constructs a new instance of a possibly ordered attribute with no value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BasicAttribute(String id,                Object value,                boolean ordered)
+				</name>
+				<description>
+					Constructs a new instance of a possibly ordered attribute with a single value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Description copied from class: Object Creates and returns a copy of this object. The precise meaning of "copy" may depend on the class of the object. The general intent is that, for any object x, the expression:    x.clone() != x will be true, and that the expression:    x.clone().getClass() == x.getClass() will be true, but these are not absolute requirements. While it is typically the case that:    x.clone().equals(x) will be true, this is not an absolute requirement. By convention, the returned object should be obtained by calling super.clone. If a class and all of its superclasses (except Object) obey this convention, it will be the case that x.clone().getClass() == x.getClass(). By convention, the object returned by this method should be independent of this object (which is being cloned). To achieve this independence, it may be necessary to modify one or more fields of the object returned by super.clone before returning it. Typically, this means copying any mutable objects that comprise the internal "deep structure" of the object being cloned and replacing the references to these objects with references to the copies. If a class contains only primitive fields or references to immutable objects, then it is usually the case that no fields in the object returned by super.clone need to be modified. The method clone for class Object performs a specific cloning operation. First, if the class of this object does not implement the interface Cloneable, then a CloneNotSupportedException is thrown. Note that all arrays are considered to implement the interface Cloneable and that the return type of the clone method of an array type T[] is T[] where T is any reference or primitive type. Otherwise, this method creates a new instance of the class of this object and initializes all its fields with exactly the contents of the corresponding fields of this object, as if by assignment; the contents of the fields are not themselves cloned. Thus, this method performs a "shallow copy" of this object, not a "deep copy" operation. The class Object does not itself implement the interface Cloneable, so calling the clone method on an object whose class is Object will result in throwing an exception at run time.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Determines whether obj is equal to this attribute. Two attributes are equal if their attribute-ids, syntaxes and values are equal. If the attribute values are unordered, the order that the values were added are irrelevant. If the attribute values are ordered, then the order the values must match. If obj is null or not an Attribute, false is returned. By default Object.equals() is used when comparing the attribute id and its values except when a value is an array. For an array, each element of the array is checked using Object.equals(). A subclass may override this to make use of schema syntax information and matching rules, which define what it means for two attributes to be equal. How and whether a subclass makes use of the schema information is determined by the subclass. If a subclass overrides equals(), it should also override hashCode() such that two attributes that are equal have the same hash code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Calculates the hash code of this attribute. The hash code is computed by adding the hash code of the attribute's id and that of all of its values except for values that are arrays. For an array, the hash code of each element of the array is summed. If a subclass overrides hashCode(), it should override equals() as well so that two attributes that are equal have the same hash code.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Generates the string representation of this attribute. The string consists of the attribute's id and its values. This string is meant for debugging and not meant to be interpreted programmatically.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public NamingEnumeration<?> getAll()                              throws NamingException
+				</name>
+				<description>
+					Retrieves an enumeration of this attribute's values. By default, the values returned are those passed to the constructor and/or manipulated using the add/replace/remove methods. A subclass may override this to retrieve the values dynamically from the directory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get()             throws NamingException
+				</name>
+				<description>
+					Retrieves one of this attribute's values. By default, the value returned is one of those passed to the constructor and/or manipulated using the add/replace/remove methods. A subclass may override this to retrieve the value dynamically from the directory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Description copied from interface: Attribute Retrieves the number of values in this attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getID()
+				</name>
+				<description>
+					Description copied from interface: Attribute Retrieves the id of this attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contains(Object attrVal)
+				</name>
+				<description>
+					Determines whether a value is in this attribute. By default, Object.equals() is used when comparing attrVal with this attribute's values except when attrVal is an array. For an array, each element of the array is checked using Object.equals(). A subclass may use schema information to determine equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean add(Object attrVal)
+				</name>
+				<description>
+					Adds a new value to this attribute. By default, Object.equals() is used when comparing attrVal with this attribute's values except when attrVal is an array. For an array, each element of the array is checked using Object.equals(). A subclass may use schema information to determine equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(Object attrval)
+				</name>
+				<description>
+					Removes a specified value from this attribute. By default, Object.equals() is used when comparing attrVal with this attribute's values except when attrVal is an array. For an array, each element of the array is checked using Object.equals(). A subclass may use schema information to determine equality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Description copied from interface: Attribute Removes all values from this attribute.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOrdered()
+				</name>
+				<description>
+					Description copied from interface: Attribute Determines whether this attribute's values are ordered. If an attribute's values are ordered, duplicate values are allowed. If an attribute's values are unordered, they are presented in any order and there are no duplicate values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get(int ix)             throws NamingException
+				</name>
+				<description>
+					Description copied from interface: Attribute Retrieves the attribute value from the ordered list of attribute values. This method returns the value at the ix index of the list of attribute values. If the attribute values are unordered, this method returns the value that happens to be at that index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object remove(int ix)
+				</name>
+				<description>
+					Description copied from interface: Attribute Removes an attribute value from the ordered list of attribute values. This method removes the value at the ix index of the list of attribute values. If the attribute values are unordered, this method removes the value that happens to be at that index. Values located at indices greater than ix are shifted up towards the front of the list (and their indices decremented by one).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(int ix,         Object attrVal)
+				</name>
+				<description>
+					Description copied from interface: Attribute Adds an attribute value to the ordered list of attribute values. This method adds attrVal to the list of attribute values at index ix. Values located at indices at or greater than ix are shifted down towards the end of the list (and their indices incremented by one). If the attribute values are unordered and already have attrVal, IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object set(int ix,           Object attrVal)
+				</name>
+				<description>
+					Description copied from interface: Attribute Sets an attribute value in the ordered list of attribute values. This method sets the value at the ix index of the list of attribute values to be attrVal. The old value is removed. If the attribute values are unordered, this method sets the value that happens to be at that index to attrVal, unless attrVal is already one of the values. In that case, IllegalStateException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DirContext getAttributeSyntaxDefinition()                                          throws NamingException
+				</name>
+				<description>
+					Retrieves the syntax definition associated with this attribute. This method by default throws OperationNotSupportedException. A subclass should override this method if it supports schema.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DirContext getAttributeDefinition()                                    throws NamingException
+				</name>
+				<description>
+					Retrieves this attribute's schema definition. This method by default throws OperationNotSupportedException. A subclass should override this method if it supports schema.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

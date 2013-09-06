@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.management.loading
+	</package>
+	<type>
+		<name>
+			public class PrivateMLet  extends MLet  implements PrivateClassLoader
+		</name>
+		<description>
+			An MLet that is not added to the ClassLoaderRepository. This class acts exactly like its parent class, MLet, with one exception. When a PrivateMLet is registered in an MBean server, it is not added to that MBean server's ClassLoaderRepository. This is true because this class implements the interface PrivateClassLoader.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PrivateMLet(URL[] urls,             boolean delegateToCLR)
+				</name>
+				<description>
+					Constructs a new PrivateMLet for the specified URLs using the default delegation parent ClassLoader. The URLs will be searched in the order specified for classes and resources after first searching in the parent class loader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrivateMLet(URL[] urls,             ClassLoader parent,             boolean delegateToCLR)
+				</name>
+				<description>
+					Constructs a new PrivateMLet for the given URLs. The URLs will be searched in the order specified for classes and resources after first searching in the specified parent class loader. The parent argument will be used as the parent class loader for delegation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public PrivateMLet(URL[] urls,             ClassLoader parent,             URLStreamHandlerFactory factory,             boolean delegateToCLR)
+				</name>
+				<description>
+					Constructs a new PrivateMLet for the specified URLs, parent class loader, and URLStreamHandlerFactory. The parent argument will be used as the parent class loader for delegation. The factory argument will be used as the stream handler factory to obtain protocol handlers when creating new URLs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		java.lang.management
+	</package>
+	<type>
+		<name>
+			public interface ClassLoadingMXBean  extends PlatformManagedObject
+		</name>
+		<description>
+			The management interface for the class loading system of the Java virtual machine. A Java virtual machine has a single instance of the implementation class of this interface. This instance implementing this interface is an MXBean that can be obtained by calling the ManagementFactory.getClassLoadingMXBean() method or from the platform MBeanServer. The ObjectName for uniquely identifying the MXBean for the class loading system within an MBeanServer is: java.lang:type=ClassLoading It can be obtained by calling the PlatformManagedObject.getObjectName() method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					long getTotalLoadedClassCount()
+				</name>
+				<description>
+					Returns the total number of classes that have been loaded since the Java virtual machine has started execution.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getLoadedClassCount()
+				</name>
+				<description>
+					Returns the number of classes that are currently loaded in the Java virtual machine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long getUnloadedClassCount()
+				</name>
+				<description>
+					Returns the total number of classes unloaded since the Java virtual machine has started execution.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isVerbose()
+				</name>
+				<description>
+					Tests if the verbose output for the class loading system is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setVerbose(boolean value)
+				</name>
+				<description>
+					Enables or disables the verbose output for the class loading system. The verbose output information and the output stream to which the verbose information is emitted are implementation dependent. Typically, a Java virtual machine implementation prints a message each time a class file is loaded. This method can be called by multiple threads concurrently. Each invocation of this method enables or disables the verbose output globally.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

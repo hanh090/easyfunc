@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.print
+	</package>
+	<type>
+		<name>
+			public abstract class PrintServiceLookup  extends Object
+		</name>
+		<description>
+			Implementations of this class provide lookup services for print services (typically equivalent to printers) of a particular type. Multiple implementations may be installed concurrently. All implementations must be able to describe the located printers as instances of a PrintService. Typically implementations of this service class are located automatically in JAR files (see the SPI JAR file specification). These classes must be instantiable using a default constructor. Alternatively applications may explicitly register instances at runtime. Applications use only the static methods of this abstract class. The instance methods are implemented by a service provider in a subclass and the unification of the results from all installed lookup classes are reported by the static methods of this class when called by the application. A PrintServiceLookup implementor is recommended to check for the SecurityManager.checkPrintJobAccess() to deny access to untrusted code. Following this recommended policy means that untrusted code may not be able to locate any print services. Downloaded applets are the most common example of untrusted code. This check is made on a per lookup service basis to allow flexibility in the policy to reflect the needs of different lookup services. Services which are registered by registerService(PrintService) will not be included in lookup results if a security manager is installed and its checkPrintJobAccess() method denies access.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public PrintServiceLookup()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final PrintService[] lookupPrintServices(DocFlavor flavor,                                   AttributeSet attributes)
+				</name>
+				<description>
+					Locates print services capable of printing the specified DocFlavor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final MultiDocPrintService[] lookupMultiDocPrintServices(DocFlavor[] flavors,                                                   AttributeSet attributes)
+				</name>
+				<description>
+					Locates MultiDoc print Services capable of printing MultiDocs containing all the specified doc flavors. This method is useful to help locate a service that can print a MultiDoc in which the elements may be different flavors. An application could perform this itself by multiple lookups on each DocFlavor in turn and collating the results, but the lookup service may be able to do this more efficiently.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final PrintService lookupDefaultPrintService()
+				</name>
+				<description>
+					Locates the default print service for this environment. This may return null. If multiple lookup services each specify a default, the chosen service is not precisely defined, but a platform native service, rather than an installed service, is usually returned as the default. If there is no clearly identifiable platform native default print service, the default is the first to be located in an implementation-dependent manner. This may include making use of any preferences API that is available as part of the Java or native platform. This algorithm may be overridden by a user setting the property javax.print.defaultPrinter. A service specified must be discovered to be valid and currently available to be returned as the default.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean registerServiceProvider(PrintServiceLookup sp)
+				</name>
+				<description>
+					Allows an application to explicitly register a class that implements lookup services. The registration will not persist across VM invocations. This is useful if an application needs to make a new service available that is not part of the installation. If the lookup service is already registered, or cannot be registered, the method returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean registerService(PrintService service)
+				</name>
+				<description>
+					Allows an application to directly register an instance of a class which implements a print service. The lookup operations for this service will be performed by the PrintServiceLookup class using the attribute values and classes reported by the service. This may be less efficient than a lookup service tuned for that service. Therefore registering a PrintServiceLookup instance instead is recommended. The method returns true if this service is not previously registered and is now successfully registered. This method should not be called with StreamPrintService instances. They will always fail to register and the method will return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract PrintService[] getPrintServices(DocFlavor flavor,                                AttributeSet attributes)
+				</name>
+				<description>
+					Locates services that can be positively confirmed to support the combination of attributes and DocFlavors specified. This method is not called directly by applications. Implemented by a service provider, used by the static methods of this class. The results should be the same as obtaining all the PrintServices and querying each one individually on its support for the specified attributes and flavors, but the process can be more efficient by taking advantage of the capabilities of lookup services for the print services.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract PrintService[] getPrintServices()
+				</name>
+				<description>
+					Not called directly by applications. Implemented by a service provider, used by the static methods of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract MultiDocPrintService[] getMultiDocPrintServices(DocFlavor[] flavors,                                                AttributeSet attributes)
+				</name>
+				<description>
+					Not called directly by applications. Implemented by a service provider, used by the static methods of this class. Locates MultiDoc print services which can be positively confirmed to support the combination of attributes and DocFlavors specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract PrintService getDefaultPrintService()
+				</name>
+				<description>
+					Not called directly by applications. Implemented by a service provider, and called by the print lookup service
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

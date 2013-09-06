@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class NavigationFilter  extends Object
+		</name>
+		<description>
+			NavigationFilter can be used to restrict where the cursor can be positioned. When the default cursor positioning actions attempt to reposition the cursor they will call into the NavigationFilter, assuming the JTextComponent has a non-null NavigationFilter set. In this manner the NavigationFilter can effectively restrict where the cursor can be positioned. Similarly DefaultCaret will call into the NavigationFilter when the user is changing the selection to further restrict where the cursor can be positioned. Subclasses can conditionally call into supers implementation to restrict where the cursor can be placed, or call directly into the FilterBypass.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public NavigationFilter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDot(NavigationFilter.FilterBypass fb,            int dot,            Position.Bias bias)
+				</name>
+				<description>
+					Invoked prior to the Caret setting the dot. The default implementation calls directly into the FilterBypass with the passed in arguments. Subclasses may wish to conditionally call super with a different location, or invoke the necessary method on the FilterBypass
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void moveDot(NavigationFilter.FilterBypass fb,             int dot,             Position.Bias bias)
+				</name>
+				<description>
+					Invoked prior to the Caret moving the dot. The default implementation calls directly into the FilterBypass with the passed in arguments. Subclasses may wish to conditionally call super with a different location, or invoke the necessary methods on the FilterBypass.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNextVisualPositionFrom(JTextComponent text,                              int pos,                              Position.Bias bias,                              int direction,                              Position.Bias[] biasRet)                                throws BadLocationException
+				</name>
+				<description>
+					Returns the next visual position to place the caret at from an existing position. The default implementation simply forwards the method to the root View. Subclasses may wish to further restrict the location based on additional criteria.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

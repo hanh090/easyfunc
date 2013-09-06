@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		org.omg.PortableInterceptor
+	</package>
+	<type>
+		<name>
+			public interface ServerRequestInfoOperations  extends RequestInfoOperations
+		</name>
+		<description>
+			Request Information, accessible to server-side request interceptors. Some attributes and operations on ServerRequestInfo are not valid at all interception points. The following table shows the validity of each attribute or operation. If it is not valid, attempting to access it will result in a BAD_INV_ORDER being thrown with a standard minor code of 14.   receive_request_ service_contexts receive_request send_reply send_exception send_other Inherited from RequestInfo: request_id yes yes yes yes yes operation yes yes yes yes yes arguments no yes1 yes no2 no2 exceptions no yes yes yes yes contexts no yes yes yes yes operation_context no yes yes no no result no no yes no no response_expected yes yes yes yes yes sync_scope yes yes yes yes yes request_id yes yes yes yes yes operation yes yes yes yes yes arguments no yes1 yes no2 no2 exceptions no yes yes yes yes contexts no yes yes yes yes operation_context no yes yes no no result no no yes no no response_expected yes yes yes yes yes sync_scope yes yes yes yes yes reply_status no no yes yes yes forward_reference no no no no yes2 get_slot yes yes yes yes yes get_request_service_context yes no yes yes yes get_reply_service_context no no yes yes yes ServerRequestInfo-specific: sending_exception no no no yes no object_id no yes yes yes3 yes3 adapter_id no yes yes yes3 yes3 server_id no yes yes yes yes orb_id no yes yes yes yes adapter_name no yes yes yes yes target_most_derived_interface no yes no4 no4 no4 get_server_policy yes yes yes yes yes set_slot yes yes yes yes yes target_is_a no yes no4 no4 no4 add_reply_service_context yes yes yes yes yes When ServerRequestInfo is passed to receive_request, there is an entry in the list for every argument, whether in, inout, or out. But only the in and inout arguments will be available. If the reply_status attribute is not LOCATION_FORWARD, accessing this attribute will throw BAD_INV_ORDER with a standard minor code of 14. If the servant locator caused a location forward, or thrown an exception, this attribute/operation may not be available in this interception point. NO_RESOURCES with a standard minor code of 1 will be thrown if it is not available. The operation is not available in this interception point because the necessary information requires access to the target object's servant, which may no longer be available to the ORB. For example, if the object's adapter is a POA that uses a ServantLocator, then the ORB invokes the interception point after it calls ServantLocator.postinvoke().
+		</description>
+		<methods>
+			<method>
+				<name>
+					Any sending_exception()
+				</name>
+				<description>
+					Returns an any which contains the exception to be returned to the client. If the exception is a user exception which cannot be inserted into an any (e.g., it is unknown or the bindings don't provide the TypeCode), then this attribute will be an any containing the system exception UNKNOWN with a standard minor code of 1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] object_id()
+				</name>
+				<description>
+					Returns the opaque object_id describing the target of the operation invocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] adapter_id()
+				</name>
+				<description>
+					Returns the opaque identifier for the object adapter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String server_id()
+				</name>
+				<description>
+					Returns the server ID that was specified on ORB::init using the -ORBServerId argument.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String orb_id()
+				</name>
+				<description>
+					Returns the ID that was used to create the ORB.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] adapter_name()
+				</name>
+				<description>
+					Returns the sequence of strings that identifies the object adapter instance that is handling this request.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String target_most_derived_interface()
+				</name>
+				<description>
+					Returns the repository id for the most derived interface of the servant.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Policy get_server_policy(int type)
+				</name>
+				<description>
+					Returns the policy in effect for this operation for the given policy type. The returned CORBA.Policy object shall only be a policy whose type was registered via register_policy_factory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void set_slot(int id,              Any data)                throws InvalidSlot
+				</name>
+				<description>
+					Allows an Interceptor to set a slot in the PortableInterceptor.Current that is in the scope of the request. If data already exists in that slot, it will be overwritten.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean target_is_a(String id)
+				</name>
+				<description>
+					Returns true if the servant is the given repository id, false if it is not.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void add_reply_service_context(ServiceContext service_context,                               boolean replace)
+				</name>
+				<description>
+					Allows Interceptors to add service contexts to the request. There is no declaration of the order of the service contexts. They may or may not appear in the order that they are added.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

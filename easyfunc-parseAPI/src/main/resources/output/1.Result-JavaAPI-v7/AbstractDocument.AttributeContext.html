@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public static interface AbstractDocument.AttributeContext
+		</name>
+		<description>
+			An interface that can be used to allow MutableAttributeSet implementations to use pluggable attribute compression techniques. Each mutation of the attribute set can be used to exchange a previous AttributeSet instance with another, preserving the possibility of the AttributeSet remaining immutable. An implementation is provided by the StyleContext class. The Element implementations provided by this class use this interface to provide their MutableAttributeSet implementations, so that different AttributeSet compression techniques can be employed. The method getAttributeContext should be implemented to return the object responsible for implementing the desired compression technique.
+		</description>
+		<methods>
+			<method>
+				<name>
+					AttributeSet addAttribute(AttributeSet old,                          Object name,                          Object value)
+				</name>
+				<description>
+					Adds an attribute to the given set, and returns the new representative set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeSet addAttributes(AttributeSet old,                           AttributeSet attr)
+				</name>
+				<description>
+					Adds a set of attributes to the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeSet removeAttribute(AttributeSet old,                             Object name)
+				</name>
+				<description>
+					Removes an attribute from the set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeSet removeAttributes(AttributeSet old,                              Enumeration<?> names)
+				</name>
+				<description>
+					Removes a set of attributes for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeSet removeAttributes(AttributeSet old,                              AttributeSet attrs)
+				</name>
+				<description>
+					Removes a set of attributes for the element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeSet getEmptySet()
+				</name>
+				<description>
+					Fetches an empty AttributeSet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void reclaim(AttributeSet a)
+				</name>
+				<description>
+					Reclaims an attribute set. This is a way for a MutableAttributeSet to mark that it no longer need a particular immutable set. This is only necessary in 1.1 where there are no weak references. A 1.1 implementation would call this in its finalize method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

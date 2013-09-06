@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class AttributeChangeNotification  extends Notification
+		</name>
+		<description>
+			Provides definitions of the attribute change notifications sent by MBeans. It's up to the MBean owning the attribute of interest to create and send attribute change notifications when the attribute change occurs. So the NotificationBroadcaster interface has to be implemented by any MBean for which an attribute change is of interest. Example: If an MBean called myMbean needs to notify registered listeners when its attribute: String myString is modified, myMbean creates and emits the following notification: new AttributeChangeNotification(myMbean, sequenceNumber, timeStamp, msg, "myString", "String", oldValue, newValue);
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String ATTRIBUTE_CHANGE
+				</name>
+				<description>
+					Notification type which indicates that the observed MBean attribute value has changed. The value of this type string is jmx.attribute.change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeChangeNotification(Object source,                             long sequenceNumber,                             long timeStamp,                             String msg,                             String attributeName,                             String attributeType,                             Object oldValue,                             Object newValue)
+				</name>
+				<description>
+					Constructs an attribute change notification object. In addition to the information common to all notification, the caller must supply the name and type of the attribute, as well as its old and new values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeName()
+				</name>
+				<description>
+					Gets the name of the attribute which has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAttributeType()
+				</name>
+				<description>
+					Gets the type of the attribute which has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getOldValue()
+				</name>
+				<description>
+					Gets the old value of the attribute which has changed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getNewValue()
+				</name>
+				<description>
+					Gets the new value of the attribute which has changed.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.xml.ws.spi
+	</package>
+	<type>
+		<name>
+			public abstract class Invoker  extends Object
+		</name>
+		<description>
+			Invoker hides the detail of calling into application endpoint implementation. Container hands over an implementation of Invoker to JAX-WS runtime, and jax-ws runtime calls invoke(java.lang.reflect.Method, java.lang.Object...) for a web service invocation. Finally, Invoker does the actual invocation of web service on endpoint instance. Container also injects the provided WebServiceContext and takes care of invoking javax.annotation.PostConstruct methods, if present, on the endpoint implementation.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Invoker()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void inject(WebServiceContext webServiceContext)                       throws IllegalAccessException,                              IllegalArgumentException,                              InvocationTargetException
+				</name>
+				<description>
+					JAX-WS runtimes calls this method to ask container to inject WebServiceContext on the endpoint instance. The WebServiceContext object uses thread-local information to return the correct information during the actual endpoint invocation regardless of how many threads are concurrently being used to serve requests.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Object invoke(Method m,              Object... args)                         throws IllegalAccessException,                                IllegalArgumentException,                                InvocationTargetException
+				</name>
+				<description>
+					JAX-WS runtime calls this method to do the actual web service invocation on endpoint instance. The injected WebServiceContext.getMessageContext() gives the correct information for this invocation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

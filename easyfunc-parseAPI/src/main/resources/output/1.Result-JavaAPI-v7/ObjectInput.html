@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.io
+	</package>
+	<type>
+		<name>
+			public interface ObjectInput  extends DataInput, AutoCloseable
+		</name>
+		<description>
+			ObjectInput extends the DataInput interface to include the reading of objects. DataInput includes methods for the input of primitive types, ObjectInput extends that interface to include objects, arrays, and Strings.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Object readObject()                    throws ClassNotFoundException,                           IOException
+				</name>
+				<description>
+					Read and return an object. The class that implements this interface defines where the object is "read" from.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int read()           throws IOException
+				</name>
+				<description>
+					Reads a byte of data. This method will block if no input is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int read(byte[] b)           throws IOException
+				</name>
+				<description>
+					Reads into an array of bytes. This method will block until some input is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Reads into an array of bytes. This method will block until some input is available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long skip(long n)            throws IOException
+				</name>
+				<description>
+					Skips n bytes of input.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int available()                throws IOException
+				</name>
+				<description>
+					Returns the number of bytes that can be read without blocking.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void close()             throws IOException
+				</name>
+				<description>
+					Closes the input stream. Must be called to release any resources associated with the stream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

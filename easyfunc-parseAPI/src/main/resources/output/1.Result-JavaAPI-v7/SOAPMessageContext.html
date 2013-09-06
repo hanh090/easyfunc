@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.ws.handler.soap
+	</package>
+	<type>
+		<name>
+			public interface SOAPMessageContext  extends MessageContext
+		</name>
+		<description>
+			The interface SOAPMessageContext provides access to the SOAP message for either RPC request or response. The javax.xml.soap.SOAPMessage specifies the standard Java API for the representation of a SOAP 1.1 message with attachments.
+		</description>
+		<methods>
+			<method>
+				<name>
+					SOAPMessage getMessage()
+				</name>
+				<description>
+					Gets the SOAPMessage from this message context. Modifications to the returned SOAPMessage change the message in-place, there is no need to subsequently call setMessage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setMessage(SOAPMessage message)
+				</name>
+				<description>
+					Sets the SOAPMessage in this message context
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object[] getHeaders(QName header,                    JAXBContext context,                    boolean allRoles)
+				</name>
+				<description>
+					Gets headers that have a particular qualified name from the message in the message context. Note that a SOAP message can contain multiple headers with the same qualified name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Set<String> getRoles()
+				</name>
+				<description>
+					Gets the SOAP actor roles associated with an execution of the handler chain. Note that SOAP actor roles apply to the SOAP node and are managed using SOAPBinding.setRoles(java.util.Set<java.lang.String>) and SOAPBinding.getRoles(). Handler instances in the handler chain use this information about the SOAP actor roles to process the SOAP header blocks. Note that the SOAP actor roles are invariant during the processing of SOAP message through the handler chain.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			protected class Component.FlipBufferStrategy  extends BufferStrategy
+		</name>
+		<description>
+			Inner class for flipping buffers on a component. That component must be a Canvas or Window.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int numBuffers
+				</name>
+				<description>
+					The number of buffers
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BufferCapabilities caps
+				</name>
+				<description>
+					The buffering capabilities
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Image drawBuffer
+				</name>
+				<description>
+					The drawing buffer
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected VolatileImage drawVBuffer
+				</name>
+				<description>
+					The drawing buffer as a volatile image
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean validatedContents
+				</name>
+				<description>
+					Whether or not the drawing buffer has been recently restored from a lost state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Component.FlipBufferStrategy(int numBuffers,                              BufferCapabilities caps)                                  throws AWTException
+				</name>
+				<description>
+					Creates a new flipping buffer strategy for this component. The component must be a Canvas or Window.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void createBuffers(int numBuffers,                   BufferCapabilities caps)                        throws AWTException
+				</name>
+				<description>
+					Creates one or more complex, flipping buffers with the given capabilities.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Image getBackBuffer()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void flip(BufferCapabilities.FlipContents flipAction)
+				</name>
+				<description>
+					Flipping moves the contents of the back buffer to the front buffer, either by copying or by moving the video pointer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void destroyBuffers()
+				</name>
+				<description>
+					Destroys the buffers created through this object
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BufferCapabilities getCapabilities()
+				</name>
+				<description>
+					Description copied from class: BufferStrategy Returns the BufferCapabilities for this BufferStrategy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Graphics getDrawGraphics()
+				</name>
+				<description>
+					Description copied from class: BufferStrategy Creates a graphics context for the drawing buffer. This method may not be synchronized for performance reasons; use of this method by multiple threads should be handled at the application level. Disposal of the graphics object obtained must be handled by the application.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void revalidate()
+				</name>
+				<description>
+					Restore the drawing buffer if it has been lost
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contentsLost()
+				</name>
+				<description>
+					Description copied from class: BufferStrategy Returns whether the drawing buffer was lost since the last call to getDrawGraphics. Since the buffers in a buffer strategy are usually type VolatileImage, they may become lost. For a discussion on lost buffers, see VolatileImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean contentsRestored()
+				</name>
+				<description>
+					Description copied from class: BufferStrategy Returns whether the drawing buffer was recently restored from a lost state and reinitialized to the default background color (white). Since the buffers in a buffer strategy are usually type VolatileImage, they may become lost. If a surface has been recently restored from a lost state since the last call to getDrawGraphics, it may require repainting. For a discussion on lost buffers, see VolatileImage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void show()
+				</name>
+				<description>
+					Makes the next available buffer visible by either blitting or flipping.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dispose()
+				</name>
+				<description>
+					Releases system resources currently consumed by this BufferStrategy and removes it from the associated Component. After invoking this method, getBufferStrategy will return null. Trying to use a BufferStrategy after it has been disposed will result in undefined behavior.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

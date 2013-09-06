@@ -1,0 +1,252 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public abstract class LookAndFeel  extends Object
+		</name>
+		<description>
+			LookAndFeel, as the name implies, encapsulates a look and feel. Beyond installing a look and feel most developers never need to interact directly with LookAndFeel. In general only developers creating a custom look and feel need to concern themselves with this class. Swing is built upon the foundation that each JComponent subclass has an implementation of a specific ComponentUI subclass. The ComponentUI is often referred to as "the ui", "component ui", or "look and feel delegate". The ComponentUI subclass is responsible for providing the look and feel specific functionality of the component. For example, JTree requires an implementation of the ComponentUI subclass TreeUI. The implementation of the specific ComponentUI subclass is provided by the LookAndFeel. Each JComponent subclass identifies the ComponentUI subclass it requires by way of the JComponent method getUIClassID. Each LookAndFeel implementation must provide an implementation of the appropriate ComponentUI subclass by specifying a value for each of Swing's ui class ids in the UIDefaults object returned from getDefaults. For example, BasicLookAndFeel uses BasicTreeUI as the concrete implementation for TreeUI. This is accomplished by BasicLookAndFeel providing the key-value pair "TreeUI"-"javax.swing.plaf.basic.BasicTreeUI", in the UIDefaults returned from getDefaults. Refer to UIDefaults.getUI(JComponent) for defails on how the implementation of the ComponentUI subclass is obtained. When a LookAndFeel is installed the UIManager does not check that an entry exists for all ui class ids. As such, random exceptions will occur if the current look and feel has not provided a value for a particular ui class id and an instance of the JComponent subclass is created. Recommendations for Look and Feels As noted in UIManager each LookAndFeel has the opportunity to provide a set of defaults that are layered in with developer and system defaults. Some of Swing's components require the look and feel to provide a specific set of defaults. These are documented in the classes that require the specific default. ComponentUIs and defaults All ComponentUIs typically need to set various properties on the JComponent the ComponentUI is providing the look and feel for. This is typically done when the ComponentUI is installed on the JComponent. Setting a property should only be done if the developer has not set the property. For non-primitive values it is recommended that the ComponentUI only change the property on the JComponent if the current value is null or implements UIResource. If the current value is null or implements UIResource it indicates the property has not been set by the developer, and the ui is free to change it. For example, BasicButtonUI.installDefaults only changes the font on the JButton if the return value from button.getFont() is null or implements UIResource. On the other hand if button.getFont() returned a non-null value that did not implement UIResource then BasicButtonUI.installDefaults would not change the JButton's font. For primitive values, such as opaque, the method installProperty should be invoked. installProperty only changes the correspoding property if the value has not been changed by the developer. ComponentUI implementations should use the various install methods provided by this class as they handle the necessary checking and install the property using the recommended guidelines. Exceptions All of the install methods provided by LookAndFeel need to access the defaults if the value of the property being changed is null or a UIResource. For example, installing the font does the following:      JComponent c;     Font font = c.getFont();     if (font == null || (font instanceof UIResource)) {         c.setFont(UIManager.getFont("fontKey"));     }   If the font is null or a UIResource, the defaults table is queried with the key fontKey. All of UIDefault's get methods throw a NullPointerException if passed in null. As such, unless otherwise noted each of the various install methods of LookAndFeel throw a NullPointerException if the current value is null or a UIResource and the supplied defaults key is null. In addition, unless otherwise specified all of the install methods throw a NullPointerException if a null component is passed in.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public LookAndFeel()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void installColors(JComponent c,                   String defaultBgName,                   String defaultFgName)
+				</name>
+				<description>
+					Convenience method for setting a component's foreground and background color properties with values from the defaults. The properties are only set if the current value is either null or a UIResource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void installColorsAndFont(JComponent c,                          String defaultBgName,                          String defaultFgName,                          String defaultFontName)
+				</name>
+				<description>
+					Convenience method for setting a component's foreground, background and font properties with values from the defaults. The properties are only set if the current value is either null or a UIResource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void installBorder(JComponent c,                   String defaultBorderName)
+				</name>
+				<description>
+					Convenience method for setting a component's border property with a value from the defaults. The border is only set if the border is null or an instance of UIResource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void uninstallBorder(JComponent c)
+				</name>
+				<description>
+					Convenience method for uninstalling a border. If the border of the component is a UIResource, it is set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void installProperty(JComponent c,                     String propertyName,                     Object propertyValue)
+				</name>
+				<description>
+					Convenience method for installing a property with the specified name and value on a component if that property has not already been set by the developer. This method is intended to be used by ui delegate instances that need to specify a default value for a property of primitive type (boolean, int, ..), but do not wish to override a value set by the client. Since primitive property values cannot be wrapped with the UIResource marker, this method uses private state to determine whether the property has been set by the client.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static JTextComponent.KeyBinding[] makeKeyBindings(Object[] keyBindingList)
+				</name>
+				<description>
+					Convenience method for building an array of KeyBindings. While this method is not deprecated, developers should instead use ActionMap and InputMap for supplying key bindings. This method returns an array of KeyBindings, one for each alternating key-action pair in keyBindingList. A key can either be a String in the format specified by the KeyStroke.getKeyStroke method, or a KeyStroke. The action part of the pair is a String that corresponds to the name of the Action. The following example illustrates creating a KeyBinding array from six alternating key-action pairs:     JTextComponent.KeyBinding[] multilineBindings = makeKeyBindings( new Object[] {            "UP", DefaultEditorKit.upAction,          "DOWN", DefaultEditorKit.downAction,       "PAGE_UP", DefaultEditorKit.pageUpAction,     "PAGE_DOWN", DefaultEditorKit.pageDownAction,         "ENTER", DefaultEditorKit.insertBreakAction,           "TAB", DefaultEditorKit.insertTabAction    });   If keyBindingList's length is odd, the last element is ignored. Supplying a null value for either the key or action part of the key-action pair results in creating a KeyBinding with the corresponding value null. As other parts of Swing's expect non-null values in a KeyBinding, you should avoid supplying null as either the key or action part of the key-action pair.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static InputMap makeInputMap(Object[] keys)
+				</name>
+				<description>
+					Creates a InputMapUIResource from keys. This is a convenience method for creating a new InputMapUIResource, invoking loadKeyBindings(map, keys), and returning the InputMapUIResource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static ComponentInputMap makeComponentInputMap(JComponent c,                                        Object[] keys)
+				</name>
+				<description>
+					Creates a ComponentInputMapUIResource from keys. This is a convenience method for creating a new ComponentInputMapUIResource, invoking loadKeyBindings(map, keys), and returning the ComponentInputMapUIResource.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void loadKeyBindings(InputMap retMap,                     Object[] keys)
+				</name>
+				<description>
+					Populates an InputMap with the specified bindings. The bindings are supplied as a list of alternating keystroke-action key pairs. The keystroke is either an instance of KeyStroke, or a String that identifies the KeyStroke for the binding. Refer to KeyStroke.getKeyStroke(String) for the specific format. The action key part of the pair is the key registered in the InputMap for the KeyStroke. The following illustrates loading an InputMap with two key-action pairs:      LookAndFeel.loadKeyBindings(inputMap, new Object[] {       "control X", "cut",       "control V", "paste"     });   Supplying a null list of bindings (keys) does not change retMap in any way. Specifying a null action key results in removing the keystroke's entry from the InputMap. A null keystroke is ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object makeIcon(Class<?> baseClass,                String gifFile)
+				</name>
+				<description>
+					Creates and returns a UIDefault.LazyValue that loads an image. The returned value is an implementation of UIDefaults.LazyValue. When createValue is invoked on the returned object, the image is loaded. If the image is non-null, it is then wrapped in an Icon that implements UIResource. The image is loaded using Class.getResourceAsStream(gifFile). This method does not check the arguments in any way. It is strongly recommended that non-null values are supplied else exceptions may occur when createValue is invoked on the returned object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public LayoutStyle getLayoutStyle()
+				</name>
+				<description>
+					Returns the LayoutStyle for this look and feel. This never returns null. You generally don't use the LayoutStyle from the look and feel, instead use the LayoutStyle method getInstance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void provideErrorFeedback(Component component)
+				</name>
+				<description>
+					Invoked when the user attempts an invalid operation, such as pasting into an uneditable JTextField that has focus. The default implementation beeps. Subclasses that wish different behavior should override this and provide the additional feedback.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Object getDesktopPropertyValue(String systemPropertyName,                               Object fallbackValue)
+				</name>
+				<description>
+					Returns the value of the specified system desktop property by invoking Toolkit.getDefaultToolkit().getDesktopProperty(). If the value of the specified property is null, fallbackValue is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledIcon(JComponent component,                     Icon icon)
+				</name>
+				<description>
+					Returns an Icon with a disabled appearance. This method is used to generate a disabled Icon when one has not been specified. For example, if you create a JButton and only specify an Icon via setIcon this method will be called to generate the disabled Icon. If null is passed as icon this method returns null. Some look and feels might not render the disabled Icon, in which case they will ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getDisabledSelectedIcon(JComponent component,                             Icon icon)
+				</name>
+				<description>
+					Returns an Icon for use by disabled components that are also selected. This method is used to generate an Icon for components that are in both the disabled and selected states but do not have a specific Icon for this state. For example, if you create a JButton and only specify an Icon via setIcon this method will be called to generate the disabled and selected Icon. If null is passed as icon this methods returns null. Some look and feels might not render the disabled and selected Icon, in which case they will ignore this.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getName()
+				</name>
+				<description>
+					Return a short string that identifies this look and feel, e.g. "CDE/Motif". This string should be appropriate for a menu item. Distinct look and feels should have different names, e.g. a subclass of MotifLookAndFeel that changes the way a few components are rendered should be called "CDE/Motif My Way"; something that would be useful to a user trying to select a L&F from a list of names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getID()
+				</name>
+				<description>
+					Return a string that identifies this look and feel. This string will be used by applications/services that want to recognize well known look and feel implementations. Presently the well known names are "Motif", "Windows", "Mac", "Metal". Note that a LookAndFeel derived from a well known superclass that doesn't make any fundamental changes to the look or feel shouldn't override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getDescription()
+				</name>
+				<description>
+					Return a one line description of this look and feel implementation, e.g. "The CDE/Motif Look and Feel". This string is intended for the user, e.g. in the title of a window or in a ToolTip message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getSupportsWindowDecorations()
+				</name>
+				<description>
+					Returns true if the LookAndFeel returned RootPaneUI instances support providing Window decorations in a JRootPane. The default implementation returns false, subclasses that support Window decorations should override this and return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isNativeLookAndFeel()
+				</name>
+				<description>
+					If the underlying platform has a "native" look and feel, and this is an implementation of it, return true. For example, when the underlying platform is Solaris running CDE a CDE/Motif look and feel implementation would return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isSupportedLookAndFeel()
+				</name>
+				<description>
+					Return true if the underlying platform supports and or permits this look and feel. This method returns false if the look and feel depends on special resources or legal agreements that aren't defined for the current platform.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void initialize()
+				</name>
+				<description>
+					Initializes the look and feel. While this method is public, it should only be invoked by the UIManager when a look and feel is installed as the current look and feel. This method is invoked before the UIManager invokes getDefaults. This method is intended to perform any initialization for the look and feel. Subclasses should do any one-time setup they need here, rather than in a static initializer, because look and feel class objects may be loaded just to discover that isSupportedLookAndFeel() returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninitialize()
+				</name>
+				<description>
+					Uninitializes the look and feel. While this method is public, it should only be invoked by the UIManager when the look and feel is uninstalled. For example, UIManager.setLookAndFeel invokes this when the look and feel is changed. Subclasses may choose to free up some resources here.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UIDefaults getDefaults()
+				</name>
+				<description>
+					Returns the look and feel defaults. While this method is public, it should only be invoked by the UIManager when the look and feel is set as the current look and feel and after initialize has been invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string that displays and identifies this object's properties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,171 @@
+<javaelement>
+	<package>
+		java.util
+	</package>
+	<type>
+		<name>
+			public abstract class AbstractMap<K,V>  extends Object  implements Map<K,V>
+		</name>
+		<description>
+			This class provides a skeletal implementation of the Map interface, to minimize the effort required to implement this interface. To implement an unmodifiable map, the programmer needs only to extend this class and provide an implementation for the entrySet method, which returns a set-view of the map's mappings. Typically, the returned set will, in turn, be implemented atop AbstractSet. This set should not support the add or remove methods, and its iterator should not support the remove method. To implement a modifiable map, the programmer must additionally override this class's put method (which otherwise throws an UnsupportedOperationException), and the iterator returned by entrySet().iterator() must additionally implement its remove method. The programmer should generally provide a void (no argument) and map constructor, as per the recommendation in the Map interface specification. The documentation for each non-abstract method in this class describes its implementation in detail. Each of these methods may be overridden if the map being implemented admits a more efficient implementation. This class is a member of the Java Collections Framework.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AbstractMap()
+				</name>
+				<description>
+					Sole constructor. (For invocation by subclass constructors, typically implicit.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of key-value mappings in this map. If the map contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE. This implementation returns entrySet().size().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Returns true if this map contains no key-value mappings. This implementation returns size() == 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsValue(Object value)
+				</name>
+				<description>
+					Returns true if this map maps one or more keys to the specified value. More formally, returns true if and only if this map contains at least one mapping to a value v such that (value==null ? v==null : value.equals(v)). This operation will probably require time linear in the map size for most implementations of the Map interface. This implementation iterates over entrySet() searching for an entry with the specified value. If such an entry is found, true is returned. If the iteration terminates without finding such an entry, false is returned. Note that this implementation requires linear time in the size of the map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(Object key)
+				</name>
+				<description>
+					Returns true if this map contains a mapping for the specified key. More formally, returns true if and only if this map contains a mapping for a key k such that (key==null ? k==null : key.equals(k)). (There can be at most one such mapping.) This implementation iterates over entrySet() searching for an entry with the specified key. If such an entry is found, true is returned. If the iteration terminates without finding such an entry, false is returned. Note that this implementation requires linear time in the size of the map; many implementations will override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V get(Object key)
+				</name>
+				<description>
+					Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key. More formally, if this map contains a mapping from a key k to a value v such that (key==null ? k==null : key.equals(k)), then this method returns v; otherwise it returns null. (There can be at most one such mapping.) If this map permits null values, then a return value of null does not necessarily indicate that the map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases. This implementation iterates over entrySet() searching for an entry with the specified key. If such an entry is found, the entry's value is returned. If the iteration terminates without finding such an entry, null is returned. Note that this implementation requires linear time in the size of the map; many implementations will override this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V put(K key,      V value)
+				</name>
+				<description>
+					Associates the specified value with the specified key in this map (optional operation). If the map previously contained a mapping for the key, the old value is replaced by the specified value. (A map m is said to contain a mapping for a key k if and only if m.containsKey(k) would return true.) This implementation always throws an UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public V remove(Object key)
+				</name>
+				<description>
+					Removes the mapping for a key from this map if it is present (optional operation). More formally, if this map contains a mapping from key k to value v such that (key==null ? k==null : key.equals(k)), that mapping is removed. (The map can contain at most one such mapping.) Returns the value to which this map previously associated the key, or null if the map contained no mapping for the key. If this map permits null values, then a return value of null does not necessarily indicate that the map contained no mapping for the key; it's also possible that the map explicitly mapped the key to null. The map will not contain a mapping for the specified key once the call returns. This implementation iterates over entrySet() searching for an entry with the specified key. If such an entry is found, its value is obtained with its getValue operation, the entry is removed from the collection (and the backing map) with the iterator's remove operation, and the saved value is returned. If the iteration terminates without finding such an entry, null is returned. Note that this implementation requires linear time in the size of the map; many implementations will override this method. Note that this implementation throws an UnsupportedOperationException if the entrySet iterator does not support the remove method and this map contains a mapping for the specified key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void putAll(Map<? extends K,? extends V> m)
+				</name>
+				<description>
+					Copies all of the mappings from the specified map to this map (optional operation). The effect of this call is equivalent to that of calling put(k, v) on this map once for each mapping from key k to value v in the specified map. The behavior of this operation is undefined if the specified map is modified while the operation is in progress. This implementation iterates over the specified map's entrySet() collection, and calls this map's put operation once for each entry returned by the iteration. Note that this implementation throws an UnsupportedOperationException if this map does not support the put operation and the specified map is nonempty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all of the mappings from this map (optional operation). The map will be empty after this call returns. This implementation calls entrySet().clear(). Note that this implementation throws an UnsupportedOperationException if the entrySet does not support the clear operation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<K> keySet()
+				</name>
+				<description>
+					Returns a Set view of the keys contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and vice-versa. If the map is modified while an iteration over the set is in progress (except through the iterator's own remove operation), the results of the iteration are undefined. The set supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove, Set.remove, removeAll, retainAll, and clear operations. It does not support the add or addAll operations. This implementation returns a set that subclasses AbstractSet. The subclass's iterator method returns a "wrapper object" over this map's entrySet() iterator. The size method delegates to this map's size method and the contains method delegates to this map's containsKey method. The set is created the first time this method is called, and returned in response to all subsequent calls. No synchronization is performed, so there is a slight chance that multiple calls to this method will not all return the same set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Collection<V> values()
+				</name>
+				<description>
+					Returns a Collection view of the values contained in this map. The collection is backed by the map, so changes to the map are reflected in the collection, and vice-versa. If the map is modified while an iteration over the collection is in progress (except through the iterator's own remove operation), the results of the iteration are undefined. The collection supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove, Collection.remove, removeAll, retainAll and clear operations. It does not support the add or addAll operations. This implementation returns a collection that subclasses AbstractCollection. The subclass's iterator method returns a "wrapper object" over this map's entrySet() iterator. The size method delegates to this map's size method and the contains method delegates to this map's containsValue method. The collection is created the first time this method is called, and returned in response to all subsequent calls. No synchronization is performed, so there is a slight chance that multiple calls to this method will not all return the same collection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Set<Map.Entry<K,V>> entrySet()
+				</name>
+				<description>
+					Description copied from interface: Map Returns a Set view of the mappings contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and vice-versa. If the map is modified while an iteration over the set is in progress (except through the iterator's own remove operation, or through the setValue operation on a map entry returned by the iterator) the results of the iteration are undefined. The set supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove, Set.remove, removeAll, retainAll and clear operations. It does not support the add or addAll operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compares the specified object with this map for equality. Returns true if the given object is also a map and the two maps represent the same mappings. More formally, two maps m1 and m2 represent the same mappings if m1.entrySet().equals(m2.entrySet()). This ensures that the equals method works properly across different implementations of the Map interface. This implementation first checks if the specified object is this map; if so it returns true. Then, it checks if the specified object is a map whose size is identical to the size of this map; if not, it returns false. If so, it iterates over this map's entrySet collection, and checks that the specified map contains each mapping that this map contains. If the specified map fails to contain such a mapping, false is returned. If the iteration completes, true is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this map. The hash code of a map is defined to be the sum of the hash codes of each entry in the map's entrySet() view. This ensures that m1.equals(m2) implies that m1.hashCode()==m2.hashCode() for any two maps m1 and m2, as required by the general contract of Object.hashCode(). This implementation iterates over entrySet(), calling hashCode() on each element (entry) in the set, and adding up the results.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this map. The string representation consists of a list of key-value mappings in the order returned by the map's entrySet view's iterator, enclosed in braces ("{}"). Adjacent mappings are separated by the characters ", " (comma and space). Each key-value mapping is rendered as the key followed by an equals sign ("=") followed by the associated value. Keys and values are converted to strings as by String.valueOf(Object).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object clone()                  throws CloneNotSupportedException
+				</name>
+				<description>
+					Returns a shallow copy of this AbstractMap instance: the keys and values themselves are not cloned.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

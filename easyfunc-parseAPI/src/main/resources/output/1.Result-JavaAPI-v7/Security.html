@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public final class Security  extends Object
+		</name>
+		<description>
+			This class centralizes all security properties and common security methods. One of its primary uses is to manage providers.
+		</description>
+		<methods>
+			<method>
+				<name>
+					@Deprecated  public static String getAlgorithmProperty(String algName,                                       String propName)
+				</name>
+				<description>
+					Deprecated. This method used to return the value of a proprietary property in the master file of the "SUN" Cryptographic Service Provider in order to determine how to parse algorithm-specific parameters. Use the new provider-based and algorithm-independent AlgorithmParameters and KeyFactory engine classes (introduced in the J2SE version 1.2 platform) instead. Gets a specified property for an algorithm. The algorithm name should be a standard name. See the Java Cryptography Architecture Standard Algorithm Name Documentation for information about standard algorithm names. One possible use is by specialized algorithm parsers, which may map classes to algorithms which they understand (much like Key parsers do).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int insertProviderAt(Provider provider,                     int position)
+				</name>
+				<description>
+					Adds a new provider, at a specified position. The position is the preference order in which providers are searched for requested algorithms. The position is 1-based, that is, 1 is most preferred, followed by 2, and so on. If the given provider is installed at the requested position, the provider that used to be at that position, and all providers with a position greater than position, are shifted up one position (towards the end of the list of installed providers). A provider cannot be added if it is already installed. First, if there is a security manager, its checkSecurityAccess method is called with the string "insertProvider."+provider.getName() to see if it's ok to add a new provider. If the default implementation of checkSecurityAccess is used (i.e., that method is not overriden), then this will result in a call to the security manager's checkPermission method with a SecurityPermission("insertProvider."+provider.getName()) permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static int addProvider(Provider provider)
+				</name>
+				<description>
+					Adds a provider to the next position available. First, if there is a security manager, its checkSecurityAccess method is called with the string "insertProvider."+provider.getName() to see if it's ok to add a new provider. If the default implementation of checkSecurityAccess is used (i.e., that method is not overriden), then this will result in a call to the security manager's checkPermission method with a SecurityPermission("insertProvider."+provider.getName()) permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void removeProvider(String name)
+				</name>
+				<description>
+					Removes the provider with the specified name. When the specified provider is removed, all providers located at a position greater than where the specified provider was are shifted down one position (towards the head of the list of installed providers). This method returns silently if the provider is not installed or if name is null. First, if there is a security manager, its checkSecurityAccess method is called with the string "removeProvider."+name to see if it's ok to remove the provider. If the default implementation of checkSecurityAccess is used (i.e., that method is not overriden), then this will result in a call to the security manager's checkPermission method with a SecurityPermission("removeProvider."+name) permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Provider[] getProviders()
+				</name>
+				<description>
+					Returns an array containing all the installed providers. The order of the providers in the array is their preference order.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Provider getProvider(String name)
+				</name>
+				<description>
+					Returns the provider installed with the specified name, if any. Returns null if no provider with the specified name is installed or if name is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Provider[] getProviders(String filter)
+				</name>
+				<description>
+					Returns an array containing all installed providers that satisfy the specified selection criterion, or null if no such providers have been installed. The returned providers are ordered according to their preference order. A cryptographic service is always associated with a particular algorithm or type. For example, a digital signature service is always associated with a particular algorithm (e.g., DSA), and a CertificateFactory service is always associated with a particular certificate type (e.g., X.509). The selection criterion must be specified in one of the following two formats: <crypto_service>.<algorithm_or_type> The cryptographic service name must not contain any dots. A provider satisfies the specified selection criterion iff the provider implements the specified algorithm or type for the specified cryptographic service. For example, "CertificateFactory.X.509" would be satisfied by any provider that supplied a CertificateFactory implementation for X.509 certificates. <crypto_service>.<algorithm_or_type> <attribute_name>:< attribute_value> The cryptographic service name must not contain any dots. There must be one or more space charaters between the <algorithm_or_type> and the <attribute_name>. A provider satisfies this selection criterion iff the provider implements the specified algorithm or type for the specified cryptographic service and its implementation meets the constraint expressed by the specified attribute name/value pair. For example, "Signature.SHA1withDSA KeySize:1024" would be satisfied by any provider that implemented the SHA1withDSA signature algorithm with a keysize of 1024 (or larger). See the Java Cryptography Architecture Standard Algorithm Name Documentation for information about standard cryptographic service names, standard algorithm names and standard attribute names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Provider[] getProviders(Map<String,String> filter)
+				</name>
+				<description>
+					Returns an array containing all installed providers that satisfy the specified* selection criteria, or null if no such providers have been installed. The returned providers are ordered according to their preference order. The selection criteria are represented by a map. Each map entry represents a selection criterion. A provider is selected iff it satisfies all selection criteria. The key for any entry in such a map must be in one of the following two formats: <crypto_service>.<algorithm_or_type> The cryptographic service name must not contain any dots. The value associated with the key must be an empty string. A provider satisfies this selection criterion iff the provider implements the specified algorithm or type for the specified cryptographic service. <crypto_service>.<algorithm_or_type> <attribute_name> The cryptographic service name must not contain any dots. There must be one or more space charaters between the <algorithm_or_type> and the <attribute_name>. The value associated with the key must be a non-empty string. A provider satisfies this selection criterion iff the provider implements the specified algorithm or type for the specified cryptographic service and its implementation meets the constraint expressed by the specified attribute name/value pair. See the Java Cryptography Architecture Standard Algorithm Name Documentation for information about standard cryptographic service names, standard algorithm names and standard attribute names.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static String getProperty(String key)
+				</name>
+				<description>
+					Gets a security property value. First, if there is a security manager, its checkPermission method is called with a java.security.SecurityPermission("getProperty."+key) permission to see if it's ok to retrieve the specified security property value..
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setProperty(String key,                 String datum)
+				</name>
+				<description>
+					Sets a security property value. First, if there is a security manager, its checkPermission method is called with a java.security.SecurityPermission("setProperty."+key) permission to see if it's ok to set the specified security property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static Set<String> getAlgorithms(String serviceName)
+				</name>
+				<description>
+					Returns a Set of Strings containing the names of all available algorithms or types for the specified Java cryptographic service (e.g., Signature, MessageDigest, Cipher, Mac, KeyStore). Returns an empty Set if there is no provider that supports the specified service or if serviceName is null. For a complete list of Java cryptographic services, please see the Java Cryptography Architecture API Specification & Reference. Note: the returned set is immutable.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

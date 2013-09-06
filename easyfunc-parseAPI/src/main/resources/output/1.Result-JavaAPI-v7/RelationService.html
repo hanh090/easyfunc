@@ -1,0 +1,387 @@
+<javaelement>
+	<package>
+		javax.management.relation
+	</package>
+	<type>
+		<name>
+			public class RelationService  extends NotificationBroadcasterSupport  implements RelationServiceMBean, MBeanRegistration, NotificationListener
+		</name>
+		<description>
+			The Relation Service is in charge of creating and deleting relation types and relations, of handling the consistency and of providing query mechanisms. It implements the NotificationBroadcaster by extending NotificationBroadcasterSupport to send notifications when a relation is removed from it. It implements the NotificationListener interface to be able to receive notifications concerning unregistration of MBeans referenced in relation roles and of relation MBeans. It implements the MBeanRegistration interface to be able to retrieve its ObjectName and MBean Server.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public RelationService(boolean immediatePurgeFlag)
+				</name>
+				<description>
+					Constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void isActive()                throws RelationServiceNotRegisteredException
+				</name>
+				<description>
+					Checks if the Relation Service is active. Current condition is that the Relation Service must be registered in the MBean Server
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName preRegister(MBeanServer server,                       ObjectName name)                         throws Exception
+				</name>
+				<description>
+					Description copied from interface: MBeanRegistration Allows the MBean to perform any operations it needs before being registered in the MBean Server. If the name of the MBean is not specified, the MBean can provide a name for its registration. If any exception is raised, the MBean will not be registered in the MBean Server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postRegister(Boolean registrationDone)
+				</name>
+				<description>
+					Description copied from interface: MBeanRegistration Allows the MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postRegister will not change the state of the MBean: if the MBean was already registered (registrationDone is true), the MBean will remain registered. This might be confusing for the code calling createMBean() or registerMBean(), as such code might assume that MBean registration has failed when such an exception is raised. Therefore it is recommended that implementations of postRegister do not throw Runtime Exceptions or Errors if it can be avoided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preDeregister()                     throws Exception
+				</name>
+				<description>
+					Description copied from interface: MBeanRegistration Allows the MBean to perform any operations it needs before being unregistered by the MBean server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postDeregister()
+				</name>
+				<description>
+					Description copied from interface: MBeanRegistration Allows the MBean to perform any operations needed after having been unregistered in the MBean server. If the implementation of this method throws a RuntimeException or an Error, the MBean Server will rethrow those inside a RuntimeMBeanException or RuntimeErrorException, respectively. However, throwing an exception in postDeregister will not change the state of the MBean: the MBean was already successfully deregistered and will remain so. This might be confusing for the code calling unregisterMBean(), as it might assume that MBean deregistration has failed. Therefore it is recommended that implementations of postDeregister do not throw Runtime Exceptions or Errors if it can be avoided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getPurgeFlag()
+				</name>
+				<description>
+					Returns the flag to indicate if when a notification is received for the unregistration of an MBean referenced in a relation, if an immediate "purge" of the relations (look for the relations no longer valid) has to be performed , or if that will be performed only when the purgeRelations method will be explicitly called. true is immediate purge.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPurgeFlag(boolean purgeFlag)
+				</name>
+				<description>
+					Sets the flag to indicate if when a notification is received for the unregistration of an MBean referenced in a relation, if an immediate "purge" of the relations (look for the relations no longer valid) has to be performed , or if that will be performed only when the purgeRelations method will be explicitly called. true is immediate purge.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void createRelationType(String relationTypeName,                        RoleInfo[] roleInfoArray)                          throws IllegalArgumentException,                                 InvalidRelationTypeException
+				</name>
+				<description>
+					Creates a relation type (a RelationTypeSupport object) with given role infos (provided by the RoleInfo objects), and adds it in the Relation Service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addRelationType(RelationType relationTypeObj)                       throws IllegalArgumentException,                              InvalidRelationTypeException
+				</name>
+				<description>
+					Adds given object as a relation type. The object is expected to implement the RelationType interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<String> getAllRelationTypeNames()
+				</name>
+				<description>
+					Retrieves names of all known relation types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<RoleInfo> getRoleInfos(String relationTypeName)                              throws IllegalArgumentException,                                     RelationTypeNotFoundException
+				</name>
+				<description>
+					Retrieves list of role infos (RoleInfo objects) of a given relation type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RoleInfo getRoleInfo(String relationTypeName,                     String roleInfoName)                       throws IllegalArgumentException,                              RelationTypeNotFoundException,                              RoleInfoNotFoundException
+				</name>
+				<description>
+					Retrieves role info for given role name of a given relation type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeRelationType(String relationTypeName)                          throws RelationServiceNotRegisteredException,                                 IllegalArgumentException,                                 RelationTypeNotFoundException
+				</name>
+				<description>
+					Removes given relation type from Relation Service. The relation objects of that type will be removed from the Relation Service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void createRelation(String relationId,                    String relationTypeName,                    RoleList roleList)                      throws RelationServiceNotRegisteredException,                             IllegalArgumentException,                             RoleNotFoundException,                             InvalidRelationIdException,                             RelationTypeNotFoundException,                             InvalidRoleValueException
+				</name>
+				<description>
+					Creates a simple relation (represented by a RelationSupport object) of given relation type, and adds it in the Relation Service. Roles are initialized according to the role list provided in parameter. The ones not initialized in this way are set to an empty ArrayList of ObjectNames. A RelationNotification, with type RELATION_BASIC_CREATION, is sent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addRelation(ObjectName relationObjectName)                   throws IllegalArgumentException,                          RelationServiceNotRegisteredException,                          NoSuchMethodException,                          InvalidRelationIdException,                          InstanceNotFoundException,                          InvalidRelationServiceException,                          RelationTypeNotFoundException,                          RoleNotFoundException,                          InvalidRoleValueException
+				</name>
+				<description>
+					Adds an MBean created by the user (and registered by him in the MBean Server) as a relation in the Relation Service. To be added as a relation, the MBean must conform to the following: - implement the Relation interface - have for RelationService ObjectName the ObjectName of current Relation Service - have a relation id unique and unused in current Relation Service - have for relation type a relation type created in the Relation Service - have roles conforming to the role info provided in the relation type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName isRelationMBean(String relationId)                             throws IllegalArgumentException,                                    RelationNotFoundException
+				</name>
+				<description>
+					If the relation is represented by an MBean (created by the user and added as a relation in the Relation Service), returns the ObjectName of the MBean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String isRelation(ObjectName objectName)                    throws IllegalArgumentException
+				</name>
+				<description>
+					Returns the relation id associated to the given ObjectName if the MBean has been added as a relation in the Relation Service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Boolean hasRelation(String relationId)                      throws IllegalArgumentException
+				</name>
+				<description>
+					Checks if there is a relation identified in Relation Service with given relation id.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<String> getAllRelationIds()
+				</name>
+				<description>
+					Returns all the relation ids for all the relations handled by the Relation Service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer checkRoleReading(String roleName,                         String relationTypeName)                           throws IllegalArgumentException,                                  RelationTypeNotFoundException
+				</name>
+				<description>
+					Checks if given Role can be read in a relation of the given type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer checkRoleWriting(Role role,                         String relationTypeName,                         Boolean initFlag)                           throws IllegalArgumentException,                                  RelationTypeNotFoundException
+				</name>
+				<description>
+					Checks if given Role can be set in a relation of given type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void sendRelationCreationNotification(String relationId)                                        throws IllegalArgumentException,                                               RelationNotFoundException
+				</name>
+				<description>
+					Sends a notification (RelationNotification) for a relation creation. The notification type is: - RelationNotification.RELATION_BASIC_CREATION if the relation is an object internal to the Relation Service - RelationNotification.RELATION_MBEAN_CREATION if the relation is a MBean added as a relation. The source object is the Relation Service itself. It is called in Relation Service createRelation() and addRelation() methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void sendRoleUpdateNotification(String relationId,                                Role newRole,                                List<ObjectName> oldValue)                                  throws IllegalArgumentException,                                         RelationNotFoundException
+				</name>
+				<description>
+					Sends a notification (RelationNotification) for a role update in the given relation. The notification type is: - RelationNotification.RELATION_BASIC_UPDATE if the relation is an object internal to the Relation Service - RelationNotification.RELATION_MBEAN_UPDATE if the relation is a MBean added as a relation. The source object is the Relation Service itself. It is called in relation MBean setRole() (for given role) and setRoles() (for each role) methods (implementation provided in RelationSupport class). It is also called in Relation Service setRole() (for given role) and setRoles() (for each role) methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void sendRelationRemovalNotification(String relationId,                                     List<ObjectName> unregMBeanList)                                       throws IllegalArgumentException,                                              RelationNotFoundException
+				</name>
+				<description>
+					Sends a notification (RelationNotification) for a relation removal. The notification type is: - RelationNotification.RELATION_BASIC_REMOVAL if the relation is an object internal to the Relation Service - RelationNotification.RELATION_MBEAN_REMOVAL if the relation is a MBean added as a relation. The source object is the Relation Service itself. It is called in Relation Service removeRelation() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateRoleMap(String relationId,                   Role newRole,                   List<ObjectName> oldValue)                     throws IllegalArgumentException,                            RelationServiceNotRegisteredException,                            RelationNotFoundException
+				</name>
+				<description>
+					Handles update of the Relation Service role map for the update of given role in given relation. It is called in relation MBean setRole() (for given role) and setRoles() (for each role) methods (implementation provided in RelationSupport class). It is also called in Relation Service setRole() (for given role) and setRoles() (for each role) methods. To allow the Relation Service to maintain the consistency (in case of MBean unregistration) and to be able to perform queries, this method must be called when a role is updated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeRelation(String relationId)                      throws RelationServiceNotRegisteredException,                             IllegalArgumentException,                             RelationNotFoundException
+				</name>
+				<description>
+					Removes given relation from the Relation Service. A RelationNotification notification is sent, its type being: - RelationNotification.RELATION_BASIC_REMOVAL if the relation was only internal to the Relation Service - RelationNotification.RELATION_MBEAN_REMOVAL if the relation is registered as an MBean. For MBeans referenced in such relation, nothing will be done,
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void purgeRelations()                      throws RelationServiceNotRegisteredException
+				</name>
+				<description>
+					Purges the relations. Depending on the purgeFlag value, this method is either called automatically when a notification is received for the unregistration of an MBean referenced in a relation (if the flag is set to true), or not (if the flag is set to false). In that case it is up to the user to call it to maintain the consistency of the relations. To be kept in mind that if an MBean is unregistered and the purge not done immediately, if the ObjectName is reused and assigned to another MBean referenced in a relation, calling manually this purgeRelations() method will cause trouble, as will consider the ObjectName as corresponding to the unregistered MBean, not seeing the new one. The behavior depends on the cardinality of the role where the unregistered MBean is referenced: - if removing one MBean reference in the role makes its number of references less than the minimum degree, the relation has to be removed. - if the remaining number of references after removing the MBean reference is still in the cardinality range, keep the relation and update it calling its handleMBeanUnregistration() callback.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<String,List<String>> findReferencingRelations(ObjectName mbeanName,                                                  String relationTypeName,                                                  String roleName)                                                    throws IllegalArgumentException
+				</name>
+				<description>
+					Retrieves the relations where a given MBean is referenced. This corresponds to the CIM "References" and "ReferenceNames" operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<ObjectName,List<String>> findAssociatedMBeans(ObjectName mbeanName,                                                  String relationTypeName,                                                  String roleName)                                                    throws IllegalArgumentException
+				</name>
+				<description>
+					Retrieves the MBeans associated to given one in a relation. This corresponds to CIM Associators and AssociatorNames operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<String> findRelationsOfType(String relationTypeName)                                   throws IllegalArgumentException,                                          RelationTypeNotFoundException
+				</name>
+				<description>
+					Returns the relation ids for relations of the given type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List<ObjectName> getRole(String relationId,                         String roleName)                           throws RelationServiceNotRegisteredException,                                  IllegalArgumentException,                                  RelationNotFoundException,                                  RoleNotFoundException
+				</name>
+				<description>
+					Retrieves role value for given role name in given relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RoleResult getRoles(String relationId,                    String[] roleNameArray)                      throws RelationServiceNotRegisteredException,                             IllegalArgumentException,                             RelationNotFoundException
+				</name>
+				<description>
+					Retrieves values of roles with given names in given relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RoleResult getAllRoles(String relationId)                         throws IllegalArgumentException,                                RelationNotFoundException,                                RelationServiceNotRegisteredException
+				</name>
+				<description>
+					Returns all roles present in the relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer getRoleCardinality(String relationId,                           String roleName)                             throws IllegalArgumentException,                                    RelationNotFoundException,                                    RoleNotFoundException
+				</name>
+				<description>
+					Retrieves the number of MBeans currently referenced in the given role.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRole(String relationId,             Role role)               throws RelationServiceNotRegisteredException,                      IllegalArgumentException,                      RelationNotFoundException,                      RoleNotFoundException,                      InvalidRoleValueException
+				</name>
+				<description>
+					Sets the given role in given relation. Will check the role according to its corresponding role definition provided in relation's relation type The Relation Service will keep track of the change to keep the consistency of relations by handling referenced MBean unregistrations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RoleResult setRoles(String relationId,                    RoleList roleList)                      throws RelationServiceNotRegisteredException,                             IllegalArgumentException,                             RelationNotFoundException
+				</name>
+				<description>
+					Sets the given roles in given relation. Will check the role according to its corresponding role definition provided in relation's relation type The Relation Service keeps track of the changes to keep the consistency of relations by handling referenced MBean unregistrations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<ObjectName,List<String>> getReferencedMBeans(String relationId)                                                   throws IllegalArgumentException,                                                          RelationNotFoundException
+				</name>
+				<description>
+					Retrieves MBeans referenced in the various roles of the relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRelationTypeName(String relationId)                             throws IllegalArgumentException,                                    RelationNotFoundException
+				</name>
+				<description>
+					Returns name of associated relation type for given relation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void handleNotification(Notification notif,                        Object handback)
+				</name>
+				<description>
+					Invoked when a JMX notification occurs. Currently handles notifications for unregistration of MBeans, either referenced in a relation role or being a relation itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanNotificationInfo[] getNotificationInfo()
+				</name>
+				<description>
+					Returns a NotificationInfo object containing the name of the Java class of the notification and the notification types sent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

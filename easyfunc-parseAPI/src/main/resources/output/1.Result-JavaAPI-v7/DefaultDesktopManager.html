@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class DefaultDesktopManager  extends Object  implements DesktopManager, Serializable
+		</name>
+		<description>
+			This is an implementation of the DesktopManager. It currently implements the basic behaviors for managing JInternalFrames in an arbitrary parent. JInternalFrames that are not children of a JDesktop will use this component to handle their desktop-like actions. This class provides a policy for the various JInternalFrame methods, it is not meant to be called directly rather the various JInternalFrame methods will call into the DesktopManager.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public DefaultDesktopManager()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void openFrame(JInternalFrame f)
+				</name>
+				<description>
+					Normally this method will not be called. If it is, it try to determine the appropriate parent from the desktopIcon of the frame. Will remove the desktopIcon from its parent if it successfully adds the frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void closeFrame(JInternalFrame f)
+				</name>
+				<description>
+					Removes the frame, and, if necessary, the desktopIcon, from its parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void maximizeFrame(JInternalFrame f)
+				</name>
+				<description>
+					Resizes the frame to fill its parents bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void minimizeFrame(JInternalFrame f)
+				</name>
+				<description>
+					Restores the frame back to its size and position prior to a maximizeFrame call.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void iconifyFrame(JInternalFrame f)
+				</name>
+				<description>
+					Removes the frame from its parent and adds its desktopIcon to the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deiconifyFrame(JInternalFrame f)
+				</name>
+				<description>
+					Removes the desktopIcon from its parent and adds its frame to the parent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void activateFrame(JInternalFrame f)
+				</name>
+				<description>
+					This will activate f moving it to the front. It will set the current active frame's (if any) IS_SELECTED_PROPERTY to false. There can be only one active frame across all Layers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deactivateFrame(JInternalFrame f)
+				</name>
+				<description>
+					Description copied from interface: DesktopManager Generally, indicate that this frame has lost focus. This is usually called after the JInternalFrame's IS_SELECTED_PROPERTY has been set to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void beginDraggingFrame(JComponent f)
+				</name>
+				<description>
+					Description copied from interface: DesktopManager This method is normally called when the user has indicated that they will begin dragging a component around. This method should be called prior to any dragFrame() calls to allow the DesktopManager to prepare any necessary state. Normally f will be a JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dragFrame(JComponent f,               int newX,               int newY)
+				</name>
+				<description>
+					Moves the visible location of the frame being dragged to the location specified. The means by which this occurs can vary depending on the dragging algorithm being used. The actual logical location of the frame might not change until endDraggingFrame is called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endDraggingFrame(JComponent f)
+				</name>
+				<description>
+					Description copied from interface: DesktopManager This method signals the end of the dragging session. Any state maintained by the DesktopManager can be removed here. Normally f will be a JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void beginResizingFrame(JComponent f,                        int direction)
+				</name>
+				<description>
+					Description copied from interface: DesktopManager This methods is normally called when the user has indicated that they will begin resizing the frame. This method should be called prior to any resizeFrame() calls to allow the DesktopManager to prepare any necessary state. Normally f will be a JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void resizeFrame(JComponent f,                 int newX,                 int newY,                 int newWidth,                 int newHeight)
+				</name>
+				<description>
+					Calls setBoundsForFrame with the new values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void endResizingFrame(JComponent f)
+				</name>
+				<description>
+					Description copied from interface: DesktopManager This method signals the end of the resize session. Any state maintained by the DesktopManager can be removed here. Normally f will be a JInternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setBoundsForFrame(JComponent f,                       int newX,                       int newY,                       int newWidth,                       int newHeight)
+				</name>
+				<description>
+					This moves the JComponent and repaints the damaged areas.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeIconFor(JInternalFrame f)
+				</name>
+				<description>
+					Convenience method to remove the desktopIcon of f is necessary.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle getBoundsForIconOf(JInternalFrame f)
+				</name>
+				<description>
+					The iconifyFrame() code calls this to determine the proper bounds for the desktopIcon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setPreviousBounds(JInternalFrame f,                       Rectangle r)
+				</name>
+				<description>
+					Stores the bounds of the component just before a maximize call.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle getPreviousBounds(JInternalFrame f)
+				</name>
+				<description>
+					Gets the normal bounds of the component prior to the component being maximized.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setWasIcon(JInternalFrame f,                Boolean value)
+				</name>
+				<description>
+					Sets that the component has been iconized and the bounds of the desktopIcon are valid.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean wasIcon(JInternalFrame f)
+				</name>
+				<description>
+					Returns true if the component has been iconized and the bounds of the desktopIcon are valid, otherwise returns false.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public abstract class DatagramSocketImpl  extends Object  implements SocketOptions
+		</name>
+		<description>
+			Abstract datagram and multicast socket implementation base class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int localPort
+				</name>
+				<description>
+					The local port number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FileDescriptor fd
+				</name>
+				<description>
+					The file descriptor object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DatagramSocketImpl()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void create()                          throws SocketException
+				</name>
+				<description>
+					Creates a datagram socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void bind(int lport,          InetAddress laddr)                        throws SocketException
+				</name>
+				<description>
+					Binds a datagram socket to a local port and address.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void send(DatagramPacket p)                        throws IOException
+				</name>
+				<description>
+					Sends a datagram packet. The packet contains the data and the destination address to send the packet to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void connect(InetAddress address,             int port)                  throws SocketException
+				</name>
+				<description>
+					Connects a datagram socket to a remote destination. This associates the remote address with the local socket so that datagrams may only be sent to this destination and received from this destination. This may be overridden to call a native system connect. If the remote destination to which the socket is connected does not exist, or is otherwise unreachable, and if an ICMP destination unreachable packet has been received for that address, then a subsequent call to send or receive may throw a PortUnreachableException. Note, there is no guarantee that the exception will be thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void disconnect()
+				</name>
+				<description>
+					Disconnects a datagram socket from its remote destination.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract int peek(InetAddress i)                       throws IOException
+				</name>
+				<description>
+					Peek at the packet to see who it is from. Updates the specified InetAddress to the address which the packet came from.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract int peekData(DatagramPacket p)                           throws IOException
+				</name>
+				<description>
+					Peek at the packet to see who it is from. The data is copied into the specified DatagramPacket. The data is returned, but not consumed, so that a subsequent peekData/receive operation will see the same data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void receive(DatagramPacket p)                           throws IOException
+				</name>
+				<description>
+					Receive the datagram packet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected abstract void setTTL(byte ttl)                          throws IOException
+				</name>
+				<description>
+					Deprecated. use setTimeToLive instead. Set the TTL (time-to-live) option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected abstract byte getTTL()                          throws IOException
+				</name>
+				<description>
+					Deprecated. use getTimeToLive instead. Retrieve the TTL (time-to-live) option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void setTimeToLive(int ttl)                                 throws IOException
+				</name>
+				<description>
+					Set the TTL (time-to-live) option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract int getTimeToLive()                                throws IOException
+				</name>
+				<description>
+					Retrieve the TTL (time-to-live) option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void join(InetAddress inetaddr)                        throws IOException
+				</name>
+				<description>
+					Join the multicast group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void leave(InetAddress inetaddr)                         throws IOException
+				</name>
+				<description>
+					Leave the multicast group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void joinGroup(SocketAddress mcastaddr,               NetworkInterface netIf)                             throws IOException
+				</name>
+				<description>
+					Join the multicast group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void leaveGroup(SocketAddress mcastaddr,                NetworkInterface netIf)                              throws IOException
+				</name>
+				<description>
+					Leave the multicast group.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract void close()
+				</name>
+				<description>
+					Close the socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getLocalPort()
+				</name>
+				<description>
+					Gets the local port.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FileDescriptor getFileDescriptor()
+				</name>
+				<description>
+					Gets the datagram socket file descriptor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

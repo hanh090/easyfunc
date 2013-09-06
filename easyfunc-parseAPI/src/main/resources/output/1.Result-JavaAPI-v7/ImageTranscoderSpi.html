@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.imageio.spi
+	</package>
+	<type>
+		<name>
+			public abstract class ImageTranscoderSpi  extends IIOServiceProvider
+		</name>
+		<description>
+			The service provider interface (SPI) for ImageTranscoders. For more information on service provider classes, see the class comment for the IIORegistry class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected ImageTranscoderSpi()
+				</name>
+				<description>
+					Constructs a blank ImageTranscoderSpi. It is up to the subclass to initialize instance variables and/or override method implementations in order to provide working versions of all methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ImageTranscoderSpi(String vendorName,                    String version)
+				</name>
+				<description>
+					Constructs an ImageTranscoderSpi with a given set of values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getReaderServiceProviderName()
+				</name>
+				<description>
+					Returns the fully qualified class name of an ImageReaderSpi class that generates IIOMetadata objects that may be used as input to this transcoder.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getWriterServiceProviderName()
+				</name>
+				<description>
+					Returns the fully qualified class name of an ImageWriterSpi class that generates IIOMetadata objects that may be used as input to this transcoder.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract ImageTranscoder createTranscoderInstance()
+				</name>
+				<description>
+					Returns an instance of the ImageTranscoder implementation associated with this service provider.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

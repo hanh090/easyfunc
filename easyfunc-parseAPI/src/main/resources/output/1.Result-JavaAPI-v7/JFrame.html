@@ -1,0 +1,360 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JFrame  extends Frame  implements WindowConstants, Accessible, RootPaneContainer
+		</name>
+		<description>
+			An extended version of java.awt.Frame that adds support for the JFC/Swing component architecture. You can find task-oriented documentation about using JFrame in The Java Tutorial, in the section How to Make Frames. The JFrame class is slightly incompatible with Frame. Like all other JFC/Swing top-level containers, a JFrame contains a JRootPane as its only child. The content pane provided by the root pane should, as a rule, contain all the non-menu components displayed by the JFrame. This is different from the AWT Frame case. As a conveniance add and its variants, remove and setLayout have been overridden to forward to the contentPane as necessary. This means you can write:          frame.add(child);   And the child will be added to the contentPane. The content pane will always be non-null. Attempting to set it to null will cause the JFrame to throw an exception. The default content pane will have a BorderLayout manager set on it. Refer to RootPaneContainer for details on adding, removing and setting the LayoutManager of a JFrame. Unlike a Frame, a JFrame has some notion of how to respond when the user attempts to close the window. The default behavior is to simply hide the JFrame when the user closes the window. To change the default behavior, you invoke the method setDefaultCloseOperation(int). To make the JFrame behave the same as a Frame instance, use setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE). For more information on content panes and other features that root panes provide, see Using Top-Level Containers in The Java Tutorial. In a multi-screen environment, you can create a JFrame on a different screen device. See Frame for more information. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int EXIT_ON_CLOSE
+				</name>
+				<description>
+					The exit application default window close operation. If a window has this set as the close operation and is closed in an applet, a SecurityException may be thrown. It is recommended you only use this in an application.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JRootPane rootPane
+				</name>
+				<description>
+					The JRootPane instance that manages the contentPane and optional menuBar for this frame, as well as the glassPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean rootPaneCheckingEnabled
+				</name>
+				<description>
+					If true then calls to add and setLayout will be forwarded to the contentPane. This is initially false, but is set to true when the JFrame is constructed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected AccessibleContext accessibleContext
+				</name>
+				<description>
+					The accessible context property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFrame()         throws HeadlessException
+				</name>
+				<description>
+					Constructs a new frame that is initially invisible. This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFrame(GraphicsConfiguration gc)
+				</name>
+				<description>
+					Creates a Frame in the specified GraphicsConfiguration of a screen device and a blank title. This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFrame(String title)         throws HeadlessException
+				</name>
+				<description>
+					Creates a new, initially invisible Frame with the specified title. This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JFrame(String title,        GraphicsConfiguration gc)
+				</name>
+				<description>
+					Creates a JFrame with the specified title and the specified GraphicsConfiguration of a screen device. This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void frameInit()
+				</name>
+				<description>
+					Called by the constructors to init the JFrame properly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected JRootPane createRootPane()
+				</name>
+				<description>
+					Called by the constructor methods to create the default rootPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processWindowEvent(WindowEvent e)
+				</name>
+				<description>
+					Processes window events occurring on this component. Hides the window or disposes of it, as specified by the setting of the defaultCloseOperation property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultCloseOperation(int operation)
+				</name>
+				<description>
+					Sets the operation that will happen by default when the user initiates a "close" on this frame. You must specify one of the following choices: DO_NOTHING_ON_CLOSE (defined in WindowConstants): Don't do anything; require the program to handle the operation in the windowClosing method of a registered WindowListener object. HIDE_ON_CLOSE (defined in WindowConstants): Automatically hide the frame after invoking any registered WindowListener objects. DISPOSE_ON_CLOSE (defined in WindowConstants): Automatically hide and dispose the frame after invoking any registered WindowListener objects. EXIT_ON_CLOSE (defined in JFrame): Exit the application using the System exit method. Use this only in applications. The value is set to HIDE_ON_CLOSE by default. Changes to the value of this property cause the firing of a property change event, with property name "defaultCloseOperation". Note: When the last displayable window within the Java virtual machine (VM) is disposed of, the VM may terminate. See AWT Threading Issues for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDefaultCloseOperation()
+				</name>
+				<description>
+					Returns the operation that occurs when the user initiates a "close" on this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTransferHandler(TransferHandler newHandler)
+				</name>
+				<description>
+					Sets the transferHandler property, which is a mechanism to support transfer of data into this component. Use null if the component does not support data transfer operations. If the system property suppressSwingDropSupport is false (the default) and the current drop target on this component is either null or not a user-set drop target, this method will change the drop target as follows: If newHandler is null it will clear the drop target. If not null it will install a new DropTarget. Note: When used with JFrame, TransferHandler only provides data import capability, as the data export related methods are currently typed to JComponent. Please see How to Use Drag and Drop and Data Transfer, a section in The Java Tutorial, for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TransferHandler getTransferHandler()
+				</name>
+				<description>
+					Gets the transferHandler property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void update(Graphics g)
+				</name>
+				<description>
+					Just calls paint(g). This method was overridden to prevent an unnecessary call to clear the background.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setJMenuBar(JMenuBar menubar)
+				</name>
+				<description>
+					Sets the menubar for this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMenuBar getJMenuBar()
+				</name>
+				<description>
+					Returns the menubar set on this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean isRootPaneCheckingEnabled()
+				</name>
+				<description>
+					Returns whether calls to add and setLayout are forwarded to the contentPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setRootPaneCheckingEnabled(boolean enabled)
+				</name>
+				<description>
+					Sets whether calls to add and setLayout are forwarded to the contentPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void addImpl(Component comp,             Object constraints,             int index)
+				</name>
+				<description>
+					Adds the specified child Component. This method is overridden to conditionally forward calls to the contentPane. By default, children are added to the contentPane instead of the frame, refer to RootPaneContainer for details.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(Component comp)
+				</name>
+				<description>
+					Removes the specified component from the container. If comp is not the rootPane, this will forward the call to the contentPane. This will do nothing if comp is not a child of the JFrame or contentPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayout(LayoutManager manager)
+				</name>
+				<description>
+					Sets the LayoutManager. Overridden to conditionally forward the call to the contentPane. Refer to RootPaneContainer for more information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JRootPane getRootPane()
+				</name>
+				<description>
+					Returns the rootPane object for this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setRootPane(JRootPane root)
+				</name>
+				<description>
+					Sets the rootPane property. This method is called by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIconImage(Image image)
+				</name>
+				<description>
+					Sets the image to be displayed as the icon for this window. This method can be used instead of setIconImages() to specify a single image as a window's icon. The following statement:        setIconImage(image);   is equivalent to:        ArrayList<Image> imageList = new ArrayList<Image>();       imageList.add(image);       setIconImages(imageList);   Note : Native windowing systems may use different images of differing dimensions to represent a window, depending on the context (e.g. window decoration, window list, taskbar, etc.). They could also use just a single image for all contexts or no image at all.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Container getContentPane()
+				</name>
+				<description>
+					Returns the contentPane object for this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setContentPane(Container contentPane)
+				</name>
+				<description>
+					Sets the contentPane property. This method is called by the constructor. Swing's painting architecture requires an opaque JComponent in the containment hiearchy. This is typically provided by the content pane. If you replace the content pane it is recommended you replace it with an opaque JComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JLayeredPane getLayeredPane()
+				</name>
+				<description>
+					Returns the layeredPane object for this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLayeredPane(JLayeredPane layeredPane)
+				</name>
+				<description>
+					Sets the layeredPane property. This method is called by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getGlassPane()
+				</name>
+				<description>
+					Returns the glassPane object for this frame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setGlassPane(Component glassPane)
+				</name>
+				<description>
+					Sets the glassPane property. This method is called by the constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Graphics getGraphics()
+				</name>
+				<description>
+					Creates a graphics context for this component. This method will return null if this component is currently not displayable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void repaint(long time,             int x,             int y,             int width,             int height)
+				</name>
+				<description>
+					Repaints the specified rectangle of this component within time milliseconds. Refer to RepaintManager for details on how the repaint is handled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setDefaultLookAndFeelDecorated(boolean defaultLookAndFeelDecorated)
+				</name>
+				<description>
+					Provides a hint as to whether or not newly created JFrames should have their Window decorations (such as borders, widgets to close the window, title...) provided by the current look and feel. If defaultLookAndFeelDecorated is true, the current LookAndFeel supports providing window decorations, and the current window manager supports undecorated windows, then newly created JFrames will have their Window decorations provided by the current LookAndFeel. Otherwise, newly created JFrames will have their Window decorations provided by the current window manager. You can get the same effect on a single JFrame by doing the following:       JFrame frame = new JFrame();      frame.setUndecorated(true);      frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static boolean isDefaultLookAndFeelDecorated()
+				</name>
+				<description>
+					Returns true if newly created JFrames should have their Window decorations provided by the current look and feel. This is only a hint, as certain look and feels may not support this feature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JFrame. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JFrame. For JFrames, the AccessibleContext takes the form of an AccessibleJFrame. A new AccessibleJFrame instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

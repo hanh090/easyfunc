@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		org.w3c.dom.events
+	</package>
+	<type>
+		<name>
+			public interface MutationEvent  extends Event
+		</name>
+		<description>
+			The MutationEvent interface provides specific contextual information associated with Mutation events. See also the Document Object Model (DOM) Level 2 Events Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final short MODIFICATION
+				</name>
+				<description>
+					The Attr was modified in place.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short ADDITION
+				</name>
+				<description>
+					The Attr was just added.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final short REMOVAL
+				</name>
+				<description>
+					The Attr was just removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Node getRelatedNode()
+				</name>
+				<description>
+					relatedNode is used to identify a secondary node related to a mutation event. For example, if a mutation event is dispatched to a node indicating that its parent has changed, the relatedNode is the changed parent. If an event is instead dispatched to a subtree indicating a node was changed within it, the relatedNode is the changed node. In the case of the DOMAttrModified event it indicates the Attr node which was modified, added, or removed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getPrevValue()
+				</name>
+				<description>
+					prevValue indicates the previous value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharacterDataModified events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getNewValue()
+				</name>
+				<description>
+					newValue indicates the new value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharacterDataModified events.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getAttrName()
+				</name>
+				<description>
+					attrName indicates the name of the changed Attr node in a DOMAttrModified event.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short getAttrChange()
+				</name>
+				<description>
+					attrChange indicates the type of change which triggered the DOMAttrModified event. The values can be MODIFICATION , ADDITION, or REMOVAL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void initMutationEvent(String typeArg,                       boolean canBubbleArg,                       boolean cancelableArg,                       Node relatedNodeArg,                       String prevValueArg,                       String newValueArg,                       String attrNameArg,                       short attrChangeArg)
+				</name>
+				<description>
+					The initMutationEvent method is used to initialize the value of a MutationEvent created through the DocumentEvent interface. This method may only be called before the MutationEvent has been dispatched via the dispatchEvent method, though it may be called multiple times during that phase if necessary. If called multiple times, the final invocation takes precedence.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

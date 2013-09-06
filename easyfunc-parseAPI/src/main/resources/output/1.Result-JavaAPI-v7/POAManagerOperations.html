@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		org.omg.PortableServer
+	</package>
+	<type>
+		<name>
+			public interface POAManagerOperations
+		</name>
+		<description>
+			Each POA object has an associated POAManager object. A POA manager may be associated with one or more POA objects. A POA manager encapsulates the processing state of the POAs it is associated with.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void activate()                throws AdapterInactive
+				</name>
+				<description>
+					This operation changes the state of the POA manager to active, causing associated POAs to start processing requests.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void hold_requests(boolean wait_for_completion)                     throws AdapterInactive
+				</name>
+				<description>
+					This operation changes the state of the POA manager to holding, causing associated POAs to queue incoming requests.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void discard_requests(boolean wait_for_completion)                        throws AdapterInactive
+				</name>
+				<description>
+					This operation changes the state of the POA manager to discarding. This causes associated POAs to discard incoming requests.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void deactivate(boolean etherealize_objects,                boolean wait_for_completion)                  throws AdapterInactive
+				</name>
+				<description>
+					This operation changes the state of the POA manager to inactive, causing associated POAs to reject the requests that have not begun executing as well as as any new requests.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					State get_state()
+				</name>
+				<description>
+					This operation returns the state of the POA manager.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

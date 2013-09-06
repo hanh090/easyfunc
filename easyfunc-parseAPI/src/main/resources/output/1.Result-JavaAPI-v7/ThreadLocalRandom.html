@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		java.util.concurrent
+	</package>
+	<type>
+		<name>
+			public class ThreadLocalRandom  extends Random
+		</name>
+		<description>
+			A random number generator isolated to the current thread. Like the global Random generator used by the Math class, a ThreadLocalRandom is initialized with an internally generated seed that may not otherwise be modified. When applicable, use of ThreadLocalRandom rather than shared Random objects in concurrent programs will typically encounter much less overhead and contention. Use of ThreadLocalRandom is particularly appropriate when multiple tasks (for example, each a ForkJoinTask) use random numbers in parallel in thread pools. Usages of this class should typically be of the form: ThreadLocalRandom.current().nextX(...) (where X is Int, Long, etc). When all usages are of this form, it is never possible to accidently share a ThreadLocalRandom across multiple threads. This class also provides additional commonly used bounded random generation methods.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static ThreadLocalRandom current()
+				</name>
+				<description>
+					Returns the current thread's ThreadLocalRandom.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSeed(long seed)
+				</name>
+				<description>
+					Throws UnsupportedOperationException. Setting seeds in this generator is not supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int next(int bits)
+				</name>
+				<description>
+					Description copied from class: Random Generates the next pseudorandom number. Subclasses should override this, as this is used by all other methods. The general contract of next is that it returns an int value and if the argument bits is between 1 and 32 (inclusive), then that many low-order bits of the returned value will be (approximately) independently chosen bit values, each of which is (approximately) equally likely to be 0 or 1. The method next is implemented by class Random by atomically updating the seed to (seed * 0x5DEECE66DL + 0xBL) & ((1L << 48) - 1) and returning (int)(seed >>> (48 - bits)). This is a linear congruential pseudorandom number generator, as defined by D. H. Lehmer and described by Donald E. Knuth in The Art of Computer Programming, Volume 3: Seminumerical Algorithms, section 3.2.1.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int nextInt(int least,            int bound)
+				</name>
+				<description>
+					Returns a pseudorandom, uniformly distributed value between the given least value (inclusive) and bound (exclusive).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long nextLong(long n)
+				</name>
+				<description>
+					Returns a pseudorandom, uniformly distributed value between 0 (inclusive) and the specified value (exclusive).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long nextLong(long least,              long bound)
+				</name>
+				<description>
+					Returns a pseudorandom, uniformly distributed value between the given least value (inclusive) and bound (exclusive).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double nextDouble(double n)
+				</name>
+				<description>
+					Returns a pseudorandom, uniformly distributed double value between 0 (inclusive) and the specified value (exclusive).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double nextDouble(double least,                  double bound)
+				</name>
+				<description>
+					Returns a pseudorandom, uniformly distributed value between the given least value (inclusive) and bound (exclusive).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

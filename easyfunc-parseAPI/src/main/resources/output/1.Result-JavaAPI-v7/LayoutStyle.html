@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public abstract class LayoutStyle  extends Object
+		</name>
+		<description>
+			LayoutStyle provides information about how to position components. This class is primarily useful for visual tools and layout managers. Most developers will not need to use this class. You typically don't set or create a LayoutStyle. Instead use the static method getInstance to obtain the current instance.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public LayoutStyle()
+				</name>
+				<description>
+					Creates a new LayoutStyle. You generally don't create a LayoutStyle. Instead use the method getInstance to obtain the current LayoutStyle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setInstance(LayoutStyle style)
+				</name>
+				<description>
+					Sets the shared instance of LayoutStyle. Specifying null results in using the LayoutStyle from the current LookAndFeel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static LayoutStyle getInstance()
+				</name>
+				<description>
+					Returns the shared instance of LayoutStyle. If an instance has not been specified in setInstance, this will return the LayoutStyle from the current LookAndFeel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getPreferredGap(JComponent component1,                    JComponent component2,                    LayoutStyle.ComponentPlacement type,                    int position,                    Container parent)
+				</name>
+				<description>
+					Returns the amount of space to use between two components. The return value indicates the distance to place component2 relative to component1. For example, the following returns the amount of space to place between component2 and component1 when component2 is placed vertically above component1:      int gap = getPreferredGap(component1, component2,                               ComponentPlacement.RELATED,                               SwingConstants.NORTH, parent);   The type parameter indicates the relation between the two components. If the two components will be contained in the same parent and are showing similar logically related items, use RELATED. If the two components will be contained in the same parent but show logically unrelated items use UNRELATED. Some look and feels may not distinguish between the RELATED and UNRELATED types. The return value is not intended to take into account the current size and position of component2 or component1. The return value may take into consideration various properties of the components. For example, the space may vary based on font size, or the preferred size of the component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getContainerGap(JComponent component,                    int position,                    Container parent)
+				</name>
+				<description>
+					Returns the amount of space to place between the component and specified edge of its parent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,432 @@
+<javaelement>
+	<package>
+		javax.swing.table
+	</package>
+	<type>
+		<name>
+			public class JTableHeader  extends JComponent  implements TableColumnModelListener, Accessible
+		</name>
+		<description>
+			This is the object which manages the header of the JTable. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected JTable table
+				</name>
+				<description>
+					The table for which this object is the header; the default is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TableColumnModel columnModel
+				</name>
+				<description>
+					The TableColumnModel of the table header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean reorderingAllowed
+				</name>
+				<description>
+					If true, reordering of columns are allowed by the user; the default is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean resizingAllowed
+				</name>
+				<description>
+					If true, resizing of columns are allowed by the user; the default is true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean updateTableInRealTime
+				</name>
+				<description>
+					Obsolete as of Java 2 platform v1.3. Real time repaints, in response to column dragging or resizing, are now unconditional.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TableColumn resizingColumn
+				</name>
+				<description>
+					The index of the column being resized. null if not resizing.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient TableColumn draggedColumn
+				</name>
+				<description>
+					The index of the column being dragged. null if not dragging.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient int draggedDistance
+				</name>
+				<description>
+					The distance from its original position the column has been dragged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTableHeader()
+				</name>
+				<description>
+					Constructs a JTableHeader with a default TableColumnModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTableHeader(TableColumnModel cm)
+				</name>
+				<description>
+					Constructs a JTableHeader which is initialized with cm as the column model. If cm is null this method will initialize the table header with a default TableColumnModel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTable(JTable table)
+				</name>
+				<description>
+					Sets the table associated with this header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTable getTable()
+				</name>
+				<description>
+					Returns the table associated with this header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReorderingAllowed(boolean reorderingAllowed)
+				</name>
+				<description>
+					Sets whether the user can drag column headers to reorder columns.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getReorderingAllowed()
+				</name>
+				<description>
+					Returns true if the user is allowed to rearrange columns by dragging their headers, false otherwise. The default is true. You can rearrange columns programmatically regardless of this setting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResizingAllowed(boolean resizingAllowed)
+				</name>
+				<description>
+					Sets whether the user can resize columns by dragging between headers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getResizingAllowed()
+				</name>
+				<description>
+					Returns true if the user is allowed to resize columns by dragging between their headers, false otherwise. The default is true. You can resize columns programmatically regardless of this setting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableColumn getDraggedColumn()
+				</name>
+				<description>
+					Returns the the dragged column, if and only if, a drag is in process, otherwise returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDraggedDistance()
+				</name>
+				<description>
+					Returns the column's horizontal distance from its original position, if and only if, a drag is in process. Otherwise, the the return value is meaningless.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableColumn getResizingColumn()
+				</name>
+				<description>
+					Returns the resizing column. If no column is being resized this method returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUpdateTableInRealTime(boolean flag)
+				</name>
+				<description>
+					Obsolete as of Java 2 platform v1.3. Real time repaints, in response to column dragging or resizing, are now unconditional.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getUpdateTableInRealTime()
+				</name>
+				<description>
+					Obsolete as of Java 2 platform v1.3. Real time repaints, in response to column dragging or resizing, are now unconditional.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDefaultRenderer(TableCellRenderer defaultRenderer)
+				</name>
+				<description>
+					Sets the default renderer to be used when no headerRenderer is defined by a TableColumn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableCellRenderer getDefaultRenderer()
+				</name>
+				<description>
+					Returns the default renderer used when no headerRenderer is defined by a TableColumn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int columnAtPoint(Point point)
+				</name>
+				<description>
+					Returns the index of the column that point lies in, or -1 if it lies out of bounds.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle getHeaderRect(int column)
+				</name>
+				<description>
+					Returns the rectangle containing the header tile at column. When the column parameter is out of bounds this method uses the same conventions as the JTable method getCellRect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(MouseEvent event)
+				</name>
+				<description>
+					Allows the renderer's tips to be used if there is text set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableHeaderUI getUI()
+				</name>
+				<description>
+					Returns the look and feel (L&F) object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setUI(TableHeaderUI ui)
+				</name>
+				<description>
+					Sets the look and feel (L&F) object that renders this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void updateUI()
+				</name>
+				<description>
+					Notification from the UIManager that the look and feel (L&F) has changed. Replaces the current UI object with the latest version from the UIManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the suffix used to construct the name of the look and feel (L&F) class used to render this component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumnModel(TableColumnModel columnModel)
+				</name>
+				<description>
+					Sets the column model for this table to newModel and registers for listener notifications from the new column model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TableColumnModel getColumnModel()
+				</name>
+				<description>
+					Returns the TableColumnModel that contains all column information of this table header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void columnAdded(TableColumnModelEvent e)
+				</name>
+				<description>
+					Invoked when a column is added to the table column model. Application code will not use these methods explicitly, they are used internally by JTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void columnRemoved(TableColumnModelEvent e)
+				</name>
+				<description>
+					Invoked when a column is removed from the table column model. Application code will not use these methods explicitly, they are used internally by JTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void columnMoved(TableColumnModelEvent e)
+				</name>
+				<description>
+					Invoked when a column is repositioned. Application code will not use these methods explicitly, they are used internally by JTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void columnMarginChanged(ChangeEvent e)
+				</name>
+				<description>
+					Invoked when a column is moved due to a margin change. Application code will not use these methods explicitly, they are used internally by JTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void columnSelectionChanged(ListSelectionEvent e)
+				</name>
+				<description>
+					Invoked when the selection model of the TableColumnModel is changed. This method currently has no effect (the header is not redrawn). Application code will not use these methods explicitly, they are used internally by JTable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TableColumnModel createDefaultColumnModel()
+				</name>
+				<description>
+					Returns the default column model object which is a DefaultTableColumnModel. A subclass can override this method to return a different column model object
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TableCellRenderer createDefaultRenderer()
+				</name>
+				<description>
+					Returns a default renderer to be used when no header renderer is defined by a TableColumn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initializeLocalVars()
+				</name>
+				<description>
+					Initializes the local variables and properties with default values. Used by the constructor methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void resizeAndRepaint()
+				</name>
+				<description>
+					Sizes the header and marks it as needing display. Equivalent to revalidate followed by repaint.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDraggedColumn(TableColumn aColumn)
+				</name>
+				<description>
+					Sets the header's draggedColumn to aColumn. Application code will not use this method explicitly, it is used internally by the column dragging mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDraggedDistance(int distance)
+				</name>
+				<description>
+					Sets the header's draggedDistance to distance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setResizingColumn(TableColumn aColumn)
+				</name>
+				<description>
+					Sets the header's resizingColumn to aColumn. Application code will not use this method explicitly, it is used internally by the column sizing mechanism.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JTableHeader. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null. Overriding paramString to provide information about the specific new aspects of the JFC components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JTableHeader. For JTableHeaders, the AccessibleContext takes the form of an AccessibleJTableHeader. A new AccessibleJTableHeader instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract static class GlyphView.GlyphPainter  extends Object
+		</name>
+		<description>
+			A class to perform rendering of the glyphs. This can be implemented to be stateless, or to hold some information as a cache to facilitate faster rendering and model/view translation. At a minimum, the GlyphPainter allows a View implementation to perform its duties independant of a particular version of JVM and selection of capabilities (i.e. shaping for i18n, etc).
+		</description>
+		<methods>
+			<method>
+				<name>
+					public GlyphView.GlyphPainter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getSpan(GlyphView v,              int p0,              int p1,              TabExpander e,              float x)
+				</name>
+				<description>
+					Determine the span the glyphs given a start location (for tab expansion).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getHeight(GlyphView v)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getAscent(GlyphView v)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getDescent(GlyphView v)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void paint(GlyphView v,           Graphics g,           Shape a,           int p0,           int p1)
+				</name>
+				<description>
+					Paint the glyphs representing the given range.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Shape modelToView(GlyphView v,                  int pos,                  Position.Bias bias,                  Shape a)                             throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. This is shared by the broken views.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int viewToModel(GlyphView v,                float x,                float y,                Shape a,                Position.Bias[] biasReturn)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getBoundedPosition(GlyphView v,                       int p0,                       float x,                       float len)
+				</name>
+				<description>
+					Determines the model location that represents the maximum advance that fits within the given span. This could be used to break the given view. The result should be a location just shy of the given advance. This differs from viewToModel which returns the closest position which might be proud of the maximum advance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GlyphView.GlyphPainter getPainter(GlyphView v,                                  int p0,                                  int p1)
+				</name>
+				<description>
+					Create a painter to use for the given GlyphView. If the painter carries state it can create another painter to represent a new GlyphView that is being created. If the painter doesn't hold any significant state, it can return itself. The default behavior is to return itself.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNextVisualPositionFrom(GlyphView v,                              int pos,                              Position.Bias b,                              Shape a,                              int direction,                              Position.Bias[] biasRet)                                throws BadLocationException
+				</name>
+				<description>
+					Provides a way to determine the next visually represented model location that one might place a caret. Some views may not be visible, they might not be in the same order found in the model, or they just might not allow access to some of the locations in the model.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

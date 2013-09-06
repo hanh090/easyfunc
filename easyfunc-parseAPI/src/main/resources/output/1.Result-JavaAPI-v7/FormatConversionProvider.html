@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.sound.sampled.spi
+	</package>
+	<type>
+		<name>
+			public abstract class FormatConversionProvider  extends Object
+		</name>
+		<description>
+			A format conversion provider provides format conversion services from one or more input formats to one or more output formats. Converters include codecs, which encode and/or decode audio data, as well as transcoders, etc. Format converters provide methods for determining what conversions are supported and for obtaining an audio stream from which converted data can be read. The source format represents the format of the incoming audio data, which will be converted. The target format represents the format of the processed, converted audio data. This is the format of the data that can be read from the stream returned by one of the getAudioInputStream methods.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public FormatConversionProvider()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioFormat.Encoding[] getSourceEncodings()
+				</name>
+				<description>
+					Obtains the set of source format encodings from which format conversion services are provided by this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioFormat.Encoding[] getTargetEncodings()
+				</name>
+				<description>
+					Obtains the set of target format encodings to which format conversion services are provided by this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSourceEncodingSupported(AudioFormat.Encoding sourceEncoding)
+				</name>
+				<description>
+					Indicates whether the format converter supports conversion from the specified source format encoding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isTargetEncodingSupported(AudioFormat.Encoding targetEncoding)
+				</name>
+				<description>
+					Indicates whether the format converter supports conversion to the specified target format encoding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioFormat.Encoding[] getTargetEncodings(AudioFormat sourceFormat)
+				</name>
+				<description>
+					Obtains the set of target format encodings supported by the format converter given a particular source format. If no target format encodings are supported for this source format, an array of length 0 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isConversionSupported(AudioFormat.Encoding targetEncoding,                              AudioFormat sourceFormat)
+				</name>
+				<description>
+					Indicates whether the format converter supports conversion to a particular encoding from a particular format.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioFormat[] getTargetFormats(AudioFormat.Encoding targetEncoding,                               AudioFormat sourceFormat)
+				</name>
+				<description>
+					Obtains the set of target formats with the encoding specified supported by the format converter If no target formats with the specified encoding are supported for this source format, an array of length 0 is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isConversionSupported(AudioFormat targetFormat,                              AudioFormat sourceFormat)
+				</name>
+				<description>
+					Indicates whether the format converter supports conversion to one particular format from another.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioInputStream getAudioInputStream(AudioFormat.Encoding targetEncoding,                                     AudioInputStream sourceStream)
+				</name>
+				<description>
+					Obtains an audio input stream with the specified encoding from the given audio input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract AudioInputStream getAudioInputStream(AudioFormat targetFormat,                                     AudioInputStream sourceStream)
+				</name>
+				<description>
+					Obtains an audio input stream with the specified format from the given audio input stream.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

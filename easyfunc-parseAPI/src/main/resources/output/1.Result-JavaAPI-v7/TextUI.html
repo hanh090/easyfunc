@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.swing.plaf
+	</package>
+	<type>
+		<name>
+			public abstract class TextUI  extends ComponentUI
+		</name>
+		<description>
+			Text editor user interface
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TextUI()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Rectangle modelToView(JTextComponent t,                      int pos)                                 throws BadLocationException
+				</name>
+				<description>
+					Converts the given location in the model to a place in the view coordinate system.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Rectangle modelToView(JTextComponent t,                      int pos,                      Position.Bias bias)                                 throws BadLocationException
+				</name>
+				<description>
+					Converts the given location in the model to a place in the view coordinate system.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int viewToModel(JTextComponent t,                Point pt)
+				</name>
+				<description>
+					Converts the given place in the view coordinate system to the nearest representative location in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int viewToModel(JTextComponent t,                Point pt,                Position.Bias[] biasReturn)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int getNextVisualPositionFrom(JTextComponent t,                              int pos,                              Position.Bias b,                              int direction,                              Position.Bias[] biasRet)                                         throws BadLocationException
+				</name>
+				<description>
+					Provides a way to determine the next visually represented model location that one might place a caret. Some views may not be visible, they might not be in the same order found in the model, or they just might not allow access to some of the locations in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void damageRange(JTextComponent t,                 int p0,                 int p1)
+				</name>
+				<description>
+					Causes the portion of the view responsible for the given part of the model to be repainted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void damageRange(JTextComponent t,                 int p0,                 int p1,                 Position.Bias firstBias,                 Position.Bias secondBias)
+				</name>
+				<description>
+					Causes the portion of the view responsible for the given part of the model to be repainted.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract EditorKit getEditorKit(JTextComponent t)
+				</name>
+				<description>
+					Fetches the binding of services that set a policy for the type of document being edited. This contains things like the commands available, stream readers and writers, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract View getRootView(JTextComponent t)
+				</name>
+				<description>
+					Fetches a View with the allocation of the associated text component (i.e. the root of the hierarchy) that can be traversed to determine how the model is being represented spatially.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(JTextComponent t,                      Point pt)
+				</name>
+				<description>
+					Returns the string to be used as the tooltip at the passed in location.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

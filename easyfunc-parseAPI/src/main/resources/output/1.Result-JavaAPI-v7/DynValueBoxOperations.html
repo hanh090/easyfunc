@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		org.omg.DynamicAny
+	</package>
+	<type>
+		<name>
+			public interface DynValueBoxOperations  extends DynValueCommonOperations
+		</name>
+		<description>
+			DynValueBox objects support the manipulation of IDL boxed value types. The DynValueBox interface can represent both null and non-null value types. For a DynValueBox representing a non-null value type, the DynValueBox has a single component of the boxed type. A DynValueBox representing a null value type has no components and a current position of -1.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Any get_boxed_value()                      throws InvalidValue
+				</name>
+				<description>
+					Returns the boxed value as an Any.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void set_boxed_value(Any boxed)                       throws TypeMismatch
+				</name>
+				<description>
+					Replaces the boxed value with the specified value. If the DynBoxedValue represents a null valuetype, it is converted to a non-null value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					DynAny get_boxed_value_as_dyn_any()                                    throws InvalidValue
+				</name>
+				<description>
+					Returns the boxed value as a DynAny.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void set_boxed_value_as_dyn_any(DynAny boxed)                                  throws TypeMismatch
+				</name>
+				<description>
+					Replaces the boxed value with the value contained in the parameter. If the DynBoxedValue represents a null valuetype, it is converted to a non-null value.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

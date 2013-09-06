@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public abstract class FlowView  extends BoxView
+		</name>
+		<description>
+			A View that tries to flow it's children into some partially constrained space. This can be used to build things like paragraphs, pages, etc. The flow is made up of the following pieces of functionality. A logical set of child views, which as used as a layout pool from which a physical view is formed. A strategy for translating the logical view to a physical (flowed) view. Constraints for the strategy to work against. A physical structure, that represents the flow. The children of this view are where the pieces of of the logical views are placed to create the flow.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected int layoutSpan
+				</name>
+				<description>
+					Default constraint against which the flow is created against.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected View layoutPool
+				</name>
+				<description>
+					These are the views that represent the child elements of the element this view represents (The logical view to translate to a physical view). These are not directly children of this view. These are either placed into the rows directly or used for the purpose of breaking into smaller chunks, to form the physical view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected FlowView.FlowStrategy strategy
+				</name>
+				<description>
+					The behavior for keeping the flow updated. By default this is a singleton shared by all instances of FlowView (FlowStrategy is stateless). Subclasses can create an alternative strategy, which might keep state.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FlowView(Element elem,          int axis)
+				</name>
+				<description>
+					Constructs a FlowView for the given element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFlowAxis()
+				</name>
+				<description>
+					Fetches the axis along which views should be flowed. By default, this will be the axis orthogonal to the axis along which the flow rows are tiled (the axis of the default flow rows themselves). This is typically used by the FlowStrategy.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFlowSpan(int index)
+				</name>
+				<description>
+					Fetch the constraining span to flow against for the given child index. This is called by the FlowStrategy while it is updating the flow. A flow can be shaped by providing different values for the row constraints. By default, the entire span inside of the insets along the flow axis is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getFlowStart(int index)
+				</name>
+				<description>
+					Fetch the location along the flow axis that the flow span will start at. This is called by the FlowStrategy while it is updating the flow. A flow can be shaped by providing different values for the row constraints.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract View createRow()
+				</name>
+				<description>
+					Create a View that should be used to hold a a rows worth of children in a flow. This is called by the FlowStrategy when new children are added or removed (i.e. rows are added or removed) in the process of updating the flow.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void loadChildren(ViewFactory f)
+				</name>
+				<description>
+					Loads all of the children to initialize the view. This is called by the setParent method. This is reimplemented to not load any children directly (as they are created in the process of formatting). If the layoutPool variable is null, an instance of LogicalView is created to represent the logical view that is used in the process of formatting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getViewIndexAtPosition(int pos)
+				</name>
+				<description>
+					Fetches the child view index representing the given position in the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void layout(int width,            int height)
+				</name>
+				<description>
+					Lays out the children. If the span along the flow axis has changed, layout is marked as invalid which which will cause the superclass behavior to recalculate the layout along the box axis. The FlowStrategy.layout method will be called to rebuild the flow rows as appropriate. If the height of this view changes (determined by the perferred size along the box axis), a preferenceChanged is called. Following all of that, the normal box layout of the superclass is performed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMinorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculate equirements along the minor axis. This is implemented to forward the request to the logical view by calling getMinimumSpan, getPreferredSpan, and getMaximumSpan on it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was inserted into the document in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(DocumentEvent changes,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was removed from the document in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent changes,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Gives notification from the document that attributes were changed in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(View parent)
+				</name>
+				<description>
+					Sets the parent of the view. This is reimplemented to provide the superclass behavior as well as calling the loadChildren method if this view does not already have children. The children should not be loaded in the constructor because the act of setting the parent may cause them to try to search up the hierarchy (to get the hosting Container for example). If this view has children (the view is being moved from one place in the view hierarchy to another), the loadChildren method will not be called.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

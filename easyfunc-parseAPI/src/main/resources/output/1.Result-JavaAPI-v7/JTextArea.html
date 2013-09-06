@@ -1,0 +1,324 @@
+<javaelement>
+	<package>
+		javax.swing
+	</package>
+	<type>
+		<name>
+			public class JTextArea  extends JTextComponent
+		</name>
+		<description>
+			A JTextArea is a multi-line area that displays plain text. It is intended to be a lightweight component that provides source compatibility with the java.awt.TextArea class where it can reasonably do so. You can find information and examples of using all the text components in Using Text Components, a section in The Java Tutorial. This component has capabilities not found in the java.awt.TextArea class. The superclass should be consulted for additional capabilities. Alternative multi-line text classes with more capabilities are JTextPane and JEditorPane. The java.awt.TextArea internally handles scrolling. JTextArea is different in that it doesn't manage scrolling, but implements the swing Scrollable interface. This allows it to be placed inside a JScrollPane if scrolling behavior is desired, and used directly if scrolling is not desired. The java.awt.TextArea has the ability to do line wrapping. This was controlled by the horizontal scrolling policy. Since scrolling is not done by JTextArea directly, backward compatibility must be provided another way. JTextArea has a bound property for line wrapping that controls whether or not it will wrap lines. By default, the line wrapping property is set to false (not wrapped). java.awt.TextArea has two properties rows and columns that are used to determine the preferred size. JTextArea uses these properties to indicate the preferred size of the viewport when placed inside a JScrollPane to match the functionality provided by java.awt.TextArea. JTextArea has a preferred size of what is needed to display all of the text, so that it functions properly inside of a JScrollPane. If the value for rows or columns is equal to zero, the preferred size along that axis is used for the viewport preferred size along the same axis. The java.awt.TextArea could be monitored for changes by adding a TextListener for TextEvents. In the JTextComponent based components, changes are broadcasted from the model via a DocumentEvent to DocumentListeners. The DocumentEvent gives the location of the change and the kind of change if desired. The code fragment might look something like:       DocumentListener myListener = ??;      JTextArea myArea = ??;      myArea.getDocument().addDocumentListener(myListener);   Newlines For a discussion on how newlines are handled, see DefaultEditorKit. Warning: Swing is not thread safe. For more information see Swing's Threading Policy. Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see XMLEncoder.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public JTextArea()
+				</name>
+				<description>
+					Constructs a new TextArea. A default model is set, the initial string is null, and rows/columns are set to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTextArea(String text)
+				</name>
+				<description>
+					Constructs a new TextArea with the specified text displayed. A default model is created and rows/columns are set to 0.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTextArea(int rows,           int columns)
+				</name>
+				<description>
+					Constructs a new empty TextArea with the specified number of rows and columns. A default model is created, and the initial string is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTextArea(String text,           int rows,           int columns)
+				</name>
+				<description>
+					Constructs a new TextArea with the specified text and number of rows and columns. A default model is created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTextArea(Document doc)
+				</name>
+				<description>
+					Constructs a new JTextArea with the given document model, and defaults for all of the other arguments (null, 0, 0).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JTextArea(Document doc,           String text,           int rows,           int columns)
+				</name>
+				<description>
+					Constructs a new JTextArea with the specified number of rows and columns, and the given model. All of the constructors feed through this constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getUIClassID()
+				</name>
+				<description>
+					Returns the class ID for the UI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Document createDefaultModel()
+				</name>
+				<description>
+					Creates the default implementation of the model to be used at construction if one isn't explicitly given. A new instance of PlainDocument is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTabSize(int size)
+				</name>
+				<description>
+					Sets the number of characters to expand tabs to. This will be multiplied by the maximum advance for variable width fonts. A PropertyChange event ("tabSize") is fired when the tab size changes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTabSize()
+				</name>
+				<description>
+					Gets the number of characters used to expand tabs. If the document is null or doesn't have a tab setting, return a default of 8.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLineWrap(boolean wrap)
+				</name>
+				<description>
+					Sets the line-wrapping policy of the text area. If set to true the lines will be wrapped if they are too long to fit within the allocated width. If set to false, the lines will always be unwrapped. A PropertyChange event ("lineWrap") is fired when the policy is changed. By default this property is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getLineWrap()
+				</name>
+				<description>
+					Gets the line-wrapping policy of the text area. If set to true the lines will be wrapped if they are too long to fit within the allocated width. If set to false, the lines will always be unwrapped.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setWrapStyleWord(boolean word)
+				</name>
+				<description>
+					Sets the style of wrapping used if the text area is wrapping lines. If set to true the lines will be wrapped at word boundaries (whitespace) if they are too long to fit within the allocated width. If set to false, the lines will be wrapped at character boundaries. By default this property is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getWrapStyleWord()
+				</name>
+				<description>
+					Gets the style of wrapping used if the text area is wrapping lines. If set to true the lines will be wrapped at word boundaries (ie whitespace) if they are too long to fit within the allocated width. If set to false, the lines will be wrapped at character boundaries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineOfOffset(int offset)                      throws BadLocationException
+				</name>
+				<description>
+					Translates an offset into the components text to a line number.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineCount()
+				</name>
+				<description>
+					Determines the number of lines contained in the area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineStartOffset(int line)                         throws BadLocationException
+				</name>
+				<description>
+					Determines the offset of the start of the given line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLineEndOffset(int line)                       throws BadLocationException
+				</name>
+				<description>
+					Determines the offset of the end of the given line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insert(String str,            int pos)
+				</name>
+				<description>
+					Inserts the specified text at the specified position. Does nothing if the model is null or if the text is null or empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void append(String str)
+				</name>
+				<description>
+					Appends the given text to the end of the document. Does nothing if the model is null or the string is null or empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replaceRange(String str,                  int start,                  int end)
+				</name>
+				<description>
+					Replaces text from the indicated start to end position with the new text specified. Does nothing if the model is null. Simply does a delete if the new string is null or empty.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRows()
+				</name>
+				<description>
+					Returns the number of rows in the TextArea.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setRows(int rows)
+				</name>
+				<description>
+					Sets the number of rows for this TextArea. Calls invalidate() after setting the new value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getRowHeight()
+				</name>
+				<description>
+					Defines the meaning of the height of a row. This defaults to the height of the font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getColumns()
+				</name>
+				<description>
+					Returns the number of columns in the TextArea.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setColumns(int columns)
+				</name>
+				<description>
+					Sets the number of columns for this TextArea. Does an invalidate() after setting the new value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getColumnWidth()
+				</name>
+				<description>
+					Gets column width. The meaning of what a column is can be considered a fairly weak notion for some fonts. This method is used to define the width of a column. By default this is defined to be the width of the character m for the font used. This method can be redefined to be some alternative amount.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize()
+				</name>
+				<description>
+					Returns the preferred size of the TextArea. This is the maximum of the size needed to display the text and the size requested for the viewport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFont(Font f)
+				</name>
+				<description>
+					Sets the current font. This removes cached row height and column width so the new font will be reflected, and calls revalidate().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns a string representation of this JTextArea. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between implementations. The returned string may be empty but may not be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getScrollableTracksViewportWidth()
+				</name>
+				<description>
+					Returns true if a viewport should always force the width of this Scrollable to match the width of the viewport. This is implemented to return true if the line wrapping policy is true, and false if lines are not being wrapped.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredScrollableViewportSize()
+				</name>
+				<description>
+					Returns the preferred size of the viewport if this component is embedded in a JScrollPane. This uses the desired column and row settings if they have been set, otherwise the superclass behavior is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getScrollableUnitIncrement(Rectangle visibleRect,                               int orientation,                               int direction)
+				</name>
+				<description>
+					Components that display logical rows or columns should compute the scroll increment that will completely expose one new row or column, depending on the value of orientation. This is implemented to use the values returned by the getRowHeight and getColumnWidth methods. Scrolling containers, like JScrollPane, will use this method each time the user requests a unit scroll.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this JTextArea. For JTextAreas, the AccessibleContext takes the form of an AccessibleJTextArea. A new AccessibleJTextArea instance is created if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

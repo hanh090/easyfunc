@@ -1,0 +1,198 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public class ImageView  extends View
+		</name>
+		<description>
+			View of an Image, intended to support the HTML <IMG> tag. Supports scaling via the HEIGHT and WIDTH attributes of the tag. If the image is unable to be loaded any text specified via the ALT attribute will be rendered. While this class has been part of swing for a while now, it is public as of 1.4.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ImageView(Element elem)
+				</name>
+				<description>
+					Creates a new view that represents an IMG element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getAltText()
+				</name>
+				<description>
+					Returns the text to display if the image can't be loaded. This is obtained from the Elements attribute set with the attribute name HTML.Attribute.ALT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public URL getImageURL()
+				</name>
+				<description>
+					Return a URL for the image source, or null if it could not be determined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getNoImageIcon()
+				</name>
+				<description>
+					Returns the icon to use if the image couldn't be found.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getLoadingImageIcon()
+				</name>
+				<description>
+					Returns the icon to use while in the process of loading the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Image getImage()
+				</name>
+				<description>
+					Returns the image to render.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLoadsSynchronously(boolean newValue)
+				</name>
+				<description>
+					Sets how the image is loaded. If newValue is true, the image we be loaded when first asked for, otherwise it will be loaded asynchronously. The default is to not load synchronously, that is to load the image asynchronously.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getLoadsSynchronously()
+				</name>
+				<description>
+					Returns true if the image should be loaded when first asked for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StyleSheet getStyleSheet()
+				</name>
+				<description>
+					Convenience method to get the StyleSheet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getAttributes()
+				</name>
+				<description>
+					Fetches the attributes to use when rendering. This is implemented to multiplex the attributes specified in the model with a StyleSheet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getToolTipText(float x,                      float y,                      Shape allocation)
+				</name>
+				<description>
+					For images the tooltip text comes from text specified with the ALT attribute. This is overriden to return getAltText.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setPropertiesFromAttributes()
+				</name>
+				<description>
+					Update any cached values that come from attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(View parent)
+				</name>
+				<description>
+					Establishes the parent view for this view. Seize this moment to cache the AWT Container I'm in.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent e,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Invoked when the Elements attributes have changed. Recreates the image.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape a)
+				</name>
+				<description>
+					Paints the View.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view along an axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getAlignment(int axis)
+				</name>
+				<description>
+					Determines the desired alignment for this view along an axis. This is implemented to give the alignment to the bottom of the icon along the y axis, and the default along the x axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape modelToView(int pos,                  Shape a,                  Position.Bias b)                    throws BadLocationException
+				</name>
+				<description>
+					Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int viewToModel(float x,                float y,                Shape a,                Position.Bias[] bias)
+				</name>
+				<description>
+					Provides a mapping from the view coordinate space to the logical coordinate space of the model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSize(float width,             float height)
+				</name>
+				<description>
+					Sets the size of the view. This should cause layout of the view if it has any layout duties.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

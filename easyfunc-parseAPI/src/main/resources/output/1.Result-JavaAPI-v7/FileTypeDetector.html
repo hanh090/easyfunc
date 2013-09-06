@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		java.nio.file.spi
+	</package>
+	<type>
+		<name>
+			public abstract class FileTypeDetector  extends Object
+		</name>
+		<description>
+			A file type detector for probing a file to guess its file type. A file type detector is a concrete implementation of this class, has a zero-argument constructor, and implements the abstract methods specified below. The means by which a file type detector determines the file type is highly implementation specific. A simple implementation might examine the file extension (a convention used in some platforms) and map it to a file type. In other cases, the file type may be stored as a file attribute or the bytes in a file may be examined to guess its file type.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected FileTypeDetector()
+				</name>
+				<description>
+					Initializes a new instance of this class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String probeContentType(Path path)                                   throws IOException
+				</name>
+				<description>
+					Probes the given file to guess its content type. The means by which this method determines the file type is highly implementation specific. It may simply examine the file name, it may use a file attribute, or it may examines bytes in the file. The probe result is the string form of the value of a Multipurpose Internet Mail Extension (MIME) content type as defined by RFC 2045: Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies. The string must be parsable according to the grammar in the RFC 2045.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

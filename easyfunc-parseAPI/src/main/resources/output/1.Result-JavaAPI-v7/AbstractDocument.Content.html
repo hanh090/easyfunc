@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public static interface AbstractDocument.Content
+		</name>
+		<description>
+			Interface to describe a sequence of character content that can be edited. Implementations may or may not support a history mechanism which will be reflected by whether or not mutations return an UndoableEdit implementation.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Position createPosition(int offset)                          throws BadLocationException
+				</name>
+				<description>
+					Creates a position within the content that will track change as the content is mutated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int length()
+				</name>
+				<description>
+					Current length of the sequence of character content.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					UndoableEdit insertString(int where,                          String str)                            throws BadLocationException
+				</name>
+				<description>
+					Inserts a string of characters into the sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					UndoableEdit remove(int where,                    int nitems)                      throws BadLocationException
+				</name>
+				<description>
+					Removes some portion of the sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getString(int where,                 int len)                   throws BadLocationException
+				</name>
+				<description>
+					Fetches a string of characters contained in the sequence.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void getChars(int where,              int len,              Segment txt)                throws BadLocationException
+				</name>
+				<description>
+					Gets a sequence of characters and copies them into a Segment.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

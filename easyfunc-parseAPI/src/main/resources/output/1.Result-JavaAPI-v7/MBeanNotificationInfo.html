@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.management
+	</package>
+	<type>
+		<name>
+			public class MBeanNotificationInfo  extends MBeanFeatureInfo  implements Cloneable
+		</name>
+		<description>
+			The MBeanNotificationInfo class is used to describe the characteristics of the different notification instances emitted by an MBean, for a given Java class of notification. If an MBean emits notifications that can be instances of different Java classes, then the metadata for that MBean should provide an MBeanNotificationInfo object for each of these notification Java classes. Instances of this class are immutable. Subclasses may be mutable but this is not recommended. This class extends javax.management.MBeanFeatureInfo and thus provides name and description fields. The name field should be the fully qualified Java class name of the notification objects described by this class. The getNotifTypes method returns an array of strings containing the notification types that the MBean may emit. The notification type is a dot-notation string which describes what the emitted notification is about, not the Java class of the notification. A single generic notification class can be used to send notifications of several types. All of these types are returned in the string array result of the getNotifTypes method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MBeanNotificationInfo(String[] notifTypes,                       String name,                       String description)
+				</name>
+				<description>
+					Constructs an MBeanNotificationInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanNotificationInfo(String[] notifTypes,                       String name,                       String description,                       Descriptor descriptor)
+				</name>
+				<description>
+					Constructs an MBeanNotificationInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Returns a shallow clone of this instance. The clone is obtained by simply calling super.clone(), thus calling the default native shallow cloning mechanism implemented by Object.clone(). No deeper cloning of any internal field is made.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getNotifTypes()
+				</name>
+				<description>
+					Returns the array of strings (in dot notation) containing the notification types that the MBean may emit.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: Object Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method. The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:    getClass().getName() + '@' + Integer.toHexString(hashCode())
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Compare this MBeanNotificationInfo to another.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Description copied from class: Object Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap. The general contract of hashCode is: Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It is not required that if two objects are unequal according to the Object.equals(java.lang.Object) method, then calling the hashCode method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hash tables. As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

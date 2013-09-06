@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.lang.model.type
+	</package>
+	<type>
+		<name>
+			public interface TypeVariable  extends ReferenceType
+		</name>
+		<description>
+			Represents a type variable. A type variable may be explicitly declared by a type parameter of a type, method, or constructor. A type variable may also be declared implicitly, as by the capture conversion of a wildcard type argument (see chapter 5 of The Java™ Language Specification).
+		</description>
+		<methods>
+			<method>
+				<name>
+					Element asElement()
+				</name>
+				<description>
+					Returns the element corresponding to this type variable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeMirror getUpperBound()
+				</name>
+				<description>
+					Returns the upper bound of this type variable. If this type variable was declared with no explicit upper bounds, the result is java.lang.Object. If it was declared with multiple upper bounds, the result is an intersection type (modeled as a DeclaredType). Individual bounds can be found by examining the result's supertypes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					TypeMirror getLowerBound()
+				</name>
+				<description>
+					Returns the lower bound of this type variable. While a type parameter cannot include an explicit lower bound declaration, capture conversion can produce a type variable with a non-trivial lower bound. Type variables otherwise have a lower bound of NullType.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

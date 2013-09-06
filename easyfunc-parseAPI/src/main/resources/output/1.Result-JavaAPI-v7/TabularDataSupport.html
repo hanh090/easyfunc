@@ -1,0 +1,252 @@
+<javaelement>
+	<package>
+		javax.management.openmbean
+	</package>
+	<type>
+		<name>
+			public class TabularDataSupport  extends Object  implements TabularData, Map<Object,Object>, Cloneable, Serializable
+		</name>
+		<description>
+			The TabularDataSupport class is the open data class which implements the TabularData and the Map interfaces, and which is internally based on a hash map data structure.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public TabularDataSupport(TabularType tabularType)
+				</name>
+				<description>
+					Creates an empty TabularDataSupport instance whose open-type is tabularType, and whose underlying HashMap has a default initial capacity (101) and default load factor (0.75). This constructor simply calls this(tabularType, 101, 0.75f);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TabularDataSupport(TabularType tabularType,                    int initialCapacity,                    float loadFactor)
+				</name>
+				<description>
+					Creates an empty TabularDataSupport instance whose open-type is tabularType, and whose underlying HashMap has the specified initial capacity and load factor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public TabularType getTabularType()
+				</name>
+				<description>
+					Returns the tabular type describing this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] calculateIndex(CompositeData value)
+				</name>
+				<description>
+					Calculates the index that would be used in this TabularData instance to refer to the specified composite data value parameter if it were added to this instance. This method checks for the type validity of the specified value, but does not check if the calculated index is already used to refer to a value in this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(Object key)
+				</name>
+				<description>
+					Returns true if and only if this TabularData instance contains a CompositeData value (ie a row) whose index is the specified key. If key cannot be cast to a one dimension array of Object instances, this method simply returns false; otherwise it returns the the result of the call to this.containsKey((Object[]) key).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsKey(Object[] key)
+				</name>
+				<description>
+					Returns true if and only if this TabularData instance contains a CompositeData value (ie a row) whose index is the specified key. If key is null or does not conform to this TabularData instance's TabularType definition, this method simply returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsValue(CompositeData value)
+				</name>
+				<description>
+					Returns true if and only if this TabularData instance contains the specified CompositeData value. If value is null or does not conform to this TabularData instance's row type definition, this method simply returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean containsValue(Object value)
+				</name>
+				<description>
+					Returns true if and only if this TabularData instance contains the specified value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get(Object key)
+				</name>
+				<description>
+					This method simply calls get((Object[]) key).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CompositeData get(Object[] key)
+				</name>
+				<description>
+					Returns the CompositeData value whose index is key, or null if there is no value mapping to key, in this TabularData instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object put(Object key,           Object value)
+				</name>
+				<description>
+					This method simply calls put((CompositeData) value) and therefore ignores its key parameter which can be null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void put(CompositeData value)
+				</name>
+				<description>
+					Description copied from interface: TabularData Adds value to this TabularData instance. The composite type of value must be the same as this instance's row type (ie the composite type returned by this.getTabularType().getRowType()), and there must not already be an existing value in this TabularData instance whose index is the same as the one calculated for the value to be added. The index for value is calculated according to this TabularData instance's TabularType definition (see TabularType.getIndexNames()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object remove(Object key)
+				</name>
+				<description>
+					This method simply calls remove((Object[]) key).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public CompositeData remove(Object[] key)
+				</name>
+				<description>
+					Removes the CompositeData value whose index is key from this TabularData instance, and returns the removed value, or returns null if there is no value whose index is key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void putAll(Map<?,?> t)
+				</name>
+				<description>
+					Add all the values contained in the specified map t to this TabularData instance. This method converts the collection of values contained in this map into an array of CompositeData values, if possible, and then call the method putAll(CompositeData[]). Note that the keys used in the specified map t are ignored. This method allows, for example to add the content of another TabularData instance with the same row type (but possibly different index names) into this instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void putAll(CompositeData[] values)
+				</name>
+				<description>
+					Add all the elements in values to this TabularData instance. If any element in values does not satisfy the constraints defined in put, or if any two elements in values have the same index calculated according to this TabularData instance's TabularType definition, then an exception describing the failure is thrown and no element of values is added, thus leaving this TabularData instance unchanged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Removes all rows from this TabularDataSupport instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Returns the number of rows in this TabularDataSupport instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Returns true if this TabularDataSupport instance contains no rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Object> keySet()
+				</name>
+				<description>
+					Returns a set view of the keys contained in the underlying map of this TabularDataSupport instance used to index the rows. Each key contained in this Set is an unmodifiable List<?> so the returned set view is a Set<List<?>> but is declared as a Set<Object> for compatibility reasons. The set is backed by the underlying map of this TabularDataSupport instance, so changes to the TabularDataSupport instance are reflected in the set, and vice-versa. The set supports element removal, which removes the corresponding row from this TabularDataSupport instance, via the Iterator.remove(), Set.remove(java.lang.Object), Set.removeAll(java.util.Collection<?>), Set.retainAll(java.util.Collection<?>), and Set.clear() operations. It does not support the Set.add(E) or Set.addAll(java.util.Collection<? extends E>) operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Collection<Object> values()
+				</name>
+				<description>
+					Returns a collection view of the rows contained in this TabularDataSupport instance. The returned Collection is a Collection<CompositeData> but is declared as a Collection<Object> for compatibility reasons. The returned collection can be used to iterate over the values. The collection is backed by the underlying map, so changes to the TabularDataSupport instance are reflected in the collection, and vice-versa. The collection supports element removal, which removes the corresponding index to row mapping from this TabularDataSupport instance, via the Iterator.remove(), Collection.remove(java.lang.Object), Collection.removeAll(java.util.Collection<?>), Collection.retainAll(java.util.Collection<?>), and Collection.clear() operations. It does not support the Collection.add(E) or Collection.addAll(java.util.Collection<? extends E>) operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Map.Entry<Object,Object>> entrySet()
+				</name>
+				<description>
+					Returns a collection view of the index to row mappings contained in this TabularDataSupport instance. Each element in the returned collection is a Map.Entry<List<?>,CompositeData> but is declared as a Map.Entry<Object,Object> for compatibility reasons. Each of the map entry keys is an unmodifiable List<?>. The collection is backed by the underlying map of this TabularDataSupport instance, so changes to the TabularDataSupport instance are reflected in the collection, and vice-versa. The collection supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove(), Collection.remove(java.lang.Object), Collection.removeAll(java.util.Collection<?>), Collection.retainAll(java.util.Collection<?>), and Collection.clear() operations. It does not support the Collection.add(E) or Collection.addAll(java.util.Collection<? extends E>) operations. IMPORTANT NOTICE: Do not use the setValue method of the Map.Entry elements contained in the returned collection view. Doing so would corrupt the index to row mappings contained in this TabularDataSupport instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Returns a clone of this TabularDataSupport instance: the clone is obtained by calling super.clone(), and then cloning the underlying map. Only a shallow clone of the underlying map is made, i.e. no cloning of the indexes and row values is made as they are immutable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares the specified obj parameter with this TabularDataSupport instance for equality. Returns true if and only if all of the following statements are true: obj is non null, obj also implements the TabularData interface, their tabular types are equal their contents (ie all CompositeData values) are equal. This ensures that this equals method works properly for obj parameters which are different implementations of the TabularData interface.  
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code value for this TabularDataSupport instance. The hash code of a TabularDataSupport instance is the sum of the hash codes of all elements of information used in equals comparisons (ie: its tabular type and its content, where the content is defined as all the CompositeData values). This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two TabularDataSupport instances t1 and t2, as required by the general contract of the method Object.hashCode(). However, note that another instance of a class implementing the TabularData interface may be equal to this TabularDataSupport instance as defined by equals(java.lang.Object), but may have a different hash code if it is calculated differently.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of this TabularDataSupport instance. The string representation consists of the name of this class (ie javax.management.openmbean.TabularDataSupport), the string representation of the tabular type of this instance, and the string representation of the contents (ie list the key=value mappings as returned by a call to dataMap.toString()).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

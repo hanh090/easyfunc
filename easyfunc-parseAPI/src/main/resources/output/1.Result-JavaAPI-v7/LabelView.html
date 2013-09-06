@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class LabelView  extends GlyphView  implements TabableView
+		</name>
+		<description>
+			A LabelView is a styled chunk of text that represents a view mapped over an element in the text model. It caches the character level attributes used for rendering.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public LabelView(Element elem)
+				</name>
+				<description>
+					Constructs a new view wrapped on an element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setUnderline(boolean u)
+				</name>
+				<description>
+					Sets whether or not the view is underlined. Note that this setter is protected and is really only meant if you need to update some additional state when set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setStrikeThrough(boolean s)
+				</name>
+				<description>
+					Sets whether or not the view has a strike/line through it. Note that this setter is protected and is really only meant if you need to update some additional state when set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setSuperscript(boolean s)
+				</name>
+				<description>
+					Sets whether or not the view represents a superscript. Note that this setter is protected and is really only meant if you need to update some additional state when set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setSubscript(boolean s)
+				</name>
+				<description>
+					Sets whether or not the view represents a subscript. Note that this setter is protected and is really only meant if you need to update some additional state when set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setBackground(Color bg)
+				</name>
+				<description>
+					Sets the background color for the view. This method is typically invoked as part of configuring this View. If you need to customize the background color you should override setPropertiesFromAttributes and invoke this method. A value of null indicates no background should be rendered, so that the background of the parent View will show through.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setPropertiesFromAttributes()
+				</name>
+				<description>
+					Sets the cached properties from the attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  protected FontMetrics getFontMetrics()
+				</name>
+				<description>
+					Deprecated. FontMetrics are not used for glyph rendering when running in the JDK. Fetches the FontMetrics used for this view.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getBackground()
+				</name>
+				<description>
+					Fetches the background color to use to render the glyphs. This is implemented to return a cached background color, which defaults to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getForeground()
+				</name>
+				<description>
+					Fetches the foreground color to use to render the glyphs. This is implemented to return a cached foreground color, which defaults to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont()
+				</name>
+				<description>
+					Fetches the font that the glyphs should be based upon. This is implemented to return a cached font.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isUnderline()
+				</name>
+				<description>
+					Determines if the glyphs should be underlined. If true, an underline should be drawn through the baseline. This is implemented to return the cached underline property. When you request this property, LabelView re-syncs its state with the properties of the Element's AttributeSet. If Element's AttributeSet does not have this property set, it will revert to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isStrikeThrough()
+				</name>
+				<description>
+					Determines if the glyphs should have a strikethrough line. If true, a line should be drawn through the center of the glyphs. This is implemented to return the cached strikeThrough property. When you request this property, LabelView re-syncs its state with the properties of the Element's AttributeSet. If Element's AttributeSet does not have this property set, it will revert to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSubscript()
+				</name>
+				<description>
+					Determines if the glyphs should be rendered as superscript.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSuperscript()
+				</name>
+				<description>
+					Determines if the glyphs should be rendered as subscript. When you request this property, LabelView re-syncs its state with the properties of the Element's AttributeSet. If Element's AttributeSet does not have this property set, it will revert to false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent e,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Gives notification from the document that attributes were changed in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

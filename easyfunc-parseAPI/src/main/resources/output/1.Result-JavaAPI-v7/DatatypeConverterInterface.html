@@ -1,0 +1,360 @@
+<javaelement>
+	<package>
+		javax.xml.bind
+	</package>
+	<type>
+		<name>
+			public interface DatatypeConverterInterface
+		</name>
+		<description>
+			The DatatypeConverterInterface is for JAXB provider use only. A JAXB provider must supply a class that implements this interface. JAXB Providers are required to call the DatatypeConverter.setDatatypeConverter api at some point before the first marshal or unmarshal operation (perhaps during the call to JAXBContext.newInstance). This step is necessary to configure the converter that should be used to perform the print and parse functionality. Calling this api repeatedly will have no effect - the DatatypeConverter instance passed into the first invocation is the one that will be used from then on. This interface defines the parse and print methods. There is one parse and print method for each XML schema datatype specified in the the default binding Table 5-1 in the JAXB specification. The parse and print methods defined here are invoked by the static parse and print methods defined in the DatatypeConverter class. A parse method for a XML schema datatype must be capable of converting any lexical representation of the XML schema datatype ( specified by the XML Schema Part2: Datatypes specification into a value in the value space of the XML schema datatype. If an error is encountered during conversion, then an IllegalArgumentException or a subclass of IllegalArgumentException must be thrown by the method. A print method for a XML schema datatype can output any lexical representation that is valid with respect to the XML schema datatype. If an error is encountered during conversion, then an IllegalArgumentException, or a subclass of IllegalArgumentException must be thrown by the method. The prefix xsd: is used to refer to XML schema datatypes XML Schema Part2: Datatypes specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String parseString(String lexicalXSDString)
+				</name>
+				<description>
+					Convert the string argument into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					BigInteger parseInteger(String lexicalXSDInteger)
+				</name>
+				<description>
+					Convert the string argument into a BigInteger value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int parseInt(String lexicalXSDInt)
+				</name>
+				<description>
+					Convert the string argument into an int value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long parseLong(String lexicalXSDLong)
+				</name>
+				<description>
+					Converts the string argument into a long value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					short parseShort(String lexicalXSDShort)
+				</name>
+				<description>
+					Converts the string argument into a short value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					BigDecimal parseDecimal(String lexicalXSDDecimal)
+				</name>
+				<description>
+					Converts the string argument into a BigDecimal value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					float parseFloat(String lexicalXSDFloat)
+				</name>
+				<description>
+					Converts the string argument into a float value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					double parseDouble(String lexicalXSDDouble)
+				</name>
+				<description>
+					Converts the string argument into a double value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean parseBoolean(String lexicalXSDBoolean)
+				</name>
+				<description>
+					Converts the string argument into a boolean value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte parseByte(String lexicalXSDByte)
+				</name>
+				<description>
+					Converts the string argument into a byte value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					QName parseQName(String lexicalXSDQName,                 NamespaceContext nsc)
+				</name>
+				<description>
+					Converts the string argument into a QName value. String parameter lexicalXSDQname must conform to lexical value space specifed at XML Schema Part 2:Datatypes specification:QNames
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Calendar parseDateTime(String lexicalXSDDateTime)
+				</name>
+				<description>
+					Converts the string argument into a Calendar value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] parseBase64Binary(String lexicalXSDBase64Binary)
+				</name>
+				<description>
+					Converts the string argument into an array of bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					byte[] parseHexBinary(String lexicalXSDHexBinary)
+				</name>
+				<description>
+					Converts the string argument into an array of bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					long parseUnsignedInt(String lexicalXSDUnsignedInt)
+				</name>
+				<description>
+					Converts the string argument into a long value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int parseUnsignedShort(String lexicalXSDUnsignedShort)
+				</name>
+				<description>
+					Converts the string argument into an int value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Calendar parseTime(String lexicalXSDTime)
+				</name>
+				<description>
+					Converts the string argument into a Calendar value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Calendar parseDate(String lexicalXSDDate)
+				</name>
+				<description>
+					Converts the string argument into a Calendar value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String parseAnySimpleType(String lexicalXSDAnySimpleType)
+				</name>
+				<description>
+					Return a string containing the lexical representation of the simple type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printString(String val)
+				</name>
+				<description>
+					Converts the string argument into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printInteger(BigInteger val)
+				</name>
+				<description>
+					Converts a BigInteger value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printInt(int val)
+				</name>
+				<description>
+					Converts an int value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printLong(long val)
+				</name>
+				<description>
+					Converts a long value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printShort(short val)
+				</name>
+				<description>
+					Converts a short value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printDecimal(BigDecimal val)
+				</name>
+				<description>
+					Converts a BigDecimal value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printFloat(float val)
+				</name>
+				<description>
+					Converts a float value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printDouble(double val)
+				</name>
+				<description>
+					Converts a double value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printBoolean(boolean val)
+				</name>
+				<description>
+					Converts a boolean value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printByte(byte val)
+				</name>
+				<description>
+					Converts a byte value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printQName(QName val,                  NamespaceContext nsc)
+				</name>
+				<description>
+					Converts a QName instance into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printDateTime(Calendar val)
+				</name>
+				<description>
+					Converts a Calendar value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printBase64Binary(byte[] val)
+				</name>
+				<description>
+					Converts an array of bytes into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printHexBinary(byte[] val)
+				</name>
+				<description>
+					Converts an array of bytes into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printUnsignedInt(long val)
+				</name>
+				<description>
+					Converts a long value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printUnsignedShort(int val)
+				</name>
+				<description>
+					Converts an int value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printTime(Calendar val)
+				</name>
+				<description>
+					Converts a Calendar value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printDate(Calendar val)
+				</name>
+				<description>
+					Converts a Calendar value into a string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String printAnySimpleType(String val)
+				</name>
+				<description>
+					Converts a string value into a string.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

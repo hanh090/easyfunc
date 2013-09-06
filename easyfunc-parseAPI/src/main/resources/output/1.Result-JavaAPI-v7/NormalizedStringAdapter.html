@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.bind.annotation.adapters
+	</package>
+	<type>
+		<name>
+			public final class NormalizedStringAdapter  extends XmlAdapter<String,String>
+		</name>
+		<description>
+			XmlAdapter to handle xs:normalizedString. Replaces any tab, CR, and LF by a whitespace character ' ', as specified in the whitespace facet 'replace'
+		</description>
+		<methods>
+			<method>
+				<name>
+					public NormalizedStringAdapter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String unmarshal(String text)
+				</name>
+				<description>
+					Replace any tab, CR, and LF by a whitespace character ' ', as specified in the whitespace facet 'replace'
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String marshal(String s)
+				</name>
+				<description>
+					No-op. Just return the same string given as the parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static boolean isWhiteSpaceExceptSpace(char ch)
+				</name>
+				<description>
+					Returns true if the specified char is a white space character but not 0x20.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

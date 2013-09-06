@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		java.sql
+	</package>
+	<type>
+		<name>
+			public interface ParameterMetaData  extends Wrapper
+		</name>
+		<description>
+			An object that can be used to get information about the types and properties for each parameter marker in a PreparedStatement object. For some queries and driver implementations, the data that would be returned by a ParameterMetaData object may not be available until the PreparedStatement has been executed. Some driver implementations may not be able to provide information about the types and properties for each parameter marker in a CallableStatement object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final int parameterNoNulls
+				</name>
+				<description>
+					The constant indicating that a parameter will not allow NULL values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int parameterNullable
+				</name>
+				<description>
+					The constant indicating that a parameter will allow NULL values.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int parameterNullableUnknown
+				</name>
+				<description>
+					The constant indicating that the nullability of a parameter is unknown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int parameterModeUnknown
+				</name>
+				<description>
+					The constant indicating that the mode of the parameter is unknown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int parameterModeIn
+				</name>
+				<description>
+					The constant indicating that the parameter's mode is IN.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int parameterModeInOut
+				</name>
+				<description>
+					The constant indicating that the parameter's mode is INOUT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final int parameterModeOut
+				</name>
+				<description>
+					The constant indicating that the parameter's mode is OUT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getParameterCount()                        throws SQLException
+				</name>
+				<description>
+					Retrieves the number of parameters in the PreparedStatement object for which this ParameterMetaData object contains information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int isNullable(int param)                 throws SQLException
+				</name>
+				<description>
+					Retrieves whether null values are allowed in the designated parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isSigned(int param)                   throws SQLException
+				</name>
+				<description>
+					Retrieves whether values for the designated parameter can be signed numbers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getPrecision(int param)                   throws SQLException
+				</name>
+				<description>
+					Retrieves the designated parameter's specified column size. The returned value represents the maximum column size for the given parameter. For numeric data, this is the maximum precision. For character data, this is the length in characters. For datetime datatypes, this is the length in characters of the String representation (assuming the maximum allowed precision of the fractional seconds component). For binary data, this is the length in bytes. For the ROWID datatype, this is the length in bytes. 0 is returned for data types where the column size is not applicable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getScale(int param)               throws SQLException
+				</name>
+				<description>
+					Retrieves the designated parameter's number of digits to right of the decimal point. 0 is returned for data types where the scale is not applicable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getParameterType(int param)                       throws SQLException
+				</name>
+				<description>
+					Retrieves the designated parameter's SQL type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getParameterTypeName(int param)                              throws SQLException
+				</name>
+				<description>
+					Retrieves the designated parameter's database-specific type name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getParameterClassName(int param)                               throws SQLException
+				</name>
+				<description>
+					Retrieves the fully-qualified name of the Java class whose instances should be passed to the method PreparedStatement.setObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getParameterMode(int param)                       throws SQLException
+				</name>
+				<description>
+					Retrieves the designated parameter's mode.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public class AsyncBoxView.ChildLocator  extends Object
+		</name>
+		<description>
+			A class to manage the effective position of the child views in a localized area while changes are being made around the localized area. The AsyncBoxView may be continuously changing, but the visible area needs to remain fairly stable until the layout thread decides to publish an update to the parent.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected AsyncBoxView.ChildState lastValidOffset
+				</name>
+				<description>
+					The location of the last offset calculation that is valid.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle lastAlloc
+				</name>
+				<description>
+					The last seen allocation (for repainting when changes are flushed upward).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Rectangle childAlloc
+				</name>
+				<description>
+					A shape to use for the child allocation to avoid creating a lot of garbage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AsyncBoxView.ChildLocator()
+				</name>
+				<description>
+					construct a child locator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void childChanged(AsyncBoxView.ChildState cs)
+				</name>
+				<description>
+					Notification that a child changed. This can effect whether or not new offset calculations are needed. This is called by a ChildState object that has changed it's major span. This can therefore be called by multiple threads.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paintChildren(Graphics g)
+				</name>
+				<description>
+					Paint the children that intersect the clip area.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getChildAllocation(int index,                         Shape a)
+				</name>
+				<description>
+					Fetch the allocation to use for a child view. This will update the offsets for all children not yet updated before the given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getViewIndexAtPoint(float x,                        float y,                        Shape a)
+				</name>
+				<description>
+					Fetches the child view index at the given point. This is called by the various View methods that need to calculate which child to forward a message to. This should be called by a block synchronized on this object, and would typically be followed with one or more calls to getChildAllocation that should also be in the synchronized block.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Shape getChildAllocation(int index)
+				</name>
+				<description>
+					Fetch the allocation to use for a child view. This does not update the offsets in the ChildState records.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setAllocation(Shape a)
+				</name>
+				<description>
+					Copy the currently allocated shape into the Rectangle used to store the current allocation. This would be a floating point rectangle in a Java2D-specific implmentation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getViewIndexAtVisualOffset(float targetOffset)
+				</name>
+				<description>
+					Locate the view responsible for an offset into the box along the major axis. Make sure that offsets are set on the ChildState objects up to the given target span past the desired offset.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

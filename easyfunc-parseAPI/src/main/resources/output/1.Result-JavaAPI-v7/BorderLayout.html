@@ -1,0 +1,315 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class BorderLayout  extends Object  implements LayoutManager2, Serializable
+		</name>
+		<description>
+			A border layout lays out a container, arranging and resizing its components to fit in five regions: north, south, east, west, and center. Each region may contain no more than one component, and is identified by a corresponding constant: NORTH, SOUTH, EAST, WEST, and CENTER. When adding a component to a container with a border layout, use one of these five constants, for example:       Panel p = new Panel();      p.setLayout(new BorderLayout());      p.add(new Button("Okay"), BorderLayout.SOUTH);   As a convenience, BorderLayout interprets the absence of a string specification the same as the constant CENTER:       Panel p2 = new Panel();      p2.setLayout(new BorderLayout());      p2.add(new TextArea());  // Same as p.add(new TextArea(), BorderLayout.CENTER);   In addition, BorderLayout supports the relative positioning constants, PAGE_START, PAGE_END, LINE_START, and LINE_END. In a container whose ComponentOrientation is set to ComponentOrientation.LEFT_TO_RIGHT, these constants map to NORTH, SOUTH, WEST, and EAST, respectively. For compatibility with previous releases, BorderLayout also includes the relative positioning constants BEFORE_FIRST_LINE, AFTER_LAST_LINE, BEFORE_LINE_BEGINS and AFTER_LINE_ENDS. These are equivalent to PAGE_START, PAGE_END, LINE_START and LINE_END respectively. For consistency with the relative positioning constants used by other components, the latter constants are preferred. Mixing both absolute and relative positioning constants can lead to unpredicable results. If you use both types, the relative constants will take precedence. For example, if you add components using both the NORTH and PAGE_START constants in a container whose orientation is LEFT_TO_RIGHT, only the PAGE_START will be layed out. NOTE: Currently (in the Java 2 platform v1.2), BorderLayout does not support vertical orientations. The isVertical setting on the container's ComponentOrientation is not respected. The components are laid out according to their preferred sizes and the constraints of the container's size. The NORTH and SOUTH components may be stretched horizontally; the EAST and WEST components may be stretched vertically; the CENTER component may stretch both horizontally and vertically to fill any space left over. Here is an example of five buttons in an applet laid out using the BorderLayout layout manager: The code for this applet is as follows:    import java.awt.*;   import java.applet.Applet;     public class buttonDir extends Applet {     public void init() {       setLayout(new BorderLayout());       add(new Button("North"), BorderLayout.NORTH);       add(new Button("South"), BorderLayout.SOUTH);       add(new Button("East"), BorderLayout.EAST);       add(new Button("West"), BorderLayout.WEST);       add(new Button("Center"), BorderLayout.CENTER);     }   }
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String NORTH
+				</name>
+				<description>
+					The north layout constraint (top of container).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String SOUTH
+				</name>
+				<description>
+					The south layout constraint (bottom of container).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String EAST
+				</name>
+				<description>
+					The east layout constraint (right side of container).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String WEST
+				</name>
+				<description>
+					The west layout constraint (left side of container).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CENTER
+				</name>
+				<description>
+					The center layout constraint (middle of container).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String BEFORE_FIRST_LINE
+				</name>
+				<description>
+					Synonym for PAGE_START. Exists for compatibility with previous versions. PAGE_START is preferred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String AFTER_LAST_LINE
+				</name>
+				<description>
+					Synonym for PAGE_END. Exists for compatibility with previous versions. PAGE_END is preferred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String BEFORE_LINE_BEGINS
+				</name>
+				<description>
+					Synonym for LINE_START. Exists for compatibility with previous versions. LINE_START is preferred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String AFTER_LINE_ENDS
+				</name>
+				<description>
+					Synonym for LINE_END. Exists for compatibility with previous versions. LINE_END is preferred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String PAGE_START
+				</name>
+				<description>
+					The component comes before the first line of the layout's content. For Western, left-to-right and top-to-bottom orientations, this is equivalent to NORTH.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String PAGE_END
+				</name>
+				<description>
+					The component comes after the last line of the layout's content. For Western, left-to-right and top-to-bottom orientations, this is equivalent to SOUTH.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LINE_START
+				</name>
+				<description>
+					The component goes at the beginning of the line direction for the layout. For Western, left-to-right and top-to-bottom orientations, this is equivalent to WEST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String LINE_END
+				</name>
+				<description>
+					The component goes at the end of the line direction for the layout. For Western, left-to-right and top-to-bottom orientations, this is equivalent to EAST.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BorderLayout()
+				</name>
+				<description>
+					Constructs a new border layout with no gaps between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BorderLayout(int hgap,              int vgap)
+				</name>
+				<description>
+					Constructs a border layout with the specified gaps between components. The horizontal gap is specified by hgap and the vertical gap is specified by vgap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getHgap()
+				</name>
+				<description>
+					Returns the horizontal gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setHgap(int hgap)
+				</name>
+				<description>
+					Sets the horizontal gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVgap()
+				</name>
+				<description>
+					Returns the vertical gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setVgap(int vgap)
+				</name>
+				<description>
+					Sets the vertical gap between components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addLayoutComponent(Component comp,                        Object constraints)
+				</name>
+				<description>
+					Adds the specified component to the layout, using the specified constraint object. For border layouts, the constraint must be one of the following constants: NORTH, SOUTH, EAST, WEST, or CENTER. Most applications do not call this method directly. This method is called when a component is added to a container using the Container.add method with the same argument types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void addLayoutComponent(String name,                                   Component comp)
+				</name>
+				<description>
+					Deprecated. replaced by addLayoutComponent(Component, Object). Description copied from interface: LayoutManager If the layout manager uses a per-component string, adds the component comp to the layout, associating it with the string specified by name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeLayoutComponent(Component comp)
+				</name>
+				<description>
+					Removes the specified component from this border layout. This method is called when a container calls its remove or removeAll methods. Most applications do not call this method directly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getLayoutComponent(Object constraints)
+				</name>
+				<description>
+					Gets the component that was added using the given constraint
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Component getLayoutComponent(Container target,                             Object constraints)
+				</name>
+				<description>
+					Returns the component that corresponds to the given constraint location based on the target Container's component orientation. Components added with the relative constraints PAGE_START, PAGE_END, LINE_START, and LINE_END take precedence over components added with the explicit constraints NORTH, SOUTH, WEST, and EAST. The Container's component orientation is used to determine the location of components added with LINE_START and LINE_END.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getConstraints(Component comp)
+				</name>
+				<description>
+					Gets the constraints for the specified component
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension minimumLayoutSize(Container target)
+				</name>
+				<description>
+					Determines the minimum size of the target container using this layout manager. This method is called when a container calls its getMinimumSize method. Most applications do not call this method directly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension preferredLayoutSize(Container target)
+				</name>
+				<description>
+					Determines the preferred size of the target container using this layout manager, based on the components in the container. Most applications do not call this method directly. This method is called when a container calls its getPreferredSize method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension maximumLayoutSize(Container target)
+				</name>
+				<description>
+					Returns the maximum dimensions for this layout given the components in the specified target container.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getLayoutAlignmentX(Container parent)
+				</name>
+				<description>
+					Returns the alignment along the x axis. This specifies how the component would like to be aligned relative to other components. The value should be a number between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the furthest away from the origin, 0.5 is centered, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getLayoutAlignmentY(Container parent)
+				</name>
+				<description>
+					Returns the alignment along the y axis. This specifies how the component would like to be aligned relative to other components. The value should be a number between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the furthest away from the origin, 0.5 is centered, etc.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void invalidateLayout(Container target)
+				</name>
+				<description>
+					Invalidates the layout, indicating that if the layout manager has cached information it should be discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void layoutContainer(Container target)
+				</name>
+				<description>
+					Lays out the container argument using this border layout. This method actually reshapes the components in the specified container in order to satisfy the constraints of this BorderLayout object. The NORTH and SOUTH components, if any, are placed at the top and bottom of the container, respectively. The WEST and EAST components are then placed on the left and right, respectively. Finally, the CENTER object is placed in any remaining space in the middle. Most applications do not call this method directly. This method is called when a container calls its doLayout method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string representation of the state of this border layout.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

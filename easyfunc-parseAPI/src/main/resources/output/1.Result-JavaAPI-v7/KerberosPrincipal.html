@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.security.auth.kerberos
+	</package>
+	<type>
+		<name>
+			public final class KerberosPrincipal  extends Object  implements Principal, Serializable
+		</name>
+		<description>
+			This class encapsulates a Kerberos principal.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int KRB_NT_UNKNOWN
+				</name>
+				<description>
+					unknown name type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int KRB_NT_PRINCIPAL
+				</name>
+				<description>
+					user principal name type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int KRB_NT_SRV_INST
+				</name>
+				<description>
+					service and other unique instance (krbtgt) name type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int KRB_NT_SRV_HST
+				</name>
+				<description>
+					service with host name as instance (telnet, rcommands) name type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int KRB_NT_SRV_XHST
+				</name>
+				<description>
+					service with host as remaining components name type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int KRB_NT_UID
+				</name>
+				<description>
+					unique ID name type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public KerberosPrincipal(String name)
+				</name>
+				<description>
+					Constructs a KerberosPrincipal from the provided string input. The name type for this principal defaults to KRB_NT_PRINCIPAL This string is assumed to contain a name in the format that is specified in Section 2.1.1. (Kerberos Principal Name Form) of RFC 1964 (for example, duke@FOO.COM, where duke represents a principal, and FOO.COM represents a realm). If the input name does not contain a realm, the default realm is used. The default realm can be specified either in a Kerberos configuration file or via the java.security.krb5.realm system property. For more information, Kerberos Requirements
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public KerberosPrincipal(String name,                   int nameType)
+				</name>
+				<description>
+					Constructs a KerberosPrincipal from the provided string and name type input. The string is assumed to contain a name in the format that is specified in Section 2.1 (Mandatory Name Forms) of RFC 1964. Valid name types are specified in Section 6.2 (Principal Names) of RFC 4120. The input name must be consistent with the provided name type. (for example, duke@FOO.COM, is a valid input string for the name type, KRB_NT_PRINCIPAL where duke represents a principal, and FOO.COM represents a realm). If the input name does not contain a realm, the default realm is used. The default realm can be specified either in a Kerberos configuration file or via the java.security.krb5.realm system property. For more information, see Kerberos Requirements.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getRealm()
+				</name>
+				<description>
+					Returns the realm component of this Kerberos principal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this principal. The hash code is defined to be the result of the following calculation:     hashCode = getName().hashCode();
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object other)
+				</name>
+				<description>
+					Compares the specified Object with this Principal for equality. Returns true if the given object is also a KerberosPrincipal and the two KerberosPrincipal instances are equivalent. More formally two KerberosPrincipal instances are equal if the values returned by getName() are equal and the values returned by getNameType() are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					The returned string corresponds to the single-string representation of a Kerberos Principal name as specified in Section 2.1 of RFC 1964.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNameType()
+				</name>
+				<description>
+					Returns the name type of the KerberosPrincipal. Valid name types are specified in Section 6.2 of RFC4120.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: Object Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method. The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:    getClass().getName() + '@' + Integer.toHexString(hashCode())
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

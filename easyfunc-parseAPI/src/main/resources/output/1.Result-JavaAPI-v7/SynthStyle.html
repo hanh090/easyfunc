@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public abstract class SynthStyle  extends Object
+		</name>
+		<description>
+			SynthStyle is a set of style properties. Each SynthUI references at least one SynthStyle that is obtained using a SynthStyleFactory. You typically don't need to interact with this class directly, rather you will load a Synth File Format file into SynthLookAndFeel that will create a set of SynthStyles.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SynthStyle()
+				</name>
+				<description>
+					Constructs a SynthStyle.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SynthGraphicsUtils getGraphicsUtils(SynthContext context)
+				</name>
+				<description>
+					Returns the SynthGraphicUtils for the specified context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Color getColor(SynthContext context,               ColorType type)
+				</name>
+				<description>
+					Returns the color for the specified state. This gives precedence to foreground and background of the JComponent. If the Color from the JComponent is not appropriate, or not used, this will invoke getColorForState. Subclasses should generally not have to override this, instead override getColorForState(javax.swing.plaf.synth.SynthContext, javax.swing.plaf.synth.ColorType).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract Color getColorForState(SynthContext context,                       ColorType type)
+				</name>
+				<description>
+					Returns the color for the specified state. This should NOT call any methods on the JComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Font getFont(SynthContext context)
+				</name>
+				<description>
+					Returns the Font for the specified state. This redirects to the JComponent from the context as necessary. If this does not redirect to the JComponent getFontForState(javax.swing.plaf.synth.SynthContext) is invoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected abstract Font getFontForState(SynthContext context)
+				</name>
+				<description>
+					Returns the font for the specified state. This should NOT call any method on the JComponent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Insets getInsets(SynthContext context,                 Insets insets)
+				</name>
+				<description>
+					Returns the Insets that are used to calculate sizing information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SynthPainter getPainter(SynthContext context)
+				</name>
+				<description>
+					Returns the SynthPainter that will be used for painting. This may return null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOpaque(SynthContext context)
+				</name>
+				<description>
+					Returns true if the region is opaque.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get(SynthContext context,           Object key)
+				</name>
+				<description>
+					Getter for a region specific style property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void installDefaults(SynthContext context)
+				</name>
+				<description>
+					Installs the necessary state from this Style on the JComponent from context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void uninstallDefaults(SynthContext context)
+				</name>
+				<description>
+					Uninstalls any state that this style installed on the JComponent from context. Styles should NOT depend upon this being called, in certain cases it may never be called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getInt(SynthContext context,           Object key,           int defaultValue)
+				</name>
+				<description>
+					Convenience method to get a specific style property whose value is a Number. If the value is a Number, intValue is returned, otherwise defaultValue is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getBoolean(SynthContext context,                   Object key,                   boolean defaultValue)
+				</name>
+				<description>
+					Convenience method to get a specific style property whose value is an Boolean.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Icon getIcon(SynthContext context,             Object key)
+				</name>
+				<description>
+					Convenience method to get a specific style property whose value is an Icon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getString(SynthContext context,                 Object key,                 String defaultValue)
+				</name>
+				<description>
+					Convenience method to get a specific style property whose value is a String.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

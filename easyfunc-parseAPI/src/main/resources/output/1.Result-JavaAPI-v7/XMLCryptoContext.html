@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		javax.xml.crypto
+	</package>
+	<type>
+		<name>
+			public interface XMLCryptoContext
+		</name>
+		<description>
+			Contains common context information for XML cryptographic operations. This interface contains methods for setting and retrieving properties that affect the processing of XML signatures or XML encrypted structures. Note that XMLCryptoContext instances can contain information and state specific to the XML cryptographic structure it is used with. The results are unpredictable if an XMLCryptoContext is used with multiple structures (for example, you should not use the same XMLValidateContext instance to validate two different XMLSignature objects).
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getBaseURI()
+				</name>
+				<description>
+					Returns the base URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setBaseURI(String baseURI)
+				</name>
+				<description>
+					Sets the base URI.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					KeySelector getKeySelector()
+				</name>
+				<description>
+					Returns the key selector for finding a key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setKeySelector(KeySelector ks)
+				</name>
+				<description>
+					Sets the key selector for finding a key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					URIDereferencer getURIDereferencer()
+				</name>
+				<description>
+					Returns a URIDereferencer that is used to dereference URIReferences.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setURIDereferencer(URIDereferencer dereferencer)
+				</name>
+				<description>
+					Sets a URIDereferencer that is used to dereference URIReferences. The specified URIDereferencer is used in place of an implementation's default URIDereferencer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getNamespacePrefix(String namespaceURI,                          String defaultPrefix)
+				</name>
+				<description>
+					Returns the namespace prefix that the specified namespace URI is associated with. Returns the specified default prefix if the specified namespace URI has not been bound to a prefix. To bind a namespace URI to a prefix, call the putNamespacePrefix method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String putNamespacePrefix(String namespaceURI,                          String prefix)
+				</name>
+				<description>
+					Maps the specified namespace URI to the specified prefix. If there is already a prefix associated with the specified namespace URI, the old prefix is replaced by the specified prefix.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getDefaultNamespacePrefix()
+				</name>
+				<description>
+					Returns the default namespace prefix. The default namespace prefix is the prefix for all namespace URIs not explicitly set by the putNamespacePrefix method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setDefaultNamespacePrefix(String defaultPrefix)
+				</name>
+				<description>
+					Sets the default namespace prefix. This sets the namespace prefix for all namespace URIs not explicitly set by the putNamespacePrefix method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object setProperty(String name,                   Object value)
+				</name>
+				<description>
+					Sets the specified property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getProperty(String name)
+				</name>
+				<description>
+					Returns the value of the specified property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object get(Object key)
+				</name>
+				<description>
+					Returns the value to which this context maps the specified key. More formally, if this context contains a mapping from a key k to a value v such that (key==null ? k==null : key.equals(k)), then this method returns v; otherwise it returns null. (There can be at most one such mapping.) This method is useful for retrieving arbitrary information that is specific to the cryptographic operation that this context is used for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object put(Object key,           Object value)
+				</name>
+				<description>
+					Associates the specified value with the specified key in this context. If the context previously contained a mapping for this key, the old value is replaced by the specified value. This method is useful for storing arbitrary information that is specific to the cryptographic operation that this context is used for.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

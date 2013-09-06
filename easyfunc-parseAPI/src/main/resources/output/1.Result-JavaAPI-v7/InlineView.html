@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public class InlineView  extends LabelView
+		</name>
+		<description>
+			Displays the inline element styles based upon css attributes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public InlineView(Element elem)
+				</name>
+				<description>
+					Constructs a new view wrapped on an element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void insertUpdate(DocumentEvent e,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was inserted into the document in a location that this view is responsible for. If either parameter is null, behavior of this method is implementation dependent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeUpdate(DocumentEvent e,                  Shape a,                  ViewFactory f)
+				</name>
+				<description>
+					Gives notification that something was removed from the document in a location that this view is responsible for. If either parameter is null, behavior of this method is implementation dependent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void changedUpdate(DocumentEvent e,                   Shape a,                   ViewFactory f)
+				</name>
+				<description>
+					Gives notification from the document that attributes were changed in a location that this view is responsible for.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getAttributes()
+				</name>
+				<description>
+					Fetches the attributes to use when rendering. This is implemented to multiplex the attributes specified in the model with a StyleSheet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getBreakWeight(int axis,                   float pos,                   float len)
+				</name>
+				<description>
+					Determines how attractive a break opportunity in this view is. This can be used for determining which view is the most attractive to call breakView on in the process of formatting. A view that represents text that has whitespace in it might be more attractive than a view that has no whitespace, for example. The higher the weight, the more attractive the break. A value equal to or lower than BadBreakWeight should not be considered for a break. A value greater than or equal to ForcedBreakWeight should be broken. This is implemented to provide the default behavior of returning BadBreakWeight unless the length is greater than the length of the view in which case the entire view represents the fragment. Unless a view has been written to support breaking behavior, it is not attractive to try and break the view. An example of a view that does support breaking is LabelView. An example of a view that uses break weight is ParagraphView.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public View breakView(int axis,               int offset,               float pos,               float len)
+				</name>
+				<description>
+					Tries to break this view on the given axis. Refer to View.breakView(int, int, float, float) for a complete description of this method. Behavior of this method is unspecified in case axis is neither View.X_AXIS nor View.Y_AXIS, and in case offset, pos, or len is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setPropertiesFromAttributes()
+				</name>
+				<description>
+					Set the cached properties from the attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StyleSheet getStyleSheet()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

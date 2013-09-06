@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.lang.model.element
+	</package>
+	<type>
+		<name>
+			public interface AnnotationValueVisitor<R,P>
+		</name>
+		<description>
+			A visitor of the values of annotation type elements, using a variant of the visitor design pattern. Unlike a standard visitor which dispatches based on the concrete type of a member of a type hierarchy, this visitor dispatches based on the type of data stored; there are no distinct subclasses for storing, for example, boolean values versus int values. Classes implementing this interface are used to operate on a value when the type of that value is unknown at compile time. When a visitor is passed to a value's accept method, the visitXYZ method applicable to that value is invoked. Classes implementing this interface may or may not throw a NullPointerException if the additional parameter p is null; see documentation of the implementing class for details. WARNING: It is possible that methods will be added to this interface to accommodate new, currently unknown, language structures added to future versions of the Java™ programming language. Therefore, visitor classes directly implementing this interface may be source incompatible with future versions of the platform. To avoid this source incompatibility, visitor implementations are encouraged to instead extend the appropriate abstract visitor class that implements this interface. However, an API should generally use this visitor interface as the type for parameters, return type, etc. rather than one of the abstract classes.
+		</description>
+		<methods>
+			<method>
+				<name>
+					R visit(AnnotationValue av,        P p)
+				</name>
+				<description>
+					Visits an annotation value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visit(AnnotationValue av)
+				</name>
+				<description>
+					A convenience method equivalent to v.visit(av, null).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitBoolean(boolean b,               P p)
+				</name>
+				<description>
+					Visits a boolean value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitByte(byte b,            P p)
+				</name>
+				<description>
+					Visits a byte value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitChar(char c,            P p)
+				</name>
+				<description>
+					Visits a char value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitDouble(double d,              P p)
+				</name>
+				<description>
+					Visits a double value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitFloat(float f,             P p)
+				</name>
+				<description>
+					Visits a float value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitInt(int i,           P p)
+				</name>
+				<description>
+					Visits an int value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitLong(long i,            P p)
+				</name>
+				<description>
+					Visits a long value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitShort(short s,             P p)
+				</name>
+				<description>
+					Visits a short value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitString(String s,              P p)
+				</name>
+				<description>
+					Visits a string value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitType(TypeMirror t,            P p)
+				</name>
+				<description>
+					Visits a type value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitEnumConstant(VariableElement c,                    P p)
+				</name>
+				<description>
+					Visits an enum value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitAnnotation(AnnotationMirror a,                  P p)
+				</name>
+				<description>
+					Visits an annotation value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitArray(List<? extends AnnotationValue> vals,             P p)
+				</name>
+				<description>
+					Visits an array value in an annotation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					R visitUnknown(AnnotationValue av,               P p)
+				</name>
+				<description>
+					Visits an unknown kind of annotation value. This can occur if the language evolves and new kinds of value can be stored in an annotation.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

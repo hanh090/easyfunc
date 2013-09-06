@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		javax.tools
+	</package>
+	<type>
+		<name>
+			public class ForwardingJavaFileManager<M extends JavaFileManager>  extends Object  implements JavaFileManager
+		</name>
+		<description>
+			Forwards calls to a given file manager. Subclasses of this class might override some of these methods and might also provide additional fields and methods.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected final M extends JavaFileManager fileManager
+				</name>
+				<description>
+					The file manager which all methods are delegated to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ForwardingJavaFileManager(M fileManager)
+				</name>
+				<description>
+					Creates a new instance of ForwardingJavaFileManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ClassLoader getClassLoader(JavaFileManager.Location location)
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Gets a class loader for loading plug-ins from the given location. For example, to load annotation processors, a compiler will request a class loader for the ANNOTATION_PROCESSOR_PATH location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterable<JavaFileObject> list(JavaFileManager.Location location,                              String packageName,                              Set<JavaFileObject.Kind> kinds,                              boolean recurse)                                throws IOException
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Lists all file objects matching the given criteria in the given location. List file objects in "subpackages" if recurse is true. Note: even if the given location is unknown to this file manager, it may not return null. Also, an unknown location may not cause an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String inferBinaryName(JavaFileManager.Location location,                       JavaFileObject file)
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Infers a binary name of a file object based on a location. The binary name returned might not be a valid binary name according to The Java™ Language Specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSameFile(FileObject a,                   FileObject b)
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Compares two file objects and return true if they represent the same underlying object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean handleOption(String current,                     Iterator<String> remaining)
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Handles one option. If current is an option to this file manager it will consume any arguments to that option from remaining and return true, otherwise return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasLocation(JavaFileManager.Location location)
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Determines if a location is known to this file manager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int isSupportedOption(String option)
+				</name>
+				<description>
+					Description copied from interface: OptionChecker Determines if the given option is supported and if so, the number of arguments the option takes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JavaFileObject getJavaFileForInput(JavaFileManager.Location location,                                   String className,                                   JavaFileObject.Kind kind)                                     throws IOException
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Gets a file object for input representing the specified class of the specified kind in the given location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JavaFileObject getJavaFileForOutput(JavaFileManager.Location location,                                    String className,                                    JavaFileObject.Kind kind,                                    FileObject sibling)                                      throws IOException
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Gets a file object for output representing the specified class of the specified kind in the given location. Optionally, this file manager might consider the sibling as a hint for where to place the output. The exact semantics of this hint is unspecified. The JDK compiler, javac, for example, will place class files in the same directories as originating source files unless a class file output directory is provided. To facilitate this behavior, javac might provide the originating source file as sibling when calling this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileObject getFileForInput(JavaFileManager.Location location,                           String packageName,                           String relativeName)                             throws IOException
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Gets a file object for input representing the specified relative name in the specified package in the given location. If the returned object represents a source or class file, it must be an instance of JavaFileObject. Informally, the file object returned by this method is located in the concatenation of the location, package name, and relative name. For example, to locate the properties file "resources/compiler.properties" in the package "com.sun.tools.javac" in the SOURCE_PATH location, this method might be called like so: getFileForInput(SOURCE_PATH, "com.sun.tools.javac", "resources/compiler.properties"); If the call was executed on Windows, with SOURCE_PATH set to "C:\Documents and Settings\UncleBob\src\share\classes", a valid result would be a file object representing the file "C:\Documents and Settings\UncleBob\src\share\classes\com\sun\tools\javac\resources\compiler.properties".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileObject getFileForOutput(JavaFileManager.Location location,                            String packageName,                            String relativeName,                            FileObject sibling)                              throws IOException
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Gets a file object for output representing the specified relative name in the specified package in the given location. Optionally, this file manager might consider the sibling as a hint for where to place the output. The exact semantics of this hint is unspecified. The JDK compiler, javac, for example, will place class files in the same directories as originating source files unless a class file output directory is provided. To facilitate this behavior, javac might provide the originating source file as sibling when calling this method. If the returned object represents a source or class file, it must be an instance of JavaFileObject. Informally, the file object returned by this method is located in the concatenation of the location, package name, and relative name or next to the sibling argument. See getFileForInput for an example.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flush()             throws IOException
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Flushes any resources opened for output by this file manager directly or indirectly. Flushing a closed file manager has no effect.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Description copied from interface: JavaFileManager Releases any resources opened by this file manager directly or indirectly. This might render this file manager useless and the effect of subsequent calls to methods on this object or any objects obtained through this object is undefined unless explicitly allowed. However, closing a file manager which has already been closed has no effect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

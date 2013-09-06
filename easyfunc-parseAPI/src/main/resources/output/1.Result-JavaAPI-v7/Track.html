@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.sound.midi
+	</package>
+	<type>
+		<name>
+			public class Track  extends Object
+		</name>
+		<description>
+			A MIDI track is an independent stream of MIDI events (time-stamped MIDI data) that can be stored along with other tracks in a standard MIDI file. The MIDI specification allows only 16 channels of MIDI data, but tracks are a way to get around this limitation. A MIDI file can contain any number of tracks, each containing its own stream of up to 16 channels of MIDI data. A Track occupies a middle level in the hierarchy of data played by a Sequencer: sequencers play sequences, which contain tracks, which contain MIDI events. A sequencer may provide controls that mute or solo individual tracks. The timing information and resolution for a track is controlled by and stored in the sequence containing the track. A given Track is considered to belong to the particular Sequence that maintains its timing. For this reason, a new (empty) track is created by calling the Sequence.createTrack() method, rather than by directly invoking a Track constructor. The Track class provides methods to edit the track by adding or removing MidiEvent objects from it. These operations keep the event list in the correct time order. Methods are also included to obtain the track's size, in terms of either the number of events it contains or its duration in ticks.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public boolean add(MidiEvent event)
+				</name>
+				<description>
+					Adds a new event to the track. However, if the event is already contained in the track, it is not added again. The list of events is kept in time order, meaning that this event inserted at the appropriate place in the list, not necessarily at the end.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean remove(MidiEvent event)
+				</name>
+				<description>
+					Removes the specified event from the track.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MidiEvent get(int index)                throws ArrayIndexOutOfBoundsException
+				</name>
+				<description>
+					Obtains the event at the specified index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Obtains the number of events in this track.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long ticks()
+				</name>
+				<description>
+					Obtains the length of the track, expressed in MIDI ticks. (The duration of a tick in seconds is determined by the timing resolution of the Sequence containing this track, and also by the tempo of the music as set by the sequencer.)
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.security.auth.kerberos
+	</package>
+	<type>
+		<name>
+			public final class KeyTab  extends Object
+		</name>
+		<description>
+			This class encapsulates a keytab file. A Kerberos JAAS login module that obtains long term secret keys from a keytab file should use this class. The login module will store an instance of this class in the private credential set of a Subject during the commit phase of the authentication process. It might be necessary for the application to be granted a PrivateCredentialPermission if it needs to access the KeyTab instance from a Subject. This permission is not needed when the application depends on the default JGSS Kerberos mechanism to access the KeyTab. In that case, however, the application will need an appropriate ServicePermission. The keytab file format is described at http://www.ioplex.com/utilities/keytab.txt.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static KeyTab getInstance(File file)
+				</name>
+				<description>
+					Returns a KeyTab instance from a File object. The result of this method is never null. This method only associates the returned KeyTab object with the file and does not read it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static KeyTab getInstance()
+				</name>
+				<description>
+					Returns the default KeyTab instance. The result of this method is never null. This method only associates the returned KeyTab object with the default keytab file and does not read it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public KerberosKey[] getKeys(KerberosPrincipal principal)
+				</name>
+				<description>
+					Returns fresh keys for the given Kerberos principal. Implementation of this method should make sure the returned keys match the latest content of the keytab file. The result is a newly created copy that can be modified by the caller without modifying the keytab object. The caller should destroy the result keys after they are used. Please note that the keytab file can be created after the KeyTab object is instantiated and its content may change over time. Therefore, an application should call this method only when it needs to use the keys. Any previous result from an earlier invocation could potentially be expired. If there is any error (say, I/O error or format error) during the reading process of the KeyTab file, a saved result should be returned. If there is no saved result (say, this is the first time this method is called, or, all previous read attempts failed), an empty array should be returned. This can make sure the result is not drastically changed during the (probably slow) update of the keytab file. Each time this method is called and the reading of the file succeeds with no exception (say, I/O error or file format error), the result should be saved for principal. The implementation can also save keys for other principals having keys in the same keytab object if convenient. Any unsupported key read from the keytab is ignored and not included in the result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean exists()
+				</name>
+				<description>
+					Checks if the keytab file exists. Implementation of this method should make sure that the result matches the latest status of the keytab file. The caller can use the result to determine if it should fallback to another mechanism to read the keys.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Description copied from class: Object Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but informative representation that is easy for a person to read. It is recommended that all subclasses override this method. The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of:    getClass().getName() + '@' + Integer.toHexString(hashCode())
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this KeyTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object other)
+				</name>
+				<description>
+					Compares the specified Object with this KeyTab for equality. Returns true if the given object is also a KeyTab and the two KeyTab instances are equivalent.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

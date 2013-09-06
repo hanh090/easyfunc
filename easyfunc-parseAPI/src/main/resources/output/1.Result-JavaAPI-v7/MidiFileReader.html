@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.sound.midi.spi
+	</package>
+	<type>
+		<name>
+			public abstract class MidiFileReader  extends Object
+		</name>
+		<description>
+			A MidiFileReader supplies MIDI file-reading services. Classes implementing this interface can parse the format information from one or more types of MIDI file, and can produce a Sequence object from files of these types.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MidiFileReader()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract MidiFileFormat getMidiFileFormat(InputStream stream)                                            throws InvalidMidiDataException,                                                   IOException
+				</name>
+				<description>
+					Obtains the MIDI file format of the input stream provided. The stream must point to valid MIDI file data. In general, MIDI file readers may need to read some data from the stream before determining whether they support it. These parsers must be able to mark the stream, read enough data to determine whether they support the stream, and, if not, reset the stream's read pointer to its original position. If the input stream does not support this, this method may fail with an IOException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract MidiFileFormat getMidiFileFormat(URL url)                                            throws InvalidMidiDataException,                                                   IOException
+				</name>
+				<description>
+					Obtains the MIDI file format of the URL provided. The URL must point to valid MIDI file data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract MidiFileFormat getMidiFileFormat(File file)                                            throws InvalidMidiDataException,                                                   IOException
+				</name>
+				<description>
+					Obtains the MIDI file format of the File provided. The File must point to valid MIDI file data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Sequence getSequence(InputStream stream)                                throws InvalidMidiDataException,                                       IOException
+				</name>
+				<description>
+					Obtains a MIDI sequence from the input stream provided. The stream must point to valid MIDI file data. In general, MIDI file readers may need to read some data from the stream before determining whether they support it. These parsers must be able to mark the stream, read enough data to determine whether they support the stream, and, if not, reset the stream's read pointer to its original position. If the input stream does not support this, this method may fail with an IOException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Sequence getSequence(URL url)                                throws InvalidMidiDataException,                                       IOException
+				</name>
+				<description>
+					Obtains a MIDI sequence from the URL provided. The URL must point to valid MIDI file data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Sequence getSequence(File file)                                throws InvalidMidiDataException,                                       IOException
+				</name>
+				<description>
+					Obtains a MIDI sequence from the File provided. The File must point to valid MIDI file data.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

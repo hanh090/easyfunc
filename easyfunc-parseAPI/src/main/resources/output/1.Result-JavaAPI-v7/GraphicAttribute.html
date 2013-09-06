@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.awt.font
+	</package>
+	<type>
+		<name>
+			public abstract class GraphicAttribute  extends Object
+		</name>
+		<description>
+			This class is used with the CHAR_REPLACEMENT attribute. The GraphicAttribute class represents a graphic embedded in text. Clients subclass this class to implement their own char replacement graphics. Clients wishing to embed shapes and images in text need not subclass this class. Instead, clients can use the ShapeGraphicAttribute and ImageGraphicAttribute classes. Subclasses must ensure that their objects are immutable once they are constructed. Mutating a GraphicAttribute that is used in a TextLayout results in undefined behavior from the TextLayout.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int TOP_ALIGNMENT
+				</name>
+				<description>
+					Aligns top of graphic to top of line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int BOTTOM_ALIGNMENT
+				</name>
+				<description>
+					Aligns bottom of graphic to bottom of line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ROMAN_BASELINE
+				</name>
+				<description>
+					Aligns origin of graphic to roman baseline of line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CENTER_BASELINE
+				</name>
+				<description>
+					Aligns origin of graphic to center baseline of line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int HANGING_BASELINE
+				</name>
+				<description>
+					Aligns origin of graphic to hanging baseline of line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected GraphicAttribute(int alignment)
+				</name>
+				<description>
+					Constructs a GraphicAttribute. Subclasses use this to define the alignment of the graphic.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getAscent()
+				</name>
+				<description>
+					Returns the ascent of this GraphicAttribute. A graphic can be rendered above its ascent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getDescent()
+				</name>
+				<description>
+					Returns the descent of this GraphicAttribute. A graphic can be rendered below its descent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract float getAdvance()
+				</name>
+				<description>
+					Returns the advance of this GraphicAttribute. The GraphicAttribute object's advance is the distance from the point at which the graphic is rendered and the point where the next character or graphic is rendered. A graphic can be rendered beyond its advance
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Rectangle2D getBounds()
+				</name>
+				<description>
+					Returns a Rectangle2D that encloses all of the bits drawn by this GraphicAttribute relative to the rendering position. A graphic may be rendered beyond its origin, ascent, descent, or advance; but if it is, this method's implementation must indicate where the graphic is rendered. Default bounds is the rectangle (0, -ascent, advance, ascent+descent).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Shape getOutline(AffineTransform tx)
+				</name>
+				<description>
+					Return a Shape that represents the region that this GraphicAttribute renders. This is used when a TextLayout is requested to return the outline of the text. The (untransformed) shape must not extend outside the rectangular bounds returned by getBounds. The default implementation returns the rectangle returned by getBounds(), transformed by the provided AffineTransform if present.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void draw(Graphics2D graphics,          float x,          float y)
+				</name>
+				<description>
+					Renders this GraphicAttribute at the specified location.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int getAlignment()
+				</name>
+				<description>
+					Returns the alignment of this GraphicAttribute. Alignment can be to a particular baseline, or to the absolute top or bottom of a line.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GlyphJustificationInfo getJustificationInfo()
+				</name>
+				<description>
+					Returns the justification information for this GraphicAttribute. Subclasses can override this method to provide different justification information.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

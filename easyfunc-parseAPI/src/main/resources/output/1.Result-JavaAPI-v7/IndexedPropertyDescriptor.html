@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		java.beans
+	</package>
+	<type>
+		<name>
+			public class IndexedPropertyDescriptor  extends PropertyDescriptor
+		</name>
+		<description>
+			An IndexedPropertyDescriptor describes a property that acts like an array and has an indexed read and/or indexed write method to access specific elements of the array. An indexed property may also provide simple non-indexed read and write methods. If these are present, they read and write arrays of the type returned by the indexed read method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public IndexedPropertyDescriptor(String propertyName,                           Class<?> beanClass)                            throws IntrospectionException
+				</name>
+				<description>
+					This constructor constructs an IndexedPropertyDescriptor for a property that follows the standard Java conventions by having getFoo and setFoo accessor methods, for both indexed access and array access. Thus if the argument name is "fred", it will assume that there is an indexed reader method "getFred", a non-indexed (array) reader method also called "getFred", an indexed writer method "setFred", and finally a non-indexed writer method "setFred".
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IndexedPropertyDescriptor(String propertyName,                           Class<?> beanClass,                           String readMethodName,                           String writeMethodName,                           String indexedReadMethodName,                           String indexedWriteMethodName)                            throws IntrospectionException
+				</name>
+				<description>
+					This constructor takes the name of a simple property, and method names for reading and writing the property, both indexed and non-indexed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public IndexedPropertyDescriptor(String propertyName,                           Method readMethod,                           Method writeMethod,                           Method indexedReadMethod,                           Method indexedWriteMethod)                            throws IntrospectionException
+				</name>
+				<description>
+					This constructor takes the name of a simple property, and Method objects for reading and writing the property.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method getIndexedReadMethod()
+				</name>
+				<description>
+					Gets the method that should be used to read an indexed property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIndexedReadMethod(Method readMethod)                            throws IntrospectionException
+				</name>
+				<description>
+					Sets the method that should be used to read an indexed property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Method getIndexedWriteMethod()
+				</name>
+				<description>
+					Gets the method that should be used to write an indexed property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setIndexedWriteMethod(Method writeMethod)                             throws IntrospectionException
+				</name>
+				<description>
+					Sets the method that should be used to write an indexed property value.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Class<?> getIndexedPropertyType()
+				</name>
+				<description>
+					Returns the Java type info for the indexed property. Note that the Class object may describe primitive Java types such as int. This type is returned by the indexed read method or is used as the parameter type of the indexed write method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this PropertyDescriptor against the specified object. Returns true if the objects are the same. Two PropertyDescriptors are the same if the read, write, property types, property editor and flags are equivalent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns a hash code value for the object. See Object.hashCode() for a complete description.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

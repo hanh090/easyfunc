@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.xml.bind.annotation.adapters
+	</package>
+	<type>
+		<name>
+			public class CollapsedStringAdapter  extends XmlAdapter<String,String>
+		</name>
+		<description>
+			Built-in XmlAdapter to handle xs:token and its derived types. This adapter removes leading and trailing whitespaces, then truncate any sequnce of tab, CR, LF, and SP by a single whitespace character ' '.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public CollapsedStringAdapter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String unmarshal(String text)
+				</name>
+				<description>
+					Removes leading and trailing whitespaces of the string given as the parameter, then truncate any sequnce of tab, CR, LF, and SP by a single whitespace character ' '.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String marshal(String s)
+				</name>
+				<description>
+					No-op. Just return the same string given as the parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static boolean isWhiteSpace(char ch)
+				</name>
+				<description>
+					returns true if the specified char is a white space character.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

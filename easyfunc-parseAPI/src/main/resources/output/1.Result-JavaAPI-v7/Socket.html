@@ -1,0 +1,477 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public class Socket  extends Object  implements Closeable
+		</name>
+		<description>
+			This class implements client sockets (also called just "sockets"). A socket is an endpoint for communication between two machines. The actual work of the socket is performed by an instance of the SocketImpl class. An application, by changing the socket factory that creates the socket implementation, can configure itself to create sockets appropriate to the local firewall.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Socket()
+				</name>
+				<description>
+					Creates an unconnected socket, with the system-default type of SocketImpl.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Socket(Proxy proxy)
+				</name>
+				<description>
+					Creates an unconnected socket, specifying the type of proxy, if any, that should be used regardless of any other settings. If there is a security manager, its checkConnect method is called with the proxy host address and port number as its arguments. This could result in a SecurityException. Examples: Socket s = new Socket(Proxy.NO_PROXY); will create a plain socket ignoring any other proxy configuration. Socket s = new Socket(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("socks.mydom.com", 1080))); will create a socket connecting through the specified SOCKS proxy server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Socket(SocketImpl impl)            throws SocketException
+				</name>
+				<description>
+					Creates an unconnected Socket with a user-specified SocketImpl.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Socket(String host,        int port)         throws UnknownHostException,                IOException
+				</name>
+				<description>
+					Creates a stream socket and connects it to the specified port number on the named host. If the specified host is null it is the equivalent of specifying the address as InetAddress.getByName(null). In other words, it is equivalent to specifying an address of the loopback interface. If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket is created. If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Socket(InetAddress address,        int port)         throws IOException
+				</name>
+				<description>
+					Creates a stream socket and connects it to the specified port number at the specified IP address. If the application has specified a socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket is created. If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Socket(String host,        int port,        InetAddress localAddr,        int localPort)         throws IOException
+				</name>
+				<description>
+					Creates a socket and connects it to the specified remote host on the specified remote port. The Socket will also bind() to the local address and port supplied. If the specified host is null it is the equivalent of specifying the address as InetAddress.getByName(null). In other words, it is equivalent to specifying an address of the loopback interface. A local port number of zero will let the system pick up a free port in the bind operation. If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Socket(InetAddress address,        int port,        InetAddress localAddr,        int localPort)         throws IOException
+				</name>
+				<description>
+					Creates a socket and connects it to the specified remote address on the specified remote port. The Socket will also bind() to the local address and port supplied. If the specified local address is null it is the equivalent of specifying the address as the AnyLocal address (see InetAddress.isAnyLocalAddress()). A local port number of zero will let the system pick up a free port in the bind operation. If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Socket(String host,                   int port,                   boolean stream)         throws IOException
+				</name>
+				<description>
+					Deprecated. Use DatagramSocket instead for UDP transport. Creates a stream socket and connects it to the specified port number on the named host. If the specified host is null it is the equivalent of specifying the address as InetAddress.getByName(null). In other words, it is equivalent to specifying an address of the loopback interface. If the stream argument is true, this creates a stream socket. If the stream argument is false, it creates a datagram socket. If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket is created. If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException. If a UDP socket is used, TCP/IP related socket options will not apply.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Socket(InetAddress host,                   int port,                   boolean stream)         throws IOException
+				</name>
+				<description>
+					Deprecated. Use DatagramSocket instead for UDP transport. Creates a socket and connects it to the specified port number at the specified IP address. If the stream argument is true, this creates a stream socket. If the stream argument is false, it creates a datagram socket. If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket is created. If there is a security manager, its checkConnect method is called with host.getHostAddress() and port as its arguments. This could result in a SecurityException. If UDP socket is used, TCP/IP related socket options will not apply.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void connect(SocketAddress endpoint)               throws IOException
+				</name>
+				<description>
+					Connects this socket to the server.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void connect(SocketAddress endpoint,             int timeout)               throws IOException
+				</name>
+				<description>
+					Connects this socket to the server with a specified timeout value. A timeout of zero is interpreted as an infinite timeout. The connection will then block until established or an error occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void bind(SocketAddress bindpoint)            throws IOException
+				</name>
+				<description>
+					Binds the socket to a local address. If the address is null, then the system will pick up an ephemeral port and a valid local address to bind the socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InetAddress getInetAddress()
+				</name>
+				<description>
+					Returns the address to which the socket is connected. If the socket was connected prior to being closed, then this method will continue to return the connected address after the socket is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InetAddress getLocalAddress()
+				</name>
+				<description>
+					Gets the local address to which the socket is bound.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getPort()
+				</name>
+				<description>
+					Returns the remote port number to which this socket is connected. If the socket was connected prior to being closed, then this method will continue to return the connected port number after the socket is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getLocalPort()
+				</name>
+				<description>
+					Returns the local port number to which this socket is bound. If the socket was bound prior to being closed, then this method will continue to return the local port number after the socket is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SocketAddress getRemoteSocketAddress()
+				</name>
+				<description>
+					Returns the address of the endpoint this socket is connected to, or null if it is unconnected. If the socket was connected prior to being closed, then this method will continue to return the connected address after the socket is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SocketAddress getLocalSocketAddress()
+				</name>
+				<description>
+					Returns the address of the endpoint this socket is bound to, or null if it is not bound yet. If a socket bound to an endpoint represented by an InetSocketAddress is closed, then this method will continue to return an InetSocketAddress after the socket is closed. In that case the returned InetSocketAddress's address is the wildcard address and its port is the local port that it was bound to.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SocketChannel getChannel()
+				</name>
+				<description>
+					Returns the unique SocketChannel object associated with this socket, if any. A socket will have a channel if, and only if, the channel itself was created via the SocketChannel.open or ServerSocketChannel.accept methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream getInputStream()                             throws IOException
+				</name>
+				<description>
+					Returns an input stream for this socket. If this socket has an associated channel then the resulting input stream delegates all of its operations to the channel. If the channel is in non-blocking mode then the input stream's read operations will throw an IllegalBlockingModeException. Under abnormal conditions the underlying connection may be broken by the remote host or the network software (for example a connection reset in the case of TCP connections). When a broken connection is detected by the network software the following applies to the returned input stream :- The network software may discard bytes that are buffered by the socket. Bytes that aren't discarded by the network software can be read using read. If there are no bytes buffered on the socket, or all buffered bytes have been consumed by read, then all subsequent calls to read will throw an IOException. If there are no bytes buffered on the socket, and the socket has not been closed using close, then available will return 0. Closing the returned InputStream will close the associated socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream getOutputStream()                               throws IOException
+				</name>
+				<description>
+					Returns an output stream for this socket. If this socket has an associated channel then the resulting output stream delegates all of its operations to the channel. If the channel is in non-blocking mode then the output stream's write operations will throw an IllegalBlockingModeException. Closing the returned OutputStream will close the associated socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTcpNoDelay(boolean on)                     throws SocketException
+				</name>
+				<description>
+					Enable/disable TCP_NODELAY (disable/enable Nagle's algorithm).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getTcpNoDelay()                        throws SocketException
+				</name>
+				<description>
+					Tests if TCP_NODELAY is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSoLinger(boolean on,                 int linger)                   throws SocketException
+				</name>
+				<description>
+					Enable/disable SO_LINGER with the specified linger time in seconds. The maximum timeout value is platform specific. The setting only affects socket close.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSoLinger()                  throws SocketException
+				</name>
+				<description>
+					Returns setting for SO_LINGER. -1 returns implies that the option is disabled. The setting only affects socket close.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void sendUrgentData(int data)                      throws IOException
+				</name>
+				<description>
+					Send one byte of urgent data on the socket. The byte to be sent is the lowest eight bits of the data parameter. The urgent byte is sent after any preceding writes to the socket OutputStream and before any future writes to the OutputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setOOBInline(boolean on)                    throws SocketException
+				</name>
+				<description>
+					Enable/disable OOBINLINE (receipt of TCP urgent data) By default, this option is disabled and TCP urgent data received on a socket is silently discarded. If the user wishes to receive urgent data, then this option must be enabled. When enabled, urgent data is received inline with normal data. Note, only limited support is provided for handling incoming urgent data. In particular, no notification of incoming urgent data is provided and there is no capability to distinguish between normal data and urgent data unless provided by a higher level protocol.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getOOBInline()                       throws SocketException
+				</name>
+				<description>
+					Tests if OOBINLINE is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSoTimeout(int timeout)                    throws SocketException
+				</name>
+				<description>
+					Enable/disable SO_TIMEOUT with the specified timeout, in milliseconds. With this option set to a non-zero timeout, a read() call on the InputStream associated with this Socket will block for only this amount of time. If the timeout expires, a java.net.SocketTimeoutException is raised, though the Socket is still valid. The option must be enabled prior to entering the blocking operation to have effect. The timeout must be > 0. A timeout of zero is interpreted as an infinite timeout.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSoTimeout()                   throws SocketException
+				</name>
+				<description>
+					Returns setting for SO_TIMEOUT. 0 returns implies that the option is disabled (i.e., timeout of infinity).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSendBufferSize(int size)                         throws SocketException
+				</name>
+				<description>
+					Sets the SO_SNDBUF option to the specified value for this Socket. The SO_SNDBUF option is used by the platform's networking code as a hint for the size to set the underlying network I/O buffers. Because SO_SNDBUF is a hint, applications that want to verify what size the buffers were set to should call getSendBufferSize().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSendBufferSize()                        throws SocketException
+				</name>
+				<description>
+					Get value of the SO_SNDBUF option for this Socket, that is the buffer size used by the platform for output on this Socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReceiveBufferSize(int size)                            throws SocketException
+				</name>
+				<description>
+					Sets the SO_RCVBUF option to the specified value for this Socket. The SO_RCVBUF option is used by the platform's networking code as a hint for the size to set the underlying network I/O buffers. Increasing the receive buffer size can increase the performance of network I/O for high-volume connection, while decreasing it can help reduce the backlog of incoming data. Because SO_RCVBUF is a hint, applications that want to verify what size the buffers were set to should call getReceiveBufferSize(). The value of SO_RCVBUF is also used to set the TCP receive window that is advertized to the remote peer. Generally, the window size can be modified at any time when a socket is connected. However, if a receive window larger than 64K is required then this must be requested before the socket is connected to the remote peer. There are two cases to be aware of: For sockets accepted from a ServerSocket, this must be done by calling ServerSocket.setReceiveBufferSize(int) before the ServerSocket is bound to a local address. For client sockets, setReceiveBufferSize() must be called before connecting the socket to its remote peer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getReceiveBufferSize()                           throws SocketException
+				</name>
+				<description>
+					Gets the value of the SO_RCVBUF option for this Socket, that is the buffer size used by the platform for input on this Socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setKeepAlive(boolean on)                    throws SocketException
+				</name>
+				<description>
+					Enable/disable SO_KEEPALIVE.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getKeepAlive()                       throws SocketException
+				</name>
+				<description>
+					Tests if SO_KEEPALIVE is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setTrafficClass(int tc)                       throws SocketException
+				</name>
+				<description>
+					Sets traffic class or type-of-service octet in the IP header for packets sent from this Socket. As the underlying network implementation may ignore this value applications should consider it a hint. The tc must be in the range 0 <= tc <= 255 or an IllegalArgumentException will be thrown. Notes: For Internet Protocol v4 the value consists of an integer, the least significant 8 bits of which represent the value of the TOS octet in IP packets sent by the socket. RFC 1349 defines the TOS values as follows: IPTOS_LOWCOST (0x02) IPTOS_RELIABILITY (0x04) IPTOS_THROUGHPUT (0x08) IPTOS_LOWDELAY (0x10) The last low order bit is always ignored as this corresponds to the MBZ (must be zero) bit. Setting bits in the precedence field may result in a SocketException indicating that the operation is not permitted. As RFC 1122 section 4.2.4.2 indicates, a compliant TCP implementation should, but is not required to, let application change the TOS field during the lifetime of a connection. So whether the type-of-service field can be changed after the TCP connection has been established depends on the implementation in the underlying platform. Applications should not assume that they can change the TOS field after the connection. For Internet Protocol v6 tc is the value that would be placed into the sin6_flowinfo field of the IP header.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTrafficClass()                      throws SocketException
+				</name>
+				<description>
+					Gets traffic class or type-of-service in the IP header for packets sent from this Socket As the underlying network implementation may ignore the traffic class or type-of-service set using setTrafficClass(int) this method may return a different value than was previously set using the setTrafficClass(int) method on this Socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setReuseAddress(boolean on)                       throws SocketException
+				</name>
+				<description>
+					Enable/disable the SO_REUSEADDR socket option. When a TCP connection is closed the connection may remain in a timeout state for a period of time after the connection is closed (typically known as the TIME_WAIT state or 2MSL wait state). For applications using a well known socket address or port it may not be possible to bind a socket to the required SocketAddress if there is a connection in the timeout state involving the socket address or port. Enabling SO_REUSEADDR prior to binding the socket using bind(SocketAddress) allows the socket to be bound even though a previous connection is in a timeout state. When a Socket is created the initial setting of SO_REUSEADDR is disabled. The behaviour when SO_REUSEADDR is enabled or disabled after a socket is bound (See isBound()) is not defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getReuseAddress()                          throws SocketException
+				</name>
+				<description>
+					Tests if SO_REUSEADDR is enabled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this socket. Any thread currently blocked in an I/O operation upon this socket will throw a SocketException. Once a socket has been closed, it is not available for further networking use (i.e. can't be reconnected or rebound). A new socket needs to be created. Closing this socket will also close the socket's InputStream and OutputStream. If this socket has an associated channel then the channel is closed as well.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void shutdownInput()                     throws IOException
+				</name>
+				<description>
+					Places the input stream for this socket at "end of stream". Any data sent to the input stream side of the socket is acknowledged and then silently discarded. If you read from a socket input stream after invoking shutdownInput() on the socket, the stream will return EOF.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void shutdownOutput()                      throws IOException
+				</name>
+				<description>
+					Disables the output stream for this socket. For a TCP socket, any previously written data will be sent followed by TCP's normal connection termination sequence. If you write to a socket output stream after invoking shutdownOutput() on the socket, the stream will throw an IOException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Converts this socket to a String.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isConnected()
+				</name>
+				<description>
+					Returns the connection state of the socket. Note: Closing a socket doesn't clear its connection state, which means this method will return true for a closed socket (see isClosed()) if it was successfuly connected prior to being closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isBound()
+				</name>
+				<description>
+					Returns the binding state of the socket. Note: Closing a socket doesn't clear its binding state, which means this method will return true for a closed socket (see isClosed()) if it was successfuly bound prior to being closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isClosed()
+				</name>
+				<description>
+					Returns the closed state of the socket.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isInputShutdown()
+				</name>
+				<description>
+					Returns whether the read-half of the socket connection is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isOutputShutdown()
+				</name>
+				<description>
+					Returns whether the write-half of the socket connection is closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static void setSocketImplFactory(SocketImplFactory fac)                                   throws IOException
+				</name>
+				<description>
+					Sets the client socket implementation factory for the application. The factory can be specified only once. When an application creates a new client socket, the socket implementation factory's createSocketImpl method is called to create the actual socket implementation. Passing null to the method is a no-op unless the factory was already set. If there is a security manager, this method first calls the security manager's checkSetFactory method to ensure the operation is allowed. This could result in a SecurityException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setPerformancePreferences(int connectionTime,                               int latency,                               int bandwidth)
+				</name>
+				<description>
+					Sets performance preferences for this socket. Sockets use the TCP/IP protocol by default. Some implementations may offer alternative protocols which have different performance characteristics than TCP/IP. This method allows the application to express its own preferences as to how these tradeoffs should be made when the implementation chooses from the available protocols. Performance preferences are described by three integers whose values indicate the relative importance of short connection time, low latency, and high bandwidth. The absolute values of the integers are irrelevant; in order to choose a protocol the values are simply compared, with larger values indicating stronger preferences. Negative values represent a lower priority than positive values. If the application prefers short connection time over both low latency and high bandwidth, for example, then it could invoke this method with the values (1, 0, 0). If the application prefers high bandwidth above low latency, and low latency above short connection time, then it could invoke this method with the values (0, 1, 2). Invoking this method after this socket has been connected will have no effect.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

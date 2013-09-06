@@ -1,0 +1,297 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig
+	</package>
+	<type>
+		<name>
+			public abstract class XMLSignatureFactory  extends Object
+		</name>
+		<description>
+			A factory for creating XMLSignature objects from scratch or for unmarshalling an XMLSignature object from a corresponding XML representation. XMLSignatureFactory Type Each instance of XMLSignatureFactory supports a specific XML mechanism type. To create an XMLSignatureFactory, call one of the static getInstance methods, passing in the XML mechanism type desired, for example: XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM"); The objects that this factory produces will be based on DOM and abide by the DOM interoperability requirements as defined in the DOM Mechanism Requirements section of the API overview. See the Service Providers section of the API overview for a list of standard mechanism types. XMLSignatureFactory implementations are registered and loaded using the Provider mechanism. For example, a service provider that supports the DOM mechanism would be specified in the Provider subclass as:        put("XMLSignatureFactory.DOM", "org.example.DOMXMLSignatureFactory");   An implementation MUST minimally support the default mechanism type: DOM. Note that a caller must use the same XMLSignatureFactory instance to create the XMLStructures of a particular XMLSignature that is to be generated. The behavior is undefined if XMLStructures from different providers or different mechanism types are used together. Also, the XMLStructures that are created by this factory may contain state specific to the XMLSignature and are not intended to be reusable. Creating XMLSignatures from scratch Once the XMLSignatureFactory has been created, objects can be instantiated by calling the appropriate method. For example, a Reference instance may be created by invoking one of the newReference methods. Unmarshalling XMLSignatures from XML Alternatively, an XMLSignature may be created from an existing XML representation by invoking the unmarshalXMLSignature method and passing it a mechanism-specific XMLValidateContext instance containing the XML content:    DOMValidateContext context = new DOMValidateContext(key, signatureElement);   XMLSignature signature = factory.unmarshalXMLSignature(context);   Each XMLSignatureFactory must support the required XMLValidateContext types for that factory type, but may support others. A DOM XMLSignatureFactory must support DOMValidateContext objects. Signing and marshalling XMLSignatures to XML Each XMLSignature created by the factory can also be marshalled to an XML representation and signed, by invoking the sign method of the XMLSignature object and passing it a mechanism-specific XMLSignContext object containing the signing key and marshalling parameters (see DOMSignContext). For example:       DOMSignContext context = new DOMSignContext(privateKey, document);      signature.sign(context);   Concurrent Access The static methods of this class are guaranteed to be thread-safe. Multiple threads may concurrently invoke the static methods defined in this class with no ill effects. However, this is not true for the non-static methods defined by this class. Unless otherwise documented by a specific provider, threads that need to access a single XMLSignatureFactory instance concurrently should synchronize amongst themselves and provide the necessary locking. Multiple threads each manipulating a different XMLSignatureFactory instance need not synchronize.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected XMLSignatureFactory()
+				</name>
+				<description>
+					Default constructor, for invocation by subclasses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLSignatureFactory getInstance(String mechanismType)
+				</name>
+				<description>
+					Returns an XMLSignatureFactory that supports the specified XML processing mechanism and representation type (ex: "DOM"). This method uses the standard JCA provider lookup mechanism to locate and instantiate an XMLSignatureFactory implementation of the desired mechanism type. It traverses the list of registered security Providers, starting with the most preferred Provider. A new XMLSignatureFactory object from the first Provider that supports the specified mechanism is returned. Note that the list of registered providers may be retrieved via the Security.getProviders() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLSignatureFactory getInstance(String mechanismType,                                Provider provider)
+				</name>
+				<description>
+					Returns an XMLSignatureFactory that supports the requested XML processing mechanism and representation type (ex: "DOM"), as supplied by the specified provider. Note that the specified Provider object does not have to be registered in the provider list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLSignatureFactory getInstance(String mechanismType,                                String provider)                                         throws NoSuchProviderException
+				</name>
+				<description>
+					Returns an XMLSignatureFactory that supports the requested XML processing mechanism and representation type (ex: "DOM"), as supplied by the specified provider. The specified provider must be registered in the security provider list. Note that the list of registered providers may be retrieved via the Security.getProviders() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static XMLSignatureFactory getInstance()
+				</name>
+				<description>
+					Returns an XMLSignatureFactory that supports the default XML processing mechanism and representation type ("DOM"). This method uses the standard JCA provider lookup mechanism to locate and instantiate an XMLSignatureFactory implementation of the default mechanism type. It traverses the list of registered security Providers, starting with the most preferred Provider. A new XMLSignatureFactory object from the first Provider that supports the DOM mechanism is returned. Note that the list of registered providers may be retrieved via the Security.getProviders() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final String getMechanismType()
+				</name>
+				<description>
+					Returns the type of the XML processing mechanism and representation supported by this XMLSignatureFactory (ex: "DOM").
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final Provider getProvider()
+				</name>
+				<description>
+					Returns the provider of this XMLSignatureFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract XMLSignature newXMLSignature(SignedInfo si,                             KeyInfo ki)
+				</name>
+				<description>
+					Creates an XMLSignature and initializes it with the contents of the specified SignedInfo and KeyInfo objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract XMLSignature newXMLSignature(SignedInfo si,                             KeyInfo ki,                             List objects,                             String id,                             String signatureValueId)
+				</name>
+				<description>
+					Creates an XMLSignature and initializes it with the specified parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Reference newReference(String uri,                       DigestMethod dm)
+				</name>
+				<description>
+					Creates a Reference with the specified URI and digest method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Reference newReference(String uri,                       DigestMethod dm,                       List transforms,                       String type,                       String id)
+				</name>
+				<description>
+					Creates a Reference with the specified parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Reference newReference(String uri,                       DigestMethod dm,                       List transforms,                       String type,                       String id,                       byte[] digestValue)
+				</name>
+				<description>
+					Creates a Reference with the specified parameters and pre-calculated digest value. This method is useful when the digest value of a Reference has been previously computed. See for example, the OASIS-DSS (Digital Signature Services) specification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Reference newReference(String uri,                       DigestMethod dm,                       List appliedTransforms,                       Data result,                       List transforms,                       String type,                       String id)
+				</name>
+				<description>
+					Creates a Reference with the specified parameters. This method is useful when a list of transforms have already been applied to the Reference. See for example, the OASIS-DSS (Digital Signature Services) specification. When an XMLSignature containing this reference is generated, the specified transforms (if non-null) are applied to the specified result. The Transforms element of the resulting Reference element is set to the concatenation of the appliedTransforms and transforms.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SignedInfo newSignedInfo(CanonicalizationMethod cm,                         SignatureMethod sm,                         List references)
+				</name>
+				<description>
+					Creates a SignedInfo with the specified canonicalization and signature methods, and list of one or more references.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SignedInfo newSignedInfo(CanonicalizationMethod cm,                         SignatureMethod sm,                         List references,                         String id)
+				</name>
+				<description>
+					Creates a SignedInfo with the specified parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract XMLObject newXMLObject(List content,                       String id,                       String mimeType,                       String encoding)
+				</name>
+				<description>
+					Creates an XMLObject from the specified parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Manifest newManifest(List references)
+				</name>
+				<description>
+					Creates a Manifest containing the specified list of References.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Manifest newManifest(List references,                     String id)
+				</name>
+				<description>
+					Creates a Manifest containing the specified list of References and optional id.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SignatureProperty newSignatureProperty(List content,                                       String target,                                       String id)
+				</name>
+				<description>
+					Creates a SignatureProperty containing the specified list of XMLStructures, target URI and optional id.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SignatureProperties newSignatureProperties(List properties,                                           String id)
+				</name>
+				<description>
+					Creates a SignatureProperties containing the specified list of SignaturePropertys and optional id.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract DigestMethod newDigestMethod(String algorithm,                             DigestMethodParameterSpec params)                                        throws NoSuchAlgorithmException,                                               InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates a DigestMethod for the specified algorithm URI and parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SignatureMethod newSignatureMethod(String algorithm,                                   SignatureMethodParameterSpec params)                                              throws NoSuchAlgorithmException,                                                     InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates a SignatureMethod for the specified algorithm URI and parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Transform newTransform(String algorithm,                       TransformParameterSpec params)                                  throws NoSuchAlgorithmException,                                         InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates a Transform for the specified algorithm URI and parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Transform newTransform(String algorithm,                       XMLStructure params)                                  throws NoSuchAlgorithmException,                                         InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates a Transform for the specified algorithm URI and parameters. The parameters are specified as a mechanism-specific XMLStructure (ex: DOMStructure). This method is useful when the parameters are in XML form or there is no standard class for specifying the parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract CanonicalizationMethod newCanonicalizationMethod(String algorithm,                                                 C14NMethodParameterSpec params)                                                            throws NoSuchAlgorithmException,                                                                   InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates a CanonicalizationMethod for the specified algorithm URI and parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract CanonicalizationMethod newCanonicalizationMethod(String algorithm,                                                 XMLStructure params)                                                            throws NoSuchAlgorithmException,                                                                   InvalidAlgorithmParameterException
+				</name>
+				<description>
+					Creates a CanonicalizationMethod for the specified algorithm URI and parameters. The parameters are specified as a mechanism-specific XMLStructure (ex: DOMStructure). This method is useful when the parameters are in XML form or there is no standard class for specifying the parameters.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final KeyInfoFactory getKeyInfoFactory()
+				</name>
+				<description>
+					Returns a KeyInfoFactory that creates KeyInfo objects. The returned KeyInfoFactory has the same mechanism type and provider as this XMLSignatureFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract XMLSignature unmarshalXMLSignature(XMLValidateContext context)                                              throws MarshalException
+				</name>
+				<description>
+					Unmarshals a new XMLSignature instance from a mechanism-specific XMLValidateContext instance.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract XMLSignature unmarshalXMLSignature(XMLStructure xmlStructure)                                              throws MarshalException
+				</name>
+				<description>
+					Unmarshals a new XMLSignature instance from a mechanism-specific XMLStructure instance. This method is useful if you only want to unmarshal (and not validate) an XMLSignature.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isFeatureSupported(String feature)
+				</name>
+				<description>
+					Indicates whether a specified feature is supported.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract URIDereferencer getURIDereferencer()
+				</name>
+				<description>
+					Returns a reference to the URIDereferencer that is used by default to dereference URIs in Reference objects.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

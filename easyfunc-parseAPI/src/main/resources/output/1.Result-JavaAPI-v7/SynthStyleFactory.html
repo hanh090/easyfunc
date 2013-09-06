@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public abstract class SynthStyleFactory  extends Object
+		</name>
+		<description>
+			Factory used for obtaining SynthStyles. Each of the Synth ComponentUIs will call into the current SynthStyleFactory to obtain a SynthStyle for each of the distinct regions they have. The following example creates a custom SynthStyleFactory that returns a different style based on the Region:    class MyStyleFactory extends SynthStyleFactory {       public SynthStyle getStyle(JComponent c, Region id) {           if (id == Region.BUTTON) {               return buttonStyle;           }           else if (id == Region.TREE) {               return treeStyle;           }           return defaultStyle;       }   }   SynthLookAndFeel laf = new SynthLookAndFeel();   UIManager.setLookAndFeel(laf);   SynthLookAndFeel.setStyleFactory(new MyStyleFactory());
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SynthStyleFactory()
+				</name>
+				<description>
+					Creates a SynthStyleFactory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SynthStyle getStyle(JComponent c,                    Region id)
+				</name>
+				<description>
+					Returns the style for the specified Component.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

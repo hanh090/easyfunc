@@ -1,0 +1,153 @@
+<javaelement>
+	<package>
+		java.awt.event
+	</package>
+	<type>
+		<name>
+			public class InvocationEvent  extends AWTEvent  implements ActiveEvent
+		</name>
+		<description>
+			An event which executes the run() method on a Runnable when dispatched by the AWT event dispatcher thread. This class can be used as a reference implementation of ActiveEvent rather than declaring a new class and defining dispatch(). Instances of this class are placed on the EventQueue by calls to invokeLater and invokeAndWait. Client code can use this fact to write replacement functions for invokeLater and invokeAndWait without writing special-case code in any AWTEventListener objects. An unspecified behavior will be caused if the id parameter of any particular InvocationEvent instance is not in the range from INVOCATION_FIRST to INVOCATION_LAST.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int INVOCATION_FIRST
+				</name>
+				<description>
+					Marks the first integer id for the range of invocation event ids.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int INVOCATION_DEFAULT
+				</name>
+				<description>
+					The default id for all InvocationEvents.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int INVOCATION_LAST
+				</name>
+				<description>
+					Marks the last integer id for the range of invocation event ids.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Runnable runnable
+				</name>
+				<description>
+					The Runnable whose run() method will be called.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Object notifier
+				</name>
+				<description>
+					The (potentially null) Object whose notifyAll() method will be called immediately after the Runnable.run() method has returned or thrown an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean catchExceptions
+				</name>
+				<description>
+					Set to true if dispatch() catches Throwable and stores it in the exception instance variable. If false, Throwables are propagated up to the EventDispatchThread's dispatch loop.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InvocationEvent(Object source,                 Runnable runnable)
+				</name>
+				<description>
+					Constructs an InvocationEvent with the specified source which will execute the runnable's run method when dispatched. This is a convenience constructor. An invocation of the form InvocationEvent(source, runnable) behaves in exactly the same way as the invocation of InvocationEvent(source, runnable, null, false). This method throws an IllegalArgumentException if source is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InvocationEvent(Object source,                 Runnable runnable,                 Object notifier,                 boolean catchThrowables)
+				</name>
+				<description>
+					Constructs an InvocationEvent with the specified source which will execute the runnable's run method when dispatched. If notifier is non-null, notifyAll() will be called on it immediately after run has returned or thrown an exception. An invocation of the form InvocationEvent(source, runnable, notifier, catchThrowables) behaves in exactly the same way as the invocation of InvocationEvent(source, InvocationEvent.INVOCATION_DEFAULT, runnable, notifier, catchThrowables). This method throws an IllegalArgumentException if source is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected InvocationEvent(Object source,                 int id,                 Runnable runnable,                 Object notifier,                 boolean catchThrowables)
+				</name>
+				<description>
+					Constructs an InvocationEvent with the specified source and ID which will execute the runnable's run method when dispatched. If notifier is non-null, notifyAll will be called on it immediately after run has returned or thrown an exception. This method throws an IllegalArgumentException if source is null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void dispatch()
+				</name>
+				<description>
+					Executes the Runnable's run() method and notifies the notifier (if any) when run() has returned or thrown an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Exception getException()
+				</name>
+				<description>
+					Returns any Exception caught while executing the Runnable's run() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Throwable getThrowable()
+				</name>
+				<description>
+					Returns any Throwable caught while executing the Runnable's run() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public long getWhen()
+				</name>
+				<description>
+					Returns the timestamp of when this event occurred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isDispatched()
+				</name>
+				<description>
+					Returns true if the event is dispatched or any exception is thrown while dispatching, false otherwise. The method should be called by a waiting thread that calls the notifier.wait() method. Since spurious wakeups are possible (as explained in Object.wait()), this method should be used in a waiting loop to ensure that the event got dispatched:        while (!event.isDispatched()) {           notifier.wait();       }   If the waiting thread wakes up without dispatching the event, the isDispatched() method returns false, and the while loop executes once more, thus, causing the awakened thread to revert to the waiting mode. If the notifier.notifyAll() happens before the waiting thread enters the notifier.wait() method, the while loop ensures that the waiting thread will not enter the notifier.wait() method. Otherwise, there is no guarantee that the waiting thread will ever be woken from the wait.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String paramString()
+				</name>
+				<description>
+					Returns a parameter string identifying this event. This method is useful for event-logging and for debugging.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

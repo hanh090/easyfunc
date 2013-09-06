@@ -1,0 +1,45 @@
+<javaelement>
+	<package>
+		javax.security.auth
+	</package>
+	<type>
+		<name>
+			public class SubjectDomainCombiner  extends Object  implements DomainCombiner
+		</name>
+		<description>
+			A SubjectDomainCombiner updates ProtectionDomains with Principals from the Subject associated with this SubjectDomainCombiner.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public SubjectDomainCombiner(Subject subject)
+				</name>
+				<description>
+					Associate the provided Subject with this SubjectDomainCombiner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Subject getSubject()
+				</name>
+				<description>
+					Get the Subject associated with this SubjectDomainCombiner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ProtectionDomain[] combine(ProtectionDomain[] currentDomains,                           ProtectionDomain[] assignedDomains)
+				</name>
+				<description>
+					Update the relevant ProtectionDomains with the Principals from the Subject associated with this SubjectDomainCombiner. A new ProtectionDomain instance is created for each ProtectionDomain in the currentDomains array. Each new ProtectionDomain instance is created using the CodeSource, Permissions and ClassLoader from the corresponding ProtectionDomain in currentDomains, as well as with the Principals from the Subject associated with this SubjectDomainCombiner. All of the newly instantiated ProtectionDomains are combined into a new array. The ProtectionDomains from the assignedDomains array are appended to this new array, and the result is returned. Note that optimizations such as the removal of duplicate ProtectionDomains may have occurred. In addition, caching of ProtectionDomains may be permitted.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

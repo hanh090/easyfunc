@@ -1,0 +1,567 @@
+<javaelement>
+	<package>
+		javax.swing.plaf.synth
+	</package>
+	<type>
+		<name>
+			public class Region  extends Object
+		</name>
+		<description>
+			A distinct rendering area of a Swing component. A component may support one or more regions. Specific component regions are defined by the typesafe enumeration in this class. Regions are typically used as a way to identify the Components and areas a particular style is to apply to. Synth's file format allows you to bind styles based on the name of a Region. The name is derived from the field name of the constant: Map all characters to lowercase. Map the first character to uppercase. Map the first character after underscores to uppercase. Remove all underscores. For example, to identify the SPLIT_PANE Region you would use SplitPane. The following shows a custom SynthStyleFactory that returns a specific style for split panes:       public SynthStyle getStyle(JComponent c, Region id) {          if (id == Region.SPLIT_PANE) {              return splitPaneStyle;          }          ...      }   The following xml accomplishes the same thing:    <style id="splitPaneStyle">     ...   </style>   <bind style="splitPaneStyle" type="region" key="SplitPane"/>
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final Region ARROW_BUTTON
+				</name>
+				<description>
+					ArrowButton's are special types of buttons that also render a directional indicator, typically an arrow. ArrowButtons are used by composite components, for example ScrollBar's contain ArrowButtons. To bind a style to this Region use the name ArrowButton.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region BUTTON
+				</name>
+				<description>
+					Button region. To bind a style to this Region use the name Button.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region CHECK_BOX
+				</name>
+				<description>
+					CheckBox region. To bind a style to this Region use the name CheckBox.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region CHECK_BOX_MENU_ITEM
+				</name>
+				<description>
+					CheckBoxMenuItem region. To bind a style to this Region use the name CheckBoxMenuItem.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region COLOR_CHOOSER
+				</name>
+				<description>
+					ColorChooser region. To bind a style to this Region use the name ColorChooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region COMBO_BOX
+				</name>
+				<description>
+					ComboBox region. To bind a style to this Region use the name ComboBox.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region DESKTOP_PANE
+				</name>
+				<description>
+					DesktopPane region. To bind a style to this Region use the name DesktopPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region DESKTOP_ICON
+				</name>
+				<description>
+					DesktopIcon region. To bind a style to this Region use the name DesktopIcon.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region EDITOR_PANE
+				</name>
+				<description>
+					EditorPane region. To bind a style to this Region use the name EditorPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region FILE_CHOOSER
+				</name>
+				<description>
+					FileChooser region. To bind a style to this Region use the name FileChooser.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region FORMATTED_TEXT_FIELD
+				</name>
+				<description>
+					FormattedTextField region. To bind a style to this Region use the name FormattedTextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region INTERNAL_FRAME
+				</name>
+				<description>
+					InternalFrame region. To bind a style to this Region use the name InternalFrame.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region INTERNAL_FRAME_TITLE_PANE
+				</name>
+				<description>
+					TitlePane of an InternalFrame. The TitlePane typically shows a menu, title, widgets to manipulate the internal frame. To bind a style to this Region use the name InternalFrameTitlePane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region LABEL
+				</name>
+				<description>
+					Label region. To bind a style to this Region use the name Label.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region LIST
+				</name>
+				<description>
+					List region. To bind a style to this Region use the name List.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region MENU
+				</name>
+				<description>
+					Menu region. To bind a style to this Region use the name Menu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region MENU_BAR
+				</name>
+				<description>
+					MenuBar region. To bind a style to this Region use the name MenuBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region MENU_ITEM
+				</name>
+				<description>
+					MenuItem region. To bind a style to this Region use the name MenuItem.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region MENU_ITEM_ACCELERATOR
+				</name>
+				<description>
+					Accelerator region of a MenuItem. To bind a style to this Region use the name MenuItemAccelerator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region OPTION_PANE
+				</name>
+				<description>
+					OptionPane region. To bind a style to this Region use the name OptionPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region PANEL
+				</name>
+				<description>
+					Panel region. To bind a style to this Region use the name Panel.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region PASSWORD_FIELD
+				</name>
+				<description>
+					PasswordField region. To bind a style to this Region use the name PasswordField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region POPUP_MENU
+				</name>
+				<description>
+					PopupMenu region. To bind a style to this Region use the name PopupMenu.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region POPUP_MENU_SEPARATOR
+				</name>
+				<description>
+					PopupMenuSeparator region. To bind a style to this Region use the name PopupMenuSeparator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region PROGRESS_BAR
+				</name>
+				<description>
+					ProgressBar region. To bind a style to this Region use the name ProgressBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region RADIO_BUTTON
+				</name>
+				<description>
+					RadioButton region. To bind a style to this Region use the name RadioButton.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region RADIO_BUTTON_MENU_ITEM
+				</name>
+				<description>
+					RegionButtonMenuItem region. To bind a style to this Region use the name RadioButtonMenuItem.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region ROOT_PANE
+				</name>
+				<description>
+					RootPane region. To bind a style to this Region use the name RootPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SCROLL_BAR
+				</name>
+				<description>
+					ScrollBar region. To bind a style to this Region use the name ScrollBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SCROLL_BAR_TRACK
+				</name>
+				<description>
+					Track of the ScrollBar. To bind a style to this Region use the name ScrollBarTrack.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SCROLL_BAR_THUMB
+				</name>
+				<description>
+					Thumb of the ScrollBar. The thumb is the region of the ScrollBar that gives a graphical depiction of what percentage of the View is currently visible. To bind a style to this Region use the name ScrollBarThumb.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SCROLL_PANE
+				</name>
+				<description>
+					ScrollPane region. To bind a style to this Region use the name ScrollPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SEPARATOR
+				</name>
+				<description>
+					Separator region. To bind a style to this Region use the name Separator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SLIDER
+				</name>
+				<description>
+					Slider region. To bind a style to this Region use the name Slider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SLIDER_TRACK
+				</name>
+				<description>
+					Track of the Slider. To bind a style to this Region use the name SliderTrack.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SLIDER_THUMB
+				</name>
+				<description>
+					Thumb of the Slider. The thumb of the Slider identifies the current value. To bind a style to this Region use the name SliderThumb.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SPINNER
+				</name>
+				<description>
+					Spinner region. To bind a style to this Region use the name Spinner.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SPLIT_PANE
+				</name>
+				<description>
+					SplitPane region. To bind a style to this Region use the name SplitPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region SPLIT_PANE_DIVIDER
+				</name>
+				<description>
+					Divider of the SplitPane. To bind a style to this Region use the name SplitPaneDivider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TABBED_PANE
+				</name>
+				<description>
+					TabbedPane region. To bind a style to this Region use the name TabbedPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TABBED_PANE_TAB
+				</name>
+				<description>
+					Region of a TabbedPane for one tab. To bind a style to this Region use the name TabbedPaneTab.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TABBED_PANE_TAB_AREA
+				</name>
+				<description>
+					Region of a TabbedPane containing the tabs. To bind a style to this Region use the name TabbedPaneTabArea.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TABBED_PANE_CONTENT
+				</name>
+				<description>
+					Region of a TabbedPane containing the content. To bind a style to this Region use the name TabbedPaneContent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TABLE
+				</name>
+				<description>
+					Table region. To bind a style to this Region use the name Table.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TABLE_HEADER
+				</name>
+				<description>
+					TableHeader region. To bind a style to this Region use the name TableHeader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TEXT_AREA
+				</name>
+				<description>
+					TextArea region. To bind a style to this Region use the name TextArea.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TEXT_FIELD
+				</name>
+				<description>
+					TextField region. To bind a style to this Region use the name TextField.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TEXT_PANE
+				</name>
+				<description>
+					TextPane region. To bind a style to this Region use the name TextPane.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TOGGLE_BUTTON
+				</name>
+				<description>
+					ToggleButton region. To bind a style to this Region use the name ToggleButton.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TOOL_BAR
+				</name>
+				<description>
+					ToolBar region. To bind a style to this Region use the name ToolBar.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TOOL_BAR_CONTENT
+				</name>
+				<description>
+					Region of the ToolBar containing the content. To bind a style to this Region use the name ToolBarContent.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TOOL_BAR_DRAG_WINDOW
+				</name>
+				<description>
+					Region for the Window containing the ToolBar. To bind a style to this Region use the name ToolBarDragWindow.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TOOL_TIP
+				</name>
+				<description>
+					ToolTip region. To bind a style to this Region use the name ToolTip.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TOOL_BAR_SEPARATOR
+				</name>
+				<description>
+					ToolBar separator region. To bind a style to this Region use the name ToolBarSeparator.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TREE
+				</name>
+				<description>
+					Tree region. To bind a style to this Region use the name Tree.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region TREE_CELL
+				</name>
+				<description>
+					Region of the Tree for one cell. To bind a style to this Region use the name TreeCell.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final Region VIEWPORT
+				</name>
+				<description>
+					Viewport region. To bind a style to this Region use the name Viewport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Region(String name,        String ui,        boolean subregion)
+				</name>
+				<description>
+					Creates a Region with the specified name. This should only be used if you are creating your own JComponent subclass with a custom ComponentUI class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isSubregion()
+				</name>
+				<description>
+					Returns true if the Region is a subregion of a Component, otherwise false. For example, Region.BUTTON corresponds do a Component so that Region.BUTTON.isSubregion() returns false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Returns the name of the region.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the name of the Region.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

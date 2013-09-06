@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.management.modelmbean
+	</package>
+	<type>
+		<name>
+			public class ModelMBeanNotificationInfo  extends MBeanNotificationInfo  implements DescriptorAccess
+		</name>
+		<description>
+			The ModelMBeanNotificationInfo object describes a notification emitted by a ModelMBean. It is a subclass of MBeanNotificationInfo with the addition of an associated Descriptor and an implementation of the Descriptor interface. The fields in the descriptor are defined, but not limited to, the following. Note that when the Type in this table is Number, a String that is the decimal representation of a Long can also be used. Name Type Meaning name String Notification name. descriptorType String Must be "notification". severity Number 0-6 where 0: unknown; 1: non-recoverable; 2: critical, failure; 3: major, severe; 4: minor, marginal, error; 5: warning; 6: normal, cleared, informative messageID String Unique key for message text (to allow translation, analysis). messageText String Text of notification. log String T - log message, F - do not log message. logfile String fully qualified file name appropriate for operating system. visibility Number 1-4 where 1: always visible 4: rarely visible. presentationString String XML formatted string to allow presentation of data. The default descriptor contains the name, descriptorType, displayName and severity(=6) fields. The default value of the name and displayName fields is the name of the Notification class (as specified by the name parameter of the ModelMBeanNotificationInfo constructor). The serialVersionUID of this class is -7445681389570207141L.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ModelMBeanNotificationInfo(String[] notifTypes,                            String name,                            String description)
+				</name>
+				<description>
+					Constructs a ModelMBeanNotificationInfo object with a default descriptor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanNotificationInfo(String[] notifTypes,                            String name,                            String description,                            Descriptor descriptor)
+				</name>
+				<description>
+					Constructs a ModelMBeanNotificationInfo object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ModelMBeanNotificationInfo(ModelMBeanNotificationInfo inInfo)
+				</name>
+				<description>
+					Constructs a new ModelMBeanNotificationInfo object from this ModelMBeanNotfication Object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates and returns a new ModelMBeanNotificationInfo which is a duplicate of this ModelMBeanNotificationInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Descriptor getDescriptor()
+				</name>
+				<description>
+					Returns a copy of the associated Descriptor for the ModelMBeanNotificationInfo.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setDescriptor(Descriptor inDescriptor)
+				</name>
+				<description>
+					Sets associated Descriptor (full replace) for the ModelMBeanNotificationInfo If the new Descriptor is null, then the associated Descriptor reverts to a default descriptor. The Descriptor is validated before it is assigned. If the new Descriptor is invalid, then a RuntimeOperationsException wrapping an IllegalArgumentException is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a human readable string containing ModelMBeanNotificationInfo.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

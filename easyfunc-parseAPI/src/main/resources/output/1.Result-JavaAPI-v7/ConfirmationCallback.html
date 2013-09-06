@@ -1,0 +1,216 @@
+<javaelement>
+	<package>
+		javax.security.auth.callback
+	</package>
+	<type>
+		<name>
+			public class ConfirmationCallback  extends Object  implements Callback, Serializable
+		</name>
+		<description>
+			Underlying security services instantiate and pass a ConfirmationCallback to the handle method of a CallbackHandler to ask for YES/NO, OK/CANCEL, YES/NO/CANCEL or other similar confirmations.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int UNSPECIFIED_OPTION
+				</name>
+				<description>
+					Unspecified option type. The getOptionType method returns this value if this ConfirmationCallback was instantiated with options instead of an optionType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int YES_NO_OPTION
+				</name>
+				<description>
+					YES/NO confirmation option. An underlying security service specifies this as the optionType to a ConfirmationCallback constructor if it requires a confirmation which can be answered with either YES or NO.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int YES_NO_CANCEL_OPTION
+				</name>
+				<description>
+					YES/NO/CANCEL confirmation confirmation option. An underlying security service specifies this as the optionType to a ConfirmationCallback constructor if it requires a confirmation which can be answered with either YES, NO or CANCEL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int OK_CANCEL_OPTION
+				</name>
+				<description>
+					OK/CANCEL confirmation confirmation option. An underlying security service specifies this as the optionType to a ConfirmationCallback constructor if it requires a confirmation which can be answered with either OK or CANCEL.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int YES
+				</name>
+				<description>
+					YES option. If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NO
+				</name>
+				<description>
+					NO option. If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CANCEL
+				</name>
+				<description>
+					CANCEL option. If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int OK
+				</name>
+				<description>
+					OK option. If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int INFORMATION
+				</name>
+				<description>
+					INFORMATION message type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int WARNING
+				</name>
+				<description>
+					WARNING message type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ERROR
+				</name>
+				<description>
+					ERROR message type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConfirmationCallback(int messageType,                      int optionType,                      int defaultOption)
+				</name>
+				<description>
+					Construct a ConfirmationCallback with a message type, an option type and a default option. Underlying security services use this constructor if they require either a YES/NO, YES/NO/CANCEL or OK/CANCEL confirmation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConfirmationCallback(int messageType,                      String[] options,                      int defaultOption)
+				</name>
+				<description>
+					Construct a ConfirmationCallback with a message type, a list of options and a default option. Underlying security services use this constructor if they require a confirmation different from the available preset confirmations provided (for example, CONTINUE/ABORT or STOP/GO). The confirmation options are listed in the options array, and are displayed by the CallbackHandler implementation in a manner consistent with the way preset options are displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConfirmationCallback(String prompt,                      int messageType,                      int optionType,                      int defaultOption)
+				</name>
+				<description>
+					Construct a ConfirmationCallback with a prompt, message type, an option type and a default option. Underlying security services use this constructor if they require either a YES/NO, YES/NO/CANCEL or OK/CANCEL confirmation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ConfirmationCallback(String prompt,                      int messageType,                      String[] options,                      int defaultOption)
+				</name>
+				<description>
+					Construct a ConfirmationCallback with a prompt, message type, a list of options and a default option. Underlying security services use this constructor if they require a confirmation different from the available preset confirmations provided (for example, CONTINUE/ABORT or STOP/GO). The confirmation options are listed in the options array, and are displayed by the CallbackHandler implementation in a manner consistent with the way preset options are displayed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getPrompt()
+				</name>
+				<description>
+					Get the prompt.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getMessageType()
+				</name>
+				<description>
+					Get the message type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getOptionType()
+				</name>
+				<description>
+					Get the option type. If this method returns UNSPECIFIED_OPTION, then this ConfirmationCallback was instantiated with options instead of an optionType. In this case, invoke the getOptions method to determine which confirmation options to display.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getOptions()
+				</name>
+				<description>
+					Get the confirmation options.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getDefaultOption()
+				</name>
+				<description>
+					Get the default option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSelectedIndex(int selection)
+				</name>
+				<description>
+					Set the selected confirmation option.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectedIndex()
+				</name>
+				<description>
+					Get the selected confirmation option.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

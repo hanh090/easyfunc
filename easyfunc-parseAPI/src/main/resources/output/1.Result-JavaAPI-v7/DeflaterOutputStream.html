@@ -1,0 +1,144 @@
+<javaelement>
+	<package>
+		java.util.zip
+	</package>
+	<type>
+		<name>
+			public class DeflaterOutputStream  extends FilterOutputStream
+		</name>
+		<description>
+			This class implements an output stream filter for compressing data in the "deflate" compression format. It is also used as the basis for other types of compression filters, such as GZIPOutputStream.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Deflater def
+				</name>
+				<description>
+					Compressor for this stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected byte[] buf
+				</name>
+				<description>
+					Output buffer for writing compressed data.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterOutputStream(OutputStream out,                      Deflater def,                      int size,                      boolean syncFlush)
+				</name>
+				<description>
+					Creates a new output stream with the specified compressor, buffer size and flush mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterOutputStream(OutputStream out,                      Deflater def,                      int size)
+				</name>
+				<description>
+					Creates a new output stream with the specified compressor and buffer size. The new output stream instance is created as if by invoking the 4-argument constructor DeflaterOutputStream(out, def, size, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterOutputStream(OutputStream out,                      Deflater def,                      boolean syncFlush)
+				</name>
+				<description>
+					Creates a new output stream with the specified compressor, flush mode and a default buffer size.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterOutputStream(OutputStream out,                      Deflater def)
+				</name>
+				<description>
+					Creates a new output stream with the specified compressor and a default buffer size. The new output stream instance is created as if by invoking the 3-argument constructor DeflaterOutputStream(out, def, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterOutputStream(OutputStream out,                      boolean syncFlush)
+				</name>
+				<description>
+					Creates a new output stream with a default compressor, a default buffer size and the specified flush mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DeflaterOutputStream(OutputStream out)
+				</name>
+				<description>
+					Creates a new output stream with a default compressor and buffer size. The new output stream instance is created as if by invoking the 2-argument constructor DeflaterOutputStream(out, false).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(int b)             throws IOException
+				</name>
+				<description>
+					Writes a byte to the compressed output stream. This method will block until the byte can be written.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(byte[] b,           int off,           int len)             throws IOException
+				</name>
+				<description>
+					Writes an array of bytes to the compressed output stream. This method will block until all the bytes are written.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void finish()              throws IOException
+				</name>
+				<description>
+					Finishes writing compressed data to the output stream without closing the underlying stream. Use this method when applying multiple filters in succession to the same output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Writes remaining compressed data to the output stream and closes the underlying stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void deflate()                  throws IOException
+				</name>
+				<description>
+					Writes next block of compressed data to the output stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flush()             throws IOException
+				</name>
+				<description>
+					Flushes the compressed output stream. If syncFlush is true when this compressed output stream is constructed, this method first flushes the underlying compressor with the flush mode Deflater.SYNC_FLUSH to force all pending data to be flushed out to the output stream and then flushes the output stream. Otherwise this method only flushes the output stream without flushing the compressor.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

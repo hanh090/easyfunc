@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.management.remote
+	</package>
+	<type>
+		<name>
+			public class JMXConnectionNotification  extends Notification
+		</name>
+		<description>
+			Notification emitted when a client connection is opened or closed or when notifications are lost. These notifications are sent by connector servers (instances of JMXConnectorServer) and by connector clients (instances of JMXConnector). For certain connectors, a session can consist of a sequence of connections. Connection-opened and connection-closed notifications will be sent for each one. The notification type is one of the following: Type Meaning jmx.remote.connection.opened A new client connection has been opened. jmx.remote.connection.closed A client connection has been closed. jmx.remote.connection.failed A client connection has failed unexpectedly. jmx.remote.connection.notifs.lost A client connection has potentially lost notifications. This notification only appears on the client side. The timeStamp of the notification is a time value (consistent with System.currentTimeMillis()) indicating when the notification was constructed.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final String OPENED
+				</name>
+				<description>
+					Notification type string for a connection-opened notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String CLOSED
+				</name>
+				<description>
+					Notification type string for a connection-closed notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String FAILED
+				</name>
+				<description>
+					Notification type string for a connection-failed notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final String NOTIFS_LOST
+				</name>
+				<description>
+					Notification type string for a connection that has possibly lost notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public JMXConnectionNotification(String type,                           Object source,                           String connectionId,                           long sequenceNumber,                           String message,                           Object userData)
+				</name>
+				<description>
+					Constructs a new connection notification. The source of the notification depends on whether it is being sent by a connector server or a connector client: For a connector server, if it is registered in an MBean server, the source is the ObjectName under which it is registered. Otherwise, it is a reference to the connector server object itself, an instance of a subclass of JMXConnectorServer. For a connector client, the source is a reference to the connector client object, an instance of a class implementing JMXConnector.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getConnectionId()
+				</name>
+				<description>
+					The connection ID to which this notification pertains.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

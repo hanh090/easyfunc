@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		java.net
+	</package>
+	<type>
+		<name>
+			public class Proxy  extends Object
+		</name>
+		<description>
+			This class represents a proxy setting, typically a type (http, socks) and a socket address. A Proxy is an immutable object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final Proxy NO_PROXY
+				</name>
+				<description>
+					A proxy setting that represents a DIRECT connection, basically telling the protocol handler not to use any proxying. Used, for instance, to create sockets bypassing any other global proxy settings (like SOCKS): Socket s = new Socket(Proxy.NO_PROXY);
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Proxy(Proxy.Type type,       SocketAddress sa)
+				</name>
+				<description>
+					Creates an entry representing a PROXY connection. Certain combinations are illegal. For instance, for types Http, and Socks, a SocketAddress must be provided. Use the Proxy.NO_PROXY constant for representing a direct connection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Proxy.Type type()
+				</name>
+				<description>
+					Returns the proxy type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public SocketAddress address()
+				</name>
+				<description>
+					Returns the socket address of the proxy, or null if its a direct connection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Constructs a string representation of this Proxy. This String is constructed by calling toString() on its type and concatenating " @ " and the toString() result from its address if its type is not DIRECT.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this object against the specified object. The result is true if and only if the argument is not null and it represents the same proxy as this object. Two instances of Proxy represent the same address if both the SocketAddresses and type are equal.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public final int hashCode()
+				</name>
+				<description>
+					Returns a hashcode for this Proxy.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

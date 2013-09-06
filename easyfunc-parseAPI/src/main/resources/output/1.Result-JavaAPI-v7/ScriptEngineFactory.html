@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		javax.script
+	</package>
+	<type>
+		<name>
+			public interface ScriptEngineFactory
+		</name>
+		<description>
+			ScriptEngineFactory is used to describe and instantiate ScriptEngines. Each class implementing ScriptEngine has a corresponding factory that exposes metadata describing the engine class. The ScriptEngineManager uses the service provider mechanism described in the Jar File Specification to obtain instances of all ScriptEngineFactories available in the current ClassLoader.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getEngineName()
+				</name>
+				<description>
+					Returns the full name of the ScriptEngine. For instance an implementation based on the Mozilla Rhino Javascript engine might return Rhino Mozilla Javascript Engine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getEngineVersion()
+				</name>
+				<description>
+					Returns the version of the ScriptEngine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<String> getExtensions()
+				</name>
+				<description>
+					Returns an immutable list of filename extensions, which generally identify scripts written in the language supported by this ScriptEngine. The array is used by the ScriptEngineManager to implement its getEngineByExtension method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<String> getMimeTypes()
+				</name>
+				<description>
+					Returns an immutable list of mimetypes, associated with scripts that can be executed by the engine. The list is used by the ScriptEngineManager class to implement its getEngineByMimetype method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List<String> getNames()
+				</name>
+				<description>
+					Returns an immutable list of short names for the ScriptEngine, which may be used to identify the ScriptEngine by the ScriptEngineManager. For instance, an implementation based on the Mozilla Rhino Javascript engine might return list containing {"javascript", "rhino"}.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getLanguageName()
+				</name>
+				<description>
+					Returns the name of the scripting langauge supported by this ScriptEngine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getLanguageVersion()
+				</name>
+				<description>
+					Returns the version of the scripting language supported by this ScriptEngine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object getParameter(String key)
+				</name>
+				<description>
+					Returns the value of an attribute whose meaning may be implementation-specific. Keys for which the value is defined in all implementations are: ScriptEngine.ENGINE ScriptEngine.ENGINE_VERSION ScriptEngine.NAME ScriptEngine.LANGUAGE ScriptEngine.LANGUAGE_VERSION The values for these keys are the Strings returned by getEngineName, getEngineVersion, getName, getLanguageName and getLanguageVersion respectively. A reserved key, THREADING, whose value describes the behavior of the engine with respect to concurrent execution of scripts and maintenance of state is also defined. These values for the THREADING key are: null - The engine implementation is not thread safe, and cannot be used to execute scripts concurrently on multiple threads. "MULTITHREADED" - The engine implementation is internally thread-safe and scripts may execute concurrently although effects of script execution on one thread may be visible to scripts on other threads. "THREAD-ISOLATED" - The implementation satisfies the requirements of "MULTITHREADED", and also, the engine maintains independent values for symbols in scripts executing on different threads. "STATELESS" - The implementation satisfies the requirements of "THREAD-ISOLATED". In addition, script executions do not alter the mappings in the Bindings which is the engine scope of the ScriptEngine. In particular, the keys in the Bindings and their associated values are the same before and after the execution of the script. Implementations may define implementation-specific keys.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getMethodCallSyntax(String obj,                           String m,                           String... args)
+				</name>
+				<description>
+					Returns a String which can be used to invoke a method of a Java object using the syntax of the supported scripting language. For instance, an implementaton for a Javascript engine might be;       public String getMethodCallSyntax(String obj,                                     String m, String... args) {        String ret = obj;        ret += "." + m + "(";        for (int i = 0; i < args.length; i++) {            ret += args[i];            if (i < args.length - 1) {                ret += ",";            }        }        ret += ")";        return ret;   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getOutputStatement(String toDisplay)
+				</name>
+				<description>
+					Returns a String that can be used as a statement to display the specified String using the syntax of the supported scripting language. For instance, the implementaton for a Perl engine might be;    public String getOutputStatement(String toDisplay) {        return "print(" + toDisplay + ")";   }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getProgram(String... statements)
+				</name>
+				<description>
+					Returns A valid scripting language executable progam with given statements. For instance an implementation for a PHP engine might be:    public String getProgram(String... statements) {        $retval = "<?\n";        int len = statements.length;        for (int i = 0; i < len; i++) {            $retval += statements[i] + ";\n";        }        $retval += "?>";     }
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ScriptEngine getScriptEngine()
+				</name>
+				<description>
+					Returns an instance of the ScriptEngine associated with this ScriptEngineFactory. A new ScriptEngine is generally returned, but implementations may pool, share or reuse engines.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

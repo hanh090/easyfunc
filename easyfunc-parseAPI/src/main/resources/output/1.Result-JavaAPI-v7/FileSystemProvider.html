@@ -1,0 +1,279 @@
+<javaelement>
+	<package>
+		java.nio.file.spi
+	</package>
+	<type>
+		<name>
+			public abstract class FileSystemProvider  extends Object
+		</name>
+		<description>
+			Service-provider class for file systems. The methods defined by the Files class will typically delegate to an instance of this class. A file system provider is a concrete implementation of this class that implements the abstract methods defined by this class. A provider is identified by a URI scheme. The default provider is identified by the URI scheme "file". It creates the FileSystem that provides access to the file systems accessible to the Java virtual machine. The FileSystems class defines how file system providers are located and loaded. The default provider is typically a system-default provider but may be overridden if the system property java.nio.file.spi.DefaultFileSystemProvider is set. In that case, the provider has a one argument constructor whose formal parameter type is FileSystemProvider. All other providers have a zero argument constructor that initializes the provider. A provider is a factory for one or more FileSystem instances. Each file system is identified by a URI where the URI's scheme matches the provider's scheme. The default file system, for example, is identified by the URI "file:///". A memory-based file system, for example, may be identified by a URI such as "memory:///?name=logfs". The newFileSystem method may be used to create a file system, and the getFileSystem method may be used to obtain a reference to an existing file system created by the provider. Where a provider is the factory for a single file system then it is provider dependent if the file system is created when the provider is initialized, or later when the newFileSystem method is invoked. In the case of the default provider, the FileSystem is created when the provider is initialized. All of the methods in this class are safe for use by multiple concurrent threads.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected FileSystemProvider()
+				</name>
+				<description>
+					Initializes a new instance of this class. During construction a provider may safely access files associated with the default provider but care needs to be taken to avoid circular loading of other installed providers. If circular loading of installed providers is detected then an unspecified error is thrown.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static List<FileSystemProvider> installedProviders()
+				</name>
+				<description>
+					Returns a list of the installed file system providers. The first invocation of this method causes the default provider to be initialized (if not already initialized) and loads any other installed providers as described by the FileSystems class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String getScheme()
+				</name>
+				<description>
+					Returns the URI scheme that identifies this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FileSystem newFileSystem(URI uri,                         Map<String,?> env)                                    throws IOException
+				</name>
+				<description>
+					Constructs a new FileSystem object identified by a URI. This method is invoked by the FileSystems.newFileSystem(URI,Map) method to open a new file system identified by a URI. The uri parameter is an absolute, hierarchical URI, with a scheme equal (without regard to case) to the scheme supported by this provider. The exact form of the URI is highly provider dependent. The env parameter is a map of provider specific properties to configure the file system. This method throws FileSystemAlreadyExistsException if the file system already exists because it was previously created by an invocation of this method. Once a file system is closed it is provider-dependent if the provider allows a new file system to be created with the same URI as a file system it previously created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FileSystem getFileSystem(URI uri)
+				</name>
+				<description>
+					Returns an existing FileSystem created by this provider. This method returns a reference to a FileSystem that was created by invoking the newFileSystem(URI,Map) method. File systems created the newFileSystem(Path,Map) method are not returned by this method. The file system is identified by its URI. Its exact form is highly provider dependent. In the case of the default provider the URI's path component is "/" and the authority, query and fragment components are undefined (Undefined components are represented by null). Once a file system created by this provider is closed it is provider-dependent if this method returns a reference to the closed file system or throws FileSystemNotFoundException. If the provider allows a new file system to be created with the same URI as a file system it previously created then this method throws the exception if invoked after the file system is closed (and before a new instance is created by the newFileSystem method). If a security manager is installed then a provider implementation may require to check a permission before returning a reference to an existing file system. In the case of the default file system, no permission check is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Path getPath(URI uri)
+				</name>
+				<description>
+					Return a Path object by converting the given URI. The resulting Path is associated with a FileSystem that already exists or is constructed automatically. The exact form of the URI is file system provider dependent. In the case of the default provider, the URI scheme is "file" and the given URI has a non-empty path component, and undefined query, and fragment components. The resulting Path is associated with the default default FileSystem. If a security manager is installed then a provider implementation may require to check a permission. In the case of the default file system, no permission check is required.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileSystem newFileSystem(Path path,                         Map<String,?> env)                           throws IOException
+				</name>
+				<description>
+					Constructs a new FileSystem to access the contents of a file as a file system. This method is intended for specialized providers of pseudo file systems where the contents of one or more files is treated as a file system. The env parameter is a map of provider specific properties to configure the file system. If this provider does not support the creation of such file systems or if the provider does not recognize the file type of the given file then it throws UnsupportedOperationException. The default implementation of this method throws UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream newInputStream(Path path,                           OpenOption... options)                             throws IOException
+				</name>
+				<description>
+					Opens a file, returning an input stream to read from the file. This method works in exactly the manner specified by the Files.newInputStream(java.nio.file.Path, java.nio.file.OpenOption...) method. The default implementation of this method opens a channel to the file as if by invoking the newByteChannel(java.nio.file.Path, java.util.Set<? extends java.nio.file.OpenOption>, java.nio.file.attribute.FileAttribute<?>...) method and constructs a stream that reads bytes from the channel. This method should be overridden where appropriate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream newOutputStream(Path path,                             OpenOption... options)                               throws IOException
+				</name>
+				<description>
+					Opens or creates a file, returning an output stream that may be used to write bytes to the file. This method works in exactly the manner specified by the Files.newOutputStream(java.nio.file.Path, java.nio.file.OpenOption...) method. The default implementation of this method opens a channel to the file as if by invoking the newByteChannel(java.nio.file.Path, java.util.Set<? extends java.nio.file.OpenOption>, java.nio.file.attribute.FileAttribute<?>...) method and constructs a stream that writes bytes to the channel. This method should be overridden where appropriate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public FileChannel newFileChannel(Path path,                           Set<? extends OpenOption> options,                           FileAttribute<?>... attrs)                             throws IOException
+				</name>
+				<description>
+					Opens or creates a file for reading and/or writing, returning a file channel to access the file. This method works in exactly the manner specified by the FileChannel.open method. A provider that does not support all the features required to construct a file channel throws UnsupportedOperationException. The default provider is required to support the creation of file channels. When not overridden, the default implementation throws UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AsynchronousFileChannel newAsynchronousFileChannel(Path path,                                                   Set<? extends OpenOption> options,                                                   ExecutorService executor,                                                   FileAttribute<?>... attrs)                                                     throws IOException
+				</name>
+				<description>
+					Opens or creates a file for reading and/or writing, returning an asynchronous file channel to access the file. This method works in exactly the manner specified by the AsynchronousFileChannel.open method. A provider that does not support all the features required to construct an asynchronous file channel throws UnsupportedOperationException. The default provider is required to support the creation of asynchronous file channels. When not overridden, the default implementation of this method throws UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract SeekableByteChannel newByteChannel(Path path,                                   Set<? extends OpenOption> options,                                   FileAttribute<?>... attrs)                                              throws IOException
+				</name>
+				<description>
+					Opens or creates a file, returning a seekable byte channel to access the file. This method works in exactly the manner specified by the Files.newByteChannel(Path,Set,FileAttribute[]) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract DirectoryStream<Path> newDirectoryStream(Path dir,                                         DirectoryStream.Filter<? super Path> filter)                                                    throws IOException
+				</name>
+				<description>
+					Opens a directory, returning a DirectoryStream to iterate over the entries in the directory. This method works in exactly the manner specified by the Files.newDirectoryStream(java.nio.file.Path, java.nio.file.DirectoryStream.Filter) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void createDirectory(Path dir,                     FileAttribute<?>... attrs)                                throws IOException
+				</name>
+				<description>
+					Creates a new directory. This method works in exactly the manner specified by the Files.createDirectory(java.nio.file.Path, java.nio.file.attribute.FileAttribute<?>...) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void createSymbolicLink(Path link,                        Path target,                        FileAttribute<?>... attrs)                          throws IOException
+				</name>
+				<description>
+					Creates a symbolic link to a target. This method works in exactly the manner specified by the Files.createSymbolicLink(java.nio.file.Path, java.nio.file.Path, java.nio.file.attribute.FileAttribute<?>...) method. The default implementation of this method throws UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void createLink(Path link,                Path existing)                  throws IOException
+				</name>
+				<description>
+					Creates a new link (directory entry) for an existing file. This method works in exactly the manner specified by the Files.createLink(java.nio.file.Path, java.nio.file.Path) method. The default implementation of this method throws UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void delete(Path path)                       throws IOException
+				</name>
+				<description>
+					Deletes a file. This method works in exactly the manner specified by the Files.delete(java.nio.file.Path) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean deleteIfExists(Path path)                         throws IOException
+				</name>
+				<description>
+					Deletes a file if it exists. This method works in exactly the manner specified by the Files.deleteIfExists(java.nio.file.Path) method. The default implementation of this method simply invokes delete(java.nio.file.Path) ignoring the NoSuchFileException when the file does not exist. It may be overridden where appropriate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Path readSymbolicLink(Path link)                        throws IOException
+				</name>
+				<description>
+					Reads the target of a symbolic link. This method works in exactly the manner specified by the Files.readSymbolicLink(java.nio.file.Path) method. The default implementation of this method throws UnsupportedOperationException.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void copy(Path source,          Path target,          CopyOption... options)                     throws IOException
+				</name>
+				<description>
+					Copy a file to a target file. This method works in exactly the manner specified by the Files.copy(Path,Path,CopyOption[]) method except that both the source and target paths must be associated with this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void move(Path source,          Path target,          CopyOption... options)                     throws IOException
+				</name>
+				<description>
+					Move or rename a file to a target file. This method works in exactly the manner specified by the Files.move(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...) method except that both the source and target paths must be associated with this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isSameFile(Path path,                   Path path2)                              throws IOException
+				</name>
+				<description>
+					Tests if two paths locate the same file. This method works in exactly the manner specified by the Files.isSameFile(java.nio.file.Path, java.nio.file.Path) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract boolean isHidden(Path path)                            throws IOException
+				</name>
+				<description>
+					Tells whether or not a file is considered hidden. This method works in exactly the manner specified by the Files.isHidden(java.nio.file.Path) method. This method is invoked by the isHidden method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract FileStore getFileStore(Path path)                                  throws IOException
+				</name>
+				<description>
+					Returns the FileStore representing the file store where a file is located. This method works in exactly the manner specified by the Files.getFileStore(java.nio.file.Path) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void checkAccess(Path path,                 AccessMode... modes)                            throws IOException
+				</name>
+				<description>
+					Checks the existence, and optionally the accessibility, of a file. This method may be used by the isReadable, isWritable and isExecutable methods to check the accessibility of a file. This method checks the existence of a file and that this Java virtual machine has appropriate privileges that would allow it access the file according to all of access modes specified in the modes parameter as follows: Value Description READ Checks that the file exists and that the Java virtual machine has permission to read the file. WRITE Checks that the file exists and that the Java virtual machine has permission to write to the file, EXECUTE Checks that the file exists and that the Java virtual machine has permission to execute the file. The semantics may differ when checking access to a directory. For example, on UNIX systems, checking for EXECUTE access checks that the Java virtual machine has permission to search the directory in order to access file or subdirectories. If the modes parameter is of length zero, then the existence of the file is checked. This method follows symbolic links if the file referenced by this object is a symbolic link. Depending on the implementation, this method may require to read file permissions, access control lists, or other file attributes in order to check the effective access to the file. To determine the effective access to a file may require access to several attributes and so in some implementations this method may not be atomic with respect to other file system operations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <V extends FileAttributeView> V getFileAttributeView(Path path,                                                     Class<V> type,                                                     LinkOption... options)
+				</name>
+				<description>
+					Returns a file attribute view of a given type. This method works in exactly the manner specified by the Files.getFileAttributeView(java.nio.file.Path, java.lang.Class<V>, java.nio.file.LinkOption...) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract <A extends BasicFileAttributes> A readAttributes(Path path,                                                 Class<A> type,                                                 LinkOption... options)                                                        throws IOException
+				</name>
+				<description>
+					Reads a file's attributes as a bulk operation. This method works in exactly the manner specified by the Files.readAttributes(Path,Class,LinkOption[]) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Map<String,Object> readAttributes(Path path,                                  String attributes,                                  LinkOption... options)                                             throws IOException
+				</name>
+				<description>
+					Reads a set of file attributes as a bulk operation. This method works in exactly the manner specified by the Files.readAttributes(Path,String,LinkOption[]) method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void setAttribute(Path path,                  String attribute,                  Object value,                  LinkOption... options)                             throws IOException
+				</name>
+				<description>
+					Sets the value of a file attribute. This method works in exactly the manner specified by the Files.setAttribute(java.nio.file.Path, java.lang.String, java.lang.Object, java.nio.file.LinkOption...) method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

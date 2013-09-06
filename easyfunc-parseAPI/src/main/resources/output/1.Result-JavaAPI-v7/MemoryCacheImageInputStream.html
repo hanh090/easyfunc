@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.imageio.stream
+	</package>
+	<type>
+		<name>
+			public class MemoryCacheImageInputStream  extends ImageInputStreamImpl
+		</name>
+		<description>
+			An implementation of ImageInputStream that gets its input from a regular InputStream. A memory buffer is used to cache at least the data between the discard position and the current read position. In general, it is preferable to use a FileCacheImageInputStream when reading from a regular InputStream. This class is provided for cases where it is not possible to create a writable temporary file.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MemoryCacheImageInputStream(InputStream stream)
+				</name>
+				<description>
+					Constructs a MemoryCacheImageInputStream that will read from a given InputStream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read()           throws IOException
+				</name>
+				<description>
+					Description copied from class: ImageInputStreamImpl Reads a single byte from the stream and returns it as an int between 0 and 255. If EOF is reached, -1 is returned. Subclasses must provide an implementation for this method. The subclass implementation should update the stream position before exiting. The bit offset within the stream must be reset to zero before the read occurs.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int read(byte[] b,         int off,         int len)           throws IOException
+				</name>
+				<description>
+					Description copied from class: ImageInputStreamImpl Reads up to len bytes from the stream, and stores them into b starting at index off. If no bytes can be read because the end of the stream has been reached, -1 is returned. The bit offset within the stream must be reset to zero before the read occurs. Subclasses must provide an implementation for this method. The subclass implementation should update the stream position before exiting.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void flushBefore(long pos)                   throws IOException
+				</name>
+				<description>
+					Description copied from interface: ImageInputStream Discards the initial portion of the stream prior to the indicated postion. Attempting to seek to an offset within the flushed portion of the stream will result in an IndexOutOfBoundsException. Calling flushBefore may allow classes implementing this interface to free up resources such as memory or disk space that are being used to store data from the stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCached()
+				</name>
+				<description>
+					Returns true since this ImageInputStream caches data in order to allow seeking backwards.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCachedFile()
+				</name>
+				<description>
+					Returns false since this ImageInputStream does not maintain a file cache.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isCachedMemory()
+				</name>
+				<description>
+					Returns true since this ImageInputStream maintains a main memory cache.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void close()             throws IOException
+				</name>
+				<description>
+					Closes this MemoryCacheImageInputStream, freeing the cache. The source InputStream is not closed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void finalize()                   throws Throwable
+				</name>
+				<description>
+					Finalizes this object prior to garbage collection. The close method is called to close any open input source. This method should not be called from application code.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

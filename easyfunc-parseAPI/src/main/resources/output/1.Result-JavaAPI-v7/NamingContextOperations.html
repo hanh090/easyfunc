@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		org.omg.CosNaming
+	</package>
+	<type>
+		<name>
+			public interface NamingContextOperations
+		</name>
+		<description>
+			A naming context is an object that contains a set of name bindings in which each name is unique. Different names can be bound to an object in the same or different contexts at the same time. See CORBA COS Naming Specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void bind(NameComponent[] n,          Object obj)            throws NotFound,                   CannotProceed,                   InvalidName,                   AlreadyBound
+				</name>
+				<description>
+					Creates a binding of a name and an object in the naming context. Naming contexts that are bound using bind do not participate in name resolution when compound names are passed to be resolved.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void bind_context(NameComponent[] n,                  NamingContext nc)                    throws NotFound,                           CannotProceed,                           InvalidName,                           AlreadyBound
+				</name>
+				<description>
+					Names an object that is a naming context. Naming contexts that are bound using bind_context() participate in name resolution when compound names are passed to be resolved.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void rebind(NameComponent[] n,            Object obj)              throws NotFound,                     CannotProceed,                     InvalidName
+				</name>
+				<description>
+					Creates a binding of a name and an object in the naming context even if the name is already bound in the context. Naming contexts that are bound using rebind do not participate in name resolution when compound names are passed to be resolved.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void rebind_context(NameComponent[] n,                    NamingContext nc)                      throws NotFound,                             CannotProceed,                             InvalidName
+				</name>
+				<description>
+					Creates a binding of a name and a naming context in the naming context even if the name is already bound in the context. Naming contexts that are bound using rebind_context() participate in name resolution when compound names are passed to be resolved.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object resolve(NameComponent[] n)                 throws NotFound,                        CannotProceed,                        InvalidName
+				</name>
+				<description>
+					The resolve operation is the process of retrieving an object bound to a name in a given context. The given name must exactly match the bound name. The naming service does not return the type of the object. Clients are responsible for "narrowing" the object to the appropriate type. That is, clients typically cast the returned object from Object to a more specialized interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void unbind(NameComponent[] n)              throws NotFound,                     CannotProceed,                     InvalidName
+				</name>
+				<description>
+					The unbind operation removes a name binding from a context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void list(int how_many,          BindingListHolder bl,          BindingIteratorHolder bi)
+				</name>
+				<description>
+					The list operation allows a client to iterate through a set of bindings in a naming context. The list operation returns at most the requested number of bindings in BindingList bl. If the naming context contains additional bindings, the list operation returns a BindingIterator with the additional bindings. If the naming context does not contain additional bindings, the binding iterator is a nil object reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NamingContext new_context()
+				</name>
+				<description>
+					This operation returns a naming context implemented by the same naming server as the context on which the operation was invoked. The new context is not bound to any name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NamingContext bind_new_context(NameComponent[] n)                                 throws NotFound,                                        AlreadyBound,                                        CannotProceed,                                        InvalidName
+				</name>
+				<description>
+					This operation creates a new context and binds it to the name supplied as an argument. The newly-created context is implemented by the same naming server as the context in which it was bound (that is, the naming server that implements the context denoted by the name argument excluding the last component).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void destroy()               throws NotEmpty
+				</name>
+				<description>
+					The destroy operation deletes a naming context. If the naming context contains bindings, the NotEmpty exception is raised.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

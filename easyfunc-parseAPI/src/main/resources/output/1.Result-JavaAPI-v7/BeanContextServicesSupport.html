@@ -1,0 +1,333 @@
+<javaelement>
+	<package>
+		java.beans.beancontext
+	</package>
+	<type>
+		<name>
+			public class BeanContextServicesSupport  extends BeanContextSupport  implements BeanContextServices
+		</name>
+		<description>
+			This helper class provides a utility implementation of the java.beans.beancontext.BeanContextServices interface. Since this class directly implements the BeanContextServices interface, the class can, and is intended to be used either by subclassing this implementation, or via delegation of an instance of this class from another through the BeanContextProxy interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected transient HashMap services
+				</name>
+				<description>
+					all accesses to the protected transient HashMap services field should be synchronized on that object
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient int serializable
+				</name>
+				<description>
+					The number of instances of a serializable BeanContextServceProvider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient BeanContextServicesSupport.BCSSProxyServiceProvider proxy
+				</name>
+				<description>
+					Delegate for the BeanContextServiceProvider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected transient ArrayList bcsListeners
+				</name>
+				<description>
+					List of BeanContextServicesListener objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextServicesSupport(BeanContextServices peer,                            Locale lcle,                            boolean dTime,                            boolean visible)
+				</name>
+				<description>
+					Construct a BeanContextServicesSupport instance
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextServicesSupport(BeanContextServices peer,                            Locale lcle,                            boolean dtime)
+				</name>
+				<description>
+					Create an instance using the specified Locale and design mode.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextServicesSupport(BeanContextServices peer,                            Locale lcle)
+				</name>
+				<description>
+					Create an instance using the specified locale
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextServicesSupport(BeanContextServices peer)
+				</name>
+				<description>
+					Create an instance with a peer
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextServicesSupport()
+				</name>
+				<description>
+					Create an instance that is not a delegate of another object
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void initialize()
+				</name>
+				<description>
+					called by BeanContextSupport superclass during construction and deserialization to initialize subclass transient state. subclasses may envelope this method, but should not override it or call it directly.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public BeanContextServices getBeanContextServicesPeer()
+				</name>
+				<description>
+					Gets the BeanContextServices associated with this BeanContextServicesSupport.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BeanContextSupport.BCSChild createBCSChild(Object targetChild,                                           Object peer)
+				</name>
+				<description>
+					Subclasses can override this method to insert their own subclass of Child without having to override add() or the other Collection methods that add children to the set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected BeanContextServicesSupport.BCSSServiceProvider createBCSSServiceProvider(Class sc,                                                                         BeanContextServiceProvider bcsp)
+				</name>
+				<description>
+					subclasses can override this method to create new subclasses of BCSSServiceProvider without having to overrride addService() in order to instantiate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addBeanContextServicesListener(BeanContextServicesListener bcsl)
+				</name>
+				<description>
+					add a BeanContextServicesListener
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeBeanContextServicesListener(BeanContextServicesListener bcsl)
+				</name>
+				<description>
+					remove a BeanContextServicesListener
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean addService(Class serviceClass,                   BeanContextServiceProvider bcsp)
+				</name>
+				<description>
+					add a service
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean addService(Class serviceClass,                   BeanContextServiceProvider bcsp,                   boolean fireEvent)
+				</name>
+				<description>
+					add a service
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void revokeService(Class serviceClass,                   BeanContextServiceProvider bcsp,                   boolean revokeCurrentServicesNow)
+				</name>
+				<description>
+					remove a service
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean hasService(Class serviceClass)
+				</name>
+				<description>
+					has a service, which may be delegated
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getService(BeanContextChild child,                  Object requestor,                  Class serviceClass,                  Object serviceSelector,                  BeanContextServiceRevokedListener bcsrl)                    throws TooManyListenersException
+				</name>
+				<description>
+					obtain a service which may be delegated
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void releaseService(BeanContextChild child,                    Object requestor,                    Object service)
+				</name>
+				<description>
+					release a service
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator getCurrentServiceClasses()
+				</name>
+				<description>
+					Description copied from interface: BeanContextServices Gets the currently available services for this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Iterator getCurrentServiceSelectors(Class serviceClass)
+				</name>
+				<description>
+					Description copied from interface: BeanContextServices Gets the list of service dependent service parameters (Service Selectors) for the specified service, by calling getCurrentServiceSelectors() on the underlying BeanContextServiceProvider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void serviceAvailable(BeanContextServiceAvailableEvent bcssae)
+				</name>
+				<description>
+					BeanContextServicesListener callback, propagates event to all currently registered listeners and BeanContextServices children, if this BeanContextService does not already implement this service itself. subclasses may override or envelope this method to implement their own propagation semantics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void serviceRevoked(BeanContextServiceRevokedEvent bcssre)
+				</name>
+				<description>
+					BeanContextServicesListener callback, propagates event to all currently registered listeners and BeanContextServices children, if this BeanContextService does not already implement this service itself. subclasses may override or envelope this method to implement their own propagation semantics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected static final BeanContextServicesListener getChildBeanContextServicesListener(Object child)
+				</name>
+				<description>
+					Gets the BeanContextServicesListener (if any) of the specified child.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void childJustRemovedHook(Object child,                          BeanContextSupport.BCSChild bcsc)
+				</name>
+				<description>
+					called from superclass child removal operations after a child has been successfully removed. called with child synchronized. This subclass uses this hook to immediately revoke any services being used by this child if it is a BeanContextChild. subclasses may envelope this method in order to implement their own child removal side-effects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void releaseBeanContextResources()
+				</name>
+				<description>
+					called from setBeanContext to notify a BeanContextChild to release resources obtained from the nesting BeanContext. This method revokes any services obtained from its parent. subclasses may envelope this method to implement their own semantics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void initializeBeanContextResources()
+				</name>
+				<description>
+					called from setBeanContext to notify a BeanContextChild to allocate resources obtained from the nesting BeanContext. subclasses may envelope this method to implement their own semantics.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void fireServiceAdded(Class serviceClass)
+				</name>
+				<description>
+					Fires a BeanContextServiceEvent notifying of a new service.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void fireServiceAdded(BeanContextServiceAvailableEvent bcssae)
+				</name>
+				<description>
+					Fires a BeanContextServiceAvailableEvent indicating that a new service has become available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void fireServiceRevoked(BeanContextServiceRevokedEvent bcsre)
+				</name>
+				<description>
+					Fires a BeanContextServiceEvent notifying of a service being revoked.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final void fireServiceRevoked(Class serviceClass,                        boolean revokeNow)
+				</name>
+				<description>
+					Fires a BeanContextServiceRevokedEvent indicating that a particular service is no longer available.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void bcsPreSerializationHook(ObjectOutputStream oos)                                  throws IOException
+				</name>
+				<description>
+					called from BeanContextSupport writeObject before it serializes the children ... This class will serialize any Serializable BeanContextServiceProviders herein. subclasses may envelope this method to insert their own serialization processing that has to occur prior to serialization of the children
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void bcsPreDeserializationHook(ObjectInputStream ois)                                    throws IOException,                                           ClassNotFoundException
+				</name>
+				<description>
+					called from BeanContextSupport readObject before it deserializes the children ... This class will deserialize any Serializable BeanContextServiceProviders serialized earlier thus making them available to the children when they deserialized. subclasses may envelope this method to insert their own serialization processing that has to occur prior to serialization of the children
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		javax.script
+	</package>
+	<type>
+		<name>
+			public interface ScriptEngine
+		</name>
+		<description>
+			ScriptEngine is the fundamental interface whose methods must be fully functional in every implementation of this specification. These methods provide basic scripting functionality. Applications written to this simple interface are expected to work with minimal modifications in every implementation. It includes methods that execute scripts, and ones that set and get values. The values are key/value pairs of two types. The first type of pairs consists of those whose keys are reserved and defined in this specification or by individual implementations. The values in the pairs with reserved keys have specified meanings. The other type of pairs consists of those that create Java language Bindings, the values are usually represented in scripts by the corresponding keys or by decorated forms of them.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final String ARGV
+				</name>
+				<description>
+					Reserved key for a named value that passes an array of positional arguments to a script.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String FILENAME
+				</name>
+				<description>
+					Reserved key for a named value that is the name of the file being executed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String ENGINE
+				</name>
+				<description>
+					Reserved key for a named value that is the name of the ScriptEngine implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String ENGINE_VERSION
+				</name>
+				<description>
+					Reserved key for a named value that identifies the version of the ScriptEngine implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String NAME
+				</name>
+				<description>
+					Reserved key for a named value that identifies the short name of the scripting language. The name is used by the ScriptEngineManager to locate a ScriptEngine with a given name in the getEngineByName method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String LANGUAGE
+				</name>
+				<description>
+					Reserved key for a named value that is the full name of Scripting Language supported by the implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					static final String LANGUAGE_VERSION
+				</name>
+				<description>
+					Reserved key for the named value that identifies the version of the scripting language supported by the implementation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object eval(String script,            ScriptContext context)              throws ScriptException
+				</name>
+				<description>
+					Causes the immediate execution of the script whose source is the String passed as the first argument. The script may be reparsed or recompiled before execution. State left in the engine from previous executions, including variable values and compiled procedures may be visible during this execution.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object eval(Reader reader,            ScriptContext context)              throws ScriptException
+				</name>
+				<description>
+					Same as eval(String, ScriptContext) where the source of the script is read from a Reader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object eval(String script)              throws ScriptException
+				</name>
+				<description>
+					Executes the specified script. The default ScriptContext for the ScriptEngine is used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object eval(Reader reader)              throws ScriptException
+				</name>
+				<description>
+					Same as eval(String) except that the source of the script is provided as a Reader
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object eval(String script,            Bindings n)              throws ScriptException
+				</name>
+				<description>
+					Executes the script using the Bindings argument as the ENGINE_SCOPE Bindings of the ScriptEngine during the script execution. The Reader, Writer and non-ENGINE_SCOPE Bindings of the default ScriptContext are used. The ENGINE_SCOPE Bindings of the ScriptEngine is not changed, and its mappings are unaltered by the script execution.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object eval(Reader reader,            Bindings n)              throws ScriptException
+				</name>
+				<description>
+					Same as eval(String, Bindings) except that the source of the script is provided as a Reader.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void put(String key,         Object value)
+				</name>
+				<description>
+					Sets a key/value pair in the state of the ScriptEngine that may either create a Java Language Binding to be used in the execution of scripts or be used in some other way, depending on whether the key is reserved. Must have the same effect as getBindings(ScriptContext.ENGINE_SCOPE).put.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object get(String key)
+				</name>
+				<description>
+					Retrieves a value set in the state of this engine. The value might be one which was set using setValue or some other value in the state of the ScriptEngine, depending on the implementation. Must have the same effect as getBindings(ScriptContext.ENGINE_SCOPE).get
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Bindings getBindings(int scope)
+				</name>
+				<description>
+					Returns a scope of named values. The possible scopes are: ScriptContext.GLOBAL_SCOPE - The set of named values representing global scope. If this ScriptEngine is created by a ScriptEngineManager, then the manager sets global scope bindings. This may be null if no global scope is associated with this ScriptEngine ScriptContext.ENGINE_SCOPE - The set of named values representing the state of this ScriptEngine. The values are generally visible in scripts using the associated keys as variable names. Any other value of scope defined in the default ScriptContext of the ScriptEngine. The Bindings instances that are returned must be identical to those returned by the getBindings method of ScriptContext called with corresponding arguments on the default ScriptContext of the ScriptEngine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setBindings(Bindings bindings,                 int scope)
+				</name>
+				<description>
+					Sets a scope of named values to be used by scripts. The possible scopes are: ScriptContext.ENGINE_SCOPE - The specified Bindings replaces the engine scope of the ScriptEngine. ScriptContext.GLOBAL_SCOPE - The specified Bindings must be visible as the GLOBAL_SCOPE. Any other value of scope defined in the default ScriptContext of the ScriptEngine. The method must have the same effect as calling the setBindings method of ScriptContext with the corresponding value of scope on the default ScriptContext of the ScriptEngine.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Bindings createBindings()
+				</name>
+				<description>
+					Returns an uninitialized Bindings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ScriptContext getContext()
+				</name>
+				<description>
+					Returns the default ScriptContext of the ScriptEngine whose Bindings, Reader and Writers are used for script executions when no ScriptContext is specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setContext(ScriptContext context)
+				</name>
+				<description>
+					Sets the default ScriptContext of the ScriptEngine whose Bindings, Reader and Writers are used for script executions when no ScriptContext is specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					ScriptEngineFactory getFactory()
+				</name>
+				<description>
+					Returns a ScriptEngineFactory for the class to which this ScriptEngine belongs.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

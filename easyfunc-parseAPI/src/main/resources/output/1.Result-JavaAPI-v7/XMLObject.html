@@ -1,0 +1,63 @@
+<javaelement>
+	<package>
+		javax.xml.crypto.dsig
+	</package>
+	<type>
+		<name>
+			public interface XMLObject  extends XMLStructure
+		</name>
+		<description>
+			A representation of the XML Object element as defined in the W3C Recommendation for XML-Signature Syntax and Processing. An XMLObject may contain any data and may include optional MIME type, ID, and encoding attributes. The XML Schema Definition is defined as:    <element name="Object" type="ds:ObjectType"/>   <complexType name="ObjectType" mixed="true">     <sequence minOccurs="0" maxOccurs="unbounded">       <any namespace="##any" processContents="lax"/>     </sequence>     <attribute name="Id" type="ID" use="optional"/>     <attribute name="MimeType" type="string" use="optional"/>     <attribute name="Encoding" type="anyURI" use="optional"/>   </complexType>   A XMLObject instance may be created by invoking the newXMLObject method of the XMLSignatureFactory class; for example:      XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");     List content = Collections.singletonList(fac.newManifest(references)));     XMLObject object = factory.newXMLObject(content, "object-1", null, null);   Note that this class is named XMLObject rather than Object to avoid naming clashes with the existing java.lang.Object class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final String TYPE
+				</name>
+				<description>
+					URI that identifies the Object element (this can be specified as the value of the type parameter of the Reference class to identify the referent's type).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					List getContent()
+				</name>
+				<description>
+					Returns an unmodifiable list of XMLStructures contained in this XMLObject, which represent elements from any namespace. If there is a public subclass representing the type of XMLStructure, it is returned as an instance of that class (ex: a SignatureProperties element would be returned as an instance of SignatureProperties).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getId()
+				</name>
+				<description>
+					Returns the Id of this XMLObject.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getMimeType()
+				</name>
+				<description>
+					Returns the mime type of this XMLObject. The mime type is an optional attribute which describes the data within this XMLObject (independent of its encoding).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getEncoding()
+				</name>
+				<description>
+					Returns the encoding URI of this XMLObject. The encoding URI identifies the method by which the object is encoded.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

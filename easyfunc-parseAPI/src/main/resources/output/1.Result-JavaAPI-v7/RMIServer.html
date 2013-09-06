@@ -1,0 +1,36 @@
+<javaelement>
+	<package>
+		javax.management.remote.rmi
+	</package>
+	<type>
+		<name>
+			public interface RMIServer  extends Remote
+		</name>
+		<description>
+			RMI object used to establish connections to an RMI connector. There is one Remote object implementing this interface for each RMI connector. User code does not usually refer to this interface. It is specified as part of the public API so that different implementations of that API will interoperate.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getVersion()                    throws RemoteException
+				</name>
+				<description>
+					The version of the RMI Connector Protocol understood by this connector server. This is a string with the following format:    protocol-version implementation-name   The protocol-version is a series of two or more non-negative integers separated by periods (.). An implementation of the version described by this documentation must use the string 1.0 here. After the protocol version there must be a space, followed by the implementation name. The format of the implementation name is unspecified. It is recommended that it include an implementation version number. An implementation can use an empty string as its implementation name, for example for security reasons.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					RMIConnection newClient(Object credentials)                          throws IOException
+				</name>
+				<description>
+					Makes a new connection through this RMI connector. Each remote client calls this method to obtain a new RMI object representing its connection.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

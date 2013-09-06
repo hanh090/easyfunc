@@ -1,0 +1,81 @@
+<javaelement>
+	<package>
+		javax.sound.midi.spi
+	</package>
+	<type>
+		<name>
+			public abstract class MidiFileWriter  extends Object
+		</name>
+		<description>
+			A MidiFileWriter supplies MIDI file-writing services. Classes that implement this interface can write one or more types of MIDI file from a Sequence object.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public MidiFileWriter()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int[] getMidiFileTypes()
+				</name>
+				<description>
+					Obtains the set of MIDI file types for which file writing support is provided by this file writer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int[] getMidiFileTypes(Sequence sequence)
+				</name>
+				<description>
+					Obtains the file types that this file writer can write from the sequence specified.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFileTypeSupported(int fileType)
+				</name>
+				<description>
+					Indicates whether file writing support for the specified MIDI file type is provided by this file writer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isFileTypeSupported(int fileType,                            Sequence sequence)
+				</name>
+				<description>
+					Indicates whether a MIDI file of the file type specified can be written from the sequence indicated.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int write(Sequence in,          int fileType,          OutputStream out)                     throws IOException
+				</name>
+				<description>
+					Writes a stream of bytes representing a MIDI file of the file type indicated to the output stream provided.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract int write(Sequence in,          int fileType,          File out)                     throws IOException
+				</name>
+				<description>
+					Writes a stream of bytes representing a MIDI file of the file type indicated to the external file provided.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

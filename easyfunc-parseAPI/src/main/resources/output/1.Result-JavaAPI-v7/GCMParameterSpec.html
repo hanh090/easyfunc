@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		javax.crypto.spec
+	</package>
+	<type>
+		<name>
+			public class GCMParameterSpec  extends Object  implements AlgorithmParameterSpec
+		</name>
+		<description>
+			Specifies the set of parameters required by a Cipher using the Galois/Counter Mode (GCM) mode. Simple block cipher modes (such as CBC) generally require only an initialization vector (such as IvParameterSpec), but GCM needs these parameters: IV: Initialization Vector (IV) tLen: length (in bits) of authentication tag T In addition to the parameters described here, other GCM inputs/output (Additional Authenticated Data (AAD), Keys, block ciphers, plain/ciphertext and authentication tags) are handled in the Cipher class. Please see RFC 5116 for more information on the Authenticated Encryption with Associated Data (AEAD) algorithm, and NIST Special Publication 800-38D, "NIST Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC." The GCM specification states that tLen may only have the values {128, 120, 112, 104, 96}, or {64, 32} for certain applications. Other values can be specified for this class, but not all CSP implementations will support them.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public GCMParameterSpec(int tLen,                  byte[] src)
+				</name>
+				<description>
+					Constructs a GCMParameterSpec using the specified authentication tag bit-length and IV buffer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public GCMParameterSpec(int tLen,                  byte[] src,                  int offset,                  int len)
+				</name>
+				<description>
+					Constructs a GCMParameterSpec object using the specified authentication tag bit-length and a subset of the specified buffer as the IV.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getTLen()
+				</name>
+				<description>
+					Returns the authentication tag length.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public byte[] getIV()
+				</name>
+				<description>
+					Returns the Initialization Vector (IV).
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,135 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public interface Keymap
+		</name>
+		<description>
+			A collection of bindings of KeyStrokes to actions. The bindings are basically name-value pairs that potentially resolve in a hierarchy.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String getName()
+				</name>
+				<description>
+					Fetches the name of the set of key-bindings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Action getDefaultAction()
+				</name>
+				<description>
+					Fetches the default action to fire if a key is typed (i.e. a KEY_TYPED KeyEvent is received) and there is no binding for it. Typically this would be some action that inserts text so that the keymap doesn't require an action for each possible key.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setDefaultAction(Action a)
+				</name>
+				<description>
+					Set the default action to fire if a key is typed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Action getAction(KeyStroke key)
+				</name>
+				<description>
+					Fetches the action appropriate for the given symbolic event sequence. This is used by JTextController to determine how to interpret key sequences. If the binding is not resolved locally, an attempt is made to resolve through the parent keymap, if one is set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					KeyStroke[] getBoundKeyStrokes()
+				</name>
+				<description>
+					Fetches all of the keystrokes in this map that are bound to some action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Action[] getBoundActions()
+				</name>
+				<description>
+					Fetches all of the actions defined in this keymap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					KeyStroke[] getKeyStrokesForAction(Action a)
+				</name>
+				<description>
+					Fetches the keystrokes that will result in the given action.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isLocallyDefined(KeyStroke key)
+				</name>
+				<description>
+					Determines if the given key sequence is locally defined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void addActionForKeyStroke(KeyStroke key,                           Action a)
+				</name>
+				<description>
+					Adds a binding to the keymap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeKeyStrokeBinding(KeyStroke keys)
+				</name>
+				<description>
+					Removes a binding from the keymap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void removeBindings()
+				</name>
+				<description>
+					Removes all bindings from the keymap.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Keymap getResolveParent()
+				</name>
+				<description>
+					Fetches the parent keymap used to resolve key-bindings.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					void setResolveParent(Keymap parent)
+				</name>
+				<description>
+					Sets the parent keymap, which will be used to resolve key-bindings. The behavior is unspecified if a Keymap has itself as one of its resolve parents.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

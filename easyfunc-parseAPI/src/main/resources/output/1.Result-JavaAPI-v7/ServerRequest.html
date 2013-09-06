@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		org.omg.CORBA
+	</package>
+	<type>
+		<name>
+			public abstract class ServerRequest  extends Object
+		</name>
+		<description>
+			An object that captures the explicit state of a request for the Dynamic Skeleton Interface (DSI). This class, the cornerstone of the DSI, is analogous to the Request object in the DII. The ORB is responsible for creating this embodiment of a request, and delivering it to a Dynamic Implementation Routine (DIR). A dynamic servant (a DIR) is created by implementing the DynamicImplementation class, which has a single invoke method. This method accepts a ServerRequest object. The abstract class ServerRequest defines methods for accessing the method name, the arguments and the context of the request, as well as methods for setting the result of the request either as a return value or an exception. A subtlety with accessing the arguments of the request is that the DIR needs to provide type information about the expected arguments, since there is no compiled information about these. This information is provided through an NVList, which is a list of NamedValue objects. Each NamedValue object contains an Any object, which in turn has a TypeCode object representing the type of the argument. Similarly, type information needs to be provided for the response, for either the expected result or for an exception, so the methods result and except take an Any object as a parameter.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ServerRequest()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public String op_name()
+				</name>
+				<description>
+					Deprecated. use operation() Retrieves the name of the operation being invoked. According to OMG IDL's rules, these names must be unique among all operations supported by this object's "most-derived" interface. Note that the operation names for getting and setting attributes are _get_<attribute_name> and _set_<attribute_name>, respectively.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String operation()
+				</name>
+				<description>
+					Throws an org.omg.CORBA.NO_IMPLEMENT exception. Retrieves the name of the operation being invoked. According to OMG IDL's rules, these names must be unique among all operations supported by this object's "most-derived" interface. Note that the operation names for getting and setting attributes are _get_<attribute_name> and _set_<attribute_name>, respectively.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void params(NVList params)
+				</name>
+				<description>
+					Deprecated. use the method arguments Specifies method parameter types and retrieves "in" and "inout" argument values. Note that this method is deprecated; use the method arguments in its place. Unless it calls the method set_exception, the DIR must call this method exactly once, even if the method signature contains no parameters. Once the method arguments or set_exception has been called, calling arguments on the same ServerRequest object will result in a BAD_INV_ORDER system exception. The DIR must pass in to the method arguments an NVList initialized with TypeCodes and Flags describing the parameter types for the operation, in the order in which they appear in the IDL specification (left to right). A potentially-different NVList will be returned from arguments, with the "in" and "inout" argument values supplied. If it does not call the method set_exception, the DIR must supply the returned NVList with return values for any "out" arguments before returning, and may also change the return values for any "inout" arguments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void arguments(NVList args)
+				</name>
+				<description>
+					Specifies method parameter types and retrieves "in" and "inout" argument values. Unless it calls the method set_exception, the DIR must call this method exactly once, even if the method signature contains no parameters. Once the method arguments or set_exception has been called, calling arguments on the same ServerRequest object will result in a BAD_INV_ORDER system exception. The DIR must pass in to the method arguments an NVList initialized with TypeCodes and Flags describing the parameter types for the operation, in the order in which they appear in the IDL specification (left to right). A potentially-different NVList will be returned from arguments, with the "in" and "inout" argument values supplied. If it does not call the method set_exception, the DIR must supply the returned NVList with return values for any "out" arguments before returning, and it may also change the return values for any "inout" arguments.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void result(Any any)
+				</name>
+				<description>
+					Deprecated. use the method set_result Specifies any return value for the call. Note that this method is deprecated; use the method set_result in its place. Unless the method set_exception is called, if the invoked method has a non-void result type, the method set_result must be called exactly once before the DIR returns. If the operation has a void result type, the method set_result may optionally be called once with an Any object whose type is tk_void. Calling the method set_result before the method arguments has been called or after the method set_result or set_exception has been called will result in a BAD_INV_ORDER exception. Calling the method set_result without having previously called the method ctx when the IDL operation contains a context expression, or when the NVList passed to arguments did not describe all parameters passed by the client, may result in a MARSHAL system exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set_result(Any any)
+				</name>
+				<description>
+					Throws an org.omg.CORBA.NO_IMPLEMENT exception. Specifies any return value for the call. Unless the method set_exception is called, if the invoked method has a non-void result type, the method set_result must be called exactly once before the DIR returns. If the operation has a void result type, the method set_result may optionally be called once with an Any object whose type is tk_void. Calling the method set_result before the method arguments has been called or after the method set_result or set_exception has been called will result in a BAD_INV_ORDER exception. Calling the method set_result without having previously called the method ctx when the IDL operation contains a context expression, or when the NVList passed to arguments did not describe all parameters passed by the client, may result in a MARSHAL system exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void except(Any any)
+				</name>
+				<description>
+					Deprecated. use set_exception() The DIR may call set_exception at any time to return an exception to the client. The Any passed to set_exception must contain either a system exception or a user exception specified in the raises expression of the invoked operation's IDL definition. Passing in an Any that does not contain an exception will result in a BAD_PARAM system exception. Passing in an unlisted user exception will result in either the DIR receiving a BAD_PARAM system exception or in the client receiving an UNKNOWN_EXCEPTION system exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void set_exception(Any any)
+				</name>
+				<description>
+					Throws an org.omg.CORBA.NO_IMPLEMENT exception. Returns the given exception to the client. This method is invoked by the DIR, which may call it at any time. The Any object passed to this method must contain either a system exception or one of the user exceptions specified in the invoked operation's IDL definition. Passing in an Any object that does not contain an exception will cause a BAD_PARAM system exception to be thrown. Passing in an unlisted user exception will result in either the DIR receiving a BAD_PARAM system exception or in the client receiving an UNKNOWN_EXCEPTION system exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract Context ctx()
+				</name>
+				<description>
+					Returns the context information specified in IDL for the operation when the operation is not an attribute access and the operation's IDL definition contains a context expression; otherwise it returns a nil Context reference. Calling the method ctx before the method arguments has been called or after the method ctx, set_result, or set_exception has been called will result in a BAD_INV_ORDER system exception.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

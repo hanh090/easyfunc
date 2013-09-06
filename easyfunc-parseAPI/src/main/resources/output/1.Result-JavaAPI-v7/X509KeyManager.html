@@ -1,0 +1,72 @@
+<javaelement>
+	<package>
+		javax.net.ssl
+	</package>
+	<type>
+		<name>
+			public interface X509KeyManager  extends KeyManager
+		</name>
+		<description>
+			Instances of this interface manage which X509 certificate-based key pairs are used to authenticate the local side of a secure socket. During secure socket negotiations, implentations call methods in this interface to: determine the set of aliases that are available for negotiations based on the criteria presented, select the best alias based on the criteria presented, and obtain the corresponding key material for given aliases. Note: the X509ExtendedKeyManager should be used in favor of this class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					String[] getClientAliases(String keyType,                          Principal[] issuers)
+				</name>
+				<description>
+					Get the matching aliases for authenticating the client side of a secure socket given the public key type and the list of certificate issuer authorities recognized by the peer (if any).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String chooseClientAlias(String[] keyType,                         Principal[] issuers,                         Socket socket)
+				</name>
+				<description>
+					Choose an alias to authenticate the client side of a secure socket given the public key type and the list of certificate issuer authorities recognized by the peer (if any).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String[] getServerAliases(String keyType,                          Principal[] issuers)
+				</name>
+				<description>
+					Get the matching aliases for authenticating the server side of a secure socket given the public key type and the list of certificate issuer authorities recognized by the peer (if any).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String chooseServerAlias(String keyType,                         Principal[] issuers,                         Socket socket)
+				</name>
+				<description>
+					Choose an alias to authenticate the server side of a secure socket given the public key type and the list of certificate issuer authorities recognized by the peer (if any).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					X509Certificate[] getCertificateChain(String alias)
+				</name>
+				<description>
+					Returns the certificate chain associated with the given alias.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					PrivateKey getPrivateKey(String alias)
+				</name>
+				<description>
+					Returns the key associated with the given alias.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

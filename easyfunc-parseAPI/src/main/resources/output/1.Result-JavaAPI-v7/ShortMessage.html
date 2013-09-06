@@ -1,0 +1,306 @@
+<javaelement>
+	<package>
+		javax.sound.midi
+	</package>
+	<type>
+		<name>
+			public class ShortMessage  extends MidiMessage
+		</name>
+		<description>
+			A ShortMessage contains a MIDI message that has at most two data bytes following its status byte. The types of MIDI message that satisfy this criterion are channel voice, channel mode, system common, and system real-time--in other words, everything except system exclusive and meta-events. The ShortMessage class provides methods for getting and setting the contents of the MIDI message. A number of ShortMessage methods have integer parameters by which you specify a MIDI status or data byte. If you know the numeric value, you can express it directly. For system common and system real-time messages, you can often use the corresponding fields of ShortMessage, such as SYSTEM_RESET. For channel messages, the upper four bits of the status byte are specified by a command value and the lower four bits are specified by a MIDI channel number. To convert incoming MIDI data bytes that are in the form of Java's signed bytes, you can use the conversion code given in the MidiMessage class description.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final int MIDI_TIME_CODE
+				</name>
+				<description>
+					Status byte for MIDI Time Code Quarter Frame message (0xF1, or 241).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int SONG_POSITION_POINTER
+				</name>
+				<description>
+					Status byte for Song Position Pointer message (0xF2, or 242).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int SONG_SELECT
+				</name>
+				<description>
+					Status byte for MIDI Song Select message (0xF3, or 243).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TUNE_REQUEST
+				</name>
+				<description>
+					Status byte for Tune Request message (0xF6, or 246).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int END_OF_EXCLUSIVE
+				</name>
+				<description>
+					Status byte for End of System Exclusive message (0xF7, or 247).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int TIMING_CLOCK
+				</name>
+				<description>
+					Status byte for Timing Clock messagem (0xF8, or 248).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int START
+				</name>
+				<description>
+					Status byte for Start message (0xFA, or 250).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CONTINUE
+				</name>
+				<description>
+					Status byte for Continue message (0xFB, or 251).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int STOP
+				</name>
+				<description>
+					Status byte for Stop message (0xFC, or 252).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int ACTIVE_SENSING
+				</name>
+				<description>
+					Status byte for Active Sensing message (0xFE, or 254).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int SYSTEM_RESET
+				</name>
+				<description>
+					Status byte for System Reset message (0xFF, or 255).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NOTE_OFF
+				</name>
+				<description>
+					Command value for Note Off message (0x80, or 128)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int NOTE_ON
+				</name>
+				<description>
+					Command value for Note On message (0x90, or 144)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int POLY_PRESSURE
+				</name>
+				<description>
+					Command value for Polyphonic Key Pressure (Aftertouch) message (0xA0, or 160)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CONTROL_CHANGE
+				</name>
+				<description>
+					Command value for Control Change message (0xB0, or 176)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PROGRAM_CHANGE
+				</name>
+				<description>
+					Command value for Program Change message (0xC0, or 192)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int CHANNEL_PRESSURE
+				</name>
+				<description>
+					Command value for Channel Pressure (Aftertouch) message (0xD0, or 208)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final int PITCH_BEND
+				</name>
+				<description>
+					Command value for Pitch Bend message (0xE0, or 224)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortMessage()
+				</name>
+				<description>
+					Constructs a new ShortMessage. The contents of the new message are guaranteed to specify a valid MIDI message. Subsequently, you may set the contents of the message using one of the setMessage methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortMessage(int status)               throws InvalidMidiDataException
+				</name>
+				<description>
+					Constructs a new ShortMessage which represents a MIDI message that takes no data bytes. The contents of the message can be changed by using one of the setMessage methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortMessage(int status,              int data1,              int data2)               throws InvalidMidiDataException
+				</name>
+				<description>
+					Constructs a new ShortMessage which represents a MIDI message that takes up to two data bytes. If the message only takes one data byte, the second data byte is ignored. If the message does not take any data bytes, both data bytes are ignored. The contents of the message can be changed by using one of the setMessage methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ShortMessage(int command,              int channel,              int data1,              int data2)               throws InvalidMidiDataException
+				</name>
+				<description>
+					Constructs a new ShortMessage which represents a channel MIDI message that takes up to two data bytes. If the message only takes one data byte, the second data byte is ignored. If the message does not take any data bytes, both data bytes are ignored. The contents of the message can be changed by using one of the setMessage methods.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected ShortMessage(byte[] data)
+				</name>
+				<description>
+					Constructs a new ShortMessage.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMessage(int status)                  throws InvalidMidiDataException
+				</name>
+				<description>
+					Sets the parameters for a MIDI message that takes no data bytes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMessage(int status,                int data1,                int data2)                  throws InvalidMidiDataException
+				</name>
+				<description>
+					Sets the parameters for a MIDI message that takes one or two data bytes. If the message takes only one data byte, the second data byte is ignored; if the message does not take any data bytes, both data bytes are ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMessage(int command,                int channel,                int data1,                int data2)                  throws InvalidMidiDataException
+				</name>
+				<description>
+					Sets the short message parameters for a channel message which takes up to two data bytes. If the message only takes one data byte, the second data byte is ignored; if the message does not take any data bytes, both data bytes are ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getChannel()
+				</name>
+				<description>
+					Obtains the MIDI channel associated with this event. This method assumes that the event is a MIDI channel message; if not, the return value will not be meaningful.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getCommand()
+				</name>
+				<description>
+					Obtains the MIDI command associated with this event. This method assumes that the event is a MIDI channel message; if not, the return value will not be meaningful.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getData1()
+				</name>
+				<description>
+					Obtains the first data byte in the message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getData2()
+				</name>
+				<description>
+					Obtains the second data byte in the message.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Creates a new object of the same class and with the same contents as this object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected final int getDataLength(int status)                             throws InvalidMidiDataException
+				</name>
+				<description>
+					Retrieves the number of data bytes associated with a particular status byte value.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>
