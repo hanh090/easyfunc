@@ -11,7 +11,7 @@ public class Annotations extends ApiElement {
 	}
 
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		return null;
 	}
 

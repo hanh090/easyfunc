@@ -10,7 +10,7 @@ public class Package extends ApiElement {
 	}
 
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		
 		return JavaSelector.PACKAGE_SELECTOR;
 	}

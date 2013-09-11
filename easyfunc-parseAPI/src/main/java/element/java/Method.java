@@ -12,7 +12,7 @@ public class Method extends ApiElement {
 	}
 
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		
 		return JavaSelector.METHOD_SELECTOR;
 	}

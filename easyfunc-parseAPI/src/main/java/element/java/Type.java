@@ -6,7 +6,7 @@ public class Type extends ApiElement {
 	
 	
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		
 		return JavaSelector.TYPE_SELECTOR;
 	}

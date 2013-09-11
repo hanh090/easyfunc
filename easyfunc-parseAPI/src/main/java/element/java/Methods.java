@@ -24,7 +24,7 @@ public class Methods extends ApiElement {
 		this.setChildren(methods);		
 	}
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		
 		return JavaSelector.METHODS_SELECTOR;
 	}

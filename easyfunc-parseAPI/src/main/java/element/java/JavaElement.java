@@ -8,7 +8,7 @@ import element.ApiElement;
 public class JavaElement extends ApiElement {
 
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		return JavaSelector.JAVA_CONTENT_SELECTOR;
 	}
 

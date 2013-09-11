@@ -20,7 +20,7 @@ public abstract class ApiElement {
 
 	public ApiElement() {
 		children = new ArrayList<Object>();
-		this.selector = buildSelector();
+		this.selector = selector();
 	}
 	
 	public void doParse(Elements parentContent) {
@@ -125,8 +125,14 @@ public abstract class ApiElement {
 	public void setRawContent(Elements rawContent) {
 		this.rawContent = rawContent;
 	}
-	
-	public abstract String buildSelector();
+	/**
+	 * Return selector of element
+	 * @return
+	 */
+	public abstract String selector();
+	/**
+	 * Build the children of element
+	 */
 	public abstract void buildChildren();
 
 	

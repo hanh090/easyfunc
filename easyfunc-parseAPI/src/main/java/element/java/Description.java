@@ -12,7 +12,7 @@ public class Description extends ApiElement {
 	}
 
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		
 		return JavaSelector.DESCRIPTION_SELECTOR;
 	}

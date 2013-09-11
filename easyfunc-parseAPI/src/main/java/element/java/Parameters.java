@@ -4,7 +4,7 @@ import element.ApiElement;
 
 public class Parameters extends ApiElement {
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		
 		return null;
 	}

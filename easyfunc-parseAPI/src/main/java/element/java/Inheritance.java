@@ -7,7 +7,7 @@ import element.ApiElement;
 public class Inheritance extends ApiElement {
 
 	@Override
-	public String buildSelector() {
+	public String selector() {
 		
 		return null;
 	}
