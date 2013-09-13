@@ -2,14 +2,15 @@ package resource;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class JavaResource implements ApiResource {
-	private static final String OUTPUT = "D:\\easyfunc\\src\\main\\resources\\output\\1.Result-JavaAPI-v7\\";
-	private static final String INPUT = "D:\\easyfunc\\src\\main\\resources\\input\\1.JavaAPI-v7\\docs\\api";
+	private static final String OUTPUT = "src/main/resources/output/1.Result-JavaAPI-v7/";
+	private static final String INPUT = "src/main/resources/input/1.JavaAPI-v7/docs/api";
 	/**
 	 * Just for test. Assign to null when test done
 	 */
