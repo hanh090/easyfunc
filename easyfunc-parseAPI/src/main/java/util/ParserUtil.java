@@ -104,6 +104,6 @@ public class ParserUtil {
 	 * @return location of parsed result 
 	 */
 	public static String getOuputLocation(){
-		return new JavaResource().getOutput();
+		return "../easyfunc-parseAPI/" + new JavaResource().getOutput();
 	}
 }
