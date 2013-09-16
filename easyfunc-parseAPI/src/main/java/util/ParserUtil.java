@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import resource.JavaResource;
 
@@ -43,6 +44,52 @@ public class ParserUtil {
 			try {
 				Document document = Jsoup.parse(f,"UTF-8");
 				result.add(document.select(selector).text());
+				System.out.println(result);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Get element from file with specify selector
+	 * @param filePath path to file which will use for get text
+	 * @param selector selector for get text.Selector has syntax of {@link org.jsoup.select.Selector}
+	 * @return {@link Elements} from selector
+	 */
+	public static Elements getElement(File file,String selector) {
+		try {
+			Document document = Jsoup.parse(file,"UTF-8");
+			Elements elements = document.select(selector);
+			return elements;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Get all elements from all file in a directory with specify selector
+	 * @param directoryPath name of file which will use for
+	 * @param selector selector for get text.Selector has syntax of {@link org.jsoup.select.Selector}
+	 * @return plain text from selector
+	 */
+	public static Elements getAllElement(String directoryPath,String selector) {
+		Elements result = new Elements();
+		File file = new File(directoryPath);
+		if(!file.isDirectory()){
+			System.out.println("Must be directory");
+			return null;
+		}
+		
+		for (File f : file.listFiles()) {
+			try {
+				Document document = Jsoup.parse(f,"UTF-8");
+				result.addAll(document.select(selector));
 				System.out.println(result);
 			} catch (IOException e) {
 				e.printStackTrace();
