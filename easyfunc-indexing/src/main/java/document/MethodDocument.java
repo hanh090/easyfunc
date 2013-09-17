@@ -1,25 +1,16 @@
 package document;
 
-import org.apache.lucene.document.Field;
+import org.jsoup.select.Elements;
 
-public class MethodDocument extends AbstractDocument {
+public class MethodDocument extends ApiDocumentFactory{
 
-	@Override
-	public boolean add(Field field) {
-		
-		return false;
+	public MethodDocument(Elements elements) {
+		super(elements);
 	}
 
 	@Override
-	public boolean update(String id, Field field) {
-		
-		return false;
+	public ApiDocument createDocument() {
+		return null;
 	}
-
-	@Override
-	public boolean delete(Field field) {
-		
-		return false;
-	}
-
+	
 }
