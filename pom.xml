@@ -7,11 +7,27 @@
   <description>API Search Project</description>
   <packaging>pom</packaging>
   
-  
+  <properties>
+  	<lucene.version>4.0.0-ALPHA</lucene.version>
+  </properties>
   <modules>
   	<module>easyfunc-parseAPI</module>
   	<module>easyfunc-code-generation</module>
   	<module>easyfunc-indexing</module>
   	<module>easyfunc-view</module>
   </modules>
+  <build>
+   <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
 </project>
