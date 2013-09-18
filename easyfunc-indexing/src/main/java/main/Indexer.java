@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.synonym.WordnetSynonymParser;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.Field.Store;
@@ -68,6 +69,7 @@ public class Indexer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void doIndex() {
