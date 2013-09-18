@@ -1,33 +1,67 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>edu.hcmut.cse.easyfunc</groupId>
-  <artifactId>easyfunc</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>API Search Project</name>
-  <description>API Search Project</description>
-  <packaging>pom</packaging>
-  
-  <properties>
-  	<lucene.version>4.0.0-ALPHA</lucene.version>
-  </properties>
-  <modules>
-  	<module>easyfunc-parseAPI</module>
-  	<module>easyfunc-code-generation</module>
-  	<module>easyfunc-indexing</module>
-  	<module>easyfunc-view</module>
-  </modules>
-  <build>
-   <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.hcmut.cse.easyfunc</groupId>
+	<artifactId>easyfunc</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>API Search Project</name>
+	<description>API Search Project</description>
+	<packaging>pom</packaging>
+	<repositories>
+		<repository>
+			<id>repo</id>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>file://${basedir}/lib</url>
+		</repository>
+		<repository>
+			<id>clojars.org</id>
+			<url>http://clojars.org/repo</url>
+		</repository>
+	</repositories>
+	<properties>
+		<lucene.version>4.0.0</lucene.version>
+	</properties>
+	<modules>
+		<module>easyfunc-parseAPI</module>
+		<module>easyfunc-code-generation</module>
+		<module>easyfunc-indexing</module>
+		<module>easyfunc-view</module>
+		<module>easyfunc-util</module>
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
