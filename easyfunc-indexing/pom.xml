@@ -9,18 +9,6 @@
 	<artifactId>easyfunc-indexing</artifactId>
 	<name>EasyFunc Indexing</name>
 	<description>Progress indexing in EasyFunc System</description>
-	<repositories>
-		<repository>
-			<id>thirdparty-uploads</id>
-			<name>JBoss Thirdparty Uploads</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads</url>
-		</repository>
-		
-	</repositories>
-	<properties>
-		<lucene.version>4.4.0</lucene.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>edu.hcmut.cse.easyfunc</groupId>
@@ -43,29 +31,22 @@
 			<artifactId>lucene-queryparser</artifactId>
 			<version>${lucene.version}</version>
 		</dependency>
+		<!-- Lucene lemmatizer -->
 		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-wordnet</artifactId>
-			<version>3.3.0</version>
+			<groupId>org.clojars.sorenmacbeth</groupId>
+			<artifactId>lucene-stanford-lemmatizer</artifactId>
+			<version>0.1.6</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-demo</artifactId>
-			<version>4.4.0</version>
+		<!-- Dependency of lucene lemmatizer -->
+		<dependency>    
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>13.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-benchmark</artifactId>
-			<version>4.4.0</version>
+		<dependency> 
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>1.3.4</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.11.0</version>
-		</dependency>
-
 	</dependencies>
 </project>
