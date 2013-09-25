@@ -78,9 +78,9 @@ public class ParserUtil {
 	 * @param selector selector for get text.Selector has syntax of {@link org.jsoup.select.Selector}
 	 * @return plain text from selector
 	 */
-	public static Elements getAllElement(String directoryPath,String selector) {
+	public static Elements getAllElement(String selector) {
 		Elements result = new Elements();
-		File file = new File(directoryPath);
+		File file = new File(getOuputLocation());
 		if(!file.isDirectory()){
 			System.out.println("Must be directory");
 			return null;
@@ -105,5 +105,43 @@ public class ParserUtil {
 	 */
 	public static String getOuputLocation(){
 		return "../easyfunc-parseAPI/" + new JavaResource().getOutput();
+	}
+	/**
+	 * Count element in specify file
+	 * @param selector
+	 * @param file
+	 * @return
+	 */
+	public static int countElement(String selector, File file){
+		try {
+			Document document = Jsoup.parse(file, "UTF-8");
+			return document.select(selector).size();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
+		
+	}
+	/**
+	 * Count all element in output directory
+	 * @param selector
+	 * @return
+	 */
+	public static int countAllElement(String selector){
+		int result = 0;
+		File file = new File(getOuputLocation());
+		
+		for (File f : file.listFiles()) {
+			try {
+				Document document = Jsoup.parse(f,"UTF-8");
+				result += document.select(selector).size();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+		
 	}
 }
