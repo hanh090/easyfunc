@@ -1,0 +1,207 @@
+<javaelement>
+	<package>
+		java.security
+	</package>
+	<type>
+		<name>
+			public abstract class Provider  extends Properties
+		</name>
+		<description>
+			This class represents a "provider" for the Java Security API, where a provider implements some or all parts of Java Security. Services that a provider may implement include: Algorithms (such as DSA, RSA, MD5 or SHA-1). Key generation, conversion, and management facilities (such as for algorithm-specific keys). Each provider has a name and a version number, and is configured in each runtime it is installed in. See The Provider Class in the "Java Cryptography Architecture API Specification & Reference" for information about how a particular type of provider, the cryptographic service provider, works and is installed. However, please note that a provider can be used to implement any security service in Java that uses a pluggable architecture with a choice of implementations that fit underneath. Some provider implementations may encounter unrecoverable internal errors during their operation, for example a failure to communicate with a security token. A ProviderException should be used to indicate such errors. The service type Provider is reserved for use by the security framework. Services of this type cannot be added, removed, or modified by applications. The following attributes are automatically placed in each Provider object: Name Value Provider.id name String.valueOf(provider.getName()) Provider.id version String.valueOf(provider.getVersion()) Provider.id info String.valueOf(provider.getInfo()) Provider.id className provider.getClass().getName()
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Provider(String name,          double version,          String info)
+				</name>
+				<description>
+					Constructs a provider with the specified name, version number, and information.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getName()
+				</name>
+				<description>
+					Returns the name of this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public double getVersion()
+				</name>
+				<description>
+					Returns the version number for this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getInfo()
+				</name>
+				<description>
+					Returns a human-readable description of the provider and its services. This may return an HTML page, with relevant links.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a string with the name and the version number of this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Clears this provider so that it no longer contains the properties used to look up facilities implemented by the provider. First, if there is a security manager, its checkSecurityAccess method is called with the string "clearProviderProperties."+name (where name is the provider name) to see if it's ok to clear this provider. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with a SecurityPermission("clearProviderProperties."+name) permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void load(InputStream inStream)            throws IOException
+				</name>
+				<description>
+					Reads a property list (key and element pairs) from the input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void putAll(Map<?,?> t)
+				</name>
+				<description>
+					Copies all of the mappings from the specified Map to this provider. These mappings will replace any properties that this provider had for any of the keys currently in the specified Map.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Map.Entry<Object,Object>> entrySet()
+				</name>
+				<description>
+					Returns an unmodifiable Set view of the property entries contained in this Provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Object> keySet()
+				</name>
+				<description>
+					Returns an unmodifiable Set view of the property keys contained in this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Collection<Object> values()
+				</name>
+				<description>
+					Returns an unmodifiable Collection view of the property values contained in this provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object put(Object key,           Object value)
+				</name>
+				<description>
+					Sets the key property to have the specified value. First, if there is a security manager, its checkSecurityAccess method is called with the string "putProviderProperty."+name, where name is the provider name, to see if it's ok to set this provider's property values. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with a SecurityPermission("putProviderProperty."+name) permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object remove(Object key)
+				</name>
+				<description>
+					Removes the key property (and its corresponding value). First, if there is a security manager, its checkSecurityAccess method is called with the string "removeProviderProperty."+name, where name is the provider name, to see if it's ok to remove this provider's properties. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with a SecurityPermission("removeProviderProperty."+name) permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object get(Object key)
+				</name>
+				<description>
+					Description copied from class: Hashtable Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key. More formally, if this map contains a mapping from a key k to a value v such that (key.equals(k)), then this method returns v; otherwise it returns null. (There can be at most one such mapping.)
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<Object> keys()
+				</name>
+				<description>
+					Description copied from class: Hashtable Returns an enumeration of the keys in this hashtable.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<Object> elements()
+				</name>
+				<description>
+					Description copied from class: Hashtable Returns an enumeration of the values in this hashtable. Use the Enumeration methods on the returned object to fetch the elements sequentially.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getProperty(String key)
+				</name>
+				<description>
+					Description copied from class: Properties Searches for the property with the specified key in this property list. If the key is not found in this property list, the default property list, and its defaults, recursively, are then checked. The method returns null if the property is not found.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Provider.Service getService(String type,                            String algorithm)
+				</name>
+				<description>
+					Get the service describing this Provider's implementation of the specified type of this algorithm or alias. If no such implementation exists, this method returns null. If there are two matching services, one added to this provider using putService() and one added via put(), the service added via putService() is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<Provider.Service> getServices()
+				</name>
+				<description>
+					Get an unmodifiable Set of all services supported by this Provider.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void putService(Provider.Service s)
+				</name>
+				<description>
+					Add a service. If a service of the same type with the same algorithm name exists and it was added using putService(), it is replaced by the new service. This method also places information about this service in the provider's Hashtable values in the format described in the Java Cryptography Architecture API Specification & Reference . Also, if there is a security manager, its checkSecurityAccess method is called with the string "putProviderProperty."+name, where name is the provider name, to see if it's ok to set this provider's property values. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with a SecurityPermission("putProviderProperty."+name) permission.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void removeService(Provider.Service s)
+				</name>
+				<description>
+					Remove a service previously added using putService(). The specified service is removed from this provider. It will no longer be returned by getService() and its information will be removed from this provider's Hashtable. Also, if there is a security manager, its checkSecurityAccess method is called with the string "removeProviderProperty."+name, where name is the provider name, to see if it's ok to remove this provider's properties. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the security manager's checkPermission method with a SecurityPermission("removeProviderProperty."+name) permission.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

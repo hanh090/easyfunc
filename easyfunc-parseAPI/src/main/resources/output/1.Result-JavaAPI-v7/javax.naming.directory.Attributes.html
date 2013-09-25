@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		javax.naming.directory
+	</package>
+	<type>
+		<name>
+			public interface Attributes  extends Cloneable, Serializable
+		</name>
+		<description>
+			This interface represents a collection of attributes. In a directory, named objects can have associated with them attributes. The Attributes interface represents a collection of attributes. For example, you can request from the directory the attributes associated with an object. Those attributes are returned in an object that implements the Attributes interface. Attributes in an object that implements the Attributes interface are unordered. The object can have zero or more attributes. Attributes is either case-sensitive or case-insensitive (case-ignore). This property is determined at the time the Attributes object is created. (see BasicAttributes constructor for example). In a case-insensitive Attributes, the case of its attribute identifiers is ignored when searching for an attribute, or adding attributes. In a case-sensitive Attributes, the case is significant. Note that updates to Attributes (such as adding or removing an attribute) do not affect the corresponding representation in the directory. Updates to the directory can only be effected using operations in the DirContext interface.
+		</description>
+		<methods>
+			<method>
+				<name>
+					boolean isCaseIgnored()
+				</name>
+				<description>
+					Determines whether the attribute set ignores the case of attribute identifiers when retrieving or adding attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int size()
+				</name>
+				<description>
+					Retrieves the number of attributes in the attribute set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Attribute get(String attrID)
+				</name>
+				<description>
+					Retrieves the attribute with the given attribute id from the attribute set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NamingEnumeration<? extends Attribute> getAll()
+				</name>
+				<description>
+					Retrieves an enumeration of the attributes in the attribute set. The effects of updates to this attribute set on this enumeration are undefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					NamingEnumeration<String> getIDs()
+				</name>
+				<description>
+					Retrieves an enumeration of the ids of the attributes in the attribute set. The effects of updates to this attribute set on this enumeration are undefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Attribute put(String attrID,              Object val)
+				</name>
+				<description>
+					Adds a new attribute to the attribute set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Attribute put(Attribute attr)
+				</name>
+				<description>
+					Adds a new attribute to the attribute set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Attribute remove(String attrID)
+				</name>
+				<description>
+					Removes the attribute with the attribute id 'attrID' from the attribute set. If the attribute does not exist, ignore.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object clone()
+				</name>
+				<description>
+					Makes a copy of the attribute set. The new set contains the same attributes as the original set: the attributes are not themselves cloned. Changes to the copy will not affect the original and vice versa.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

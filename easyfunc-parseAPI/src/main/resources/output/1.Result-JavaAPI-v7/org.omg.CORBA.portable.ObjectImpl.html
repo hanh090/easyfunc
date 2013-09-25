@@ -1,0 +1,261 @@
+<javaelement>
+	<package>
+		org.omg.CORBA.portable
+	</package>
+	<type>
+		<name>
+			public abstract class ObjectImpl  extends Object  implements Object
+		</name>
+		<description>
+			The common base class for all stub classes; provides default implementations of the org.omg.CORBA.Object methods. All method implementations are forwarded to a Delegate object stored in the ObjectImpl instance. ObjectImpl allows for portable stubs because the Delegate can be implemented by a different vendor-specific ORB.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ObjectImpl()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Delegate _get_delegate()
+				</name>
+				<description>
+					Retrieves the reference to the vendor-specific Delegate object to which this ObjectImpl object delegates all methods invoked on it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void _set_delegate(Delegate delegate)
+				</name>
+				<description>
+					Sets the Delegate for this ObjectImpl instance to the given Delegate object. All method invocations on this ObjectImpl object will be forwarded to this delegate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract String[] _ids()
+				</name>
+				<description>
+					Retrieves a string array containing the repository identifiers supported by this ObjectImpl object. For example, for a stub, this method returns information about all the interfaces supported by the stub.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object _duplicate()
+				</name>
+				<description>
+					Returns a duplicate of this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void _release()
+				</name>
+				<description>
+					Releases the resources associated with this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean _is_a(String repository_id)
+				</name>
+				<description>
+					Checks whether the object identified by the given repository identifier is an ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean _is_equivalent(Object that)
+				</name>
+				<description>
+					Checks whether the the given ObjectImpl object is equivalent to this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean _non_existent()
+				</name>
+				<description>
+					Checks whether the server object for this ObjectImpl object has been destroyed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int _hash(int maximum)
+				</name>
+				<description>
+					Retrieves the hash code that serves as an ORB-internal identifier for this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Request _request(String operation)
+				</name>
+				<description>
+					Creates a Request object containing the given method that can be used with the Dynamic Invocation Interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Request _create_request(Context ctx,                        String operation,                        NVList arg_list,                        NamedValue result)
+				</name>
+				<description>
+					Creates a Request object that contains the given context, method, argument list, and container for the result.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Request _create_request(Context ctx,                        String operation,                        NVList arg_list,                        NamedValue result,                        ExceptionList exceptions,                        ContextList contexts)
+				</name>
+				<description>
+					Creates a Request object that contains the given context, method, argument list, container for the result, exceptions, and list of property names to be used in resolving the context strings. This Request object is for use in the Dynamic Invocation Interface.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object _get_interface_def()
+				</name>
+				<description>
+					Retrieves the interface definition for this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ORB _orb()
+				</name>
+				<description>
+					Returns a reference to the ORB associated with this object and its delegate. This is the ORB object that created the delegate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Policy _get_policy(int policy_type)
+				</name>
+				<description>
+					Retrieves the Policy object for this ObjectImpl object that has the given policy type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public DomainManager[] _get_domain_managers()
+				</name>
+				<description>
+					Retrieves a list of the domain managers for this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object _set_policy_override(Policy[] policies,                            SetOverrideType set_add)
+				</name>
+				<description>
+					Sets this ObjectImpl object's override type for the given policies to the given instance of SetOverrideType.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean _is_local()
+				</name>
+				<description>
+					Checks whether this ObjectImpl object is implemented by a local servant. If so, local invocation API's may be used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ServantObject _servant_preinvoke(String operation,                                 Class expectedType)
+				</name>
+				<description>
+					Returns a Java reference to the local servant that should be used for sending a request for the method specified. If this ObjectImpl object is a local stub, it will invoke the _servant_preinvoke method before sending a request in order to obtain the ServantObject instance to use. If a ServantObject object is returned, its servant field has been set to an object of the expected type (Note: the object may or may not be the actual servant instance). The local stub may cast the servant field to the expected type, and then invoke the operation directly. The ServantRequest object is valid for only one invocation and cannot be used for more than one invocation.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void _servant_postinvoke(ServantObject servant)
+				</name>
+				<description>
+					Is called by the local stub after it has invoked an operation on the local servant that was previously retrieved from a call to the method _servant_preinvoke. The _servant_postinvoke method must be called if the _servant_preinvoke method returned a non-null value, even if an exception was thrown by the method invoked by the servant. For this reason, the call to the method _servant_postinvoke should be placed in a Java finally clause.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public OutputStream _request(String operation,                      boolean responseExpected)
+				</name>
+				<description>
+					Returns an OutputStream object to use for marshalling the arguments of the given method. This method is called by a stub, which must indicate if a response is expected, that is, whether or not the call is oneway.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public InputStream _invoke(OutputStream output)                      throws ApplicationException,                             RemarshalException
+				</name>
+				<description>
+					Invokes an operation and returns an InputStream object for reading the response. The stub provides the OutputStream object that was previously returned by a call to the _request method. The method specified as an argument to _request when it was called previously is the method that this method invokes. If an exception occurs, the _invoke method may throw an ApplicationException object that contains an InputStream from which the user exception state may be unmarshalled.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void _releaseReply(InputStream input)
+				</name>
+				<description>
+					Releases the given reply stream back to the ORB when unmarshalling has completed after a call to the method _invoke. Calling this method is optional for the stub.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns a String object that represents this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code for this ObjectImpl object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Compares this ObjectImpl object with the given one for equality.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

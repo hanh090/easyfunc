@@ -1,0 +1,99 @@
+<javaelement>
+	<package>
+		java.nio.file.attribute
+	</package>
+	<type>
+		<name>
+			public final class AclEntry  extends Object
+		</name>
+		<description>
+			An entry in an access control list (ACL). The ACL entry represented by this class is based on the ACL model specified in RFC 3530: Network File System (NFS) version 4 Protocol. Each entry has four components as follows: The type component determines if the entry grants or denies access. The principal component, sometimes called the "who" component, is a UserPrincipal corresponding to the identity that the entry grants or denies access The permissions component is a set of permissions The flags component is a set of flags to indicate how entries are inherited and propagated ACL entries are created using an associated AclEntry.Builder object by invoking its build method. ACL entries are immutable and are safe for use by multiple concurrent threads.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static AclEntry.Builder newBuilder()
+				</name>
+				<description>
+					Constructs a new builder. The initial value of the type and who components is null. The initial value of the permissions and flags components is the empty set.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static AclEntry.Builder newBuilder(AclEntry entry)
+				</name>
+				<description>
+					Constructs a new builder with the components of an existing ACL entry.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AclEntryType type()
+				</name>
+				<description>
+					Returns the ACL entry type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public UserPrincipal principal()
+				</name>
+				<description>
+					Returns the principal component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<AclEntryPermission> permissions()
+				</name>
+				<description>
+					Returns a copy of the permissions component. The returned set is a modifiable copy of the permissions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Set<AclEntryFlag> flags()
+				</name>
+				<description>
+					Returns a copy of the flags component. The returned set is a modifiable copy of the flags.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object ob)
+				</name>
+				<description>
+					Compares the specified object with this ACL entry for equality. If the given object is not an AclEntry then this method immediately returns false. For two ACL entries to be considered equals requires that they are both the same type, their who components are equal, their permissions components are equal, and their flags components are equal. This method satisfies the general contract of the Object.equals method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash-code value for this ACL entry. This method satisfies the general contract of the Object.hashCode() method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Returns the string representation of this ACL entry.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

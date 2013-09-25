@@ -1,0 +1,324 @@
+<javaelement>
+	<package>
+		javax.management.timer
+	</package>
+	<type>
+		<name>
+			public class Timer  extends NotificationBroadcasterSupport  implements TimerMBean, MBeanRegistration
+		</name>
+		<description>
+			Provides the implementation of the timer MBean. The timer MBean sends out an alarm at a specified time that wakes up all the listeners registered to receive timer notifications. This class manages a list of dated timer notifications. A method allows users to add/remove as many notifications as required. When a timer notification is emitted by the timer and becomes obsolete, it is automatically removed from the list of timer notifications. Additional timer notifications can be added into regularly repeating notifications. Note: When sending timer notifications, the timer updates the notification sequence number irrespective of the notification type. The timer service relies on the system date of the host where the Timer class is loaded. Listeners may receive untimely notifications if their host has a different system date. To avoid such problems, synchronize the system date of all host machines where timing is needed. The default behavior for periodic notifications is fixed-delay execution, as specified in Timer. In order to use fixed-rate execution, use the overloaded addNotification(String, String, Object, Date, long, long, boolean) method. Notification listeners are potentially all executed in the same thread. Therefore, they should execute rapidly to avoid holding up other listeners or perturbing the regularity of fixed-delay executions. See NotificationBroadcasterSupport.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public static final long ONE_SECOND
+				</name>
+				<description>
+					Number of milliseconds in one second. Useful constant for the addNotification method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final long ONE_MINUTE
+				</name>
+				<description>
+					Number of milliseconds in one minute. Useful constant for the addNotification method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final long ONE_HOUR
+				</name>
+				<description>
+					Number of milliseconds in one hour. Useful constant for the addNotification method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final long ONE_DAY
+				</name>
+				<description>
+					Number of milliseconds in one day. Useful constant for the addNotification method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public static final long ONE_WEEK
+				</name>
+				<description>
+					Number of milliseconds in one week. Useful constant for the addNotification method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Timer()
+				</name>
+				<description>
+					Default constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ObjectName preRegister(MBeanServer server,                       ObjectName name)                         throws Exception
+				</name>
+				<description>
+					Allows the timer MBean to perform any operations it needs before being registered in the MBean server. Not used in this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postRegister(Boolean registrationDone)
+				</name>
+				<description>
+					Allows the timer MBean to perform any operations needed after having been registered in the MBean server or after the registration has failed. Not used in this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void preDeregister()                     throws Exception
+				</name>
+				<description>
+					Allows the timer MBean to perform any operations it needs before being unregistered by the MBean server. Stops the timer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void postDeregister()
+				</name>
+				<description>
+					Allows the timer MBean to perform any operations needed after having been unregistered by the MBean server. Not used in this context.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public MBeanNotificationInfo[] getNotificationInfo()
+				</name>
+				<description>
+					Description copied from interface: NotificationBroadcaster Returns an array indicating, for each notification this MBean may send, the name of the Java class of the notification and the notification type. It is not illegal for the MBean to send notifications not described in this array. However, some clients of the MBean server may depend on the array being complete for their correct functioning.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void start()
+				</name>
+				<description>
+					Starts the timer. If there is one or more timer notifications before the time in the list of notifications, the notification is sent according to the sendPastNotifications flag and then, updated according to its period and remaining number of occurrences. If the timer notification date remains earlier than the current date, this notification is just removed from the list of notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void stop()
+				</name>
+				<description>
+					Stops the timer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer addNotification(String type,                        String message,                        Object userData,                        Date date,                        long period,                        long nbOccurences,                        boolean fixedRate)                          throws IllegalArgumentException
+				</name>
+				<description>
+					Creates a new timer notification with the specified type, message and userData and inserts it into the list of notifications with a given date, period and number of occurrences. If the timer notification to be inserted has a date that is before the current date, the method behaves as if the specified date were the current date. For once-off notifications, the notification is delivered immediately. For periodic notifications, the first notification is delivered immediately and the subsequent ones are spaced as specified by the period parameter. Note that once the timer notification has been added into the list of notifications, its associated date, period and number of occurrences cannot be updated. In the case of a periodic notification, the value of parameter fixedRate is used to specify the execution scheme, as specified in Timer.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer addNotification(String type,                        String message,                        Object userData,                        Date date,                        long period,                        long nbOccurences)                          throws IllegalArgumentException
+				</name>
+				<description>
+					Creates a new timer notification with the specified type, message and userData and inserts it into the list of notifications with a given date, period and number of occurrences. If the timer notification to be inserted has a date that is before the current date, the method behaves as if the specified date were the current date. For once-off notifications, the notification is delivered immediately. For periodic notifications, the first notification is delivered immediately and the subsequent ones are spaced as specified by the period parameter. Note that once the timer notification has been added into the list of notifications, its associated date, period and number of occurrences cannot be updated. In the case of a periodic notification, uses a fixed-delay execution scheme, as specified in Timer. In order to use a fixed-rate execution scheme, use addNotification(String, String, Object, Date, long, long, boolean) instead.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer addNotification(String type,                        String message,                        Object userData,                        Date date,                        long period)                          throws IllegalArgumentException
+				</name>
+				<description>
+					Creates a new timer notification with the specified type, message and userData and inserts it into the list of notifications with a given date and period and a null number of occurrences. The timer notification will repeat continuously using the timer period using a fixed-delay execution scheme, as specified in Timer. In order to use a fixed-rate execution scheme, use addNotification(String, String, Object, Date, long, long, boolean) instead. If the timer notification to be inserted has a date that is before the current date, the method behaves as if the specified date were the current date. The first notification is delivered immediately and the subsequent ones are spaced as specified by the period parameter.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Integer addNotification(String type,                        String message,                        Object userData,                        Date date)                          throws IllegalArgumentException
+				</name>
+				<description>
+					Creates a new timer notification with the specified type, message and userData and inserts it into the list of notifications with a given date and a null period and number of occurrences. The timer notification will be handled once at the specified date. If the timer notification to be inserted has a date that is before the current date, the method behaves as if the specified date were the current date and the notification is delivered immediately.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotification(Integer id)                          throws InstanceNotFoundException
+				</name>
+				<description>
+					Removes the timer notification corresponding to the specified identifier from the list of notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotifications(String type)                           throws InstanceNotFoundException
+				</name>
+				<description>
+					Removes all the timer notifications corresponding to the specified type from the list of notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAllNotifications()
+				</name>
+				<description>
+					Removes all the timer notifications from the list of notifications and resets the counter used to update the timer notification identifiers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getNbNotifications()
+				</name>
+				<description>
+					Gets the number of timer notifications registered into the list of notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<Integer> getAllNotificationIDs()
+				</name>
+				<description>
+					Gets all timer notification identifiers registered into the list of notifications.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Vector<Integer> getNotificationIDs(String type)
+				</name>
+				<description>
+					Gets all the identifiers of timer notifications corresponding to the specified type.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNotificationType(Integer id)
+				</name>
+				<description>
+					Gets the timer notification type corresponding to the specified identifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getNotificationMessage(Integer id)
+				</name>
+				<description>
+					Gets the timer notification detailed message corresponding to the specified identifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getNotificationUserData(Integer id)
+				</name>
+				<description>
+					Gets the timer notification user data object corresponding to the specified identifier.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Date getDate(Integer id)
+				</name>
+				<description>
+					Gets a copy of the date associated to a timer notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Long getPeriod(Integer id)
+				</name>
+				<description>
+					Gets a copy of the period (in milliseconds) associated to a timer notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Long getNbOccurences(Integer id)
+				</name>
+				<description>
+					Gets a copy of the remaining number of occurrences associated to a timer notification.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Boolean getFixedRate(Integer id)
+				</name>
+				<description>
+					Gets a copy of the flag indicating whether a periodic notification is executed at fixed-delay or at fixed-rate.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean getSendPastNotifications()
+				</name>
+				<description>
+					Gets the flag indicating whether or not the timer sends past notifications. The default value of the past notifications sending on/off flag is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setSendPastNotifications(boolean value)
+				</name>
+				<description>
+					Sets the flag indicating whether the timer sends past notifications or not. The default value of the past notifications sending on/off flag is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isActive()
+				</name>
+				<description>
+					Tests whether the timer MBean is active. A timer MBean is marked active when the start method is called. It becomes inactive when the stop method is called. The default value of the active on/off flag is false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEmpty()
+				</name>
+				<description>
+					Tests whether the list of timer notifications is empty.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

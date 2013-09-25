@@ -1,0 +1,126 @@
+<javaelement>
+	<package>
+		java.util.jar
+	</package>
+	<type>
+		<name>
+			public class Manifest  extends Object  implements Cloneable
+		</name>
+		<description>
+			The Manifest class is used to maintain Manifest entry names and their associated Attributes. There are main Manifest Attributes as well as per-entry Attributes. For information on the Manifest format, please see the Manifest format specification.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Manifest()
+				</name>
+				<description>
+					Constructs a new, empty Manifest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Manifest(InputStream is)           throws IOException
+				</name>
+				<description>
+					Constructs a new Manifest from the specified input stream.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Manifest(Manifest man)
+				</name>
+				<description>
+					Constructs a new Manifest that is a copy of the specified Manifest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attributes getMainAttributes()
+				</name>
+				<description>
+					Returns the main Attributes for the Manifest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Map<String,Attributes> getEntries()
+				</name>
+				<description>
+					Returns a Map of the entries contained in this Manifest. Each entry is represented by a String name (key) and associated Attributes (value). The Map permits the null key, but no entry with a null key is created by read(java.io.InputStream), nor is such an entry written by using write(java.io.OutputStream).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Attributes getAttributes(String name)
+				</name>
+				<description>
+					Returns the Attributes for the specified entry name. This method is defined as:         return (Attributes)getEntries().get(name)   Though null is a valid name, when getAttributes(null) is invoked on a Manifest obtained from a jar file, null will be returned. While jar files themselves do not allow null-named attributes, it is possible to invoke getEntries() on a Manifest, and on that result, invoke put with a null key and an arbitrary value. Subsequent invocations of getAttributes(null) will return the just-put value. Note that this method does not return the manifest's main attributes; see getMainAttributes().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Clears the main Attributes as well as the entries in this Manifest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void write(OutputStream out)             throws IOException
+				</name>
+				<description>
+					Writes the Manifest to the specified OutputStream. Attributes.Name.MANIFEST_VERSION must be set in MainAttributes prior to invoking this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void read(InputStream is)            throws IOException
+				</name>
+				<description>
+					Reads the Manifest from the specified InputStream. The entry names and attributes read will be merged in with the current manifest entries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object o)
+				</name>
+				<description>
+					Returns true if the specified Object is also a Manifest and has the same main Attributes and entries.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Returns the hash code for this Manifest.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Returns a shallow copy of this Manifest. The shallow copy is implemented as follows:        public Object clone() { return new Manifest(this); }
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

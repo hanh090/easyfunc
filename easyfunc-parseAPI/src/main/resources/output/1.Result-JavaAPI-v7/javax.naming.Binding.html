@@ -1,0 +1,90 @@
+<javaelement>
+	<package>
+		javax.naming
+	</package>
+	<type>
+		<name>
+			public class Binding  extends NameClassPair
+		</name>
+		<description>
+			This class represents a name-to-object binding found in a context. A context consists of name-to-object bindings. The Binding class represents such a binding. It consists of a name and an object. The Context.listBindings() method returns an enumeration of Binding. Use subclassing for naming systems that generate contents of a binding dynamically. A Binding instance is not synchronized against concurrent access by multiple threads. Threads that need to access a Binding concurrently should synchronize amongst themselves and provide the necessary locking.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public Binding(String name,         Object obj)
+				</name>
+				<description>
+					Constructs an instance of a Binding given its name and object. getClassName() will return the class name of obj (or null if obj is null) unless the class name has been explicitly set using setClassName()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Binding(String name,         Object obj,         boolean isRelative)
+				</name>
+				<description>
+					Constructs an instance of a Binding given its name, object, and whether the name is relative. getClassName() will return the class name of obj (or null if obj is null) unless the class name has been explicitly set using setClassName()
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Binding(String name,         String className,         Object obj)
+				</name>
+				<description>
+					Constructs an instance of a Binding given its name, class name, and object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Binding(String name,         String className,         Object obj,         boolean isRelative)
+				</name>
+				<description>
+					Constructs an instance of a Binding given its name, class name, object, and whether the name is relative.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getClassName()
+				</name>
+				<description>
+					Retrieves the class name of the object bound to the name of this binding. If the class name has been set explicitly, return it. Otherwise, if this binding contains a non-null object, that object's class name is used. Otherwise, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object getObject()
+				</name>
+				<description>
+					Retrieves the object bound to the name of this binding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setObject(Object obj)
+				</name>
+				<description>
+					Sets the object associated with this binding.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Generates the string representation of this binding. The string representation consists of the string representation of the name/class pair and the string representation of this binding's object, separated by ':'. The contents of this string is useful for debugging and is not meant to be interpreted programmatically.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

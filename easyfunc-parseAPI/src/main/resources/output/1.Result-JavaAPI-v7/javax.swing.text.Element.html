@@ -1,0 +1,108 @@
+<javaelement>
+	<package>
+		javax.swing.text
+	</package>
+	<type>
+		<name>
+			public interface Element
+		</name>
+		<description>
+			Interface to describe a structural piece of a document. It is intended to capture the spirit of an SGML element.
+		</description>
+		<methods>
+			<method>
+				<name>
+					Document getDocument()
+				</name>
+				<description>
+					Fetches the document associated with this element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Element getParentElement()
+				</name>
+				<description>
+					Fetches the parent element. If the element is a root level element returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String getName()
+				</name>
+				<description>
+					Fetches the name of the element. If the element is used to represent some type of structure, this would be the type name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					AttributeSet getAttributes()
+				</name>
+				<description>
+					Fetches the collection of attributes this element contains.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getStartOffset()
+				</name>
+				<description>
+					Fetches the offset from the beginning of the document that this element begins at. If this element has children, this will be the offset of the first child. As a document position, there is an implied forward bias.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getEndOffset()
+				</name>
+				<description>
+					Fetches the offset from the beginning of the document that this element ends at. If this element has children, this will be the end offset of the last child. As a document position, there is an implied backward bias. All the default Document implementations descend from AbstractDocument. AbstractDocument models an implied break at the end of the document. As a result of this, it is possible for this to return a value greater than the length of the document.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getElementIndex(int offset)
+				</name>
+				<description>
+					Gets the child element index closest to the given offset. The offset is specified relative to the beginning of the document. Returns -1 if the Element is a leaf, otherwise returns the index of the Element that best represents the given location. Returns 0 if the location is less than the start offset. Returns getElementCount() - 1 if the location is greater than or equal to the end offset.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int getElementCount()
+				</name>
+				<description>
+					Gets the number of child elements contained by this element. If this element is a leaf, a count of zero is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Element getElement(int index)
+				</name>
+				<description>
+					Fetches the child element at the given index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isLeaf()
+				</name>
+				<description>
+					Is this element a leaf element? An element that may have children, even if it currently has no children, would return false.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

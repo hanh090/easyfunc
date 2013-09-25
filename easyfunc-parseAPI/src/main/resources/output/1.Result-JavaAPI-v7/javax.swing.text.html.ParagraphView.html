@@ -1,0 +1,117 @@
+<javaelement>
+	<package>
+		javax.swing.text.html
+	</package>
+	<type>
+		<name>
+			public class ParagraphView  extends ParagraphView
+		</name>
+		<description>
+			Displays the a paragraph, and uses css attributes for its configuration.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public ParagraphView(Element elem)
+				</name>
+				<description>
+					Constructs a ParagraphView for the given element.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setParent(View parent)
+				</name>
+				<description>
+					Establishes the parent view for this view. This is guaranteed to be called before any other methods if the parent view is functioning properly. This is implemented to forward to the superclass as well as call the setPropertiesFromAttributes method to set the paragraph properties from the css attributes. The call is made at this time to ensure the ability to resolve upward through the parents view attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AttributeSet getAttributes()
+				</name>
+				<description>
+					Fetches the attributes to use when rendering. This is implemented to multiplex the attributes specified in the model with a StyleSheet.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void setPropertiesFromAttributes()
+				</name>
+				<description>
+					Sets up the paragraph from css attributes instead of the values found in StyleConstants (i.e. which are used by the superclass). Since
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected StyleSheet getStyleSheet()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SizeRequirements calculateMinorAxisRequirements(int axis,                                                SizeRequirements r)
+				</name>
+				<description>
+					Calculate the needs for the paragraph along the minor axis. If size requirements are explicitly specified for the paragraph, use that requirements. Otherwise, use the requirements of the superclass ParagraphView. If the axis parameter is neither View.X_AXIS nor View.Y_AXIS, IllegalArgumentException is thrown. If the r parameter is null, a new SizeRequirements object is created, otherwise the supplied SizeRequirements object is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isVisible()
+				</name>
+				<description>
+					Indicates whether or not this view should be displayed. If none of the children wish to be displayed and the only visible child is the break that ends the paragraph, the paragraph will not be considered visible. Otherwise, it will be considered visible and return true.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void paint(Graphics g,           Shape a)
+				</name>
+				<description>
+					Renders using the given rendering surface and area on that surface. This is implemented to delgate to the superclass after stashing the base coordinate for tab calculations.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getPreferredSpan(int axis)
+				</name>
+				<description>
+					Determines the preferred span for this view. Returns 0 if the view is not visible, otherwise it calls the superclass method to get the preferred span. axis.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMinimumSpan(int axis)
+				</name>
+				<description>
+					Determines the minimum span for this view along an axis. Returns 0 if the view is not visible, otherwise it calls the superclass method to get the minimum span.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public float getMaximumSpan(int axis)
+				</name>
+				<description>
+					Determines the maximum span for this view along an axis. Returns 0 if the view is not visible, otherwise it calls the superclass method ot get the maximum span.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

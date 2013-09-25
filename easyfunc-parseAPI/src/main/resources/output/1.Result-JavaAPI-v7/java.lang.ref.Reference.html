@@ -1,0 +1,54 @@
+<javaelement>
+	<package>
+		java.lang.ref
+	</package>
+	<type>
+		<name>
+			public abstract class Reference<T>  extends Object
+		</name>
+		<description>
+			Abstract base class for reference objects. This class defines the operations common to all reference objects. Because reference objects are implemented in close cooperation with the garbage collector, this class may not be subclassed directly.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public T get()
+				</name>
+				<description>
+					Returns this reference object's referent. If this reference object has been cleared, either by the program or by the garbage collector, then this method returns null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Clears this reference object. Invoking this method will not cause this object to be enqueued. This method is invoked only by Java code; when the garbage collector clears references it does so directly, without invoking this method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isEnqueued()
+				</name>
+				<description>
+					Tells whether or not this reference object has been enqueued, either by the program or by the garbage collector. If this reference object was not registered with a queue when it was created, then this method will always return false.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean enqueue()
+				</name>
+				<description>
+					Adds this reference object to the queue with which it is registered, if any. This method is invoked only by Java code; when the garbage collector enqueues references it does so directly, without invoking this method.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

@@ -1,0 +1,27 @@
+<javaelement>
+	<package>
+		javax.sql.rowset.spi
+	</package>
+	<type>
+		<name>
+			public interface XmlReader  extends RowSetReader
+		</name>
+		<description>
+			A specialized interface that facilitates an extension of the SyncProvider abstract class for XML orientated synchronization providers. SyncProvider implementations that supply XML data reader capabilities such as output XML stream capabilities can implement this interface to provider standard XmlReader objects to WebRowSet implementations. An XmlReader object is registered as the XML reader for a WebRowSet by being assigned to the rowset's xmlReader field. When the WebRowSet object's readXml method is invoked, it in turn invokes its XML reader's readXML method.
+		</description>
+		<methods>
+			<method>
+				<name>
+					void readXML(WebRowSet caller,             Reader reader)               throws SQLException
+				</name>
+				<description>
+					Reads and parses the given WebRowSet object from the given input stream in XML format. The xmlReader field of the given WebRowSet object must contain this XmlReader object. If a parsing error occurs, the exception that is thrown will include information about the location of the error in the original XML document.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

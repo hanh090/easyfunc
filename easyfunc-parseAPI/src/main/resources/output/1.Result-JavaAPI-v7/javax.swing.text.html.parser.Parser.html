@@ -1,0 +1,261 @@
+<javaelement>
+	<package>
+		javax.swing.text.html.parser
+	</package>
+	<type>
+		<name>
+			public class Parser  extends Object  implements DTDConstants
+		</name>
+		<description>
+			A simple DTD-driven HTML parser. The parser reads an HTML file from an InputStream and calls various methods (which should be overridden in a subclass) when tags and data are encountered. Unfortunately there are many badly implemented HTML parsers out there, and as a result there are many badly formatted HTML files. This parser attempts to parse most HTML files. This means that the implementation sometimes deviates from the SGML specification in favor of HTML. The parser treats \r and \r\n as \n. Newlines after starttags and before end tags are ignored just as specified in the SGML/HTML specification. The html spec does not specify how spaces are to be coalesced very well. Specifically, the following scenarios are not discussed (note that a space should be used here, but I am using &nbsp to force the space to be displayed): '<b>blah <i> <strike> foo' which can be treated as: '<b>blah <i><strike>foo' as well as: '<p><a href="xx"> <em>Using</em></a></p>' which appears to be treated as: '<p><a href="xx"><em>Using</em></a></p>' If strict is false, when a tag that breaks flow, (TagElement.breaksFlows) or trailing whitespace is encountered, all whitespace will be ignored until a non whitespace character is encountered. This appears to give behavior closer to the popular browsers.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected DTD dtd
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean strict
+				</name>
+				<description>
+					This flag determines whether or not the Parser will be strict in enforcing SGML compatibility. If false, it will be lenient with certain common classes of erroneous HTML constructs. Strict or not, in either case an error will be recorded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Parser(DTD dtd)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getCurrentLine()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TagElement makeTag(Element elem,                   boolean fictional)
+				</name>
+				<description>
+					Makes a TagElement.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected TagElement makeTag(Element elem)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected SimpleAttributeSet getAttributes()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void flushAttributes()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleText(char[] text)
+				</name>
+				<description>
+					Called when PCDATA is encountered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleTitle(char[] text)
+				</name>
+				<description>
+					Called when an HTML title tag is encountered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleComment(char[] text)
+				</name>
+				<description>
+					Called when an HTML comment is encountered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleEOFInComment()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleEmptyTag(TagElement tag)                         throws ChangedCharSetException
+				</name>
+				<description>
+					Called when an empty tag is encountered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleStartTag(TagElement tag)
+				</name>
+				<description>
+					Called when a start tag is encountered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleEndTag(TagElement tag)
+				</name>
+				<description>
+					Called when an end tag is encountered.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void handleError(int ln,                 String msg)
+				</name>
+				<description>
+					An error has occurred.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void error(String err,           String arg1,           String arg2,           String arg3)
+				</name>
+				<description>
+					Invoke the error handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void error(String err,           String arg1,           String arg2)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void error(String err,           String arg1)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void error(String err)
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void startTag(TagElement tag)                   throws ChangedCharSetException
+				</name>
+				<description>
+					Handle a start tag. The new tag is pushed onto the tag stack. The attribute list is checked for required attributes.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void endTag(boolean omitted)
+				</name>
+				<description>
+					Handle an end tag. The end tag is popped from the tag stack.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void markFirstTime(Element elem)
+				</name>
+				<description>
+					Marks the first time a tag has been seen in a document
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String parseDTDMarkup()                        throws IOException
+				</name>
+				<description>
+					Parses th Document Declaration Type markup declaration. Currently ignores it.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected boolean parseMarkupDeclarations(StringBuffer strBuff)                                     throws IOException
+				</name>
+				<description>
+					Parse markup declarations. Currently only handles the Document Type Declaration markup. Returns true if it is a markup declaration false otherwise.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void parse(Reader in)             throws IOException
+				</name>
+				<description>
+					Parse an HTML stream, given a DTD.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected int getCurrentPos()
+				</name>
+				<description>
+					null
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

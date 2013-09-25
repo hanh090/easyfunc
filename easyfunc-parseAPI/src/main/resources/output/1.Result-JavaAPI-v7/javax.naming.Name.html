@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		javax.naming
+	</package>
+	<type>
+		<name>
+			public interface Name  extends Cloneable, Serializable, Comparable<Object>
+		</name>
+		<description>
+			The Name interface represents a generic name -- an ordered sequence of components. It can be a composite name (names that span multiple namespaces), or a compound name (names that are used within individual hierarchical naming systems). There can be different implementations of Name; for example, composite names, URLs, or namespace-specific compound names. The components of a name are numbered. The indexes of a name with N components range from 0 up to, but not including, N. This range may be written as [0,N). The most significant component is at index 0. An empty name has no components. None of the methods in this interface accept null as a valid value for a parameter that is a name or a name component. Likewise, methods that return a name or name component never return null. An instance of a Name may not be synchronized against concurrent multithreaded access if that access is not read-only.
+		</description>
+		<methods>
+			<method>
+				<name>
+					static final long serialVersionUID
+				</name>
+				<description>
+					The class fingerprint that is set to indicate serialization compatibility with a previous version of the class.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object clone()
+				</name>
+				<description>
+					Generates a new copy of this name. Subsequent changes to the components of this name will not affect the new copy, and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int compareTo(Object obj)
+				</name>
+				<description>
+					Compares this name with another name for order. Returns a negative integer, zero, or a positive integer as this name is less than, equal to, or greater than the given name. As with Object.equals(), the notion of ordering for names depends on the class that implements this interface. For example, the ordering may be based on lexicographical ordering of the name components. Specific attributes of the name, such as how it treats case, may affect the ordering. In general, two names of different classes may not be compared.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					int size()
+				</name>
+				<description>
+					Returns the number of components in this name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean isEmpty()
+				</name>
+				<description>
+					Determines whether this name is empty. An empty name is one with zero components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Enumeration<String> getAll()
+				</name>
+				<description>
+					Retrieves the components of this name as an enumeration of strings. The effect on the enumeration of updates to this name is undefined. If the name has zero components, an empty (non-null) enumeration is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					String get(int posn)
+				</name>
+				<description>
+					Retrieves a component of this name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name getPrefix(int posn)
+				</name>
+				<description>
+					Creates a name whose components consist of a prefix of the components of this name. Subsequent changes to this name will not affect the name that is returned and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name getSuffix(int posn)
+				</name>
+				<description>
+					Creates a name whose components consist of a suffix of the components in this name. Subsequent changes to this name do not affect the name that is returned and vice versa.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean startsWith(Name n)
+				</name>
+				<description>
+					Determines whether this name starts with a specified prefix. A name n is a prefix if it is equal to getPrefix(n.size()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					boolean endsWith(Name n)
+				</name>
+				<description>
+					Determines whether this name ends with a specified suffix. A name n is a suffix if it is equal to getSuffix(size()-n.size()).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name addAll(Name suffix)              throws InvalidNameException
+				</name>
+				<description>
+					Adds the components of a name -- in order -- to the end of this name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name addAll(int posn,            Name n)              throws InvalidNameException
+				</name>
+				<description>
+					Adds the components of a name -- in order -- at a specified position within this name. Components of this name at or after the index of the first new component are shifted up (away from 0) to accommodate the new components.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name add(String comp)           throws InvalidNameException
+				</name>
+				<description>
+					Adds a single component to the end of this name.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Name add(int posn,         String comp)           throws InvalidNameException
+				</name>
+				<description>
+					Adds a single component at a specified position within this name. Components of this name at or after the index of the new component are shifted up by one (away from index 0) to accommodate the new component.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					Object remove(int posn)                throws InvalidNameException
+				</name>
+				<description>
+					Removes a component from this name. The component of this name at the specified position is removed. Components with indexes greater than this position are shifted down (toward index 0) by one.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

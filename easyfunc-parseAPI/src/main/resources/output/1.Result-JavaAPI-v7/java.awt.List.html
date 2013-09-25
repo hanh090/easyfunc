@@ -1,0 +1,522 @@
+<javaelement>
+	<package>
+		java.awt
+	</package>
+	<type>
+		<name>
+			public class List  extends Component  implements ItemSelectable, Accessible
+		</name>
+		<description>
+			The List component presents the user with a scrolling list of text items. The list can be set up so that the user can choose either one item or multiple items. For example, the code . . .    List lst = new List(4, false);   lst.add("Mercury");   lst.add("Venus");   lst.add("Earth");   lst.add("JavaSoft");   lst.add("Mars");   lst.add("Jupiter");   lst.add("Saturn");   lst.add("Uranus");   lst.add("Neptune");   lst.add("Pluto");   cnt.add(lst);   where cnt is a container, produces the following scrolling list: If the List allows multiple selections, then clicking on an item that is already selected deselects it. In the preceding example, only one item from the scrolling list can be selected at a time, since the second argument when creating the new scrolling list is false. If the List does not allow multiple selections, selecting an item causes any other selected item to be deselected. Note that the list in the example shown was created with four visible rows. Once the list has been created, the number of visible rows cannot be changed. A default List is created with four rows, so that lst = new List() is equivalent to list = new List(4, false). Beginning with Java 1.1, the Abstract Window Toolkit sends the List object all mouse, keyboard, and focus events that occur over it. (The old AWT event model is being maintained only for backwards compatibility, and its use is discouraged.) When an item is selected or deselected by the user, AWT sends an instance of ItemEvent to the list. When the user double-clicks on an item in a scrolling list, AWT sends an instance of ActionEvent to the list following the item event. AWT also generates an action event when the user presses the return key while an item in the list is selected. If an application wants to perform some action based on an item in this list being selected or activated by the user, it should implement ItemListener or ActionListener as appropriate and register the new listener to receive events from this list. For multiple-selection scrolling lists, it is considered a better user interface to use an external gesture (such as clicking on a button) to trigger the action.
+		</description>
+		<methods>
+			<method>
+				<name>
+					public List()       throws HeadlessException
+				</name>
+				<description>
+					Creates a new scrolling list. By default, there are four visible lines and multiple selections are not allowed. Note that this is a convenience method for List(0, false). Also note that the number of visible lines in the list cannot be changed after it has been created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List(int rows)       throws HeadlessException
+				</name>
+				<description>
+					Creates a new scrolling list initialized with the specified number of visible lines. By default, multiple selections are not allowed. Note that this is a convenience method for List(rows, false). Also note that the number of visible rows in the list cannot be changed after it has been created.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public List(int rows,      boolean multipleMode)       throws HeadlessException
+				</name>
+				<description>
+					Creates a new scrolling list initialized to display the specified number of rows. Note that if zero rows are specified, then the list will be created with a default of four rows. Also note that the number of visible rows in the list cannot be changed after it has been created. If the value of multipleMode is true, then the user can select multiple items from the list. If it is false, only one item at a time can be selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addNotify()
+				</name>
+				<description>
+					Creates the peer for the list. The peer allows us to modify the list's appearance without changing its functionality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeNotify()
+				</name>
+				<description>
+					Removes the peer for this list. The peer allows us to modify the list's appearance without changing its functionality.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getItemCount()
+				</name>
+				<description>
+					Gets the number of items in the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public int countItems()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by getItemCount().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getItem(int index)
+				</name>
+				<description>
+					Gets the item associated with the specified index.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getItems()
+				</name>
+				<description>
+					Gets the items in the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(String item)
+				</name>
+				<description>
+					Adds the specified item to the end of scrolling list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void addItem(String item)
+				</name>
+				<description>
+					Deprecated. replaced by add(String).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(String item,         int index)
+				</name>
+				<description>
+					Adds the specified item to the the scrolling list at the position indicated by the index. The index is zero-based. If the value of the index is less than zero, or if the value of the index is greater than or equal to the number of items in the list, then the item is added to the end of the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void addItem(String item,                        int index)
+				</name>
+				<description>
+					Deprecated. replaced by add(String, int).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void replaceItem(String newValue,                 int index)
+				</name>
+				<description>
+					Replaces the item at the specified index in the scrolling list with the new string.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeAll()
+				</name>
+				<description>
+					Removes all items from this list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void clear()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by removeAll().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(String item)
+				</name>
+				<description>
+					Removes the first occurrence of an item from the list. If the specified item is selected, and is the only selected item in the list, the list is set to have no selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void remove(int position)
+				</name>
+				<description>
+					Removes the item at the specified position from this scrolling list. If the item with the specified position is selected, and is the only selected item in the list, the list is set to have no selection.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void delItem(int position)
+				</name>
+				<description>
+					Deprecated. replaced by remove(String) and remove(int).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getSelectedIndex()
+				</name>
+				<description>
+					Gets the index of the selected item on the list,
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int[] getSelectedIndexes()
+				</name>
+				<description>
+					Gets the selected indexes on the list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getSelectedItem()
+				</name>
+				<description>
+					Gets the selected item on this scrolling list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String[] getSelectedItems()
+				</name>
+				<description>
+					Gets the selected items on this scrolling list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object[] getSelectedObjects()
+				</name>
+				<description>
+					Gets the selected items on this scrolling list in an array of Objects.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void select(int index)
+				</name>
+				<description>
+					Selects the item at the specified index in the scrolling list. Note that passing out of range parameters is invalid, and will result in unspecified behavior. Note that this method should be primarily used to initially select an item in this component. Programmatically calling this method will not trigger an ItemEvent. The only way to trigger an ItemEvent is by user interaction.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void deselect(int index)
+				</name>
+				<description>
+					Deselects the item at the specified index. Note that passing out of range parameters is invalid, and will result in unspecified behavior. If the item at the specified index is not selected, then the operation is ignored.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isIndexSelected(int index)
+				</name>
+				<description>
+					Determines if the specified item in this scrolling list is selected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public boolean isSelected(int index)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by isIndexSelected(int).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getRows()
+				</name>
+				<description>
+					Gets the number of visible lines in this list. Note that once the List has been created, this number will never change.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isMultipleMode()
+				</name>
+				<description>
+					Determines whether this list allows multiple selections.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public boolean allowsMultipleSelections()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by isMultipleMode().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setMultipleMode(boolean b)
+				</name>
+				<description>
+					Sets the flag that determines whether this list allows multiple selections. When the selection mode is changed from multiple-selection to single-selection, the selected items change as follows: If a selected item has the location cursor, only that item will remain selected. If no selected item has the location cursor, all items will be deselected.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void setMultipleSelections(boolean b)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by setMultipleMode(boolean).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int getVisibleIndex()
+				</name>
+				<description>
+					Gets the index of the item that was last made visible by the method makeVisible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void makeVisible(int index)
+				</name>
+				<description>
+					Makes the item at the specified index visible.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize(int rows)
+				</name>
+				<description>
+					Gets the preferred dimensions for a list with the specified number of rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Dimension preferredSize(int rows)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by getPreferredSize(int).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getPreferredSize()
+				</name>
+				<description>
+					Gets the preferred size of this scrolling list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Dimension preferredSize()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by getPreferredSize().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize(int rows)
+				</name>
+				<description>
+					Gets the minumum dimensions for a list with the specified number of rows.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Dimension minimumSize(int rows)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by getMinimumSize(int).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Dimension getMinimumSize()
+				</name>
+				<description>
+					Determines the minimum size of this scrolling list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public Dimension minimumSize()
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, replaced by getMinimumSize().
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addItemListener(ItemListener l)
+				</name>
+				<description>
+					Adds the specified item listener to receive item events from this list. Item events are sent in response to user input, but not in response to calls to select or deselect. If listener l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeItemListener(ItemListener l)
+				</name>
+				<description>
+					Removes the specified item listener so that it no longer receives item events from this list. If listener l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ItemListener[] getItemListeners()
+				</name>
+				<description>
+					Returns an array of all the item listeners registered on this list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void addActionListener(ActionListener l)
+				</name>
+				<description>
+					Adds the specified action listener to receive action events from this list. Action events occur when a user double-clicks on a list item or types Enter when the list has the keyboard focus. If listener l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void removeActionListener(ActionListener l)
+				</name>
+				<description>
+					Removes the specified action listener so that it no longer receives action events from this list. Action events occur when a user double-clicks on a list item. If listener l is null, no exception is thrown and no action is performed. Refer to AWT Threading Issues for details on AWT's threading model.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ActionListener[] getActionListeners()
+				</name>
+				<description>
+					Returns an array of all the action listeners registered on this list.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public <T extends EventListener> T[] getListeners(Class<T> listenerType)
+				</name>
+				<description>
+					Returns an array of all the objects currently registered as FooListeners upon this List. FooListeners are registered using the addFooListener method. You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a List l for its item listeners with the following code: ItemListener[] ils = (ItemListener[])(l.getListeners(ItemListener.class)); If no such listeners exist, this method returns an empty array.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processEvent(AWTEvent e)
+				</name>
+				<description>
+					Processes events on this scrolling list. If an event is an instance of ItemEvent, it invokes the processItemEvent method. Else, if the event is an instance of ActionEvent, it invokes processActionEvent. If the event is not an item event or an action event, it invokes processEvent on the superclass. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processItemEvent(ItemEvent e)
+				</name>
+				<description>
+					Processes item events occurring on this list by dispatching them to any registered ItemListener objects. This method is not called unless item events are enabled for this component. Item events are enabled when one of the following occurs: An ItemListener object is registered via addItemListener. Item events are enabled via enableEvents. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void processActionEvent(ActionEvent e)
+				</name>
+				<description>
+					Processes action events occurring on this component by dispatching them to any registered ActionListener objects. This method is not called unless action events are enabled for this component. Action events are enabled when one of the following occurs: An ActionListener object is registered via addActionListener. Action events are enabled via enableEvents. Note that if the event parameter is null the behavior is unspecified and may result in an exception.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String paramString()
+				</name>
+				<description>
+					Returns the parameter string representing the state of this scrolling list. This string is useful for debugging.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					@Deprecated  public void delItems(int start,                         int end)
+				</name>
+				<description>
+					Deprecated. As of JDK version 1.1, Not for public use in the future. This method is expected to be retained only as a package private method.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public AccessibleContext getAccessibleContext()
+				</name>
+				<description>
+					Gets the AccessibleContext associated with this List. For lists, the AccessibleContext takes the form of an AccessibleAWTList. A new AccessibleAWTList instance is created, if necessary.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

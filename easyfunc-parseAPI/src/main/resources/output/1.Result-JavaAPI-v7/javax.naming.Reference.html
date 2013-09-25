@@ -1,0 +1,225 @@
+<javaelement>
+	<package>
+		javax.naming
+	</package>
+	<type>
+		<name>
+			public class Reference  extends Object  implements Cloneable, Serializable
+		</name>
+		<description>
+			This class represents a reference to an object that is found outside of the naming/directory system. Reference provides a way of recording address information about objects which themselves are not directly bound to the naming/directory system. A Reference consists of an ordered list of addresses and class information about the object being referenced. Each address in the list identifies a communications endpoint for the same conceptual object. The "communications endpoint" is information that indicates how to contact the object. It could be, for example, a network address, a location in memory on the local machine, another process on the same machine, etc. The order of the addresses in the list may be of significance to object factories that interpret the reference. Multiple addresses may arise for various reasons, such as replication or the object offering interfaces over more than one communication mechanism. The addresses are indexed starting with zero. A Reference also contains information to assist in creating an instance of the object to which this Reference refers. It contains the class name of that object, and the class name and location of the factory to be used to create the object. The class factory location is a space-separated list of URLs representing the class path used to load the factory. When the factory class (or any class or resource upon which it depends) needs to be loaded, each URL is used (in order) to attempt to load the class. A Reference instance is not synchronized against concurrent access by multiple threads. Threads that need to access a single Reference concurrently should synchronize amongst themselves and provide the necessary locking.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected String className
+				</name>
+				<description>
+					Contains the fully-qualified name of the class of the object to which this Reference refers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected Vector<RefAddr> addrs
+				</name>
+				<description>
+					Contains the addresses contained in this Reference. Initialized by constructor.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String classFactory
+				</name>
+				<description>
+					Contains the name of the factory class for creating an instance of the object to which this Reference refers. Initialized to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected String classFactoryLocation
+				</name>
+				<description>
+					Contains the location of the factory class. Initialized to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reference(String className)
+				</name>
+				<description>
+					Constructs a new reference for an object with class name 'className'. Class factory and class factory location are set to null. The newly created reference contains zero addresses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reference(String className,           RefAddr addr)
+				</name>
+				<description>
+					Constructs a new reference for an object with class name 'className' and an address. Class factory and class factory location are set to null.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reference(String className,           String factory,           String factoryLocation)
+				</name>
+				<description>
+					Constructs a new reference for an object with class name 'className', and the class name and location of the object's factory.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Reference(String className,           RefAddr addr,           String factory,           String factoryLocation)
+				</name>
+				<description>
+					Constructs a new reference for an object with class name 'className', the class name and location of the object's factory, and the address for the object.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getClassName()
+				</name>
+				<description>
+					Retrieves the class name of the object to which this reference refers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getFactoryClassName()
+				</name>
+				<description>
+					Retrieves the class name of the factory of the object to which this reference refers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getFactoryClassLocation()
+				</name>
+				<description>
+					Retrieves the location of the factory of the object to which this reference refers. If it is a codebase, then it is an ordered list of URLs, separated by spaces, listing locations from where the factory class definition should be loaded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RefAddr get(String addrType)
+				</name>
+				<description>
+					Retrieves the first address that has the address type 'addrType'. String.compareTo() is used to test the equality of the address types.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public RefAddr get(int posn)
+				</name>
+				<description>
+					Retrieves the address at index posn.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Enumeration<RefAddr> getAll()
+				</name>
+				<description>
+					Retrieves an enumeration of the addresses in this reference. When addresses are added, changed or removed from this reference, its effects on this enumeration are undefined.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int size()
+				</name>
+				<description>
+					Retrieves the number of addresses in this reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(RefAddr addr)
+				</name>
+				<description>
+					Adds an address to the end of the list of addresses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void add(int posn,         RefAddr addr)
+				</name>
+				<description>
+					Adds an address to the list of addresses at index posn. All addresses at index posn or greater are shifted up the list by one (away from index 0).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object remove(int posn)
+				</name>
+				<description>
+					Deletes the address at index posn from the list of addresses. All addresses at index greater than posn are shifted down the list by one (towards index 0).
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void clear()
+				</name>
+				<description>
+					Deletes all addresses from this reference.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean equals(Object obj)
+				</name>
+				<description>
+					Determines whether obj is a reference with the same addresses (in same order) as this reference. The addresses are checked using RefAddr.equals(). In addition to having the same addresses, the Reference also needs to have the same class name as this reference. The class factory and class factory location are not checked. If obj is null or not an instance of Reference, null is returned.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public int hashCode()
+				</name>
+				<description>
+					Computes the hash code of this reference. The hash code is the sum of the hash code of its addresses.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String toString()
+				</name>
+				<description>
+					Generates the string representation of this reference. The string consists of the class name to which this reference refers, and the string representation of each of its addresses. This representation is intended for display only and not to be parsed.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Object clone()
+				</name>
+				<description>
+					Makes a copy of this reference using its class name list of addresses, class factory name and class factory location. Changes to the newly created copy does not affect this Reference and vice versa.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>

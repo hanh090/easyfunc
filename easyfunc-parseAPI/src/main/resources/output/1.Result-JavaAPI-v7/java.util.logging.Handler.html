@@ -1,0 +1,162 @@
+<javaelement>
+	<package>
+		java.util.logging
+	</package>
+	<type>
+		<name>
+			public abstract class Handler  extends Object
+		</name>
+		<description>
+			A Handler object takes log messages from a Logger and exports them. It might for example, write them to a console or write them to a file, or send them to a network logging service, or forward them to an OS log, or whatever. A Handler can be disabled by doing a setLevel(Level.OFF) and can be re-enabled by doing a setLevel with an appropriate level. Handler classes typically use LogManager properties to set default values for the Handler's Filter, Formatter, and Level. See the specific documentation for each concrete Handler class.
+		</description>
+		<methods>
+			<method>
+				<name>
+					protected Handler()
+				</name>
+				<description>
+					Default constructor. The resulting Handler has a log level of Level.ALL, no Formatter, and no Filter. A default ErrorManager instance is installed as the ErrorManager.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void publish(LogRecord record)
+				</name>
+				<description>
+					Publish a LogRecord. The logging request was made initially to a Logger object, which initialized the LogRecord and forwarded it here. The Handler is responsible for formatting the message, when and if necessary. The formatting should include localization.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void flush()
+				</name>
+				<description>
+					Flush any buffered output.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public abstract void close()                      throws SecurityException
+				</name>
+				<description>
+					Close the Handler and free all associated resources. The close method will perform a flush and then close the Handler. After close has been called this Handler should no longer be used. Method calls may either be silently ignored or may throw runtime exceptions.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFormatter(Formatter newFormatter)                    throws SecurityException
+				</name>
+				<description>
+					Set a Formatter. This Formatter will be used to format LogRecords for this Handler. Some Handlers may not use Formatters, in which case the Formatter will be remembered, but not used.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Formatter getFormatter()
+				</name>
+				<description>
+					Return the Formatter for this Handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setEncoding(String encoding)                   throws SecurityException,                          UnsupportedEncodingException
+				</name>
+				<description>
+					Set the character encoding used by this Handler. The encoding should be set before any LogRecords are written to the Handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public String getEncoding()
+				</name>
+				<description>
+					Return the character encoding for this Handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setFilter(Filter newFilter)                 throws SecurityException
+				</name>
+				<description>
+					Set a Filter to control output on this Handler. For each call of publish the Handler will call this Filter (if it is non-null) to check if the LogRecord should be published or discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Filter getFilter()
+				</name>
+				<description>
+					Get the current Filter for this Handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setErrorManager(ErrorManager em)
+				</name>
+				<description>
+					Define an ErrorManager for this Handler. The ErrorManager's "error" method will be invoked if any errors occur while using this Handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public ErrorManager getErrorManager()
+				</name>
+				<description>
+					Retrieves the ErrorManager for this Handler.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					protected void reportError(String msg,                 Exception ex,                 int code)
+				</name>
+				<description>
+					Protected convenience method to report an error to this Handler's ErrorManager. Note that this method retrieves and uses the ErrorManager without doing a security check. It can therefore be used in environments where the caller may be non-privileged.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public void setLevel(Level newLevel)                throws SecurityException
+				</name>
+				<description>
+					Set the log level specifying which message levels will be logged by this Handler. Message levels lower than this value will be discarded. The intention is to allow developers to turn on voluminous logging, but to limit the messages that are sent to certain Handlers.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public Level getLevel()
+				</name>
+				<description>
+					Get the log level specifying which messages will be logged by this Handler. Message levels lower than this level will be discarded.
+				</description>
+				
+			</method>
+			<method>
+				<name>
+					public boolean isLoggable(LogRecord record)
+				</name>
+				<description>
+					Check if this Handler would actually log a given LogRecord. This method checks if the LogRecord has an appropriate Level and whether it satisfies any Filter. It also may make other Handler specific checks that might prevent a handler from logging the LogRecord. It will return false if the LogRecord is null.
+				</description>
+				
+			</method>
+			
+		</methods>
+		
+	</type>
+	
+</javaelement>
