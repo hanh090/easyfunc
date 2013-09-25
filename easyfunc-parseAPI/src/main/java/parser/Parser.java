@@ -5,18 +5,26 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
+
 
 import api.Api;
 import api.JavaApi;
 import element.ApiElement;
+import element.java.Package;
 
 public class Parser {
 	private Api api;
 
-	public static void main(String[] args) {
-		new Parser(new JavaApi()).parse();
+	public static void main(String[] args)  {
+		try {
+			new Parser(new JavaApi()).parse();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Parser(Api api) {
@@ -24,6 +32,7 @@ public class Parser {
 	}
 
 	/**
+	 * @throws IOException 
 	 * Parse all file from {@code pathAPI}
 	 * 
 	 * @param pathAPI
@@ -32,14 +41,14 @@ public class Parser {
 	 * 
 	 * 
 	 */
-	public void parse() {
-
+	public void parse() throws IOException {
+		FileUtils.cleanDirectory(new File(api.getApiResource().getOutput()));
 		for (File file : this.api.getApiResource().getApiFiles()) {
 			try {
 				Document document = Jsoup.parse(file, "UTF-8");
 				ApiElement apiElement = api.getApiElement();
 				apiElement.doParse(document.children());
-				writeOutput(file, apiElement.toString());
+				writeOutput(file, apiElement);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -47,23 +56,34 @@ public class Parser {
 		}
 	}
 	
-	private void writeOutput(File file, String content) {
+	private void writeOutput(File file, ApiElement content) {
 		try {
-			File f = new File(api.getApiResource().getOutput() + file.getName());
-			
-//			if (f.exists() && f.getParentFile() != file.getParentFile()) {
-//				f = new File(api.getApiResource().getOutput() + file.getName()
-//						+ file.getParent());
-//			}
-
+			String title = getPackageContent(content);
+			File f = new File(api.getApiResource().getOutput() + title + "." + file.getName());
+			if(f.exists()){
+				System.out.println("File existed " + file.getName());
+			}
 			BufferedWriter fWrite = new BufferedWriter(new FileWriter(f));
-			fWrite.write(content);
+			fWrite.write(content.toString());
 			fWrite.flush();
 			fWrite.close();
-			System.out.println("Write " + file.getName());
+			System.out.println("Write " + f.getName());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	private String getPackageContent(ApiElement content) {
+		for (Object ele : content.getChildren()) {
+			if(ele instanceof Package){
+				return ((Package) ele).getChildren().get(0).toString();
+			}
+			else{
+				if(ele instanceof ApiElement)
+					return getPackageContent((ApiElement)ele);
+			}
+		}
+		return null;
 	}
 }
