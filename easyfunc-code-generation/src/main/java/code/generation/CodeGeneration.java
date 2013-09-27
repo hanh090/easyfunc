@@ -1,5 +1,6 @@
 package code.generation;
 
-public class CodeGeneration {
 
+public class CodeGeneration {
+	
 }
