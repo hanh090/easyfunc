@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="com.hcmut.easyfunc.contentAssist.EFCompletionProposalComputer"
+         name="EFCompletionProposalComputer"
+         point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+      <javaCompletionProposalComputer
+            activate="true"
+            categoryId="org.eclipse.jdt.ui.defaultProposalCategory"
+            class="edu.hcmut.easyfunc.contenAssist.EFCompletionProposalComputer"
+            needsSortingAfterFiltering="true">
+         <partition
+               type="__dftl_partition_content_type">
+         </partition>
+      </javaCompletionProposalComputer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="edu.hcmut.easyfunc.preferences.EasyFuncPref"
+            id="edu.hcmut.easyfunc.preferences.EasyFuncPref"
+            name="EasyFunc">
+      </page>
+      <page
+            category="edu.hcmut.easyfunc.preferences.EasyFuncPref"
+            class="edu.hcmut.easyfunc.preferences.EasyFuncParserPref"
+            id="edu.hcmut.easyfunc.preferences.EasyFuncParsePref"
+            name="Parser">
+      </page>
+      <page
+            category="edu.hcmut.easyfunc.preferences.EasyFuncPref"
+            class="edu.hcmut.easyfunc.preferences.EasyFuncIndexerPref"
+            id="edu.hcmut.easyfunc.preferences.Indexer"
+            name="Indexer">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="edu.hcmut.easyfunc.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>

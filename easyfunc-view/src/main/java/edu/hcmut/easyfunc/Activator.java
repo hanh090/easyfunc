@@ -1,4 +1,5 @@
-package main;
+package edu.hcmut.easyfunc;
+
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

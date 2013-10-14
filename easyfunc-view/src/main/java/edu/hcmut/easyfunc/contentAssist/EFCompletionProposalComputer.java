@@ -1,7 +1,9 @@
-package editor.content.assist;
+package edu.hcmut.easyfunc.contentAssist;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.CodeGenerationMain;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -20,7 +22,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.ui.IEditorPart;
 
-
 public class EFCompletionProposalComputer extends
 		JavaCompletionProposalComputer implements
 		IJavaCompletionProposalComputer {
@@ -29,12 +30,7 @@ public class EFCompletionProposalComputer extends
 	private static final String SPLIT_VARIABLE_END = ">\n";
 	private static final String VOID_TYPE = "void";
 	
-	private static final long JAVA_CODE_ASSIST_TIMEOUT = Long.getLong(
-			"org.eclipse.jdt.ui.codeAssistTimeout", 5000).longValue() * 10; // ms //$NON-NLS-1$
-
 	private String fErrorMessage;
-
-	private final IProgressMonitor fTimeoutProgressMonitor;
 
 	List<Proposal> proposals = new ArrayList<EFCompletionProposalComputer.Proposal>();
 
@@ -47,11 +43,6 @@ public class EFCompletionProposalComputer extends
 	}
 
 	public EFCompletionProposalComputer() {
-
-		// TODO Auto-generated constructor stub
-		System.out
-				.println("EFCompletionProposalComputer.EFCompletionProposalComputer()");
-		fTimeoutProgressMonitor = createTimeoutProgressMonitor(JAVA_CODE_ASSIST_TIMEOUT);
 
 	}
 
@@ -74,26 +65,18 @@ public class EFCompletionProposalComputer extends
 
 			 CharSequence query = efContext.computeIdentifierPrefix();
 			// System.out.println(query);
-			String listVariable = getVisibleVariableAndMethodCall(efContext,query.length());
+			String listVariable = getVisibleVariableAndMethodCall(efContext,query.length(),monitor);
 			
-			CodeGeneration cg = new CodeGeneration(listVariable,
-					query.toString());
-			cg.loadFunctionAPI();
-			cg.generateFuncCall();
+			CodeGenerationMain codeGenMain = new CodeGenerationMain();
+			List<String> result = codeGenMain.generate(query.toString());
 
-			ArrayList<SolvedFunction> funcList = cg.getFunList();
-			if (funcList.size() == 0) {
-				return results;
-			}
+		
 
-			Ranking r = new Ranking(funcList);
-			r.sort();
+			String[] sResults = result.toString().split("\n\n");
 
-			String[] sResults = r.toString().split("\n\n");
-
-			for (String result : sResults) {
+			for (String sResult : sResults) {
 				Proposal calculateProposal = new Proposal();
-				String[] parseResult = result.split("\n");
+				String[] parseResult = sResult.split("\n");
 
 				// calculateProposal.index = parseResult[1].;
 				calculateProposal.displayString = calculateProposal.comment = parseResult[2];
@@ -130,7 +113,7 @@ public class EFCompletionProposalComputer extends
 		return results;
 	}
 
-	private String getVisibleVariableAndMethodCall(EFContentAssistInvocationContext efContext,int maxOffset) 
+	private String getVisibleVariableAndMethodCall(EFContentAssistInvocationContext efContext,int maxOffset, IProgressMonitor monitor) 
 			throws JavaModelException {
 
 		ICompilationUnit unit = efContext.getCompilationUnit();
@@ -172,7 +155,7 @@ public class EFCompletionProposalComputer extends
 		collector.setIgnored(CompletionProposal.VARIABLE_DECLARATION, false);
 
 		try {
-			unit.codeComplete(offset-maxOffset, collector, fTimeoutProgressMonitor);
+			unit.codeComplete(offset-maxOffset, collector, monitor);
 		} catch (OperationCanceledException x) {
 			
 		} 
@@ -222,47 +205,12 @@ public class EFCompletionProposalComputer extends
 
 	@Override
 	public String getErrorMessage() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void sessionEnded() {
-		// TODO Auto-generated method stub
 		proposals.clear();
-	}
-
-	private IProgressMonitor createTimeoutProgressMonitor(final long timeout) {
-		return new IProgressMonitor() {
-
-			private long fEndTime;
-
-			public void beginTask(String name, int totalWork) {
-				fEndTime = System.currentTimeMillis() + timeout * 100;
-			}
-
-			public boolean isCanceled() {
-				return fEndTime <= System.currentTimeMillis();
-			}
-
-			public void done() {
-			}
-
-			public void internalWorked(double work) {
-			}
-
-			public void setCanceled(boolean value) {
-			}
-
-			public void setTaskName(String name) {
-			}
-
-			public void subTask(String name) {
-			}
-
-			public void worked(int work) {
-			}
-		};
 	}
 
 	

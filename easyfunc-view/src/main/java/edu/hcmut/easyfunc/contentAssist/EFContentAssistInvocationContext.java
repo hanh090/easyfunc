@@ -1,4 +1,4 @@
-package editor.content.assist;
+package edu.hcmut.easyfunc.contentAssist;
 
 import org.eclipse.jdt.internal.ui.JavaPlugin;
 import org.eclipse.jdt.ui.text.java.ContentAssistInvocationContext;
