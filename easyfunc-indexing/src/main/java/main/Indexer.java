@@ -1,50 +1,44 @@
 package main;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
-import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.Map;
+
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.synonym.WordnetSynonymParser;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
 import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.Term;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.store.SimpleFSDirectory;
+import org.apache.lucene.store.LockObtainFailedException;
 import org.apache.lucene.util.Version;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import parser.Parser;
-import api.JavaApi;
-import document.MethodDocument;
-import document.TypeDocument;
 import util.ParserUtil;
+import document.ApiDocument;
+import document.java.MethodDocument;
+import document.java.TypeDocument;
+import document.java.TypeDocument.FieldName;
+import document.stat.NormalDistribution;
 
 public class Indexer {
 
 	private IndexWriter indexWriterForType;
-	Directory directoryType ;
-	
+
 	private IndexWriter indexWriterForMethod;
-	Directory directoryMethod ;
-	
-	private static final String OUTPUT_PATH = "";
 
 	public static void main(String[] args) {
 		Indexer indexer = new Indexer();
 		try {
 			indexer.doIndex();
+			indexer.doStat();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -52,82 +46,101 @@ public class Indexer {
 
 	public Indexer() {
 		try {
-			directoryType = FSDirectory.open(new File(
-					"src/main/resources/index/type/"));
-			this.indexWriterForType = new IndexWriter(
-					directoryType,
-					new IndexWriterConfig(Version.LUCENE_40,
-							new StandardAnalyzer(Version.LUCENE_40)));
-		
-			directoryMethod = FSDirectory.open(new File(
-					"src/main/resources/index/method/"));
-			this.indexWriterForMethod =  new IndexWriter(
-					directoryMethod,
-					new IndexWriterConfig(Version.LUCENE_40,
-							new EnglishAnalyzer(Version.LUCENE_40)));
+			indexWriterForType = createIndexWriter("src/main/resources/index/type/", Version.LUCENE_40);
+			indexWriterForMethod = createIndexWriter("src/main/resources/index/method/", Version.LUCENE_40);
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	public void doIndex() {
+	/**
+	 * @throws IOException
+	 * @throws CorruptIndexException
+	 * @throws LockObtainFailedException
+	 */
+	public IndexWriter createIndexWriter(String outputPath, Version version)
+			throws IOException, CorruptIndexException,
+			LockObtainFailedException {
+		Directory directory = FSDirectory.open(new File(outputPath));
+		return new IndexWriter(directory, new IndexWriterConfig(version,
+				new EnglishAnalyzer(version)));
+	}
+
+	public void doIndex() throws CorruptIndexException, IOException {
 		File inputPath = new File(ParserUtil.getOuputLocation());
-		try {
-			indexWriterForMethod.deleteAll();
-			indexWriterForType.deleteAll();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
+
+		indexWriterForMethod.deleteAll();
+		indexWriterForType.deleteAll();
+
 		for (File file : inputPath.listFiles()) {
-			Elements packageEle = ParserUtil.getElement(file, "package");
 			Elements typeEle = ParserUtil.getElement(file, "type");
-			Elements methodEle = ParserUtil.getElement(file, "method");
 
-			TypeDocument typeDocument = new TypeDocument();
-			typeDocument.add("package", packageEle.text(), Store.YES);
-			typeDocument.add("type", typeEle.text(), Store.YES);
-			typeDocument.add("method", methodEle.text(), Store.YES);
-			try {
-				indexWriterForType.addDocument(typeDocument.getDocument());
-				
-				System.out.println("Indexed file" + file.getName());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			doIndexForTypeDoc(file, typeEle);
 
-			for (Element element : methodEle) {
-				MethodDocument methodDocument = new MethodDocument();
-				methodDocument.add("package", packageEle.text(), Store.YES);
-				methodDocument.add("type", typeEle.select("name").text(),
-						Store.YES);
-				methodDocument.add("method", element.text(), Store.YES);
-				try {
-					indexWriterForMethod.addDocument(methodDocument
-							.getDocument());
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+			doIndexForMethodDoc(file, typeEle);
 
 		}
 
-		try {
-			
-			indexWriterForMethod.commit();
-			indexWriterForMethod.close();
-			directoryMethod.close();
-			
-			indexWriterForType.commit();
-			indexWriterForType.close();
-			directoryType.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		indexWriterForMethod.commit();
+		indexWriterForType.commit();
+		indexWriterForMethod.close();
+		indexWriterForType.close();
+
 	}
 
+	private void doIndexForTypeDoc(File file, Elements typeEle)
+			throws CorruptIndexException, IOException {
+		ApiDocument typeDocument = new TypeDocument(file.getName())
+				.toApiDocument(typeEle);
+
+		indexWriterForType.addDocument(typeDocument.getDocument());
+		System.out.println("Indexed file" + file.getName());
+	}
+
+	private void doIndexForMethodDoc(File file, Elements typeEle)
+			throws CorruptIndexException, IOException {
+		int methodSize = typeEle.select("method").size();
+
+		// Add methods
+		for (Element methodEle : typeEle.select("method")) {
+			ApiDocument methodDocument = new MethodDocument(file.getName())
+					.toApiDocument(new Elements(methodEle));
+
+			methodDocument.add(FieldName.METHOD_SIZE.getName(),
+					String.valueOf(methodSize), Store.YES);
+
+			indexWriterForMethod.addDocument(methodDocument.getDocument());
+		}
+
+	}
+
+	public void doStat() throws CorruptIndexException, IOException {
+		NormalDistribution termStat = new NormalDistribution(
+				DirectoryReader.open(indexWriterForMethod.getDirectory()));
+		
+		storeTermStat(termStat);
+		
+	}
+		
+	private void storeTermStat(NormalDistribution termStat) throws IOException {
+		Writer writer = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream("src/main/resources/stat/termStat.xml"), "UTF8"));
+		
+		writer.write("<mean>" + termStat.getMean() + "</mean>");
+		writer.write("<sd>" + termStat.getSd() + "</sd>");
+		
+		writer.write("<termTable>");
+		Map<String, Integer> termTable = termStat.getTermTable();
+		for (String key : termTable.keySet()) {
+			writer.write("<term>" + key + "</term>");
+			writer.write("<freq>" + termTable.get(key) + "</freq>");
+		}
+		writer.write("</termTable>");
+		
+		writer.flush();
+		writer.close();
+	}
 
 }
