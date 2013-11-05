@@ -46,8 +46,10 @@ public class Indexer {
 
 	public Indexer() {
 		try {
-			indexWriterForType = createIndexWriter("src/main/resources/index/type/", Version.LUCENE_40);
-			indexWriterForMethod = createIndexWriter("src/main/resources/index/method/", Version.LUCENE_40);
+			indexWriterForType = createIndexWriter(
+					"src/main/resources/index/type/", Version.LUCENE_40);
+			indexWriterForMethod = createIndexWriter(
+					"src/main/resources/index/method/", Version.LUCENE_40);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -117,28 +119,20 @@ public class Indexer {
 	}
 
 	public void doStat() throws CorruptIndexException, IOException {
-		NormalDistribution termStat = new NormalDistribution(
-				DirectoryReader.open(indexWriterForMethod.getDirectory()));
-		
+		NormalDistribution termStat = new NormalDistribution();
+		termStat.computeTermTable(DirectoryReader.open(indexWriterForMethod.getDirectory()));
 		storeTermStat(termStat);
-		
+
 	}
-		
+
 	private void storeTermStat(NormalDistribution termStat) throws IOException {
 		Writer writer = new BufferedWriter(new OutputStreamWriter(
-				new FileOutputStream("src/main/resources/stat/termStat.xml"), "UTF8"));
-		
+				new FileOutputStream("src/main/resources/stat/termStat.xml"),
+				"UTF8"));
+
 		writer.write("<mean>" + termStat.getMean() + "</mean>");
 		writer.write("<sd>" + termStat.getSd() + "</sd>");
-		
-		writer.write("<termTable>");
-		Map<String, Integer> termTable = termStat.getTermTable();
-		for (String key : termTable.keySet()) {
-			writer.write("<term>" + key + "</term>");
-			writer.write("<freq>" + termTable.get(key) + "</freq>");
-		}
-		writer.write("</termTable>");
-		
+
 		writer.flush();
 		writer.close();
 	}
