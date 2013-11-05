@@ -1,9 +1,13 @@
 package algorithm.java.method;
 
+import java.util.Map;
+
 import org.apache.commons.math3.distribution.NormalDistribution;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import util.ParserUtil;
-import algorithm.TypeWeight;
+import algorithm.MethodWeight;
 
 /**
  * Bi-Normal Separation
@@ -11,39 +15,75 @@ import algorithm.TypeWeight;
  * @see article in project's docs directory
  * 
  */
-public class BNS extends TypeWeight {
+public class BNS extends MethodWeight {
+	private static final double MIN_PROB = 0.0005;
+	private static final double MAX_PROB = 0.9995;
 	// Normal Distribution for True Positive Rate
 	private NormalDistribution normalDist;
-	
 
-	public BNS() {
-		super();
-		double mean = Double.valueOf( ParserUtil.getText("../easyfunc-indexing/src/main/resources/stat/termStat.xml", "mean"));
-		double sd = Double.valueOf(ParserUtil.getText("../easyfunc-indexing/src/main/resources/stat/termStat.xml", "sd"));
+	private static final Logger slf4jLogger = LoggerFactory
+			.getLogger(MethodWeight.class);
+
+	public BNS(Map<String, Integer[]> termQuarter) {
+		super(termQuarter);
+		double mean = Double.valueOf(ParserUtil.getText(
+				"../easyfunc-indexing/src/main/resources/stat/termStat.xml",
+				"mean"));
+		double sd = Double.valueOf(ParserUtil.getText(
+				"../easyfunc-indexing/src/main/resources/stat/termStat.xml",
+				"sd"));
 		normalDist = new NormalDistribution(mean, sd);
 	}
 
-
 	@Override
-	public double computeScore() {
-		double p = calcProb(((double)A)/(double)(A+C));
-		double e = calcProb(((double)B)/(double)(B+D));
-		double inverseCumulativeProbability = normalDist.inverseCumulativeProbability(p);
-		double inverseCumulativeProbability2 = normalDist.inverseCumulativeProbability(e);
-		double result  = inverseCumulativeProbability - inverseCumulativeProbability2;
+	public double computeScore(String id) {
+		Integer[] quarter = this.termQuarter.get(id);
+		int truePositive = quarter[0];
+		int falsePositive = quarter[1];
+		int trueNegative = quarter[2];
+		int falseNegative = quarter[3];
+		double p = calcProb(((double) truePositive)
+				/ (double) (truePositive + falsePositive));
+		double e = calcProb(((double) trueNegative)
+				/ (double) (trueNegative + falseNegative));
+		double inverseCumulativeProbability = scale(normalDist
+				.inverseCumulativeProbability(p));
+		double inverseCumulativeProbability2 = scale(normalDist
+				.inverseCumulativeProbability(e));
+		double result = inverseCumulativeProbability
+				- inverseCumulativeProbability2;
+		//DocumentID positiveScore negativeScore
+		slf4jLogger.info("{}\t{}\t{}",
+				id, String.valueOf(inverseCumulativeProbability),
+				String.valueOf(inverseCumulativeProbability2));
 		return result;
 	}
 
 	/**
+	 * Scale score between 0 and 1
+	 * 
+	 * @param score
+	 * @return
+	 */
+	private double scale(double score) {
+		double MAX_SCORE = normalDist.inverseCumulativeProbability(MAX_PROB);
+		double MIN_SCORE = normalDist.inverseCumulativeProbability(MIN_PROB);
+		double factorA = 1 / (MAX_SCORE - MIN_SCORE);
+		double factorB = -MIN_SCORE / (MAX_SCORE - MIN_SCORE);
+		return factorA * score + factorB;
+	}
+
+	/**
 	 * Calculate probability in range [0.0005- (1-0.0005)]
+	 * 
 	 * @param d
 	 * @return
 	 */
 	private double calcProb(double d) {
-		if(d < 0.0005)
-			return 0.0005;
-		else if(d > (1-0.0005))
-			return (1-0.0005);
+		if (d < MIN_PROB)
+			return MIN_PROB;
+		else if (d > MAX_PROB)
+			return MAX_PROB;
 		else
 			return d;
 	}
