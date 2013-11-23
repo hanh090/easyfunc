@@ -2,11 +2,14 @@ package algorithm.java.method;
 
 import java.util.Map;
 
+import main.Indexer;
+
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import util.ParserUtil;
+import utils.ResourceUtils;
 import algorithm.MethodWeight;
 
 /**
@@ -20,18 +23,17 @@ public class BNS extends MethodWeight {
 	private static final double MAX_PROB = 0.9995;
 	// Normal Distribution for True Positive Rate
 	private NormalDistribution normalDist;
-
-	private static final Logger slf4jLogger = LoggerFactory
-			.getLogger(MethodWeight.class);
+//
+//	private static final Logger slf4jLogger = LoggerFactory
+//			.getLogger(MethodWeight.class);
 
 	public BNS(Map<String, Integer[]> termQuarter) {
 		super(termQuarter);
-		double mean = Double.valueOf(ParserUtil.getText(
-				"../easyfunc-indexing/src/main/resources/stat/termStat.xml",
-				"mean"));
-		double sd = Double.valueOf(ParserUtil.getText(
-				"../easyfunc-indexing/src/main/resources/stat/termStat.xml",
-				"sd"));
+		String indexingPath = ResourceUtils.getPath(Indexer.EASYFUNC_INDEXING);
+		double mean = Double.valueOf(ParserUtil.getText(indexingPath
+				+ "/src/main/resources/stat/termStat.xml", "mean"));
+		double sd = Double.valueOf(ParserUtil.getText(indexingPath
+				+ "/src/main/resources/stat/termStat.xml", "sd"));
 		normalDist = new NormalDistribution(mean, sd);
 	}
 
@@ -52,10 +54,10 @@ public class BNS extends MethodWeight {
 				.inverseCumulativeProbability(e));
 		double result = inverseCumulativeProbability
 				- inverseCumulativeProbability2;
-		//DocumentID positiveScore negativeScore
-		slf4jLogger.info("{}\t{}\t{}",
-				id, String.valueOf(inverseCumulativeProbability),
-				String.valueOf(inverseCumulativeProbability2));
+		// DocumentID positiveScore negativeScore
+//		slf4jLogger.info("{}\t{}\t{}", id,
+//				String.valueOf(inverseCumulativeProbability),
+//				String.valueOf(inverseCumulativeProbability2));
 		return result;
 	}
 

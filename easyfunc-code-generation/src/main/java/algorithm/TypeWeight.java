@@ -1,64 +1,62 @@
 package algorithm;
 
-import algorithm.java.method.BNS;
-import algorithm.java.method.ChiSquare;
+import java.io.IOException;
+import java.util.Map;
 
-public abstract class TypeWeight {
-	/**
-	 * A
-	 */
-	protected int A;
-	/**
-	 * B
-	 */
-	protected int B;
-	/**
-	 * C
-	 */
-	protected int C;
-	/**
-	 * D
-	 */
-	protected int D;
+import org.apache.lucene.index.CorruptIndexException;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.TermQuery;
 
-	public enum WeightAlgorithm {
-		BNS, CHI_SQUARE, ODDS_RATIO
+import document.wrapper.IndexKind;
+import searcher.ScoreDocCollector;
+import searcher.util.SearchUtils;
+import algorithm.java.type.BM25;
+import algorithm.java.type.TfIdf;
+/**
+ * Class to compute score base on type document
+ *
+ */
+public abstract class TypeWeight implements Weight {
+	public enum TypeWeightAlg {
+		TF_IDF, BM25;
 	}
-
-	protected TypeWeight() {
+	protected Term t;
+	protected TypeWeight(Term t) {
+		this.t = t;
 	}
-
-	/**
-	 * Create type weight algorithm
-	 * 
-	 * @param algorithm
-	 *            name of algorithm
-	 * @return
-	 */
-	public static TypeWeight create(WeightAlgorithm algorithm) {
-		switch (algorithm) {
-		case BNS:
-			return new BNS();
-			
-		case CHI_SQUARE:
-			return new ChiSquare();
-
+	
+	public static TypeWeight create(TypeWeightAlg talg,Term t){
+		switch (talg) {
+		case TF_IDF:
+			return new TfIdf(t);
+		case BM25:
+			return new BM25(t);
 		default:
 			break;
 		}
 		return null;
-
-	}
-
-	
-
-	public void setFactors(int A, int B, int C, int D) {
-		this.A = A;
-		this.B = B;
-		this.C = C;
-		this.D = D;
 	}
 	
-	public abstract double computeScore();
+	@Override
+	public Map<String, Double> computeScoreTable() {
+		try {
+			IndexSearcher defaultSearch = SearchUtils.createIndexSearcher(IndexKind.TYPE);
+			ScoreDocCollector scoreDocCollector = new ScoreDocCollector(
+					defaultSearch.getIndexReader());
+			setSimilarity(defaultSearch);
+			defaultSearch.search(new TermQuery(t), scoreDocCollector);
 
+			return scoreDocCollector.getScoreDoc();
+
+		} catch (CorruptIndexException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	protected abstract void setSimilarity(IndexSearcher searcher);
+	
 }

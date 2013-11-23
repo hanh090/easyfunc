@@ -2,50 +2,56 @@ package searcher;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 
-import opennlp.tools.cmdline.PerformanceMonitor;
-import opennlp.tools.cmdline.postag.POSModelLoader;
+import main.CodeGenerationMain;
 import opennlp.tools.postag.POSModel;
-import opennlp.tools.postag.POSSample;
-import opennlp.tools.postag.POSTaggerME;
-import opennlp.tools.tokenize.WhitespaceTokenizer;
-import opennlp.tools.util.ObjectStream;
-import opennlp.tools.util.PlainTextByLineStream;
+import opennlp.tools.util.InvalidFormatException;
 
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.CorruptIndexException;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.DocsEnum;
-import org.apache.lucene.index.MultiFields;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.BooleanClause;
+import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import searcher.nlp.EFPosTagger;
 import searcher.nlp.RelateSentence;
 import searcher.nlp.RelateSentence.RelateAlgorithm;
+import searcher.nlp.WordnetTag;
+import searcher.util.SearchUtils;
+import utils.ResourceUtils;
+import algorithm.MethodWeight;
+import algorithm.MethodWeight.MethodWeightAlg;
 import algorithm.TypeWeight;
-import algorithm.TypeWeight.WeightAlgorithm;
-import document.java.TypeDocument.FieldName;
+import algorithm.TypeWeight.TypeWeightAlg;
+import document.wrapper.FieldName;
+import document.wrapper.IndexKind;
 
 public class Searcher {
-	private static final boolean DEBUG = true;
+	// private static final boolean DEBUG = true;
+	private static final long TIME_OUT = 30000;
+	private static final int MAX_DOCS = 10;
+
+	private String originalQuery;
 	private Query query;
 
 	public Searcher(String query) {
-
+		this.originalQuery = query;
 		this.query = parseQuery(query);
 
 	}
@@ -71,12 +77,27 @@ public class Searcher {
 	 * 
 	 */
 	public List<Document> doSearch() {
+		Logger logger = LoggerFactory.getLogger("search");
+		logger.debug("\n\n\nOriginal query:{}" + originalQuery);
 		List<Document> result = new ArrayList<Document>();
 		try {
-			Map<String, Double> typeWeightTable = computeTypeWeight();
+			Map<String, Double> bestDocument = chooseBestType(
+					MethodWeightAlg.BNS, TypeWeightAlg.TF_IDF, MAX_DOCS);
 
-			Map<String, Double> methodWeightTable = computeMethodWeight(typeWeightTable);
-
+			Map<String, Double> methodWeightTable = chooseBestMethod(
+					bestDocument, MAX_DOCS);
+			int i = 0;
+			logger.debug("Result size={}",  methodWeightTable.size());
+			for (Entry<String, Double> entry : methodWeightTable.entrySet()) {
+				IndexSearcher methodSearcher = SearchUtils
+						.createIndexSearcher(IndexKind.METHOD);
+				Document doc = methodSearcher.doc(Integer.parseInt(entry
+						.getKey()));
+				
+				logger.debug("Result {}:methodName={}:typeId={}:score={}", ++i,
+						doc.get(FieldName.METHOD_NAME.getName()), doc.get(FieldName.TYPE_ID.getName()), entry.getValue());
+				result.add(doc);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,302 +106,217 @@ public class Searcher {
 	}
 
 	/**
-	 * Compute type weight for specify term
+	 * Choose best type document relative with query based on method weight
+	 * algorithm and type weight algorithm
 	 * 
-	 * @return Map with key is type id and value is
+	 * @param malg
+	 *            algorithm which use to compute method-based score
+	 * @param max
+	 *            maximum number of document will return
+	 * @return SortedMap by score with key is type-id and value is score
+	 * @see MethodWeightAlg
 	 * @throws IOException
 	 * @throws CorruptIndexException
+	 * 
 	 */
-	private Map<String, Double> computeTypeWeight()
-			throws CorruptIndexException, IOException {
+	public Map<String, Double> chooseBestType(MethodWeightAlg malg,
+			TypeWeightAlg talg, int max) throws CorruptIndexException,
+			IOException {
 
 		long start = System.currentTimeMillis();
 
-		Map<String, Double> typeWeightTable = new HashMap<String, Double>();
+		Map<String, Double> result = new HashMap<String, Double>();
 
 		Set<Term> terms = new HashSet<Term>();
-		query.extractTerms(terms);
+		// query.extractTerms(terms);
+		if (query instanceof BooleanQuery) {
+
+			List<BooleanClause> clauses = ((BooleanQuery) query).clauses();
+			for (BooleanClause term : clauses) {
+				String[] parseClause = term.getQuery().toString().split(":");
+				terms.add(new Term(parseClause[0], parseClause[1]));
+			}
+			;
+		}
 
 		for (Term term : terms) {
+			Map<String, Double> methodScoreTable = MethodWeight.create(malg,
+					term).computeScoreTable();
+			Map<String, Double> typeScoreTable = TypeWeight.create(talg, term)
+					.computeScoreTable();
 
-			Map<String, Integer[]> termFreqTable = termFreqTable(term);
-
-			Map<String, Double> methodBasedScoreTable = scoreTable(
-					WeightAlgorithm.BNS, termFreqTable);
-			Map<String, Double> typeBasedScoreTable = scoreTable(term);
-
-			// TF-IDF same factor like chisquare
-			for (String key : typeBasedScoreTable.keySet()) {
-				double typeBasedScore = typeBasedScoreTable.get(key);
-				double methodBasedScore = methodBasedScoreTable.get(key);
-				double termScore = typeBasedScore + methodBasedScore;
-				if (typeWeightTable.containsKey(key)) {
-					double preTermScore = typeWeightTable.get(key);
-					termScore += preTermScore;
+			for (String key : typeScoreTable.keySet()) {
+				double typeScore = typeScoreTable.get(key);
+				double methodScore = methodScoreTable.get(key);
+				// TODO:Modifield in here :)
+				double finalScore = 1 * typeScore + 10 * methodScore;
+				if (result.containsKey(key)) {
+					double preTermScore = result.get(key);
+					finalScore += preTermScore;
 				}
 
-				typeWeightTable.put(key, termScore);
+				result.put(key, finalScore);
 			}
 
+		}
+
+		result = sortByValue(result);
+
+		Map<String, Double> topTypeWeight = new HashMap<String, Double>();
+		int i = 0;
+		for (Entry<String, Double> entry : result.entrySet()) {
+			topTypeWeight.put(entry.getKey(), entry.getValue());
+			i++;
+			if (i == max)
+				break;
 		}
 
 		System.out.println("Time to compute type weight is "
 				+ String.valueOf(System.currentTimeMillis() - start));
-		return typeWeightTable;
+		return topTypeWeight;
+	}
+
+	private Map<String, Double> sortByValue(Map<String, Double> map) {
+		TreeMap<String, Double> sortedMap = new TreeMap<String, Double>(
+				new ScoreComparator(map));
+		sortedMap.putAll(map);
+		return sortedMap;
 	}
 
 	/**
-	 * Create term frequency table with key is id of document
+	 * Choose best method relative with query by nature language processing
 	 * 
-	 * @param term
-	 * @return
-	 * @throws CorruptIndexException
+	 * @param bestType
+	 *            list id of type document
+	 * @param maxDocs
+	 * @return sorted map by score with key is the ordinary number of document
+	 *         in index reader of method-doc and value is score.Note that: when
+	 *         index become larger, we need information of index reader
 	 * @throws IOException
+	 * @throws InvalidFormatException
 	 */
-	private Map<String, Integer[]> termFreqTable(Term term)
-			throws CorruptIndexException, IOException {
-		Map<String, Integer[]> result = new HashMap<String, Integer[]>();
-		IndexSearcher indexSearcher = createIndexSearcher(IndexKind.METHOD);
+	public Map<String, Double> chooseBestMethod(Map<String, Double> bestType,
+			int maxDocs) throws InvalidFormatException, IOException {
 
-		DocsEnum docsEnum = MultiFields.getTermDocsEnum(
-				indexSearcher.getIndexReader(),
-				MultiFields.getLiveDocs(indexSearcher.getIndexReader()),
-				term.field(), term.bytes(), true);
-
-		int docId = -1;
-		while ((docId = docsEnum.nextDoc()) != DocsEnum.NO_MORE_DOCS) {
-			String id = indexSearcher.doc(docId).get(FieldName.ID.getName());
-			Integer[] values = new Integer[4];
-
-			if (result.containsKey(id)) {
-				values = result.get(id);
-				values[0]++;
-			} else {
-				values[0] = 1;
-				values[1] = Integer.parseInt(indexSearcher.doc(docId).get(
-						FieldName.METHOD_SIZE.getName()));
-				values[2] = 0;
-				values[3] = indexSearcher.getIndexReader().numDocs();
-			}
-			result.put(id, values);
-		}
-		// Calculate sum of term frequent
-		int sumOfTermFreq = 0;
-		for (Integer[] values : result.values()) {
-			sumOfTermFreq += values[0];
-		}
-		// Update
-		for (String key : result.keySet()) {
-			Integer[] values = result.get(key);
-			values[2] = sumOfTermFreq;
-			result.put(key, values);
-		}
-		return result;
-	}
-
-	/**
-	 * Score table for method-index kind
-	 * 
-	 * @param algorithm
-	 * @param termFreqTable
-	 * @return
-	 */
-	private Map<String, Double> scoreTable(WeightAlgorithm algorithm,
-			Map<String, Integer[]> termFreqTable) {
+		long start = System.currentTimeMillis();
 		Map<String, Double> result = new HashMap<String, Double>();
-
-		TypeWeight typeWeight = null;
-		switch (algorithm) {
-
-		case CHI_SQUARE:
-			typeWeight = TypeWeight.create(WeightAlgorithm.CHI_SQUARE);
-
-			break;
-		case BNS:
-			typeWeight = TypeWeight.create(WeightAlgorithm.BNS);
-		default:
-			break;
-		}
-
-		for (String sDocId : termFreqTable.keySet()) {
-			Integer[] values = termFreqTable.get(sDocId);
-			int A = values[0];
-			int B = values[1] - A;
-			int C = values[2] - A;
-			int D = values[3] - A - B - C;
-			typeWeight.setFactors(A, B, C, D);
-			double score = typeWeight.computeScore();
-			result.put(sDocId, score);
-		}
-		return result;
-
-	}
-
-	/**
-	 * Score table for type-index kind
-	 * 
-	 * @param term
-	 * @param termFreqTable
-	 * @return
-	 */
-	private Map<String, Double> scoreTable(Term term) {
-		try {
-			IndexSearcher defaultSearch = createIndexSearcher(IndexKind.TYPE);
-			ScoreDocCollector scoreDocCollector = new ScoreDocCollector(
-					defaultSearch.getIndexReader());
-			defaultSearch.search(new TermQuery(term), scoreDocCollector);
-
-			return scoreDocCollector.getScoreDoc();
-
-		} catch (CorruptIndexException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-
-	}
-
-	/**
-	 * Compute score table for method
-	 * 
-	 * @param typeWeightTable
-	 *            .keySet() list id of type document
-	 * @return
-	 */
-	private Map<String, Double> computeMethodWeight(
-			Map<String, Double> typeWeightTable) {
-
-		Map<String, Double> result = new HashMap<String, Double>();
-		String queryAfterAnalyze = getQueryAfterAnalyze();
 
 		RelateSentence relateSentence = new RelateSentence(RelateAlgorithm.WUP);
 
-		for (String typeId : typeWeightTable.keySet()) {
-			List<Document> typeDocs = getDoc(typeId);
-			for (Document document : typeDocs) {
-				String[] sentences = document.get(
+		String codeGenPath = ResourceUtils
+				.getPath(CodeGenerationMain.EASYFUNC_CODE_GENERATION);
+		POSModel model = new POSModel(new File(codeGenPath
+				+ "/src/main/resources/model/english/postag/en-pos-maxent.bin"));
+
+		EFPosTagger posTagQuery = (EFPosTagger) new EFPosTagger(originalQuery,
+				model).process();
+		String[] verbsInQuery = posTagQuery.filter(WordnetTag.VERB);
+		for (Entry<String, Double> typeEntry : bestType.entrySet()) {
+			Map<Integer, Document> methodDocs = findMethodDoc(typeEntry
+					.getKey());
+			for (Entry<Integer, Document> methodEntry : methodDocs.entrySet()) {
+				Document methodDoc = methodEntry.getValue();
+				System.out.println("Document: "
+						+ methodDoc.get(FieldName.TYPE_ID.getName())
+						+ "--------------------------");
+				String[] sentences = methodDoc.get(
 						FieldName.METHOD_DESC.getName()).split("\\.");
-				for (String sentence : sentences) {
 
-					double[][] matrixSim = relateSentence.computeSynonymMatrix(
-							sentence, queryAfterAnalyze);
+				String wornetTaggedQuery = posTagQuery.toWordnetFormat();
+				String wordnetTaggedSentence = ((EFPosTagger) (new EFPosTagger(
+						"It " + sentences[0], model).process()))
+						.toWordnetFormat();
 
-				}
+				double sentenceSim = relateSentence.computeSimilarity(
+						wordnetTaggedSentence, wornetTaggedQuery, model);
+
+				double nameSim = computeNameSimilarity(methodDoc, verbsInQuery);
+
+				double finalSim = nameSim + sentenceSim;
+				result.put(String.valueOf(methodEntry.getKey()), finalSim);
 			}
+		}
+		result = sortByValue(result);
+		System.out.println("Time to compute method weight is "
+				+ String.valueOf(System.currentTimeMillis() - start));
+		return result;
+	}
+
+	/**
+	 * Get method-document from {@code docID}
+	 * 
+	 * @param query
+	 * @return
+	 */
+	private Map<Integer, Document> findMethodDoc(String query) {
+		Map<Integer, Document> result = null;
+		try {
+			QueryParser queryParser = new QueryParser(Version.LUCENE_40,
+					FieldName.TYPE_ID.getName(), new EnglishAnalyzer(
+							Version.LUCENE_40));
+
+			Query q = queryParser.parse(query);
+
+			result = findMethodDoc(q);
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 
 		return result;
 	}
 
-	private String getQueryAfterAnalyze() {
-		String result = "";
-		Set<Term> terms = new HashSet<Term>();
-		query.extractTerms(terms);
-		for (Term term : terms) {
-			result = result + term.text() + " ";
-		}
-		return result.trim();
-	}
-
 	/**
-	 * Get document from {@code docID}
+	 * Get method-document from query {@code q}
 	 * 
-	 * @param docID
+	 * @param q
 	 * @return
 	 */
-	private List<Document> getDoc(String docID) {
-		List<Document> result = new ArrayList<Document>();
+	private Map<Integer, Document> findMethodDoc(Query q) {
+		Map<Integer, Document> result = new HashMap<Integer, Document>();
 		try {
-			IndexSearcher searchTypeDoc = new IndexSearcher(
-					DirectoryReader
-							.open(new SimpleFSDirectory(
-									new File(
-											"../easyfunc-indexing/src/main/resources/index/method/"))));
-
-			QueryParser queryParser = new QueryParser(Version.LUCENE_40,
-					FieldName.ID.getName(), new EnglishAnalyzer(
-							Version.LUCENE_40));
-			Query q = queryParser.parse(docID);
+			IndexSearcher searchTypeDoc = SearchUtils
+					.createIndexSearcher(IndexKind.METHOD);
 
 			HitDocCollector hitDoc = new HitDocCollector();
 			searchTypeDoc.search(q, hitDoc);
 			for (Integer hitDocId : hitDoc.getHitDocs()) {
-				result.add(searchTypeDoc.doc(hitDocId));
+				result.put(hitDocId, searchTypeDoc.doc(hitDocId));
 			}
 
 		} catch (CorruptIndexException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
 		return result;
 	}
 
-	public IndexSearcher createIndexSearcher(IndexKind kind) throws IOException {
-		IndexSearcher indexSearcher = null;
-		switch (kind) {
-		case TYPE:
-			indexSearcher = new IndexSearcher(
-					DirectoryReader
-							.open(new SimpleFSDirectory(
-									new File(
-											"../easyfunc-indexing/src/main/resources/index/type/"))));
-			break;
-		case METHOD:
-			indexSearcher = new IndexSearcher(
-					DirectoryReader
-							.open(new SimpleFSDirectory(
-									new File(
-											"../easyfunc-indexing/src/main/resources/index/method/"))));
-			break;
-		default:
-			break;
+	/**
+	 * Compute similarity of name method of {@code document} from
+	 * {@code verbsInQuery}
+	 * 
+	 * @param document
+	 * @param verbsInQuery
+	 *            verb from query
+	 * @return
+	 */
+	@SuppressWarnings("Fix later")
+	private double computeNameSimilarity(Document document,
+			String[] verbsInQuery) {
+		String methodName = document.get(FieldName.METHOD_NAME.getName());
+		for (String verb : verbsInQuery) {
+			if (methodName.contains(verb))
+				return 0.5;
 		}
-
-		return indexSearcher;
+		return 0;
 	}
 
 	public Query getQuery() {
 		return query;
 	}
 
-	/**
-	 * POS Tagging the {@code sentence}
-	 * 
-	 * @param sentence
-	 * @throws IOException
-	 */
-	public void posTag(String sentence) throws IOException {
-		POSModel model = new POSModelLoader().load(new File(
-				"src/main/resources/model/english/postag/en-pos-maxent.bin"));
-		PerformanceMonitor perfMon = new PerformanceMonitor(System.err, "sent");
-		POSTaggerME tagger = new POSTaggerME(model);
-
-		ObjectStream<String> lineStream = new PlainTextByLineStream(
-				new StringReader(sentence));
-
-		perfMon.start();
-		String line;
-		while ((line = lineStream.read()) != null) {
-
-			String whitespaceTokenizerLine[] = WhitespaceTokenizer.INSTANCE
-					.tokenize(line);
-			String[] tags = tagger.tag(whitespaceTokenizerLine);
-
-			POSSample sample = new POSSample(whitespaceTokenizerLine, tags);
-			System.out.println(sample.toString());
-
-			perfMon.incrementCounter();
-		}
-		perfMon.stopAndPrintFinalResult();
-	}
-
-	public static void main(String[] args) throws IOException {
-		Searcher searcher = new Searcher("how to insert element into a list");
-		searcher.posTag("how to insert element into a list");
+	public String getOriginalQuery() {
+		return originalQuery;
 	}
 
 }

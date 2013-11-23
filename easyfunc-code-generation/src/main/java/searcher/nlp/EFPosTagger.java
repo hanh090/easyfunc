@@ -19,10 +19,10 @@ import opennlp.tools.util.model.BaseModel;
 
 public class EFPosTagger extends NatureLanguageProcesser {
 
-	public EFPosTagger(String originalSentence,BaseModel model) {
-		super(originalSentence,model);
+	public EFPosTagger(String originalSentence, BaseModel model) {
+		super(originalSentence, model);
 	}
-	
+
 	@Override
 	protected void processing() {
 		try {
@@ -51,32 +51,42 @@ public class EFPosTagger extends NatureLanguageProcesser {
 
 		String line;
 		while ((line = lineStream.read()) != null) {
-			//Tags
+			// Tags
 			String[] tokens = WhitespaceTokenizer.INSTANCE.tokenize(line);
 			String[] tags = tagger.tag(tokens);
-			
-			//Stemming
+
+			// Stemming
 			PorterStemmer stemmer = new PorterStemmer();
-			for (int i= 0; i< tokens.length; i++) {
-				String stemToken = stemmer.stemWord(tokens[i].toLowerCase());
+			for (int i = 0; i < tokens.length; i++) {
+				String lemmaWord = null;
+				//To performent just apply for verb
+				if (toWornetTags(tags[i]).equals(WordnetTag.VERB.getTag())) {
+					lemmaWord = LemmazationVerb.lemma(tokens[i]);
+				}
+				else
+					lemmaWord = tokens[i].toLowerCase();
+				String stemToken = stemmer.stemWord(lemmaWord);
 				this.token_tag.put(stemToken, tags[i]);
 			}
 		}
 
 	}
-	
+
 	/**
-	 * Filter words has tag is {@code tag}.Note: You must POS-tag before call this method
-	 * @param tag Wornet tag name
+	 * Filter words has tag is {@code tag}.Note: You must POS-tag before call
+	 * this method
+	 * 
+	 * @param tag
+	 *            Wornet tag name
 	 * @return array of words
 	 */
-	public String[] filter(WordnetTag tag){
+	public String[] filter(WordnetTag tag) {
 		List<String> result = new ArrayList<String>();
 		for (Entry<String, String> entry : this.token_tag.entrySet()) {
-			if(toWornetTags(entry.getValue()).equals(WordnetTag.VERB.getTag()))
+			if (toWornetTags(entry.getValue()).equals(WordnetTag.VERB.getTag()))
 				result.add(entry.getKey());
 		}
-		
+
 		return result.toArray(new String[0]);
 	}
 
@@ -149,8 +159,8 @@ public class EFPosTagger extends NatureLanguageProcesser {
 		StringBuilder result = new StringBuilder();
 		for (Entry<String, String> entry : this.token_tag.entrySet()) {
 			if (isWordnetFormat) {
-				result.append(entry.getKey() + separate + toWornetTags(entry.getValue())
-						+ " ");
+				result.append(entry.getKey() + separate
+						+ toWornetTags(entry.getValue()) + " ");
 			} else {
 				result.append(entry + separate + token_tag.get(entry) + " ");
 			}
@@ -162,10 +172,16 @@ public class EFPosTagger extends NatureLanguageProcesser {
 	public String toWordnetFormat() {
 		return toString("#", true);
 	}
-	
-	public static void main(String[] args) throws InvalidFormatException, IOException{
-		EFPosTagger test = (EFPosTagger) new EFPosTagger("how to insert element into link list", new POSModel(new File("src/main/resources/model/english/postag/en-pos-maxent.bin"))).process();
-		
+
+	public static void main(String[] args) throws InvalidFormatException,
+			IOException {
+		EFPosTagger test = (EFPosTagger) new EFPosTagger(
+				"how to insert element into link list",
+				new POSModel(
+						new File(
+								"src/main/resources/model/english/postag/en-pos-maxent.bin")))
+				.process();
+
 		System.out.println(test.toString());
 		System.out.println(test.toWordnetFormat());
 	}
