@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+		<file>log/activity-log.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="similarity-debug" class="ch.qos.logback.core.FileAppender">
+		<file>log/similarity-log.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35}
+				- %msg %n</pattern>
+		</encoder>
+	</appender>
+	<appender name="search-debug" class="ch.qos.logback.core.FileAppender">
+		<file>log/search-log.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35}
+				- %msg %n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="trace" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="search" level="DEBUG" additivity="false">
+		<appender-ref ref="search-debug" />
+	</logger>
+	<logger name="similarity" level="DEBUG" additivity="false">
+		<appender-ref ref="similarity-debug" />
+	</logger>
+	
+	<logger name="trace" level="TRACE" additivity="false">
+		<appender-ref ref="trace" />
+	</logger>
+	<root level="INFO">
+		<appender-ref ref="fileAppender" />
+	</root>
+</configuration>

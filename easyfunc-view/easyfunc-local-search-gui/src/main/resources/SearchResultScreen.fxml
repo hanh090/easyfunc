@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="599.9998779296875" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.SearchController">
+  <children>
+    <TextField fx:id="txtQuery" layoutX="14.0" layoutY="78.0" prefWidth="504.0" promptText="Search" text="how to insert element into list" />
+    <AnchorPane fx:id="resultPane" layoutX="18.0" layoutY="100.0" prefHeight="366.0" prefWidth="568.0">
+      <children>
+        <VBox layoutX="5.0" layoutY="10.0" prefHeight="337.0" prefWidth="89.0" spacing="20.0">
+          <children>
+            <CheckBox fx:id="chbJava" mnemonicParsing="false" text="Java" />
+            <CheckBox mnemonicParsing="false" text="Scala" />
+          </children>
+          <padding>
+            <Insets bottom="10.0" top="10.0" />
+          </padding>
+        </VBox>
+        <Separator layoutX="94.0" layoutY="10.0" orientation="VERTICAL" prefHeight="339.0" />
+        <TabPane fx:id="navigatePane" layoutX="106.0" layoutY="14.0" prefHeight="339.0" prefWidth="462.0" rotateGraphic="false" side="TOP" tabClosingPolicy="SELECTED_TAB">
+          <tabs>
+            <Tab fx:id="tabResult" closable="false" text="Result">
+              <content>
+                <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+          </tabs>
+        </TabPane>
+      </children>
+    </AnchorPane>
+    <Button fx:id="btnSearch" defaultButton="true" layoutX="518.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleSearchAction" text="Search" />
+    <ProgressIndicator fx:id="pgrSearching" layoutX="282.0" layoutY="192.0" progress="-1.0" visible="false" />
+    <AnchorPane fx:id="infomation" layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="572.0">
+      <children>
+        <Label layoutX="24.0" layoutY="12.0" text="Student id" />
+        <TextField fx:id="txtStuID" layoutX="86.0" layoutY="12.0" prefWidth="200.0" />
+        <fx:define>
+          <ToggleGroup fx:id="myToggleGroup" />
+        </fx:define>
+        <RadioButton fx:id="chbHonor" layoutX="330.0" layoutY="15.0" mnemonicParsing="false" text="Honor" toggleGroup="$myToggleGroup" />
+        <RadioButton fx:id="chbNormal" layoutX="404.0" layoutY="15.0" mnemonicParsing="false" selected="true" text="Normal" toggleGroup="$myToggleGroup" />
+      </children>
+    </AnchorPane>
+  </children>
+  <stylesheets>
+    <URL value="@styles.css" />
+  </stylesheets>
+</AnchorPane>
