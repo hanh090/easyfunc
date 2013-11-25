@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -62,6 +61,9 @@ public class SearchController {
 	private RadioButton chbNormal;
 
 	
+	@FXML
+	private Label lblNumOfResult;
+	
 	public void init() {
 	}
 
@@ -93,6 +95,7 @@ public class SearchController {
 				pgrSearching.setVisible(true);
 				resultPane.setDisable(true);
 				btnSearch.setDisable(true);
+				lblNumOfResult.setText("");
 			
 			}
 		});
@@ -106,6 +109,11 @@ public class SearchController {
 				btnSearch.setDisable(false);
 				
 				List<Document> processedResult = task.getValue();
+				if(processedResult == null || processedResult.isEmpty()){
+					lblNumOfResult.setText("No document found!");
+				}
+				else
+					lblNumOfResult.setText(processedResult.size() + " document(s) found");
 				
 				VBox vboxContent = new VBox();
 				VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -117,7 +125,7 @@ public class SearchController {
 					final String methodDesc = document.get(FieldName.METHOD_DESC.getName());
 					final int index = processedResult.indexOf(document);
 					
-					Hyperlink hyperlink = new Hyperlink(methodName + ":" + typeId);
+					Hyperlink hyperlink = new Hyperlink(methodName + "@" + typeId);
 					hyperlink.setUnderline(true);
 					hyperlink.setOnAction(new EventHandler<ActionEvent>() {
 						
